@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Future Simple Mission | Kru Pai Classroom</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#32165f;--bg2:#9a3f73;--card:rgba(255,255,255,.16);--line:rgba(255,255,255,.28);
+  --gold:#ffe37d;--cyan:#69f2ff;--pink:#b992ff;--green:#7fffd4;--red:#ff7396;--orange:#ffba70;
+  --dark:#171936;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;font-family:'Prompt',sans-serif;color:#fff;background:#08122d;overflow:hidden}
+body{
+  background:
+    radial-gradient(circle at 15% 15%,rgba(103,232,255,.34),transparent 25%),
+    radial-gradient(circle at 88% 18%,rgba(185,146,255,.31),transparent 24%),
+    radial-gradient(circle at 45% 90%,rgba(255,216,107,.26),transparent 30%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+.bgStars,.bgStars:before,.bgStars:after{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(#fff 1.1px,transparent 1.1px);background-size:46px 46px;opacity:.28;animation:floatStar 35s linear infinite}.bgStars:before{background-size:80px 80px;opacity:.18;animation-duration:55s}.bgStars:after{background-size:130px 130px;opacity:.13;animation-duration:78s}@keyframes floatStar{to{transform:translateY(260px)}}
+.screen{display:none;position:relative;width:100vw;height:100dvh;overflow:hidden;padding:clamp(12px,2vw,22px)}.screen.active{display:flex;flex-direction:column}.center{align-items:center;justify-content:center;text-align:center}
+.panel{background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.09));border:1px solid var(--line);border-radius:30px;box-shadow:0 22px 60px rgba(0,0,0,.28),inset 0 0 28px rgba(255,255,255,.06);backdrop-filter:blur(12px);padding:clamp(16px,2.4vw,30px)}
+.logo{font-weight:800;font-size:clamp(17px,2.2vw,25px);letter-spacing:.4px;color:#fff;text-shadow:0 0 18px rgba(103,232,255,.9)}
+.title{font-size:clamp(36px,6.5vw,78px);font-weight:800;line-height:1.02;margin:10px 0;background:linear-gradient(90deg,#fff,#75efff,#ffd86b,#ff9fda);-webkit-background-clip:text;color:transparent}.subtitle{font-size:clamp(17px,2.3vw,26px);line-height:1.55;color:#f7f3ff;max-width:1040px;margin:10px auto}.namebox{width:min(560px,92vw);font-family:inherit;font-size:22px;text-align:center;padding:16px 20px;border:none;border-radius:20px;background:#fff;color:#222;outline:4px solid rgba(255,216,107,.2);margin:16px auto}
+.btn{font-family:inherit;border:none;border-radius:999px;padding:13px 25px;font-size:clamp(17px,2vw,23px);font-weight:800;cursor:pointer;color:#24123f;background:linear-gradient(135deg,#fff,#ffd86b);box-shadow:0 10px 0 #aa6a10,0 18px 30px rgba(0,0,0,.26);transition:.12s}.btn:active{transform:translateY(6px);box-shadow:0 4px 0 #aa6a10,0 10px 18px rgba(0,0,0,.22)}.btn.secondary{background:linear-gradient(135deg,#eaffff,#67e8ff);box-shadow:0 10px 0 #138aa2;color:#09243a}.btn.pink{background:linear-gradient(135deg,#fff,#ff91d8);box-shadow:0 10px 0 #b72e88;color:#3a0830}.btn.green{background:linear-gradient(135deg,#fff,#8effb5);box-shadow:0 10px 0 #1d9650;color:#07331d}.btn.disabled{opacity:.45;pointer-events:none;filter:grayscale(.5)}.btn.small{font-size:15px;padding:9px 14px;box-shadow:none}.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center}
+.topbar{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:10px}.statline{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.pill{border:1px solid var(--line);background:rgba(255,255,255,.14);border-radius:999px;padding:8px 12px;font-weight:800;font-size:clamp(14px,1.5vw,18px);white-space:nowrap}
+.reviewWrap{width:min(1120px,96vw);max-height:88dvh;display:flex;flex-direction:column;gap:12px}.reviewPages{flex:1;min-height:0;overflow:auto;text-align:left}.teachCard{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:24px;padding:16px;margin:12px 0}.teachCard h3{margin:0 0 8px;color:var(--gold);font-size:clamp(22px,2.7vw,32px)}.formulaGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.formula{background:rgba(0,0,0,.22);border-radius:20px;padding:14px;border:1px solid rgba(255,255,255,.2)}.formula b{color:var(--cyan);font-size:20px}.formula .ex{font-size:clamp(17px,1.9vw,22px);font-weight:800;color:#fff;margin-top:8px}.note{font-size:clamp(16px,1.7vw,20px);line-height:1.55;color:#fff7d8}.highlight{color:var(--gold);font-weight:800}.red{color:#ffadc0}.greenText{color:#a9ffc7}.cyan{color:#94f4ff}
+.quizGrid{flex:1;min-height:0;display:grid;grid-template-columns:1fr;gap:12px}.questionCard{flex:1;min-height:0;display:flex;flex-direction:column;gap:12px}.qHead{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}.timerOuter{height:18px;border-radius:999px;background:rgba(0,0,0,.28);overflow:hidden;border:1px solid rgba(255,255,255,.25)}.timerBar{height:100%;width:100%;background:linear-gradient(90deg,#8effb5,#ffd86b,#ff6b88);transition:width .2s linear}.thaiPrompt{font-size:clamp(23px,3vw,38px);font-weight:800;line-height:1.25;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.26);border-radius:24px;padding:16px;text-align:center}.choiceGrid{display:grid;grid-template-columns:1fr;gap:10px}.choice{border:none;border-radius:20px;background:linear-gradient(135deg,#fff,#dffaff);color:#16163a;font-family:inherit;font-size:clamp(18px,2.2vw,26px);font-weight:800;padding:16px;cursor:pointer;box-shadow:0 8px 0 rgba(0,0,0,.24);text-align:left}.choice:hover{filter:brightness(1.06);transform:translateY(-2px)}.choice.correct{background:linear-gradient(135deg,#fff,#8effb5)}.choice.wrong{background:linear-gradient(135deg,#fff,#ff9db3)}
+.builderGrid{flex:1;min-height:0;display:grid;grid-template-columns:1fr;gap:8px}.leftBuild,.rightBuild{min-height:0;display:flex;flex-direction:column;gap:8px}.rightBuild{display:none}.buildPrompt{font-size:clamp(20px,2.4vw,30px);font-weight:800;line-height:1.2;text-align:center;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.26);border-radius:18px;padding:9px 12px}.tabs{display:none}.tab{border:none;border-radius:15px;padding:8px 7px;font-family:inherit;font-size:clamp(14px,1.45vw,18px);font-weight:800;color:#fff;cursor:pointer;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.22)}.tab.active{background:linear-gradient(135deg,#ffb15c,#ff7aca);box-shadow:0 0 18px rgba(255,122,202,.45)}.buildZone{min-height:82px;background:rgba(0,0,0,.24);border:2px dashed rgba(255,216,107,.65);border-radius:20px;padding:10px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px}.wordBank{flex:1;min-height:230px;overflow:visible;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));align-content:start;gap:12px}.word{border:none;border-radius:17px;padding:14px 16px;min-height:54px;font-family:inherit;font-weight:800;font-size:clamp(18px,2.2vw,26px);background:linear-gradient(135deg,#fff,#dffaff);color:#17163e;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.25);animation:pop .18s ease}.word.decoy{background:linear-gradient(135deg,#fff,#ffe3f5)}.word.punct{min-width:54px;text-align:center;background:linear-gradient(135deg,#fff,#d6fff1);color:#0a4d33}.word.inBuild{background:linear-gradient(135deg,#fffbe8,#ffd86b)}@keyframes pop{from{transform:scale(.65);opacity:0}to{transform:scale(1);opacity:1}}
+.progressForms{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:10px}.formDone{background:linear-gradient(135deg,#fff7bd,#ffc83f);color:#321d00;border-radius:18px;padding:12px;font-weight:800;box-shadow:0 0 20px rgba(255,216,107,.45)}.formReveal{background:linear-gradient(135deg,#fff,#ffcad4);color:#7b001b;border-radius:18px;padding:12px;font-weight:800;border:2px solid #ff315f;box-shadow:0 0 20px rgba(255,49,95,.45)}.redAnswer{color:#d80032;font-weight:900;text-shadow:0 0 8px rgba(255,255,255,.7)}.formPending{background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.28);border-radius:18px;padding:12px;color:#efeaff}.formPending b{color:var(--cyan)}.shake{animation:shake .42s ease}@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-8px)}40%,60%{transform:translateX(8px)}}
+.feedback{position:fixed;left:50%;top:45%;transform:translate(-50%,-50%) scale(.9);z-index:20;min-width:min(680px,92vw);padding:22px 28px;border-radius:30px;text-align:center;font-weight:800;font-size:clamp(26px,5vw,58px);pointer-events:none;opacity:0}.feedback.show{animation:fb 1.05s ease}.feedback.good{background:rgba(255,255,255,.94);color:#145c27;box-shadow:0 0 55px rgba(142,255,181,.9)}.feedback.bad{background:rgba(255,255,255,.95);color:#9b103e;box-shadow:0 0 55px rgba(255,112,202,.8)}@keyframes fb{0%{opacity:0;transform:translate(-50%,-50%) scale(.55)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}78%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(.95)}}
+.lockBox{width:min(900px,94vw);text-align:center}.scoreBig{font-size:clamp(44px,8vw,92px);font-weight:800;color:var(--gold);text-shadow:0 0 28px rgba(255,216,107,.75);margin:8px 0}.reviewBox{max-height:42vh;overflow:auto;text-align:left;margin-top:14px}.reviewItem{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:10px 14px;margin:8px 0}.miniTag{display:inline-block;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.22);margin:2px;font-weight:800;color:#fff}.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:30}.piece{position:absolute;width:9px;height:16px;background:#ffd86b;top:-20px;animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(560deg);opacity:.3}}
+
+/* ===== Cute Quiz Upgrade ===== */
+.quizGrid{
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,216,107,.34), transparent 28%),
+    radial-gradient(circle at 90% 18%, rgba(255,122,202,.30), transparent 26%),
+    radial-gradient(circle at 42% 92%, rgba(103,232,255,.24), transparent 28%),
+    linear-gradient(145deg, rgba(255,255,255,.24), rgba(255,255,255,.10));
+}
+.quizMascot{
+  position:absolute; right:26px; top:84px; font-size:clamp(38px,5vw,72px);
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.22)); animation:bobCute 2.6s ease-in-out infinite;
+  pointer-events:none; z-index:1;
+}
+@keyframes bobCute{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-9px) rotate(5deg)}}
+.quizRibbon{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#fff,#ffe98f,#ffb3df);
+  color:#34113f;border-radius:999px;padding:8px 14px;font-weight:900;
+  box-shadow:0 8px 0 rgba(85,35,125,.35),0 14px 26px rgba(0,0,0,.18);
+}
+.thaiPrompt{
+  background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,243,252,.88));
+  color:#24123f;border:3px solid rgba(255,216,107,.85);
+  box-shadow:0 12px 0 rgba(255,174,66,.30),0 18px 28px rgba(0,0,0,.18);
+}
+.choiceGrid{grid-template-columns:repeat(2,1fr);gap:14px}
+.choice{
+  display:flex;align-items:center;gap:14px;
+  border:3px solid rgba(255,255,255,.78);
+  background:linear-gradient(135deg,#ffffff,#dffaff 52%,#e9e2ff);
+  box-shadow:0 8px 0 rgba(33,46,120,.30),0 14px 22px rgba(0,0,0,.16);
+}
+.choice:nth-child(2){background:linear-gradient(135deg,#ffffff,#fff1b8 52%,#ffe3f5)}
+.choice:nth-child(3){background:linear-gradient(135deg,#ffffff,#dcffe9 52%,#dffaff)}
+.choice:nth-child(4){background:linear-gradient(135deg,#ffffff,#ffe3f5 52%,#fff1b8)}
+.choiceLabel{
+  flex:0 0 auto;width:52px;height:52px;border-radius:17px;
+  display:grid;place-items:center;color:white;font-weight:900;font-size:28px;
+  background:linear-gradient(135deg,#5a7dff,#ff66b3);
+  box-shadow:inset 0 -5px 0 rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.18);
+}
+.choiceText{flex:1;line-height:1.22}
+.helpBtn{
+  position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(135deg,#fff,#fff3a8 24%,#94f4ff 55%,#ff94d6);
+  color:#18133c;border:3px solid rgba(255,255,255,.9);
+  box-shadow:0 9px 0 #147a90,0 0 0 5px rgba(255,216,107,.32),0 0 34px rgba(255,216,107,.75),0 18px 28px rgba(0,0,0,.26);
+  animation:glowHelp 1.2s ease-in-out infinite;
+}
+.helpBtn:before{content:"✨";position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:22px;animation:sparkTwinkle .9s ease-in-out infinite}
+.helpBtn:after{content:"";position:absolute;inset:-35% auto -35% -45%;width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.92),transparent);transform:skewX(-18deg);animation:shineSweep 1.5s ease-in-out infinite;z-index:-1}
+@keyframes glowHelp{0%,100%{filter:brightness(1);transform:translateY(0) scale(1)}50%{filter:brightness(1.18);transform:translateY(-2px) scale(1.035)}}
+@keyframes sparkTwinkle{0%,100%{opacity:.65;transform:translateY(-50%) scale(.8) rotate(-12deg)}50%{opacity:1;transform:translateY(-50%) scale(1.25) rotate(12deg)}}
+@keyframes shineSweep{0%{left:-50%;opacity:0}25%{opacity:1}70%{left:115%;opacity:.65}100%{left:130%;opacity:0}}
+.modalOverlay{
+  position:fixed;inset:0;display:none;place-items:center;z-index:80;
+  background:rgba(4,8,28,.62);backdrop-filter:blur(8px);padding:16px;
+}
+.modalOverlay.show{display:grid}
+.helpModal{
+  width:min(980px,96vw);max-height:88dvh;overflow:auto;
+  background:linear-gradient(145deg,#ffffff,#f2fbff 55%,#fff0f8);
+  color:#171936;border-radius:30px;padding:22px;
+  box-shadow:0 30px 90px rgba(0,0,0,.42),0 0 0 5px rgba(255,216,107,.45);
+  animation:modalPop .22s ease;
+}
+@keyframes modalPop{from{transform:scale(.88);opacity:.2}to{transform:scale(1);opacity:1}}
+.helpModal h2{margin:0 0 12px;font-size:clamp(26px,4vw,44px);color:#3e2278}
+.helpCards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.helpCard{
+  border-radius:24px;padding:16px;border:3px solid rgba(90,125,255,.12);
+  background:linear-gradient(135deg,#fff,#eefaff);
+  box-shadow:0 10px 18px rgba(20,30,80,.12);
+}
+.helpCard:nth-child(2){background:linear-gradient(135deg,#fff,#fff1f7)}
+.helpCard:nth-child(3){background:linear-gradient(135deg,#fff,#fff7cf)}
+.helpCard b{display:block;font-size:clamp(19px,2vw,25px);margin-bottom:8px;color:#2e1c71}
+.helpFormula{font-size:clamp(17px,1.8vw,22px);font-weight:900;background:#151b46;color:#fff;border-radius:16px;padding:10px;margin:8px 0}
+.helpExample{font-size:clamp(16px,1.7vw,21px);font-weight:800;color:#174126}
+.helpWarn{margin-top:12px;border-radius:20px;padding:12px;background:#fff1f1;color:#9a0830;font-weight:900}
+.closeHelp{float:right;border:0;border-radius:999px;background:#ff5e9e;color:white;font-weight:900;font-size:18px;padding:8px 14px;cursor:pointer}
+@media(max-width:900px){
+  .choiceGrid{grid-template-columns:1fr;gap:10px}
+  .choiceLabel{width:43px;height:43px;border-radius:14px;font-size:23px}
+  .quizMascot{right:12px;top:112px;font-size:38px;opacity:.55}
+  .helpCards{grid-template-columns:1fr}
+}
+
+
+.ruleFlash{margin-top:12px;border:3px solid #ff315f;background:linear-gradient(135deg,#fff4b8,#ffd6e5);color:#7b0020;border-radius:22px;padding:14px;text-align:center;font-weight:900;font-size:clamp(20px,2.2vw,30px);box-shadow:0 0 24px rgba(255,49,95,.35)}
+.ruleGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
+.ruleBox{background:linear-gradient(135deg,rgba(255,255,255,.24),rgba(255,255,255,.10));border:2px solid rgba(255,255,255,.28);border-radius:22px;padding:14px}
+.ruleBox b{display:block;color:#ffe574;font-size:clamp(19px,2vw,25px);margin-bottom:6px}
+.ruleBox .big{font-size:clamp(22px,2.5vw,34px);font-weight:900;color:#fff}
+.ruleBox .small{font-size:clamp(15px,1.7vw,20px);color:#fff7d8}
+.sesGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+.sesCard{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:13px}
+.sesCard b{color:#94f4ff;font-size:20px}
+.sesCard .ex{font-size:clamp(17px,1.9vw,23px);font-weight:900;color:#fff;margin-top:6px}
+.helpMiniGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.helpMini{background:#f0f7ff;border:2px dashed #7e75ff;color:#20265a;border-radius:18px;padding:10px;font-weight:900}
+.helpMega{margin-top:12px;background:linear-gradient(135deg,#ffeb71,#ffb2d5);border:3px solid #ff315f;color:#6d0020;border-radius:20px;padding:12px;text-align:center;font-weight:900;font-size:clamp(18px,2vw,26px)}
+@media(max-width:900px){.ruleGrid,.sesGrid,.helpMiniGrid{grid-template-columns:1fr}}
+
+
+.sentenceModal{width:min(900px,95vw);max-height:88dvh;overflow:auto;background:linear-gradient(145deg,#fff,#f2fbff 45%,#fff5c9);color:#171936;border-radius:32px;padding:24px;box-shadow:0 30px 90px rgba(0,0,0,.45),0 0 0 6px rgba(142,255,181,.38);animation:modalPop .22s ease;text-align:center}
+.sentenceModal h2{margin:0 0 10px;font-size:clamp(27px,4vw,48px);color:#22306b}.sentenceModal .readNote{font-weight:900;color:#7b0020;background:#fff2ba;border:3px dashed #ff66b3;border-radius:20px;padding:10px;margin:10px 0 14px}.readCard{background:#ffffff;border:3px solid #dbe9ff;border-radius:22px;padding:13px;margin:10px 0;text-align:left;box-shadow:0 10px 18px rgba(25,40,90,.12)}.readCard b{display:inline-block;background:linear-gradient(135deg,#5a7dff,#ff66b3);color:#fff;border-radius:999px;padding:5px 12px;margin-bottom:7px}.readSentence{font-size:clamp(20px,2.5vw,30px);font-weight:900;color:#102158}.readThai{font-size:clamp(15px,1.7vw,20px);font-weight:800;color:#59627a;margin-top:4px}
+
+
+#builder{padding-top:10px}
+#builder .topbar{grid-template-columns:minmax(0,1fr) auto;margin-bottom:6px;gap:8px}
+#builder .topbar .logo{font-size:clamp(15px,1.65vw,20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#builder .statline{gap:6px;flex-wrap:nowrap}
+#builder .pill{padding:6px 9px;font-size:clamp(12px,1.25vw,15px)}
+#builder .leftBuild{padding:12px 14px}
+#builder .leftBuild>.row{margin-top:0}
+
+@media(max-width:900px){html,body{overflow:auto}.screen{height:auto;min-height:100dvh;overflow:auto;padding:10px}.topbar{grid-template-columns:1fr}.statline{justify-content:flex-start}.panel{border-radius:22px;padding:12px}.formulaGrid{grid-template-columns:1fr}.builderGrid{grid-template-columns:1fr}.rightBuild{display:none}.thaiPrompt,.buildPrompt{font-size:22px}.choice{font-size:18px;padding:13px}.word{font-size:17px}.wordBank{max-height:none;min-height:260px;overflow:visible;grid-template-columns:repeat(2,minmax(0,1fr))}.title{font-size:38px}.subtitle{font-size:17px}.namebox{font-size:19px;padding:13px}.tabs{grid-template-columns:1fr}.screen.active{display:flex}.reviewWrap{max-height:none}.reviewPages{max-height:none}.btn{font-size:18px;padding:12px 18px}}
+
+
+/* ===== Result Screen Scroll Fix ===== */
+#quizResult,#final{
+  overflow-y:auto;
+  overflow-x:hidden;
+  align-items:center;
+  justify-content:flex-start;
+  padding-top:clamp(12px,2vw,22px);
+  padding-bottom:24px;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+#quizResult .lockBox,#final .lockBox{
+  width:min(980px,94vw);
+  max-height:none;
+  min-height:min-content;
+  margin:auto 0;
+  display:flex;
+  flex-direction:column;
+}
+#quizResult .reviewBox,#final .reviewBox{
+  max-height:none;
+  overflow:visible;
+  flex:none;
+}
+#quizResult .lockBox > .row:last-child,
+#final .lockBox > .row:last-child{
+  position:sticky;
+  bottom:0;
+  z-index:8;
+  margin-left:-10px;
+  margin-right:-10px;
+  padding:14px 10px 10px;
+  background:linear-gradient(180deg,rgba(28,23,69,0),rgba(28,23,69,.96) 32%);
+  border-radius:0 0 24px 24px;
+}
+@media(max-width:900px){
+  #quizResult,#final{height:100dvh;min-height:100dvh;overflow-y:auto;padding:10px 10px 24px}
+  #quizResult .lockBox,#final .lockBox{width:100%;margin:0}
+  #quizResult .scoreBig,#final .scoreBig{font-size:clamp(42px,15vw,72px);margin:4px 0}
+  #quizResult .subtitle,#final .subtitle{font-size:16px;line-height:1.45}
+  #quizResult .lockBox > .row:last-child,
+  #final .lockBox > .row:last-child{bottom:-1px;padding-bottom:14px}
+}
+
+
+/* ===== Builder viewport fix ===== */
+#builder{overflow-y:auto;padding-bottom:12px}
+#builder .topbar{flex:0 0 auto;margin-bottom:6px}
+#builder .builderGrid{flex:0 0 auto;min-height:0;display:block}
+#builder .leftBuild{min-height:calc(100dvh - 92px);padding:10px 12px 86px;gap:8px;overflow:visible}
+#builder .buildPrompt{flex:0 0 auto;padding:10px 12px;margin:0}
+#builder .buildZone{flex:0 0 auto;min-height:76px}
+#builder .wordBank{flex:0 0 auto;min-height:0;overflow:visible;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));padding:12px;gap:10px}
+#builder .builderActions{position:sticky;bottom:0;z-index:35;margin:8px -12px -86px;padding:12px;background:linear-gradient(180deg,rgba(15,34,92,.2),rgba(8,18,45,.97) 35%);backdrop-filter:blur(8px);border-radius:0 0 24px 24px}
+#builder .builderActions .btn{min-width:170px}
+@media(max-width:900px){
+ #builder{height:100dvh;min-height:100dvh;overflow-y:auto}
+ #builder .topbar{position:relative}
+ #builder .leftBuild{min-height:auto;padding-bottom:82px}
+ #builder .wordBank{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:10px}
+ #builder .builderActions{margin-left:-12px;margin-right:-12px;margin-bottom:-82px}
+ #builder .builderActions .btn{min-width:0;flex:1}
+}
+</style>
+</head>
+<body>
+<div class="bgStars"></div><div class="confetti" id="confetti"></div><div id="feedback" class="feedback"></div>
+<div id="helpOverlay" class="modalOverlay" onclick="closeHelp(event)">
+  <div class="helpModal" onclick="event.stopPropagation()">
+    <button class="closeHelp" onclick="closeHelp()">ปิด ✕</button>
+    <h2>💡 ตัวช่วยการตัดสินใจ: Future Simple</h2>
+    <div class="helpCards">
+      <div class="helpCard"><b>🚀 บอกเล่า</b><div class="helpFormula">S + will + V1</div><div class="helpExample">I will travel tomorrow.<br>She will study tonight.</div></div>
+      <div class="helpCard"><b>🚫 ปฏิเสธ</b><div class="helpFormula">S + will not / won’t + V1</div><div class="helpExample">They will not be late.<br>He won’t go out.</div><div class="helpWarn">หลัง will / won’t ต้องใช้ V1</div></div>
+      <div class="helpCard"><b>❓ คำถาม</b><div class="helpFormula">Will + S + V1?</div><div class="helpExample">Will you help me?<br>Will she come tomorrow?</div><div class="helpMega">ย้าย will ไว้หน้าประธาน</div></div>
+    </div>
+    <div class="helpMiniGrid"><div class="helpMini"><b>คำบอกเวลา</b><br>tomorrow, next week, soon, later</div><div class="helpMini"><b>ทุกประธาน</b><br>I/You/He/She/We/They + will</div><div class="helpMini"><b>อย่าลืม</b><br>will go ✅<br>will goes ❌</div><div class="helpMini"><b>คำตอบสั้น</b><br>Yes, I will.<br>No, I won’t.</div></div>
+  </div>
+</div>
+<div id="sentenceOverlay" class="modalOverlay">
+  <div class="sentenceModal" onclick="event.stopPropagation()">
+    <h2>📖 อ่านทวนประโยคก่อนนะ</h2>
+    <div class="readNote">อ่านซ้ำ 1 รอบให้สมองจำรูปประโยค แล้วค่อยไปข้อต่อไป ✨</div>
+    <div id="sentenceReviewList"></div>
+    <div class="row" style="margin-top:14px"><button class="btn green" onclick="continueAfterSentenceReview()">อ่านแล้ว ไปต่อ ➡️</button></div>
+  </div>
+</div>
+
+
+<section id="start" class="screen active center">
+  <div class="panel" style="width:min(1080px,95vw)">
+    <div class="logo">Kru Pai Classroom ✨</div>
+    <h1 class="title">Future Simple Mission</h1>
+    <p class="subtitle">ฝึกพูดถึงอนาคตด้วย will / won’t + V1 → ทำชุด A 10 ข้อ หากได้ 80% ขึ้นไปไปด่านสร้างประโยคทันที หากยังไม่ผ่านจึงเล่นชุด B แก้มือ 🎯</p>
+    <input id="playerName" class="namebox" placeholder="พิมพ์ชื่อเล่นของน้องก่อนเริ่ม" />
+    <div class="row"><button class="btn" onclick="startReview()">📖 เริ่มทบทวน</button><button class="btn secondary" onclick="quickStartQuiz()">⚡ ไปด่านเลือกประโยค</button></div>
+  </div>
+</section>
+
+<section id="review" class="screen center">
+  <div class="panel reviewWrap">
+    <div class="logo" style="text-align:center">Future Simple ใช้ยังไง? 🚀</div>
+    <div class="reviewPages">
+      <div class="teachCard"><h3>1) ใช้พูดถึงอนาคต</h3><div class="note">ใช้กับการคาดการณ์ การตัดสินใจทันที คำสัญญา หรือสิ่งที่จะเกิดขึ้นในอนาคต คำบอกเวลาที่พบบ่อย: <span class="highlight">tomorrow, next week, next month, soon, later, one day, in the future</span></div></div>
+      <div class="teachCard"><h3>2) ประโยคบอกเล่า</h3><div class="formulaGrid"><div class="formula"><b>S + will + V1</b><div class="ex">I will travel tomorrow.</div></div><div class="formula"><b>ทุกประธานใช้ will</b><div class="ex">She will study.<br>They will play.</div></div><div class="formula"><b>จำให้แม่น</b><div class="ex">will goes ❌<br>will go ✅</div></div></div><div class="ruleFlash">หลัง will ใช้กริยาช่อง 1 เสมอ</div></div>
+      <div class="teachCard"><h3>3) ประโยคปฏิเสธ</h3><div class="formulaGrid"><div class="formula"><b>S + will not + V1</b><div class="ex">He will not come.</div></div><div class="formula"><b>S + won’t + V1</b><div class="ex">We won’t be late.</div></div><div class="formula"><b>ข้อควรระวัง</b><div class="ex">won’t studies ❌<br>won’t study ✅</div></div></div></div>
+      <div class="teachCard"><h3>4) ประโยคคำถาม</h3><div class="formulaGrid"><div class="formula"><b>Will + S + V1?</b><div class="ex">Will you visit Grandma?</div></div><div class="formula"><b>คำตอบสั้น</b><div class="ex">Yes, I will.<br>No, I won’t.</div></div><div class="formula"><b>ไม่ใช้ do/does/did</b><div class="ex">Do you will go? ❌<br>Will you go? ✅</div></div></div></div>
+      <div class="teachCard"><h3>5) คำที่มักใช้กับการคาดการณ์</h3><div class="sesGrid"><div class="sesCard"><b>I think...</b><div class="ex">I think it will rain.</div></div><div class="sesCard"><b>Maybe...</b><div class="ex">Maybe she will come.</div></div><div class="sesCard"><b>Probably...</b><div class="ex">They will probably win.</div></div></div></div>
+      <div class="teachCard"><h3>6) จุดที่เด็กมักพลาด</h3><div class="ruleGrid"><div class="ruleBox"><b>หลัง will ห้ามเติม s/es</b><div class="small red">She will goes. ❌</div><div class="big">She will go. ✅</div></div><div class="ruleBox"><b>คำถามย้าย will ไว้หน้า</b><div class="small red">She will come? ❌</div><div class="big">Will she come? ✅</div></div></div></div>
+      <div class="teachCard"><h3>ภารกิจวันนี้</h3><div class="note">ด่านที่ 1A: เลือกประโยคชุด A 10 ข้อ <span class="highlight">ไม่จับเวลา</span><br>ถ้าได้อย่างน้อย 8/10 ผ่านทันที ถ้ายังไม่ผ่านจึงเล่นชุด B แก้มือ<br>ด่านที่ 2: สร้างประโยค 10 ข้อ แต่ละข้อแต่งครบ <span class="cyan">บอกเล่า + ปฏิเสธ + คำถาม</span></div></div>
+    </div>
+    <div class="row"><button class="btn green" onclick="startQuiz()">🚀 พร้อมแล้ว ไปด่านเลือกประโยค</button><button class="btn secondary" onclick="go('start')">กลับหน้าแรก</button></div>
+  </div>
+</section>
+
+<section id="quiz" class="screen">
+  <div class="topbar"><div class="logo" id="quizStageTitle">Future Simple Mission | ด่านเลือกประโยค ชุด A</div><div class="statline"><div class="pill" id="qName">👧 ผู้เล่น</div><div class="pill" id="qProgress">ชุด A · ข้อ 1/10</div><div class="pill" id="qScore">✅ 0</div><div class="pill">🌿 ไม่จับเวลา</div></div></div>
+  <div class="panel quizGrid" style="position:relative">
+    <div class="quizMascot">🚀🌠</div>
+    <div class="questionCard">
+      <div class="qHead">
+        <div class="quizRibbon">🎯 เลือกประโยค Future Simple ที่ถูกต้อง · ไม่จับเวลา</div>
+        <button class="btn small helpBtn" onclick="openHelp()">💡 ตัวช่วยการตัดสินใจ</button>
+        <div class="pill">ชุด A ผ่าน 8/10 ไปต่อได้ทันที · ไม่ผ่านจึงเล่นชุด B แก้มือ</div>
+      </div>
+      <div class="thaiPrompt" id="quizPrompt"></div>
+      <div class="choiceGrid" id="choiceGrid"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quizResult" class="screen center">
+  <div class="panel lockBox">
+    <div class="logo" id="quizResultTitle">ผลด่านเลือกประโยค ✨</div>
+    <div class="scoreBig" id="quizScoreBig">0/10</div>
+    <div class="subtitle" id="quizSummary"></div>
+    <div class="reviewBox" id="quizReview"></div>
+    <div class="row" style="margin-top:14px"><button id="nextQuizBtn" class="btn green" onclick="continueQuizFlow()">ไปต่อ</button><button class="btn pink" onclick="restartCurrentQuizSet()">เล่นชุดนี้ใหม่</button><button class="btn secondary" onclick="startReview()">ย้อนทบทวน</button></div>
+  </div>
+</section>
+
+<section id="builder" class="screen">
+  <div class="topbar"><div class="logo">Future Simple Mission | ด่านสร้างประโยค 3 รูปแบบ · โลกแห่งอนาคต</div><div class="statline"><div class="pill" id="bName">👧 ผู้เล่น</div><div class="pill" id="bProgress">ข้อ 1/10</div><div class="pill" id="bForms">✍️ 0/30</div><div class="pill" id="bMistakes">แก้ไข 0</div></div></div>
+  <div class="builderGrid">
+    <div class="leftBuild panel">
+      <div class="buildPrompt" id="buildPrompt"></div>
+      <div class="tabs" id="formTabs"></div>
+      <div class="buildZone" id="buildZone"></div>
+      <div class="wordBank" id="wordBank"></div>
+      <div class="row builderActions"><button class="btn small secondary" onclick="clearBuild()">↩️ ล้างประโยค</button><button class="btn small" onclick="checkBuild()">✨ ตรวจประโยค</button></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="final" class="screen center">
+  <div class="panel lockBox">
+    <div class="logo">รายงานภารกิจ Future Simple ✨</div>
+    <div class="scoreBig" id="finalScore">100%</div>
+    <div class="subtitle" id="finalSummary"></div>
+    <div class="reviewBox" id="finalReview"></div>
+    <div class="row" style="margin-top:14px"><button class="btn" onclick="startReview()">เรียนใหม่อีกครั้ง</button><button class="btn secondary" onclick="go('start')">กลับหน้าแรก</button></div>
+  </div>
+</section>
+
+<script>
+const quizQuestions=[
+ {th:'ฉันจะไปเที่ยวเชียงใหม่สัปดาห์หน้า',correct:'I will travel to Chiang Mai next week.',choices:['I will travel to Chiang Mai next week.','I will travels to Chiang Mai next week.','I travel to Chiang Mai next week.','I will traveled to Chiang Mai next week.']},
+ {th:'เธอจะไม่มาสายในวันพรุ่งนี้',correct:'She will not be late tomorrow.',choices:['She will not be late tomorrow.','She will not is late tomorrow.','She does not be late tomorrow.','She will not being late tomorrow.']},
+ {th:'พวกเขาจะช่วยเราหรือไม่',correct:'Will they help us?',choices:['Will they help us?','Do they will help us?','Will they helps us?','They will help us?']},
+ {th:'พ่อจะทำอาหารเย็นคืนนี้',correct:'Dad will cook dinner tonight.',choices:['Dad will cook dinner tonight.','Dad will cooks dinner tonight.','Dad cooks dinner tonight.','Dad will cooked dinner tonight.']},
+ {th:'ฉันคิดว่าฝนจะตกเร็ว ๆ นี้',correct:'I think it will rain soon.',choices:['I think it will rain soon.','I think it will rains soon.','I think it rain soon.','I think it will raining soon.']},
+ {th:'เราจะไม่ซื้อรถคันใหม่ปีหน้า',correct:'We will not buy a new car next year.',choices:['We will not buy a new car next year.','We will not bought a new car next year.','We do not will buy a new car next year.','We will not buys a new car next year.']},
+ {th:'เธอจะโทรหาฉันภายหลังไหม',correct:'Will she call me later?',choices:['Will she call me later?','Will she calls me later?','Does she will call me later?','She will call me later?']},
+ {th:'เด็ก ๆ จะเล่นในสวนพรุ่งนี้',correct:'The children will play in the park tomorrow.',choices:['The children will play in the park tomorrow.','The children will plays in the park tomorrow.','The children playing in the park tomorrow.','The children will played in the park tomorrow.']},
+ {th:'น้องชายของฉันจะไม่ดูทีวีคืนนี้',correct:'My brother will not watch TV tonight.',choices:['My brother will not watch TV tonight.','My brother will not watches TV tonight.','My brother does not will watch TV tonight.','My brother will not watched TV tonight.']},
+ {th:'คุณจะเรียนภาษาอังกฤษปีหน้าหรือไม่',correct:'Will you study English next year?',choices:['Will you study English next year?','Will you studies English next year?','Do you will study English next year?','You will study English next year?']}
+];
+
+const quizQuestionsB=[
+ {th:'ครูของเราจะสอนบทใหม่พรุ่งนี้',correct:'Our teacher will teach a new lesson tomorrow.',choices:['Our teacher will teach a new lesson tomorrow.','Our teacher will teaches a new lesson tomorrow.','Our teacher teaches a new lesson tomorrow.','Our teacher will taught a new lesson tomorrow.']},
+ {th:'พวกเราจะไม่ลืมการบ้าน',correct:'We will not forget the homework.',choices:['We will not forget the homework.','We will not forgot the homework.','We do not will forget the homework.','We will not forgets the homework.']},
+ {th:'แม่จะพาเราไปตลาดไหม',correct:'Will Mom take us to the market?',choices:['Will Mom take us to the market?','Will Mom takes us to the market?','Does Mom will take us to the market?','Mom will take us to the market?']},
+ {th:'บางทีเขาจะชนะการแข่งขัน',correct:'Maybe he will win the competition.',choices:['Maybe he will win the competition.','Maybe he will wins the competition.','Maybe he wins the competition.','Maybe he will won the competition.']},
+ {th:'ฉันจะทำความสะอาดห้องภายหลัง',correct:'I will clean my room later.',choices:['I will clean my room later.','I will cleans my room later.','I cleaning my room later.','I will cleaned my room later.']},
+ {th:'พวกเขาจะไม่เดินทางเดือนหน้า',correct:'They will not travel next month.',choices:['They will not travel next month.','They will not traveled next month.','They do not will travel next month.','They will not travels next month.']},
+ {th:'สุนัขจะนอนที่นี่คืนนี้ไหม',correct:'Will the dog sleep here tonight?',choices:['Will the dog sleep here tonight?','Will the dog sleeps here tonight?','Does the dog will sleep here tonight?','The dog will sleep here tonight?']},
+ {th:'เธอจะเป็นหมอในอนาคต',correct:'She will become a doctor in the future.',choices:['She will become a doctor in the future.','She will becomes a doctor in the future.','She becomes a doctor in the future.','She will became a doctor in the future.']},
+ {th:'เราจะไม่ออกจากบ้านตอนนี้',correct:'We will not leave the house now.',choices:['We will not leave the house now.','We will not left the house now.','We do not will leave the house now.','We will not leaves the house now.']},
+ {th:'เพื่อนของคุณจะเข้าร่วมทีมไหม',correct:'Will your friend join the team?',choices:['Will your friend join the team?','Will your friend joins the team?','Does your friend will join the team?','Your friend will join the team?']}
+];
+
+const buildQuestions=[
+ {thForms:{aff:'บอกเล่า: ฉันจะอ่านหนังสือคืนนี้',neg:'ปฏิเสธ: ฉันจะไม่อ่านหนังสือคืนนี้',ques:'คำถาม: ฉันจะอ่านหนังสือคืนนี้ไหม'},forms:{aff:['I','will','read','a','book','tonight','.'],neg:['I','will','not','read','a','book','tonight','.'],ques:['Will','I','read','a','book','tonight','?']},decoys:['reads','readed','do']},
+ {thForms:{aff:'บอกเล่า: เธอจะไปโรงเรียนพรุ่งนี้',neg:'ปฏิเสธ: เธอจะไม่ไปโรงเรียนพรุ่งนี้',ques:'คำถาม: เธอจะไปโรงเรียนพรุ่งนี้ไหม'},forms:{aff:['She','will','go','to','school','tomorrow','.'],neg:['She','will','not','go','to','school','tomorrow','.'],ques:['Will','she','go','to','school','tomorrow','?']},decoys:['goes','went','does']},
+ {thForms:{aff:'บอกเล่า: พวกเขาจะเล่นฟุตบอลสัปดาห์หน้า',neg:'ปฏิเสธ: พวกเขาจะไม่เล่นฟุตบอลสัปดาห์หน้า',ques:'คำถาม: พวกเขาจะเล่นฟุตบอลสัปดาห์หน้าไหม'},forms:{aff:['They','will','play','football','next','week','.'],neg:['They','will','not','play','football','next','week','.'],ques:['Will','they','play','football','next','week','?']},decoys:['plays','played','do']},
+ {thForms:{aff:'บอกเล่า: พ่อจะทำอาหารเย็นคืนนี้',neg:'ปฏิเสธ: พ่อจะไม่ทำอาหารเย็นคืนนี้',ques:'คำถาม: พ่อจะทำอาหารเย็นคืนนี้ไหม'},forms:{aff:['Dad','will','cook','dinner','tonight','.'],neg:['Dad','will','not','cook','dinner','tonight','.'],ques:['Will','Dad','cook','dinner','tonight','?']},decoys:['cooks','cooked','does']},
+ {thForms:{aff:'บอกเล่า: แม่จะซื้อผลไม้ภายหลัง',neg:'ปฏิเสธ: แม่จะไม่ซื้อผลไม้ภายหลัง',ques:'คำถาม: แม่จะซื้อผลไม้ภายหลังไหม'},forms:{aff:['Mom','will','buy','fruit','later','.'],neg:['Mom','will','not','buy','fruit','later','.'],ques:['Will','Mom','buy','fruit','later','?']},decoys:['buys','bought','does']},
+ {thForms:{aff:'บอกเล่า: พวกเราจะดูภาพยนตร์พรุ่งนี้',neg:'ปฏิเสธ: พวกเราจะไม่ดูภาพยนตร์พรุ่งนี้',ques:'คำถาม: พวกเราจะดูภาพยนตร์พรุ่งนี้ไหม'},forms:{aff:['We','will','watch','a','movie','tomorrow','.'],neg:['We','will','not','watch','a','movie','tomorrow','.'],ques:['Will','we','watch','a','movie','tomorrow','?']},decoys:['watches','watched','do']},
+ {thForms:{aff:'บอกเล่า: คุณจะช่วยครูหลังเลิกเรียน',neg:'ปฏิเสธ: คุณจะไม่ช่วยครูหลังเลิกเรียน',ques:'คำถาม: คุณจะช่วยครูหลังเลิกเรียนไหม'},forms:{aff:['You','will','help','the','teacher','after','school','.'],neg:['You','will','not','help','the','teacher','after','school','.'],ques:['Will','you','help','the','teacher','after','school','?']},decoys:['helps','helped','do']},
+ {thForms:{aff:'บอกเล่า: น้องชายของฉันจะว่ายน้ำวันอาทิตย์หน้า',neg:'ปฏิเสธ: น้องชายของฉันจะไม่ว่ายน้ำวันอาทิตย์หน้า',ques:'คำถาม: น้องชายของฉันจะว่ายน้ำวันอาทิตย์หน้าไหม'},forms:{aff:['My','brother','will','swim','next','Sunday','.'],neg:['My','brother','will','not','swim','next','Sunday','.'],ques:['Will','my','brother','swim','next','Sunday','?']},decoys:['swims','swam','does']},
+ {thForms:{aff:'บอกเล่า: เด็ก ๆ จะทำความสะอาดห้องเร็ว ๆ นี้',neg:'ปฏิเสธ: เด็ก ๆ จะไม่ทำความสะอาดห้องเร็ว ๆ นี้',ques:'คำถาม: เด็ก ๆ จะทำความสะอาดห้องเร็ว ๆ นี้ไหม'},forms:{aff:['The','children','will','clean','the','room','soon','.'],neg:['The','children','will','not','clean','the','room','soon','.'],ques:['Will','the','children','clean','the','room','soon','?']},decoys:['cleans','cleaned','do']},
+ {thForms:{aff:'บอกเล่า: ครูของฉันจะสอนวิทยาศาสตร์ปีหน้า',neg:'ปฏิเสธ: ครูของฉันจะไม่สอนวิทยาศาสตร์ปีหน้า',ques:'คำถาม: ครูของฉันจะสอนวิทยาศาสตร์ปีหน้าไหม'},forms:{aff:['My','teacher','will','teach','science','next','year','.'],neg:['My','teacher','will','not','teach','science','next','year','.'],ques:['Will','my','teacher','teach','science','next','year','?']},decoys:['teaches','taught','does']}
+];
+const formLabels={aff:'บอกเล่า',neg:'ปฏิเสธ',ques:'คำถาม'};
+let name='นักเรียนคนเก่ง', audioCtx=null, timer=null, timeLeft=30;
+let qState={stage:'A',idx:0,score:0,history:[],scoreA:0,historyA:[],scoreB:0,historyB:[]};
+let bState={idx:0,form:'aff',selected:[],bank:[],done:{},mistakes:0,answers:[],attempts:{aff:0,neg:0,ques:0},reveals:0};
+function initAudio(){if(!audioCtx){audioCtx=new (window.AudioContext||window.webkitAudioContext)()} if(audioCtx.state==='suspended') audioCtx.resume()}
+function tone(freq=520,dur=.08,type='sine',vol=.08,delay=0){initAudio();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(freq,audioCtx.currentTime+delay);g.gain.setValueAtTime(0,audioCtx.currentTime+delay);g.gain.linearRampToValueAtTime(vol,audioCtx.currentTime+delay+.01);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+delay+dur);o.connect(g);g.connect(audioCtx.destination);o.start(audioCtx.currentTime+delay);o.stop(audioCtx.currentTime+delay+dur+.03)}
+function sfxClick(){tone(650,.05,'triangle',.045);tone(920,.04,'triangle',.035,.045)}function sfxGood(){tone(620,.08,'sine',.055);tone(850,.08,'sine',.06,.08);tone(1180,.14,'triangle',.06,.17)}function sfxBad(){tone(170,.15,'sawtooth',.055);tone(95,.2,'square',.035,.1)}function sfxWin(){[520,660,780,1040,1320].forEach((f,i)=>tone(f,.12,'triangle',.06,i*.08))}
+function go(id){sfxClick();clearInterval(timer);document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function getName(){name=document.getElementById('playerName').value.trim()||'นักเรียนคนเก่ง'}function startReview(){getName();go('review')}function quickStartQuiz(){getName();startQuiz()}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function showFeedback(msg,good){const f=document.getElementById('feedback');f.className='feedback '+(good?'good':'bad');f.innerHTML=msg;void f.offsetWidth;f.classList.add('show')}
+function burst(n){const c=document.getElementById('confetti');for(let i=0;i<n;i++){const p=document.createElement('div');p.className='piece';p.style.left=Math.random()*100+'vw';p.style.background=['#ffd86b','#67e8ff','#ff7aca','#8effb5','#fff'][Math.floor(Math.random()*5)];p.style.animationDelay=Math.random()*0.35+'s';c.appendChild(p);setTimeout(()=>p.remove(),2300)}}
+
+function openHelp(){sfxClick();document.getElementById('helpOverlay').classList.add('show')}
+function closeHelp(e){if(e && e.target && e.target.id!=='helpOverlay')return;sfxClick();document.getElementById('helpOverlay').classList.remove('show')}
+function startQuiz(){getName();qState={stage:'A',idx:0,score:0,history:[],scoreA:0,historyA:[],scoreB:0,historyB:[]};startQuizSet('A')}
+function startQuizSet(stage){qState.stage=stage;qState.idx=0;qState.score=0;qState.history=[];go('quiz');renderQuiz()}
+function currentQuizQuestions(){return qState.stage==='A'?quizQuestions:quizQuestionsB}
+function renderQuiz(){
+ const questions=currentQuizQuestions();
+ if(qState.idx>=questions.length){finishQuizSet();return}
+ const q=questions[qState.idx];
+ document.getElementById('quizStageTitle').textContent=`Future Simple Mission | ด่านเลือกประโยค ชุด ${qState.stage}`;
+ document.getElementById('qName').textContent='👧 '+name;
+ document.getElementById('qProgress').textContent=`ชุด ${qState.stage} · ข้อ ${qState.idx+1}/10`;
+ document.getElementById('qScore').textContent='✅ '+qState.score;
+ document.getElementById('quizPrompt').textContent=q.th;
+ const grid=document.getElementById('choiceGrid');grid.innerHTML='';
+ shuffle(q.choices).forEach((ch,i)=>{const b=document.createElement('button');b.className='choice';b.innerHTML='<span class="choiceLabel">'+String.fromCharCode(65+i)+'</span><span class="choiceText">'+ch+'</span>';b.dataset.answer=ch;b.onclick=()=>answerQuiz(ch,b);grid.appendChild(b)});
+}
+function answerQuiz(ch,btn){const q=currentQuizQuestions()[qState.idx];document.querySelectorAll('.choice').forEach(b=>b.disabled=true);const ok=ch===q.correct;if(ok){qState.score++;btn.classList.add('correct');sfxGood();showFeedback('✅ ถูกต้องจ้า!',true)}else{btn.classList.add('wrong');sfxBad();showFeedback('❌ ยังไม่ใช่จ้า',false);document.querySelectorAll('.choice').forEach(b=>{if(b.dataset.answer===q.correct)b.classList.add('correct')})}qState.history.push({stage:qState.stage,th:q.th,ok,chosen:ch,correct:q.correct});setTimeout(()=>{qState.idx++;renderQuiz()},1000)}
+function finishQuizSet(){
+ if(qState.stage==='A'){qState.scoreA=qState.score;qState.historyA=[...qState.history]}else{qState.scoreB=qState.score;qState.historyB=[...qState.history]}
+ go('quizResult');
+ const box=document.getElementById('quizReview');box.innerHTML='';
+ qState.history.forEach((h,i)=>{const d=document.createElement('div');d.className='reviewItem';d.innerHTML=`<b>${i+1}. ${h.ok?'✅':'❌'} ${h.th}</b><br><span class="miniTag">ตอบ: ${h.chosen}</span><br><span class="miniTag">ถูกต้อง: ${h.correct}</span>`;box.appendChild(d)});
+ if(qState.stage==='A'){
+  const passA=qState.scoreA>=8;
+  document.getElementById('quizResultTitle').textContent='ผลด่าน 1 ชุด A ✨';
+  document.getElementById('quizScoreBig').textContent=qState.scoreA+'/10';
+  document.getElementById('quizSummary').innerHTML=passA?`เยี่ยมเลย ${name}! ชุด A ได้ <b>${qState.scoreA}/10</b> ผ่าน 80% แล้ว<br>ไม่ต้องเล่นชุด B ไปด่านสร้างประโยคได้ทันที 🔓✨`:`${name} ทำชุด A ได้ <b>${qState.scoreA}/10</b> ยังไม่ถึง 8/10<br>ไปเล่น <b>ชุด B ด่านแก้มือ</b> อีก 10 ข้อ โดยคิดคะแนนชุด B แยกจากชุด A 💪`;
+  document.getElementById('nextQuizBtn').textContent=passA?'🔓 ไปด่านสร้างประโยค':'🚀 ไปชุด B ด่านแก้มือ';
+  if(passA){sfxWin();burst(80)}
+ }else{
+  const passB=qState.scoreB>=8;
+  document.getElementById('quizResultTitle').textContent='ผลด่าน 1 ชุด B แก้มือ ✨';
+  document.getElementById('quizScoreBig').textContent=qState.scoreB+'/10';
+  document.getElementById('quizSummary').innerHTML=passB?`เก่งมาก ${name}! ชุด B ได้ <b>${qState.scoreB}/10</b> ผ่าน 80% แล้ว<br>ปลดล็อกด่านสร้างประโยคสำเร็จ 🔓✨`:`${name} ทำชุด B ได้ <b>${qState.scoreB}/10</b> ยังไม่ถึง 8/10<br>ระบบจะให้เริ่มใหม่ตั้งแต่ <b>ชุด A</b> เพื่อฝึกอีกครั้ง 🔁`;
+  document.getElementById('nextQuizBtn').textContent=passB?'🔓 ไปด่านสร้างประโยค':'🔁 เริ่มใหม่ชุด A';
+  if(passB){sfxWin();burst(80)}
+ }
+}
+function continueQuizFlow(){
+ if(qState.stage==='A'){
+  if(qState.scoreA>=8) startBuilder(); else startQuizSet('B');
+ }else{
+  if(qState.scoreB>=8) startBuilder(); else startQuiz();
+ }
+}
+function restartCurrentQuizSet(){startQuizSet(qState.stage)}
+function startBuilder(){bState={idx:0,form:'aff',selected:[],bank:[],done:{},mistakes:0,answers:[],attempts:{aff:0,neg:0,ques:0},reveals:0};go('builder');renderBuilder()}
+function renderBuilder(){if(bState.idx>=buildQuestions.length){finishBuilder();return}const q=buildQuestions[bState.idx];document.getElementById('bName').textContent='👧 '+name;document.getElementById('bProgress').textContent=`ข้อ ${bState.idx+1}/10`;document.getElementById('bForms').textContent=`✍️ ${bState.answers.length}/30`;document.getElementById('bMistakes').textContent='แก้ไข '+bState.mistakes;document.getElementById('buildPrompt').textContent=q.thForms[bState.form];renderTabs();prepareBank()}
+function renderTabs(){const tabs=document.getElementById('formTabs');tabs.innerHTML='';['aff','neg','ques'].forEach(f=>{const b=document.createElement('button');b.className='tab '+(bState.form===f?'active':'');b.innerHTML=(bState.done[f]?'✅ ':'⏳ ')+formLabels[f];b.onclick=()=>{if(!bState.done[f]){bState.form=f;bState.selected=[];prepareBank();renderTabs()}};tabs.appendChild(b)})}
+function prepareBank(){const q=buildQuestions[bState.idx];const words=q.forms[bState.form].map((w,i)=>({w,id:'a'+i,decoy:false}));const decoys=q.decoys.map((w,i)=>({w,id:'d'+i,decoy:true}));bState.bank=shuffle(words.concat(decoys));bState.selected=[];document.getElementById('buildPrompt').textContent=q.thForms[bState.form];renderBank();renderBuild()}
+function renderBank(){const bank=document.getElementById('wordBank');bank.innerHTML='';bState.bank.forEach(item=>{const b=document.createElement('button');b.className='word '+(item.decoy?'decoy':'')+((item.w==='.'||item.w==='?')?' punct':'');b.textContent=item.w;b.onclick=()=>pickWord(item.id);bank.appendChild(b)})}
+function renderBuild(){const z=document.getElementById('buildZone');z.innerHTML='';bState.selected.forEach(item=>{const b=document.createElement('button');b.className='word inBuild '+((item.w==='.'||item.w==='?')?'punct':'');b.textContent=item.w;b.onclick=()=>returnWord(item.id);z.appendChild(b)})}
+function pickWord(id){sfxClick();const i=bState.bank.findIndex(x=>x.id===id);if(i<0)return;const [item]=bState.bank.splice(i,1);bState.selected.push(item);renderBank();renderBuild()}
+function returnWord(id){sfxClick();const i=bState.selected.findIndex(x=>x.id===id);if(i<0)return;const [item]=bState.selected.splice(i,1);bState.bank.push(item);renderBuild();renderBank()}
+function clearBuild(){sfxClick();bState.bank=shuffle(bState.bank.concat(bState.selected));bState.selected=[];renderBank();renderBuild()}
+function checkBuild(){
+ const q=buildQuestions[bState.idx];
+ const made=bState.selected.map(x=>x.w).join(' ');
+ const ans=q.forms[bState.form].join(' ');
+ if(made===ans){
+   sfxGood();showFeedback('🥇 ประโยคทองคำ!',true);
+   bState.done[bState.form]={sentence:ans,revealed:false};
+   bState.answers.push({th:q.thForms[bState.form],form:bState.form,sentence:ans,ok:true,attempts:bState.attempts[bState.form]+1});
+   burst(18);
+   const next=['aff','neg','ques'].find(f=>!bState.done[f]);
+   if(next){bState.form=next;setTimeout(()=>{prepareBank();renderTabs();updateBStats()},750)}
+   else{renderTabs();updateBStats();setTimeout(()=>continueAfterSentenceReview(),700)}
+ }else{
+   bState.mistakes++;
+   bState.attempts[bState.form]=(bState.attempts[bState.form]||0)+1;
+   sfxBad();
+   const zone=document.getElementById('buildZone');
+   zone.classList.remove('shake'); void zone.offsetWidth; zone.classList.add('shake');
+   if(bState.attempts[bState.form] < 3){
+     const left=3-bState.attempts[bState.form];
+     showFeedback(left===1?'😵 ยังไม่ใช่น้า เหลือโอกาสอีก 1 ครั้ง!':'💫 สะดุ้งนิดนึง! ลองเรียงใหม่อีกครั้ง',false);
+   }else{
+     bState.reveals++;
+     bState.done[bState.form]={sentence:ans,revealed:true};
+     bState.answers.push({th:q.thForms[bState.form],form:bState.form,sentence:ans,ok:false,attempts:3});
+     showFeedback('🔴 เฉลยสีแดงมาแล้ว จำจุดนี้ไว้นะ!',false);
+     renderBuildAnswer(ans);
+     updateBStats();
+     const next=['aff','neg','ques'].find(f=>!bState.done[f]);
+     if(next){bState.form=next;setTimeout(()=>{prepareBank();renderTabs();updateBStats()},1700)}
+     else{setTimeout(()=>continueAfterSentenceReview(),1200)}
+   }
+   updateBStats();
+ }
+}
+
+function sentenceWithNoSpaceBeforePunct(sentence){return sentence.replace(/ \./g,'.').replace(/ \?/g,'?')}
+function showSentenceReview(){
+ const q=buildQuestions[bState.idx];
+ const list=document.getElementById('sentenceReviewList');
+ list.innerHTML='';
+ ['aff','neg','ques'].forEach(f=>{
+   const val=bState.done[f];
+   const d=document.createElement('div');
+   d.className='readCard';
+   d.innerHTML=`<b>${formLabels[f]}</b><div class="readSentence">${sentenceWithNoSpaceBeforePunct(val.sentence)}</div><div class="readThai">${q.thForms[f]}</div>`;
+   list.appendChild(d);
+ });
+ document.getElementById('sentenceOverlay').classList.add('show');
+ sfxWin();
+}
+function continueAfterSentenceReview(){
+ sfxClick();
+ document.getElementById('sentenceOverlay').classList.remove('show');
+ bState.idx++;
+ bState.form='aff';
+ bState.done={};
+ bState.attempts={aff:0,neg:0,ques:0};
+ renderBuilder();
+}
+
+function renderBuildAnswer(ans){
+ const z=document.getElementById('buildZone'); z.innerHTML='';
+ ans.split(' ').forEach(w=>{const b=document.createElement('button');b.className='word inBuild redAnswer';b.textContent=w;b.disabled=true;z.appendChild(b)});
+ document.getElementById('wordBank').innerHTML='';
+}
+function updateBStats(){document.getElementById('bForms').textContent=`✍️ ${bState.answers.length}/30`;document.getElementById('bMistakes').textContent='แก้ไข '+bState.mistakes}
+function renderDoneForms(){const box=document.getElementById('doneForms');box.innerHTML='';['aff','neg','ques'].forEach(f=>{const d=document.createElement('div');const val=bState.done[f];d.className=val?(val.revealed?'formReveal':'formDone'):'formPending';d.innerHTML=val?(val.revealed?`🔴 <b>${formLabels[f]}</b> เฉลยหลังผิด 3 ครั้ง<br><span class="redAnswer">${sentenceWithNoSpaceBeforePunct(val.sentence)}</span>`:`✅ <b>${formLabels[f]}</b><br>${sentenceWithNoSpaceBeforePunct(val.sentence)}`):`<b>${formLabels[f]}</b><br>รอสร้างประโยค...`;box.appendChild(d)})}
+function finishBuilder(){go('final');const correct=bState.answers.filter(a=>a.ok).length;const pct=Math.round(correct/30*100);document.getElementById('finalScore').textContent=pct+'%';document.getElementById('finalSummary').innerHTML=`${name} ผ่านด่านเลือกประโยค ${qState.scoreA>=8?`ชุด A ${qState.scoreA}/10`:`ชุด B ${qState.scoreB}/10 (หลังชุด A ${qState.scoreA}/10)`} แล้ว 🎉<br>ด่านเรียงคำ: ถูกเอง <b>${correct}/30</b> | เฉลยสีแดง <b>${bState.reveals}</b> ช่อง | แก้ไขทั้งหมด <b>${bState.mistakes}</b> ครั้ง`;const box=document.getElementById('finalReview');box.innerHTML='';buildQuestions.forEach((q,idx)=>{const d=document.createElement('div');d.className='reviewItem';d.innerHTML=`<b>${idx+1}. ${q.thForms.aff.replace('บอกเล่า: ','')}</b><br><span class="miniTag">บอกเล่า: ${sentenceWithNoSpaceBeforePunct(q.forms.aff.join(' '))}</span><br><span class="miniTag">ปฏิเสธ: ${sentenceWithNoSpaceBeforePunct(q.forms.neg.join(' '))}</span><br><span class="miniTag">คำถาม: ${sentenceWithNoSpaceBeforePunct(q.forms.ques.join(' '))}</span>`;box.appendChild(d)});sfxWin();burst(100)}
+</script>
+</body>
+</html>
