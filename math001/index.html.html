@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decimal Adventure ชุดที่ 1 | Kru Pai Classroom</title>
+<style>
+:root{
+  --bg1:#fff6fb; --bg2:#edf8ff; --ink:#25324a; --muted:#667085;
+  --pink:#ff7fb2; --purple:#7d6df2; --blue:#46a8ff; --yellow:#ffd65a;
+  --green:#35c98f; --red:#ff6b78; --card:#ffffff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; font-family:"Tahoma","Noto Sans Thai",sans-serif;
+  color:var(--ink); background:
+  radial-gradient(circle at 10% 10%, #ffe2f0 0 9%, transparent 10%),
+  radial-gradient(circle at 90% 15%, #dff4ff 0 10%, transparent 11%),
+  linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+button,input{font:inherit}
+.screen{display:none; min-height:100vh; padding:22px}
+.screen.active{display:flex;align-items:center;justify-content:center}
+.shell{width:min(980px,100%); margin:auto}
+.card{
+  background:rgba(255,255,255,.96); border:3px solid rgba(125,109,242,.12);
+  border-radius:30px; box-shadow:0 20px 50px rgba(60,68,120,.14); overflow:hidden;
+}
+.cover{padding:34px; position:relative}
+.brand{font-weight:900; color:var(--purple); letter-spacing:.3px; font-size:clamp(18px,2.5vw,25px)}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:9px 15px;border-radius:999px;background:#fff1b9;font-weight:900;margin:18px 0 10px}
+h1{font-size:clamp(38px,6vw,68px);line-height:1.02;margin:0;color:#38405f}
+h1 span{color:var(--pink)}
+.subtitle{font-size:clamp(18px,2.4vw,25px);line-height:1.55;color:#566078;font-weight:700;margin:16px 0}
+.mascot{
+  min-height:280px;border-radius:28px;background:linear-gradient(145deg,#e8ddff,#dff7ff);
+  display:flex;align-items:center;justify-content:center;position:relative;font-size:110px;
+}
+.float{position:absolute;font-size:38px;animation:bob 2.8s ease-in-out infinite}
+.f1{top:18px;left:22px}.f2{top:30px;right:20px;animation-delay:.4s}.f3{bottom:22px;left:30px;animation-delay:.8s}.f4{bottom:24px;right:24px;animation-delay:1.1s}
+@keyframes bob{50%{transform:translateY(-10px) rotate(4deg)}}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.info{border-radius:18px;padding:14px;background:#f7f6ff;text-align:center;font-weight:900}
+.namebox{display:flex;gap:10px;align-items:center;margin-top:18px}
+.namebox input{
+  flex:1;padding:15px 18px;border-radius:16px;border:2px solid #d8dcf1;outline:none;font-size:20px;font-weight:800
+}
+.namebox input:focus{border-color:var(--purple);box-shadow:0 0 0 4px #eeeaff}
+.btn{
+  border:0;border-radius:17px;padding:14px 22px;font-weight:900;cursor:pointer;
+  transition:.15s transform,.15s filter;box-shadow:0 8px 18px rgba(65,72,120,.14)
+}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.02)}
+.primary{background:linear-gradient(135deg,var(--purple),var(--blue));color:white}
+.secondary{background:#f1efff;color:#4d43b8}
+.game-card{padding:20px}
+.hud{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;margin-bottom:14px}
+.hudbox{background:#f7f8fc;border-radius:17px;padding:12px 15px;font-weight:900}
+.progress-wrap{height:13px;background:#edf0f7;border-radius:999px;overflow:hidden;margin-top:8px}
+.progress{height:100%;background:linear-gradient(90deg,var(--purple),var(--pink));width:0;transition:.25s}
+.timer{
+  width:76px;height:76px;border-radius:50%;display:grid;place-items:center;font-size:26px;font-weight:1000;
+  background:#eef8ff;border:5px solid #b9e3ff;position:relative
+}
+.timer.danger{background:#fff0f1;border-color:#ffabb1;animation:pulse .7s infinite}
+@keyframes pulse{50%{transform:scale(1.05)}}
+.score{font-size:24px}
+.question-panel{
+  background:linear-gradient(180deg,#ffffff,#fbfbff);border:2px solid #ececfa;border-radius:24px;
+  padding:24px;min-height:470px;display:flex;flex-direction:column;justify-content:center
+}
+.qtype{font-size:15px;font-weight:900;color:var(--purple);text-transform:uppercase;letter-spacing:.5px}
+.question{font-size:clamp(25px,4vw,40px);line-height:1.35;font-weight:1000;text-align:center;margin:18px auto 22px;max-width:850px}
+.math{font-family:Arial,Tahoma,sans-serif}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.option{
+  border:2px solid #e3e5f2;background:white;border-radius:18px;padding:17px 16px;
+  text-align:center;font-size:clamp(19px,2.8vw,27px);font-weight:900;cursor:pointer;min-height:68px;
+  display:flex;align-items:center;justify-content:center;transition:.15s
+}
+.option:hover{border-color:#aaa2f8;background:#f8f6ff;transform:translateY(-2px)}
+.option.correct{background:#e9fff5;border-color:#6fd6ad;color:#117450}
+.option.wrong{background:#fff0f1;border-color:#ff9ba4;color:#a92d3a}
+.fill-area{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center}
+.answer-input{
+  width:min(360px,90%);padding:16px;border:3px solid #d7dcf0;border-radius:18px;text-align:center;
+  font-size:30px;font-weight:1000;outline:none
+}
+.answer-input:focus{border-color:var(--purple)}
+.feedback{
+  margin-top:18px;border-radius:18px;padding:15px 18px;font-size:18px;line-height:1.5;font-weight:800;display:none
+}
+.feedback.show{display:block}
+.feedback.good{background:#eafff5;color:#126d4f}
+.feedback.bad{background:#fff0f2;color:#9a2a3b}
+.bottom-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}
+.soundbtn{background:#fff;border:2px solid #e8e9f2;border-radius:14px;padding:10px 13px;cursor:pointer;font-size:20px}
+.result{padding:34px;text-align:center}
+.big-emoji{font-size:92px}
+.result h2{font-size:42px;margin:6px 0}
+.result-score{font-size:66px;font-weight:1000;color:var(--purple)}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.result-grid>div{background:#f7f6ff;border-radius:18px;padding:16px;font-weight:900}
+.review{margin-top:16px;text-align:left;background:#fff8df;padding:16px 18px;border-radius:17px;font-weight:800;line-height:1.6}
+@media(max-width:760px){
+  .screen{padding:10px}.cover{padding:22px}.hero{grid-template-columns:1fr}.mascot{min-height:180px;font-size:78px}
+  .info-grid{grid-template-columns:1fr}.namebox{flex-direction:column}.namebox>*{width:100%}
+  .hud{grid-template-columns:1fr auto}.score{grid-column:1/2}.timer{grid-column:2/3;grid-row:1/3}
+  .question-panel{padding:16px;min-height:510px}.options{grid-template-columns:1fr}
+  .option{min-height:58px;padding:13px}.result-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<section id="startScreen" class="screen active">
+  <div class="shell">
+    <div class="card cover">
+      <div class="hero">
+        <div>
+          <div class="brand">🌟 Kru Pai Classroom</div>
+          <div class="badge">🍭 DECIMAL ADVENTURE · SET 1</div>
+          <h1>ภารกิจพิชิต<br><span>ทศนิยม</span></h1>
+          <p class="subtitle">ฝึกความเข้าใจทศนิยมแบบ ป.6 ค่อนข้างยาก<br>คิดให้ชัวร์ก่อนตอบ เพราะแต่ละข้อมีเวลา 20 วินาที ⏱️</p>
+          <div class="info-grid">
+            <div class="info">🧠 30 ข้อ</div>
+            <div class="info">⏱️ 20 วิ/ข้อ</div>
+            <div class="info">🎯 ผ่าน 80%</div>
+          </div>
+          <div class="namebox">
+            <input id="playerName" maxlength="24" placeholder="พิมพ์ชื่อผู้ทดสอบ">
+            <button class="btn primary" onclick="startGame()">เริ่มภารกิจ 🚀</button>
+          </div>
+        </div>
+        <div class="mascot">
+          🐰
+          <span class="float f1">🔢</span><span class="float f2">✨</span>
+          <span class="float f3">🍬</span><span class="float f4">📐</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gameScreen" class="screen">
+  <div class="shell">
+    <div class="card game-card">
+      <div class="hud">
+        <div class="hudbox">
+          <div>👤 <span id="nameHud"></span> · ข้อ <span id="qnum">1</span>/30</div>
+          <div class="progress-wrap"><div id="progress" class="progress"></div></div>
+        </div>
+        <div class="hudbox score">⭐ <span id="score">0</span></div>
+        <div id="timer" class="timer">20</div>
+      </div>
+
+      <div class="question-panel">
+        <div id="qtype" class="qtype"></div>
+        <div id="question" class="question"></div>
+        <div id="answerArea"></div>
+        <div id="feedback" class="feedback"></div>
+      </div>
+
+      <div class="bottom-row">
+        <button id="soundBtn" class="soundbtn" onclick="toggleSound()">🔊</button>
+        <button id="nextBtn" class="btn primary" onclick="nextQuestion()" style="display:none">ข้อต่อไป ➜</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resultScreen" class="screen">
+  <div class="shell">
+    <div class="card result">
+      <div id="resultEmoji" class="big-emoji">🏆</div>
+      <div class="brand">Kru Pai Classroom</div>
+      <h2>สรุปภารกิจทศนิยม</h2>
+      <div id="resultName" style="font-size:22px;font-weight:900"></div>
+      <div class="result-score"><span id="finalScore">0</span>/30</div>
+      <div id="percentText" style="font-size:25px;font-weight:900"></div>
+      <div class="result-grid">
+        <div>✅ ถูก<br><span id="correctCount" style="font-size:30px"></span></div>
+        <div>❌ พลาด<br><span id="wrongCount" style="font-size:30px"></span></div>
+        <div>⏳ หมดเวลา<br><span id="timeoutCount" style="font-size:30px"></span></div>
+      </div>
+      <div id="resultMessage" class="review"></div>
+      <button class="btn primary" onclick="restartGame()">เล่นอีกครั้ง 🔄</button>
+    </div>
+  </div>
+</section>
+
+<script>
+const questions = [
+ {t:"ค่าประจำหลัก",q:"เลข 7 ในจำนวน 43.0725 มีค่าเท่าใด?",o:["0.7","0.07","0.007","0.0007"],a:1,e:"7 อยู่ในหลักส่วนร้อย จึงมีค่า 7/100 = 0.07"},
+ {t:"ความหมายของทศนิยม",q:"จำนวนใดมีค่าเท่ากับ 6 หน่วย 3 ส่วนสิบ 5 ส่วนพัน?",o:["6.305","6.350","6.035","6.3005"],a:0,e:"3 ส่วนสิบ = 0.3 และ 5 ส่วนพัน = 0.005 รวมเป็น 6.305"},
+ {t:"ทศนิยม → เศษส่วน",q:"0.375 เขียนเป็นเศษส่วนอย่างต่ำได้ข้อใด?",o:["3/8","37/100","375/100","5/16"],a:0,e:"0.375 = 375/1000 แล้วหารด้วย 125 ได้ 3/8"},
+ {t:"เศษส่วน → ทศนิยม",q:"7/20 มีค่าเป็นทศนิยมเท่าใด?",o:["0.07","0.35","0.7","0.28"],a:1,e:"ทำส่วนให้เป็น 100: 7/20 = 35/100 = 0.35"},
+ {t:"เปรียบเทียบ",q:"ข้อใดเรียงจากน้อยไปมากถูกต้อง?",o:["0.405 < 0.45 < 0.504","0.45 < 0.405 < 0.504","0.504 < 0.45 < 0.405","0.405 < 0.504 < 0.45"],a:0,e:"เติมศูนย์ช่วยเปรียบเทียบ: 0.405, 0.450, 0.504"},
+ {t:"เติมจำนวน",q:"เติมเครื่องหมายให้ถูกต้อง: 4.090 ___ 4.09",input:true,answers:["="],e:"4.090 และ 4.09 มีค่าเท่ากัน ศูนย์ท้ายทศนิยมไม่เปลี่ยนค่า"},
+ {t:"ทศนิยม → เศษส่วน",q:"2.04 เขียนในรูปจำนวนคละข้อใด?",o:["2 1/25","2 1/4","2 4/10","2 2/25"],a:0,e:"0.04 = 4/100 = 1/25 ดังนั้น 2.04 = 2 1/25"},
+ {t:"ค่าประจำหลัก",q:"ข้อใดมีเลข 6 อยู่ในหลักส่วนพัน?",o:["0.6002","0.0602","0.0062","0.0006"],a:2,e:"หลักหลังจุดคือ ส่วนสิบ ส่วนร้อย ส่วนพัน ดังนั้น 0.0062"},
+ {t:"เศษส่วน → ทศนิยม",q:"13/25 เท่ากับข้อใด?",o:["0.13","0.52","0.325","0.625"],a:1,e:"คูณทั้งเศษและส่วนด้วย 4 ได้ 52/100 = 0.52"},
+ {t:"วิเคราะห์ค่า",q:"จำนวนใดมากกว่า 3.5 แต่น้อยกว่า 3.51?",o:["3.49","3.501","3.510","3.6"],a:1,e:"3.501 มากกว่า 3.500 และยังน้อยกว่า 3.510"},
+ {t:"เติมจำนวน",q:"0.48 = ___ / 25",input:true,answers:["12"],e:"0.48 = 48/100 = 12/25 ดังนั้นตัวเศษคือ 12"},
+ {t:"ความหมาย",q:"0.0705 อ่านตามค่าประจำหลักตรงกับข้อใด?",o:["เจ็ดร้อยห้าส่วนหมื่น","เจ็ดสิบห้าส่วนพัน","เจ็ดร้อยห้าส่วนแสน","เจ็ดสิบห้าส่วนหมื่น"],a:0,e:"0.0705 = 705/10000 จึงเป็นเจ็ดร้อยห้าส่วนหมื่น"},
+ {t:"เปรียบเทียบ",q:"ข้อใดมีค่ามากที่สุด?",o:["0.909","0.99","0.9009","0.9099"],a:1,e:"เขียนให้มี 4 ตำแหน่ง: 0.9090, 0.9900, 0.9009, 0.9099"},
+ {t:"เศษส่วน → ทศนิยม",q:"9/8 เขียนเป็นทศนิยมได้เท่าใด?",o:["1.125","1.08","1.25","0.1125"],a:0,e:"9 ÷ 8 = 1.125"},
+ {t:"เติมจำนวน",q:"จำนวน 5.2 ต้องเติมศูนย์กี่ตัว จึงเขียนเป็นทศนิยม 4 ตำแหน่ง?",input:true,answers:["3"],e:"5.2 = 5.2000 ต้องเติมศูนย์อีก 3 ตัว"},
+ {t:"ทศนิยม → เศษส่วน",q:"0.125 เขียนเป็นเศษส่วนอย่างต่ำได้ข้อใด?",o:["1/4","1/8","1/5","5/16"],a:1,e:"0.125 = 125/1000 = 1/8"},
+ {t:"จำนวนที่เท่ากัน",q:"ข้อใดมีค่าไม่เท่ากับข้ออื่น?",o:["0.6","0.60","6/10","6/100"],a:3,e:"0.6 = 0.60 = 6/10 แต่ 6/100 = 0.06"},
+ {t:"ค่าประจำหลัก",q:"ผลต่างของค่าของเลข 5 ใน 5.050 เท่ากับเท่าใด?",o:["4.95","4.5","5.005","0.05"],a:0,e:"เลข 5 ตัวแรกมีค่า 5 และอีกตัวมีค่า 0.05 ผลต่างคือ 4.95"},
+ {t:"เรียงลำดับ",q:"ข้อใดเรียงจากมากไปน้อยถูกต้อง?",o:["1.09 > 1.009 > 1.0009","1.009 > 1.09 > 1.0009","1.0009 > 1.009 > 1.09","1.09 > 1.0009 > 1.009"],a:0,e:"เปรียบเทียบเป็น 1.0900, 1.0090, 1.0009"},
+ {t:"เติมจำนวน",q:"3/40 = ___ (ตอบเป็นทศนิยม)",input:true,answers:["0.075",".075"],e:"3/40 = 75/1000 = 0.075"},
+ {t:"ทศนิยม → เศษส่วน",q:"1.625 เขียนเป็นจำนวนคละอย่างต่ำได้ข้อใด?",o:["1 5/8","1 3/5","1 5/16","1 625/100"],a:0,e:"0.625 = 625/1000 = 5/8"},
+ {t:"วิเคราะห์ค่า",q:"ถ้า A = 0.4, B = 2/5 และ C = 0.40 ข้อใดถูกต้อง?",o:["A > B > C","A = B = C","B > A = C","C > A > B"],a:1,e:"2/5 = 0.4 และ 0.40 ก็เท่ากับ 0.4"},
+ {t:"ค่าประจำหลัก",q:"ใน 18.3047 เลขในหลักส่วนร้อยคือเลขใด?",o:["3","0","4","7"],a:1,e:"หลังจุด: 3 ส่วนสิบ, 0 ส่วนร้อย, 4 ส่วนพัน, 7 ส่วนหมื่น"},
+ {t:"เปรียบเทียบเศษส่วน-ทศนิยม",q:"ข้อใดถูกต้อง?",o:["0.72 < 7/10","0.72 = 18/25","0.72 > 3/4","0.72 = 7/9"],a:1,e:"18/25 = 72/100 = 0.72"},
+ {t:"เติมจำนวน",q:"___ / 8 = 0.625",input:true,answers:["5"],e:"0.625 = 5/8 ดังนั้นตัวเศษคือ 5"},
+ {t:"จำนวนระหว่างสองค่า",q:"ข้อใดอยู่ระหว่าง 0.299 และ 0.3?",o:["0.2989","0.2995","0.3001","0.29"],a:1,e:"0.299 < 0.2995 < 0.300"},
+ {t:"ทศนิยม → เศษส่วน",q:"0.045 เขียนเป็นเศษส่วนอย่างต่ำได้ข้อใด?",o:["9/200","45/100","9/20","45/10000"],a:0,e:"0.045 = 45/1000 แล้วหารด้วย 5 ได้ 9/200"},
+ {t:"เศษส่วน → ทศนิยม",q:"17/40 มีค่าเท่าใด?",o:["0.17","0.34","0.425","0.68"],a:2,e:"17/40 × 25/25 = 425/1000 = 0.425"},
+ {t:"วิเคราะห์ข้อความ",q:"ข้อใดกล่าวถูกต้องเกี่ยวกับศูนย์ในทศนิยม?",o:["เติมศูนย์หน้าจำนวนได้เสมอโดยค่าไม่เปลี่ยน","เติมศูนย์ท้ายส่วนทศนิยมแล้วค่าไม่เปลี่ยน","ลบศูนย์ทุกตำแหน่งได้โดยค่าไม่เปลี่ยน","0.50 น้อยกว่า 0.5"],a:1,e:"ศูนย์ที่เติมต่อท้ายส่วนทศนิยมไม่เปลี่ยนค่าของจำนวน"},
+ {t:"โจทย์สรุป",q:"จำนวนใดเท่ากับ 2 + 3/10 + 4/1000 ?",o:["2.304","2.34","2.034","2.3004"],a:0,e:"3/10 = 0.3 และ 4/1000 = 0.004 รวมได้ 2.304"}
+];
+
+let order=[], index=0, score=0, wrong=0, timeout=0, locked=false, timeLeft=20, timerId=null, soundOn=true;
+let ctx=null;
+
+function initAudio(){
+  if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)();
+}
+function tone(freq=440,dur=.1,type="sine",vol=.06){
+  if(!soundOn) return;
+  initAudio();
+  const o=ctx.createOscillator(), g=ctx.createGain();
+  o.type=type;o.frequency.value=freq;g.gain.value=vol;
+  o.connect(g);g.connect(ctx.destination);o.start();
+  g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+dur);
+  o.stop(ctx.currentTime+dur);
+}
+function clickSound(){tone(520,.06,"sine",.045)}
+function correctSound(){tone(660,.10,"sine",.06);setTimeout(()=>tone(880,.16,"sine",.06),90)}
+function wrongSound(){tone(190,.13,"square",.035);setTimeout(()=>tone(145,.18,"square",.03),100)}
+function tickSound(){tone(850,.045,"sine",.025)}
+function toggleSound(){soundOn=!soundOn;document.getElementById("soundBtn").textContent=soundOn?"🔊":"🔇";if(soundOn) clickSound()}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active")}
+function startGame(){
+  const n=document.getElementById("playerName").value.trim()||"นักคิดทศนิยม";
+  document.getElementById("nameHud").textContent=n;
+  initAudio(); clickSound();
+  order=shuffle([...Array(questions.length).keys()]);
+  index=0;score=0;wrong=0;timeout=0;
+  show("gameScreen");renderQuestion();
+}
+function renderQuestion(){
+  clearInterval(timerId);locked=false;timeLeft=20;
+  const q=questions[order[index]];
+  document.getElementById("qnum").textContent=index+1;
+  document.getElementById("score").textContent=score;
+  document.getElementById("progress").style.width=((index)/questions.length*100)+"%";
+  document.getElementById("qtype").textContent="🌼 "+q.t;
+  document.getElementById("question").innerHTML=q.q;
+  const area=document.getElementById("answerArea"); area.innerHTML="";
+  const fb=document.getElementById("feedback");fb.className="feedback";fb.innerHTML="";
+  document.getElementById("nextBtn").style.display="none";
+  if(q.input){
+    area.innerHTML=`<div class="fill-area"><input id="answerInput" class="answer-input" inputmode="decimal" autocomplete="off" placeholder="พิมพ์คำตอบ"><button class="btn secondary" onclick="submitInput()">ตรวจคำตอบ ✓</button></div>`;
+    setTimeout(()=>document.getElementById("answerInput")?.focus(),100);
+    document.getElementById("answerInput").addEventListener("keydown",e=>{if(e.key==="Enter")submitInput()});
+  } else {
+    const opts=q.o.map((text,i)=>({text,original:i}));
+    shuffle(opts);
+    const wrap=document.createElement("div");wrap.className="options";
+    opts.forEach(ob=>{
+      const b=document.createElement("button");b.className="option";b.textContent=ob.text;
+      b.onclick=()=>chooseOption(b,ob.original);
+      wrap.appendChild(b);
+    });
+    area.appendChild(wrap);
+  }
+  updateTimer();
+  timerId=setInterval(()=>{
+    timeLeft--; updateTimer();
+    if(timeLeft<=5 && timeLeft>0) tickSound();
+    if(timeLeft<=0){clearInterval(timerId);handleTimeout()}
+  },1000);
+}
+function updateTimer(){
+  const t=document.getElementById("timer");t.textContent=timeLeft;t.classList.toggle("danger",timeLeft<=5)
+}
+function chooseOption(btn,ans){
+  if(locked)return; clickSound(); locked=true;clearInterval(timerId);
+  const q=questions[order[index]];
+  document.querySelectorAll(".option").forEach(b=>b.disabled=true);
+  if(ans===q.a){btn.classList.add("correct");score++;correctSound();feedback(true,"🎉 ถูกต้อง! "+q.e)}
+  else{
+    btn.classList.add("wrong");wrong++;wrongSound();
+    [...document.querySelectorAll(".option")].forEach(b=>{if(b.textContent===q.o[q.a])b.classList.add("correct")});
+    feedback(false,"💡 ยังไม่ใช่นะ — "+q.e)
+  }
+  endQuestion();
+}
+function normalize(s){return s.trim().replace(/,/g,"").replace(/\s+/g,"").toLowerCase()}
+function submitInput(){
+  if(locked)return;clickSound();
+  const inp=document.getElementById("answerInput"), val=normalize(inp.value);
+  if(!val){inp.focus();return}
+  locked=true;clearInterval(timerId);
+  const q=questions[order[index]];
+  const ok=q.answers.map(normalize).includes(val);
+  if(ok){score++;inp.style.borderColor="#35c98f";correctSound();feedback(true,"🎉 ถูกต้อง! "+q.e)}
+  else{wrong++;inp.style.borderColor="#ff6b78";wrongSound();feedback(false,"💡 คำตอบที่ถูกคือ "+q.answers[0]+" — "+q.e)}
+  inp.disabled=true;endQuestion();
+}
+function feedback(good,text){
+  const fb=document.getElementById("feedback");fb.className="feedback show "+(good?"good":"bad");fb.innerHTML=text
+}
+function handleTimeout(){
+  if(locked)return;locked=true;timeout++;wrongSound();
+  const q=questions[order[index]];
+  document.querySelectorAll(".option").forEach(b=>{
+    b.disabled=true;if(!q.input && b.textContent===q.o[q.a])b.classList.add("correct")
+  });
+  const inp=document.getElementById("answerInput");if(inp)inp.disabled=true;
+  const ans=q.input?q.answers[0]:q.o[q.a];
+  feedback(false,"⏰ หมดเวลา! คำตอบคือ <b>"+ans+"</b> — "+q.e);
+  endQuestion();
+}
+function endQuestion(){
+  document.getElementById("score").textContent=score;
+  document.getElementById("progress").style.width=((index+1)/questions.length*100)+"%";
+  document.getElementById("nextBtn").style.display="inline-block";
+  if(index===questions.length-1)document.getElementById("nextBtn").textContent="ดูผลคะแนน 🏆";
+}
+function nextQuestion(){
+  clickSound();
+  if(index<questions.length-1){index++;renderQuestion()}else finishGame()
+}
+function finishGame(){
+  clearInterval(timerId);show("resultScreen");
+  const name=document.getElementById("nameHud").textContent;
+  const pct=Math.round(score/questions.length*100);
+  document.getElementById("resultName").textContent="👤 "+name;
+  document.getElementById("finalScore").textContent=score;
+  document.getElementById("percentText").textContent=pct+"%";
+  document.getElementById("correctCount").textContent=score;
+  document.getElementById("wrongCount").textContent=wrong;
+  document.getElementById("timeoutCount").textContent=timeout;
+  const pass=pct>=80;
+  document.getElementById("resultEmoji").textContent=pct===100?"👑":pass?"🏆":"🌱";
+  document.getElementById("resultMessage").innerHTML=pass
+    ?"✨ <b>ผ่านภารกิจ!</b> เข้าใจความหมายและค่าของทศนิยมได้ดีมาก ต่อไปพร้อมลุยชุดคำนวณแล้ว"
+    :"💪 <b>ยังไม่ถึง 80%</b> ลองทบทวนเรื่องค่าประจำหลัก การเติมศูนย์ท้ายทศนิยม และการแปลงเศษส่วน ↔ ทศนิยม แล้วกลับมาท้าทายอีกครั้งนะ";
+  if(pass)correctSound();else wrongSound();
+}
+function restartGame(){
+  document.getElementById("nextBtn").textContent="ข้อต่อไป ➜";
+  show("startScreen");
+}
+</script>
+</body>
+</html>
