@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Gene Hunter พันธุกรรม ชุดที่ 1 - Kru Pai Classroom</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg1:#150c3f;--bg2:#102a68;--pink:#ff7bd5;--cyan:#43e8ff;--yellow:#ffe76d;--green:#57f39a;--red:#ff5b77;--purple:#9b78ff;--ink:#122046;--white:#fff;--card:rgba(255,255,255,.94)}
+html,body{margin:0;min-height:100%;font-family:Tahoma,'Noto Sans Thai',Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 18% 12%,rgba(255,123,213,.32),transparent 20%),radial-gradient(circle at 84% 20%,rgba(67,232,255,.25),transparent 22%),linear-gradient(135deg,var(--bg1),var(--bg2));overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.16) 1px,transparent 1.8px);background-size:38px 38px;pointer-events:none;z-index:0}.wrap{position:relative;z-index:1;width:min(1180px,96vw);margin:auto;padding:12px 0 28px}.brand{position:fixed;right:12px;bottom:8px;z-index:20;font-weight:1000;color:rgba(255,255,255,.62);text-shadow:0 2px 8px rgba(0,0,0,.25)}.screen{display:none}.screen.active{display:block}.card{position:relative;min-height:calc(100vh - 42px);background:var(--card);border:5px solid rgba(255,255,255,.95);border-radius:32px;padding:clamp(16px,3vw,34px);box-shadow:0 16px 0 rgba(0,0,0,.18),0 0 38px rgba(67,232,255,.28);overflow:hidden}.card:before{content:"🧬";position:absolute;right:22px;top:10px;font-size:72px;opacity:.16;transform:rotate(14deg)}.card:after{content:"🔬";position:absolute;left:18px;bottom:12px;font-size:70px;opacity:.16;transform:rotate(-15deg)}h1{font-size:clamp(34px,6vw,72px);line-height:1.05;margin:4px 0 10px;text-align:center;color:#13295d;text-shadow:0 3px 0 rgba(67,232,255,.25)}h2{font-size:clamp(26px,4vw,46px);margin:8px 0;color:#4b22a8;text-align:center}p,.txt{font-size:clamp(17px,2.2vw,24px);line-height:1.55;font-weight:900}.sub{text-align:center;font-size:clamp(19px,3vw,32px);font-weight:1000;color:#df2195;margin:6px 0 16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.box{background:#fff;border:4px solid #1d2e66;border-radius:24px;padding:15px;box-shadow:0 8px 0 rgba(29,46,102,.14);font-weight:900}.box.glow{background:linear-gradient(135deg,#fff,#eafcff);border-color:#23cde7}.box.pink{background:linear-gradient(135deg,#fff,#fff0fb);border-color:#ff76c8}.box.green{background:linear-gradient(135deg,#fff,#edfff5);border-color:#36db86}.bigIcon{font-size:clamp(54px,9vw,110px);text-align:center;margin:2px 0}.nameRow,.btnRow{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:16px}input{border:4px solid #162b60;border-radius:18px;padding:14px 16px;font-size:clamp(20px,3vw,28px);font-weight:1000;outline:0;color:#162b60;background:#fff;text-align:center}#playerName{width:min(560px,100%)}button{border:0;border-radius:18px;padding:14px 20px;font-size:clamp(18px,2.4vw,25px);font-weight:1000;cursor:pointer;color:#071729;background:linear-gradient(#ffe982,#ffc928);box-shadow:0 8px 0 #b88400;transition:.12s}button:active{transform:translateY(4px);box-shadow:0 4px 0 #b88400}.btnBlue{background:linear-gradient(#8de7ff,#28bff0);box-shadow:0 8px 0 #08759b}.btnPink{background:linear-gradient(#ffb7e5,#ff6acf);box-shadow:0 8px 0 #b51b85}.btnGreen{background:linear-gradient(#99ffc9,#29d57f);box-shadow:0 8px 0 #078545}.btnRed{background:linear-gradient(#ff9aa8,#ff4d68);box-shadow:0 8px 0 #a9132a;color:#250005}.btnGray{background:linear-gradient(#fff,#dfeaf4);box-shadow:0 8px 0 #8b97a6}.reviewPager{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0}.dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#e9efff;border:3px solid #22356d;font-weight:1000}.dot.on{background:#ffe76d}.reviewPage{display:none}.reviewPage.active{display:block}.miniNote{background:#fff8db;border:3px dashed #e6a800;border-radius:20px;padding:12px;margin:12px 0;font-size:clamp(16px,2vw,22px);font-weight:1000}.dnaArt{height:170px;position:relative;margin:8px auto;width:min(520px,90%)}.strand{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(67,232,255,.45) 22px 28px,transparent 28px 50px);border-radius:40px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.12))}.dnaText{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:58px;animation:spin 8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.map{display:flex;gap:7px;justify-content:center;align-items:center;flex-wrap:wrap;margin:8px 0 12px}.mapNode{background:#fff;border:3px solid #1b2e66;border-radius:999px;padding:8px 12px;font-weight:1000;box-shadow:0 5px 0 rgba(0,0,0,.12)}.mapNode.done{background:#fff1a8}.mapNode.now{background:#8df4ff;box-shadow:0 0 18px rgba(67,232,255,.9),0 5px 0 rgba(0,0,0,.12)}.topbar{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:center;margin-bottom:10px}.pill{background:#fff;border:3px solid #1b2e66;border-radius:999px;padding:8px 13px;font-weight:1000;text-align:center;font-size:clamp(15px,2vw,21px)}.pill.timer{color:#d51e36;border-color:#d51e36;background:#fff4f6}.questionCard{background:linear-gradient(135deg,#fff,#eefbff);border:5px solid #162b60;border-radius:28px;padding:18px;text-align:center;margin:10px 0;box-shadow:0 12px 0 rgba(22,43,96,.13)}.stageTitle{font-size:clamp(24px,4vw,44px);font-weight:1000;color:#4b22a8;text-align:center;margin:4px 0}.question{font-size:clamp(25px,4vw,46px);font-weight:1000;color:#142a5c;line-height:1.25;margin:10px 0}.hint{font-size:clamp(15px,2vw,21px);font-weight:1000;color:#d12691}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.ans{background:#fff;border:4px solid #1b2e66;border-radius:22px;padding:16px;font-size:clamp(19px,2.8vw,29px);font-weight:1000;box-shadow:0 8px 0 rgba(27,46,102,.16);min-height:84px}.ans.correct{background:#eafff3;border-color:#0bb665}.ans.wrong{background:#fff0f2;border-color:#e32145}.feedback{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:30;background:#fff;border:6px solid #162b60;border-radius:30px;padding:22px 28px;box-shadow:0 20px 50px rgba(0,0,0,.25);font-size:clamp(28px,5vw,60px);font-weight:1000;text-align:center;color:#142a5c;display:none}.feedback.show{display:block;animation:pop .75s ease both}@keyframes pop{from{transform:translate(-50%,-50%) scale(.55);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}.stageIntro{text-align:center}.stageBadge{font-size:clamp(70px,15vw,150px);line-height:1;margin:8px}.stageInfo{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}.mini{background:#fff;border:3px solid #1b2e66;border-radius:20px;padding:12px;text-align:center;font-weight:1000;font-size:clamp(16px,2vw,22px)}.mini b{display:block;font-size:clamp(26px,4vw,42px);color:#d12691}.summaryGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}.sumCard{background:#fff;border:4px solid #1b2e66;border-radius:20px;padding:14px;text-align:center;font-weight:1000}.sumCard b{display:block;font-size:clamp(30px,4vw,46px);color:#d12691}.rankBox{background:linear-gradient(135deg,#fff,#eafcff);border:5px solid #23cde7;border-radius:26px;padding:18px;text-align:center;margin:12px 0;font-weight:1000;font-size:clamp(21px,3vw,36px);color:#142a5c}table{width:100%;border-collapse:collapse;background:#fff;border:4px solid #1b2e66;border-radius:18px;overflow:hidden;margin-top:12px}th,td{padding:10px;border-bottom:2px solid #d8e6ff;text-align:center;font-weight:900;font-size:clamp(13px,1.8vw,18px)}th{background:#e8f7ff;color:#142a5c}.wrongList{max-height:360px;overflow:auto}.report{display:none}.report.active{display:block}.tag{display:inline-block;background:#eefbff;border:2px solid #23cde7;border-radius:999px;padding:5px 10px;margin:3px;font-weight:1000}.genePieces{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:8px 0}.piece{font-size:34px;filter:grayscale(1);opacity:.45}.piece.on{filter:none;opacity:1;animation:bounce .5s ease}@keyframes bounce{50%{transform:translateY(-10px) scale(1.15)}}.tfGrid{grid-template-columns:1fr 1fr}.formula{font-size:clamp(42px,8vw,88px);font-weight:1000;color:#4b22a8;letter-spacing:2px}.soft{color:#53618a;font-weight:900}.emojiLine{font-size:clamp(34px,7vw,82px);text-align:center;line-height:1.1}@media(max-width:760px){.answers{grid-template-columns:1fr}.topbar{grid-template-columns:1fr 1fr}.topbar .pill:first-child{grid-column:1/-1}.card{border-radius:24px;padding:12px}button{width:100%}.ans{min-height:70px}.dnaArt{height:128px}.dnaText{font-size:44px}}
+
+.coverCard{background:
+ radial-gradient(circle at 12% 10%,rgba(255,255,255,.95),rgba(255,255,255,.78) 28%,transparent 29%),
+ linear-gradient(145deg,rgba(255,255,255,.97),rgba(232,248,255,.96));
+ padding:clamp(18px,3vw,38px)}
+.coverCard:before{content:"";position:absolute;right:-90px;top:-100px;width:310px;height:310px;border-radius:50%;background:radial-gradient(circle,rgba(67,232,255,.42),rgba(155,120,255,.13) 58%,transparent 60%);opacity:1}
+.coverCard:after{content:"";position:absolute;left:-90px;bottom:-110px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,123,213,.32),rgba(255,231,109,.12) 58%,transparent 60%);opacity:1}
+.coverHero{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);gap:24px;align-items:center;min-height:70vh}
+.coverCopy{text-align:left;padding:8px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#172c63;color:white;border-radius:999px;padding:8px 14px;font-size:clamp(14px,1.7vw,19px);font-weight:1000;box-shadow:0 6px 0 rgba(10,27,68,.18)}
+.coverTitle{text-align:left;font-size:clamp(48px,8vw,94px);margin:16px 0 2px;letter-spacing:-2px;background:linear-gradient(90deg,#281473,#c92393,#087aa1);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+.coverThai{font-size:clamp(24px,3.8vw,46px);font-weight:1000;color:#152b62;margin:0 0 12px}
+.coverLead{font-size:clamp(17px,2vw,23px);line-height:1.55;color:#41517c;max-width:760px}
+.coverChips{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}
+.coverChip{background:white;border:3px solid #bcdff3;border-radius:999px;padding:8px 12px;font-size:clamp(14px,1.7vw,18px);font-weight:1000;color:#243766;box-shadow:0 5px 0 rgba(25,54,101,.1)}
+.coverPanel{position:relative;background:linear-gradient(145deg,#18245e,#371878 55%,#0c6c8d);border:5px solid white;border-radius:34px;padding:22px;color:white;box-shadow:0 18px 0 rgba(16,31,77,.2),0 0 40px rgba(67,232,255,.3);overflow:hidden}
+.coverPanel:before{content:"🧬";position:absolute;right:-18px;top:-25px;font-size:145px;opacity:.13;transform:rotate(18deg)}
+.coverVisual{font-size:clamp(92px,14vw,170px);text-align:center;filter:drop-shadow(0 12px 15px rgba(0,0,0,.25));animation:floatDNA 3s ease-in-out infinite}
+@keyframes floatDNA{50%{transform:translateY(-10px) rotate(3deg)}}
+.coverPanel h3{font-size:clamp(22px,3vw,32px);margin:4px 0 12px;text-align:center}
+.coverFacts{display:grid;gap:9px}
+.coverFact{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:16px;padding:10px 12px;font-weight:900;font-size:clamp(14px,1.7vw,18px)}
+.coverActions{position:relative;z-index:3;background:rgba(255,255,255,.88);border:3px solid #d9eefe;border-radius:24px;padding:14px;margin-top:20px;box-shadow:0 9px 0 rgba(27,46,102,.1)}
+.passRule{background:linear-gradient(135deg,#eafff3,#f8fffb);border:3px solid #19ad66;border-radius:18px;padding:10px 14px;margin:10px 0;text-align:center;font-size:clamp(16px,2vw,21px);font-weight:1000;color:#12633c}
+.stageStatusGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:16px 0}
+.stageStatusCard{background:#fff;border:4px solid #23356c;border-radius:22px;padding:14px;box-shadow:0 8px 0 rgba(25,45,96,.12)}
+.stageStatusCard.pass{border-color:#15a965;background:linear-gradient(145deg,#fff,#ecfff5)}
+.stageStatusCard.fail{border-color:#ee4962;background:linear-gradient(145deg,#fff,#fff0f3)}
+.stageStatusHead{display:flex;justify-content:space-between;gap:8px;align-items:center;font-weight:1000}
+.statusBadge{border-radius:999px;padding:5px 9px;font-size:14px;font-weight:1000}
+.statusBadge.pass{background:#c9f7dd;color:#075f35}.statusBadge.fail{background:#ffd6dd;color:#9d1029}
+.retryBtn{width:100%;margin-top:10px;padding:10px 12px;font-size:17px}
+.mapNode.pass{background:#c8f8dc;border-color:#0a9957}.mapNode.fail{background:#ffd2da;border-color:#d72845}
+.exampleFlow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0}
+.flowItem{background:#fff;border:3px solid #263a70;border-radius:18px;padding:10px 14px;font-size:clamp(17px,2.2vw,23px);font-weight:1000}
+.flowArrow{font-size:28px;color:#c62293;font-weight:1000}
+@media(max-width:820px){.coverHero{grid-template-columns:1fr;min-height:auto}.coverCopy{text-align:center}.coverTitle{text-align:center}.coverLead{margin:auto}.coverChips{justify-content:center}.coverPanel{max-width:620px;margin:auto}.coverActions{margin-top:14px}}
+
+@media print{body{background:#fff}.brand,.btnRow,.reviewPager,button{display:none!important}.card{box-shadow:none;border:2px solid #000;min-height:auto}.screen{display:block!important}.screen:not(#summaryScreen){display:none!important}.report{display:block!important}}
+</style>
+</head>
+<body>
+<div class="brand">Kru Pai Classroom</div>
+<div id="feedback" class="feedback"></div>
+<div class="wrap">
+<section id="startScreen" class="screen active">
+  <div class="card coverCard">
+    <div class="coverHero">
+      <div class="coverCopy">
+        <div class="eyebrow">KRU PAI CLASSROOM • SCIENCE QUEST</div>
+        <h1 class="coverTitle">GENE HUNTER</h1>
+        <div class="coverThai">ภารกิจล่ารหัสพันธุกรรม 🧬</div>
+        <p class="coverLead">เรียนรู้พื้นฐานพันธุกรรมอย่างเป็นระบบ ตั้งแต่ DNA ยีน และโครโมโซม ไปจนถึงลักษณะเด่น–ด้อย จีโนไทป์ ฟีโนไทป์ และการทดลองของเมนเดล</p>
+        <div class="coverChips">
+          <span class="coverChip">📖 ทบทวนก่อนเล่น</span>
+          <span class="coverChip">🎮 7 ด่าน</span>
+          <span class="coverChip">✅ ผ่านด่าน 80%</span>
+          <span class="coverChip">🔁 เล่นซ้ำเฉพาะด่านได้</span>
+        </div>
+        <div class="passRule">กติกาใหม่: ด่านใดได้ต่ำกว่า 80% สามารถเลือกเล่นซ้ำเฉพาะด่านนั้นได้ โดยไม่ต้องกลับไปเริ่มด่าน 1</div>
+        <div class="coverActions">
+          <div class="nameRow">
+            <input id="playerName" placeholder="พิมพ์ชื่อผู้เล่น..." maxlength="30">
+            <button class="btnBlue" onclick="goReview()">เข้าสู่ห้องเรียน 🚀</button>
+            <button class="btnGray" onclick="fullScreen()">เต็มจอ 📺</button>
+          </div>
+        </div>
+      </div>
+      <div class="coverPanel">
+        <div class="coverVisual">🧬</div>
+        <h3>GENETICS SET 1</h3>
+        <div class="coverFacts">
+          <div class="coverFact"><span>🔬</span><span>คำศัพท์สำคัญพร้อมตัวอย่างเชื่อมโยง</span></div>
+          <div class="coverFact"><span>🧪</span><span>ฝึกแยก Genotype และ Phenotype</span></div>
+          <div class="coverFact"><span>🌱</span><span>เข้าใจเมนเดลและลักษณะเด่น–ด้อย</span></div>
+          <div class="coverFact"><span>🏆</span><span>รายงานผลแยกคะแนนทุกด่าน</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviewScreen" class="screen">
+  <div class="card">
+    <h1>📖 ห้องความรู้พันธุกรรม</h1>
+    <div class="reviewPager" id="reviewDots"></div>
+    <div id="reviewPages"></div>
+    <div class="btnRow"><button class="btnGray" onclick="prevReview()">⬅️ ย้อนกลับ</button><button class="btnBlue" onclick="nextReview()" id="reviewNextBtn">หน้าถัดไป ➡️</button></div>
+  </div>
+</section>
+
+<section id="stageScreen" class="screen">
+  <div class="card stageIntro">
+    <div class="map" id="stageMap"></div>
+    <div class="stageBadge" id="stageIcon">🧬</div>
+    <h1 id="stageName">ด่าน</h1>
+    <div class="sub" id="stageDesc">ภารกิจ</div>
+    <div class="stageInfo">
+      <div class="mini">จำนวนข้อ <b id="stageCount">0</b></div>
+      <div class="mini">เวลา/ข้อ <b id="stageTime">-</b></div>
+      <div class="mini">เป้าหมาย <b>จำให้แม่น</b></div>
+    </div>
+    <div class="genePieces" id="genePieces"></div>
+    <div class="btnRow"><button class="btnPink" onclick="startStage()">เริ่มด่านนี้ ✨</button></div>
+  </div>
+</section>
+
+<section id="gameScreen" class="screen">
+  <div class="card">
+    <div class="topbar">
+      <div class="pill">ผู้เล่น: <span id="nameShow">-</span></div>
+      <div class="pill">ด่าน <span id="stageNo">1</span>/<span id="stageTotal">7</span></div>
+      <div class="pill">ข้อ <span id="qNo">1</span>/<span id="qTotal">0</span></div>
+      <div class="pill timer">⏱ <span id="timeShow">-</span></div>
+    </div>
+    <div class="map" id="gameMap"></div>
+    <div class="questionCard">
+      <div class="stageTitle" id="gameStageTitle">Gene Hunter</div>
+      <div class="emojiLine" id="qIcon">🧬</div>
+      <div class="question" id="questionText">คำถาม</div>
+      <div class="hint" id="questionHint">เลือกคำตอบที่ถูกที่สุด</div>
+      <div class="answers" id="answers"></div>
+    </div>
+  </div>
+</section>
+
+<section id="summaryScreen" class="screen">
+  <div class="card">
+    <h1>🏆 สรุปผล Gene Hunter</h1>
+    <div class="summaryGrid">
+      <div class="sumCard">ผู้เล่น <b id="sumName">-</b></div>
+      <div class="sumCard">คะแนน <b id="sumScore">0</b></div>
+      <div class="sumCard">เปอร์เซ็นต์ <b id="sumPercent">0%</b></div>
+      <div class="sumCard">ตอบถูก <b id="sumCorrect">0</b></div>
+      <div class="sumCard">ตอบผิด <b id="sumWrong">0</b></div>
+      <div class="sumCard">เวลาเฉลี่ย <b id="sumAvg">0s</b></div>
+    </div>
+    <div id="rankBox" class="rankBox"></div>
+    <h2>🧬 สถานะรายด่าน</h2>
+    <div class="passRule">ผ่านเมื่อได้อย่างน้อย 80% • ด่านที่ยังไม่ผ่านกดเล่นซ้ำเฉพาะด่านได้ทันที</div>
+    <div id="stageStatusGrid" class="stageStatusGrid"></div>
+    <div class="btnRow"><button class="btnBlue" onclick="restart()">เริ่มใหม่ทั้งหมด 🔁</button><button class="btnGreen" onclick="toggleReport()">ดูรายงานข้อผิด 📋</button><button class="btnPink" onclick="window.print()">พิมพ์/บันทึก PDF 📝</button></div>
+    <div id="report" class="report">
+      <h2>📋 รายงานข้อที่ควรทบทวน</h2>
+      <div id="wrongList" class="wrongList"></div>
+      <h2>🧠 คลังความเข้าใจผิดยอดฮิต</h2>
+      <div class="grid">
+        <div class="box pink">❌ DNA เป็นส่วนหนึ่งของยีน<br>✅ ยีนเป็นส่วนหนึ่งของ DNA</div>
+        <div class="box pink">❌ มนุษย์มี 46 คู่โครโมโซม<br>✅ มนุษย์มี 46 แท่ง หรือ 23 คู่</div>
+        <div class="box pink">❌ Aa เป็นลักษณะด้อย<br>✅ Aa แสดงลักษณะเด่น เพราะมี A</div>
+        <div class="box pink">❌ Genotype คือสิ่งที่มองเห็น<br>✅ Phenotype คือสิ่งที่มองเห็น</div>
+      </div>
+    </div>
+    <table><thead><tr><th>ด่าน</th><th>ชื่อด่าน</th><th>ถูก</th><th>ทั้งหมด</th><th>%</th></tr></thead><tbody id="stageRows"></tbody></table>
+  </div>
+</section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const reviewData=[
+{t:'DNA คืออะไร',icon:'🧬',html:`<div class="grid"><div class="box glow"><h2>DNA</h2><p>DNA คือ <b>สารพันธุกรรม</b> ทำหน้าที่เก็บข้อมูลและคำสั่งที่เซลล์ใช้สร้างโปรตีน เปรียบเหมือนหนังสือคู่มือขนาดใหญ่ของสิ่งมีชีวิต</p></div><div class="box"><div class="bigIcon">📘</div><p>จำง่าย: DNA = สมุดคำสั่งของชีวิต</p></div></div><div class="exampleFlow"><div class="flowItem">DNA</div><div class="flowArrow">→</div><div class="flowItem">เก็บคำสั่ง</div><div class="flowArrow">→</div><div class="flowItem">สร้างโปรตีน</div><div class="flowArrow">→</div><div class="flowItem">เกิดลักษณะ</div></div><div class="miniNote">ข้อสอบชอบถาม: DNA เป็นสารพันธุกรรม ไม่ใช่อวัยวะ และไม่ใช่เซลล์</div>`},
+{t:'ยีนคืออะไร',icon:'🔎',html:`<div class="grid"><div class="box glow"><h2>Gene / ยีน</h2><p>ยีนเป็น <b>ช่วงหนึ่งของ DNA</b> ที่มีข้อมูลสำหรับสร้างโปรตีนหรือควบคุมลักษณะบางอย่าง เช่น สีดอก รูปร่างเมล็ด หรือหมู่เลือด</p></div><div class="box pink"><div class="bigIcon">👀🧑🌸</div><p>ยีนแต่ละช่วงควบคุมลักษณะบางอย่างของสิ่งมีชีวิต</p></div></div><div class="exampleFlow"><div class="flowItem">โครโมโซม 📦</div><div class="flowArrow">มี</div><div class="flowItem">DNA 🧬</div><div class="flowArrow">ซึ่งแบ่งเป็นช่วง</div><div class="flowItem">ยีน 🔎</div></div><div class="miniNote">จำให้แม่น: ยีนคือช่วงหนึ่งของ DNA และ DNA ขดตัวรวมกับโปรตีนเป็นโครโมโซม</div>`},
+{t:'โครโมโซม',icon:'📦',html:`<div class="grid"><div class="box glow"><h2>Chromosome</h2><p>โครโมโซมคือโครงสร้างที่บรรจุ DNA อยู่ในนิวเคลียสของเซลล์</p></div><div class="box green"><div class="formula">46</div><p style="text-align:center">มนุษย์มี 46 โครโมโซม = 23 คู่</p></div></div><div class="miniNote">ข้อสอบหลอกบ่อย: มนุษย์ไม่ได้มี 46 คู่ แต่มี 46 แท่ง หรือ 23 คู่</div>`},
+{t:'ลักษณะเด่นและด้อย',icon:'A a',html:`<div class="grid"><div class="box glow"><h2>ลักษณะเด่น</h2><p>ใช้ตัวอักษรใหญ่ เช่น <b>A</b> แสดงออกได้แม้มีแค่ 1 ตัว เช่น AA หรือ Aa</p></div><div class="box pink"><h2>ลักษณะด้อย</h2><p>ใช้ตัวอักษรเล็ก เช่น <b>a</b> จะแสดงออกเมื่อเป็นคู่เล็กทั้งคู่ เช่น aa</p></div></div><div class="exampleFlow"><div class="flowItem">AA = เด่น</div><div class="flowItem">Aa = เด่น</div><div class="flowItem">aa = ด้อย</div></div><div class="miniNote">ตัวอย่างนี้ใช้กรณีเด่นสมบูรณ์: มี A อย่างน้อย 1 ตัวจะแสดงลักษณะเด่น ส่วนลักษณะด้อยต้องเป็น aa</div>`},
+{t:'Genotype',icon:'🧪',html:`<div class="grid"><div class="box glow"><h2>Genotype</h2><p>จีโนไทป์คือ <b>รูปแบบของยีน</b> ที่เขียนเป็นตัวอักษร เช่น AA, Aa, aa</p></div><div class="box"><p><span class="tag">AA = ฮอมอไซกัสเด่น</span><span class="tag">Aa = เฮเทอโรไซกัส</span><span class="tag">aa = ฮอมอไซกัสด้อย</span></p></div></div><div class="miniNote">Genotype = ตัวอักษรของยีน</div>`},
+{t:'Phenotype',icon:'🌸',html:`<div class="grid"><div class="box glow"><h2>Phenotype</h2><p>ฟีโนไทป์คือ <b>ลักษณะที่แสดงออกหรือมองเห็นได้</b> เช่น ดอกสีม่วง ดอกสีขาว สูง เตี้ย ผมหยิก</p></div><div class="box pink"><p>ถ้า A = ดอกม่วง และ a = ดอกขาว<br><b>AA / Aa = ดอกม่วง</b><br><b>aa = ดอกขาว</b></p></div></div><div class="miniNote">Phenotype = ภาพที่เห็น / Genotype = ยีนที่เขียน</div>`},
+{t:'เมนเดล',icon:'👨‍🔬',html:`<div class="grid"><div class="box glow"><h2>Gregor Mendel</h2><p>เมนเดลคือ <b>บิดาแห่งพันธุศาสตร์</b> ทดลองผสมพันธุ์ถั่วลันเตา และอธิบายการถ่ายทอดลักษณะจากพ่อแม่สู่ลูก</p></div><div class="box green"><div class="bigIcon">🌱🌸</div><p>ถั่วลันเตามีลักษณะสังเกตง่าย เช่น สีดอก รูปร่างเมล็ด ความสูง</p></div></div><div class="miniNote">ข้อสอบออกบ่อย: เมนเดล = บิดาแห่งพันธุศาสตร์ / ทดลองกับถั่วลันเตา</div>`},
+{t:'อัลลีลคืออะไร',icon:'🧩',html:`<div class="grid"><div class="box glow"><h2>Allele / อัลลีล</h2><p>อัลลีลคือ <b>รูปแบบต่าง ๆ ของยีนเดียวกัน</b> เช่น ยีนควบคุมความสูงอาจมีอัลลีล T และ t สิ่งมีชีวิตแบบดิพลอยด์ได้รับอัลลีลหนึ่งตัวจากพ่อและหนึ่งตัวจากแม่</p></div><div class="box pink"><h2>ตัวอย่าง</h2><p><b>T</b> = สูง (เด่น)<br><b>t</b> = เตี้ย (ด้อย)<br>ลูกที่มี <b>Tt</b> ได้ T จากพ่อหรือแม่ฝ่ายหนึ่ง และ t จากอีกฝ่ายหนึ่ง</p></div></div><div class="miniNote">อย่าสับสน: ยีนคือหน่วยข้อมูลของลักษณะ ส่วนอัลลีลคือรูปแบบของยีนนั้น เช่น T กับ t</div>`},
+{t:'เชื่อมโยงจากยีนสู่ลักษณะ',icon:'🔗',html:`<div class="grid"><div class="box glow"><h2>ตัวอย่างครบขั้น</h2><p>กำหนดให้ B = เมล็ดกลม (เด่น) และ b = เมล็ดย่น (ด้อย)</p><div class="exampleFlow"><div class="flowItem">จีโนไทป์ Bb</div><div class="flowArrow">→</div><div class="flowItem">มี B เด่น</div><div class="flowArrow">→</div><div class="flowItem">ฟีโนไทป์เมล็ดกลม</div></div></div><div class="box green"><h2>ลองคิด</h2><p><b>BB</b> → เมล็ดกลม<br><b>Bb</b> → เมล็ดกลม<br><b>bb</b> → เมล็ดย่น</p></div></div><div class="miniNote">วิธีทำข้อสอบ: 1) ดูว่าตัวใดเด่น 2) อ่านจีโนไทป์ 3) แปลงเป็นลักษณะที่แสดงออก</div>`},
+{t:'สรุปก่อนลุย',icon:'🎯',html:`<div class="grid"><div class="box glow"><h2>คำสำคัญ</h2><p><span class="tag">DNA = สารพันธุกรรม</span><span class="tag">Gene = ส่วนหนึ่งของ DNA</span><span class="tag">Chromosome = บรรจุ DNA</span></p></div><div class="box pink"><h2>คู่จำ</h2><p><span class="tag">Genotype = ตัวอักษร</span><span class="tag">Phenotype = สิ่งที่เห็น</span><span class="tag">A เด่น / a ด้อย</span></p></div></div><div class="miniNote">พร้อมแล้วไปล่าข้อสอบแบบหลายด่านกันเลย!</div>`}
+];
+const stages=[
+{name:'ด่าน 1: DNA Detective',icon:'🧬',desc:'จับคู่คำสำคัญ DNA ยีน โครโมโซม เมนเดล ให้แม่น',time:12,qs:[
+q('สารพันธุกรรมที่เก็บข้อมูลของสิ่งมีชีวิตคืออะไร','DNA',['ยีน','โครโมโซม','เมนเดล'],'DNA คือสารพันธุกรรม'),q('ส่วนหนึ่งของ DNA ที่ควบคุมลักษณะคืออะไร','ยีน',['โครโมโซม','นิวเคลียส','เซลล์'],'ยีนเป็นส่วนหนึ่งของ DNA'),q('โครงสร้างที่บรรจุ DNA อยู่ในนิวเคลียสคืออะไร','โครโมโซม',['ยีน','เมนเดล','ไซโกต'],'โครโมโซมบรรจุ DNA'),q('บิดาแห่งพันธุศาสตร์คือใคร','เมนเดล',['ดาร์วิน','นิวตัน','ไอน์สไตน์'],'เมนเดลทดลองถั่วลันเตา'),q('มนุษย์มีโครโมโซมกี่แท่ง','46 แท่ง',['46 คู่','23 แท่ง','92 คู่'],'มนุษย์มี 46 แท่ง หรือ 23 คู่'),q('มนุษย์มีโครโมโซมกี่คู่','23 คู่',['46 คู่','22 คู่','1 คู่'],'23 คู่คือจำนวนโครโมโซมของมนุษย์'),q('DNA อยู่ในโครงสร้างใดเป็นหลัก','โครโมโซม',['ไรโบโซม','ผนังเซลล์','คลอโรพลาสต์'],'โครโมโซมบรรจุ DNA'),q('ยีนทำหน้าที่อะไร','ควบคุมลักษณะ',['ย่อยอาหาร','สร้างพลังงานโดยตรง','ลำเลียงเลือด'],'ยีนควบคุมลักษณะ'),q('เมนเดลทดลองกับพืชชนิดใด','ถั่วลันเตา',['ข้าวโพด','กุหลาบ','มะม่วง'],'เมนเดลใช้ถั่วลันเตา'),q('ข้อใดเรียงลำดับใหญ่ไปเล็กได้เหมาะที่สุด','โครโมโซม → DNA → ยีน',['ยีน → DNA → โครโมโซม','DNA → ยีน → โครโมโซม','ยีน → โครโมโซม → DNA'],'ยีนเป็นส่วนหนึ่งของ DNA ซึ่งอยู่ในโครโมโซม'),
+q('สิ่งใดไม่ใช่สารพันธุกรรม','ปอด',['DNA','โครโมโซม','ยีน'],'ปอดเป็นอวัยวะ'),q('ข้อมูลลักษณะจากพ่อแม่ส่งต่อสู่ลูกผ่านอะไร','สารพันธุกรรม',['อาหาร','อากาศ','แสง'],'ลักษณะถ่ายทอดผ่านสารพันธุกรรม'),q('ข้อใดเป็นตัวอย่างลักษณะที่ยีนควบคุม','สีดอกไม้',['เสียงระฆัง','อุณหภูมิห้อง','ความยาวโต๊ะ'],'สีดอกไม้เป็นลักษณะทางพันธุกรรม'),q('คำว่า Gene ในภาษาไทยคืออะไร','ยีน',['จีน','จีโนม','เซลล์'],'Gene แปลว่ายีน'),q('Chromosome ในภาษาไทยคืออะไร','โครโมโซม',['โครโมโซน','โครมาติน','คลอโรฟิลล์'],'Chromosome คือโครโมโซม')]
+},
+{name:'ด่าน 2: Dominant vs Recessive',icon:'Aa',desc:'แยกลักษณะเด่น/ด้อย และตัวอักษร A/a แบบข้อสอบเน้น ๆ',time:10,qs:[
+q('ตัวอักษรใหญ่ A มักแทนลักษณะใด','ลักษณะเด่น',['ลักษณะด้อย','ลักษณะหายไป','ลักษณะกลายพันธุ์'],'A แทนเด่น'),q('ตัวอักษรเล็ก a มักแทนลักษณะใด','ลักษณะด้อย',['ลักษณะเด่น','ลักษณะเหนือเด่น','ลักษณะเพศ'],'a แทนด้อย'),q('ลักษณะที่แสดงออกได้แม้มีอัลลีลเพียงตัวเดียวคือ','ลักษณะเด่น',['ลักษณะด้อย','จีโนไทป์','ฟีโนไทป์'],'เด่นแสดงออกได้ใน Aa'),q('ลักษณะด้อยจะแสดงออกเมื่อใด','มีอัลลีลด้อยทั้งคู่',['มี A เพียง 1 ตัว','มีตัวใหญ่ 2 ตัว','มีโครโมโซมมาก'],'aa จึงแสดงด้อย'),q('ถ้า A เด่น a ด้อย จีโนไทป์ Aa จะแสดงลักษณะใด','เด่น',['ด้อย','ครึ่งเด่นครึ่งด้อย','ไม่แสดงออก'],'มี A จึงเด่น'),q('ถ้า A เด่น a ด้อย จีโนไทป์ aa จะแสดงลักษณะใด','ด้อย',['เด่น','เด่นและด้อยพร้อมกัน','ไม่มีลักษณะ'],'aa แสดงด้อย'),q('AA แสดงลักษณะใด','เด่น',['ด้อย','แฝง','ไม่ทราบ'],'AA มี A ทั้งคู่'),q('ข้อใดเป็นอัลลีลด้อยทั้งคู่','aa',['AA','Aa','A-'],'aa เป็นด้อยทั้งคู่'),q('ข้อใดมีอัลลีลเด่นอย่างน้อย 1 ตัว','Aa',['aa','bb','cc'],'Aa มี A'),q('ถ้าสีม่วงเด่น สีขาวด้อย Aa จะเป็นสีใด','สีม่วง',['สีขาว','สีชมพูเสมอ','ไม่มีสี'],'Aa แสดงลักษณะเด่น'),
+q('ถ้าต้นสูงเด่น ต้นเตี้ยด้อย aa จะเป็นอย่างไร','ต้นเตี้ย',['ต้นสูง','สูงครึ่งหนึ่ง','ไม่โต'],'aa แสดงด้อย'),q('ข้อใดกล่าวถูก','เด่นไม่จำเป็นต้องมี 2 ตัวก็แสดงออกได้',['ด้อยแสดงออกเมื่อมี A','Aa เป็นด้อยเสมอ','aa เป็นเด่นเสมอ'],'เด่นแสดงใน AA หรือ Aa'),q('คำว่า Recessive หมายถึง','ลักษณะด้อย',['ลักษณะเด่น','ยีน','โครโมโซม'],'Recessive = ด้อย'),q('คำว่า Dominant หมายถึง','ลักษณะเด่น',['ลักษณะด้อย','จีโนไทป์','ฟีโนไทป์'],'Dominant = เด่น'),q('ข้อใดควรจำที่สุด','มี A มักเด่น',['มี a ตัวเดียวต้องด้อยเสมอ','AA เป็นด้อย','Aa ไม่มีลักษณะ'],'A เด่นจึงแสดงออก')]
+},
+{name:'ด่าน 3: Genotype Lab',icon:'🧪',desc:'อ่าน AA Aa aa ให้คล่อง รู้จักฮอมอไซกัสและเฮเทอโรไซกัส',time:12,qs:[
+q('Genotype หมายถึงอะไร','รูปแบบของยีน',['ลักษณะที่มองเห็น','ชื่อของเมนเดล','จำนวนเซลล์'],'Genotype คือรูปแบบยีน'),q('ข้อใดเป็น Genotype','Aa',['ดอกสีม่วง','ต้นสูง','ผมหยิก'],'Aa เป็นตัวอักษรยีน'),q('AA เรียกว่าอะไร','ฮอมอไซกัสเด่น',['ฮอมอไซกัสด้อย','เฮเทอโรไซกัส','ฟีโนไทป์'],'AA เหมือนกันและเป็นเด่น'),q('aa เรียกว่าอะไร','ฮอมอไซกัสด้อย',['ฮอมอไซกัสเด่น','เฮเทอโรไซกัส','โครโมโซม'],'aa เหมือนกันและเป็นด้อย'),q('Aa เรียกว่าอะไร','เฮเทอโรไซกัส',['ฮอมอไซกัสเด่น','ฮอมอไซกัสด้อย','ฟีโนไทป์'],'Aa ต่างกัน'),q('Homozygous หมายถึง','อัลลีลเหมือนกัน',['อัลลีลต่างกัน','ลักษณะที่เห็น','สารพันธุกรรม'],'Homo = เหมือน'),q('Heterozygous หมายถึง','อัลลีลต่างกัน',['อัลลีลเหมือนกัน','ด้อยทั้งคู่','เด่นทั้งคู่'],'Hetero = ต่าง'),q('ข้อใดเป็นฮอมอไซกัส','AA',['Aa','Aq','A-'],'AA มีอัลลีลเหมือนกัน'),q('ข้อใดเป็นเฮเทอโรไซกัส','Aa',['AA','aa','BB'],'Aa มีอัลลีลต่างกัน'),q('ถ้าเขียนเป็นตัวอักษร เช่น BB เรียกว่า','Genotype',['Phenotype','Chromosome','Mendel'],'BB คือจีโนไทป์'),
+q('ข้อใดไม่ใช่ Genotype','ดอกสีขาว',['AA','Aa','aa'],'ดอกสีขาวเป็นฟีโนไทป์'),q('Aa มีอัลลีลเด่นกี่ตัว','1 ตัว',['0 ตัว','2 ตัว','3 ตัว'],'Aa มี A 1 ตัว'),q('aa มีอัลลีลด้อยกี่ตัว','2 ตัว',['1 ตัว','0 ตัว','3 ตัว'],'aa มี a 2 ตัว'),q('AA มีอัลลีลเด่นกี่ตัว','2 ตัว',['1 ตัว','0 ตัว','ไม่ทราบ'],'AA มี A 2 ตัว'),q('ข้อใดจับคู่ถูก','Aa = เฮเทอโรไซกัส',['AA = ฮอมอไซกัสด้อย','aa = เฮเทอโรไซกัส','Aa = ฟีโนไทป์'],'Aa คือเฮเทอโรไซกัส')]
+},
+{name:'ด่าน 4: Phenotype Challenge',icon:'🌸',desc:'แปลงจีโนไทป์เป็นฟีโนไทป์ ฝึกจุดที่ข้อสอบชอบออก',time:12,qs:[
+q('Phenotype หมายถึงอะไร','ลักษณะที่แสดงออก',['รูปแบบยีน','จำนวนโครโมโซม','ชื่อสารพันธุกรรม'],'Phenotype คือสิ่งที่เห็น'),q('ข้อใดเป็น Phenotype','ดอกสีม่วง',['AA','Aa','aa'],'ดอกสีม่วงคือสิ่งที่เห็น'),q('ถ้า A = ดอกม่วง, a = ดอกขาว, AA เป็นอะไร','ดอกม่วง',['ดอกขาว','ไม่มีดอก','สีเทา'],'AA แสดงเด่น'),q('ถ้า A = ดอกม่วง, a = ดอกขาว, Aa เป็นอะไร','ดอกม่วง',['ดอกขาว','ครึ่งม่วงครึ่งขาว','ไม่มีสี'],'Aa มี A จึงม่วง'),q('ถ้า A = ดอกม่วง, a = ดอกขาว, aa เป็นอะไร','ดอกขาว',['ดอกม่วง','สีชมพู','ไม่ออกดอก'],'aa แสดงด้อย'),q('ถ้า T = สูง, t = เตี้ย, Tt เป็นอะไร','สูง',['เตี้ย','กลาง','ไม่โต'],'Tt มี T จึงสูง'),q('ถ้า T = สูง, t = เตี้ย, tt เป็นอะไร','เตี้ย',['สูง','สูงมาก','ไม่ทราบ'],'tt แสดงด้อย'),q('ข้อใดเป็นฟีโนไทป์','ผมหยิก',['Hh','HH','hh'],'ผมหยิกเป็นลักษณะที่เห็น'),q('ข้อใดเป็นจีโนไทป์','Bb',['ตาสีน้ำตาล','ต้นเตี้ย','ดอกสีขาว'],'Bb เป็นตัวอักษรยีน'),q('ถ้า B = เมล็ดกลม, b = เมล็ดย่น, Bb เป็นอะไร','เมล็ดกลม',['เมล็ดย่น','ครึ่งกลมครึ่งย่น','ไม่มีเมล็ด'],'B เด่น'),
+q('ถ้า B = เมล็ดกลม, b = เมล็ดย่น, bb เป็นอะไร','เมล็ดย่น',['เมล็ดกลม','ไม่ทราบ','ทั้งกลมและย่น'],'bb ด้อย'),q('ฟีโนไทป์สัมพันธ์กับอะไรโดยตรง','ลักษณะที่ปรากฏ',['ตัวอักษรยีนเท่านั้น','จำนวนข้อสอบ','ชื่อผู้ทดลอง'],'ฟีโนไทป์คือสิ่งที่ปรากฏ'),q('Genotype AA และ Aa มี Phenotype เหมือนกันได้หรือไม่ หาก A เด่น','ได้',['ไม่ได้','เป็นไปไม่ได้','ต้องเป็นสีขาว'],'AA และ Aa แสดงเด่นเหมือนกัน'),q('aa ต่างจาก Aa อย่างไรเมื่อ A เด่น','aa แสดงลักษณะด้อย',['aa เด่นกว่า','Aa ด้อยกว่า','เหมือนกันเสมอ'],'aa ไม่มี A'),q('ข้อใดจับคู่ถูก','Phenotype = สิ่งที่เห็น',['Phenotype = ตัวอักษร','Genotype = สิ่งที่เห็น','DNA = ดอกสีม่วง'],'Phenotype คือสิ่งที่เห็น')]
+},
+{name:'ด่าน 5: Mendel Mission',icon:'👨‍🔬',desc:'ย้ำเมนเดล ถั่วลันเตา และคำศัพท์สอบบ่อยแบบไว ๆ',time:10,qs:[
+q('เมนเดลได้รับการยกย่องว่าเป็น','บิดาแห่งพันธุศาสตร์',['บิดาแห่งฟิสิกส์','บิดาแห่งเคมี','บิดาแห่งดาราศาสตร์'],'เมนเดลคือบิดาแห่งพันธุศาสตร์'),q('เมนเดลทดลองกับสิ่งมีชีวิตใด','ถั่วลันเตา',['หนู','แมลงวัน','กล้วยไม้'],'ถั่วลันเตา'),q('เหตุใดถั่วลันเตาเหมาะกับการทดลอง','มีลักษณะต่างกันชัดเจน',['บินได้','เป็นสัตว์','ไม่มีดอก'],'ลักษณะสังเกตง่าย'),q('สิ่งที่ถ่ายทอดจากพ่อแม่สู่ลูกคือ','ลักษณะทางพันธุกรรม',['ความรู้ในห้องเรียน','อาหารที่กิน','อายุเท่ากัน'],'ลักษณะถ่ายทอดได้'),q('ลักษณะใดเป็นทางพันธุกรรม','สีดอกไม้',['รอยดินบนรองเท้า','เสื้อที่ใส่','โต๊ะเรียน'],'สีดอกไม้ถ่ายทอดได้'),q('ลักษณะใดไม่ใช่ลักษณะทางพันธุกรรมโดยตรง','แผลถลอกจากการล้ม',['สีตา','ลักษณะผม','สีดอกไม้'],'แผลเกิดภายหลัง'),q('สิ่งใดช่วยอธิบายการถ่ายทอดลักษณะ','ยีน',['จานอาหาร','เสียงเพลง','กระเป๋า'],'ยีนควบคุมลักษณะ'),q('ลูกได้รับสารพันธุกรรมจากใคร','พ่อและแม่',['ครูเท่านั้น','เพื่อนเท่านั้น','โทรศัพท์'],'ได้จากพ่อแม่'),q('เมนเดลศึกษาการถ่ายทอดลักษณะของอะไร','สิ่งมีชีวิต',['หิน','น้ำทะเล','อากาศ'],'พันธุศาสตร์ศึกษาในสิ่งมีชีวิต'),q('ข้อใดเป็นคำสำคัญของพันธุกรรม','ยีน',['แรงเสียดทาน','กรดแก่','วงจรไฟฟ้า'],'ยีนเป็นคำสำคัญ'),
+q('การถ่ายทอดลักษณะเกิดจาก','สารพันธุกรรม',['การท่องจำ','สีเสื้อ','อุณหภูมิห้อง'],'สารพันธุกรรมถ่ายทอด'),q('ข้อใดกล่าวถูก','เมนเดลทดลองผสมพันธุ์ถั่วลันเตา',['เมนเดลสร้างกล้องจุลทรรศน์','เมนเดลค้นพบแรงโน้มถ่วง','เมนเดลทดลองกับดาวเคราะห์'],'ข้อเท็จจริงของเมนเดล'),q('พันธุศาสตร์คือวิชาที่ศึกษา','การถ่ายทอดลักษณะทางพันธุกรรม',['การเกิดภูเขาไฟ','การเคลื่อนที่ของแสง','การละลายของเกลือ'],'พันธุศาสตร์ศึกษา heredity'),q('ลักษณะเด่นและด้อยเกี่ยวข้องกับ','การแสดงออกของยีน',['การย่อยอาหาร','แรงดันอากาศ','การระเหย'],'เด่นด้อยคือเรื่องยีน'),q('ข้อสอบมักจับคู่เมนเดลกับอะไร','ถั่วลันเตา',['กบ','ปลา','ต้นมะม่วง'],'จำคู่เมนเดล-ถั่วลันเตา')]
+},
+{name:'ด่าน 6: True or False',icon:'✅❌',desc:'ตัดสินถูกผิด เน้นประโยคหลอกที่เจอบ่อย',time:9,type:'tf',qs:[
+tf('DNA เป็นสารพันธุกรรม',true,'DNA คือสารพันธุกรรม'),tf('ยีนเป็นส่วนหนึ่งของ DNA',true,'ยีนอยู่บน DNA'),tf('DNA เป็นส่วนหนึ่งของยีน',false,'กลับกัน: ยีนเป็นส่วนหนึ่งของ DNA'),tf('มนุษย์มี 46 คู่โครโมโซม',false,'มนุษย์มี 46 แท่ง หรือ 23 คู่'),tf('มนุษย์มี 23 คู่โครโมโซม',true,'ถูกต้อง'),tf('AA เป็นฮอมอไซกัสเด่น',true,'AA เหมือนกันและเด่น'),tf('aa เป็นฮอมอไซกัสด้อย',true,'aa เหมือนกันและด้อย'),tf('Aa เป็นเฮเทอโรไซกัส',true,'Aa ต่างกัน'),tf('Genotype คือสิ่งที่มองเห็นภายนอก',false,'สิ่งที่มองเห็นคือ Phenotype'),tf('Phenotype คือสิ่งที่แสดงออก',true,'ฟีโนไทป์คือสิ่งที่เห็น'),tf('ลักษณะด้อยแสดงออกเมื่อมีอัลลีลด้อยทั้งคู่',true,'aa จึงแสดงด้อย'),tf('Aa จะแสดงลักษณะด้อยเสมอ',false,'ถ้า A เด่น Aa จะแสดงเด่น'),tf('เมนเดลคือบิดาแห่งพันธุศาสตร์',true,'ถูกต้อง'),tf('เมนเดลทดลองกับถั่วลันเตา',true,'ถูกต้อง'),tf('โครโมโซมบรรจุ DNA',true,'ถูกต้อง'),tf('ยีนทำหน้าที่ย่อยอาหาร',false,'ยีนควบคุมลักษณะ'),tf('สีดอกไม้เป็นตัวอย่างลักษณะทางพันธุกรรม',true,'ถูกต้อง'),tf('แผลถลอกจากการล้มเป็นลักษณะถ่ายทอดทางพันธุกรรมโดยตรง',false,'เกิดจากสิ่งแวดล้อม/อุบัติเหตุ'),tf('มี A เพียงตัวเดียวก็อาจแสดงลักษณะเด่นได้',true,'Aa แสดงเด่น'),tf('aa แสดงลักษณะเด่นเสมอ',false,'aa มักแสดงด้อย')]
+},
+{name:'👑 Boss Battle',icon:'👑',desc:'รวมทุกเรื่อง DNA ยีน โครโมโซม เด่น/ด้อย จีโนไทป์ ฟีโนไทป์ เมนเดล',time:10,qs:[]}
+];
+stages[6].qs=[...stages[0].qs.slice(0,6),...stages[1].qs.slice(0,6),...stages[2].qs.slice(0,6),...stages[3].qs.slice(0,6),...stages[4].qs.slice(0,4),...stages[5].qs.slice(0,6)].sort(()=>Math.random()-.5);
+let player='';let reviewIndex=0;let stageIndex=0;let qIndex=0;let timer=null;let time=0;let totalCorrect=0,totalWrong=0;let results=[];let stageStats=[];let startTime=0;let elapsedTotal=0;let retryMode=false;
+function q(text,answer,wrong,explain){return {text,answer,options:[answer,...wrong],explain,icon:'🧬'}}
+function tf(text,isTrue,explain){return {text,answer:isTrue?'ถูก':'ผิด',options:['ถูก','ผิด'],explain,icon:isTrue?'✅':'❌'}}
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+function beep(type){try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);if(type==='bad'){o.type='sawtooth';o.frequency.setValueAtTime(200,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(90,ctx.currentTime+.22);g.gain.setValueAtTime(.12,ctx.currentTime)}else if(type==='start'){o.type='triangle';o.frequency.setValueAtTime(380,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(900,ctx.currentTime+.35);g.gain.setValueAtTime(.09,ctx.currentTime)}else{o.type='sine';o.frequency.setValueAtTime(650,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(1250,ctx.currentTime+.12);g.gain.setValueAtTime(.1,ctx.currentTime)}g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.35);o.start();o.stop(ctx.currentTime+.36)}catch(e){}}
+function fullScreen(){const el=document.documentElement;if(el.requestFullscreen)el.requestFullscreen();}
+function goReview(){player=$('playerName').value.trim()||'นักล่ายีนตัวน้อย';renderReviews();show('reviewScreen')}
+function renderReviews(){const dots=$('reviewDots');dots.innerHTML=reviewData.map((r,i)=>`<div class="dot ${i===reviewIndex?'on':''}">${i+1}</div>`).join('');$('reviewPages').innerHTML=reviewData.map((r,i)=>`<div class="reviewPage ${i===reviewIndex?'active':''}"><div class="emojiLine">${r.icon}</div><h2>${r.t}</h2>${r.html}</div>`).join('');$('reviewNextBtn').textContent=reviewIndex===reviewData.length-1?'เข้าสู่เกม 🎮':'หน้าถัดไป ➡️'}
+function nextReview(){if(reviewIndex<reviewData.length-1){reviewIndex++;renderReviews()}else{initGame()}}
+function prevReview(){if(reviewIndex>0){reviewIndex--;renderReviews()}}
+function initGame(){stageIndex=0;qIndex=0;totalCorrect=0;totalWrong=0;results=[];stageStats=[];elapsedTotal=0;retryMode=false;showStageIntro()}
+function renderMap(target){const labels=['1','2','3','4','5','6','Boss'];$(target).innerHTML=labels.map((x,i)=>{const st=stageStats[i];const pct=st?Math.round(st.correct/st.total*100):null;const status=st?(pct>=80?'pass':'fail'):(i<stageIndex&&!retryMode?'done':'');return `<div class="mapNode ${status} ${i===stageIndex?'now':''}">${i<6?'🧬':'👑'} ${x}${pct!==null?' '+pct+'%':''}</div>`}).join('')}
+function showStageIntro(){const s=stages[stageIndex];$('stageIcon').textContent=s.icon;$('stageName').textContent=s.name;$('stageDesc').textContent=s.desc;$('stageCount').textContent=s.qs.length;$('stageTime').textContent=s.time+' วิ';$('stageTotal').textContent=stages.length;renderMap('stageMap');$('genePieces').innerHTML=stages.map((_,i)=>`<span class="piece ${i<stageIndex?'on':''}">🧬</span>`).join('');show('stageScreen')}
+function startStage(){beep('start');qIndex=0;const old=stageStats[stageIndex];stageStats[stageIndex]={correct:0,total:stages[stageIndex].qs.length,name:stages[stageIndex].name,attempts:(old?.attempts||0)+1};results=results.filter(r=>r.stageIndex!==stageIndex);show('gameScreen');renderQuestion()}
+function renderQuestion(){clearInterval(timer);const s=stages[stageIndex], item=s.qs[qIndex];$('nameShow').textContent=player;$('stageNo').textContent=stageIndex+1;$('qNo').textContent=qIndex+1;$('qTotal').textContent=s.qs.length;$('gameStageTitle').textContent=s.name;$('qIcon').textContent=item.icon||s.icon;$('questionText').textContent=item.text;$('questionHint').textContent=s.type==='tf'?'เลือก ถูก หรือ ผิด':'เลือกคำตอบที่ถูกที่สุด';renderMap('gameMap');const ans=$('answers');ans.className='answers '+(s.type==='tf'?'tfGrid':'');ans.innerHTML=shuffle(item.options).map(op=>`<button class="ans" onclick="chooseAnswer(this,'${encodeURIComponent(op)}')">${op}</button>`).join('');time=s.time;$('timeShow').textContent=time;startTime=Date.now();timer=setInterval(()=>{time--;$('timeShow').textContent=time;if(time<=0)chooseAnswer(null,encodeURIComponent('หมดเวลา'))},1000)}
+function chooseAnswer(btn,encoded){clearInterval(timer);const chosen=decodeURIComponent(encoded);const s=stages[stageIndex], item=s.qs[qIndex];const ok=chosen===item.answer;elapsedTotal+=(Date.now()-startTime)/1000;document.querySelectorAll('.ans').forEach(b=>{if(b.textContent===item.answer)b.classList.add('correct');if(b===btn&&!ok)b.classList.add('wrong');b.disabled=true});if(ok){totalCorrect++;stageStats[stageIndex].correct++;pop('✅ ถูกต้อง!','ok');beep('ok')}else{totalWrong++;pop('💥 จำใหม่อีกนิด','bad');beep('bad')}results.push({stageIndex,stage:s.name,q:item.text,chosen,answer:item.answer,ok,explain:item.explain});setTimeout(()=>{qIndex++;if(qIndex>=s.qs.length){if(retryMode){retryMode=false;summary()}else{stageIndex++;if(stageIndex>=stages.length)summary();else showStageIntro()}}else renderQuestion()},850)}
+function pop(text,type){const f=$('feedback');f.textContent=text;f.classList.remove('show');void f.offsetWidth;f.classList.add('show');setTimeout(()=>f.classList.remove('show'),650)}
+function summary(){show('summaryScreen');const valid=stageStats.filter(Boolean);const total=valid.reduce((a,s)=>a+s.total,0);const correct=valid.reduce((a,s)=>a+s.correct,0);const wrong=total-correct;const pct=total?Math.round(correct/total*100):0;totalCorrect=correct;totalWrong=wrong;$('sumName').textContent=player;$('sumScore').textContent=correct+'/'+total;$('sumPercent').textContent=pct+'%';$('sumCorrect').textContent=correct;$('sumWrong').textContent=wrong;$('sumAvg').textContent=total?(elapsedTotal/Math.max(1,total)).toFixed(1)+'s':'0s';const failed=valid.filter(st=>Math.round(st.correct/st.total*100)<80).length;let rank=failed===0?'👑 ผ่านครบทุกด่านแล้ว! พื้นฐานพันธุกรรมแน่นมาก':pct>=80?'🥇 คะแนนรวมดีมาก เหลือเก็บเฉพาะด่านที่ยังไม่ถึง 80%':pct>=60?'🥈 กำลังพัฒนา เลือกเล่นซ้ำเฉพาะด่านสีแดงได้เลย':'🧪 ทบทวนรายงานข้อผิด แล้วเก็บด่านที่ยังไม่ผ่านทีละด่าน';$('rankBox').textContent=rank;$('stageRows').innerHTML=stageStats.map((st,i)=>st?`<tr><td>${i+1}</td><td>${st.name}</td><td>${st.correct}</td><td>${st.total}</td><td>${Math.round(st.correct/st.total*100)}%</td></tr>`:'').join('');$('stageStatusGrid').innerHTML=stages.map((s,i)=>{const st=stageStats[i];if(!st)return `<div class="stageStatusCard fail"><div class="stageStatusHead"><span>${s.name}</span><span class="statusBadge fail">ยังไม่เล่น</span></div><button class="btnPink retryBtn" onclick="retryStage(${i})">เล่นด่านนี้</button></div>`;const sp=Math.round(st.correct/st.total*100),pass=sp>=80;return `<div class="stageStatusCard ${pass?'pass':'fail'}"><div class="stageStatusHead"><span>${s.name}</span><span class="statusBadge ${pass?'pass':'fail'}">${pass?'ผ่าน':'ยังไม่ผ่าน'} ${sp}%</span></div><div class="soft">ถูก ${st.correct}/${st.total} • เล่น ${st.attempts||1} ครั้ง</div>${pass?'':`<button class="btnPink retryBtn" onclick="retryStage(${i})">🔁 เล่นซ้ำเฉพาะด่านนี้</button>`}</div>`}).join('');renderWrongList()}
+function renderWrongList(){const wrongs=results.filter(r=>!r.ok);$('wrongList').innerHTML=wrongs.length?wrongs.map((r,i)=>`<div class="box pink"><b>ข้อที่ควรทบทวน ${i+1}</b><br>ด่าน: ${r.stage}<br>โจทย์: ${r.q}<br>ตอบ: ${r.chosen}<br>คำตอบที่ถูก: <b>${r.answer}</b><br>เหตุผล: ${r.explain}</div>`).join(''):'<div class="box green"><h2>สุดยอด!</h2><p>ไม่มีข้อผิดเลย เกลียว DNA สมบูรณ์มาก 🧬✨</p></div>'}
+function retryStage(i){stageIndex=i;retryMode=true;showStageIntro()}function toggleReport(){$('report').classList.toggle('active')}
+function restart(){show('startScreen')}
+</script>
+</body>
+</html>
