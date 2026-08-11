@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MATH ENTRANCE M.1 — ALGEBRA & EQUATION MASTER • SET 4</title>
+<style>
+:root{--ink:#172033;--paper:#f7f9fc;--card:#fff;--line:#dce3ee;--accent:#0f8f6f;--accent2:#4f46e5;--ok:#159957;--bad:#d64045;--skip:#f4a261;--muted:#7a8599}
+*{box-sizing:border-box} body{margin:0;font-family:"Tahoma","Noto Sans Thai",sans-serif;background:radial-gradient(circle at 10% 0,#dcf7ef 0,transparent 35%),linear-gradient(135deg,#f8fbff,#fff9ed);color:var(--ink);min-height:100vh}
+button,input{font:inherit}.wrap{max-width:1180px;margin:auto;padding:18px}.screen{display:none}.screen.active{display:block}
+.hero{min-height:calc(100vh - 36px);display:grid;place-items:center}.cover{width:min(820px,100%);background:rgba(255,255,255,.94);border:1px solid #fff;border-radius:30px;padding:34px;box-shadow:0 25px 70px #3b2f6d20;text-align:center}
+.badge{display:inline-block;padding:8px 14px;border-radius:99px;background:#171b2d;color:white;font-weight:800;letter-spacing:1px}.cover h1{font-size:clamp(34px,7vw,72px);margin:14px 0 0;line-height:.95}.cover h1 span{color:var(--accent)}.sub{font-size:20px;color:#59647a;margin:16px auto;max-width:650px}.features{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:20px 0}.pill{background:#e5f8f6;border:1px solid #bfe8e4;border-radius:99px;padding:9px 13px;font-weight:700}
+.namebox{display:flex;gap:10px;max-width:520px;margin:25px auto 0}.namebox input{flex:1;padding:15px 18px;border:2px solid #d9def0;border-radius:16px;outline:none;font-size:18px}.btn{border:0;border-radius:15px;padding:13px 18px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(135deg,var(--accent),#7b68ee);color:white;box-shadow:0 8px 20px #6d3bd135}.secondary{background:#edf0f6;color:#35405a}.warn{background:#fff1dd;color:#9a5a00}.danger{background:#ffe7e8;color:#a8292d}
+.top{position:sticky;top:0;z-index:5;background:#ffffffee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}.topin{max-width:1180px;margin:auto;padding:0 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.brand{font-weight:900}.stat{background:#f2f5fa;border-radius:12px;padding:8px 12px;font-weight:800}.timer{margin-left:auto;background:#171b2d;color:white}.timer.low{background:#b4232c;animation:pulse .7s infinite}@keyframes pulse{50%{transform:scale(1.04)}}
+.gamegrid{display:grid;grid-template-columns:1fr 290px;gap:18px;margin-top:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 35px #26334d12}.qcard{padding:24px}.qmeta{display:flex;justify-content:space-between;gap:12px;align-items:center}.type{font-weight:900;color:var(--accent);background:#e1f7f5;padding:7px 11px;border-radius:10px}.qtext{font-size:clamp(21px,3vw,29px);font-weight:800;line-height:1.55;margin:22px 0}.choices{display:grid;gap:11px}.choice{width:100%;text-align:left;border:2px solid #e3e7ef;background:white;border-radius:16px;padding:15px 17px;font-weight:700;cursor:pointer;transition:.15s}.choice:hover{border-color:#a79cf1;transform:translateY(-1px)}.choice.selected{border-color:var(--accent);background:#e5f8f6}.answerInput{width:100%;max-width:420px;padding:16px;border:2px solid #dce2eb;border-radius:15px;font-size:21px}.tf{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tf .choice{text-align:center;font-size:22px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.actions .next{margin-left:auto}
+.side{padding:18px;height:max-content;position:sticky;top:86px}.side h3{margin:0 0 12px}.legend{font-size:13px;color:#657085;line-height:1.8}.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.n{aspect-ratio:1;border:0;border-radius:10px;font-weight:900;cursor:pointer;background:#eef1f6;color:#536078}.n.current{outline:3px solid #3325b9}.n.answered{background:#dfe3ff;color:#3f35a8}.n.correct{background:#dff5e9;color:#087a42}.n.wrong{background:#ffe1e3;color:#a51f29}.n.skipped{background:#fff0d9;color:#a35e00}
+.result{padding:28px}.scorebig{text-align:center;font-size:64px;font-weight:900;color:var(--accent);margin:5px}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.sum{padding:15px;border-radius:15px;background:#f4f6fa;text-align:center;font-weight:800}.review{display:grid;gap:10px}.reviewItem{border:1px solid var(--line);border-radius:15px;padding:14px}.reviewItem.ok{border-left:6px solid var(--ok)}.reviewItem.bad{border-left:6px solid var(--bad)}.reviewItem.skip{border-left:6px solid var(--skip)}.exp{color:#5c667a;margin-top:7px;line-height:1.55}
+
+
+.feedback{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at center,#0d1330cc,#050712f5 70%);backdrop-filter:blur(8px)}
+.feedback.show{display:flex;animation:sceneIn .18s ease-out}
+.feedback::before{content:"";position:absolute;inset:-20%;background:
+repeating-conic-gradient(from 0deg,transparent 0 8deg,#ffffff08 8deg 9deg,transparent 9deg 18deg);
+animation:spinBg 7s linear infinite;opacity:.65}
+.screenFlash{position:absolute;inset:0;pointer-events:none;opacity:0}
+.feedback.ok .screenFlash{background:radial-gradient(circle,#ffffffdd 0,#68ffd888 18%,transparent 55%);animation:flashOK .55s ease-out}
+.feedback.bad .screenFlash{background:radial-gradient(circle,#fff 0,#ff4d6d88 16%,transparent 52%);animation:flashBAD .5s ease-out}
+.energyRing{position:absolute;width:170px;height:170px;border-radius:50%;border:8px solid #fff;opacity:0;pointer-events:none}
+.feedback.ok .energyRing{box-shadow:0 0 30px #2fffb3,0 0 90px #00e5ff;animation:ringBurst 1s ease-out}
+.feedback.bad .energyRing{box-shadow:0 0 30px #ff416c,0 0 90px #ff7b00;animation:ringBurst .85s ease-out}
+.fbCard{position:relative;width:min(560px,90vw);padding:34px 24px 30px;border-radius:34px;text-align:center;overflow:hidden;color:white;
+background:linear-gradient(145deg,#141a39ee,#0b1027ee);border:1px solid #ffffff33;box-shadow:0 30px 100px #0009,inset 0 1px 0 #ffffff33;
+animation:megaPop .55s cubic-bezier(.18,1.6,.32,1)}
+.fbCard::before{content:"";position:absolute;inset:-2px;border-radius:36px;padding:2px;background:linear-gradient(120deg,#ffffff44,transparent 20%,#ffffff11 50%,transparent 80%,#ffffff44);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.feedback.ok .fbCard{box-shadow:0 0 0 2px #34ffc755,0 30px 100px #00e0a244,0 0 80px #00d9ff33 inset}
+.feedback.bad .fbCard{box-shadow:0 0 0 2px #ff5d7355,0 30px 100px #ff304f44,0 0 80px #ff7b0030 inset}
+.scanline{position:absolute;left:0;right:0;height:3px;top:-10%;background:linear-gradient(90deg,transparent,#fff,transparent);filter:blur(.5px);opacity:.8;animation:scan 1s ease-out}
+.fbBadge{display:inline-block;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:900;letter-spacing:2px;background:#ffffff18;border:1px solid #ffffff2d;margin-bottom:8px}
+.fbIconWrap{position:relative;width:130px;height:130px;margin:5px auto 6px;display:grid;place-items:center}
+.orbit{position:absolute;inset:0;border:2px dashed #ffffff55;border-radius:50%;animation:orbit 2.2s linear infinite}
+.orbit::before,.orbit::after{content:"";position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 20px currentColor}
+.orbit::before{top:-7px;left:50%}.orbit::after{bottom:7px;right:5px}
+.feedback.ok .orbit{color:#3cffc4;border-color:#3cffc477}.feedback.bad .orbit{color:#ff5770;border-color:#ff577077}
+.fbIcon{position:relative;z-index:2;font-size:88px;line-height:1;font-weight:1000;text-shadow:0 6px 18px #0007;animation:iconBoom .7s cubic-bezier(.2,1.7,.3,1)}
+.feedback.ok .fbIcon{color:#6dffd0;text-shadow:0 0 18px #00ffb3,0 0 50px #00d8ff}
+.feedback.bad .fbIcon{color:#ff6b7e;text-shadow:0 0 18px #ff3358,0 0 50px #ff7a00}
+.fbTitle{font-size:clamp(34px,7vw,48px);font-weight:1000;letter-spacing:.5px;margin:2px 0 4px}
+.feedback.ok .fbTitle{background:linear-gradient(90deg,#a7ffe7,#5fffd0,#7de7ff);-webkit-background-clip:text;color:transparent}
+.feedback.bad .fbTitle{background:linear-gradient(90deg,#ffd0d6,#ff6b7e,#ffb36b);-webkit-background-clip:text;color:transparent}
+.fbSub{font-size:18px;font-weight:800;color:#d9e2ff}
+.combo{margin-top:12px;font-size:14px;font-weight:900;letter-spacing:1.5px;color:#fff8}
+.burst{position:absolute;inset:0;pointer-events:none}
+.spark{position:absolute;left:50%;top:50%;font-size:28px;filter:drop-shadow(0 0 8px #fff8);animation:fly 1.05s cubic-bezier(.1,.7,.2,1) forwards}
+.dust{position:absolute;width:8px;height:8px;border-radius:50%;left:50%;top:50%;background:white;box-shadow:0 0 12px currentColor;animation:dustFly .9s ease-out forwards}
+.feedback.ok .dust{color:#41ffc7;background:#41ffc7}.feedback.bad .dust{color:#ff5d73;background:#ff5d73}
+.shakeMega{animation:shakeMega .42s ease!important}
+@keyframes sceneIn{from{opacity:0}to{opacity:1}}
+@keyframes spinBg{to{transform:rotate(360deg)}}
+@keyframes flashOK{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+@keyframes flashBAD{0%{opacity:0}20%{opacity:.95}100%{opacity:0}}
+@keyframes ringBurst{0%{transform:scale(.2);opacity:1}100%{transform:scale(5);opacity:0}}
+@keyframes megaPop{0%{transform:scale(.45) rotate(-7deg);opacity:0}65%{transform:scale(1.08) rotate(1deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes iconBoom{0%{transform:scale(.2) rotate(-20deg)}70%{transform:scale(1.28) rotate(4deg)}100%{transform:scale(1)}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes scan{0%{top:-10%}100%{top:110%;opacity:0}}
+@keyframes fly{to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}}
+@keyframes dustFly{to{transform:translate(var(--x),var(--y)) scale(.15);opacity:0}}
+@keyframes shakeMega{15%{transform:translateX(-18px) rotate(-1deg)}30%{transform:translateX(16px) rotate(1deg)}45%{transform:translateX(-12px)}60%{transform:translateX(10px)}75%{transform:translateX(-5px)}}
+
+.cover{position:relative;overflow:hidden}
+.cover::before{content:"x+7  3x  2a+b";position:absolute;right:24px;top:18px;font-size:70px;opacity:.08;transform:rotate(12deg)}
+.cover::after{content:"x  y  =  ?";position:absolute;left:24px;bottom:18px;font-size:28px;opacity:.10;letter-spacing:8px}
+
+
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;
+line-height:1.05;margin:0 .14em;font-weight:inherit;min-width:1.25em}
+.frac .num{display:block;padding:0 .16em .08em;border-bottom:2px solid currentColor}
+.frac .den{display:block;padding:.08em .16em 0}
+.qtext .frac{font-size:1.05em}
+.choice .frac,.reviewItem .frac{font-size:1em}
+
+.seriesSet{display:inline-block;margin-top:10px;padding:6px 13px;border-radius:999px;
+font-size:14px;font-weight:1000;letter-spacing:1.5px;color:var(--accent);
+background:#fff;border:2px solid currentColor;box-shadow:0 5px 14px #0000000d}
+
+@media(max-width:850px){.gamegrid{grid-template-columns:1fr}.side{position:static}.timer{margin-left:0}.summary{grid-template-columns:1fr 1fr}.cover{padding:24px}.namebox{flex-direction:column}}
+@media print{.top,.actions,.side,.noPrint{display:none!important}.screen{display:block!important}.screen:not(#resultScreen){display:none!important}.result{box-shadow:none;border:0}.reviewItem{break-inside:avoid}}
+</style>
+</head>
+<body>
+<section id="startScreen" class="screen active hero"><div class="cover">
+<div class="badge">KRU PAI CLASSROOM • ALGEBRA ARENA</div>
+<h1>MATH <span>ENTRANCE</span><br>ALGEBRA & EQUATION MASTER</h1><div class="seriesSet">SET 4</div>
+<div class="sub">คณิตศาสตร์ เตรียมสอบเข้า ม.1 • ชุดที่ 4 • 30 ข้อ • 60 นาที<br>สมการ • ตัวแปร • แบบรูปเชิงพีชคณิต • โจทย์อายุ • เงิน • จำนวน • ตั้งสมการจากสถานการณ์ • ระดับแข่งขัน</div>
+<div class="features"><span class="pill">✏️ ALGEBRA × EQUATION • HARD</span><span class="pill">⏱️ 60 นาที</span><span class="pill">↔️ ข้ามและย้อนกลับได้</span><span class="pill">📊 เฉลยครบทุกข้อ</span></div>
+<div class="namebox"><input id="playerName" placeholder="พิมพ์ชื่อผู้ทำแบบทดสอบ" maxlength="40"><button class="btn primary" onclick="startGame()">เริ่มทดสอบ 🚀</button></div>
+</div></section>
+
+<section id="gameScreen" class="screen">
+<div class="top"><div class="topin"><div class="brand">⚡ ALGEBRA & EQUATION MASTER • M.1 ENTRANCE</div><div class="stat" id="who"></div><div class="stat" id="progress"></div><div class="stat" id="liveScore">ถูก 0 ข้อ</div><div class="stat timer" id="timer">60:00</div></div></div>
+<div class="wrap gamegrid">
+<div class="card qcard">
+<div class="qmeta"><span class="type" id="qtype"></span><strong id="qnum"></strong></div>
+<div class="qtext" id="qtext"></div><div id="answerArea"></div>
+<div class="actions"><button class="btn secondary" onclick="move(-1)">← ก่อนหน้า</button><button class="btn warn" onclick="skip()">เว้นข้อนี้</button><button class="btn primary" onclick="submitCurrent()">ตรวจคำตอบ</button><button class="btn secondary next" onclick="move(1)">ข้อถัดไป →</button></div>
+</div>
+<aside class="card side"><h3>แผนที่ข้อสอบ 1–30</h3><div class="nav" id="nav"></div><div class="legend">⬜ ยังไม่ทำ &nbsp; 🟪 เลือก/กรอกแล้ว<br>🟩 ถูก &nbsp; 🟥 ผิด &nbsp; 🟨 เว้นไว้</div><button class="btn danger" style="width:100%;margin-top:16px" onclick="finish(false)">ส่งข้อสอบ</button></aside>
+</div></section>
+
+<section id="resultScreen" class="screen"><div class="wrap"><div class="card result">
+<div style="text-align:center"><div class="badge">RESULT REPORT</div><h1>สรุปผล ALGEBRA & EQUATION MASTER • M.1 ENTRANCE • SET 4</h1><div id="resultName"></div><div class="scorebig" id="scoreBig"></div><div id="percent"></div></div>
+<div class="summary"><div class="sum" id="sumCorrect"></div><div class="sum" id="sumWrong"></div><div class="sum" id="sumSkip"></div><div class="sum" id="sumTime"></div></div>
+<div class="noPrint" style="text-align:center;margin:15px"><button class="btn primary" onclick="window.print()">พิมพ์ / บันทึก PDF</button> <button class="btn secondary" onclick="location.reload()">เล่นใหม่</button></div>
+<h2>เฉลยและคำอธิบายทุกข้อ</h2><div class="review" id="review"></div>
+</div></div></section>
+
+
+<div id="feedback" class="feedback">
+  <div class="screenFlash"></div>
+  <div class="energyRing"></div>
+  <div class="fbCard" id="fbCard">
+    <div class="scanline"></div>
+    <div class="burst" id="burst"></div>
+    <div class="fbBadge" id="fbBadge">EQUATION BATTLE RESULT</div>
+    <div class="fbIconWrap">
+      <div class="orbit"></div>
+      <div class="fbIcon" id="fbIcon"></div>
+    </div>
+    <div class="fbTitle" id="fbTitle"></div>
+    <div class="fbSub" id="fbSub"></div>
+    <div class="combo" id="fbCombo"></div>
+  </div>
+</div>
+<script>
+const Q=[
+{t:"mc",q:"ถ้า 3x + 7 = 25 แล้ว x มีค่าเท่าใด?",c:["4","5","6","7"],a:2,e:"3x=18 ดังนั้น x=6"},
+{t:"fill",q:"ถ้า 5x − 9 = 31 แล้ว x เท่ากับเท่าใด?",a:"8",e:"5x=40 ดังนั้น x=8"},
+{t:"tf",q:"สมการ 4x+3=4x+3 เป็นจริงสำหรับทุกค่าของ x",a:true,e:"ทั้งสองข้างเหมือนกันทุกประการ จึงจริงสำหรับทุก x"},
+{t:"mc",q:"ถ้า 2(x+5)=24 แล้ว x เท่ากับเท่าใด?",c:["5","7","9","12"],a:1,e:"x+5=12 ดังนั้น x=7"},
+{t:"fill",q:"ถ้า 3(x−4)=21 แล้ว x เท่ากับเท่าใด?",a:"11",e:"x−4=7 ดังนั้น x=11"},
+{t:"mc",q:"จำนวนหนึ่งมากกว่าอีกจำนวนหนึ่ง 8 และผลรวมของทั้งสองเป็น 42 จำนวนที่มากกว่าคือเท่าใด?",c:["17","21","25","29"],a:2,e:"ให้จำนวนน้อย=x จำนวนมาก=x+8; 2x+8=42 ⇒ x=17 จำนวนมาก=25"},
+{t:"tf",q:"ถ้า x/4 = 6 แล้ว 2x = 48",a:true,e:"x=24 ดังนั้น 2x=48"},
+{t:"mc",q:"แม่มีอายุเป็น 3 เท่าของลูก อีก 6 ปี แม่จะมีอายุเป็น 2 เท่าของลูก ปัจจุบันลูกอายุเท่าใด?",c:["4 ปี","6 ปี","8 ปี","10 ปี"],a:1,e:"ให้ลูก=x แม่=3x; 3x+6=2(x+6) ⇒ x=6"},
+{t:"fill",q:"ผลบวกของจำนวนคี่เรียงกัน 3 จำนวนเป็น 75 จำนวนที่อยู่ตรงกลางคือเท่าใด?",a:"25",e:"ให้เป็น x−2,x,x+2; 3x=75 ⇒ x=25"},
+{t:"mc",q:"ข้อใดเป็นคำตอบของสมการ 5x+2 = 3x+18?",c:["6","7","8","10"],a:2,e:"2x=16 ดังนั้น x=8"},
+{t:"mc",q:"ถ้า a=4 และ b=7 ค่าของ 3a+2b เท่ากับเท่าใด?",c:["22","24","26","28"],a:2,e:"3(4)+2(7)=26"},
+{t:"fill",q:"ถ้า y=2x+5 และ x=9 แล้ว y เท่ากับเท่าใด?",a:"23",e:"y=18+5=23"},
+{t:"tf",q:"ถ้า x+5=12 และ y=2x แล้ว y=14",a:true,e:"x=7 จึง y=14"},
+{t:"mc",q:"จำนวนสองจำนวนมีอัตราส่วน 2:3 และผลรวมเป็น 45 ถ้ากำหนดให้จำนวนที่น้อยกว่าเป็น 2x แล้ว x เท่ากับเท่าใด?",c:["7","8","9","10"],a:2,e:"2x+3x=45 ⇒ 5x=45 ⇒ x=9"},
+{t:"fill",q:"ถ้า 4x−3 = 2x+13 แล้ว x เท่ากับเท่าใด?",a:"8",e:"2x=16 ดังนั้น x=8"},
+{t:"mc",q:"แบบรูปจำนวน 4, 9, 14, 19, ... ถ้าพจน์ที่ n เขียนเป็น 5n−1 พจน์ที่ 20 มีค่าเท่าใด?",c:["94","95","99","100"],a:2,e:"5(20)−1=99"},
+{t:"mc",q:"แบบรูป 2, 6, 12, 20, 30, ... เขียนพจน์ที่ n ได้ตรงกับข้อใด?",c:["n²+n","n²−n","2n+2","n²+2"],a:0,e:"เป็น 1×2,2×3,3×4,... จึงเป็น n(n+1)=n²+n"},
+{t:"fill",q:"ถ้า p=3q−2 และ q=8 แล้ว p เท่ากับเท่าใด?",a:"22",e:"p=24−2=22"},
+{t:"tf",q:"สมการ 2(x+3)=2x+6 เป็นจริงสำหรับทุกค่าของ x",a:true,e:"แจกแจงซ้ายได้ 2x+6 เหมือนขวา"},
+{t:"mc",q:"ร้านหนึ่งขายดินสอ 3 แท่งและปากกา 2 ด้ามรวม 54 บาท ถ้าดินสอแท่งละ 8 บาท ปากกาด้ามละเท่าใด?",c:["12","15","18","21"],a:1,e:"ดินสอรวม24 บาท เหลือ30 บาท ปากกา2ด้ามจึงด้ามละ15บาท"},
+{t:"fill",q:"พ่อมีเงินมากกว่าลูก 480 บาท และมีเงินรวมกัน 1,200 บาท ลูกมีเงินกี่บาท?",a:"360",e:"x+(x+480)=1200 ⇒ 2x=720 ⇒ x=360"},
+{t:"mc",q:"สี่เหลี่ยมผืนผ้ามีความยาวมากกว่าความกว้าง 6 ซม. และเส้นรอบรูป 52 ซม. ความกว้างเท่ากับเท่าใด?",c:["8","10","12","14"],a:1,e:"ยาว+กว้าง=26; ให้กว้าง=x ยาว=x+6 ⇒ 2x+6=26 ⇒ x=10"},
+{t:"tf",q:"ถ้า 3x=3y และทั้ง x,y เป็นจำนวนจริง จะได้ x=y",a:true,e:"หารทั้งสองข้างด้วย 3 ได้ x=y"},
+{t:"mc",q:"จำนวนเต็มบวกจำนวนหนึ่งเมื่อคูณ 4 แล้วบวก 7 ได้ 55 จำนวนนั้นคือข้อใด?",c:["10","11","12","13"],a:2,e:"4x+7=55 ⇒ x=12"},
+{t:"fill",q:"ผลรวมของจำนวนเต็มเรียงกัน 4 จำนวนเป็น 86 จำนวนที่น้อยที่สุดคือเท่าใด?",a:"20",e:"x+(x+1)+(x+2)+(x+3)=86 ⇒ 4x+6=86 ⇒ x=20"},
+{t:"mc",q:"สามเท่าของจำนวนหนึ่งน้อยกว่า 50 อยู่ 8 จำนวนนี้คือเท่าใด?",c:["12","14","16","18"],a:1,e:"3x=42 ⇒ x=14"},
+{t:"mc",q:"ถ้า 2a+b=17 และ a=6 แล้ว b เท่ากับเท่าใด?",c:["3","5","7","9"],a:1,e:"12+b=17 ⇒ b=5"},
+{t:"fill",q:"ถ้า x−(2x−5)=11 แล้ว x เท่ากับเท่าใด?",a:"-6",e:"x−2x+5=11 ⇒ −x=6 ⇒ x=−6"},
+{t:"mc",q:"ข้อใดเป็นสมการที่ใช้แก้โจทย์ 'จำนวนหนึ่งเมื่อเพิ่มขึ้น 7 แล้วได้เป็น 3 เท่าของจำนวนเดิม' ได้ถูกต้อง?",c:["x+7=3x","3x+7=x","x−7=3x","x+3=7x"],a:0,e:"จำนวนเดิม=x เมื่อเพิ่ม7คือ x+7 และเท่ากับ 3x"},
+{t:"mc",q:"เด็กสองคนมีลูกแก้วรวม 68 ลูก คนแรกมีมากกว่าคนที่สอง 12 ลูก คนแรกมีลูกแก้วกี่ลูก?",c:["28","34","40","44"],a:2,e:"ให้คนที่สอง=x คนแรก=x+12; 2x+12=68 ⇒ x=28 ดังนั้นคนแรก=40"}
+];
+let idx=0, name="", remain=3600, timerId, startedAt, answers=Array(Q.length).fill(null), states=Array(Q.length).fill("new");
+function startGame(){name=document.getElementById("playerName").value.trim();if(!name){alert("กรุณาพิมพ์ชื่อก่อนเริ่มค่ะ");return}show("gameScreen");document.getElementById("who").textContent="👤 "+name;startedAt=Date.now();render();timerId=setInterval(()=>{remain--;drawTimer();if(remain<=0){clearInterval(timerId);finish(true)}},1000)}
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active")}
+function drawTimer(){let m=Math.floor(remain/60),s=remain%60,t=document.getElementById("timer");t.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");t.classList.toggle("low",remain<=300)}
+
+function formatFractions(text){
+  if(text===null||text===undefined)return "";
+  let x=String(text);
+  // Mixed numbers such as 3 1/4.
+  x=x.replace(/(\d+)\s+(\d+)\/(\d+)/g,
+    '$1 <span class="frac"><span class="num">$2</span><span class="den">$3</span></span>');
+  // Simple numeric fractions.
+  x=x.replace(/(?<![\d>])(\d+)\/(\d+)(?![\d<])/g,
+    '<span class="frac"><span class="num">$1</span><span class="den">$2</span></span>');
+  return x;
+}
+
+function render(){let q=Q[idx];document.getElementById("qnum").textContent=`ข้อ ${idx+1} / ${Q.length}`;document.getElementById("progress").textContent=`ทำแล้ว ${states.filter(x=>x==="correct"||x==="wrong").length}/${Q.length}`;document.getElementById("liveScore").textContent=`ถูก ${states.filter(x=>x==="correct").length} ข้อ`;document.getElementById("qtype").textContent=q.t==="mc"?"4 ตัวเลือก":q.t==="fill"?"เติมคำตอบ":"ถูกหรือผิด";document.getElementById("qtext").innerHTML=formatFractions(q.q);
+let a=document.getElementById("answerArea");a.innerHTML="";
+if(q.t==="mc"){q.c.forEach((x,i)=>{let b=document.createElement("button");b.className="choice"+(answers[idx]===i?" selected":"");b.innerHTML=`<b>${"ABCD"[i]}.</b> ${formatFractions(x)}`;b.onclick=()=>{if(done())return;answers[idx]=i;states[idx]="answered";render()};a.appendChild(b)})}
+if(q.t==="fill"){let inp=document.createElement("input");inp.className="answerInput";inp.placeholder="พิมพ์เฉพาะตัวเลข";inp.value=answers[idx]??"";inp.disabled=done();inp.oninput=e=>{answers[idx]=e.target.value;states[idx]=e.target.value.trim()?"answered":"new";drawNav()};a.appendChild(inp)}
+if(q.t==="tf"){let d=document.createElement("div");d.className="tf";[true,false].forEach((v,i)=>{let b=document.createElement("button");b.className="choice"+(answers[idx]===v?" selected":"");b.textContent=v?"✓ ถูก":"✕ ผิด";b.onclick=()=>{if(done())return;answers[idx]=v;states[idx]="answered";render()};d.appendChild(b)});a.appendChild(d)}
+drawNav()}
+function done(){return states[idx]==="correct"||states[idx]==="wrong"}
+function normalize(v){return String(v??"").replace(/,/g,"").replace(/\s/g,"").trim()}
+
+function tone(freq,dur,type="sine",vol=.06,delay=0){
+ try{let A=window.AudioContext||window.webkitAudioContext,ctx=window._ac||(window._ac=new A()),o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=freq;g.gain.value=vol;o.connect(g);g.connect(ctx.destination);let t=ctx.currentTime+delay;o.start(t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.stop(t+dur)}catch(e){}
+}
+function feedback(ok){
+ let f=document.getElementById("feedback"),card=document.getElementById("fbCard"),burst=document.getElementById("burst");
+ f.className="feedback show "+(ok?"ok":"bad");
+ document.getElementById("fbIcon").textContent=ok?"✓":"✕";
+ document.getElementById("fbTitle").textContent=ok?"EQUATION LOCKED!":"CHECK AGAIN!";
+ document.getElementById("fbSub").textContent=ok?"ตั้งสมการและแก้ตัวแปรได้แม่นมาก ⚡":"ยังไม่ใช่ ลองแปลข้อความเป็นสมการแล้วตรวจทีละขั้นอีกที";
+ document.getElementById("fbBadge").textContent=ok?"ALGEBRA POWER +1":"RECALCULATE MODE";
+ document.getElementById("fbCombo").textContent=ok?"✦ PRIME ENERGY LOCKED ✦":"✦ THINK DEEPER ✦";
+ burst.innerHTML="";
+ let icons=ok?["⚡","✨","🧬","⭐","🔬","💫","⚛️","✨","⚡","⭐","🧪","💥"]:["⚠️","💥","🔻","⚡","✕","💢","⚠️","🔻","💥","⚡"];
+ icons.forEach((x,i)=>{
+   let e=document.createElement("span");e.className="spark";e.textContent=x;
+   let a=i*Math.PI*2/icons.length,r=180+Math.random()*120;
+   e.style.setProperty("--x",Math.cos(a)*r+"px");
+   e.style.setProperty("--y",Math.sin(a)*r+"px");
+   e.style.setProperty("--r",(180+Math.random()*360)+"deg");
+   burst.appendChild(e);
+ });
+ for(let i=0;i<28;i++){
+   let d=document.createElement("i");d.className="dust";
+   let a=Math.random()*Math.PI*2,r=110+Math.random()*230;
+   d.style.setProperty("--x",Math.cos(a)*r+"px");
+   d.style.setProperty("--y",Math.sin(a)*r+"px");
+   d.style.animationDelay=(Math.random()*.12)+"s";
+   burst.appendChild(d);
+ }
+ if(ok){
+   tone(392,.10,"triangle",.06);
+   tone(523,.12,"triangle",.07,.08);
+   tone(659,.14,"triangle",.07,.16);
+   tone(784,.16,"sine",.07,.26);
+   tone(1046,.24,"sine",.06,.38);
+ }else{
+   card.classList.remove("shakeMega");void card.offsetWidth;card.classList.add("shakeMega");
+   tone(190,.13,"sawtooth",.045);
+   tone(150,.16,"sawtooth",.045,.10);
+   tone(105,.28,"square",.035,.23);
+ }
+ setTimeout(()=>{f.className="feedback"},ok?1700:1850);
+}
+function submitCurrent(){if(done()){alert("ข้อนี้ตรวจคำตอบแล้วค่ะ");return}if(answers[idx]===null||normalize(answers[idx])===""){alert("กรุณาตอบก่อนตรวจ หรือกด “เว้นข้อนี้”");return}let q=Q[idx],ok=q.t==="fill"?normalize(answers[idx])===normalize(q.a):answers[idx]===q.a;states[idx]=ok?"correct":"wrong";render();feedback(ok)}
+function skip(){if(done())return;answers[idx]=null;states[idx]="skipped";if(idx<Q.length-1)idx++;render()}
+function move(d){idx=Math.max(0,Math.min(Q.length-1,idx+d));render()}
+function drawNav(){let n=document.getElementById("nav");n.innerHTML="";states.forEach((s,i)=>{let b=document.createElement("button");b.className=`n ${s} ${i===idx?"current":""}`;b.textContent=i+1;b.onclick=()=>{idx=i;render()};n.appendChild(b)})}
+function correctAnswer(q){if(q.t==="mc")return formatFractions(q.c[q.a]);if(q.t==="tf")return q.a?"ถูก":"ผิด";return formatFractions(q.a)}
+function userAnswer(q,i){let v=answers[i];if(v===null)return "ไม่ได้ตอบ";if(q.t==="mc")return v===null?"ไม่ได้ตอบ":formatFractions(q.c[v]??"ไม่ได้ตอบ");if(q.t==="tf")return v?"ถูก":"ผิด";return formatFractions(v)}
+function finish(auto){let unresolved=states.filter(x=>x==="new"||x==="answered"||x==="skipped").length;if(!auto&&unresolved&&!confirm(`ยังมี ${unresolved} ข้อที่ยังไม่ได้ตรวจ/เว้นไว้ ต้องการส่งข้อสอบเลยหรือไม่?`))return;clearInterval(timerId);let c=states.filter(x=>x==="correct").length,w=states.filter(x=>x==="wrong").length,sk=Q.length-c-w;let used=Math.min(3600,Math.floor((Date.now()-startedAt)/1000));show("resultScreen");document.getElementById("resultName").textContent=`ผู้ทดสอบ: ${name}`;document.getElementById("scoreBig").textContent=`${c} / ${Q.length}`;document.getElementById("percent").textContent=`${Math.round(c/Q.length*100)}%`;document.getElementById("sumCorrect").innerHTML=`✅ ถูก<br><big>${c}</big>`;document.getElementById("sumWrong").innerHTML=`❌ ผิด<br><big>${w}</big>`;document.getElementById("sumSkip").innerHTML=`⏭️ ไม่ได้ตรวจ/เว้น<br><big>${sk}</big>`;document.getElementById("sumTime").innerHTML=`⏱️ เวลาใช้<br><big>${Math.floor(used/60)}:${String(used%60).padStart(2,"0")}</big>`;
+let r=document.getElementById("review");r.innerHTML="";Q.forEach((q,i)=>{let st=states[i],klass=st==="correct"?"ok":st==="wrong"?"bad":"skip",icon=st==="correct"?"✅":st==="wrong"?"❌":"⏭️";let div=document.createElement("div");div.className="reviewItem "+klass;div.innerHTML=`<b>${icon} ข้อ ${i+1}</b> — ${formatFractions(q.q)}<div>คำตอบของผู้ทำ: <b>${userAnswer(q,i)}</b></div><div>คำตอบที่ถูก: <b>${correctAnswer(q)}</b></div><div class="exp"><b>วิธีคิด:</b> ${formatFractions(q.e)}</div>`;r.appendChild(div)});window.scrollTo(0,0)}
+drawTimer();
+</script>
+</body></html>
