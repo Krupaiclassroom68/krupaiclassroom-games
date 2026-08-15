@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Mixture Lightning Lab — Solution Colloid Suspension | Kru Pai Classroom</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Kanit,system-ui,sans-serif;color:#f7fbff;background:radial-gradient(circle at 18% 8%,#123d65,transparent 28%),radial-gradient(circle at 84% 3%,#40205f,transparent 28%),linear-gradient(160deg,#06111f,#071a2a 60%,#08101b);overflow-x:hidden}
+:root{--cyan:#5cecff;--violet:#9c78ff;--green:#62f0ad;--yellow:#ffe27a;--red:#ff6179;--muted:#b4cada}
+button,input{font:inherit}.hidden{display:none!important}.screen{min-height:100vh;padding:12px 18px 18px}.wrap{max-width:1180px;margin:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900}.orb{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 12%,#7ff5ff 26%,#786aff 62%,#321e5e);box-shadow:0 0 24px #5eeaff}
+.hero{margin-top:16px;padding:28px;border-radius:30px;background:linear-gradient(145deg,#102c4beF,#10182eef);border:1px solid #65dfff3d;box-shadow:0 24px 70px #0008;position:relative;overflow:hidden}
+.hero:after{content:"⚗️";position:absolute;right:3%;top:-40px;font-size:210px;opacity:.06}
+.kicker{display:inline-block;padding:7px 12px;border-radius:999px;border:1px solid #64eaff55;background:#4eeaff12;color:#8ff5ff;font-weight:800;font-size:13px}
+h1{font-size:clamp(36px,6vw,70px);line-height:1;margin:13px 0;font-weight:900;letter-spacing:-2px}h1 span{background:linear-gradient(90deg,#fff,#75edff,#b38cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:800px;color:#c3d6e6;font-size:18px;line-height:1.7}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}.card{background:#0a1c32c9;border:1px solid #29445e;border-radius:23px;padding:21px}.card h3{margin:0 0 8px;font-size:21px}.card p{color:#afc5d8;line-height:1.65;margin:0}
+.name{width:100%;padding:14px 16px;border-radius:15px;border:1px solid #315878;background:#07172a;color:white;outline:none;margin-top:12px;font-size:17px}.name:focus{border-color:#67ebff;box-shadow:0 0 0 4px #67ebff16}
+.btnrow{display:flex;gap:11px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:15px;padding:12px 17px;font-weight:900;cursor:pointer;box-shadow:0 9px 25px #0004}.primary{background:linear-gradient(135deg,#70efff,#7a72ff);color:#04111e}.secondary{background:#15304d;color:#eaf8ff;border:1px solid #3b6382}.green{background:linear-gradient(135deg,#6ff1b2,#40d89d);color:#062119}.danger{background:linear-gradient(135deg,#ff788d,#ff526c);color:white}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.stat{padding:13px;border-radius:15px;background:#07162a;border:1px solid #24415b;text-align:center}.stat b{display:block;font-size:24px}.stat span{font-size:12px;color:#8eabc3}
+
+/* review */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.review-title{font-size:clamp(30px,5vw,50px);font-weight:900;margin:14px 0 5px}.intro{color:#bed1e1;line-height:1.7}
+.compare{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.reviewbox{border-radius:23px;padding:20px;background:#0b1d33;border:1px solid #31506c}.reviewbox.sol{border-color:#59cfff88;background:linear-gradient(145deg,#0c2440,#0b3150)}.reviewbox.col{border-color:#a57cff88;background:linear-gradient(145deg,#211a43,#342054)}.reviewbox.sus{border-color:#f1c76888;background:linear-gradient(145deg,#382c13,#4a3416)}
+.reviewbox h3{font-size:25px;margin:0 0 8px}.reviewbox ul{padding-left:21px;line-height:1.75;color:#e2edf5}.lesson{margin-top:15px;border-radius:22px;padding:20px;background:#0a1b30;border:1px solid #29445f}.lesson h3{margin-top:0}.tablewrap{overflow:auto}.ctable{width:100%;border-collapse:collapse;min-width:720px}.ctable th,.ctable td{padding:11px;border-bottom:1px solid #284058;text-align:center}.ctable th{color:#8ef1ff}.ctable td:first-child{text-align:left;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:8px 11px;border-radius:11px;background:#142b47;border:1px solid #31516d;font-size:13px}
+.studygrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:15px}
+.studycard{background:#0a1b30;border:1px solid #29445f;border-radius:20px;padding:18px}
+.studycard h3{margin:0 0 9px;font-size:23px}.studycard h4{margin:14px 0 7px;color:#8ef1ff;font-size:18px}
+.studycard p,.studycard li{font-size:16px;line-height:1.8;color:#d9e8f3}
+.studycard ul,.studycard ol{margin:8px 0 0;padding-left:22px}
+.keybox{margin-top:12px;padding:13px 15px;border-radius:15px;background:#102742;border:1px solid #376086;color:#edf8ff;line-height:1.75}
+.warnbox{margin-top:12px;padding:13px 15px;border-radius:15px;background:#432536;border:1px solid #87425c;color:#ffe2e8;line-height:1.75}
+.examplegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.example{padding:12px;border-radius:14px;background:#10233b;border:1px solid #31506c;font-size:14px;line-height:1.55}
+.example b{display:block;color:#fff;margin-bottom:3px}
+.memory{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.memory>div{padding:12px;border-radius:14px;text-align:center;background:#0d2138;border:1px solid #31516d}
+.memory strong{display:block;font-size:21px;color:#fff}.memory span{font-size:13px;color:#a8bfd1}
+.steps{counter-reset:step;display:grid;gap:10px;margin-top:12px}
+.steps div{position:relative;padding:12px 12px 12px 48px;border-radius:14px;background:#0d2138;border:1px solid #31516d;line-height:1.65}
+.steps div:before{counter-increment:step;content:counter(step);position:absolute;left:12px;top:12px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#63eaff;color:#05111f;font-weight:900}
+@media(max-width:800px){.studygrid{grid-template-columns:1fr}.examplegrid,.memory{grid-template-columns:1fr}.studycard p,.studycard li{font-size:17px}.reviewbox h3{font-size:27px}.reviewbox ul{font-size:17px;line-height:1.9}}
+
+/* game */
+.gamewrap{max-width:1240px;margin:auto;height:100vh;display:flex;flex-direction:column}.hud{display:grid;grid-template-columns:1fr auto auto auto auto;gap:8px;align-items:center;background:#07172af2;border:1px solid #28506e;border-radius:19px;padding:10px 13px;position:sticky;top:6px;z-index:30;backdrop-filter:blur(10px);box-shadow:0 9px 24px #0006}.hudtitle{font-weight:900;font-size:17px}.pill{padding:7px 10px;border-radius:999px;background:#112b48;border:1px solid #315676;font-weight:800;white-space:nowrap}.lives{color:#ff8396}.progress{height:6px;background:#19334c;border-radius:999px;overflow:hidden;margin-top:7px}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#59e8ff,#9178ff);transition:.3s}
+.arena{height:calc(100vh - 125px);min-height:590px;max-height:790px;position:relative;overflow:hidden;margin-top:8px;border-radius:27px;border:1px solid #29465f;background:linear-gradient(#07152588,#07152588),radial-gradient(circle at 50% 5%,#2f789633,transparent 30%),linear-gradient(#061525,#09121d);box-shadow:inset 0 0 90px #0008}
+.arena:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#62d8ff09 1px,transparent 1px),linear-gradient(90deg,#62d8ff09 1px,transparent 1px);background-size:40px 40px;pointer-events:none}.sky{position:absolute;top:12px;left:50%;transform:translateX(-50%);padding:6px 11px;border-radius:999px;background:#06131fc9;border:1px solid #2b4962;color:#86a8c1;font-size:12px;z-index:4}
+.ball{position:absolute;width:188px;height:188px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;color:#06111d;font-size:25px;line-height:1.12;font-weight:900;background:radial-gradient(circle at 34% 28%,#fff 0 15%,#fbfeff 31%,#e0f8ff 58%,#9fdced 100%);border:4px solid #fff;box-shadow:0 0 25px #fff,0 0 62px #68eaff,0 0 100px #776dff55,inset -16px -19px 27px #79c8e455;z-index:8;user-select:none;touch-action:none;animation:float 1.7s ease-in-out infinite alternate}
+.ball:before,.ball:after{content:"⚡";position:absolute;color:#fff5a3;text-shadow:0 0 10px #ffe56a,0 0 20px #fff29a;font-size:34px}.ball:before{left:-15px;top:38px}.ball:after{right:-15px;bottom:38px}.ball.dragging{animation:none;transform:scale(1.05)}
+@keyframes float{to{transform:translateY(7px) rotate(1deg)}}
+.bottles{position:absolute;bottom:32px;left:0;right:0;display:flex;justify-content:center;gap:4vw;z-index:3}.zone{width:min(27vw,290px);height:285px;display:flex;align-items:flex-end;justify-content:center;position:relative}.bottle{width:185px;height:205px;border:6px solid #e5f8ff;border-top:0;border-radius:25px 25px 58px 58px;position:relative;background:#ffffff0b;box-shadow:inset 0 0 35px #ffffff12,0 10px 25px #0008;transition:.2s}.bottle:before{content:"";position:absolute;top:-58px;left:54px;width:65px;height:58px;border:6px solid #e5f8ff;border-bottom:0;border-radius:13px 13px 0 0}.bottle:after{content:"";position:absolute;left:11px;right:11px;bottom:10px;height:34%;border-radius:13px 13px 45px 45px;transition:.25s}
+.solb:after{background:linear-gradient(#48cfff55,#3a9fffb0);box-shadow:0 0 20px #46bfff66}.colb:after{background:linear-gradient(#a06cff55,#8b5df0b0);box-shadow:0 0 20px #9b69ff66}.susb:after{background:linear-gradient(#f2c85b55,#c9952db0);box-shadow:0 0 20px #e9ba4f66}
+.label{position:absolute;bottom:-5px;left:50%;transform:translate(-50%,50%);z-index:5;background:#061321;border:1px solid #3a6280;border-radius:13px;padding:7px 11px;font-weight:900;font-size:16px;white-space:nowrap}.zone.hover .bottle{transform:translateY(-5px);filter:brightness(1.25)}.bottle.correct{transform:scale(1.05);border-color:#79ffc0;box-shadow:0 0 26px #57f1a9}.bottle.correct:after{height:78%;background:linear-gradient(#8fffd6aa,#39e8a4dd);box-shadow:0 0 36px #5cf0ac}.bottle.wrong{animation:shake .34s linear 2;border-color:#ff657a;box-shadow:0 0 34px #ff536b}
+@keyframes shake{25%{transform:translateX(-12px) rotate(-2deg)}75%{transform:translateX(12px) rotate(2deg)}}.bottle.dis{animation:vanish .85s ease forwards}.bottle.rebuild{animation:rebuild 1s cubic-bezier(.2,.9,.2,1.15)}
+@keyframes vanish{0%{opacity:1}25%{transform:scale(1.1);filter:brightness(2)}60%{opacity:.75;transform:scale(.7) rotate(5deg);filter:blur(2px)}100%{opacity:0;transform:scale(.08) rotate(-18deg);filter:blur(9px)}}@keyframes rebuild{0%{opacity:0;transform:scale(.08) translateY(70px);filter:blur(9px)}50%{opacity:1;transform:scale(1.12) translateY(-8px)}75%{transform:scale(.95)}100%{transform:scale(1);filter:none}}
+.flash{position:absolute;inset:0;z-index:20;pointer-events:none;opacity:0}.flash.boom{animation:boom .7s}@keyframes boom{0%{opacity:0;background:#fff}12%{opacity:1;background:#fff}30%{opacity:.8;background:#ff5e70}100%{opacity:0;background:#18030a}}
+.trails{position:absolute;inset:0;pointer-events:none;z-index:6}.trail{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle,#fff 0 22%,#8cf3ff 42%,#776cff99 68%,transparent 72%);box-shadow:0 0 11px #fff,0 0 23px #60eaff,0 0 38px #776cff;transform:translate(-50%,-50%);animation:fade .55s forwards}@keyframes fade{to{opacity:0;transform:translate(-50%,-50%) scale(.1)}}
+.msg{position:absolute;top:34%;left:50%;transform:translate(-50%,-50%);z-index:25;background:#061728ef;border:1px solid #4d738e;border-radius:22px;padding:18px 23px;text-align:center;box-shadow:0 20px 60px #0009;max-width:440px}.msg b{display:block;font-size:28px}.msg.ok b{color:#66f2ad}.msg.bad b{color:#ff788b}
+.overlay{position:fixed;inset:0;background:#020913df;backdrop-filter:blur(10px);z-index:60;display:flex;align-items:center;justify-content:center;padding:18px}.modal{width:min(680px,96vw);background:linear-gradient(145deg,#10243e,#0a172a);border:1px solid #3a607e;border-radius:27px;padding:25px;box-shadow:0 30px 100px #000}.modal h2{font-size:38px;margin:0 0 7px}.modal p{color:#b9cde0;line-height:1.65}.big{font-size:62px;font-weight:900}.notice{padding:12px 14px;border-radius:14px;background:#4c2230;border:1px solid #974156;color:#ffd8df}.history{margin-top:12px;max-height:190px;overflow:auto;border:1px solid #29445d;border-radius:14px}.hr{display:grid;grid-template-columns:1fr auto auto;gap:8px;padding:9px 11px;border-bottom:1px solid #1e354b;background:#081829;font-size:13px}.pass{color:#68f2ad}.fail{color:#ff7b8c}
+@media(max-width:800px){.grid2,.compare{grid-template-columns:1fr}.hud{grid-template-columns:1fr auto auto}.hudtitle{grid-column:1/-1}.arena{height:calc(100vh - 175px);min-height:560px;max-height:none}.ball{width:140px;height:140px;font-size:19px;padding:16px}.bottles{gap:4px;bottom:38px}.zone{width:32vw;height:250px}.bottle{width:112px;height:160px;border-width:4px}.bottle:before{left:31px;width:43px;height:45px;top:-45px;border-width:4px}.label{font-size:11px;padding:6px 7px}}
+</style>
+</head>
+<body>
+<section id="home" class="screen"><div class="wrap">
+<div class="brand"><div class="orb"></div>Kru Pai Classroom • Chemistry Lab</div>
+<div class="hero"><span class="kicker">⚡ 7-MINUTE MIXTURE MISSION</span><h1><span>SOLUTION • COLLOID</span><br>SUSPENSION</h1>
+<p class="lead">ห้องทดลองจำแนกสารผสม 3 ขวด ⚗️ ลูกบอลพลังงานจะนำทั้ง “ตัวอย่างสาร” และ “สมบัติ” มาให้ ลากลงขวด <b>สารละลาย • คอลลอยด์ • สารแขวนลอย</b> ให้ถูกต้องภายใน 7 นาที</p>
+<div class="grid2">
+<div class="card"><h3>📖 ห้องทบทวน</h3><p>ทบทวนขนาดอนุภาค การมองเห็น การตกตะกอน กระดาษกรอง เยื่อเซลโลเฟน และปรากฏการณ์ทินดอลล์ พร้อมตัวอย่างที่ควรจำ</p><div class="btnrow"><button class="btn secondary" onclick="openReview(false)">เปิดบทเรียนทบทวน</button></div></div>
+<div class="card"><h3>🎮 40 Energy Balls</h3><p>ผิดเมื่อใด ห้องทดลองทั้ง 3 ขวดจะระเบิดและสร้างใหม่ สิ่งที่เคยตอบถูกจะกลับมาเป็นตัวเลือกทั้งหมด มีโอกาสสร้างใหม่ 2 ครั้ง และเวลา 7 นาทีเดินต่อเนื่อง</p><input id="name" class="name" placeholder="พิมพ์ชื่อผู้เล่น..." maxlength="24"><div class="btnrow"><button class="btn primary" onclick="startGame()">⚡ เริ่มภารกิจ 7 นาที</button></div></div>
+</div>
+<div class="stats"><div class="stat"><b id="attempts">0</b><span>ครั้งที่เล่น</span></div><div class="stat"><b id="passes">0</b><span>ผ่าน</span></div><div class="stat"><b id="best">0%</b><span>ดีที่สุด</span></div></div>
+</div></div></section>
+
+<section id="review" class="screen hidden"><div class="wrap">
+<div class="top"><div class="brand"><div class="orb"></div>Mixture Review Chamber</div><button class="btn secondary" onclick="goHome()">← หน้าหลัก</button></div>
+<div class="review-title">บทเรียนก่อนเล่น: สารละลาย • คอลลอยด์ • สารแขวนลอย 🔬</div>
+<p class="intro">อ่านหน้านี้ให้จบแล้วจะเล่นเกมได้ด้วยตัวเอง จุดสำคัญคือ <b>อย่าจำจากคำว่า “ใส/ขุ่น” เพียงอย่างเดียว</b> แต่ให้ดูพร้อมกัน 5 อย่าง: <b>ขนาดอนุภาค • การตกตะกอน • การกรอง • การผ่านเยื่อเซลโลเฟน • การกระเจิงแสง</b></p>
+
+<div class="lesson">
+<h3>🧭 ภาพรวมก่อนเริ่ม</h3>
+<div class="memory">
+  <div><strong>&lt; 1 nm</strong><span>สารละลาย</span></div>
+  <div><strong>1–1000 nm</strong><span>คอลลอยด์</span></div>
+  <div><strong>&gt; 1000 nm</strong><span>สารแขวนลอย</span></div>
+</div>
+<div class="keybox"><b>จำง่าย:</b> อนุภาคยิ่งใหญ่ → ยิ่งตกตะกอนง่าย → ยิ่งกรองออกง่าย ส่วนคอลลอยด์อยู่ “กึ่งกลาง” คือไม่ตกตะกอนง่าย แต่ก็ใหญ่พอจะกระเจิงแสงได้</div>
+</div>
+
+<div class="compare">
+<div class="reviewbox sol"><h3>💧 สารละลาย (Solution)</h3><ul>
+<li><b>ขนาดอนุภาคเล็กกว่า 1 nm</b></li>
+<li>เป็น <b>สารเนื้อเดียว</b> องค์ประกอบสม่ำเสมอทุกส่วน</li>
+<li>อนุภาคอยู่ระดับโมเลกุลหรือไอออน จึงมองไม่เห็นด้วยตาเปล่า</li>
+<li><b>ไม่ตกตะกอน</b> เมื่อตั้งทิ้งไว้</li>
+<li><b>ผ่านกระดาษกรองทั่วไปได้</b></li>
+<li><b>ผ่านเยื่อเซลโลเฟนได้</b></li>
+<li>เมื่อฉายแสงผ่าน จะ <b>ไม่เห็นแนวลำแสงชัด</b> จึงไม่เกิด Tyndall effect แบบคอลลอยด์</li>
+<li>มีได้ทั้งสถานะ <b>ของแข็ง ของเหลว และแก๊ส</b></li>
+</ul></div>
+
+<div class="reviewbox col"><h3>✨ คอลลอยด์ (Colloid)</h3><ul>
+<li><b>ขนาดอนุภาคประมาณ 1–1000 nm</b></li>
+<li>มองด้วยตาเปล่าอาจดูเหมือนเนื้อเดียว แต่จริง ๆ เป็น <b>สารเนื้อผสมระดับจุลภาค</b></li>
+<li><b>ไม่ตกตะกอนง่าย</b> เมื่อตั้งทิ้งไว้</li>
+<li><b>ผ่านกระดาษกรองทั่วไปได้</b></li>
+<li><b>ไม่ผ่านเยื่อเซลโลเฟน</b></li>
+<li><b>เกิดปรากฏการณ์ทินดอลล์</b> คือเห็นแนวลำแสงจากการกระเจิงแสง</li>
+<li>อนุภาคมีการเคลื่อนที่แบบสุ่ม เรียกว่า <b>Brownian movement</b> ช่วยให้กระจายตัวอยู่ได้นาน</li>
+</ul></div>
+
+<div class="reviewbox sus"><h3>🌫️ สารแขวนลอย (Suspension)</h3><ul>
+<li><b>ขนาดอนุภาคใหญ่กว่า 1000 nm</b></li>
+<li>เป็น <b>สารเนื้อผสม</b> เห็นความไม่สม่ำเสมอได้ชัดกว่า</li>
+<li><b>ตกตะกอนเมื่อทิ้งไว้</b></li>
+<li><b>กรองด้วยกระดาษกรองได้</b> เพราะอนุภาคใหญ่</li>
+<li><b>ไม่ผ่านเยื่อเซลโลเฟน</b></li>
+<li>เมื่อเขย่าอาจกระจายตัวชั่วคราว แต่พอทิ้งไว้จะค่อย ๆ แยกชั้นหรือตกตะกอน</li>
+<li>อาจกระเจิงแสงหรือทึบแสงได้ แต่ <b>ไม่ใช้ Tyndall เพียงอย่างเดียวตัดสินว่าเป็นแขวนลอย</b></li>
+</ul></div>
+</div>
+
+<div class="studygrid">
+<div class="studycard">
+<h3>💧 1) สารละลาย — เข้าใจให้ครบ</h3>
+<p>สารละลายประกอบด้วย <b>ตัวทำละลาย (solvent)</b> และ <b>ตัวละลาย (solute)</b> โดยอนุภาคของตัวละลายกระจายสม่ำเสมอในตัวทำละลายจนมองไม่เห็นการแยกส่วน</p>
+<h4>สมบัติที่ควรจำ</h4>
+<ul>
+<li>เนื้อเดียวทุกส่วน</li><li>ไม่ตกตะกอน</li><li>กรองธรรมดาแล้วตัวละลายยังผ่านไปกับตัวทำละลาย</li><li>ผ่านเยื่อเซลโลเฟนได้</li><li>ไม่เห็นแนวลำแสงแบบ Tyndall</li>
+</ul>
+<div class="examplegrid">
+<div class="example"><b>น้ำเกลือ</b>เกลือ = ตัวละลาย, น้ำ = ตัวทำละลาย</div>
+<div class="example"><b>น้ำตาลละลายน้ำ</b>น้ำตาลกระจายระดับโมเลกุล</div>
+<div class="example"><b>น้ำส้มสายชู</b>กรดอะซิติกละลายในน้ำ</div>
+<div class="example"><b>แอลกอฮอล์ผสมน้ำ</b>ของเหลวละลายในของเหลว</div>
+<div class="example"><b>อากาศ</b>สารละลายของแก๊สหลายชนิด</div>
+<div class="example"><b>ทองเหลือง</b>สารละลายของแข็งของ Cu และ Zn</div>
+</div>
+<div class="warnbox"><b>จุดหลอก:</b> สารละลายไม่จำเป็นต้อง “ใสไม่มีสี” เสมอไป เช่น สารละลายจุนสีมีสีฟ้า แต่ยังเป็นสารละลายเพราะเป็นเนื้อเดียวและไม่มีตะกอน</div>
+</div>
+
+<div class="studycard">
+<h3>✨ 2) คอลลอยด์ — ทำไมไม่ตกตะกอนง่าย</h3>
+<p>คอลลอยด์มีอนุภาคใหญ่กว่าสารละลาย แต่ยังเล็กเกินกว่าจะตกตะกอนได้ง่าย อนุภาคจึงกระจายอยู่ในตัวกลางได้นาน</p>
+<h4>สมบัติที่ควรจำ</h4>
+<ul><li>ผ่านกระดาษกรองทั่วไป</li><li>ไม่ผ่านเยื่อเซลโลเฟน</li><li>เกิด Tyndall effect</li><li>ไม่ตกตะกอนง่าย</li><li>มี Brownian movement</li></ul>
+<div class="examplegrid">
+<div class="example"><b>น้ำนม</b>หยดไขมันกระจายในน้ำ</div>
+<div class="example"><b>มายองเนส</b>อิมัลชันของของเหลวสองชนิด</div>
+<div class="example"><b>หมอก</b>หยดน้ำเล็ก ๆ กระจายในอากาศ</div>
+<div class="example"><b>ควัน</b>อนุภาคของแข็งกระจายในอากาศ</div>
+<div class="example"><b>วุ้น / เจล</b>ของเหลวกระจายในโครงสร้างของแข็ง</div>
+<div class="example"><b>โฟมสบู่ / วิปครีม</b>แก๊สกระจายในของเหลว</div>
+</div>
+<div class="keybox"><b>Tyndall effect:</b> เมื่อฉายแสงผ่านคอลลอยด์ จะเห็นแนวลำแสงได้ เพราะอนุภาคคอลลอยด์มีขนาดพอเหมาะที่จะกระเจิงแสง</div>
+</div>
+
+<div class="studycard">
+<h3>🧴 3) ชนิดของคอลลอยด์ที่ควรรู้</h3>
+<p>คอลลอยด์แบ่งตาม “อนุภาคที่กระจาย” และ “ตัวกลาง” ได้หลายแบบ</p>
+<ul>
+<li><b>Sol:</b> ของแข็งในของเหลว — เช่น สี หมึกบางชนิด</li>
+<li><b>Gel:</b> ของเหลวในของแข็ง — เช่น วุ้น เยลลี่ เจลแต่งผม</li>
+<li><b>Emulsion:</b> ของเหลวในของเหลว — เช่น น้ำนม มายองเนส</li>
+<li><b>Foam:</b> แก๊สในของเหลว — เช่น วิปครีม โฟมสบู่</li>
+<li><b>Aerosol:</b> ของแข็งหรือของเหลวในแก๊ส — เช่น ควัน หมอก</li>
+</ul>
+<div class="warnbox"><b>อิมัลชัน:</b> ของเหลวสองชนิดที่ไม่ค่อยเข้ากันอาจต้องใช้ <b>emulsifier (สารช่วยประสาน)</b> เพื่อช่วยให้หยดของเหลวกระจายตัวและคงตัวได้นานขึ้น เช่น เลซิทินในไข่แดงช่วยประสานมายองเนส</div>
+</div>
+
+<div class="studycard">
+<h3>🌫️ 4) สารแขวนลอย — สังเกตจากอะไร</h3>
+<p>สารแขวนลอยมีอนุภาคใหญ่ที่สุดใน 3 กลุ่ม จึงได้รับผลจากแรงโน้มถ่วงมากและตกตะกอนได้เมื่อทิ้งไว้</p>
+<h4>สมบัติที่ควรจำ</h4>
+<ul><li>เนื้อผสมชัดเจน</li><li>อนุภาคใหญ่</li><li>ตกตะกอน</li><li>กรองออกได้ด้วยกระดาษกรอง</li><li>ไม่ผ่านเยื่อเซลโลเฟน</li></ul>
+<div class="examplegrid">
+<div class="example"><b>น้ำโคลน</b>ดินกระจายในน้ำและตกตะกอน</div>
+<div class="example"><b>ทรายในน้ำ</b>อนุภาคทรายใหญ่ กรองออกได้</div>
+<div class="example"><b>ผงชอล์กในน้ำ</b>ขุ่นและตกตะกอน</div>
+<div class="example"><b>ดินในน้ำ</b>ทิ้งไว้แล้วแยกส่วน</div>
+<div class="example"><b>ผงถ่านในน้ำ</b>อนุภาคแขวนอยู่ชั่วคราว</div>
+<div class="example"><b>แป้งดิบในน้ำ</b>เมื่อกระจายตัวในน้ำแบบไม่ละลายถือเป็นแขวนลอย</div>
+</div>
+</div>
+</div>
+
+<div class="lesson"><h3>🧪 ตารางเปรียบเทียบแบบละเอียด</h3><div class="tablewrap"><table class="ctable">
+<tr><th>สมบัติ</th><th>สารละลาย</th><th>คอลลอยด์</th><th>สารแขวนลอย</th></tr>
+<tr><td>ขนาดอนุภาค</td><td>&lt; 1 nm</td><td>1–1000 nm</td><td>&gt; 1000 nm</td></tr>
+<tr><td>ลักษณะเนื้อสาร</td><td>เนื้อเดียว</td><td>ดูคล้ายเนื้อเดียว แต่ต่างเฟสระดับจุลภาค</td><td>เนื้อผสม</td></tr>
+<tr><td>มองเห็นอนุภาค</td><td>ไม่เห็น</td><td>ไม่เห็นด้วยตาเปล่า</td><td>อาจเห็นหรือเห็นความขุ่นชัด</td></tr>
+<tr><td>ตกตะกอน</td><td>ไม่</td><td>ไม่ง่าย</td><td>ตกตะกอนเมื่อทิ้งไว้</td></tr>
+<tr><td>ผ่านกระดาษกรอง</td><td>ผ่าน</td><td>ผ่าน</td><td>ไม่ผ่าน / กรองออกได้</td></tr>
+<tr><td>ผ่านเยื่อเซลโลเฟน</td><td>ผ่าน</td><td>ไม่ผ่าน</td><td>ไม่ผ่าน</td></tr>
+<tr><td>Tyndall effect</td><td>ไม่เกิด</td><td>เกิดชัด</td><td>อาจกระเจิงหรือทึบแสง ไม่ใช้เป็นเกณฑ์หลักเพียงอย่างเดียว</td></tr>
+<tr><td>ตัวอย่าง</td><td>น้ำเกลือ อากาศ น้ำส้มสายชู</td><td>นม หมอก ควัน วุ้น โฟม</td><td>น้ำโคลน ทรายในน้ำ ผงชอล์กในน้ำ</td></tr>
+</table></div></div>
+
+<div class="lesson">
+<h3>🧠 วิธีตัดสินในข้อสอบ — ทำตามลำดับนี้</h3>
+<div class="steps">
+<div><b>ดูการตกตะกอนก่อน</b> — ถ้าทิ้งไว้แล้วตกตะกอนชัด ให้คิดถึง “สารแขวนลอย” ก่อน</div>
+<div><b>ดูการกรอง</b> — ถ้ากระดาษกรองธรรมดาแยกอนุภาคออกได้ แสดงว่าอนุภาคใหญ่ → แขวนลอย</div>
+<div><b>ถ้าไม่ตกตะกอนและกรองไม่ออก</b> ให้ดู Tyndall: ถ้าเห็นแนวลำแสง → คอลลอยด์</div>
+<div><b>ถ้าไม่เห็นแนวลำแสง</b> และอนุภาคผ่านทั้งกระดาษกรองกับเยื่อเซลโลเฟน → สารละลาย</div>
+<div><b>ถ้าโจทย์พูดถึงเยื่อเซลโลเฟน</b> จำว่า “สารละลายผ่านได้ แต่คอลลอยด์และแขวนลอยไม่ผ่าน”</div>
+</div>
+</div>
+
+<div class="lesson">
+<h3>⭐ ตัวอย่างชุดใหญ่ก่อนเล่น</h3>
+<div class="chips">
+<span class="chip">สารละลาย: น้ำเกลือ</span><span class="chip">สารละลาย: น้ำตาลละลายน้ำ</span><span class="chip">สารละลาย: น้ำส้มสายชู</span><span class="chip">สารละลาย: แอลกอฮอล์ผสมน้ำ</span><span class="chip">สารละลาย: อากาศ</span><span class="chip">สารละลาย: ทองเหลือง</span><span class="chip">สารละลาย: น้ำอัดลมที่ CO₂ ละลาย</span><span class="chip">สารละลาย: จุนสีละลายน้ำ</span>
+<span class="chip">คอลลอยด์: น้ำนม</span><span class="chip">คอลลอยด์: หมอก</span><span class="chip">คอลลอยด์: ควัน</span><span class="chip">คอลลอยด์: วุ้น</span><span class="chip">คอลลอยด์: เจลแต่งผม</span><span class="chip">คอลลอยด์: มายองเนส</span><span class="chip">คอลลอยด์: วิปครีม</span><span class="chip">คอลลอยด์: โฟมสบู่</span>
+<span class="chip">แขวนลอย: น้ำโคลน</span><span class="chip">แขวนลอย: ทรายในน้ำ</span><span class="chip">แขวนลอย: ผงชอล์กในน้ำ</span><span class="chip">แขวนลอย: ดินในน้ำ</span><span class="chip">แขวนลอย: ผงถ่านในน้ำ</span><span class="chip">แขวนลอย: แป้งดิบกระจายในน้ำ</span>
+</div>
+</div>
+
+<div class="lesson">
+<h3>🚨 จุดที่เด็กมักสับสน</h3>
+<ul style="line-height:1.9;color:#e2edf5">
+<li><b>“ไม่ตกตะกอน”</b> ใช้แยกสารละลายกับคอลลอยด์ออกจากแขวนลอยได้ แต่ยังต้องดู Tyndall หรือเยื่อเซลโลเฟนต่อ</li>
+<li><b>“ผ่านกระดาษกรอง”</b> ตอบได้ทั้งสารละลายและคอลลอยด์ จึงยังแยกสองกลุ่มนี้ไม่ได้</li>
+<li><b>“ไม่ผ่านเยื่อเซลโลเฟน”</b> อาจเป็นคอลลอยด์หรือแขวนลอย ต้องดูการตกตะกอน/การกรองร่วมด้วย</li>
+<li><b>“เกิด Tyndall”</b> เป็นลักษณะเด่นของคอลลอยด์ในบทเรียนระดับนี้</li>
+<li><b>“ขุ่น”</b> อย่างเดียวไม่พอ ต้องดูสมบัติอื่นร่วมด้วย</li>
+</ul>
+</div>
+
+<div class="btnrow" style="justify-content:center;margin:24px 0"><button class="btn green" onclick="finishReview()">✅ อ่านบทเรียนครบแล้ว — พร้อมเล่น 40 ข้อ</button></div>
+</div></section>
+
+<section id="game" class="screen hidden"><div class="gamewrap">
+<div class="hud"><div class="hudtitle">⚡ Mixture Lightning Lab<div class="progress"><i id="bar"></i></div></div><div class="pill">⏱️ <span id="timer">07:00</span></div><div class="pill">คะแนน <span id="score">0</span></div><div class="pill">เหลือ <span id="remain">40</span></div><div class="pill lives" id="lives">⚗️ ⚗️ ⚗️</div></div>
+<div id="arena" class="arena"><div class="sky">ลากลูกบอลลงขวดที่ตรงกับตัวอย่างหรือสมบัติ</div><div id="trails" class="trails"></div>
+<div class="bottles">
+<div class="zone" data-type="solution"><div id="solutionBottle" class="bottle solb"></div><div class="label">💧 สารละลาย</div></div>
+<div class="zone" data-type="colloid"><div id="colloidBottle" class="bottle colb"></div><div class="label">✨ คอลลอยด์</div></div>
+<div class="zone" data-type="suspension"><div id="suspensionBottle" class="bottle susb"></div><div class="label">🌫️ สารแขวนลอย</div></div>
+</div><div id="flash" class="flash"></div></div>
+</div></section>
+<div id="overlay" class="overlay hidden"><div id="modal" class="modal"></div></div>
+
+<script>
+const ITEMS=[
+{t:'น้ำเกลือ',type:'solution'},{t:'น้ำตาลละลายน้ำ',type:'solution'},{t:'น้ำส้มสายชู',type:'solution'},{t:'อากาศ',type:'solution'},{t:'น้ำเชื่อมใส',type:'solution'},{t:'แอลกอฮอล์ผสมน้ำ',type:'solution'},{t:'น้ำอัดลมที่ CO₂ ละลายอยู่',type:'solution'},{t:'สารละลายจุนสี',type:'solution'},{t:'อนุภาคเล็กกว่า 1 nm',type:'solution'},{t:'ผ่านเยื่อเซลโลเฟนได้',type:'solution'},{t:'เป็นสารเนื้อเดียว และเมื่อฉายลำแสงจะไม่เห็นแนวลำแสงในสาร',type:'solution'},{t:'เนื้อเดียวระดับอนุภาค',type:'solution'},{t:'อนุภาคเล็กจนผ่านทั้งกระดาษกรองและเยื่อเซลโลเฟนได้',type:'solution'},{t:'ตัวถูกละลายกระจายระดับโมเลกุล/ไอออน',type:'solution'},
+{t:'น้ำนม',type:'colloid'},{t:'หมอก',type:'colloid'},{t:'ควัน',type:'colloid'},{t:'วุ้น',type:'colloid'},{t:'เจลแต่งผม',type:'colloid'},{t:'มายองเนส',type:'colloid'},{t:'วิปครีม',type:'colloid'},{t:'โฟมสบู่',type:'colloid'},{t:'อนุภาค 1–1000 nm',type:'colloid'},{t:'เกิดปรากฏการณ์ทินดอลล์',type:'colloid'},{t:'ผ่านกระดาษกรอง แต่ไม่ผ่านเซลโลเฟน',type:'colloid'},{t:'อนุภาคไม่ตกตะกอนง่าย',type:'colloid'},{t:'ต้องใช้อิมัลซิไฟเออร์ช่วยให้อิมัลชันคงตัว',type:'colloid'},
+{t:'น้ำโคลน',type:'suspension'},{t:'ทรายในน้ำ',type:'suspension'},{t:'ผงชอล์กในน้ำ',type:'suspension'},{t:'แป้งดิบกระจายในน้ำ',type:'suspension'},{t:'ดินในน้ำ',type:'suspension'},{t:'ผงถ่านในน้ำ',type:'suspension'},{t:'อนุภาคใหญ่กว่า 1000 nm',type:'suspension'},{t:'ตกตะกอนเมื่อทิ้งไว้',type:'suspension'},{t:'แยกได้ด้วยกระดาษกรอง',type:'suspension'},{t:'อนุภาคมีขนาดใหญ่จนสามารถแยกออกด้วยการกรองธรรมดาได้',type:'suspension'},{t:'ไม่ผ่านกระดาษกรอง',type:'suspension'},{t:'เขย่าแล้วกระจาย แต่ตั้งทิ้งไว้แยกชั้น/ตกตะกอน',type:'suspension'},{t:'อนุภาคมีขนาดใหญ่จนแรงโน้มถ่วงทำให้ตกลงได้',type:'suspension'}
+];
+let state={name:'',pool:[],done:[],active:null,score:0,rebuilds:2,timeLeft:420,locked:false};
+let timerHandle=null,audioCtx=null,dragOsc=null,dragGain=null;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)], LS='kruPaiMixtureLightningHistoryV1';
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function show(id){['home','review','game'].forEach(x=>$('#'+x).classList.toggle('hidden',x!==id))}
+function hist(){try{return JSON.parse(localStorage.getItem(LS)||'[]')}catch(e){return[]}}
+function save(r){let h=hist();h.unshift(r);localStorage.setItem(LS,JSON.stringify(h.slice(0,30)));refresh()}
+function refresh(){let h=hist();$('#attempts').textContent=h.length;$('#passes').textContent=h.filter(x=>x.pass).length;$('#best').textContent=(h.reduce((m,x)=>Math.max(m,x.percent||0),0))+'%'}
+function goHome(){show('home');refresh()} function openReview(){show('review');window.scrollTo(0,0)} function finishReview(){goHome();setTimeout(()=>{$('#name').value=state.name||$('#name').value},0)}
+function audio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume()}
+function tone(f=440,d=.1,type='sine',v=.06,to=null){try{audio();let o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=f;if(to)o.frequency.exponentialRampToValueAtTime(to,audioCtx.currentTime+d);g.gain.value=v;g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+d);o.connect(g).connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+d)}catch(e){}}
+function dragStart(){try{audio();dragOsc=audioCtx.createOscillator();dragGain=audioCtx.createGain();dragOsc.frequency.value=160;dragGain.gain.value=.025;dragOsc.connect(dragGain).connect(audioCtx.destination);dragOsc.start()}catch(e){}}
+function dragMod(y){try{if(dragOsc)dragOsc.frequency.setTargetAtTime(180+Math.max(0,350-y*.18),audioCtx.currentTime,.03)}catch(e){}}
+function dragStop(){try{if(dragOsc){dragGain.gain.setTargetAtTime(.0001,audioCtx.currentTime,.02);setTimeout(()=>{try{dragOsc.stop()}catch(e){}dragOsc=null},70)}}catch(e){}}
+function startGame(){
+ let n=$('#name').value.trim();if(!n){$('#name').focus();return} if(timerHandle)clearInterval(timerHandle);
+ state={name:n,pool:shuffle(ITEMS),done:[],active:null,score:0,rebuilds:2,timeLeft:420,locked:false};show('game');update();timerHandle=setInterval(tick,1000);spawn()
+}
+function tick(){state.timeLeft--;renderTimer();if(state.timeLeft<=0){clearInterval(timerHandle);timerHandle=null;state.locked=true;$$('.ball').forEach(b=>b.remove());finish(false,true)}}
+function renderTimer(){let m=Math.floor(state.timeLeft/60),s=state.timeLeft%60,e=$('#timer');if(!e)return;e.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');e.style.color=state.timeLeft<=30?'#ff7489':state.timeLeft<=60?'#ffe279':'#fff'}
+function update(){$('#score').textContent=state.score;$('#remain').textContent=state.pool.length+(state.active?1:0);$('#lives').textContent='⚗️ '.repeat(state.rebuilds+1).trim();$('#bar').style.width=(state.done.length/ITEMS.length*100)+'%';renderTimer()}
+function spawn(){if(state.pool.length===0){finish(true,false);return}state.locked=false;state.active=state.pool.shift();let b=document.createElement('div');b.className='ball';b.textContent=state.active.t;let a=$('#arena'),r=a.getBoundingClientRect();b.style.left=(15+Math.random()*Math.max(20,r.width-220))+'px';b.style.top=(50+Math.random()*30)+'px';a.appendChild(b);makeDrag(b);update()}
+function trail(x,y){let ar=$('#arena').getBoundingClientRect(),d=document.createElement('div');d.className='trail';d.style.left=(x-ar.left)+'px';d.style.top=(y-ar.top)+'px';$('#trails').appendChild(d);setTimeout(()=>d.remove(),600)}
+function zoneAt(x,y){return $$('.zone').find(z=>{let r=z.getBoundingClientRect();return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom})}
+function makeDrag(el){let dx=0,dy=0,drag=false;
+ const move=e=>{if(!drag||state.locked)return;let p=e.touches?e.touches[0]:e,ar=$('#arena').getBoundingClientRect();trail(p.clientX,p.clientY);dragMod(p.clientY);let x=p.clientX-ar.left-dx,y=p.clientY-ar.top-dy;x=Math.max(0,Math.min(x,ar.width-el.offsetWidth));y=Math.max(0,Math.min(y,ar.height-el.offsetHeight));el.style.left=x+'px';el.style.top=y+'px';let z=zoneAt(p.clientX,p.clientY);$$('.zone').forEach(q=>q.classList.toggle('hover',q===z))};
+ const up=e=>{if(!drag)return;drag=false;dragStop();el.classList.remove('dragging');$$('.zone').forEach(z=>z.classList.remove('hover'));let p=e.changedTouches?e.changedTouches[0]:e,z=zoneAt(p.clientX,p.clientY);if(z)drop(el,z.dataset.type);else reset(el);window.removeEventListener('mousemove',move);window.removeEventListener('mouseup',up);window.removeEventListener('touchmove',move);window.removeEventListener('touchend',up)};
+ const down=e=>{if(state.locked)return;e.preventDefault();audio();tone(260,.07,'sine',.035,340);dragStart();drag=true;el.classList.add('dragging');let p=e.touches?e.touches[0]:e,r=el.getBoundingClientRect();dx=p.clientX-r.left;dy=p.clientY-r.top;window.addEventListener('mousemove',move,{passive:false});window.addEventListener('mouseup',up);window.addEventListener('touchmove',move,{passive:false});window.addEventListener('touchend',up)};
+ el.addEventListener('mousedown',down);el.addEventListener('touchstart',down,{passive:false})
+}
+function reset(el){el.style.top='55px';el.style.left=(20+Math.random()*Math.max(20,$('#arena').clientWidth-el.offsetWidth-30))+'px'}
+function message(ok,a,b){let m=document.createElement('div');m.className='msg '+(ok?'ok':'bad');m.innerHTML=`<b>${a}</b><span>${b}</span>`;$('#arena').appendChild(m);setTimeout(()=>m.remove(),1050)}
+function drop(el,target){if(state.locked)return;state.locked=true;let ok=state.active.type===target,b=$('#'+target+'Bottle');
+ if(ok){tone(430,.12,'triangle',.08,760);setTimeout(()=>tone(820,.15,'sine',.05,1200),90);b.classList.add('correct');state.score+=5;state.done.push(state.active);state.active=null;message(true,'ถูกต้อง! +5','พลังงานเข้าสู่ระบบที่ถูกต้อง ⚡');el.style.transition='.35s';el.style.transform='scale(.15)';el.style.opacity='0';setTimeout(()=>{el.remove();b.classList.remove('correct');spawn()},700)}
+ else{tone(150,.28,'sawtooth',.1,65);b.classList.add('wrong');$('#flash').classList.remove('boom');void $('#flash').offsetWidth;$('#flash').classList.add('boom');message(false,'ผิดระบบ! 💥','ขวดทั้ง 3 จะสลาย และคำตอบเดิมกลับมาใหม่');setTimeout(()=>explode(),780)}
+}
+function explode(){let restored=[...state.done,state.active].filter(Boolean);state.pool=shuffle([...restored,...state.pool]);state.done=[];state.active=null;state.score=0;$$('.ball').forEach(x=>x.remove());let bs=[$('#solutionBottle'),$('#colloidBottle'),$('#suspensionBottle')];bs.forEach(b=>{b.classList.remove('wrong','correct','rebuild');b.classList.add('dis')});
+ setTimeout(()=>{if(state.rebuilds>0){state.rebuilds--;update();bs.forEach(b=>{b.classList.remove('dis');void b.offsetWidth;b.classList.add('rebuild')});tone(220,.18,'triangle',.05,440);setTimeout(()=>tone(440,.2,'sine',.05,880),110);setTimeout(()=>{bs.forEach(b=>b.classList.remove('rebuild'));message(false,'⚗️ ห้องทดลองสร้างใหม่','เวลา 7 นาทียังคงเดินต่อ • เหลือสร้างใหม่ '+state.rebuilds+' ครั้ง');setTimeout(spawn,850)},720)}else{finish(false,false)}},850)
+}
+function finish(pass,timeout){state.locked=true;if(timerHandle){clearInterval(timerHandle);timerHandle=null}let pct=pass?100:Math.round(state.done.length/ITEMS.length*100);save({name:state.name,pass,percent:pct,date:new Date().toLocaleString('th-TH')});let rows=hist().slice(0,8).map(x=>`<div class="hr"><span>${x.name}<br><small>${x.date}</small></span><b>${x.percent}%</b><b class="${x.pass?'pass':'fail'}">${x.pass?'ผ่าน':'ไม่ผ่าน'}</b></div>`).join('');
+ if(pass)$('#modal').innerHTML=`<div class="big">⚡ 100%</div><h2>MISSION COMPLETE!</h2><p>จำแนกครบทั้ง 40 ลูกภายใน 7 นาที สำเร็จ 🎉</p><div class="btnrow"><button class="btn green" onclick="closeM();goHome()">หน้าหลัก</button><button class="btn primary" onclick="again()">เล่นอีกครั้ง</button></div><h3>ประวัติล่าสุด</h3><div class="history">${rows}</div>`;
+ else $('#modal').innerHTML=`<div class="big">${timeout?'⏱️':'💥'}</div><h2>${timeout?'TIME OVER':'GAME OVER'}</h2><p>${timeout?'หมดเวลา 7 นาทีแล้ว':'ห้องทดลองระเบิดครบทุกโอกาสแล้ว'} รอบนี้บันทึกเป็น <b class="fail">ไม่ผ่าน</b></p><div class="notice">🔒 ต้องกลับไปอ่านบทเรียนทบทวนก่อนเริ่มภารกิจใหม่</div><div class="btnrow"><button class="btn danger" onclick="closeM();openReview(true)">📖 ไปอ่านทบทวน</button></div><h3>ประวัติล่าสุด</h3><div class="history">${rows}</div>`;
+ $('#overlay').classList.remove('hidden')
+}
+function closeM(){$('#overlay').classList.add('hidden')}function again(){closeM();goHome();$('#name').value=state.name;setTimeout(startGame,30)}
+refresh();
+</script>
+</body></html>
