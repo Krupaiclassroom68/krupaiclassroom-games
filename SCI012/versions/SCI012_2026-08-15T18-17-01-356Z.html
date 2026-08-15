@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DEFUSE THE SCIENCE BOMB — MATTER CLASSIFICATION MISSION</title>
+<style>
+:root{
+  --bg:#050912;--panel:#0c1727;--panel2:#12233a;--line:#29415e;
+  --text:#f7fbff;--muted:#9db1c9;--cyan:#7df9ff;--red:#ff405d;
+  --green:#6fffb0;--yellow:#ffd75e;--violet:#ac7cff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:
+radial-gradient(circle at 50% 0,#183656 0,#081422 42%,#03070d 100%);color:var(--text)}
+button,input{font:inherit}button{cursor:pointer}.screen{display:none;min-height:100vh}.screen.active{display:flex}
+.home{position:fixed;top:12px;left:12px;z-index:90;border:1px solid #34516f;background:#07131ee8;color:#eafaff;
+border-radius:13px;padding:10px 13px;font-weight:900;box-shadow:0 10px 30px #0008}
+.card{border:1px solid var(--line);background:linear-gradient(180deg,#12233af5,#07131ff8);box-shadow:0 28px 90px #0008}
+#start{align-items:center;justify-content:center;padding:22px}.startCard{width:min(1050px,100%);border-radius:30px;padding:30px}
+.brand{font-size:13px;letter-spacing:.18em;font-weight:1000;color:var(--cyan)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:center}
+h1{font-size:clamp(40px,7vw,78px);line-height:.95;letter-spacing:-.05em;margin:10px 0 16px}
+h1 span{color:var(--red);text-shadow:0 0 30px #ff405d66}.lead{color:#c6d6e7;font-size:18px;line-height:1.7}
+.nameRow{display:flex;gap:10px;margin-top:20px}.nameRow input{flex:1;min-width:0;border:1px solid #35506f;background:#07131f;color:white;
+padding:15px 16px;border-radius:14px;font-size:18px;outline:none}.primary,.secondary{border-radius:14px;padding:13px 16px;font-weight:1000}
+.primary{border:0;background:linear-gradient(#8ffbff,#38d8e4);color:#031017;box-shadow:0 10px 28px #38d8e433}
+.secondary{border:1px solid #395774;background:#112238;color:#e3f2ff}.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
+.rule{background:#091725;border:1px solid #27405f;border-radius:16px;padding:14px;color:#c3d3e4}.rule b{color:white}
+.bombArt{display:grid;place-items:center;min-height:380px}.bomb{width:min(330px,75vw);aspect-ratio:1;border-radius:50%;
+background:radial-gradient(circle at 32% 24%,#3e5670 0 5%,#162a42 18%,#07111d 64%,#020508 100%);
+border:10px solid #293a50;box-shadow:inset 0 0 0 4px #02060a,0 0 65px #ff405d25;position:relative}
+.bomb:after{content:"";position:absolute;inset:7%;border:2px solid #ff405d55;border-radius:50%;animation:pulse 1.3s infinite}
+.display{position:absolute;inset:34% 20%;display:grid;place-items:center;background:#010304;border:3px solid #405066;border-radius:15px;
+font:1000 40px ui-monospace,Consolas,monospace;color:var(--red);text-shadow:0 0 20px #ff405d}
+@keyframes pulse{0%{transform:scale(.94);opacity:.25}55%{opacity:1}100%{transform:scale(1.08);opacity:0}}
+
+#training{align-items:center;justify-content:center;padding:22px}.trainShell{width:min(1060px,100%);border-radius:28px;padding:25px}
+.trainHead h2{font-size:clamp(28px,5vw,48px);margin:5px 0}.trainHead p{color:#afc3d8;line-height:1.6}
+.trainGrid{display:grid;grid-template-columns:220px 1fr;gap:14px}.tabs{display:flex;flex-direction:column;gap:9px}
+.tab{border:1px solid #304a68;background:#0a1929;color:#c6d8e9;border-radius:13px;padding:13px;text-align:left;font-weight:900}
+.tab.active{border-color:#65b7df;background:#17304c;color:white}.trainCard{min-height:430px;border:1px solid #29435f;background:#071625;border-radius:20px;padding:20px}
+.trainCard h3{font-size:clamp(28px,3.2vw,38px);margin:0 0 14px}.teach{font-size:clamp(18px,2vw,22px);line-height:1.85;color:#e3eef8}.teachBox{background:#10263b;border:1px solid #345575;border-radius:15px;padding:16px;margin:14px 0;font-size:clamp(18px,2vw,22px);line-height:1.8}.trainExample{background:#0b1e31;border-left:4px solid #ffd75e;border-radius:12px;padding:14px 16px;margin:12px 0;font-size:clamp(17px,1.8vw,21px);line-height:1.8}.trainKey{color:#7df9ff;font-weight:1000}
+.trainActions{display:flex;justify-content:space-between;gap:10px;margin-top:15px}
+
+#game{flex-direction:column;padding:12px;gap:10px}.topbar{display:grid;grid-template-columns:1.2fr repeat(3,.8fr);gap:9px}
+.hud{background:#091522e8;border:1px solid #29415e;border-radius:14px;padding:10px 13px;min-height:62px;display:flex;flex-direction:column;justify-content:center}
+.hud small{font-size:10px;letter-spacing:.15em;color:var(--muted)}.hud strong{font-size:21px}.hud.time strong{color:#ff6177;font-family:ui-monospace,Consolas,monospace}
+.gameGrid{display:grid;grid-template-columns:.92fr 1.35fr;gap:10px;flex:1;min-height:0}.panel{background:#071521e8;border:1px solid #29415e;border-radius:22px;padding:16px}
+.left{display:flex;flex-direction:column}.missionTag{font-size:12px;letter-spacing:.17em;color:var(--cyan);font-weight:1000}.missionTitle{font-size:clamp(24px,4vw,38px);margin:7px 0}
+.missionText{font-size:clamp(20px,2.5vw,30px);line-height:1.5;color:#e8f3fc;min-height:100px}.center{display:grid;place-items:center;flex:1;min-height:260px}
+.gameBomb{width:min(290px,70vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 34% 25%,#38506b 0 5%,#14263c 18%,#06101c 65%,#010407 100%);
+border:8px solid #293c52;box-shadow:inset 0 0 0 4px #020609,0 18px 55px #0008;position:relative;transition:.2s}
+.gameBomb.ok{border-color:#4e9b71;box-shadow:0 0 80px #6fffb04a}.core{position:absolute;inset:34% 20%;display:grid;place-items:center;text-align:center;background:#010304;border:3px solid #405268;border-radius:14px}
+.clock{font:1000 35px ui-monospace,Consolas,monospace;color:#ff4e68;text-shadow:0 0 15px #ff405d}.status{font-size:10px;letter-spacing:.18em;color:#9db1c9}
+.tip{color:#8fa6be;font-size:13px;border-top:1px dashed #29435f;padding-top:10px}.wireBoard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.wire{position:relative;min-height:94px;border:1px solid #324b68;border-radius:16px;background:linear-gradient(#13263c,#091726);color:white;padding:12px 12px 12px 60px;text-align:left;overflow:hidden}
+.wire:hover{transform:translateY(-2px);border-color:#567a9e}.wire.selected{outline:2px solid var(--cyan);box-shadow:0 0 25px #7df9ff22}
+.strip{position:absolute;left:0;top:0;bottom:0;width:44px;background:var(--wire)}.strip:after{content:"";position:absolute;left:12px;right:12px;top:50%;height:6px;background:#fffbdc;border-radius:20px;transform:translateY(-50%);box-shadow:0 0 10px #fff}
+.value{font-size:25px;font-weight:1000;display:block}.sub{font-size:10px;color:#9eb3c9;margin-top:7px;display:block}.action{display:flex;gap:10px;margin-top:12px}.action .primary{flex:1}
+.frac{display:inline-grid;vertical-align:middle;grid-template-rows:auto auto;line-height:1;text-align:center;margin:0 .08em;min-width:1.1em}
+.frac .n{border-bottom:2px solid currentColor;padding:0 .16em .08em}.frac .d{padding:.08em .16em 0}
+
+#summary{align-items:flex-start;justify-content:center;padding:24px}.summaryShell{width:min(1120px,100%);border-radius:28px;padding:25px}
+.summaryHero{text-align:center;padding:8px 0 18px}.summaryHero .icon{font-size:58px}.summaryHero h2{font-size:clamp(36px,6vw,62px);margin:4px 0}
+.scoreBig{font-size:72px;font-weight:1000;color:var(--cyan);line-height:1}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+.stat{background:#081725;border:1px solid #29425e;border-radius:16px;padding:14px;text-align:center}.stat small{display:block;color:#8fa7bf}.stat strong{font-size:27px}
+.reportHead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:22px 0 10px}.reportHead h3{font-size:25px;margin:0}
+.reviewList{display:flex;flex-direction:column;gap:10px}.reviewItem{border:1px solid #29435f;background:#071522;border-radius:17px;padding:15px}
+.reviewTop{display:flex;gap:10px;align-items:flex-start}.badge{flex:0 0 auto;padding:5px 9px;border-radius:9px;font-size:12px;font-weight:1000}.badge.ok{background:#173c2b;color:#7fffc0}.badge.bad{background:#421c26;color:#ff9cac}.badge.timeout{background:#4b3717;color:#ffe29a}
+.reviewQ{font-weight:1000;font-size:17px}.reviewMeta{margin-top:7px;color:#afc3d8;line-height:1.55}.explain{margin-top:10px;border-top:1px dashed #2c4664;padding-top:10px;color:#d9e7f3;line-height:1.65}
+.summaryActions{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+
+/* BIG BANG */
+#bigbang{position:fixed;inset:0;z-index:120;display:none;place-items:center;overflow:hidden;background:#020205}
+#bigbang.show{display:grid;animation:bgBang 2.45s ease both}.whiteFlash{position:absolute;inset:0;background:white;opacity:0}
+#bigbang.show .whiteFlash{animation:whiteFlash .75s ease}.singularity{position:absolute;width:20px;height:20px;border-radius:50%;background:white;box-shadow:0 0 30px #fff,0 0 80px #7df9ff}
+#bigbang.show .singularity{animation:singularity 1.15s ease-out forwards}.shock{position:absolute;width:40px;height:40px;border-radius:50%;border:5px solid #fff;opacity:0}
+#bigbang.show .shock.s1{animation:shock 1.2s .35s ease-out}#bigbang.show .shock.s2{animation:shock 1.35s .5s ease-out}#bigbang.show .shock.s3{animation:shock 1.5s .65s ease-out}
+.bangText{position:relative;z-index:3;text-align:center;opacity:0;transform:scale(.7)}#bigbang.show .bangText{animation:bangText 1.4s .75s ease forwards}
+.bangText b{display:block;font-size:clamp(52px,10vw,115px);color:white;text-shadow:0 0 28px #ff405d,0 0 60px #ff7b38}.bangText span{font-size:clamp(18px,3vw,30px);color:#ffd7dc}
+@keyframes whiteFlash{0%,25%{opacity:0}38%{opacity:1}55%{opacity:.2}100%{opacity:0}}@keyframes singularity{0%{transform:scale(.2)}35%{transform:scale(1)}100%{transform:scale(90);opacity:0}}
+@keyframes shock{0%{transform:scale(.3);opacity:1}100%{transform:scale(35);opacity:0}}@keyframes bangText{0%{opacity:0;transform:scale(.55)}30%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+@keyframes bgBang{0%,100%{background:#020205}35%{background:#39100a}55%{background:#09020a}}
+body.shake{animation:screenShake .08s 12}@keyframes screenShake{0%,100%{transform:translate(0)}25%{transform:translate(-9px,6px)}50%{transform:translate(8px,-6px)}75%{transform:translate(-5px,-8px)}}
+
+#transition{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:radial-gradient(circle,#113653e8,#02070df7);backdrop-filter:blur(5px)}
+#transition.show{display:grid}.transCard{width:min(720px,90vw);text-align:center;border:1px solid #3d6082;border-radius:25px;padding:28px;background:#071521fa;box-shadow:0 0 70px #7df9ff22}
+.transCard h2{font-size:clamp(36px,7vw,68px);margin:5px;color:var(--green)}.transCard p{font-size:20px;color:#c9d9e8}
+
+@media(max-width:800px){.hero,.gameGrid,.trainGrid{grid-template-columns:1fr}.bombArt{display:none}.topbar{grid-template-columns:1fr 1fr}.topbar .hud:first-child{grid-column:1/-1}.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){#game{padding:7px}.wireBoard{grid-template-columns:1fr}.panel{padding:12px}.gameBomb{width:205px}.center{min-height:215px}.clock{font-size:28px}.rules{grid-template-columns:1fr}.summaryShell{padding:15px}.trainShell{padding:16px}.trainCard{padding:16px}.trainCard h3{font-size:27px}.teach,.teachBox{font-size:19px}.trainExample{font-size:18px}.tabs{display:grid;grid-template-columns:1fr 1fr}.tab{padding:11px;font-size:14px}}
+.needMorePopup{position:fixed;inset:0;z-index:130;display:none;place-items:center;background:#020812cc;backdrop-filter:blur(5px);padding:18px}
+.needMorePopup.show{display:grid}
+.needMoreCard{width:min(430px,92vw);text-align:center;background:linear-gradient(180deg,#152b44,#081522);border:2px solid #ffd75e;border-radius:24px;padding:24px;box-shadow:0 0 55px #ffd75e33,0 25px 80px #000a;animation:popWarn .25s ease}
+.needIcon{font-size:52px}.needMoreCard b{display:block;font-size:30px;color:#ffd75e;margin:4px 0 8px}.needMoreCard span{display:block;font-size:18px;line-height:1.55;color:#e7f1fb;margin-bottom:18px}
+@keyframes popWarn{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+
+@media(max-width:800px){
+  #game{padding:7px 8px 14px;gap:7px}
+  .home{position:fixed;top:8px;right:8px;left:auto;padding:7px 10px;font-size:14px}
+  .topbar{grid-template-columns:1fr 1fr 1fr;padding-top:42px}
+  .topbar .hud:first-child{grid-column:auto}
+  .hud{min-height:54px;padding:7px 9px}.hud strong{font-size:17px}.hud small{font-size:9px}
+  .gameGrid{display:flex;flex-direction:column;gap:7px}
+  .panel{border-radius:17px;padding:12px}
+  .left{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 112px;
+    grid-template-areas:
+      "tag timer"
+      "title timer"
+      "question timer";
+    column-gap:10px;align-items:center;
+  }
+  .missionTag{grid-area:tag;font-size:10px;align-self:end}
+  .missionTitle{grid-area:title;font-size:22px;margin:4px 0 5px;align-self:center}
+  .missionText{grid-area:question;font-size:21px;line-height:1.38;min-height:0;margin:0;align-self:start}
+  .center{grid-area:timer;display:grid;place-items:center;min-height:0}
+  .gameBomb{width:104px;border-width:5px;box-shadow:inset 0 0 0 2px #020609,0 8px 24px #0008}
+  .core{inset:31% 10%;border-width:2px;border-radius:10px}
+  .clock{font-size:18px;text-shadow:0 0 10px #ff405d}
+  .status{font-size:7px;letter-spacing:.10em}
+  .tip{display:none}
+  .wireBoard{grid-template-columns:1fr;gap:8px}
+  .wire{min-height:76px;padding:9px 10px 9px 58px;border-radius:14px}
+  .strip{width:43px}.value{font-size:25px}.sub{margin-top:4px}
+  .action{position:sticky;bottom:0;z-index:20;background:#071521f2;padding:7px 0 3px;margin-top:8px}
+  .action .primary,.action .secondary{padding:12px 10px}
+}
+@media(max-width:420px){
+  .topbar{grid-template-columns:1fr 1fr}
+  .topbar .hud:first-child{display:flex}
+  .hud.time{grid-column:auto}
+  .left{grid-template-columns:minmax(0,1fr) 96px;column-gap:8px}
+  .gameBomb{width:90px}
+  .clock{font-size:16px}
+  .missionText{font-size:19px}
+  .missionTitle{font-size:20px}
+}
+
+@media print{body{background:white;color:black}#summary{display:block!important;padding:0}.summaryShell{box-shadow:none;border:0;background:white}.home,.summaryActions{display:none}.reviewItem,.stat{break-inside:avoid;background:white;color:black}.reviewMeta,.explain,.stat small{color:#333}}
+</style>
+</head>
+<body>
+<section id="start" class="screen active">
+  <div class="startCard card">
+    <div class="brand">KRU PAI CLASSROOM • SCIENCE SPECIAL OPS</div>
+    <div class="hero">
+      <div>
+        <h1>DEFUSE THE <span>MATH BOMB</span></h1>
+        <div class="lead">Matter Classification • Science Mission 💣<br>ภารกิจสารละลาย • สารเนื้อเดียว • สารเนื้อผสม • ธาตุ • สารประกอบ ทุกด่านมีเวลา <b>180 วินาที</b> ตอบผิดหรือหมดเวลา = BIG BANG และระบบจะส่งเข้าสู่ภารกิจถัดไปทันที</div>
+        <div class="nameRow"><input id="playerName" maxlength="24" placeholder="ชื่อผู้กู้ระเบิด"><button class="primary" id="startBtn">เข้าสู่หน่วยปฏิบัติการ ⚡</button></div>
+        <div class="rules">
+          <div class="rule"><b>⏱️ 03:00 / Mission</b><br>เริ่มภารกิจใหม่ นาฬิการีเซ็ตทุกครั้ง</div>
+          <div class="rule"><b>💥 ผิด = BIG BANG</b><br>ไม่มีแก้ตัวในด่านเดิม ระบบบันทึกแล้วไปข้อถัดไป</div>
+          <div class="rule"><b>☄️ หมดเวลา</b><br>นาฬิการะเบิดและบันทึกเป็น TIMEOUT</div>
+          <div class="rule"><b>🧠 Intelligence Report</b><br>จบเกมดูคำตอบและวิธีคิดครบทุกภารกิจ</div>
+        </div>
+      </div>
+      <div class="bombArt"><div class="bomb"><div class="display">03:00</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="training" class="screen"><button class="home" onclick="goHome()">⌂ Home</button>
+ <div class="trainShell card">
+  <div class="trainHead"><div class="brand">SCIENCE PRE-MISSION BRIEFING</div><h2>🧪 ทบทวนก่อนเข้าสู่ห้องปฏิบัติการ</h2><p>เน้นวิธีที่ใช้จริงในภารกิจ อ่านสั้น ๆ ให้ครบแล้วค่อยเข้าสนาม</p></div>
+  <div class="trainGrid"><div class="tabs" id="tabs"></div><div class="trainCard" id="trainCard"></div></div>
+  <div class="trainActions"><button class="secondary" id="prevTrain">← ก่อนหน้า</button><button class="primary" id="nextTrain">ถัดไป →</button></div>
+ </div>
+</section>
+
+<section id="game" class="screen"><button class="home" onclick="goHome()">⌂ Home</button>
+ <div class="topbar">
+  <div class="hud"><small>AGENT</small><strong id="hudName">—</strong></div>
+  <div class="hud"><small>MISSION</small><strong><span id="missionNo">1</span>/20</strong></div>
+  <div class="hud"><small>SCORE</small><strong id="score">0</strong></div>
+  <div class="hud time"><small>MISSION TIME</small><strong id="timeHud">03:00</strong></div>
+ </div>
+ <div class="gameGrid">
+  <section class="panel left"><div class="missionTag" id="missionTag">LEVEL</div><h2 class="missionTitle" id="missionTitle"></h2><div class="missionText" id="missionText"></div>
+   <div class="center"><div class="gameBomb" id="gameBomb"><div class="core"><div><div class="status" id="status">ARMED</div><div class="clock" id="clock">03:00</div></div></div></div></div>
+   <div class="tip">⚡ คิดให้ครบก่อนตัดสาย เพราะกดยืนยันแล้วเปลี่ยนคำตอบไม่ได้</div>
+  </section>
+  <section class="panel"><div class="wireBoard" id="wireBoard"></div><div class="action"><button class="secondary" id="clearBtn">ล้างตัวเลือก</button><button class="primary" id="confirmBtn">✂️ ยืนยันการตัดสาย</button></div></section>
+ </div>
+</section>
+
+<section id="summary" class="screen"><button class="home" onclick="goHome()">⌂ Home</button>
+ <div class="summaryShell card">
+  <div class="summaryHero"><div class="brand">KRU PAI • SCIENCE MISSION INTELLIGENCE REPORT</div><div class="icon">🛰️</div><h2>OPERATION REPORT</h2><div id="summaryName"></div><div class="scoreBig" id="finalScore">0</div><div style="color:#9db1c9">คะแนนรวม</div></div>
+  <div class="stats"><div class="stat"><small>DEFUSED</small><strong id="sOk">0</strong></div><div class="stat"><small>BIG BANG</small><strong id="sBad">0</strong></div><div class="stat"><small>TIMEOUT</small><strong id="sTimeout">0</strong></div><div class="stat"><small>ACCURACY</small><strong id="sAcc">0%</strong></div></div>
+  <div class="reportHead"><h3>🔎 Mission Debrief — เฉลยและวิเคราะห์ทุกข้อ</h3></div>
+  <div class="reviewList" id="reviewList"></div>
+  <div class="summaryActions"><button class="secondary" onclick="window.print()">🖨️ บันทึก / พิมพ์รายงาน</button><button class="primary" onclick="location.reload()">เล่นภารกิจวิทยาศาสตร์ใหม่ 🔁</button></div>
+ </div>
+</section>
+
+<div id="needMorePopup" class="needMorePopup"><div class="needMoreCard"><div class="needIcon">⚠️</div><b id="needMoreTitle">ยังมีอีกนะ!</b><span id="needMoreText">ลองดูตัวเลือกอีกครั้ง</span><button class="primary" onclick="closeNeedMore()">กลับไปดูอีกครั้ง 👀</button></div></div>
+<div id="transition"><div class="transCard"><div class="brand">SEQUENCE ACCEPTED</div><h2>MISSION DEFUSED</h2><p id="transText">กำลังเชื่อมต่อภารกิจถัดไป...</p></div></div>
+<div id="bigbang"><div class="whiteFlash"></div><div class="singularity"></div><div class="shock s1"></div><div class="shock s2"></div><div class="shock s3"></div><div class="bangText"><b>BIG BANG</b><span id="bangReason">MISSION FAILED</span></div></div>
+
+<script>
+const F=(n,d)=>`<span class="frac"><span class="n">${n}</span><span class="d">${d}</span></span>`;
+const missions=[
+ {lv:"LEVEL 1 • HOMOGENEOUS",title:"Clear Sample",q:`ตัดทุกสายที่เป็น “สารเนื้อเดียว”`,need:3,opt:["น้ำเกลือ","อากาศ","ทองเหลือง","น้ำโคลน","น้ำนม","น้ำกับน้ำมัน"],ans:[0,1,2],ex:`น้ำเกลือ อากาศ และทองเหลืองมีองค์ประกอบสม่ำเสมอเป็นเนื้อเดียว ส่วนตัวเลือกอื่นเป็นสารเนื้อผสม`},
+ {lv:"LEVEL 1 • HETEROGENEOUS",title:"Mixed Matter",q:`ตัดทุกสายที่เป็น “สารเนื้อผสม”`,need:3,opt:["น้ำโคลน","คอนกรีต","น้ำสลัดที่แยกชั้น","น้ำตาลละลายน้ำ","อากาศ","ทองเหลือง"],ans:[0,1,2],ex:`น้ำโคลน คอนกรีต และน้ำสลัดที่แยกชั้นมีองค์ประกอบไม่สม่ำเสมอ จึงเป็นสารเนื้อผสม`},
+ {lv:"LEVEL 1 • SOLUTION",title:"Solution Scan",q:`ตัดทุกสายที่เป็น “สารละลาย”`,need:3,opt:["น้ำเกลือ","น้ำเชื่อม","อากาศ","น้ำแป้ง","น้ำนม","ทรายกับน้ำ"],ans:[0,1,2],ex:`สารละลายเป็นสารเนื้อเดียว น้ำเกลือและน้ำเชื่อมเป็นสารละลายของแข็งในของเหลว ส่วนอากาศเป็นสารละลายของแก๊สหลายชนิด`},
+ {lv:"LEVEL 1 • LOGIC",title:"Homogeneous Truth",q:`ข้อใดกล่าวถูกต้องเกี่ยวกับ “สารเนื้อเดียว”`,need:1,opt:["มองเห็นองค์ประกอบแยกจากกันชัดเจน","มีสมบัติเหมือนกันทุกส่วนของตัวอย่าง","ต้องเป็นสารบริสุทธิ์เท่านั้น","ต้องมีสถานะเป็นของเหลว","มีองค์ประกอบไม่สม่ำเสมอ","ต้องเกิดจากสารสองชนิดขึ้นไป"],ans:[1],ex:`สารเนื้อเดียวมีลักษณะและสมบัติสม่ำเสมอทุกส่วน แต่สามารถเป็นได้ทั้งสารบริสุทธิ์และสารละลาย`},
+ {lv:"LEVEL 1 • RELATION",title:"Category Link",q:`ตัดทุกสายที่ “เป็นสารเนื้อเดียว แต่ไม่ใช่สารบริสุทธิ์”`,need:3,opt:["น้ำเกลือ","อากาศ","ทองเหลือง","ทองคำบริสุทธิ์","ออกซิเจน","น้ำกลั่น"],ans:[0,1,2],ex:`น้ำเกลือ อากาศ และทองเหลืองเป็นสารละลาย จึงเป็นสารเนื้อเดียวที่มีสารมากกว่าหนึ่งชนิด ไม่ใช่สารบริสุทธิ์`},
+
+ {lv:"LEVEL 2 • ELEMENT",title:"Element Core",q:`ตัดทุกสายที่เป็น “ธาตุ”`,need:3,opt:["ทองแดง (Cu)","ออกซิเจน (O₂)","เหล็ก (Fe)","น้ำ (H₂O)","เกลือแกง (NaCl)","คาร์บอนไดออกไซด์ (CO₂)"],ans:[0,1,2],ex:`ธาตุประกอบด้วยอะตอมชนิดเดียว Cu, O₂ และ Fe เป็นธาตุ แม้ O₂ จะมี 2 อะตอม แต่เป็นอะตอมออกซิเจนชนิดเดียวกัน`},
+ {lv:"LEVEL 2 • COMPOUND",title:"Compound Core",q:`ตัดทุกสายที่เป็น “สารประกอบ”`,need:3,opt:["น้ำ (H₂O)","โซเดียมคลอไรด์ (NaCl)","คาร์บอนไดออกไซด์ (CO₂)","ออกซิเจน (O₂)","ทองแดง (Cu)","เหล็ก (Fe)"],ans:[0,1,2],ex:`สารประกอบเกิดจากธาตุต่างชนิดรวมกันทางเคมีในอัตราส่วนคงที่ เช่น H₂O, NaCl และ CO₂`},
+ {lv:"LEVEL 2 • SYMBOL",title:"Formula Decoder",q:`สูตรใดแสดง “สารประกอบ”`,need:3,opt:["NH₃","CaCO₃","CH₄","N₂","O₃","S₈"],ans:[0,1,2],ex:`NH₃, CaCO₃ และ CH₄ มีสัญลักษณ์ของธาตุมากกว่าหนึ่งชนิด จึงเป็นสารประกอบ ส่วน N₂, O₃, S₈ เป็นธาตุ`},
+ {lv:"LEVEL 2 • ELEMENT LOGIC",title:"Atom Identity",q:`ข้อใดอธิบาย “ธาตุ” ได้ถูกต้องที่สุด`,need:1,opt:["ประกอบด้วยอะตอมชนิดเดียว","ต้องมีอะตอมเพียง 1 อะตอม","แยกได้ด้วยการกรอง","เกิดจากสารหลายชนิดผสมกัน","มีองค์ประกอบเปลี่ยนแปลงได้","ต้องเป็นโลหะเท่านั้น"],ans:[0],ex:`ธาตุคือสารบริสุทธิ์ที่ประกอบด้วยอะตอมชนิดเดียว ไม่ได้หมายความว่าต้องมีเพียงหนึ่งอะตอม และธาตุมีทั้งโลหะและอโลหะ`},
+ {lv:"LEVEL 2 • COMPOUND LOGIC",title:"Chemical Bond",q:`ตัดทุกข้อความที่ถูกเกี่ยวกับ “สารประกอบ”`,need:3,opt:["มีธาตุต่างชนิดรวมกันทางเคมี","มีอัตราส่วนองค์ประกอบคงที่","แยกองค์ประกอบด้วยวิธีทางเคมี","แยกได้ด้วยการกรองธรรมดา","องค์ประกอบเปลี่ยนสัดส่วนได้เสมอ","เป็นสารผสม"],ans:[0,1,2],ex:`สารประกอบเป็นสารบริสุทธิ์ มีธาตุต่างชนิดยึดกันทางเคมีในอัตราส่วนคงที่ และต้องใช้วิธีทางเคมีในการแยกองค์ประกอบ`},
+
+ {lv:"LEVEL 3 • SOLUTE",title:"Salt Water",q:`เมื่อละลายเกลือ 10 g ในน้ำ 100 g ข้อใดคือ “ตัวละลาย”`,need:1,opt:["เกลือ","น้ำ","น้ำเกลือทั้งหมด","ภาชนะ","ทั้งเกลือและน้ำเป็นตัวทำละลาย","ไม่มีตัวละลาย"],ans:[0],ex:`เกลือเป็นสารที่ถูกละลาย จึงเป็นตัวละลาย ส่วนน้ำเป็นตัวทำละลาย`},
+ {lv:"LEVEL 3 • SOLVENT",title:"Sugar Solution",q:`เมื่อละลายน้ำตาลในน้ำจนเป็นเนื้อเดียว ข้อใดคือ “ตัวทำละลาย”`,need:1,opt:["น้ำ","น้ำตาล","น้ำเชื่อม","ทั้งสองเป็นตัวละลาย","ไม่มีตัวทำละลาย","ผลึกน้ำตาล"],ans:[0],ex:`น้ำทำหน้าที่ละลายน้ำตาล จึงเป็นตัวทำละลาย และน้ำตาลเป็นตัวละลาย`},
+ {lv:"LEVEL 3 • STATE",title:"Solution States",q:`ตัดทุกตัวอย่างที่เป็นสารละลายในสถานะต่างกัน`,need:3,opt:["อากาศ","ทองเหลือง","น้ำเกลือ","น้ำโคลน","คอนกรีต","น้ำกับน้ำมัน"],ans:[0,1,2],ex:`สารละลายไม่จำเป็นต้องเป็นของเหลว: อากาศเป็นสารละลายแก๊ส ทองเหลืองเป็นสารละลายของแข็ง และน้ำเกลือเป็นสารละลายของเหลว`},
+ {lv:"LEVEL 3 • SEPARATION",title:"Separation Protocol",q:`ต้องการแยก “เกลือ” ออกจากน้ำเกลือ ควรใช้หลักการใด`,need:1,opt:["ระเหยน้ำออก","กรองด้วยกระดาษกรอง","ใช้แม่เหล็ก","รินแยกชั้น","ใช้ตะแกรง","ปล่อยให้ตกตะกอน"],ans:[0],ex:`เกลือละลายในน้ำและผ่านกระดาษกรองได้ จึงใช้การระเหยน้ำออกเพื่อให้เกลือเหลือเป็นของแข็ง`},
+ {lv:"LEVEL 3 • MIXTURE",title:"Mixture Separation",q:`ข้อใดเป็นสารผสมที่แยกองค์ประกอบได้ด้วย “วิธีทางกายภาพ”`,need:3,opt:["ทรายกับน้ำ","ผงเหล็กกับทราย","น้ำกับน้ำมัน","น้ำบริสุทธิ์ H₂O","NaCl บริสุทธิ์","CO₂ บริสุทธิ์"],ans:[0,1,2],ex:`สารผสมสามารถแยกด้วยสมบัติทางกายภาพ เช่น กรอง ใช้แม่เหล็ก หรือรินแยกชั้น ส่วนสารประกอบบริสุทธิ์ต้องแยกด้วยวิธีทางเคมี`},
+
+ {lv:"LEVEL 4 • CLASSIFICATION",title:"Pure or Mixture",q:`ตัดทุกสายที่เป็น “สารบริสุทธิ์”`,need:3,opt:["ออกซิเจนบริสุทธิ์","น้ำกลั่น","โซเดียมคลอไรด์บริสุทธิ์","อากาศ","น้ำเกลือ","ทองเหลือง"],ans:[0,1,2],ex:`สารบริสุทธิ์มีองค์ประกอบคงที่ ครอบคลุมทั้งธาตุและสารประกอบ ดังนั้น O₂, H₂O บริสุทธิ์ และ NaCl บริสุทธิ์เป็นสารบริสุทธิ์`},
+ {lv:"LEVEL 4 • TWO CONDITIONS",title:"Homogeneous Compound",q:`ตัดทุกสายที่เป็นทั้ง “สารเนื้อเดียว” และ “สารประกอบบริสุทธิ์”`,need:3,opt:["น้ำกลั่น (H₂O)","น้ำตาลซูโครสบริสุทธิ์","NaCl บริสุทธิ์","อากาศ","ทองเหลือง","ออกซิเจนบริสุทธิ์"],ans:[0,1,2],ex:`H₂O, ซูโครส และ NaCl บริสุทธิ์เป็นสารประกอบและมีเนื้อเดียว อากาศกับทองเหลืองเป็นสารผสม ส่วน O₂ เป็นธาตุ`},
+ {lv:"LEVEL 4 • ERROR HUNT",title:"False Statements",q:`ตัดทุกข้อความที่ “ผิด”`,need:3,opt:["สารละลายทุกชนิดเป็นสารเนื้อเดียว","สารประกอบเป็นสารบริสุทธิ์","ธาตุประกอบด้วยอะตอมชนิดเดียว","สารเนื้อเดียวทุกชนิดเป็นสารบริสุทธิ์","O₂ เป็นสารประกอบ","น้ำเกลือแยกเกลือออกได้ด้วยการกรองธรรมดา"],ans:[3,4,5],ex:`ข้อความที่ผิดคือ: สารเนื้อเดียวอาจเป็นสารละลายจึงไม่จำเป็นต้องบริสุทธิ์; O₂ เป็นธาตุ; และเกลือที่ละลายอยู่ผ่านกระดาษกรองได้`},
+ {lv:"LEVEL 4 • RELATION MAP",title:"Matter Map",q:`ตัดทุกคู่ที่จับประเภทได้ถูกต้อง`,need:3,opt:["อากาศ → สารละลาย","ทองคำบริสุทธิ์ → ธาตุ","น้ำบริสุทธิ์ → สารประกอบ","น้ำโคลน → สารเนื้อเดียว","NaCl → ธาตุ","ทองเหลือง → สารประกอบบริสุทธิ์"],ans:[0,1,2],ex:`อากาศเป็นสารละลายของแก๊ส ทองคำบริสุทธิ์เป็นธาตุ และน้ำบริสุทธิ์เป็นสารประกอบ ส่วนสามคู่หลังจัดประเภทผิด`},
+ {lv:"BOSS • MATTER CORE",title:"MATTER CORE",q:`ตัด 4 สายให้ครบ “สารละลาย 1 + สารเนื้อผสม 1 + ธาตุ 1 + สารประกอบ 1”`,need:4,opt:["น้ำเกลือ","น้ำโคลน","ทองแดง (Cu)","น้ำบริสุทธิ์ (H₂O)","อากาศ","คอนกรีต","ออกซิเจน (O₂)","NaCl บริสุทธิ์"],ans:[0,1,2,3],bossMatter:true,ex:`ข้อนี้มีหลายชุดคำตอบ ระบบตรวจตามประเภทจริง เช่น น้ำเกลือ + น้ำโคลน + Cu + H₂O หรือ อากาศ + คอนกรีต + O₂ + NaCl ก็ถูก เพราะครบทั้ง 4 ประเภทอย่างละ 1`}
+];
+
+const training=[
+ {t:"01 • สารเนื้อเดียว–เนื้อผสม",b:`<div class="teach"><b>สารเนื้อเดียว</b> มีลักษณะและสมบัติสม่ำเสมอทุกส่วน เช่น น้ำเกลือ อากาศ ทองเหลือง และสารบริสุทธิ์<br><b>สารเนื้อผสม</b> มีองค์ประกอบไม่สม่ำเสมอ เช่น น้ำโคลน คอนกรีต น้ำกับน้ำมัน</div><div class="trainExample"><span class="trainKey">จำให้แม่น</span><br>“เนื้อเดียว” ไม่ได้แปลว่า “สารบริสุทธิ์” เสมอไป เพราะสารละลายก็เป็นสารเนื้อเดียว</div>`},
+ {t:"02 • สารละลาย",b:`<div class="teach">สารละลายเป็น <b>สารผสมเนื้อเดียว</b> ประกอบด้วยตัวทำละลายและตัวละลาย และพบได้ทั้งแก๊ส ของเหลว และของแข็ง</div><div class="teachBox">น้ำเกลือ → ของเหลว<br>อากาศ → แก๊ส<br>ทองเหลือง → ของแข็ง</div><div class="trainExample">เกลือในน้ำเกลือเป็น <b>ตัวละลาย</b> ส่วนน้ำเป็น <b>ตัวทำละลาย</b></div>`},
+ {t:"03 • ธาตุ",b:`<div class="teach">ธาตุเป็นสารบริสุทธิ์ที่ประกอบด้วย <b>อะตอมชนิดเดียว</b></div><div class="teachBox">Fe = เหล็ก<br>Cu = ทองแดง<br>O₂ = ออกซิเจน</div><div class="trainExample"><span class="trainKey">จุดหลอกสำคัญ</span><br>O₂ มี 2 อะตอมก็จริง แต่เป็นอะตอมออกซิเจนชนิดเดียว จึงยังเป็น <b>ธาตุ</b> ไม่ใช่สารประกอบ</div>`},
+ {t:"04 • สารประกอบ",b:`<div class="teach">สารประกอบเป็นสารบริสุทธิ์ที่มี <b>ธาตุต่างชนิดรวมกันทางเคมีในอัตราส่วนคงที่</b></div><div class="teachBox">H₂O → H และ O<br>CO₂ → C และ O<br>NaCl → Na และ Cl</div><div class="trainExample">สารประกอบไม่ใช่สารผสม และไม่สามารถแยกองค์ประกอบด้วยการกรองหรือรินแยกชั้นธรรมดา</div>`},
+ {t:"05 • แผนที่ความสัมพันธ์",b:`<div class="teach">มองภาพรวมแบบนี้จะไม่สับสน:</div><div class="teachBox"><b>สาร</b><br>→ สารบริสุทธิ์ → <b>ธาตุ / สารประกอบ</b><br>→ สารผสม → <b>สารเนื้อเดียว (เช่น สารละลาย) / สารเนื้อผสม</b></div><div class="trainExample"><span class="trainKey">ก่อนตอบ</span><br>ถามตัวเองก่อนว่าโจทย์กำลังแบ่งตาม “ความสม่ำเสมอของเนื้อสาร” หรือแบ่งตาม “องค์ประกอบของสาร” เพราะเป็นคนละเกณฑ์กัน</div>`}
+];
+
+let idx=0,timeLeft=180,timer=null,selected=new Set(),score=0,locked=false,trainIndex=0;
+const results=[];
+const $=id=>document.getElementById(id);
+function fmt(t){return `${String(Math.floor(t/60)).padStart(2,"0")}:${String(t%60).padStart(2,"0")}`}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active")}
+function beep(f=440,d=.08,type="sine",v=.025){try{window.AC=window.AC||new (AudioContext||webkitAudioContext)();let o=AC.createOscillator(),g=AC.createGain();o.type=type;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+function seq(a){let z=0;a.forEach(x=>{setTimeout(()=>beep(x[0],x[1],"square",.03),z);z+=x[1]*700})}
+function renderTraining(){ $("tabs").innerHTML=training.map((x,i)=>`<button class="tab ${i===trainIndex?"active":""}" onclick="trainIndex=${i};renderTraining()">${x.t}</button>`).join("");
+ $("trainCard").innerHTML=`<h3>${training[trainIndex].t}</h3>${training[trainIndex].b}`;$("prevTrain").disabled=trainIndex===0;$("prevTrain").style.opacity=trainIndex===0?".45":"1";
+ $("nextTrain").textContent=trainIndex===training.length-1?"เข้าสู่ภารกิจ 💣":"ถัดไป →";
+}
+function startGame(){ $("hudName").textContent=$("playerName").value.trim()||"Science Agent";show("training");trainIndex=0;renderTraining();seq([[500,.06],[700,.08]])}
+$("prevTrain").onclick=()=>{if(trainIndex>0){trainIndex--;renderTraining();beep(390,.05)}};
+$("nextTrain").onclick=()=>{if(trainIndex<training.length-1){trainIndex++;renderTraining();beep(560,.05)}else begin()};
+function begin(){show("game");idx=0;score=0;results.length=0;loadMission()}
+function updateClock(){$("timeHud").textContent=fmt(timeLeft);$("clock").textContent=fmt(timeLeft)}
+function loadMission(){
+ if(idx>=missions.length){finish();return}
+ locked=false;selected.clear();timeLeft=180;updateClock();
+ if(timer)clearInterval(timer);timer=setInterval(()=>{if(locked)return;timeLeft--;updateClock();if(timeLeft<=0){clearInterval(timer);missionFail("timeout")};if(timeLeft<=10)beep(170,.07,"sawtooth",.018)},1000);
+ const m=missions[idx];$("missionNo").textContent=idx+1;$("missionTag").textContent=m.lv;$("missionTitle").textContent=m.title;$("missionText").innerHTML=m.q;$("status").textContent=idx===19?"BLACK CORE ARMED":"ARMED";
+ $("gameBomb").classList.remove("ok");renderWires(m);$("confirmBtn").disabled=false;$("clearBtn").disabled=false;
+}
+function renderWires(m){
+ const order=m.opt.map((_,i)=>i).sort(()=>Math.random()-.5);
+ $("wireBoard").innerHTML=order.map((oi,di)=>`<button class="wire" data-i="${oi}" onclick="toggleWire(${oi},this)"><span class="strip" style="--wire:${["#ff405d","#32d1ff","#ffd24a","#9f77ff","#55e38f","#ff8d43","#ec5cff","#61a8ff"][di%8]}"></span><span class="value">${m.opt[oi]}</span><span class="sub">WIRE ${String(di+1).padStart(2,"0")}</span></button>`).join("");
+}
+function toggleWire(i,b){if(locked)return;const m=missions[idx];if(selected.has(i)){selected.delete(i);b.classList.remove("selected")}else{if(selected.size>=m.need)return;selected.add(i);b.classList.add("selected")}beep(430,.04,"square",.018)}
+$("clearBtn").onclick=()=>{selected.clear();document.querySelectorAll(".wire").forEach(x=>x.classList.remove("selected"));beep(300,.04)};
+$("confirmBtn").onclick=()=>{
+ if(locked)return;const m=missions[idx];if(selected.size<m.need){showNeedMore(m.need-selected.size,m.need);return}
+ if(selected.size>m.need){showNeedMore(0,m.need);return}
+ const got=[...selected].sort((a,b)=>a-b),ans=[...m.ans].sort((a,b)=>a-b);
+ let ok;
+ if(m.bossMatter){
+   const types=["solution","hetero","element","compound","solution","hetero","element","compound"];
+   const chosen=[...selected], chosenTypes=chosen.map(i=>types[i]);
+   ok=chosen.length===4 &&
+      chosenTypes.filter(x=>x==="solution").length===1 &&
+      chosenTypes.filter(x=>x==="hetero").length===1 &&
+      chosenTypes.filter(x=>x==="element").length===1 &&
+      chosenTypes.filter(x=>x==="compound").length===1;
+ }else if(m.boss3){
+   const vals=[0.75,0.75,0.75,0.8,0.8,0.8,0.7,0.7,0.7];
+   const types=["fraction","decimal","percent","fraction","decimal","percent","fraction","decimal","percent"];
+   const chosen=[...selected], sum=chosen.reduce((a,i)=>a+vals[i],0), chosenTypes=chosen.map(i=>types[i]);
+   ok=chosen.length===3 && Math.abs(sum-2.25)<1e-9 &&
+      chosenTypes.filter(x=>x==="fraction").length===1 &&
+      chosenTypes.filter(x=>x==="decimal").length===1 &&
+      chosenTypes.filter(x=>x==="percent").length===1;
+ }else if(m.boss){
+   ok=got.length===ans.length&&got.every((v,i)=>v===ans[i]);
+ }else{
+   ok=got.length===ans.length&&got.every((v,i)=>v===ans[i]);
+ }
+ if(ok)missionSuccess();else missionFail("wrong");
+};
+function showNeedMore(left,total){
+ const p=$("needMorePopup");
+ $("needMoreTitle").textContent="ยังมีอีกนะ!";
+ $("needMoreText").textContent=left>0 ? `ภารกิจนี้ต้องเลือก ${total} สาย — ยังขาดอีก ${left} สาย ลองดูตัวเลือกอีกครั้งนะ` : `ภารกิจนี้ต้องเลือก ${total} สาย ลองตรวจตัวเลือกอีกครั้ง`;
+ p.classList.add("show");seq([[260,.07],[360,.07],[520,.1]]);
+}
+function closeNeedMore(){$("needMorePopup").classList.remove("show");}
+function missionSuccess(){
+ locked=true;clearInterval(timer);const m=missions[idx];const add=1;score+=add;$("score").textContent=score;$("gameBomb").classList.add("ok");$("status").textContent="DEFUSED";
+ results.push({status:"ok",selected:[...selected],time:180-timeLeft,add});seq([[760,.08],[980,.08],[1260,.14]]);
+ const tr=$("transition");$("transText").textContent=`+1 คะแนน • เชื่อมต่อ Mission ${Math.min(idx+2,20)}...`;tr.classList.add("show");
+ setTimeout(()=>{tr.classList.remove("show");idx++;loadMission()},1250)
+}
+function missionFail(kind){
+ if(locked)return;locked=true;clearInterval(timer);$("confirmBtn").disabled=true;$("clearBtn").disabled=true;
+ results.push({status:kind,selected:[...selected],time:180-timeLeft,add:0});seq([[180,.14],[120,.18],[70,.28]]);
+ const bb=$("bigbang");$("bangReason").textContent=kind==="timeout"?"TIME EXPIRED • CLOCK DETONATED":"WRONG SEQUENCE • MISSION FAILED";bb.classList.remove("show");void bb.offsetWidth;bb.classList.add("show");document.body.classList.add("shake");
+ setTimeout(()=>document.body.classList.remove("shake"),1100);
+ setTimeout(()=>{bb.classList.remove("show");idx++;loadMission()},2450)
+}
+function finish(){
+ clearInterval(timer);show("summary");const ok=results.filter(r=>r.status==="ok").length,bad=results.filter(r=>r.status==="wrong").length,to=results.filter(r=>r.status==="timeout").length;
+ $("summaryName").textContent="Agent "+$("hudName").textContent;$("finalScore").textContent=score+"/20";$("sOk").textContent=ok+"/20";$("sBad").textContent=bad;$("sTimeout").textContent=to;$("sAcc").textContent=Math.round(ok/20*100)+"%";
+ $("reviewList").innerHTML=missions.map((m,i)=>{const r=results[i]||{status:"timeout",selected:[]};const cls=r.status==="ok"?"ok":r.status==="timeout"?"timeout":"bad";const label=r.status==="ok"?"✓ DEFUSED":r.status==="timeout"?"⏱ TIMEOUT":"💥 BIG BANG";
+ const correct=m.bossMatter ? "มีหลายชุดที่ถูก — ต้องมีสารละลาย, สารเนื้อผสม, ธาตุ และสารประกอบ อย่างละ 1 สาย" : (m.boss3 ? "มีหลายชุดที่ถูก" : (m.boss ? "มีหลายชุดที่ถูก" : m.ans.map(x=>m.opt[x]).join(", ")));const chosen=r.selected.length?r.selected.map(x=>m.opt[x]).join(", "):"—";
+ return `<div class="reviewItem"><div class="reviewTop"><span class="badge ${cls}">${label}</span><div><div class="reviewQ">MISSION ${String(i+1).padStart(2,"0")} • ${m.title}</div><div class="reviewMeta"><b>โจทย์:</b> ${m.q}<br><b>คำตอบที่เลือก:</b> ${chosen}<br><b>คำตอบที่ถูก:</b> ${correct}</div></div></div><div class="explain"><b>🧠 วิธีคิด:</b> ${m.ex}</div></div>`}).join("");
+ seq([[523,.08],[659,.08],[784,.1],[1047,.22]])
+}
+function goHome(){if(timer)clearInterval(timer);locked=true;show("start");$("playerName").focus()}
+$("startBtn").onclick=startGame;$("playerName").addEventListener("keydown",e=>{if(e.key==="Enter")startGame()});
+renderTraining();
+</script>
+</body>
+</html>
