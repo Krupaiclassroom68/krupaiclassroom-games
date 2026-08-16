@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SCIENCE ENTRANCE M.1 — SET 4</title>
+<style>
+:root{--ink:#172033;--paper:#f7f9fc;--card:#fff;--line:#dce3ee;--accent:#8b2bd1;--accent2:#00b894;--ok:#159957;--bad:#d64045;--skip:#f4a261;--muted:#7a8599}
+*{box-sizing:border-box} body{margin:0;font-family:"Tahoma","Noto Sans Thai",sans-serif;background:radial-gradient(circle at 10% 0,#f0ddff 0,transparent 35%),linear-gradient(135deg,#f8fbff,#fff9ed);color:var(--ink);min-height:100vh}
+button,input{font:inherit}.wrap{max-width:1180px;margin:auto;padding:18px}.screen{display:none}.screen.active{display:block}
+.hero{min-height:calc(100vh - 36px);display:grid;place-items:center}.cover{width:min(820px,100%);background:rgba(255,255,255,.94);border:1px solid #fff;border-radius:30px;padding:34px;box-shadow:0 25px 70px #3b2f6d20;text-align:center}
+.badge{display:inline-block;padding:8px 14px;border-radius:99px;background:#171b2d;color:white;font-weight:800;letter-spacing:1px}.cover h1{font-size:clamp(34px,7vw,72px);margin:14px 0 0;line-height:.95}.cover h1 span{color:var(--accent)}.sub{font-size:20px;color:#59647a;margin:16px auto;max-width:650px}.features{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:20px 0}.pill{background:#e5f8f6;border:1px solid #bfe8e4;border-radius:99px;padding:9px 13px;font-weight:700}
+.namebox{display:flex;gap:10px;max-width:520px;margin:25px auto 0}.namebox input{flex:1;padding:15px 18px;border:2px solid #d9def0;border-radius:16px;outline:none;font-size:18px}.btn{border:0;border-radius:15px;padding:13px 18px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(135deg,var(--accent),#7b68ee);color:white;box-shadow:0 8px 20px #6d3bd135}.secondary{background:#edf0f6;color:#35405a}.warn{background:#fff1dd;color:#9a5a00}.danger{background:#ffe7e8;color:#a8292d}
+.top{position:sticky;top:0;z-index:5;background:#ffffffee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}.topin{max-width:1180px;margin:auto;padding:0 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.brand{font-weight:900}.stat{background:#f2f5fa;border-radius:12px;padding:8px 12px;font-weight:800}.timer{margin-left:auto;background:#171b2d;color:white}.timer.low{background:#b4232c;animation:pulse .7s infinite}@keyframes pulse{50%{transform:scale(1.04)}}
+.gamegrid{display:grid;grid-template-columns:1fr 290px;gap:18px;margin-top:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 35px #26334d12}.qcard{padding:24px}.qmeta{display:flex;justify-content:space-between;gap:12px;align-items:center}.type{font-weight:900;color:var(--accent);background:#e1f7f5;padding:7px 11px;border-radius:10px}.qtext{font-size:clamp(21px,3vw,29px);font-weight:800;line-height:1.55;margin:22px 0}.choices{display:grid;gap:11px}.choice{width:100%;text-align:left;border:2px solid #e3e7ef;background:white;border-radius:16px;padding:15px 17px;font-weight:700;cursor:pointer;transition:.15s}.choice:hover{border-color:#a79cf1;transform:translateY(-1px)}.choice.selected{border-color:var(--accent);background:#e5f8f6}.answerInput{width:100%;max-width:420px;padding:16px;border:2px solid #dce2eb;border-radius:15px;font-size:21px}.tf{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tf .choice{text-align:center;font-size:22px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.actions .next{margin-left:auto}
+.side{padding:18px;height:max-content;position:sticky;top:86px}.side h3{margin:0 0 12px}.legend{font-size:13px;color:#657085;line-height:1.8}.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.n{aspect-ratio:1;border:0;border-radius:10px;font-weight:900;cursor:pointer;background:#eef1f6;color:#536078}.n.current{outline:3px solid #3325b9}.n.answered{background:#dfe3ff;color:#3f35a8}.n.correct{background:#dff5e9;color:#087a42}.n.wrong{background:#ffe1e3;color:#a51f29}.n.skipped{background:#fff0d9;color:#a35e00}
+.result{padding:28px}.scorebig{text-align:center;font-size:64px;font-weight:900;color:var(--accent);margin:5px}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.sum{padding:15px;border-radius:15px;background:#f4f6fa;text-align:center;font-weight:800}.review{display:grid;gap:10px}.reviewItem{border:1px solid var(--line);border-radius:15px;padding:14px}.reviewItem.ok{border-left:6px solid var(--ok)}.reviewItem.bad{border-left:6px solid var(--bad)}.reviewItem.skip{border-left:6px solid var(--skip)}.exp{color:#5c667a;margin-top:7px;line-height:1.55}
+
+
+.feedback{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at center,#0d1330cc,#050712f5 70%);backdrop-filter:blur(8px)}
+.feedback.show{display:flex;animation:sceneIn .18s ease-out}
+.feedback::before{content:"";position:absolute;inset:-20%;background:
+repeating-conic-gradient(from 0deg,transparent 0 8deg,#ffffff08 8deg 9deg,transparent 9deg 18deg);
+animation:spinBg 7s linear infinite;opacity:.65}
+.screenFlash{position:absolute;inset:0;pointer-events:none;opacity:0}
+.feedback.ok .screenFlash{background:radial-gradient(circle,#ffffffdd 0,#68ffd888 18%,transparent 55%);animation:flashOK .55s ease-out}
+.feedback.bad .screenFlash{background:radial-gradient(circle,#fff 0,#ff4d6d88 16%,transparent 52%);animation:flashBAD .5s ease-out}
+.energyRing{position:absolute;width:170px;height:170px;border-radius:50%;border:8px solid #fff;opacity:0;pointer-events:none}
+.feedback.ok .energyRing{box-shadow:0 0 30px #2fffb3,0 0 90px #00e5ff;animation:ringBurst 1s ease-out}
+.feedback.bad .energyRing{box-shadow:0 0 30px #ff416c,0 0 90px #ff7b00;animation:ringBurst .85s ease-out}
+.fbCard{position:relative;width:min(560px,90vw);padding:34px 24px 30px;border-radius:34px;text-align:center;overflow:hidden;color:white;
+background:linear-gradient(145deg,#141a39ee,#0b1027ee);border:1px solid #ffffff33;box-shadow:0 30px 100px #0009,inset 0 1px 0 #ffffff33;
+animation:megaPop .55s cubic-bezier(.18,1.6,.32,1)}
+.fbCard::before{content:"";position:absolute;inset:-2px;border-radius:36px;padding:2px;background:linear-gradient(120deg,#ffffff44,transparent 20%,#ffffff11 50%,transparent 80%,#ffffff44);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.feedback.ok .fbCard{box-shadow:0 0 0 2px #34ffc755,0 30px 100px #00e0a244,0 0 80px #00d9ff33 inset}
+.feedback.bad .fbCard{box-shadow:0 0 0 2px #ff5d7355,0 30px 100px #ff304f44,0 0 80px #ff7b0030 inset}
+.scanline{position:absolute;left:0;right:0;height:3px;top:-10%;background:linear-gradient(90deg,transparent,#fff,transparent);filter:blur(.5px);opacity:.8;animation:scan 1s ease-out}
+.fbBadge{display:inline-block;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:900;letter-spacing:2px;background:#ffffff18;border:1px solid #ffffff2d;margin-bottom:8px}
+.fbIconWrap{position:relative;width:130px;height:130px;margin:5px auto 6px;display:grid;place-items:center}
+.orbit{position:absolute;inset:0;border:2px dashed #ffffff55;border-radius:50%;animation:orbit 2.2s linear infinite}
+.orbit::before,.orbit::after{content:"";position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 20px currentColor}
+.orbit::before{top:-7px;left:50%}.orbit::after{bottom:7px;right:5px}
+.feedback.ok .orbit{color:#3cffc4;border-color:#3cffc477}.feedback.bad .orbit{color:#ff5770;border-color:#ff577077}
+.fbIcon{position:relative;z-index:2;font-size:88px;line-height:1;font-weight:1000;text-shadow:0 6px 18px #0007;animation:iconBoom .7s cubic-bezier(.2,1.7,.3,1)}
+.feedback.ok .fbIcon{color:#6dffd0;text-shadow:0 0 18px #00ffb3,0 0 50px #00d8ff}
+.feedback.bad .fbIcon{color:#ff6b7e;text-shadow:0 0 18px #ff3358,0 0 50px #ff7a00}
+.fbTitle{font-size:clamp(34px,7vw,48px);font-weight:1000;letter-spacing:.5px;margin:2px 0 4px}
+.feedback.ok .fbTitle{background:linear-gradient(90deg,#a7ffe7,#5fffd0,#7de7ff);-webkit-background-clip:text;color:transparent}
+.feedback.bad .fbTitle{background:linear-gradient(90deg,#ffd0d6,#ff6b7e,#ffb36b);-webkit-background-clip:text;color:transparent}
+.fbSub{font-size:18px;font-weight:800;color:#d9e2ff}
+.combo{margin-top:12px;font-size:14px;font-weight:900;letter-spacing:1.5px;color:#fff8}
+.burst{position:absolute;inset:0;pointer-events:none}
+.spark{position:absolute;left:50%;top:50%;font-size:28px;filter:drop-shadow(0 0 8px #fff8);animation:fly 1.05s cubic-bezier(.1,.7,.2,1) forwards}
+.dust{position:absolute;width:8px;height:8px;border-radius:50%;left:50%;top:50%;background:white;box-shadow:0 0 12px currentColor;animation:dustFly .9s ease-out forwards}
+.feedback.ok .dust{color:#41ffc7;background:#41ffc7}.feedback.bad .dust{color:#ff5d73;background:#ff5d73}
+.shakeMega{animation:shakeMega .42s ease!important}
+@keyframes sceneIn{from{opacity:0}to{opacity:1}}
+@keyframes spinBg{to{transform:rotate(360deg)}}
+@keyframes flashOK{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+@keyframes flashBAD{0%{opacity:0}20%{opacity:.95}100%{opacity:0}}
+@keyframes ringBurst{0%{transform:scale(.2);opacity:1}100%{transform:scale(5);opacity:0}}
+@keyframes megaPop{0%{transform:scale(.45) rotate(-7deg);opacity:0}65%{transform:scale(1.08) rotate(1deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes iconBoom{0%{transform:scale(.2) rotate(-20deg)}70%{transform:scale(1.28) rotate(4deg)}100%{transform:scale(1)}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes scan{0%{top:-10%}100%{top:110%;opacity:0}}
+@keyframes fly{to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}}
+@keyframes dustFly{to{transform:translate(var(--x),var(--y)) scale(.15);opacity:0}}
+@keyframes shakeMega{15%{transform:translateX(-18px) rotate(-1deg)}30%{transform:translateX(16px) rotate(1deg)}45%{transform:translateX(-12px)}60%{transform:translateX(10px)}75%{transform:translateX(-5px)}}
+
+.cover{position:relative;overflow:hidden}
+.cover::before{content:"⚛️";position:absolute;right:24px;top:18px;font-size:70px;opacity:.08;transform:rotate(12deg)}
+.cover::after{content:"🧪  🔬  🧬";position:absolute;left:24px;bottom:18px;font-size:28px;opacity:.10;letter-spacing:8px}
+
+@media(max-width:850px){.gamegrid{grid-template-columns:1fr}.side{position:static}.timer{margin-left:0}.summary{grid-template-columns:1fr 1fr}.cover{padding:24px}.namebox{flex-direction:column}}
+@media print{.top,.actions,.side,.noPrint{display:none!important}.screen{display:block!important}.screen:not(#resultScreen){display:none!important}.result{box-shadow:none;border:0}.reviewItem{break-inside:avoid}}
+</style>
+</head>
+<body>
+<section id="startScreen" class="screen active hero"><div class="cover">
+<div class="badge">KRU PAI CLASSROOM • SCIENCE CHALLENGE</div>
+<h1>SCIENCE <span>ENTRANCE</span><br>M.1 • SET 4</h1>
+<div style="font-size:18px;font-weight:900;color:#40506f;margin:12px 0 2px">🧪 CHEMISTRY × 🧬 BIOLOGY</div><div class="sub">วิทยาศาสตร์ ป.6 สอบเข้า ม.1 • ชุดที่ 4 • 30 ข้อ • 60 นาที<br>เคมี × ชีววิทยาเข้มข้น • โจทย์สถานการณ์ใหม่ • เชื่อมหลายแนวคิด • ระดับแข่งขัน++</div>
+<div class="features"><span class="pill">🧬 CHEM × BIO • EXTREME</span><span class="pill">⏱️ 60 นาที</span><span class="pill">↔️ ข้ามและย้อนกลับได้</span><span class="pill">📊 เฉลยครบทุกข้อ</span></div>
+<div class="namebox"><input id="playerName" placeholder="พิมพ์ชื่อผู้ทำแบบทดสอบ" maxlength="40"><button class="btn primary" onclick="startGame()">เริ่มทดสอบ 🚀</button></div>
+</div></section>
+
+<section id="gameScreen" class="screen">
+<div class="top"><div class="topin"><div class="brand">⚡ SCIENCE ENTRANCE M.1</div><div class="stat" id="who"></div><div class="stat" id="progress"></div><div class="stat" id="liveScore">ถูก 0 ข้อ</div><div class="stat timer" id="timer">60:00</div></div></div>
+<div class="wrap gamegrid">
+<div class="card qcard">
+<div class="qmeta"><span class="type" id="qtype"></span><strong id="qnum"></strong></div>
+<div class="qtext" id="qtext"></div><div id="answerArea"></div>
+<div class="actions"><button class="btn secondary" onclick="move(-1)">← ก่อนหน้า</button><button class="btn warn" onclick="skip()">เว้นข้อนี้</button><button class="btn primary" onclick="submitCurrent()">ตรวจคำตอบ</button><button class="btn secondary next" onclick="move(1)">ข้อถัดไป →</button></div>
+</div>
+<aside class="card side"><h3>แผนที่ข้อสอบ 1–30</h3><div class="nav" id="nav"></div><div class="legend">⬜ ยังไม่ทำ &nbsp; 🟪 เลือก/กรอกแล้ว<br>🟩 ถูก &nbsp; 🟥 ผิด &nbsp; 🟨 เว้นไว้</div><button class="btn danger" style="width:100%;margin-top:16px" onclick="finish(false)">ส่งข้อสอบ</button></aside>
+</div></section>
+
+<section id="resultScreen" class="screen"><div class="wrap"><div class="card result">
+<div style="text-align:center"><div class="badge">RESULT REPORT</div><h1>สรุปผล SCIENCE ENTRANCE M.1 • SET 4</h1><div id="resultName"></div><div class="scorebig" id="scoreBig"></div><div id="percent"></div></div>
+<div class="summary"><div class="sum" id="sumCorrect"></div><div class="sum" id="sumWrong"></div><div class="sum" id="sumSkip"></div><div class="sum" id="sumTime"></div></div>
+<div class="noPrint" style="text-align:center;margin:15px"><button class="btn primary" onclick="window.print()">พิมพ์ / บันทึก PDF</button> <button class="btn secondary" onclick="location.reload()">เล่นใหม่</button></div>
+<h2>เฉลยและคำอธิบายทุกข้อ</h2><div class="review" id="review"></div>
+</div></div></section>
+
+
+<div id="feedback" class="feedback">
+  <div class="screenFlash"></div>
+  <div class="energyRing"></div>
+  <div class="fbCard" id="fbCard">
+    <div class="scanline"></div>
+    <div class="burst" id="burst"></div>
+    <div class="fbBadge" id="fbBadge">SCIENCE BATTLE RESULT</div>
+    <div class="fbIconWrap">
+      <div class="orbit"></div>
+      <div class="fbIcon" id="fbIcon"></div>
+    </div>
+    <div class="fbTitle" id="fbTitle"></div>
+    <div class="fbSub" id="fbSub"></div>
+    <div class="combo" id="fbCombo"></div>
+  </div>
+</div>
+<script>
+const Q=[
+{t:"mc",q:"สาร X เป็นผงสีขาว เมื่อละลายน้ำได้สารละลายใส นักเรียนแบ่งเป็น 3 หลอด: หลอด 1 ระเหยน้ำพบผลึกสีขาวกลับคืน หลอด 2 เติมสารละลายอีกชนิดเกิดตะกอนใหม่ หลอด 3 ให้ความร้อนกับผลึกเดิมจนเกิดแก๊สและของแข็งชนิดใหม่ เหตุการณ์ใดเป็นหลักฐานของการเกิดสารใหม่ชัดเจนที่สุด?",c:["การละลายในหลอดแรก","การระเหยน้ำแล้วได้ผลึกเดิม","การเกิดตะกอนและการสลายตัวเมื่อให้ความร้อน","การที่สารละลายใส"],a:2,e:"การเกิดตะกอนใหม่และการเกิดผลิตภัณฑ์ใหม่เมื่อให้ความร้อนเป็นหลักฐานของการเปลี่ยนแปลงทางเคมี ส่วนการละลายและการตกผลึกกลับมักเป็นการเปลี่ยนแปลงทางกายภาพ"},
+{t:"mc",q:"ของเหลว A และ B ใสไม่มีสีเหมือนกัน เมื่อนำ A ไปต้ม น้ำระเหยหมดเหลือผลึก แต่ B ระเหยหมดไม่เหลือสิ่งใด ข้อใดอธิบายได้ดีที่สุด?",c:["A อาจเป็นสารละลายของของแข็งในน้ำ ส่วน B อาจเป็นน้ำบริสุทธิ์หรือสารระเหยได้ทั้งหมด","A ต้องเป็นสารบริสุทธิ์เสมอ","B ต้องมีเกลือมากกว่า A","ของเหลวใสทุกชนิดเป็นสารชนิดเดียวกัน"],a:0,e:"การเหลือผลึกหลังระเหยบ่งชี้ว่ามีตัวละลายที่ไม่ระเหยอยู่ ส่วน B ไม่เหลือกากจึงอาจไม่มีของแข็งละลายอยู่"},
+{t:"fill",q:"เตรียมน้ำเกลือโดยใช้เกลือ 18 กรัม ผสมน้ำ 72 กรัม สารละลายนี้มีเกลือกี่เปอร์เซ็นต์โดยมวล? (ตอบตัวเลข)",a:"20",e:"มวลสารละลาย=18+72=90 g ดังนั้น %โดยมวล=18/90×100=20%"},
+{t:"mc",q:"สารละลาย P มีน้ำตาล 10 g ในน้ำ 90 g ส่วน Q มีน้ำตาล 15 g ในน้ำ 135 g ข้อใดถูกต้อง?",c:["P เข้มข้นกว่า Q","Q เข้มข้นกว่า P","P และ Q มีเปอร์เซ็นต์โดยมวลเท่ากัน","เปรียบเทียบไม่ได้เพราะปริมาณสารละลายต่างกัน"],a:2,e:"P มีน้ำตาล 10/100=10% โดยมวล ส่วน Q มี 15/(15+135)=15/150=10% จึงเข้มข้นเท่ากัน"},
+{t:"tf",q:"สารละลายที่มีตัวละลายมากกว่าอีกสารละลายหนึ่งเป็นกรัม จะต้องเข้มข้นกว่าด้วยเสมอ",a:false,e:"ความเข้มข้นขึ้นกับสัดส่วนตัวละลายต่อสารละลาย ไม่ใช่มวลตัวละลายเพียงอย่างเดียว"},
+{t:"mc",q:"นักเรียนมีสารละลายสีฟ้า 100 mL แล้วเติมน้ำ 100 mL โดยไม่มีตัวละลายสูญหาย ข้อใดควรเกิดขึ้น?",c:["จำนวนตัวละลายเพิ่มเป็นสองเท่า","ความเข้มข้นลดลงเพราะตัวละลายเดิมกระจายในปริมาตรมากขึ้น","ตัวละลายหายไปครึ่งหนึ่ง","เกิดสารใหม่ทันที"],a:1,e:"การเจือจางเพิ่มปริมาณตัวทำละลาย แต่ปริมาณตัวละลายเดิมคงอยู่ จึงทำให้ความเข้มข้นลดลง"},
+{t:"mc",q:"สาร A ทำให้ลิตมัสน้ำเงินเป็นแดง สาร B ไม่เปลี่ยนลิตมัสทั้งสองสี และสาร C ทำให้ลิตมัสแดงเป็นน้ำเงิน หากต้องเลือกสารที่มีโอกาสช่วยลดความเป็นกรดของ A มากที่สุด ควรเลือกข้อใด?",c:["A","B","C","เลือกไม่ได้จากข้อมูล"],a:2,e:"A แสดงสมบัติกรด C แสดงสมบัติเบส จึงมีโอกาสเกิดการสะเทินและลดความเป็นกรดของ A"},
+{t:"tf",q:"ถ้านำกรดกับเบสมาผสมกัน สารละลายสุดท้ายต้องเป็นกลางเสมอ ไม่ว่าปริมาณและความเข้มข้นของทั้งสองจะเป็นเท่าใด",a:false,e:"ถ้ากรดหรือเบสเหลือเกินหลังทำปฏิกิริยา สารละลายสุดท้ายยังอาจเป็นกรดหรือเบสได้"},
+{t:"mc",q:"มีผง 4 ชนิดไม่ทราบชื่อ ผลทดสอบพบ: W ถูกแม่เหล็กดูด, X ละลายน้ำและสารละลายนำไฟฟ้า, Y ไม่ละลายน้ำและไม่ถูกแม่เหล็กดูด, Z ละลายน้ำแต่สารละลายนำไฟฟ้าได้น้อยมาก หากต้องแยก W ออกจากส่วนผสมทั้งหมดก่อน วิธีใดเฉพาะเจาะจงที่สุด?",c:["กรอง","ระเหย","ใช้แม่เหล็ก","เติมกรด"],a:2,e:"สมบัติเด่นของ W คือถูกแม่เหล็กดูด จึงแยกออกได้โดยตรงโดยไม่ต้องเปลี่ยนสารอื่น"},
+{t:"mc",q:"ส่วนผสมมีเกลือ ทราย และสารสีที่ละลายน้ำได้ นักเรียนต้องการได้ 'ทรายบริสุทธิ์' โดยไม่สนใจการแยกเกลือกับสีออกจากกัน ขั้นตอนใดสั้นและเหมาะสมที่สุด?",c:["เติมน้ำให้สารที่ละลายได้ละลาย แล้วกรองและล้างทราย","ใช้แม่เหล็ก","ระเหยส่วนผสมแห้งทั้งหมด","กลั่นก่อนเติมน้ำ"],a:0,e:"เกลือและสีละลายน้ำ ส่วนทรายไม่ละลาย จึงละลายสารอื่นแล้วกรองและล้างตะกอนทรายได้"},
+{t:"fill",q:"สารก้อนหนึ่งมวล 144 g มีความหนาแน่น 1.2 g/cm³ สารก้อนนี้มีปริมาตรกี่ cm³?",a:"120",e:"V=m/ρ=144/1.2=120 cm³"},
+{t:"mc",q:"วัตถุ X จมในน้ำแต่ลอยในของเหลว Y ข้อใดต้องเป็นจริงเมื่อไม่เกิดปฏิกิริยาและพิจารณาความหนาแน่นเป็นหลัก?",c:["ความหนาแน่น X > น้ำ และความหนาแน่น X < Y","X เบากว่าน้ำเสมอ","Y ต้องมีความหนาแน่นน้อยกว่าน้ำ","X และ Y มีความหนาแน่นเท่ากันเสมอ"],a:0,e:"จมในน้ำหมายถึง X หนาแน่นกว่าน้ำ ส่วนลอยใน Y หมายถึง X หนาแน่นน้อยกว่า Y"},
+{t:"mc",q:"เซลล์ชนิดหนึ่งพบไมโทคอนเดรียจำนวนมากผิดจากเซลล์ข้างเคียง ข้อใดเป็นการอนุมานที่เหมาะสมที่สุด?",c:["เซลล์นี้น่าจะต้องใช้พลังงานมาก","เซลล์นี้ต้องสังเคราะห์ด้วยแสง","เซลล์นี้ไม่มีเยื่อหุ้มเซลล์","เซลล์นี้ต้องเป็นเซลล์พืชเท่านั้น"],a:0,e:"ไมโทคอนเดรียเกี่ยวข้องกับการปลดปล่อยพลังงานจากสารอาหาร เซลล์ที่ใช้พลังงานมากมักมีไมโทคอนเดรียมาก"},
+{t:"mc",q:"เซลล์พืชชนิดหนึ่งไม่มีคลอโรพลาสต์ แต่ยังมีชีวิตและหายใจระดับเซลล์ได้ เซลล์ใดสอดคล้องกับข้อมูลนี้มากที่สุด?",c:["เซลล์รากที่อยู่ใต้ดิน","เซลล์คุมที่มีคลอโรพลาสต์","เซลล์ใบส่วนที่รับแสงมาก","เซลล์สาหร่ายสีเขียว"],a:0,e:"เซลล์รากส่วนใหญ่ไม่ทำหน้าที่สังเคราะห์ด้วยแสงจึงมักไม่มีคลอโรพลาสต์ แต่ยังมีไมโทคอนเดรียและหายใจระดับเซลล์"},
+{t:"tf",q:"เซลล์พืชทุกเซลล์ต้องมีคลอโรพลาสต์ เพราะพืชทุกต้นสังเคราะห์ด้วยแสงได้",a:false,e:"เซลล์พืชบางชนิด เช่น เซลล์ราก ไม่ได้สังเคราะห์ด้วยแสงและไม่มีคลอโรพลาสต์ แม้ส่วนอื่นของต้นจะสังเคราะห์ด้วยแสง"},
+{t:"mc",q:"นักเรียนวางเซลล์พืชในสารละลาย 3 ชนิด หลัง 20 นาทีพบว่า A เซลล์เต่งมากขึ้น, B รูปร่างใกล้เดิม, C เยื่อหุ้มเซลล์หดออกจากผนังเซลล์ ข้อใดเรียงความเข้มข้นของสารละลายภายนอกจากต่ำไปสูงได้เหมาะสมที่สุด?",c:["A → B → C","C → B → A","B → A → C","บอกไม่ได้แม้เชิงเปรียบเทียบ"],a:0,e:"A น้ำเข้าเซลล์มาก แสดงว่าภายนอกเจือจางกว่า ส่วน C น้ำออกมากจนเกิดพลาสโมไลซิส แสดงว่าภายนอกเข้มข้นกว่า"},
+{t:"fill",q:"เซลล์ชนิดหนึ่งแบ่งตัวจาก 1 เซลล์เป็น 2 เซลล์ และเซลล์ลูกทุกเซลล์แบ่งต่อในอัตราเดียวกัน ถ้าเกิดการแบ่งพร้อมกัน 5 รอบ จะมีทั้งหมดกี่เซลล์?",a:"32",e:"จำนวนเพิ่มเป็นสองเท่าทุกรอบ: 1×2⁵=32 เซลล์"},
+{t:"mc",q:"พ่อแม่คู่หนึ่งมีลักษณะหนึ่งเหมือนกัน แต่ลูกบางคนแสดงลักษณะต่างออกไป ข้อใดเป็นข้อสรุปทางพันธุกรรมที่ระมัดระวังที่สุด?",c:["ลักษณะที่เห็นภายนอกเพียงอย่างเดียวอาจไม่บอกชุดยีนทั้งหมดของพ่อแม่","ลูกต้องไม่ใช่ลูกของพ่อแม่คู่นี้","ลักษณะทุกอย่างถ่ายทอดจากแม่เท่านั้น","สิ่งแวดล้อมไม่มีผลต่อลักษณะใดเลย"],a:0,e:"พ่อแม่ที่มีฟีโนไทป์เหมือนกันอาจมีจีโนไทป์ต่างกันและถ่ายทอดแอลลีลที่ทำให้ลูกมีลักษณะต่างได้"},
+{t:"mc",q:"กำหนดให้ A เป็นลักษณะเด่นและ a เป็นลักษณะด้อย บุคคลที่แสดงลักษณะเด่นอาจมีจีโนไทป์ใด?",c:["AA เท่านั้น","Aa เท่านั้น","AA หรือ Aa","aa เท่านั้น"],a:2,e:"ลักษณะเด่นปรากฏได้ทั้งในโฮโมไซกัสเด่น AA และเฮเทอโรไซกัส Aa"},
+{t:"fill",q:"ถ้าพ่อและแม่ต่างมีจีโนไทป์ Aa และพิจารณาการถ่ายทอดแบบเมนเดลอย่างง่าย โอกาสที่ลูกหนึ่งคนจะมีจีโนไทป์ aa เท่ากับกี่เปอร์เซ็นต์? (ตอบตัวเลข)",a:"25",e:"Aa×Aa ให้สัดส่วน AA:Aa:aa = 1:2:1 ดังนั้น aa = 1/4 = 25%"},
+{t:"tf",q:"ถ้าพ่อแม่ Aa × Aa มีลูกคนแรกเป็น aa แล้ว ลูกคนที่สองจะไม่มีโอกาสเป็น aa เพราะสัดส่วน 25% ถูกใช้ไปแล้ว",a:false,e:"การเกิดของลูกแต่ละคนเป็นเหตุการณ์ใหม่ โอกาสตามแบบจำลองยังเป็น 25% ในแต่ละครั้ง"},
+{t:"mc",q:"พืชดอกชนิดหนึ่งมีดอกสีม่วงเป็นลักษณะเด่น (P) สีขาวเป็นลักษณะด้อย (p) เมื่อนำต้นสีม่วงต้นหนึ่งผสมกับต้นสีขาว ได้ลูกสีม่วงและสีขาวใกล้เคียง 1:1 ต้นสีม่วงเดิมน่าจะมีจีโนไทป์ใด?",c:["PP","Pp","pp","สรุปไม่ได้เลย"],a:1,e:"ต้นขาวคือ pp หากต้นม่วงเป็น Pp จะให้ลูก Pp และ pp ประมาณ 1:1 ส่วน PP จะให้ลูกม่วงทั้งหมด"},
+{t:"mc",q:"อาหาร A มีแป้งและโปรตีน อาหาร B มีไขมันและโปรตีน หลังการย่อยสมบูรณ์ สารอาหารขนาดเล็กใดจาก A และ B มีชนิดร่วมกันเด่นชัด?",c:["กลูโคส","กรดอะมิโน","กรดไขมันเท่านั้น","แป้ง"],a:1,e:"โปรตีนพบในทั้ง A และ B และย่อยเป็นกรดอะมิโน ส่วนแป้งให้กลูโคสและไขมันให้กรดไขมันกับกลีเซอรอล"},
+{t:"mc",q:"ถ้าตับอ่อนหลั่งเอนไซม์ย่อยอาหารเข้าสู่ลำไส้เล็กได้น้อยลงมาก กระบวนการใดมีแนวโน้มได้รับผลกระทบโดยตรง?",c:["การย่อยสารอาหารหลายชนิดในลำไส้เล็ก","การบดอาหารด้วยฟัน","การลำเลียงออกซิเจนโดยเม็ดเลือดแดง","การกรองของเสียที่ไต"],a:0,e:"ตับอ่อนสร้างเอนไซม์หลายชนิดที่ช่วยย่อยคาร์โบไฮเดรต โปรตีน และไขมันในลำไส้เล็ก"},
+{t:"tf",q:"น้ำดีเป็นเอนไซม์ที่ย่อยไขมันให้กลายเป็นกรดไขมันโดยตรง",a:false,e:"น้ำดีไม่ใช่เอนไซม์ แต่ช่วยทำให้ไขมันแตกเป็นหยดเล็ก ๆ เพิ่มพื้นที่ผิวให้เอนไซม์ไลเปสทำงาน"},
+{t:"fill",q:"หัวใจเต้น 72 ครั้งต่อนาที ถ้ารักษาอัตรานี้เป็นเวลา 2 ชั่วโมง จะเต้นทั้งหมดกี่ครั้ง?",a:"8640",e:"2 ชั่วโมง = 120 นาที ดังนั้น 72×120 = 8,640 ครั้ง"},
+{t:"mc",q:"ถุงลมปอดมีผนังบางมากและมีหลอดเลือดฝอยจำนวนมาก ลักษณะทั้งสองช่วยหน้าที่ใดมากที่สุด?",c:["เพิ่มประสิทธิภาพการแลกเปลี่ยนแก๊สโดยลดระยะการแพร่และมีเลือดรับ–ส่งแก๊ส","ทำให้อาหารย่อยเร็วขึ้น","ทำให้ปอดสร้างเม็ดเลือดแดง","ป้องกันอากาศเข้าสู่ปอด"],a:0,e:"ผนังบางลดระยะทางการแพร่ ส่วนเครือข่ายหลอดเลือดช่วยคงความแตกต่างของความเข้มข้นของแก๊สและลำเลียงแก๊สออกไป"},
+{t:"mc",q:"หลังออกกำลังกายหนัก อัตราการหายใจและชีพจรเพิ่มขึ้นพร้อมกัน เหตุผลเชื่อมโยงใดเหมาะสมที่สุด?",c:["กล้ามเนื้อต้องการออกซิเจนและสารอาหารมากขึ้น พร้อมกำจัด CO₂ มากขึ้น ระบบหายใจและหมุนเวียนจึงทำงานเพิ่ม","ปอดต้องการย่อยอาหาร","หัวใจสร้างออกซิเจนเอง","กล้ามเนื้อหยุดใช้พลังงาน"],a:0,e:"การใช้พลังงานของกล้ามเนื้อเพิ่ม ทำให้ต้องรับ O₂ และลำเลียงสารต่าง ๆ มากขึ้น รวมทั้งกำจัด CO₂ จึงต้องเพิ่มทั้งการหายใจและการไหลเวียนเลือด"},
+{t:"mc",q:"พืชน้ำถูกวางใต้โคมไฟที่ระยะ 10, 20, 30 และ 40 cm นับฟองแก๊สต่อนาทีได้ 32, 21, 14 และ 9 ตามลำดับ ถ้าต้องการสรุปว่าแสงมีผลต่ออัตราการสังเคราะห์ด้วยแสง ข้อจำกัดสำคัญของการทดลองนี้คือข้อใด?",c:["ฟองแก๊สเป็นเพียงตัวชี้วัดโดยอ้อม และควรควบคุมอุณหภูมิซึ่งอาจเปลี่ยนตามระยะจากโคม","ต้องใช้พืชคนละชนิดทุกระยะ","จำนวนฟองไม่มีความสัมพันธ์กับแก๊สเลย","ไม่จำเป็นต้องทำซ้ำ"],a:0,e:"จำนวนฟองใช้ประมาณอัตราการเกิดแก๊สได้แต่ไม่แม่นเท่าการวัดปริมาตร และโคมไฟอาจทำให้อุณหภูมิเปลี่ยน จึงต้องควบคุมตัวแปรนี้"},
+{t:"mc",q:"ในการทดลองเดียวกัน ถ้าระยะจากโคมลดลงแล้วฟองแก๊สเพิ่มขึ้น แต่เมื่อวางใกล้มากที่สุดฟองกลับลดลง ข้อใดเป็นสมมติฐานที่ควรทดสอบต่อมากที่สุด?",c:["ความร้อนจากโคมเมื่อใกล้มากอาจทำให้อุณหภูมิสูงเกินช่วงเหมาะสม","แสงไม่มีผลต่อพืชทุกกรณี","พืชหยุดหายใจเมื่อมีแสง","ฟองแก๊สต้องเป็นไนโตรเจนเสมอ"],a:0,e:"ผลที่กลับทิศเมื่อใกล้มากอาจเกิดจากตัวแปรร่วม เช่น อุณหภูมิ จึงควรวัดและควบคุมอุณหภูมิเพื่อทดสอบสมมติฐาน"},
+{t:"mc",q:"นักเรียนพบว่าใบพืชที่ถูกปิดด้วยกระดาษดำไม่พบแป้ง แต่ใบที่ได้รับแสงพบแป้ง หากต้องการเพิ่มความน่าเชื่อถือว่าความแตกต่างเกิดจากแสง ควรปรับการทดลองอย่างไร?",c:["ใช้ใบจากพืชเดียวกันหรือพืชสภาพใกล้เคียง ควบคุมปัจจัยอื่น และทำซ้ำหลายตัวอย่าง","ใช้พืชคนละชนิดและรดน้ำต่างกัน","ทดสอบเพียงใบเดียวแต่สรุปกับพืชทุกชนิด","เปลี่ยนทั้งแสงและปริมาณ CO₂ พร้อมกัน"],a:0,e:"การควบคุมตัวแปรและทำซ้ำช่วยลดผลจากความแตกต่างระหว่างตัวอย่างและเพิ่มความน่าเชื่อถือของข้อสรุป"}
+];
+let idx=0, name="", remain=3600, timerId, startedAt, answers=Array(Q.length).fill(null), states=Array(Q.length).fill("new");
+function startGame(){name=document.getElementById("playerName").value.trim();if(!name){alert("กรุณาพิมพ์ชื่อก่อนเริ่มค่ะ");return}show("gameScreen");document.getElementById("who").textContent="👤 "+name;startedAt=Date.now();render();timerId=setInterval(()=>{remain--;drawTimer();if(remain<=0){clearInterval(timerId);finish(true)}},1000)}
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active")}
+function drawTimer(){let m=Math.floor(remain/60),s=remain%60,t=document.getElementById("timer");t.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");t.classList.toggle("low",remain<=300)}
+function render(){let q=Q[idx];document.getElementById("qnum").textContent=`ข้อ ${idx+1} / ${Q.length}`;document.getElementById("progress").textContent=`ทำแล้ว ${states.filter(x=>x==="correct"||x==="wrong").length}/${Q.length}`;document.getElementById("liveScore").textContent=`ถูก ${states.filter(x=>x==="correct").length} ข้อ`;document.getElementById("qtype").textContent=q.t==="mc"?"4 ตัวเลือก":q.t==="fill"?"เติมคำตอบ":"ถูกหรือผิด";document.getElementById("qtext").textContent=q.q;
+let a=document.getElementById("answerArea");a.innerHTML="";
+if(q.t==="mc"){q.c.forEach((x,i)=>{let b=document.createElement("button");b.className="choice"+(answers[idx]===i?" selected":"");b.innerHTML=`<b>${"ABCD"[i]}.</b> ${x}`;b.onclick=()=>{if(done())return;answers[idx]=i;states[idx]="answered";render()};a.appendChild(b)})}
+if(q.t==="fill"){let inp=document.createElement("input");inp.className="answerInput";inp.placeholder="พิมพ์เฉพาะตัวเลข";inp.value=answers[idx]??"";inp.disabled=done();inp.oninput=e=>{answers[idx]=e.target.value;states[idx]=e.target.value.trim()?"answered":"new";drawNav()};a.appendChild(inp)}
+if(q.t==="tf"){let d=document.createElement("div");d.className="tf";[true,false].forEach((v,i)=>{let b=document.createElement("button");b.className="choice"+(answers[idx]===v?" selected":"");b.textContent=v?"✓ ถูก":"✕ ผิด";b.onclick=()=>{if(done())return;answers[idx]=v;states[idx]="answered";render()};d.appendChild(b)});a.appendChild(d)}
+drawNav()}
+function done(){return states[idx]==="correct"||states[idx]==="wrong"}
+function normalize(v){return String(v??"").replace(/,/g,"").replace(/\s/g,"").trim()}
+
+function tone(freq,dur,type="sine",vol=.06,delay=0){
+ try{let A=window.AudioContext||window.webkitAudioContext,ctx=window._ac||(window._ac=new A()),o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=freq;g.gain.value=vol;o.connect(g);g.connect(ctx.destination);let t=ctx.currentTime+delay;o.start(t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.stop(t+dur)}catch(e){}
+}
+function feedback(ok){
+ let f=document.getElementById("feedback"),card=document.getElementById("fbCard"),burst=document.getElementById("burst");
+ f.className="feedback show "+(ok?"ok":"bad");
+ document.getElementById("fbIcon").textContent=ok?"✓":"✕";
+ document.getElementById("fbTitle").textContent=ok?"BRILLIANT!":"SYSTEM ALERT!";
+ document.getElementById("fbSub").textContent=ok?"คำตอบถูกต้อง • วิเคราะห์ได้เฉียบมาก ⚡":"คำตอบนี้ยังไม่ผ่าน • เก็บข้อมูลไว้ลุยต่อ 🔬";
+ document.getElementById("fbBadge").textContent=ok?"SCIENCE POWER +1":"RECALCULATE MODE";
+ document.getElementById("fbCombo").textContent=ok?"✦ ENERGY LOCKED ✦":"✦ KEEP THINKING ✦";
+ burst.innerHTML="";
+ let icons=ok?["⚡","✨","🧬","⭐","🔬","💫","⚛️","✨","⚡","⭐","🧪","💥"]:["⚠️","💥","🔻","⚡","✕","💢","⚠️","🔻","💥","⚡"];
+ icons.forEach((x,i)=>{
+   let e=document.createElement("span");e.className="spark";e.textContent=x;
+   let a=i*Math.PI*2/icons.length,r=180+Math.random()*120;
+   e.style.setProperty("--x",Math.cos(a)*r+"px");
+   e.style.setProperty("--y",Math.sin(a)*r+"px");
+   e.style.setProperty("--r",(180+Math.random()*360)+"deg");
+   burst.appendChild(e);
+ });
+ for(let i=0;i<28;i++){
+   let d=document.createElement("i");d.className="dust";
+   let a=Math.random()*Math.PI*2,r=110+Math.random()*230;
+   d.style.setProperty("--x",Math.cos(a)*r+"px");
+   d.style.setProperty("--y",Math.sin(a)*r+"px");
+   d.style.animationDelay=(Math.random()*.12)+"s";
+   burst.appendChild(d);
+ }
+ if(ok){
+   tone(392,.10,"triangle",.06);
+   tone(523,.12,"triangle",.07,.08);
+   tone(659,.14,"triangle",.07,.16);
+   tone(784,.16,"sine",.07,.26);
+   tone(1046,.24,"sine",.06,.38);
+ }else{
+   card.classList.remove("shakeMega");void card.offsetWidth;card.classList.add("shakeMega");
+   tone(190,.13,"sawtooth",.045);
+   tone(150,.16,"sawtooth",.045,.10);
+   tone(105,.28,"square",.035,.23);
+ }
+ setTimeout(()=>{f.className="feedback"},ok?1700:1850);
+}
+function submitCurrent(){if(done()){alert("ข้อนี้ตรวจคำตอบแล้วค่ะ");return}if(answers[idx]===null||normalize(answers[idx])===""){alert("กรุณาตอบก่อนตรวจ หรือกด “เว้นข้อนี้”");return}let q=Q[idx],ok=q.t==="fill"?normalize(answers[idx])===normalize(q.a):answers[idx]===q.a;states[idx]=ok?"correct":"wrong";render();feedback(ok)}
+function skip(){if(done())return;answers[idx]=null;states[idx]="skipped";if(idx<Q.length-1)idx++;render()}
+function move(d){idx=Math.max(0,Math.min(Q.length-1,idx+d));render()}
+function drawNav(){let n=document.getElementById("nav");n.innerHTML="";states.forEach((s,i)=>{let b=document.createElement("button");b.className=`n ${s} ${i===idx?"current":""}`;b.textContent=i+1;b.onclick=()=>{idx=i;render()};n.appendChild(b)})}
+function correctAnswer(q){if(q.t==="mc")return q.c[q.a];if(q.t==="tf")return q.a?"ถูก":"ผิด";return q.a}
+function userAnswer(q,i){let v=answers[i];if(v===null)return "ไม่ได้ตอบ";if(q.t==="mc")return q.c[v]??"ไม่ได้ตอบ";if(q.t==="tf")return v?"ถูก":"ผิด";return v}
+function finish(auto){let unresolved=states.filter(x=>x==="new"||x==="answered"||x==="skipped").length;if(!auto&&unresolved&&!confirm(`ยังมี ${unresolved} ข้อที่ยังไม่ได้ตรวจ/เว้นไว้ ต้องการส่งข้อสอบเลยหรือไม่?`))return;clearInterval(timerId);let c=states.filter(x=>x==="correct").length,w=states.filter(x=>x==="wrong").length,sk=Q.length-c-w;let used=Math.min(3600,Math.floor((Date.now()-startedAt)/1000));show("resultScreen");document.getElementById("resultName").textContent=`ผู้ทดสอบ: ${name}`;document.getElementById("scoreBig").textContent=`${c} / ${Q.length}`;document.getElementById("percent").textContent=`${Math.round(c/Q.length*100)}%`;document.getElementById("sumCorrect").innerHTML=`✅ ถูก<br><big>${c}</big>`;document.getElementById("sumWrong").innerHTML=`❌ ผิด<br><big>${w}</big>`;document.getElementById("sumSkip").innerHTML=`⏭️ ไม่ได้ตรวจ/เว้น<br><big>${sk}</big>`;document.getElementById("sumTime").innerHTML=`⏱️ เวลาใช้<br><big>${Math.floor(used/60)}:${String(used%60).padStart(2,"0")}</big>`;
+let r=document.getElementById("review");r.innerHTML="";Q.forEach((q,i)=>{let st=states[i],klass=st==="correct"?"ok":st==="wrong"?"bad":"skip",icon=st==="correct"?"✅":st==="wrong"?"❌":"⏭️";let div=document.createElement("div");div.className="reviewItem "+klass;div.innerHTML=`<b>${icon} ข้อ ${i+1}</b> — ${q.q}<div>คำตอบของผู้ทำ: <b>${userAnswer(q,i)}</b></div><div>คำตอบที่ถูก: <b>${correctAnswer(q)}</b></div><div class="exp"><b>วิธีคิด:</b> ${q.e}</div>`;r.appendChild(div)});window.scrollTo(0,0)}
+drawTimer();
+</script>
+</body></html>

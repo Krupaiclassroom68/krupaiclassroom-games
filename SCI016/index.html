@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SCIENCE ENTRANCE M.1 — 30 Challenge</title>
+<style>
+:root{--ink:#172033;--paper:#f7f9fc;--card:#fff;--line:#dce3ee;--accent:#087f8c;--accent2:#ffb703;--ok:#159957;--bad:#d64045;--skip:#f4a261;--muted:#7a8599}
+*{box-sizing:border-box} body{margin:0;font-family:"Tahoma","Noto Sans Thai",sans-serif;background:radial-gradient(circle at 10% 0,#dff8f5 0,transparent 35%),linear-gradient(135deg,#f8fbff,#fff9ed);color:var(--ink);min-height:100vh}
+button,input{font:inherit}.wrap{max-width:1180px;margin:auto;padding:18px}.screen{display:none}.screen.active{display:block}
+.hero{min-height:calc(100vh - 36px);display:grid;place-items:center}.cover{width:min(820px,100%);background:rgba(255,255,255,.94);border:1px solid #fff;border-radius:30px;padding:34px;box-shadow:0 25px 70px #3b2f6d20;text-align:center}
+.badge{display:inline-block;padding:8px 14px;border-radius:99px;background:#171b2d;color:white;font-weight:800;letter-spacing:1px}.cover h1{font-size:clamp(34px,7vw,72px);margin:14px 0 0;line-height:.95}.cover h1 span{color:var(--accent)}.sub{font-size:20px;color:#59647a;margin:16px auto;max-width:650px}.features{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:20px 0}.pill{background:#e5f8f6;border:1px solid #bfe8e4;border-radius:99px;padding:9px 13px;font-weight:700}
+.namebox{display:flex;gap:10px;max-width:520px;margin:25px auto 0}.namebox input{flex:1;padding:15px 18px;border:2px solid #d9def0;border-radius:16px;outline:none;font-size:18px}.btn{border:0;border-radius:15px;padding:13px 18px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(135deg,var(--accent),#7b68ee);color:white;box-shadow:0 8px 20px #087f8c35}.secondary{background:#edf0f6;color:#35405a}.warn{background:#fff1dd;color:#9a5a00}.danger{background:#ffe7e8;color:#a8292d}
+.top{position:sticky;top:0;z-index:5;background:#ffffffee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}.topin{max-width:1180px;margin:auto;padding:0 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.brand{font-weight:900}.stat{background:#f2f5fa;border-radius:12px;padding:8px 12px;font-weight:800}.timer{margin-left:auto;background:#171b2d;color:white}.timer.low{background:#b4232c;animation:pulse .7s infinite}@keyframes pulse{50%{transform:scale(1.04)}}
+.gamegrid{display:grid;grid-template-columns:1fr 290px;gap:18px;margin-top:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 35px #26334d12}.qcard{padding:24px}.qmeta{display:flex;justify-content:space-between;gap:12px;align-items:center}.type{font-weight:900;color:var(--accent);background:#e1f7f5;padding:7px 11px;border-radius:10px}.qtext{font-size:clamp(21px,3vw,29px);font-weight:800;line-height:1.55;margin:22px 0}.choices{display:grid;gap:11px}.choice{width:100%;text-align:left;border:2px solid #e3e7ef;background:white;border-radius:16px;padding:15px 17px;font-weight:700;cursor:pointer;transition:.15s}.choice:hover{border-color:#a79cf1;transform:translateY(-1px)}.choice.selected{border-color:var(--accent);background:#e5f8f6}.answerInput{width:100%;max-width:420px;padding:16px;border:2px solid #dce2eb;border-radius:15px;font-size:21px}.tf{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tf .choice{text-align:center;font-size:22px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.actions .next{margin-left:auto}
+.side{padding:18px;height:max-content;position:sticky;top:86px}.side h3{margin:0 0 12px}.legend{font-size:13px;color:#657085;line-height:1.8}.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.n{aspect-ratio:1;border:0;border-radius:10px;font-weight:900;cursor:pointer;background:#eef1f6;color:#536078}.n.current{outline:3px solid #3325b9}.n.answered{background:#dfe3ff;color:#3f35a8}.n.correct{background:#dff5e9;color:#087a42}.n.wrong{background:#ffe1e3;color:#a51f29}.n.skipped{background:#fff0d9;color:#a35e00}
+.result{padding:28px}.scorebig{text-align:center;font-size:64px;font-weight:900;color:var(--accent);margin:5px}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.sum{padding:15px;border-radius:15px;background:#f4f6fa;text-align:center;font-weight:800}.review{display:grid;gap:10px}.reviewItem{border:1px solid var(--line);border-radius:15px;padding:14px}.reviewItem.ok{border-left:6px solid var(--ok)}.reviewItem.bad{border-left:6px solid var(--bad)}.reviewItem.skip{border-left:6px solid var(--skip)}.exp{color:#5c667a;margin-top:7px;line-height:1.55}
+
+.feedback{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:#10142688;backdrop-filter:blur(5px);overflow:hidden}
+.feedback.show{display:flex;animation:fbIn .18s ease-out}
+.fbCard{position:relative;width:min(520px,88vw);padding:30px 24px;border-radius:30px;text-align:center;background:white;box-shadow:0 30px 90px #0005;animation:pop .42s cubic-bezier(.2,1.45,.45,1)}
+.feedback.ok .fbCard{background:linear-gradient(145deg,#f2fff8,#dff8e9);border:4px solid #27b66f}
+.feedback.bad .fbCard{background:linear-gradient(145deg,#fff7f7,#ffe3e5);border:4px solid #e05259}
+.fbIcon{font-size:86px;line-height:1;filter:drop-shadow(0 8px 10px #0002);animation:bounce .5s ease}
+.fbTitle{font-size:38px;font-weight:1000;margin:8px 0 4px}
+.feedback.ok .fbTitle{color:#087a42}.feedback.bad .fbTitle{color:#b4232c}
+.fbSub{font-size:18px;font-weight:800;color:#5e687a}
+.burst{position:absolute;inset:0;pointer-events:none}
+.spark{position:absolute;left:50%;top:50%;font-size:25px;animation:fly .8s ease-out forwards}
+.shake{animation:shake .38s ease!important}
+@keyframes fbIn{from{opacity:0}to{opacity:1}}@keyframes pop{0%{transform:scale(.55) rotate(-4deg);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1)}}@keyframes bounce{0%{transform:scale(.4)}65%{transform:scale(1.25)}100%{transform:scale(1)}}@keyframes fly{to{transform:translate(var(--x),var(--y)) rotate(260deg);opacity:0}}@keyframes shake{20%{transform:translateX(-13px)}40%{transform:translateX(12px)}60%{transform:translateX(-8px)}80%{transform:translateX(6px)}}
+
+.cover{position:relative;overflow:hidden}
+.cover::before{content:"⚛️";position:absolute;right:24px;top:18px;font-size:70px;opacity:.08;transform:rotate(12deg)}
+.cover::after{content:"🧪  🔬  🧬";position:absolute;left:24px;bottom:18px;font-size:28px;opacity:.10;letter-spacing:8px}
+
+@media(max-width:850px){.gamegrid{grid-template-columns:1fr}.side{position:static}.timer{margin-left:0}.summary{grid-template-columns:1fr 1fr}.cover{padding:24px}.namebox{flex-direction:column}}
+@media print{.top,.actions,.side,.noPrint{display:none!important}.screen{display:block!important}.screen:not(#resultScreen){display:none!important}.result{box-shadow:none;border:0}.reviewItem{break-inside:avoid}}
+</style>
+</head>
+<body>
+<section id="startScreen" class="screen active hero"><div class="cover">
+<div class="badge">KRU PAI CLASSROOM • SCIENCE CHALLENGE</div>
+<h1>SCIENCE <span>ENTRANCE</span><br>M.1</h1>
+<div class="sub">วิทยาศาสตร์ ป.6 สอบเข้า ม.1 ระดับแข่งขัน • 30 ข้อ • 60 นาที<br>วิเคราะห์สถานการณ์ การทดลอง และคำนวณ • ผสม 4 ตัวเลือก เติมคำตอบ และถูก–ผิด</div>
+<div class="features"><span class="pill">🔬 ระดับแข่งขัน</span><span class="pill">⏱️ 60 นาที</span><span class="pill">↔️ ข้ามและย้อนกลับได้</span><span class="pill">📊 เฉลยครบทุกข้อ</span></div>
+<div class="namebox"><input id="playerName" placeholder="พิมพ์ชื่อผู้ทำแบบทดสอบ" maxlength="40"><button class="btn primary" onclick="startGame()">เริ่มทดสอบ 🚀</button></div>
+</div></section>
+
+<section id="gameScreen" class="screen">
+<div class="top"><div class="topin"><div class="brand">⚡ SCIENCE ENTRANCE M.1</div><div class="stat" id="who"></div><div class="stat" id="progress"></div><div class="stat" id="liveScore">ถูก 0 ข้อ</div><div class="stat timer" id="timer">60:00</div></div></div>
+<div class="wrap gamegrid">
+<div class="card qcard">
+<div class="qmeta"><span class="type" id="qtype"></span><strong id="qnum"></strong></div>
+<div class="qtext" id="qtext"></div><div id="answerArea"></div>
+<div class="actions"><button class="btn secondary" onclick="move(-1)">← ก่อนหน้า</button><button class="btn warn" onclick="skip()">เว้นข้อนี้</button><button class="btn primary" onclick="submitCurrent()">ตรวจคำตอบ</button><button class="btn secondary next" onclick="move(1)">ข้อถัดไป →</button></div>
+</div>
+<aside class="card side"><h3>แผนที่ข้อสอบ 1–30</h3><div class="nav" id="nav"></div><div class="legend">⬜ ยังไม่ทำ &nbsp; 🟪 เลือก/กรอกแล้ว<br>🟩 ถูก &nbsp; 🟥 ผิด &nbsp; 🟨 เว้นไว้</div><button class="btn danger" style="width:100%;margin-top:16px" onclick="finish(false)">ส่งข้อสอบ</button></aside>
+</div></section>
+
+<section id="resultScreen" class="screen"><div class="wrap"><div class="card result">
+<div style="text-align:center"><div class="badge">RESULT REPORT</div><h1>สรุปผล SCIENCE ENTRANCE M.1</h1><div id="resultName"></div><div class="scorebig" id="scoreBig"></div><div id="percent"></div></div>
+<div class="summary"><div class="sum" id="sumCorrect"></div><div class="sum" id="sumWrong"></div><div class="sum" id="sumSkip"></div><div class="sum" id="sumTime"></div></div>
+<div class="noPrint" style="text-align:center;margin:15px"><button class="btn primary" onclick="window.print()">พิมพ์ / บันทึก PDF</button> <button class="btn secondary" onclick="location.reload()">เล่นใหม่</button></div>
+<h2>เฉลยและคำอธิบายทุกข้อ</h2><div class="review" id="review"></div>
+</div></div></section>
+
+
+<div id="feedback" class="feedback">
+  <div class="fbCard" id="fbCard">
+    <div class="burst" id="burst"></div>
+    <div class="fbIcon" id="fbIcon"></div>
+    <div class="fbTitle" id="fbTitle"></div>
+    <div class="fbSub" id="fbSub"></div>
+  </div>
+</div>
+<script>
+const Q=[
+{t:"mc",q:"นักเรียนปลูกต้นถั่ว 4 ชุด โดยควบคุมชนิดดิน ปริมาณน้ำ และอุณหภูมิเท่ากัน ชุด A ได้แสง 2 ชม./วัน ชุด B 4 ชม./วัน ชุด C 8 ชม./วัน ชุด D 12 ชม./วัน หากต้องการศึกษาผลของระยะเวลารับแสงต่อการเจริญเติบโต ตัวแปรต้นคือข้อใด?",c:["ความสูงของต้นถั่ว","ระยะเวลาที่ได้รับแสง","ปริมาณน้ำ","ชนิดของดิน"],a:1,e:"ตัวแปรต้นคือสิ่งที่ผู้ทดลองตั้งใจเปลี่ยน ในการทดลองนี้เปลี่ยนเฉพาะระยะเวลาที่ได้รับแสง"},
+{t:"tf",q:"เมื่อนำเซลล์พืชไปแช่ในสารละลายที่เข้มข้นกว่าของเหลวภายในเซลล์ น้ำมีแนวโน้มเคลื่อนออกจากเซลล์ ทำให้เซลล์เหี่ยวลง",a:true,e:"น้ำเคลื่อนผ่านเยื่อเลือกผ่านจากบริเวณที่มีน้ำมากกว่าไปยังบริเวณที่มีน้ำน้อยกว่า จึงออกจากเซลล์เมื่อภายนอกเข้มข้นกว่า"},
+{t:"fill",q:"โซ่อาหาร หญ้า → ตั๊กแตน → กบ → งู หากหญ้าสะสมพลังงานไว้ 20,000 หน่วย และโดยประมาณพลังงานส่งต่อไปยังลำดับถัดไป 10% งูจะได้รับพลังงานประมาณกี่หน่วย? (ตอบตัวเลข)",a:"20",e:"ตั๊กแตนได้ 2,000 หน่วย กบได้ 200 หน่วย และงูได้ 20 หน่วย"},
+{t:"mc",q:"สิ่งมีชีวิตชนิดหนึ่งมีลักษณะเด่นคือ หายใจด้วยเหงือกเมื่อวัยอ่อน แต่เมื่อโตเต็มวัยหายใจด้วยปอดและผิวหนัง สิ่งมีชีวิตนี้ควรอยู่ในกลุ่มใด?",c:["ปลา","สัตว์สะเทินน้ำสะเทินบก","สัตว์เลื้อยคลาน","สัตว์เลี้ยงลูกด้วยนม"],a:1,e:"ลักษณะดังกล่าวเป็นลักษณะสำคัญของสัตว์สะเทินน้ำสะเทินบก เช่น กบ"},
+{t:"mc",q:"พืชต้นหนึ่งถูกครอบใบส่วนหนึ่งด้วยกระดาษดำทั้งสองด้าน แล้วนำไปรับแสงหลายชั่วโมง เมื่อตรวจแป้งด้วยสารละลายไอโอดีน ส่วนใดมีแนวโน้มเปลี่ยนเป็นสีน้ำเงินดำ?",c:["เฉพาะส่วนที่ถูกกระดาษดำปิด","เฉพาะส่วนใบที่ได้รับแสง","ทุกส่วนของใบเท่ากัน","ไม่มีส่วนใดเปลี่ยนสี"],a:1,e:"การสร้างแป้งจากการสังเคราะห์ด้วยแสงต้องอาศัยแสง ส่วนที่ได้รับแสงจึงมีแป้งสะสมมากกว่า"},
+{t:"tf",q:"ถ้าจำนวนผู้ล่าในระบบนิเวศเพิ่มขึ้นอย่างมาก จำนวนเหยื่อจะลดลงเสมอจนสูญพันธุ์",a:false,e:"ผู้ล่าอาจทำให้จำนวนเหยื่อลดลง แต่ระบบนิเวศมีปัจจัยหลายอย่างและประชากรอาจเข้าสู่สมดุล ไม่จำเป็นต้องสูญพันธุ์เสมอ"},
+{t:"fill",q:"วัตถุมวล 600 กรัม มีปริมาตร 200 ลูกบาศก์เซนติเมตร ความหนาแน่นของวัตถุเท่ากับกี่กรัมต่อลูกบาศก์เซนติเมตร?",a:"3",e:"ความหนาแน่น = มวล ÷ ปริมาตร = 600 ÷ 200 = 3 g/cm³"},
+{t:"mc",q:"นำวัตถุ A, B และ C ใส่ในน้ำ พบว่า A ลอยโดยจมเพียงบางส่วน B ลอยปริ่มผิวน้ำ และ C จม ข้อสรุปใดเหมาะสมที่สุด?",c:["A หนาแน่นมากกว่าน้ำ","B หนาแน่นใกล้เคียงน้ำ","C หนาแน่นน้อยกว่าน้ำ","วัตถุทั้งสามมีความหนาแน่นเท่ากัน"],a:1,e:"วัตถุที่ลอยปริ่มมีความหนาแน่นใกล้เคียงของเหลว ส่วน A น้อยกว่าน้ำ และ C มากกว่าน้ำ"},
+{t:"mc",q:"นักเรียนต้องการแยกส่วนผสมของผงเหล็ก ทราย และเกลือแกง วิธีใดเรียงลำดับได้เหมาะสมที่สุด?",c:["กรอง → ใช้แม่เหล็ก → ระเหย","ใช้แม่เหล็ก → เติมน้ำ → กรอง → ระเหย","เติมน้ำ → ระเหย → ใช้แม่เหล็ก","ระเหย → กรอง → ใช้แม่เหล็ก"],a:1,e:"ใช้แม่เหล็กแยกเหล็ก เติมน้ำให้เกลือละลาย กรองทรายออก แล้วระเหยน้ำเพื่อได้เกลือ"},
+{t:"tf",q:"การละลายของน้ำตาลในน้ำเป็นการเปลี่ยนแปลงทางเคมี เพราะไม่สามารถมองเห็นน้ำตาลเดิมได้",a:false,e:"น้ำตาลยังคงเป็นสารเดิมและสามารถแยกกลับได้ด้วยการระเหยน้ำ จึงเป็นการเปลี่ยนแปลงทางกายภาพ"},
+{t:"fill",q:"น้ำ 250 กรัม อุณหภูมิ 20°C ได้รับความร้อนจนมีอุณหภูมิ 60°C อุณหภูมิเพิ่มขึ้นกี่องศาเซลเซียส?",a:"40",e:"การเปลี่ยนแปลงอุณหภูมิ = 60−20 = 40°C"},
+{t:"mc",q:"ช้อนโลหะและช้อนไม้วางอยู่ในห้องเดียวกันเป็นเวลานาน เมื่อจับช้อนโลหะรู้สึกเย็นกว่า สาเหตุที่เหมาะสมที่สุดคือข้อใด?",c:["โลหะมีอุณหภูมิต่ำกว่าไม้เสมอ","โลหะนำความร้อนออกจากมือได้เร็วกว่าไม้","ไม้สร้างความร้อนได้เอง","โลหะไม่มีพลังงานความร้อน"],a:1,e:"ทั้งสองอาจมีอุณหภูมิเท่ากับห้อง แต่โลหะนำความร้อนได้ดีกว่า จึงดึงความร้อนจากมือเร็วและรู้สึกเย็นกว่า"},
+{t:"mc",q:"วงจรไฟฟ้ามีหลอดไฟเหมือนกัน 2 หลอดต่อแบบอนุกรมกับแบตเตอรี่ หากหลอดหนึ่งขาด จะเกิดอะไรขึ้น?",c:["อีกหลอดสว่างขึ้น","อีกหลอดยังสว่างเท่าเดิม","ทั้งสองหลอดดับ","แบตเตอรี่มีแรงดันเพิ่มขึ้น"],a:2,e:"วงจรอนุกรมมีเส้นทางกระแสเพียงเส้นทางเดียว เมื่อหลอดหนึ่งขาดวงจรเปิด กระแสจึงหยุดทั้งวงจร"},
+{t:"tf",q:"การต่อหลอดไฟแบบขนานมีข้อดีอย่างหนึ่งคือ หากหลอดหนึ่งขาด หลอดอื่นยังสามารถทำงานได้",a:true,e:"วงจรขนานแต่ละแขนงมีเส้นทางกระแสของตนเอง การขาดของแขนงหนึ่งจึงไม่จำเป็นต้องตัดกระแสในแขนงอื่น"},
+{t:"fill",q:"เครื่องใช้ไฟฟ้ากำลัง 1,000 วัตต์ เปิดใช้งาน 3 ชั่วโมง ใช้พลังงานไฟฟ้ากี่กิโลวัตต์-ชั่วโมง? (ตอบตัวเลข)",a:"3",e:"1,000 W = 1 kW ดังนั้นพลังงาน = 1×3 = 3 kWh"},
+{t:"mc",q:"เด็กคนหนึ่งออกแรงผลักกล่อง 50 นิวตันไปข้างหน้า แต่กล่องยังอยู่นิ่ง ข้อใดอธิบายได้ดีที่สุด?",c:["ไม่มีแรงใดกระทำต่อกล่อง","มีแรงต้านสมดุลกับแรงผลัก","แรงผลักหายไปทั้งหมด","มวลของกล่องเป็นศูนย์"],a:1,e:"เมื่อวัตถุยังนิ่ง แรงลัพธ์เป็นศูนย์ จึงต้องมีแรงในทิศตรงข้ามมาสมดุลกับแรงผลัก"},
+{t:"mc",q:"นักเรียนใช้คานงัดก้อนหิน ถ้าต้องการออกแรงให้น้อยลงโดยไม่เปลี่ยนก้อนหิน ควรทำอย่างไร?",c:["จับคานใกล้จุดหมุนขึ้น","เพิ่มระยะจากจุดออกแรงถึงจุดหมุน","ย้ายจุดหมุนให้ไกลก้อนหินขึ้นเสมอ","ใช้คานสั้นลง"],a:1,e:"การเพิ่มแขนแรงทำให้โมเมนต์จากแรงเท่าเดิมมากขึ้น จึงใช้แรงน้อยลงในการงัด"},
+{t:"tf",q:"วัตถุที่กำลังเคลื่อนที่ด้วยความเร็วคงที่เป็นเส้นตรง อาจมีแรงหลายแรงกระทำได้ ตราบใดที่แรงลัพธ์เป็นศูนย์",a:true,e:"แรงลัพธ์เป็นศูนย์ไม่ได้หมายความว่าไม่มีแรง แต่แรงต่าง ๆ อาจหักล้างกัน ทำให้ความเร็วคงที่"},
+{t:"fill",q:"นักปั่นจักรยานเดินทาง 12 กิโลเมตรใน 30 นาที ถ้ารักษาอัตราเร็วเฉลี่ยเดิม 2 ชั่วโมง จะเดินทางได้กี่กิโลเมตร?",a:"48",e:"30 นาทีได้ 12 กม. ดังนั้น 1 ชม.ได้ 24 กม. และ 2 ชม.ได้ 48 กม."},
+{t:"mc",q:"เมื่อแสงเดินทางจากอากาศเข้าสู่แก้วในแนวเฉียง จะเกิดปรากฏการณ์ใดเด่นชัด?",c:["แสงหยุดเดินทาง","แสงหักเหเพราะอัตราเร็วเปลี่ยน","แสงกลายเป็นเสียง","แสงมีมวลเพิ่มขึ้น"],a:1,e:"เมื่อแสงผ่านตัวกลางต่างชนิด อัตราเร็วเปลี่ยนและทิศทางอาจเปลี่ยน เกิดการหักเห"},
+{t:"mc",q:"วัตถุสีแดงเมื่อส่องด้วยแสงสีแดงจะมองเห็นค่อนข้างสว่าง แต่ถ้าส่องด้วยแสงสีน้ำเงินเพียงสีเดียวมีแนวโน้มเห็นอย่างไร?",c:["แดงสว่างกว่าเดิม","น้ำเงินสดใส","มืดหรือเกือบดำ","ขาว"],a:2,e:"วัตถุแดงสะท้อนแสงแดงได้ดี แต่ดูดกลืนแสงสีอื่นมาก เมื่อไม่มีแสงแดงให้สะท้อนจึงดูมืด"},
+{t:"tf",q:"เสียงสามารถเดินทางผ่านสุญญากาศได้ถ้ามีแหล่งกำเนิดเสียงดังมากพอ",a:false,e:"เสียงเป็นคลื่นกล ต้องอาศัยอนุภาคของตัวกลางในการถ่ายทอดพลังงาน จึงไม่เดินทางในสุญญากาศ"},
+{t:"fill",q:"คลื่นหนึ่งสั่นครบ 120 รอบในเวลา 4 วินาที ความถี่เท่ากับกี่รอบต่อวินาที?",a:"30",e:"ความถี่ = จำนวนรอบ ÷ เวลา = 120÷4 = 30 Hz"},
+{t:"mc",q:"เหตุใดบนโลกจึงเกิดกลางวันและกลางคืน?",c:["โลกโคจรรอบดวงอาทิตย์","โลกหมุนรอบตัวเอง","ดวงอาทิตย์หมุนรอบโลกทุก 24 ชั่วโมง","ดวงจันทร์บังแสงอาทิตย์ทุกคืน"],a:1,e:"โลกหมุนรอบแกนของตนเองประมาณหนึ่งรอบต่อวัน ทำให้แต่ละบริเวณสลับหันเข้าหาและหันออกจากดวงอาทิตย์"},
+{t:"mc",q:"ฤดูกาลของโลกเกิดขึ้นเด่นชัดจากปัจจัยใดร่วมกัน?",c:["ระยะโลก–ดวงอาทิตย์เปลี่ยนอย่างเดียว","แกนโลกเอียงและโลกโคจรรอบดวงอาทิตย์","โลกหมุนรอบตัวเองเร็วขึ้น","ดวงจันทร์โคจรรอบโลก"],a:1,e:"แกนโลกเอียงประมาณ 23.5° ร่วมกับการโคจรรอบดวงอาทิตย์ ทำให้มุมรับแสงและช่วงเวลารับแสงของแต่ละซีกโลกเปลี่ยนไป"},
+{t:"tf",q:"ข้างขึ้น–ข้างแรมเกิดจากเงาของโลกบังดวงจันทร์ในทุกคืน",a:false,e:"ข้างขึ้น–ข้างแรมเกิดจากตำแหน่งสัมพันธ์ของดวงอาทิตย์ โลก และดวงจันทร์ ทำให้เราเห็นส่วนสว่างต่างกัน เงาโลกบังดวงจันทร์คือจันทรุปราคา"},
+{t:"mc",q:"ในคืนหนึ่งเห็นดวงจันทร์เต็มดวง ตำแหน่งโดยประมาณของวัตถุทั้งสามควรเป็นแบบใด?",c:["ดวงอาทิตย์–ดวงจันทร์–โลก","ดวงอาทิตย์–โลก–ดวงจันทร์","โลก–ดวงอาทิตย์–ดวงจันทร์","ทั้งสามอยู่ตำแหน่งเดียวกัน"],a:1,e:"ช่วงเต็มดวง โลกอยู่โดยประมาณระหว่างดวงอาทิตย์กับดวงจันทร์ ทำให้ด้านที่ดวงอาทิตย์ส่องสว่างหันมาทางโลกเกือบเต็มด้าน"},
+{t:"fill",q:"ถ้าโลกใช้เวลาหมุนรอบตัวเอง 24 ชั่วโมง โดยประมาณโลกจะหมุนไปกี่องศาในเวลา 6 ชั่วโมง?",a:"90",e:"โลกหมุน 360° ใน 24 ชม. ดังนั้น 6 ชม. = 360×6/24 = 90°"},
+{t:"mc",q:"นักเรียนทดลองปลูกพืชชนิดเดียวกัน 3 กระถาง ได้ผลดังนี้ A ใส่ปุ๋ย 5 g สูงเพิ่ม 8 cm, B ใส่ 10 g สูงเพิ่ม 12 cm, C ใส่ 20 g สูงเพิ่ม 7 cm ข้อสรุปใดเหมาะสมที่สุดจากข้อมูลนี้?",c:["ยิ่งใส่ปุ๋ยมาก พืชยิ่งสูงเสมอ","ปุ๋ย 10 g ให้การเจริญเติบโตดีที่สุดในเงื่อนไขที่ทดลอง","ปุ๋ยไม่มีผลต่อพืช","ปุ๋ย 20 g ทำให้พืชตายแน่นอน"],a:1,e:"จากข้อมูลที่มี ชุด 10 g สูงเพิ่มมากที่สุด แต่ยังสรุปเกินข้อมูลไม่ได้ว่าปริมาณนี้ดีที่สุดในทุกสถานการณ์"},
+{t:"mc",q:"สาร X ทำให้กระดาษลิตมัสสีน้ำเงินเปลี่ยนเป็นสีแดง สาร Y ทำให้ลิตมัสสีแดงเปลี่ยนเป็นสีน้ำเงิน เมื่อนำ X และ Y ในปริมาณเหมาะสมมาผสมกัน ข้อใดมีโอกาสเกิดขึ้นมากที่สุด?",c:["X เป็นเบสและ Y เป็นกรด","X เป็นกรดและ Y เป็นเบส และอาจเกิดการสะเทิน","ทั้ง X และ Y เป็นกรด","ทั้ง X และ Y เป็นกลาง"],a:1,e:"กรดเปลี่ยนลิตมัสน้ำเงินเป็นแดง ส่วนเบสเปลี่ยนลิตมัสแดงเป็นน้ำเงิน เมื่อผสมในสัดส่วนเหมาะสมอาจเกิดปฏิกิริยาสะเทิน"}
+];
+let idx=0, name="", remain=3600, timerId, startedAt, answers=Array(Q.length).fill(null), states=Array(Q.length).fill("new");
+function startGame(){name=document.getElementById("playerName").value.trim();if(!name){alert("กรุณาพิมพ์ชื่อก่อนเริ่มค่ะ");return}show("gameScreen");document.getElementById("who").textContent="👤 "+name;startedAt=Date.now();render();timerId=setInterval(()=>{remain--;drawTimer();if(remain<=0){clearInterval(timerId);finish(true)}},1000)}
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active")}
+function drawTimer(){let m=Math.floor(remain/60),s=remain%60,t=document.getElementById("timer");t.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");t.classList.toggle("low",remain<=300)}
+function render(){let q=Q[idx];document.getElementById("qnum").textContent=`ข้อ ${idx+1} / ${Q.length}`;document.getElementById("progress").textContent=`ทำแล้ว ${states.filter(x=>x==="correct"||x==="wrong").length}/${Q.length}`;document.getElementById("liveScore").textContent=`ถูก ${states.filter(x=>x==="correct").length} ข้อ`;document.getElementById("qtype").textContent=q.t==="mc"?"4 ตัวเลือก":q.t==="fill"?"เติมคำตอบ":"ถูกหรือผิด";document.getElementById("qtext").textContent=q.q;
+let a=document.getElementById("answerArea");a.innerHTML="";
+if(q.t==="mc"){q.c.forEach((x,i)=>{let b=document.createElement("button");b.className="choice"+(answers[idx]===i?" selected":"");b.innerHTML=`<b>${"ABCD"[i]}.</b> ${x}`;b.onclick=()=>{if(done())return;answers[idx]=i;states[idx]="answered";render()};a.appendChild(b)})}
+if(q.t==="fill"){let inp=document.createElement("input");inp.className="answerInput";inp.placeholder="พิมพ์เฉพาะตัวเลข";inp.value=answers[idx]??"";inp.disabled=done();inp.oninput=e=>{answers[idx]=e.target.value;states[idx]=e.target.value.trim()?"answered":"new";drawNav()};a.appendChild(inp)}
+if(q.t==="tf"){let d=document.createElement("div");d.className="tf";[true,false].forEach((v,i)=>{let b=document.createElement("button");b.className="choice"+(answers[idx]===v?" selected":"");b.textContent=v?"✓ ถูก":"✕ ผิด";b.onclick=()=>{if(done())return;answers[idx]=v;states[idx]="answered";render()};d.appendChild(b)});a.appendChild(d)}
+drawNav()}
+function done(){return states[idx]==="correct"||states[idx]==="wrong"}
+function normalize(v){return String(v??"").replace(/,/g,"").replace(/\s/g,"").trim()}
+
+function tone(freq,dur,type="sine",vol=.06,delay=0){
+ try{let A=window.AudioContext||window.webkitAudioContext,ctx=window._ac||(window._ac=new A()),o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=freq;g.gain.value=vol;o.connect(g);g.connect(ctx.destination);let t=ctx.currentTime+delay;o.start(t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.stop(t+dur)}catch(e){}
+}
+function feedback(ok){
+ let f=document.getElementById("feedback"),card=document.getElementById("fbCard"),burst=document.getElementById("burst");
+ f.className="feedback show "+(ok?"ok":"bad");
+ document.getElementById("fbIcon").textContent=ok?"✓":"✕";
+ document.getElementById("fbTitle").textContent=ok?"เยี่ยมมาก!":"ยังไม่ถูก!";
+ document.getElementById("fbSub").textContent=ok?"เก็บแต้มสำเร็จ +1 ⭐":"ไม่เป็นไร ดูเฉลยหลังจบเกมนะ";
+ burst.innerHTML="";
+ if(ok){
+   ["⭐","✨","💫","⭐","✨","🎉","⭐","💫","✨","⭐"].forEach((x,i)=>{let e=document.createElement("span");e.className="spark";e.textContent=x;let a=i*Math.PI*2/10,r=150+Math.random()*70;e.style.setProperty("--x",Math.cos(a)*r+"px");e.style.setProperty("--y",Math.sin(a)*r+"px");burst.appendChild(e)});
+   tone(523,.13,"triangle",.08);tone(659,.14,"triangle",.08,.11);tone(784,.22,"triangle",.08,.22);
+ }else{
+   card.classList.remove("shake");void card.offsetWidth;card.classList.add("shake");
+   tone(180,.18,"sawtooth",.045);tone(125,.28,"sawtooth",.04,.14);
+ }
+ setTimeout(()=>{f.className="feedback"},ok?1250:1450);
+}
+function submitCurrent(){if(done()){alert("ข้อนี้ตรวจคำตอบแล้วค่ะ");return}if(answers[idx]===null||normalize(answers[idx])===""){alert("กรุณาตอบก่อนตรวจ หรือกด “เว้นข้อนี้”");return}let q=Q[idx],ok=q.t==="fill"?normalize(answers[idx])===normalize(q.a):answers[idx]===q.a;states[idx]=ok?"correct":"wrong";render();feedback(ok)}
+function skip(){if(done())return;answers[idx]=null;states[idx]="skipped";if(idx<Q.length-1)idx++;render()}
+function move(d){idx=Math.max(0,Math.min(Q.length-1,idx+d));render()}
+function drawNav(){let n=document.getElementById("nav");n.innerHTML="";states.forEach((s,i)=>{let b=document.createElement("button");b.className=`n ${s} ${i===idx?"current":""}`;b.textContent=i+1;b.onclick=()=>{idx=i;render()};n.appendChild(b)})}
+function correctAnswer(q){if(q.t==="mc")return q.c[q.a];if(q.t==="tf")return q.a?"ถูก":"ผิด";return q.a}
+function userAnswer(q,i){let v=answers[i];if(v===null)return "ไม่ได้ตอบ";if(q.t==="mc")return q.c[v]??"ไม่ได้ตอบ";if(q.t==="tf")return v?"ถูก":"ผิด";return v}
+function finish(auto){let unresolved=states.filter(x=>x==="new"||x==="answered"||x==="skipped").length;if(!auto&&unresolved&&!confirm(`ยังมี ${unresolved} ข้อที่ยังไม่ได้ตรวจ/เว้นไว้ ต้องการส่งข้อสอบเลยหรือไม่?`))return;clearInterval(timerId);let c=states.filter(x=>x==="correct").length,w=states.filter(x=>x==="wrong").length,sk=Q.length-c-w;let used=Math.min(3600,Math.floor((Date.now()-startedAt)/1000));show("resultScreen");document.getElementById("resultName").textContent=`ผู้ทดสอบ: ${name}`;document.getElementById("scoreBig").textContent=`${c} / ${Q.length}`;document.getElementById("percent").textContent=`${Math.round(c/Q.length*100)}%`;document.getElementById("sumCorrect").innerHTML=`✅ ถูก<br><big>${c}</big>`;document.getElementById("sumWrong").innerHTML=`❌ ผิด<br><big>${w}</big>`;document.getElementById("sumSkip").innerHTML=`⏭️ ไม่ได้ตรวจ/เว้น<br><big>${sk}</big>`;document.getElementById("sumTime").innerHTML=`⏱️ เวลาใช้<br><big>${Math.floor(used/60)}:${String(used%60).padStart(2,"0")}</big>`;
+let r=document.getElementById("review");r.innerHTML="";Q.forEach((q,i)=>{let st=states[i],klass=st==="correct"?"ok":st==="wrong"?"bad":"skip",icon=st==="correct"?"✅":st==="wrong"?"❌":"⏭️";let div=document.createElement("div");div.className="reviewItem "+klass;div.innerHTML=`<b>${icon} ข้อ ${i+1}</b> — ${q.q}<div>คำตอบของผู้ทำ: <b>${userAnswer(q,i)}</b></div><div>คำตอบที่ถูก: <b>${correctAnswer(q)}</b></div><div class="exp"><b>วิธีคิด:</b> ${q.e}</div>`;r.appendChild(div)});window.scrollTo(0,0)}
+drawTimer();
+</script>
+</body></html>
