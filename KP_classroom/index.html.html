@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kru Pai Classroom — Student</title>
+<style>
+:root{--bg:#061321;--panel:#0b2035;--panel2:#0e2b45;--line:#284c6e;--mint:#44e4c1;--blue:#65aaff;--yellow:#ffd166;--text:#f4f9ff;--muted:#a9bfd4;--danger:#ff7488}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at 15% 0,rgba(68,228,193,.17),transparent 25%),radial-gradient(circle at 90% 10%,rgba(101,170,255,.18),transparent 27%),linear-gradient(160deg,#06111e,#081a2d 60%,#061321);color:var(--text);min-height:100vh}
+button,input{font:inherit}.wrap{max-width:980px;margin:auto;padding:18px}.brand{text-align:center;padding:26px 10px 20px}.kicker{display:inline-block;padding:6px 11px;border:1px solid rgba(68,228,193,.38);border-radius:999px;background:rgba(68,228,193,.08);font-size:12px;font-weight:900;letter-spacing:.1em;color:#c0f7eb}.brand h1{font-size:clamp(40px,8vw,76px);line-height:.95;margin:12px 0 7px;letter-spacing:-.05em}.brand h1 span{color:var(--mint)}.brand p{color:#c6d9ea;font-size:clamp(14px,2.2vw,18px)}
+.card{background:linear-gradient(145deg,rgba(12,34,55,.97),rgba(7,23,39,.97));border:1px solid rgba(101,170,255,.28);border-radius:25px;padding:20px;box-shadow:0 28px 80px rgba(0,0,0,.28)}.login{max-width:560px;margin:auto;text-align:center;padding:30px 22px}.login .icon{font-size:62px}.field{width:100%;padding:14px;border-radius:15px;border:1px solid var(--line);background:#061522;color:#fff;outline:none;text-align:center;font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.field:focus{border-color:var(--mint);box-shadow:0 0 0 3px rgba(68,228,193,.12)}.btn{border:1px solid var(--line);border-radius:13px;padding:11px 15px;background:#102c48;color:#fff;font-weight:850;cursor:pointer}.btn.primary{background:linear-gradient(135deg,#1d8d80,#236ca8);border-color:#50d9c2}.btn.big{width:100%;font-size:18px;padding:14px;margin-top:9px}.muted{color:var(--muted)}.error{margin-top:12px;padding:10px;border-radius:12px;border:1px solid rgba(255,116,136,.4);background:rgba(255,116,136,.08);color:#ffd1d8;display:none}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.chip{display:inline-flex;gap:7px;align-items:center;padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:#071725;font-size:12px}.lesson{margin-top:14px;padding:18px;border-radius:20px;border:1px solid rgba(68,228,193,.28);background:linear-gradient(135deg,rgba(68,228,193,.1),rgba(101,170,255,.08))}.lesson small{color:#9ef0dc;font-weight:900;letter-spacing:.1em}.lesson h2{font-size:clamp(25px,5vw,40px);margin:6px 0}.missions{display:grid;gap:12px;margin-top:14px}.mission{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#0c243a,#091a2b)}.num{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;background:#123654;border:1px solid #32658d;color:var(--yellow);font-size:21px;font-weight:950}.mission h3{margin:0;font-size:18px}.mission p{margin:4px 0 0;color:var(--muted);font-size:12px}.choice{padding:14px;border:1px solid var(--line);border-radius:15px;background:#091c2e;margin-top:9px;cursor:pointer;text-align:left;width:100%;color:#fff}.choice:hover{border-color:var(--mint)}.notice{margin:14px 0;padding:11px;border:1px solid rgba(255,209,102,.3);border-radius:13px;background:rgba(255,209,102,.06);color:#ffe8a0;font-size:12px}.loading{text-align:center;padding:50px;color:var(--muted)}.footer{text-align:center;color:#7893aa;font-size:11px;padding:22px}
+@media(max-width:680px){.wrap{padding:11px}.brand{padding-top:18px}.card{padding:14px}.mission{grid-template-columns:48px 1fr}.num{width:42px;height:42px}.mission .play{grid-column:1/-1;width:100%;padding:13px;font-size:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="kicker">✨ LEARN • PLAY • GROW</div><h1>Kru Pai <span>Classroom</span></h1><p>ห้องเรียนเกมของเรา • เปิดภารกิจของวันนี้แล้ว 🎮</p></div>
+  <main id="app"><div class="loading">กำลังโหลด Classroom...</div></main>
+  <div class="footer">Kru Pai Classroom • Student Web Prototype V1</div>
+</div>
+<script>
+let DATA=null,session={student:null,classroom:null};
+
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+async function loadData(){
+  try{
+    const res=await fetch('./classroom-data.json',{cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    DATA=await res.json();
+    if(DATA?.format!=='KruPaiStudentClassroomData')throw new Error('รูปแบบ classroom-data.json ไม่ถูกต้อง');
+    renderLogin();
+  }catch(e){
+    document.getElementById('app').innerHTML=`<div class="card login"><div class="icon">📂</div><h2>ยังไม่พบข้อมูล Classroom</h2><p class="muted">หน้าเว็บนี้ต้องวางอยู่ในโฟลเดอร์เดียวกับ <b>classroom-data.json</b></p><div class="notice">เมื่อเอาขึ้น GitHub Pages ให้ใส่ไฟล์ HTML นี้และ classroom-data.json ไว้ด้วยกัน แล้วเปิดผ่าน URL ของเว็บไซต์ ไม่ควรดับเบิลคลิกไฟล์ HTML เพื่อทดสอบ fetch ในเครื่อง</div><div class="error" style="display:block">${esc(e.message)}</div></div>`;
+  }
+}
+function renderLogin(){
+  session={student:null,classroom:null};
+  document.getElementById('app').innerHTML=`<div class="card login"><div class="icon">🎓</div><h2>เข้า Classroom ของฉัน</h2><p class="muted">กรอกรหัสนักเรียน KPxxx</p><input id="code" class="field" placeholder="KP001" maxlength="16" autocomplete="off"><button class="btn primary big" onclick="login()">🚪 เข้าเรียน</button><div id="err" class="error"></div><div class="notice">ระบบจะแสดงเฉพาะ Classroom ที่รหัสนี้ได้รับสิทธิ์ และมี Current Lesson เปิดอยู่</div></div>`;
+  document.getElementById('code').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+}
+function login(){
+  const code=document.getElementById('code').value.trim().toUpperCase();
+  const st=(DATA.students||[]).find(x=>String(x.code).toUpperCase()===code);
+  if(!st)return showErr('ไม่พบรหัสนี้ใน Classroom ที่เปิดเรียนอยู่');
+  const rooms=(DATA.classrooms||[]).filter(c=>(c.memberCodes||[]).includes(st.code));
+  if(!rooms.length)return showErr('รหัสนี้ยังไม่มีสิทธิ์เข้า Classroom ที่เปิดอยู่');
+  session.student=st;
+  if(rooms.length===1){session.classroom=rooms[0];renderClassroom();}else renderRoomChoice(rooms);
+}
+function showErr(t){const e=document.getElementById('err');e.textContent=t;e.style.display='block'}
+function renderRoomChoice(rooms){
+  document.getElementById('app').innerHTML=`<div class="card"><div class="top"><div><b>👋 ${esc(session.student.name)}</b><div class="muted">${esc(session.student.code)}</div></div><button class="btn" onclick="renderLogin()">ออก</button></div><h2>เลือก Classroom</h2>${rooms.map((c,i)=>`<button class="choice" onclick="chooseRoom(${i})"><b>🏫 ${esc(c.name)}</b><div class="muted">${esc(c.currentLesson?.title||'')}</div></button>`).join('')}</div>`;
+  window._rooms=rooms;
+}
+function chooseRoom(i){session.classroom=window._rooms[i];renderClassroom()}
+function renderClassroom(){
+  const c=session.classroom,l=c.currentLesson||{},games=l.games||[];
+  document.getElementById('app').innerHTML=`<div class="card">
+    <div class="top"><div class="chip">👤 <b>${esc(session.student.name)}</b> • ${esc(session.student.code)}</div><div class="chip">🏫 ${esc(c.name)}</div><button class="btn" onclick="renderLogin()">ออกจากห้อง</button></div>
+    <div class="lesson"><small>CURRENT LESSON</small><h2>${esc(l.title||'บทเรียนวันนี้')}</h2><div class="muted">📅 ${esc(l.date||'')} • 🎮 ${games.length} Mission</div></div>
+    <div class="missions">${games.map((g,i)=>`<div class="mission"><div class="num">${i+1}</div><div><h3>${esc(g.name)}</h3><p>${esc(g.subject)}${g.room?' • '+esc(g.room):''}</p></div><button class="btn primary play" onclick="playGame(${i})">▶ เริ่ม Mission</button></div>`).join('')||'<div class="notice">ยังไม่มี Mission</div>'}</div>
+    <div class="notice">V1 ยังไม่บันทึกคะแนน/Progress กลับระบบ จุดนี้จะเชื่อมหลังฐานข้อมูลออนไลน์พร้อม</div>
+  </div>`;
+}
+function playGame(i){
+  const g=session.classroom.currentLesson.games[i];
+  if(!g?.url)return alert('เกมนี้ยังไม่มีลิงก์เล่น');
+  window.open(g.url,'_blank','noopener');
+}
+loadData();
+</script>
+</body></html>

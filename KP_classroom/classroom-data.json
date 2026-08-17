@@ -1,0 +1,138 @@
+{
+  "format": "KruPaiStudentClassroomData",
+  "version": "1.0",
+  "publishedAt": "2026-08-17T16:05:33.024Z",
+  "brand": {
+    "name": "Kru Pai Classroom",
+    "tagline": "Learn • Play • Grow"
+  },
+  "students": [
+    {
+      "code": "KP005",
+      "name": "น้องออกัส",
+      "level": "ป.3"
+    },
+    {
+      "code": "KP006",
+      "name": "น้องอั่งเปา",
+      "level": "ป.4"
+    },
+    {
+      "code": "KP007",
+      "name": "น้องเปาเปา",
+      "level": "ป.5"
+    },
+    {
+      "code": "KP008",
+      "name": "น้องปริม",
+      "level": "ป.5"
+    },
+    {
+      "code": "KP009",
+      "name": "น้องเปรม",
+      "level": "ป.5"
+    },
+    {
+      "code": "KP010",
+      "name": "น้องติณ",
+      "level": "ป.4"
+    },
+    {
+      "code": "KP011",
+      "name": "น้องอันอัน",
+      "level": "ป.5"
+    },
+    {
+      "code": "KP012",
+      "name": "น้องตั๋น",
+      "level": "ป.2"
+    }
+  ],
+  "classrooms": [
+    {
+      "code": "CL001",
+      "name": "ปรับพื้นฐาน ป.4-5",
+      "detail": "เรียนวันเสาร์ เวลา 09.30-14.30 น.",
+      "memberCodes": [
+        "KP005",
+        "KP006",
+        "KP007",
+        "KP008",
+        "KP009",
+        "KP010",
+        "KP011",
+        "KP012"
+      ],
+      "currentLesson": {
+        "id": "CUR-1786940536164",
+        "title": "บทเรียนครั้งนี้ — ปรับพื้นฐาน ป.4-5",
+        "date": "2026-08-17",
+        "games": [
+          {
+            "order": 1,
+            "gameId": "MAT001",
+            "name": "ภารกิจพิชิตทศนิยม",
+            "subject": "Math",
+            "room": "เศษส่วน",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/MAT001/",
+            "passScore": 80
+          },
+          {
+            "order": 2,
+            "gameId": "SCI012",
+            "name": "DEFUSE THE MATH BOMB",
+            "subject": "Math",
+            "room": "เศษส่วน",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/SCI012/",
+            "passScore": 80
+          },
+          {
+            "order": 3,
+            "gameId": "SCI001",
+            "name": "SCIENCESORTING LAB",
+            "subject": "Science",
+            "room": "คอลลอยด์ / สารละลาย",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/SCI001/",
+            "passScore": 80
+          },
+          {
+            "order": 4,
+            "gameId": "SCI002",
+            "name": "TRUE ORFALSE LAB",
+            "subject": "Science",
+            "room": "คอลลอยด์ / สารละลาย",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/SCI002/",
+            "passScore": 80
+          },
+          {
+            "order": 5,
+            "gameId": "SCI010",
+            "name": "SOLUTION   COLLOIDSUSPENSION",
+            "subject": "Science",
+            "room": "คอลลอยด์ / สารละลาย",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/SCI010/",
+            "passScore": 80
+          },
+          {
+            "order": 6,
+            "gameId": "ENG004",
+            "name": "Future Simple Mission",
+            "subject": "English",
+            "room": "Tense",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/ENG004/",
+            "passScore": 80
+          },
+          {
+            "order": 7,
+            "gameId": "ENG005",
+            "name": "Past Simple Mission",
+            "subject": "English",
+            "room": "Tense",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/ENG005/",
+            "passScore": 80
+          }
+        ]
+      }
+    }
+  ]
+}
