@@ -1,7 +1,7 @@
 {
   "format": "KruPaiStudentClassroomData",
   "version": "1.0",
-  "publishedAt": "2026-08-17T16:05:33.024Z",
+  "publishedAt": "2026-08-18T04:51:18.584Z",
   "brand": {
     "name": "Kru Pai Classroom",
     "tagline": "Learn • Play • Grow"
@@ -64,7 +64,7 @@
         "KP012"
       ],
       "currentLesson": {
-        "id": "CUR-1786940536164",
+        "id": "CUR-1787028651095",
         "title": "บทเรียนครั้งนี้ — ปรับพื้นฐาน ป.4-5",
         "date": "2026-08-17",
         "games": [
@@ -129,6 +129,24 @@
             "subject": "English",
             "room": "Tense",
             "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/ENG005/",
+            "passScore": 80
+          },
+          {
+            "order": 8,
+            "gameId": "ENG020",
+            "name": "⚡ Speed Fill Verbs ⚡",
+            "subject": "English",
+            "room": "กริยาสามช่อง",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/ENG020/",
+            "passScore": 80
+          },
+          {
+            "order": 9,
+            "gameId": "ENG019",
+            "name": "💎 Speed Fill Verbs Set 2 💎",
+            "subject": "English",
+            "room": "กริยาสามช่อง",
+            "url": "https://Krupaiclassroom68.github.io/krupaiclassroom-games/ENG019/",
             "passScore": 80
           }
         ]
