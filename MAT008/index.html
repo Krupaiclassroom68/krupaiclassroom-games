@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kru Pai Classroom | Decimal Boss Challenge</title>
+<style>
+:root{--ink:#29365f;--pink:#ff6fad;--blue:#61c9ff;--mint:#74dfbe;--yellow:#ffd96b;--purple:#9e87f6;--red:#ff7b91}
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;font-family:Tahoma,Arial,sans-serif;color:var(--ink);
+ background:
+ radial-gradient(circle at 15% 12%,#fff0ac 0 7%,transparent 8%),
+ radial-gradient(circle at 86% 16%,#dff5ff 0 8%,transparent 9%),
+ linear-gradient(135deg,#fff8fc,#effaff 48%,#fff8e3)
+}
+body:before{content:"🔥 ✨ 🧠 ⭐ 🫧 🎯 🚀";position:fixed;inset:0;pointer-events:none;opacity:.065;font-size:48px;letter-spacing:34px;line-height:190px}
+.wrap{width:min(1000px,95vw);margin:auto;padding:15px}
+.panel{background:#ffffffef;border:3px solid #fff;border-radius:30px;box-shadow:0 20px 52px #6e6ca62a;padding:24px;backdrop-filter:blur(9px)}
+.hidden{display:none!important}
+.brand{font-weight:900;color:#7154c6}
+.hero{text-align:center}.heroEmoji{font-size:78px}
+h1{font-size:clamp(34px,6vw,58px);margin:6px 0;color:#ff5c9f;text-shadow:0 3px #fff}
+h2{font-size:clamp(24px,4vw,36px);margin:8px 0}p{line-height:1.65}
+.nameInput{width:min(460px,100%);padding:16px;border:3px solid #dcd9ff;border-radius:20px;font-size:20px;text-align:center}
+button{border:0;border-radius:18px;padding:14px 20px;font-size:18px;font-weight:900;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--pink),var(--purple));box-shadow:0 8px 0 #725ac1;transition:.15s}
+button:active{transform:translateY(4px);box-shadow:0 4px 0 #725ac1}
+button.secondary{background:linear-gradient(135deg,#55cfe8,#69dbb3);box-shadow:0 8px 0 #3ca48d}
+button.ghost{background:#fff;color:#6c58a4;border:2px solid #ded8ff;box-shadow:none}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.legend{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0 18px}
+.legend span{background:#fff;border:2px solid #ebe5ff;padding:8px 12px;border-radius:999px;font-weight:800}
+.reviewGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px;margin:18px 0}
+.tip{padding:16px;border-radius:22px;background:#fff8da;border:2px dashed #ffc95f}
+.tip:nth-child(2n){background:#eafff8;border-color:#75dabd}.tip:nth-child(3n){background:#f5edff;border-color:#b98cff}
+.hud{display:grid;grid-template-columns:1fr auto auto auto;gap:9px;align-items:center;margin-bottom:14px}
+.pill{padding:9px 13px;border-radius:999px;background:#fff;box-shadow:0 5px 15px #70749a1c;font-weight:900}
+.bar{height:14px;background:#eceffd;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#68dcbc,#60c4ff,#ff71ae)}
+.gameBox{position:relative;min-height:480px;padding:22px;border-radius:27px;background:linear-gradient(145deg,#fff,#faf8ff);border:2px solid #ece8ff;text-align:center;overflow:hidden}
+.typeBadge{font-weight:900;color:#8b5ed2;font-size:17px}.question{font-size:clamp(24px,4.4vw,38px);font-weight:900;line-height:1.4;max-width:850px;margin:13px auto 20px}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.answer{min-height:70px;background:#fff;color:#31406d;border:3px solid #e6e7fa;box-shadow:0 6px 0 #d9dbea;font-size:18px}
+.answer.selected{background:#eafaff;border-color:#4fc6fa}
+.tfwrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:650px;margin:auto}
+.tf{font-size:24px;min-height:90px;background:#fff;color:#3e486f;border:3px solid #e4e5f6;box-shadow:0 6px 0 #d9dbea}
+.tf.selTrue{background:#dcfff0;border-color:#55d3a3;color:#247555}.tf.selFalse{background:#ffe4ed;border-color:#ff789e;color:#9b3757}
+.numDisplay{width:min(360px,92%);padding:14px;border-radius:20px;border:3px solid #d9d5ff;background:#fff;font-size:32px;font-weight:900;text-align:center;margin:0 auto 14px}
+.keypad{display:grid;grid-template-columns:repeat(3,84px);gap:9px;justify-content:center}
+.keypad button{background:#fff;color:#46517a;border:2px solid #dce0f4;box-shadow:0 4px 0 #d7dcec;padding:11px}
+.ballHint{font-weight:900;color:#a15a98;margin-bottom:10px}
+.ballGrid{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;min-height:220px}
+.ball{width:128px;height:128px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-size:18px;font-weight:900;color:#344168;border:5px solid #fff;cursor:pointer;position:relative;user-select:none;background:radial-gradient(circle at 33% 28%,#fff 0 12%,#bff2ff 13% 37%,#7ad4ff 38% 68%,#6da8f9 69%);box-shadow:inset -12px -16px 20px #4855ba22,0 12px 22px #6a75ad30;animation:float 2.6s ease-in-out infinite}
+.ball:nth-child(2){animation-delay:.3s;background:radial-gradient(circle at 33% 28%,#fff 0 12%,#ffe0f0 13% 37%,#ff9cc4 38% 68%,#d485dc 69%)}
+.ball:nth-child(3){animation-delay:.6s;background:radial-gradient(circle at 33% 28%,#fff 0 12%,#fff3be 13% 37%,#ffd96b 38% 68%,#f7b86f 69%)}
+.ball:nth-child(4){animation-delay:.9s;background:radial-gradient(circle at 33% 28%,#fff 0 12%,#dffff0 13% 37%,#78ddb6 38% 68%,#4eb5b5 69%)}
+.ball:nth-child(5){animation-delay:1.2s;background:radial-gradient(circle at 33% 28%,#fff 0 12%,#ece0ff 13% 37%,#b594ff 38% 68%,#8a72d8 69%)}
+.ball.selected{outline:6px solid #ffcc59;transform:scale(1.08)}.ball.burst{animation:burst .45s ease forwards}
+@keyframes float{50%{transform:translateY(-8px)}}@keyframes burst{0%{transform:scale(1);opacity:1}55%{transform:scale(1.35)}100%{transform:scale(.1);opacity:0}}
+.routeGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:760px;margin:auto}
+.route{min-height:125px;background:#fff;color:#3d496f;border:3px solid #e1e4f5;box-shadow:0 7px 0 #d4d9e8;font-size:19px}
+.route:before{content:"🧭";display:block;font-size:34px}.route.selected{background:#edfaff;border-color:#62c6f7}
+.feedback{margin:16px auto 0;padding:15px;border-radius:18px;font-size:18px;font-weight:900;line-height:1.55;max-width:800px}
+.good{background:#e8fff4;border:2px solid #71dbb0}.bad{background:#fff0f4;border:2px solid #ff91ae}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:15px}
+.spark{position:absolute;font-size:28px;animation:spark .8s ease-out forwards;pointer-events:none}@keyframes spark{to{transform:translate(var(--x),var(--y)) scale(.3);opacity:0}}
+.resultScore{text-align:center;font-size:60px;font-weight:900;color:#ff5d9e}.starLine{text-align:center;font-size:26px;font-weight:900;color:#d49800;margin:5px 0 15px}
+.report table{width:100%;border-collapse:collapse;font-size:14px}.report th,.report td{padding:9px;border-bottom:1px solid #e7e8f4;text-align:left}
+.scratchNote{margin-top:10px;font-size:15px;color:#7a6f91}
+@media(max-width:650px){
+ .wrap{width:100%;padding:7px}.panel{padding:14px;border-radius:22px}.gameBox{padding:14px;min-height:520px}
+ .answers,.tfwrap,.routeGrid{grid-template-columns:1fr}.question{font-size:25px}.answer{font-size:17px;min-height:58px}
+ .ball{width:98px;height:98px;font-size:15px;padding:8px}.ballGrid{gap:10px}.keypad{grid-template-columns:repeat(3,72px)}
+ .hud{grid-template-columns:1fr auto auto}.hud .bar{grid-column:1/-1}.nav{position:sticky;bottom:4px;background:#ffffffee;padding:8px;border-radius:18px;z-index:10}
+ button{font-size:16px;padding:12px}
+}
+@media print{button,.nav,.noPrint{display:none!important}body{background:#fff}.panel{box-shadow:none}.wrap{width:100%}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section id="home" class="panel hero">
+<div class="heroEmoji">🔥🧠🫧</div>
+<div class="brand">Kru Pai Classroom</div>
+<h1>DECIMAL BOSS CHALLENGE</h1>
+<h2>GAME 3 • คูณ–หารทศนิยม + โจทย์ปัญหา</h2>
+<p>20 ภารกิจ • 20 นาที • ระดับคิดและทด<br>ข้อละ 1 คะแนน • ลูกบอลถูกครบรับดาวโบนัส ⭐</p>
+<div class="legend"><span>🔢 เติมคำตอบ</span><span>🧭 เลือกวิธีคิด</span><span>✅❌ ถูก/ผิด</span><span>🫧 หลายคำตอบ</span><span>🧠 โจทย์ปัญหา</span></div>
+<input id="player" class="nameInput" placeholder="พิมพ์ชื่อผู้เล่น"><br><br>
+<div class="row"><button onclick="showReview()">📚 ทบทวนก่อนเล่น</button><button class="secondary" onclick="start()">🔥 เริ่ม Boss Challenge</button></div>
+</section>
+
+<section id="review" class="panel hidden">
+<h2>📚 ทบทวนก่อนภารกิจ</h2>
+<div class="reviewGrid">
+<div class="tip"><b>คูณทศนิยม</b><br>คูณเหมือนจำนวนเต็มก่อน แล้วใส่จุดตามจำนวนตำแหน่งทศนิยมรวมกัน</div>
+<div class="tip"><b>หารด้วยทศนิยม</b><br>ทำตัวหารให้เป็นจำนวนเต็ม โดยเลื่อนจุดของตัวตั้งและตัวหารเท่ากัน</div>
+<div class="tip"><b>ประมาณก่อน</b><br>เช่น 6.98 × 4 ควรได้ใกล้ 28 ถ้าได้ 2.792 แปลว่าจุดผิด</div>
+<div class="tip"><b>โจทย์แบ่ง</b><br>คำว่า “แบ่งเป็นชุดละ / ขวดละ / คนละ” มักใช้การหาร</div>
+<div class="tip"><b>โจทย์หลายขั้น</b><br>หาปริมาณต่อหน่วยก่อน หรือหารจำนวนชุดก่อน แล้วค่อยคูณ/บวกตามที่ถาม</div>
+<div class="tip"><b>อย่าลืมหน่วย</b><br>บาท, กิโลกรัม, ลิตร, เมตร ต้องตอบให้ตรงสิ่งที่ถาม</div>
+</div>
+<p class="scratchNote">✏️ ชุดนี้ตั้งใจให้ทดบนกระดาษได้ ไม่ต้องรีบกดเร็ว</p>
+<div class="row"><button class="ghost" onclick="go('home')">🏠 Home</button><button onclick="start()">เริ่มเกม ➜</button></div>
+</section>
+
+<section id="game" class="panel hidden">
+<div class="hud"><div class="bar"><i id="progress"></i></div><span id="counter" class="pill"></span><span id="stars" class="pill">⭐ 0</span><span id="timer" class="pill">20:00</span></div>
+<div class="gameBox" id="gameBox"><div class="typeBadge" id="typeBadge"></div><div class="question" id="question"></div><div id="answerArea"></div><div id="feedback"></div></div>
+<div class="nav"><button class="ghost" onclick="prevQ()">← ย้อนกลับ</button><button id="checkBtn" onclick="check()">ตรวจคำตอบ ✓</button><button class="ghost" onclick="nextQ()">ข้าม / ถัดไป →</button></div>
+</section>
+
+<section id="result" class="panel report hidden">
+<div class="brand">Kru Pai Classroom</div><h2>🏆 Boss Challenge Report</h2><div id="resultBody"></div>
+<div class="row noPrint"><button onclick="window.print()">🖨️ พิมพ์ / บันทึก PDF</button><button class="secondary" onclick="start()">🔁 เล่นอีกครั้ง</button><button class="ghost" onclick="go('home')">🏠 Home</button></div>
+</section>
+</main>
+
+<script>
+function Q(type,kind,text,opts,ans,exp){return{type,kind,text,opts,ans:Array.isArray(ans)?ans:[ans],exp}}
+function N(kind,text,ans,exp){return{type:"num",kind,text,ans:String(ans),exp}}
+const BANK=[
+N("คูณทศนิยม","3.75 × 8 = ?",30,"3.75 × 8 = 30"),
+N("คูณทศนิยม","2.48 × 1.5 = ?",3.72,"2.48 × 15 = 37.20 แล้วหาร 10 ได้ 3.72"),
+N("หารทศนิยม","14.4 ÷ 0.6 = ?",24,"เลื่อนจุดทั้งคู่ 1 ตำแหน่ง: 144 ÷ 6 = 24"),
+N("หารทศนิยม","7.35 ÷ 0.5 = ?",14.7,"หารด้วย 0.5 เท่ากับจำนวนครึ่งหน่วยที่มีอยู่ จึงได้ 14.7"),
+Q("tf","ถูกหรือผิด","4.08 × 0.3 = 1.224",["ถูก","ผิด"],0,"408 × 3 = 1224 และมีทศนิยมรวม 3 ตำแหน่ง จึงเป็น 1.224"),
+Q("route","เลือกวิธีคิด","น้ำ 18.75 ลิตร บรรจุขวดละ 1.25 ลิตร ต้องหาจำนวนขวด ควรใช้วิธีใด?",["18.75 + 1.25","18.75 - 1.25","18.75 × 1.25","18.75 ÷ 1.25"],3,"หาจำนวนชุดที่แบ่งได้ ใช้การหาร"),
+Q("ball","ลูกบอลหลายคำตอบ","กดทุกลูกที่มีคำตอบมากกว่า 10",["2.5 × 4","3.2 × 4","24 ÷ 2","6.3 ÷ 0.7","5.5 × 2"],[1,2,4],"3.2×4=12.8, 24÷2=12, 5.5×2=11 ส่วน 2.5×4=10 และ 6.3÷0.7=9"),
+N("โจทย์ปัญหา","ข้าวสาร 4.5 กก. แบ่งถุงละ 0.75 กก. ได้กี่ถุง?",6,"4.5 ÷ 0.75 = 6 ถุง"),
+N("โจทย์ปัญหา","น้ำผลไม้ขวดละ 1.25 ลิตร ซื้อ 6 ขวด มีทั้งหมดกี่ลิตร?",7.5,"1.25 × 6 = 7.5 ลิตร"),
+N("โจทย์สองขั้น","ร้านมีนม 12.6 ลิตร แบ่งใส่ขวดละ 0.9 ลิตร แล้วขายขวดละ 18 บาท ถ้าขายหมดได้เงินกี่บาท?",252,"12.6 ÷ 0.9 = 14 ขวด แล้ว 14 × 18 = 252 บาท"),
+Q("tf","ถูกหรือผิด","6.4 ÷ 0.8 = 8",["ถูก","ผิด"],0,"64 ÷ 8 = 8"),
+Q("route","เลือกวิธีคิด","ผ้ายาว 15.6 เมตร ตัดเป็นเส้นละ 1.2 เมตร แล้วขายเส้นละ 25 บาท ต้องคิดแบบใด?",["15.6 × 1.2 แล้ว +25","15.6 ÷ 1.2 แล้ว ×25","15.6 - 1.2 แล้ว ×25","15.6 + 1.2 แล้ว ÷25"],1,"หาจำนวนเส้นด้วยการหารก่อน แล้วคูณราคาต่อเส้น"),
+Q("ball","ลูกบอลหลายคำตอบ","กดทุกลูกที่มีค่าเท่ากับ 6",["2.4 × 2.5","12 ÷ 2","0.6 × 10","7.2 ÷ 1.2","3.5 + 2.4"],[0,1,2,3],"สี่ลูกแรกเท่ากับ 6 ส่วน 3.5+2.4=5.9"),
+N("คูณทศนิยม","0.84 × 3.5 = ?",2.94,"0.84 × 35 = 29.4 แล้วหาร 10 ได้ 2.94"),
+N("หารทศนิยม","25.2 ÷ 1.4 = ?",18,"252 ÷ 14 = 18"),
+N("โจทย์ปัญหา","ดินสอ 8 แท่ง ราคาแท่งละ 6.75 บาท ต้องจ่ายทั้งหมดกี่บาท?",54,"6.75 × 8 = 54 บาท"),
+N("โจทย์สองขั้น","แม่มีเงิน 200 บาท ซื้อผลไม้ 2.5 กก. กิโลกรัมละ 48.40 บาท เหลือเงินกี่บาท?",79,"48.40 × 2.5 = 121 บาท แล้ว 200 - 121 = 79 บาท"),
+Q("choice","สมเหตุสมผล","คำตอบใดสมเหตุสมผลที่สุดสำหรับ 9.8 × 2.1 ?",["2.058","20.58","205.8","0.2058"],1,"ประมาณ 10 × 2 ≈ 20 จึงควรได้ประมาณ 20.58"),
+Q("ball","ลูกบอลหลายคำตอบ","กดทุกลูกที่มีค่าระหว่าง 4 และ 5",["1.5 × 3","9 ÷ 2","2.4 × 2","5.4 ÷ 1.2","0.45 × 10"],[0,1,2,3,4],"ทั้งหมดเท่ากับ 4.5, 4.5, 4.8, 4.5, 4.5 จึงอยู่ระหว่าง 4 และ 5"),
+N("โจทย์หลายขั้น","ร้านมีน้ำมัน 24.5 ลิตร แบ่งใส่ขวดละ 0.7 ลิตร ขายขวดละ 22 บาท ถ้าขายได้ 30 ขวด จะได้เงินกี่บาท?",660,"คำถามบอกว่าขายได้ 30 ขวด จึงใช้ 30 × 22 = 660 บาท ข้อมูล 24.5 ลิตรใช้ตรวจว่ามีของพอ")
+];
+
+let bank=[],idx=0,answers=[],locked=[],secs=1200,tick=null,player="",bonusStars=0;
+function go(id){document.querySelectorAll("main>section").forEach(s=>s.classList.add("hidden"));document.getElementById(id).classList.remove("hidden")}
+function showReview(){clickSound();go("review")}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function start(){
+ clickSound();player=document.getElementById("player").value.trim()||player;if(!player){alert("ใส่ชื่อผู้เล่นก่อนนะ 😊");go("home");return}
+ bank=shuffle(BANK);answers=bank.map(x=>x.type==="ball"?[]:null);locked=Array(bank.length).fill(false);idx=0;secs=1200;bonusStars=0;clearInterval(tick);go("game");draw();
+ tick=setInterval(()=>{secs--;drawTime();if(secs<=0)finish()},1000)
+}
+function drawTime(){let m=Math.floor(secs/60),s=secs%60,el=document.getElementById("timer");el.textContent=`${m}:${String(s).padStart(2,"0")}`;el.style.background=secs<=120?"#ffe4ea":"#fff"}
+function labelFor(t){return t==="choice"?"🎯 เลือกตอบ":t==="tf"?"✅❌ ถูกหรือผิด":t==="num"?"🔢 เติมคำตอบ":t==="ball"?"🫧 ลูกบอลหลายคำตอบ":"🧭 เลือกวิธีคิด"}
+function draw(){
+ const x=bank[idx];document.getElementById("counter").textContent=`ข้อ ${idx+1}/${bank.length}`;document.getElementById("stars").textContent=`⭐ ${bonusStars}`;
+ document.getElementById("progress").style.width=((idx+1)/bank.length*100)+"%";document.getElementById("typeBadge").textContent=labelFor(x.type)+" • "+x.kind;document.getElementById("question").textContent=x.text;document.getElementById("feedback").innerHTML="";
+ const a=document.getElementById("answerArea");
+ if(x.type==="choice")a.innerHTML='<div class="answers">'+x.opts.map((o,i)=>`<button class="answer ${answers[idx]===i?'selected':''}" onclick="pick(${i})" ${locked[idx]?'disabled':''}>${o}</button>`).join("")+'</div>';
+ else if(x.type==="tf")a.innerHTML=`<div class="tfwrap"><button class="tf ${answers[idx]===0?'selTrue':''}" onclick="pick(0)" ${locked[idx]?'disabled':''}>✅ ถูก</button><button class="tf ${answers[idx]===1?'selFalse':''}" onclick="pick(1)" ${locked[idx]?'disabled':''}>❌ ผิด</button></div>`;
+ else if(x.type==="num")a.innerHTML=`<div class="numDisplay">${answers[idx]??""}</div><div class="keypad">${["1","2","3","4","5","6","7","8","9",".","0","⌫"].map(k=>`<button onclick="key('${k}')" ${locked[idx]?'disabled':''}>${k}</button>`).join("")}</div>`;
+ else if(x.type==="ball"){let sel=answers[idx]||[];a.innerHTML=`<div class="ballHint">💡 อาจมีมากกว่าหนึ่งคำตอบ เลือกให้ครบแล้วกดตรวจ</div><div class="ballGrid">${x.opts.map((o,i)=>`<div class="ball ${sel.includes(i)?'selected':''}" onclick="toggleBall(${i})">${o}</div>`).join("")}</div>`}
+ else if(x.type==="route")a.innerHTML='<div class="routeGrid">'+x.opts.map((o,i)=>`<button class="route ${answers[idx]===i?'selected':''}" onclick="pick(${i})" ${locked[idx]?'disabled':''}>${o}</button>`).join("")+'</div>';
+ if(locked[idx])showFeedback();drawTime()
+}
+function pick(i){if(locked[idx])return;clickSound();answers[idx]=i;draw()}
+function key(k){if(locked[idx])return;clickSound();let v=String(answers[idx]??"");if(k==="⌫")v=v.slice(0,-1);else if(k==="."&&v.includes("."))return;else if(v.length<10)v+=k;answers[idx]=v;draw()}
+function toggleBall(i){if(locked[idx])return;clickSound();let a=answers[idx]||[];answers[idx]=a.includes(i)?a.filter(v=>v!==i):[...a,i];draw()}
+function isCorrect(i){const x=bank[i],a=answers[i];if(x.type==="num"){if(a===null||a==="")return false;return Math.abs(Number(a)-Number(x.ans))<1e-9}
+ if(x.type==="ball"){const aa=[...(a||[])].sort((m,n)=>m-n),bb=[...x.ans].sort((m,n)=>m-n);return aa.length===bb.length&&aa.every((v,j)=>v===bb[j])}
+ return a===x.ans[0]
+}
+function check(){
+ if(locked[idx])return;const x=bank[idx],a=answers[idx];
+ if(a===null||(x.type==="num"&&a==="")||(x.type==="ball"&&a.length===0)){wrongSound();alert("ตอบก่อนนะ 😊");return}
+ clickSound();locked[idx]=true;
+ if(isCorrect(idx)){correctSound();if(x.type==="ball"){bonusStars++;burstCorrectBalls(x.ans);document.getElementById("stars").textContent=`⭐ ${bonusStars}`}}else wrongSound();
+ showFeedback()
+}
+function burstCorrectBalls(corrects){const balls=[...document.querySelectorAll(".ball")];corrects.forEach(i=>{let el=balls[i];if(el){el.classList.add("burst");spark(el)}})}
+function spark(el){const box=document.getElementById("gameBox"),r=el.getBoundingClientRect(),br=box.getBoundingClientRect();for(let i=0;i<10;i++){let s=document.createElement("span");s.className="spark";s.textContent=["✨","⭐","💫","🎉"][i%4];s.style.left=(r.left-br.left+r.width/2)+"px";s.style.top=(r.top-br.top+r.height/2)+"px";s.style.setProperty("--x",(Math.cos(i/10*Math.PI*2)*(65+Math.random()*35))+"px");s.style.setProperty("--y",(Math.sin(i/10*Math.PI*2)*(65+Math.random()*35))+"px");box.appendChild(s);setTimeout(()=>s.remove(),850)}}
+function showFeedback(){const x=bank[idx],ok=isCorrect(idx),f=document.getElementById("feedback");let correct=x.type==="num"?x.ans:(x.type==="ball"?x.ans.map(i=>x.opts[i]).join(", "):x.opts[x.ans[0]]);f.className="feedback "+(ok?"good":"bad");f.innerHTML=(ok?(x.type==="ball"?"🎉 ถูกครบ! รับดาวโบนัส ⭐":"🎉 ถูกต้อง! เยี่ยมมาก"):"💥 ยังไม่ถูกนะ")+`<br><span style="font-weight:normal">คำตอบ: <b>${correct}</b><br>${x.exp}</span>`}
+function nextQ(){clickSound();if(idx<bank.length-1){idx++;draw()}else finish()}
+function prevQ(){clickSound();if(idx>0){idx--;draw()}}
+function audioCtx(){window._ac=window._ac||new (window.AudioContext||window.webkitAudioContext)();return window._ac}
+function tone(freq,dur=.09,type="sine",vol=.05,delay=0){try{let A=audioCtx(),o=A.createOscillator(),g=A.createGain();o.type=type;o.frequency.value=freq;o.connect(g);g.connect(A.destination);let t=A.currentTime+delay;g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.start(t);o.stop(t+dur)}catch(e){}}
+function clickSound(){tone(430,.06,"square",.025)}function correctSound(){tone(660,.12,"sine",.05);tone(880,.14,"sine",.045,.11);tone(1040,.18,"sine",.04,.23)}function wrongSound(){tone(210,.18,"sawtooth",.045);tone(150,.23,"sawtooth",.035,.11)}
+function finish(){
+ clearInterval(tick);const score=bank.reduce((s,x,i)=>s+(locked[i]&&isCorrect(i)?1:0),0),pct=Math.round(score/bank.length*100);
+ const rows=bank.map((x,i)=>{let given="—",correct="";if(x.type==="num"){given=answers[i]??"—";correct=x.ans}else if(x.type==="ball"){given=(answers[i]||[]).map(v=>x.opts[v]).join(", ")||"—";correct=x.ans.map(v=>x.opts[v]).join(", ")}else{given=answers[i]===null?"—":x.opts[answers[i]];correct=x.opts[x.ans[0]]}return `<tr><td>${i+1}</td><td>${x.kind}</td><td>${x.text}</td><td>${given}</td><td>${correct}</td><td>${locked[i]&&isCorrect(i)?"✅":"❌"}</td></tr>`}).join("");
+ document.getElementById("resultBody").innerHTML=`<p><b>ผู้เล่น:</b> ${player} &nbsp; <b>เกม:</b> Decimal Boss Challenge</p><div class="resultScore">${score}/${bank.length}</div><div class="starLine">⭐ ดาวโบนัส ${bonusStars} ดวง <span style="font-size:16px;color:#777">(ไม่รวมในคะแนน)</span></div><p style="text-align:center;font-size:22px"><b>${pct}%</b> ${pct>=80?"🌟 ผ่าน Boss Challenge":"💪 ทบทวนแล้วลองใหม่อีกครั้ง"}</p><table><thead><tr><th>ข้อ</th><th>แบบ</th><th>โจทย์</th><th>ตอบ</th><th>เฉลย</th><th>ผล</th></tr></thead><tbody>${rows}</tbody></table>`;go("result")
+}
+</script>
+</body>
+</html>
