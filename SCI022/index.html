@@ -1,0 +1,142 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kru Pai Classroom | CELL MISSION 02 Dual Stage</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:system-ui,"Noto Sans Thai",sans-serif;color:#fbf9ff;background:radial-gradient(circle at 50% -10%,#4a237d 0,#17112f 42%,#070814 100%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(#d6b7ff 1px,transparent 1px);background-size:30px 30px;opacity:.1}
+.wrap{width:min(1080px,96vw);margin:12px auto}.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:900;color:#e8d7ff}.soundBtn{padding:7px 10px;border-radius:999px;background:#20163e;color:#f4eaff;border:1px solid #7653a6;font-size:13px}.tag,.chip{border:1px solid #7653a6;background:#261746;border-radius:999px;padding:7px 11px}
+.panel{margin-top:10px;border:1px solid #7652a7;border-radius:26px;padding:clamp(17px,3.5vw,34px);background:linear-gradient(145deg,#211540f5,#0c1026f8);box-shadow:0 22px 70px #0009,inset 0 1px #fff2}
+h1{font-size:clamp(34px,7vw,68px);line-height:.98;margin:8px 0;background:linear-gradient(90deg,#fff,#d8a9ff,#78edff);color:transparent;background-clip:text}h2{font-size:clamp(24px,4vw,38px);margin:8px 0}.sub{color:#cec6df;font-size:18px;line-height:1.65}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:center}.cell{width:min(275px,68vw);aspect-ratio:1;border-radius:50%;margin:auto;background:radial-gradient(circle,#fff 0 5%,#d896ff 6% 14%,#7646bf 15% 31%,#281b63 32% 52%,#10152f 53% 69%,#a76eff 70% 73%,#101125 74%);box-shadow:0 0 35px #a970ff,0 0 100px #8d55ff66;animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.045);filter:brightness(1.16)}}
+input{width:100%;padding:14px;border-radius:14px;border:1px solid #7758a0;background:#0d1026;color:#fff;font-size:18px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}button{font:inherit;font-weight:900;border-radius:15px;padding:13px 18px;border:0;cursor:pointer}.pri{background:linear-gradient(90deg,#c890ff,#73efff);color:#151029;box-shadow:0 8px 28px #9c68ff55}.sec{background:#281b49;color:#f6eeff;border:1px solid #70559b}.hidden{display:none!important}
+.review{min-height:340px;display:flex;flex-direction:column;justify-content:center}.review p,.review li{font-size:clamp(17px,2.2vw,20px);line-height:1.7}.tip{padding:13px 15px;border-radius:13px;background:#221b49;border-left:5px solid #75ecff;margin-top:10px}.kicker{font-weight:1000;letter-spacing:1.2px;color:#d2a9ff}
+.hud{display:flex;justify-content:space-between;gap:7px;flex-wrap:wrap;margin-bottom:10px}.hud span{border:1px solid #654c8b;background:#1d173b;border-radius:999px;padding:7px 11px;font-weight:900}
+.flowers{min-height:58px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:8px 10px;margin:8px 0 14px;border:1px dashed #7653a5;border-radius:16px;background:#110f2b}.flower{font-size:30px;animation:bloom .45s cubic-bezier(.2,1.7,.4,1)}@keyframes bloom{from{transform:scale(0) rotate(-100deg)}to{transform:scale(1) rotate(0)}}
+.stagegrid{display:grid;grid-template-columns:1fr 1.35fr;gap:15px}.bank{padding:13px;border-radius:18px;background:#120f2c;border:1px solid #5d477f}.balls{display:flex;gap:10px;flex-wrap:wrap;align-content:flex-start}.ball{width:116px;min-height:116px;border-radius:50%;padding:10px;color:#fff;background:radial-gradient(circle at 34% 25%,#eacfff 0 7%,#a665e8 8% 28%,#60309c 48%,#28154e 75%);border:2px solid #bd8cff;box-shadow:inset -9px -10px 20px #1b0b36aa,0 5px 18px #8b4ed955;display:grid;place-items:center;text-align:center;font-size:14px;line-height:1.25;cursor:grab;user-select:none;touch-action:manipulation}.ball.selected{outline:4px solid #79f2ff;transform:scale(1.06);filter:brightness(1.2)}.ball:active{cursor:grabbing}
+.tasks{display:grid;gap:9px}.task{display:grid;grid-template-columns:58px 1fr;gap:9px;align-items:center;padding:10px;border-radius:15px;background:#171638;border:1px solid #554573}.slot{height:48px;border:2px dashed #a77bd8;border-radius:12px;display:grid;place-items:center;font-size:23px;font-weight:1000;color:#a98ac7;cursor:pointer}.slot.ok{border-style:solid;border-color:#75ffd0;background:#15463c;color:#78ffd2}.task.done{border-color:#4f987f;background:#132e2b}.fn{font-size:16px;line-height:1.45}.toast{position:fixed;z-index:20;left:50%;top:18%;transform:translate(-50%,-50%) scale(.8);opacity:0;pointer-events:none;padding:18px 24px;border-radius:20px;background:#251549eF;border:1px solid #c68cff;box-shadow:0 18px 70px #000b;font-size:clamp(20px,4vw,34px);font-weight:1000;text-align:center;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.progress{height:8px;background:#211c45;border-radius:99px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,#c783ff,#70f0ff)}.question{font-size:clamp(22px,3vw,30px);line-height:1.45;margin:17px 0}.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px}.opt{text-align:left;min-height:67px;background:#1b1940;color:#fff;border:1px solid #5e4d80;font-size:17px}.correct{background:#17483d!important;border-color:#76ffd1!important}.wrong{background:#57243e!important;border-color:#ff7ba7!important}.fb{margin-top:14px;padding:15px;border-radius:15px;background:#11132e;border:1px solid #554878;line-height:1.55}.good{color:#7affd3}.bad{color:#ff8bad}.report{max-height:55vh;overflow:auto}.row{padding:12px;border-bottom:1px solid #383453;line-height:1.5}
+
+.focusTask{position:relative;margin:14px 0 18px;padding:22px 18px;border-radius:22px;background:linear-gradient(145deg,#2b1a53,#171536);border:1px solid #8b66ba;box-shadow:inset 0 1px #ffffff22,0 15px 35px #0005;text-align:center;overflow:hidden}
+.focusTask:before{content:"";position:absolute;inset:-50%;background:radial-gradient(circle,#b27cff22 0,transparent 60%);animation:glowmove 3s linear infinite;pointer-events:none}
+@keyframes glowmove{50%{transform:translate(12%,8%)}}
+.focusLabel{position:relative;z-index:1;color:#d6b7ff;font-weight:1000;letter-spacing:1px;margin-bottom:8px}
+.focusFn{position:relative;z-index:1;font-size:clamp(23px,4vw,34px);line-height:1.5;font-weight:900;color:#fff;text-wrap:balance}
+.focusSlot{position:relative;z-index:1;margin:16px auto 0;max-width:420px;min-height:54px;display:grid;place-items:center;border:2px dashed #b48add;border-radius:15px;color:#cab6df;background:#100d27;font-weight:900;padding:10px}
+.focusSlot.ready{border-color:#78f0ff;color:#7cf3ff;box-shadow:0 0 20px #68eaff33}
+.focusSlot.ok{border-style:solid;border-color:#78ffd2;background:#15453b;color:#81ffd7}
+.singleBank{padding:16px}.singleBank .balls{justify-content:center}
+.vanish{animation:vanish .48s ease forwards}
+@keyframes vanish{to{opacity:0;transform:scale(.55) rotate(18deg);filter:blur(7px)}}
+
+.homeFloat{position:fixed;z-index:30;right:14px;bottom:14px;padding:11px 15px;border-radius:999px;background:#f4eaff;color:#29134d;border:2px solid #b986ee;box-shadow:0 8px 28px #0008;font-size:14px;transition:.2s}.homeFloat:hover{transform:translateY(-2px) scale(1.03)}.stagePulse{animation:stagePulse .75s ease}@keyframes stagePulse{0%{box-shadow:0 0 0 0 #a970ff88}100%{box-shadow:0 0 0 24px transparent}}
+@media(max-width:760px){.hero,.stagegrid{grid-template-columns:1fr}.focusTask{padding:18px 14px}.focusFn{font-size:23px}.singleBank{padding:12px}.cell{width:170px}.panel{padding:16px;border-radius:19px}.opts{grid-template-columns:1fr}.ball{width:92px;min-height:92px;font-size:12px}.tasks{gap:7px}.task{grid-template-columns:50px 1fr;padding:8px}.fn{font-size:14px}.slot{height:44px}.top{font-size:12px}.flowers{min-height:50px}.flower{font-size:25px}}
+@media print{body{background:#fff;color:#111}.top,.actions{display:none}.panel{background:#fff;box-shadow:none;border:1px solid #aaa}.report{max-height:none;overflow:visible}}
+</style></head><body><div id="toast" class="toast"></div><button id="homeFloat" class="homeFloat hidden" onclick="goHome()">⌂ หน้าแรก</button><main class="wrap"><div class="top"><div>🧬 KRU PAI CLASSROOM</div><div style="display:flex;gap:7px;align-items:center"><button id="soundBtn" class="soundBtn" onclick="toggleSound()">🔊 เสียง ON</button><div class="tag">CELL MISSION • SET 02</div></div></div>
+<section id="cover" class="panel"><div class="hero"><div><div class="kicker">DUAL-STAGE ORGANELLE LAB</div><h1>CELL<br>REACTOR</h1><h2>จับคู่ให้ครบ แล้วปลดล็อกข้อสอบ</h2><p class="sub">ด่าน 1 จับออร์แกเนลล์สีม่วงไปเติมหน้าหน้าที่ให้ถูกทุกตัว 🌸<br>ด่าน 2 ปลดล็อกข้อสอบวิเคราะห์ 4 ตัวเลือก 20 ข้อ ⚡</p><input id="playerName" placeholder="ชื่อผู้ทดสอบ"><div class="actions"><button class="pri" onclick="startStage1()">🟣 เริ่มด่านจับคู่</button><button class="sec" onclick="startReview()">📖 ทบทวนก่อนเล่น</button></div></div><div class="cell"></div></div></section>
+<section id="review" class="panel hidden"><div id="sn" class="kicker"></div><div class="review"><h2 id="st"></h2><div id="sb"></div></div><div class="actions"><button class="sec" onclick="prevSlide()">← ก่อนหน้า</button><button class="pri" onclick="nextSlide()">ถัดไป →</button><button class="sec" onclick="show('cover')">⌂ หน้าหลัก</button></div></section>
+<section id="stage1" class="panel hidden"><div class="hud"><span id="p1who"></span><span id="attempt"></span><span id="matched"></span></div><div class="actions" style="margin-top:0;margin-bottom:8px"><button class="sec" onclick="goHome()">⌂ กลับหน้าแรก</button></div><div class="kicker">STAGE 1 • PURPLE ORGANELLE MATCH</div><h2>เลือก/ลากลูกบอล → เติมหน้าที่ให้ถูกต้อง</h2><p class="sub">อ่าน “หน้าที่” ทีละข้อให้ชัด แล้วเลือกออร์แกเนลล์สีม่วงที่ตรงกัน 💜<br><b>ถูก = ลูกบอลและโจทย์สลายเป็นดอกไม้ 🌸 แล้วข้อถัดไปขึ้นมา • ผิด = รีเซ็ตทั้งด่านและสุ่มใหม่</b></p>
+<div class="flowers" id="flowers"><span style="color:#9789ad">สวนดอกไม้ของภารกิจจะบานตรงนี้…</span></div>
+<div class="focusTask" id="focusTask">
+  <div class="focusLabel">หน้าที่ของออร์แกเนลล์</div>
+  <div class="focusFn" id="focusFn"></div>
+  <div class="focusSlot" id="focusSlot">แตะลูกบอลคำตอบด้านล่าง</div>
+</div>
+<div class="bank singleBank"><div class="balls" id="balls"></div></div></section>
+<section id="stage2" class="panel hidden"><div class="hud"><span id="p2who"></span><span id="score"></span><span id="qnum"></span></div><div class="progress"><div id="bar" class="bar"></div></div><div class="actions" style="margin-top:0;margin-bottom:8px"><button class="sec" onclick="goHome()">⌂ กลับหน้าแรก</button></div><div class="kicker">STAGE 2 • CELL ANALYSIS 20Q</div><div id="question" class="question"></div><div id="opts" class="opts"></div><div id="fb" class="fb hidden"></div><div class="actions"><button id="nextBtn" class="pri hidden" onclick="nextQ()">ข้อถัดไป →</button></div></section>
+<section id="result" class="panel hidden"><div class="kicker">FINAL CELL REPORT</div><h2 id="resultTitle"></h2><p id="meta" class="sub"></p><div id="report" class="report"></div><div class="actions"><button class="pri" onclick="window.print()">🖨️ พิมพ์ / บันทึก PDF</button><button class="sec" onclick="goHome()">⌂ กลับหน้าแรก</button><button class="sec" onclick="restartGame()">↻ เล่นใหม่</button></div></section>
+</main><script>
+const $=id=>document.getElementById(id);
+const sn=$("sn"),st=$("st"),sb=$("sb"),p1who=$("p1who"),attempt=$("attempt"),matched=$("matched"),
+flowers=$("flowers"),balls=$("balls"),tasks=$("tasks"),toast=$("toast"),p2who=$("p2who"),score=$("score"),
+qnum=$("qnum"),bar=$("bar"),question=$("question"),opts=$("opts"),fb=$("fb"),nextBtn=$("nextBtn"),
+resultTitle=$("resultTitle"),meta=$("meta"),report=$("report"),playerName=$("playerName"),focusFn=$("focusFn"),focusSlot=$("focusSlot"),focusTask=$("focusTask"),soundBtn=$("soundBtn"),homeFloat=$("homeFloat");
+
+let audioCtx=null,soundOn=true;
+function ac(){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==="suspended")audioCtx.resume();return audioCtx}
+function tone(freq,dur=.08,type="sine",vol=.055,delay=0){
+ if(!soundOn)return; const c=ac(),o=c.createOscillator(),g=c.createGain(),t=c.currentTime+delay;
+ o.type=type;o.frequency.setValueAtTime(freq,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+ o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+.03)
+}
+function sClick(){tone(520,.055,"triangle",.035);tone(760,.045,"sine",.025,.035)}
+function sSelect(){tone(390,.07,"sine",.04);tone(620,.08,"triangle",.035,.055)}
+function sCorrect(){tone(523,.11,"sine",.05);tone(659,.12,"sine",.055,.10);tone(784,.16,"triangle",.06,.21);tone(1047,.22,"sine",.05,.34)}
+function sWrong(){tone(190,.16,"sawtooth",.045);tone(145,.23,"square",.035,.12);tone(95,.28,"sawtooth",.03,.28)}
+function sBloom(){tone(880,.08,"sine",.035);tone(1175,.16,"sine",.035,.08)}
+function sUnlock(){[392,523,659,784,1047].forEach((f,i)=>tone(f,.18,"triangle",.05,i*.11))}
+function sFinish(){[523,659,784,1047,1319].forEach((f,i)=>tone(f,.22,"sine",.05,i*.13))}
+function toggleSound(){soundOn=!soundOn;soundBtn.textContent=soundOn?"🔊 เสียง ON":"🔇 เสียง OFF";if(soundOn)sClick()}
+document.addEventListener("pointerdown",e=>{if(e.target.closest("button")&&!e.target.closest(".ball")&&!e.target.closest(".opt"))sClick()},{passive:true});
+
+const organelles=[{"id": "membrane", "name": "เยื่อหุ้มเซลล์", "fn": "ควบคุมการผ่านเข้า–ออกของสารระหว่างเซลล์กับสิ่งแวดล้อม", "icon": "🫧"}, {"id": "cyto", "name": "ไซโทพลาซึม", "fn": "ของเหลวกึ่งเจลภายในเซลล์ เป็นบริเวณที่มีออร์แกเนลล์และเกิดปฏิกิริยาหลายชนิด", "icon": "💧"}, {"id": "nucleus", "name": "นิวเคลียส", "fn": "ควบคุมกิจกรรมสำคัญของเซลล์และเก็บสารพันธุกรรม", "icon": "🧠"}, {"id": "mito", "name": "ไมโทคอนเดรีย", "fn": "เกี่ยวข้องกับการหายใจระดับเซลล์และสร้างพลังงานที่เซลล์นำไปใช้", "icon": "⚡"}, {"id": "ribo", "name": "ไรโบโซม", "fn": "เป็นบริเวณสังเคราะห์โปรตีน", "icon": "🔹"}, {"id": "wall", "name": "ผนังเซลล์", "fn": "ช่วยค้ำจุน ป้องกัน และทำให้เซลล์พืชคงรูป", "icon": "🧱"}, {"id": "chloro", "name": "คลอโรพลาสต์", "fn": "มีคลอโรฟิลล์และเป็นบริเวณสำคัญของการสังเคราะห์ด้วยแสง", "icon": "🌿"}, {"id": "vacuole", "name": "แวคิวโอล", "fn": "เก็บน้ำและสารต่าง ๆ และช่วยรักษาความเต่งของเซลล์พืช", "icon": "💦"}, {"id": "er", "name": "เอนโดพลาสมิกเรติคูลัม (ER)", "fn": "เป็นระบบเยื่อภายใน ช่วยสร้างและลำเลียงสารบางชนิด", "icon": "🛤️"}, {"id": "golgi", "name": "กอลจิบอดี", "fn": "ดัดแปลง คัดแยก บรรจุ และจัดส่งสารไปยังตำแหน่งต่าง ๆ", "icon": "📦"}, {"id": "lyso", "name": "ไลโซโซม", "fn": "มีเอนไซม์ช่วยย่อยสลายสารและส่วนประกอบที่เสื่อมสภาพภายในเซลล์", "icon": "♻️"}], quizBank=[{"q": "ถ้าเยื่อหุ้มเซลล์เสียหายรุนแรง ผลใดเกิดโดยตรงที่สุด?", "opts": ["การควบคุมสารเข้า–ออกผิดปกติ", "สร้างโปรตีนเพิ่มทันที", "สร้างผนังเซลล์เพิ่ม", "สังเคราะห์ด้วยแสงเร็วขึ้น"], "a": 0, "e": "เยื่อหุ้มเซลล์ควบคุมการแลกเปลี่ยนสารกับสิ่งแวดล้อม"}, {"q": "เซลล์กล้ามเนื้อที่ใช้พลังงานมากควรมีออร์แกเนลล์ใดเด่น?", "opts": ["ไรโบโซม", "ไมโทคอนเดรีย", "แวคิวโอล", "กอลจิบอดี"], "a": 1, "e": "ไมโทคอนเดรียเกี่ยวข้องกับการสร้างพลังงานให้เซลล์"}, {"q": "ถ้าไรโบโซมหยุดทำงาน กระบวนการใดกระทบโดยตรง?", "opts": ["เก็บน้ำ", "ควบคุมสารเข้าออก", "สังเคราะห์โปรตีน", "ค้ำจุนเซลล์"], "a": 2, "e": "ไรโบโซมเป็นบริเวณสังเคราะห์โปรตีน"}, {"q": "ข้อใดทำหน้าที่เหมือนศูนย์บรรจุและจัดส่งผลิตภัณฑ์ของเซลล์?", "opts": ["นิวเคลียส", "คลอโรพลาสต์", "ไมโทคอนเดรีย", "กอลจิบอดี"], "a": 3, "e": "กอลจิบอดีดัดแปลง คัดแยก บรรจุ และจัดส่งสาร"}, {"q": "โครงสร้างใดพบทั้งในเซลล์พืชและเซลล์สัตว์?", "opts": ["เยื่อหุ้มเซลล์", "ผนังเซลล์", "คลอโรพลาสต์", "แวคิวโอลกลางขนาดใหญ่"], "a": 0, "e": "ทั้งเซลล์พืชและสัตว์มีเยื่อหุ้มเซลล์"}, {"q": "คลอโรฟิลล์อยู่ในออร์แกเนลล์ใด?", "opts": ["นิวเคลียส", "คลอโรพลาสต์", "กอลจิบอดี", "ไลโซโซม"], "a": 1, "e": "คลอโรฟิลล์อยู่ในคลอโรพลาสต์และรับพลังงานแสง"}, {"q": "โครงสร้างใดช่วยให้เซลล์พืชแข็งแรงและคงรูป?", "opts": ["ไซโทพลาซึม", "นิวเคลียส", "ผนังเซลล์", "ไรโบโซม"], "a": 2, "e": "ผนังเซลล์ช่วยค้ำจุนและป้องกันเซลล์พืช"}, {"q": "ข้อใดอธิบายแวคิวโอลของเซลล์พืชได้เหมาะสมที่สุด?", "opts": ["สร้างโปรตีน", "ควบคุมพันธุกรรม", "สร้าง ATP เป็นหลัก", "เก็บน้ำและสารต่าง ๆ ช่วยรักษาความเต่ง"], "a": 3, "e": "แวคิวโอลกลางช่วยเก็บน้ำและมีส่วนรักษาแรงดันภายในเซลล์"}, {"q": "เซลล์หนึ่งสูญเสียนิวเคลียสที่เคยควบคุมกิจกรรม ผลใดสมเหตุสมผล?", "opts": ["การควบคุมกิจกรรมสำคัญของเซลล์ผิดปกติ", "เกิดคลอโรพลาสต์ทันที", "ผนังเซลล์หายเสมอ", "สร้างโปรตีนได้มากขึ้นทันที"], "a": 0, "e": "นิวเคลียสเป็นศูนย์ควบคุมสำคัญและเก็บสารพันธุกรรม"}, {"q": "ระบบเยื่อภายในที่ช่วยสร้างและลำเลียงสารบางชนิดคืออะไร?", "opts": ["กอลจิบอดี", "เอนโดพลาสมิกเรติคูลัม (ER)", "ไลโซโซม", "แวคิวโอล"], "a": 1, "e": "ER เป็นระบบเยื่อภายในที่เกี่ยวข้องกับการสร้างและลำเลียงสาร"}, {"q": "เซลล์ใบพืชสูญเสียคลอโรพลาสต์จำนวนมาก กระบวนการใดกระทบมากที่สุด?", "opts": ["การย่อยภายในเซลล์", "การบรรจุโปรตีน", "การสังเคราะห์ด้วยแสง", "การควบคุมสารเข้าออก"], "a": 2, "e": "คลอโรพลาสต์เป็นบริเวณสำคัญของการสังเคราะห์ด้วยแสง"}, {"q": "ออร์แกเนลล์ใดมีเอนไซม์ช่วยย่อยสลายสิ่งที่เสื่อมสภาพภายในเซลล์?", "opts": ["ไรโบโซม", "กอลจิบอดี", "ไมโทคอนเดรีย", "ไลโซโซม"], "a": 3, "e": "ไลโซโซมมีเอนไซม์สำหรับย่อยสลายสารบางชนิด"}, {"q": "ข้อใดเป็นหน้าที่สำคัญของไซโทพลาซึม?", "opts": ["เป็นบริเวณที่มีออร์แกเนลล์และเกิดปฏิกิริยาหลายชนิด", "เก็บสารพันธุกรรมหลัก", "สร้างผนังเซลล์โดยตรง", "รับพลังงานแสง"], "a": 0, "e": "ไซโทพลาซึมเป็นสภาพแวดล้อมภายในที่มีออร์แกเนลล์และปฏิกิริยาหลายอย่าง"}, {"q": "นักเรียนพบเซลล์มีผนังเซลล์ คลอโรพลาสต์ และแวคิวโอลใหญ่ น่าจะเป็นเซลล์ใด?", "opts": ["เซลล์สัตว์", "เซลล์พืช", "เม็ดเลือดแดง", "เซลล์ประสาท"], "a": 1, "e": "ลักษณะทั้งสามเป็นจุดเด่นของเซลล์พืชในระดับนี้"}, {"q": "เซลล์ต่อมผลิตโปรตีนเพื่อส่งออกนอกเซลล์จำนวนมาก หลังสร้างโปรตีนแล้วออร์แกเนลล์ใดเด่นเรื่องบรรจุและจัดส่ง?", "opts": ["ผนังเซลล์", "คลอโรพลาสต์", "กอลจิบอดี", "แวคิวโอล"], "a": 2, "e": "กอลจิบอดีทำหน้าที่ดัดแปลง บรรจุ และจัดส่งสาร"}, {"q": "ถ้าพบเซลล์หนึ่งไม่มีคลอโรพลาสต์ ข้อสรุปใดดีที่สุด?", "opts": ["ต้องเป็นเซลล์สัตว์", "ต้องเป็นเซลล์ราก", "ต้องเป็นเซลล์ตาย", "ยังสรุปพืชหรือสัตว์ไม่ได้จากข้อมูลนี้เพียงอย่างเดียว"], "a": 3, "e": "เซลล์พืชบางชนิด เช่น เซลล์รากทั่วไป ไม่มีคลอโรพลาสต์"}, {"q": "คู่ใดสัมพันธ์กันถูกต้อง?", "opts": ["ไมโทคอนเดรีย — พลังงาน", "ไรโบโซม — เก็บน้ำ", "นิวเคลียส — สังเคราะห์ด้วยแสง", "ผนังเซลล์ — สร้างโปรตีน"], "a": 0, "e": "ไมโทคอนเดรียสัมพันธ์กับการหายใจระดับเซลล์และการสร้างพลังงาน"}, {"q": "ถ้าต้องการหาส่วนที่เก็บสารพันธุกรรมหลักของเซลล์ยูคาริโอต ควรดูที่ใด?", "opts": ["ไซโทพลาซึม", "นิวเคลียส", "แวคิวโอล", "ผนังเซลล์"], "a": 1, "e": "สารพันธุกรรมหลักอยู่ในนิวเคลียส"}, {"q": "ข้อใดเป็นเหตุผลที่เซลล์รากพืชทั่วไปไม่จำเป็นต้องมีคลอโรพลาสต์จำนวนมาก?", "opts": ["ไม่มีเยื่อหุ้มเซลล์", "ไม่มีไซโทพลาซึม", "อยู่ใต้ดินจึงได้รับแสงน้อยและไม่ได้เป็นบริเวณหลักของการสังเคราะห์ด้วยแสง", "ไม่ต้องใช้พลังงาน"], "a": 2, "e": "รากทั่วไปอยู่ในบริเวณที่ได้รับแสงน้อย จึงไม่ใช่บริเวณหลักของการสังเคราะห์ด้วยแสง"}, {"q": "ข้อใดกล่าวถูกต้องที่สุดเกี่ยวกับผนังเซลล์กับเยื่อหุ้มเซลล์?", "opts": ["ทั้งคู่พบเฉพาะในพืช", "ผนังเซลล์ควบคุมสารแทนเยื่อหุ้มทั้งหมด", "สัตว์มีผนังเซลล์แต่พืชไม่มี", "เซลล์พืชมีทั้งผนังเซลล์และเยื่อหุ้มเซลล์"], "a": 3, "e": "เซลล์พืชมีเยื่อหุ้มเซลล์เช่นเดียวกับสัตว์ และมีผนังเซลล์เพิ่มด้านนอก"}];
+const reviews=[
+{t:"1 • แกนหลักของเซลล์",b:`<p><b>เยื่อหุ้มเซลล์</b> คุมสารเข้า–ออก • <b>ไซโทพลาซึม</b> เป็นบริเวณภายในที่มีออร์แกเนลล์ • <b>นิวเคลียส</b> ควบคุมกิจกรรมสำคัญและเก็บสารพันธุกรรม</p><div class="tip">🧠 คำว่า “ควบคุมกิจกรรม” ให้นึกถึงนิวเคลียส แต่ “ควบคุมสารเข้า–ออก” คือเยื่อหุ้มเซลล์</div>`},
+{t:"2 • โรงงานพลังงานและโปรตีน",b:`<p><b>ไมโทคอนเดรีย</b> → พลังงาน ⚡ &nbsp; <b>ไรโบโซม</b> → สร้างโปรตีน 🔹</p><div class="tip">เซลล์ที่ทำงานหนักมักต้องใช้พลังงานมาก ส่วนเซลล์ที่ผลิตโปรตีนมากต้องพึ่งไรโบโซม</div>`},
+{t:"3 • จุดเด่นของเซลล์พืช",b:`<p><b>ผนังเซลล์</b> → ค้ำจุน • <b>คลอโรพลาสต์</b> → สังเคราะห์ด้วยแสง • <b>แวคิวโอลใหญ่</b> → เก็บน้ำ/ช่วยความเต่ง</p><div class="tip">🌱 เซลล์รากทั่วไปไม่มีคลอโรพลาสต์ จึงห้ามสรุปว่า “ไม่มีคลอโรพลาสต์ = สัตว์” เสมอไป</div>`},
+{t:"4 • ระบบผลิต–แพ็ก–ย่อย",b:`<p><b>ER</b> → สร้าง/ลำเลียงสารบางชนิด<br><b>Golgi</b> → ดัดแปลง คัดแยก บรรจุ จัดส่ง 📦<br><b>Lysosome</b> → ย่อยสลาย ♻️</p><div class="tip">คิดเป็นโรงงาน: ER = สายงาน • Golgi = แผนกแพ็กของ • Lysosome = หน่วยกำจัด/รีไซเคิล</div>`}
+];
+let slide=0,player="",attempts=0,selected=null,matchedSet=new Set(),taskOrder=[],ballOrder=[];
+let qs=[],qi=0,pts=0,answered=false,logs=[];
+function show(id){["cover","review","stage1","stage2","result"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==id));homeFloat.classList.toggle("hidden",id==="cover");scrollTo({top:0,behavior:"smooth"})}
+function goHome(){sClick();selected=null;matchedSet=new Set();qs=[];logs=[];qi=0;pts=0;answered=false;show("cover");flash("⌂ กลับสู่ CELL REACTOR",650)}
+function restartGame(){sClick();attempts=0;selected=null;matchedSet=new Set();qs=[];logs=[];qi=0;pts=0;startStage1()}
+function shuffle(a){let x=[...a];for(let i=x.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function startReview(){slide=0;renderReview();show("review")} function renderReview(){sn.textContent=`REVIEW ${slide+1}/${reviews.length}`;st.textContent=reviews[slide].t;sb.innerHTML=reviews[slide].b} function prevSlide(){if(slide){slide--;renderReview()}} function nextSlide(){if(slide<reviews.length-1){slide++;renderReview()}else startStage1()}
+function startStage1(){player=playerName.value.trim()||"นักสำรวจเซลล์";attempts=0;show("stage1");resetStage(false)}
+function resetStage(fromWrong=true){attempts++;selected=null;matchedSet=new Set();taskOrder=shuffle(organelles);ballOrder=shuffle(organelles);renderStage1();if(fromWrong)flash("💥 จับคู่ผิด!<br>รีเซ็ตภารกิจใหม่ทั้งหมด",1200)}
+function currentTask(){return taskOrder.find(o=>!matchedSet.has(o.id))}
+function renderStage1(){
+  p1who.textContent="🔬 "+player;
+  attempt.textContent=`รอบที่ ${attempts}`;
+  matched.textContent=`✓ ${matchedSet.size}/${organelles.length}`;
+  flowers.innerHTML=matchedSet.size?[...matchedSet].map(()=>`<span class="flower">🌸</span>`).join(""):`<span style="color:#9789ad">สวนดอกไม้ของภารกิจจะบานตรงนี้…</span>`;
+
+  const current=currentTask();
+  if(!current)return;
+  focusFn.textContent=current.fn;
+  focusSlot.textContent=selected ? "เลือกแล้ว → แตะช่องนี้เพื่อยืนยัน" : "แตะลูกบอลคำตอบด้านล่าง";
+  focusSlot.className="focusSlot"+(selected?" ready":"");
+  focusSlot.onclick=()=>tryMatch(current.id,selected);
+  focusSlot.ondragover=e=>e.preventDefault();
+  focusSlot.ondrop=e=>{e.preventDefault();tryMatch(current.id,e.dataTransfer.getData("text/plain"))};
+
+  balls.innerHTML="";
+  ballOrder.filter(o=>!matchedSet.has(o.id)).forEach(o=>{
+    let b=document.createElement("button");
+    b.className="ball"+(selected===o.id?" selected":"");
+    b.draggable=true;
+    b.innerHTML=`<span>${o.icon}<br>${o.name}</span>`;
+    b.onclick=()=>selectBall(o.id);
+    b.ondragstart=e=>{e.dataTransfer.setData("text/plain",o.id);selected=o.id};
+    balls.appendChild(b)
+  });
+}
+function selectBall(id){
+  sSelect();
+  selected=id;
+  renderStage1();
+}
+function tryMatch(target,id){
+  if(!id)return flash("🟣 เลือกลูกบอลออร์แกเนลล์ก่อน",850);
+  if(target!==id){sWrong();resetStage(true);return}
+  const chosen=[...balls.children].find(el=>el.classList.contains("selected"));
+  sCorrect();focusSlot.textContent="✓ ถูกต้อง!";
+  focusSlot.className="focusSlot ok";
+  focusTask.classList.add("vanish");
+  if(chosen)chosen.classList.add("vanish");
+  setTimeout(()=>{
+    matchedSet.add(id);
+    selected=null;
+    focusTask.classList.remove("vanish");
+    renderStage1();
+    sBloom();flash("✓ ถูกต้อง! กลายเป็นดอกไม้ 🌸",700);
+    if(matchedSet.size===organelles.length)setTimeout(unlock,850)
+  },480);
+}
+function unlock(){sUnlock();flash("🌺 ดอกไม้ครบทุกดอก!<br>STAGE 2 UNLOCKED ⚡",1500);setTimeout(startStage2,1550)}
+function flash(msg,ms=900){toast.innerHTML=msg;toast.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>toast.classList.remove("show"),ms)}
+function startStage2(){document.getElementById("stage2").classList.add("stagePulse");setTimeout(()=>document.getElementById("stage2").classList.remove("stagePulse"),800);qs=shuffle(quizBank).map(x=>({...x,display:shuffle(x.opts.map((v,k)=>({v,k})))}));qi=0;pts=0;logs=[];show("stage2");renderQ()}
+function renderQ(){answered=false;nextBtn.classList.add("hidden");fb.classList.add("hidden");p2who.textContent="🔬 "+player;score.textContent=`⭐ ${pts}`;qnum.textContent=`ข้อ ${qi+1}/20`;bar.style.width=`${qi/20*100}%`;question.textContent=qs[qi].q;opts.innerHTML="";qs[qi].display.forEach((o,n)=>{let b=document.createElement("button");b.className="opt";b.textContent=`${["ก","ข","ค","ง"][n]}. ${o.v}`;b.onclick=()=>answer(o,b);opts.appendChild(b)})}
+function answer(o,b){if(answered)return;answered=true;let x=qs[qi],ok=o.k===x.a;if(ok){sCorrect();pts++;b.classList.add("correct")}else{sWrong();b.classList.add("wrong");[...opts.children].forEach((el,n)=>{if(x.display[n].k===x.a)el.classList.add("correct")})}[...opts.children].forEach(el=>el.disabled=true);fb.innerHTML=`<b class="${ok?"good":"bad"}">${ok?"✓ CELL SIGNAL PERFECT!":"✗ ยังไม่ถูก"}</b><br>${x.e}<br><b>เฉลย:</b> ${x.opts[x.a]}`;fb.classList.remove("hidden");nextBtn.classList.remove("hidden");score.textContent=`⭐ ${pts}`;logs.push({q:x.q,u:o.v,c:x.opts[x.a],ok,e:x.e})}
+function nextQ(){qi++;if(qi>=20)return finish();renderQ();document.getElementById("stage2").scrollIntoView({behavior:"smooth",block:"start"})}
+function finish(){sFinish();show("result");let pct=Math.round(pts/20*100);resultTitle.textContent=pct>=80?"🏆 CELL REACTOR MASTER!":"🧬 CELL TRAINING COMPLETE";meta.innerHTML=`ผู้ทดสอบ <b>${player}</b> • ด่านจับคู่สำเร็จในรอบที่ <b>${attempts}</b> • ข้อสอบ <b>${pts}/20 (${pct}%)</b> • ${pct>=80?"ผ่านเกณฑ์ 80%":"ทบทวนแล้วกลับมาพิชิต 80% อีกครั้ง"}`;report.innerHTML=logs.map((r,n)=>`<div class="row"><b>${n+1}. ${r.q}</b><br>ตอบ: <span class="${r.ok?"good":"bad"}">${r.u} ${r.ok?"✓":"✗"}</span><br>เฉลย: <b>${r.c}</b><br><small>${r.e}</small></div>`).join("")}
+window.addEventListener("error",e=>{console.error(e.error||e.message);});
+</script></body></html>
