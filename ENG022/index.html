@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Kru Pai Classroom - Spell Buddy Memory Quest</title>
+<style>
+:root{
+  --ink:#283553;--pink:#ff79ad;--pink2:#ffd8e7;--sky:#8bd8ff;--mint:#93e5c2;
+  --yellow:#ffd868;--violet:#9f8cff;--red:#ef476f;--green:#17aa79;--white:#fff;
+  --shadow:0 18px 45px rgba(42,59,102,.17);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;font-family:"Trebuchet MS","Segoe UI",Tahoma,sans-serif;color:var(--ink);
+  background:
+    radial-gradient(circle at 7% 10%,#fff2a8 0 5%,transparent 6%),
+    radial-gradient(circle at 92% 12%,#ffd3e5 0 7%,transparent 8%),
+    radial-gradient(circle at 88% 90%,#d9d0ff 0 6%,transparent 7%),
+    linear-gradient(140deg,#eafbff,#fff6fb 48%,#f3efff);
+}
+button,input{font:inherit}
+button{touch-action:manipulation}
+.app{max-width:980px;margin:auto;min-height:100vh;padding:14px;display:flex;align-items:center;justify-content:center}
+.screen{display:none;width:100%}.screen.active{display:block}
+.card{background:rgba(255,255,255,.96);border:4px solid #fff;border-radius:30px;padding:clamp(18px,4vw,34px);box-shadow:var(--shadow);overflow:hidden;position:relative}
+.brand{font-weight:1000;color:#6b5fd1;letter-spacing:.3px}
+h1{font-size:clamp(36px,7vw,66px);line-height:1.02;margin:8px 0 12px}
+h2{font-size:clamp(27px,5vw,42px);margin:6px 0}
+p{font-size:clamp(17px,2.5vw,21px);line-height:1.5}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:center}
+.art{height:300px;position:relative}
+.orb{position:absolute;border-radius:50%;display:grid;place-items:center;font-size:46px;font-weight:1000;box-shadow:inset 0 0 0 5px #fff8,0 14px 28px #68729c22}
+.o1{width:145px;height:145px;background:#ffd86a;left:8%;top:8%}
+.o2{width:118px;height:118px;background:#93e5c2;right:7%;top:20%}
+.o3{width:112px;height:112px;background:#ae9aff;left:34%;bottom:2%}
+.o4{width:78px;height:78px;background:#ff91bd;right:8%;bottom:4%;font-size:32px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.tag{background:#eef5ff;padding:9px 13px;border-radius:999px;font-weight:900}
+.nameRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+input{flex:1;min-width:210px;border:2px solid #dfe7fa;border-radius:18px;padding:15px 17px;font-size:19px;outline:none}
+.btn{border:0;border-radius:18px;padding:14px 18px;font-weight:1000;cursor:pointer;box-shadow:0 7px 0 #4c587722;transition:.12s}
+.btn:active{transform:translateY(4px);box-shadow:0 3px 0 #4c587722}
+.primary{background:linear-gradient(135deg,#6b6cff,#9c83ff);color:#fff}
+.pink{background:linear-gradient(135deg,#ff74aa,#ff9a7b);color:#fff}
+.mint{background:linear-gradient(135deg,#6eddb6,#9be9d0);color:#153f37}
+.yellow{background:linear-gradient(135deg,#ffd45c,#ffeca3);color:#634d0c}
+.wide{width:100%;font-size:19px}
+.topbar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.counter,.badge{font-weight:1000;padding:10px 14px;border-radius:15px;background:#f0f4ff}
+.progress{height:13px;background:#edf0f7;border-radius:999px;overflow:hidden}
+.progress>div{height:100%;background:linear-gradient(90deg,#72ddbd,#8584ff);transition:.35s}
+.phase{display:inline-block;padding:8px 12px;border-radius:14px;background:#fff1f7;color:#d64484;font-weight:1000;margin-top:14px}
+.review{text-align:center;padding:18px 0 8px}
+.bigword{font-size:clamp(48px,10vw,88px);font-weight:1000;letter-spacing:2px}
+.meaning{font-size:clamp(25px,5vw,36px);font-weight:1000;color:#e65c99}
+.spellRow{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;min-height:70px;margin:20px 0}
+.spellLetter{width:54px;height:60px;border-radius:15px;background:#eef2ff;display:grid;place-items:center;font-size:29px;font-weight:1000;box-shadow:inset 0 -4px 0 #d8def1;transition:.2s}
+.spellLetter.active{background:#ffd86a;transform:translateY(-8px) scale(1.12);box-shadow:0 10px 20px #ffd86a66}
+.reviewBtns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.miniNote{text-align:center;font-size:15px;opacity:.72;margin-top:12px}
+.questTitle{text-align:center;margin:16px 0 4px;font-size:clamp(22px,4vw,30px);font-weight:1000}
+.slots,.tiles{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.slots{margin:18px 0 12px}.tiles{margin:18px 0 22px}
+.slot,.tile{width:55px;height:59px;border-radius:15px;display:grid;place-items:center;font-size:27px;font-weight:1000;cursor:pointer}
+.slot{border:3px dashed #bcc7e6;background:#fff}
+.slot.filled{border-style:solid;border-color:#8e91ff;background:#f2f0ff}
+.tile{border:0;background:linear-gradient(145deg,#84d5ff,#bceeff);box-shadow:0 7px 0 #70b9dc;color:#263a59}
+.tile:active{transform:translateY(4px);box-shadow:0 3px 0 #70b9dc}
+.tile.used{opacity:.22;pointer-events:none}
+.selectedMeaning{min-height:54px;border:2px dashed #d8def0;border-radius:16px;background:#fbfcff;padding:13px;text-align:center;font-weight:1000;font-size:19px}
+.helperBox{margin:14px 0 4px;padding:14px;border-radius:20px;background:linear-gradient(135deg,#fff8d9,#f3efff);border:2px solid #f0e5ba}
+.helperTitle{text-align:center;font-weight:1000;margin-bottom:10px;color:#6a5bc5}
+.helperBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.helperBtn{border:0;border-radius:16px;padding:12px;font-weight:1000;cursor:pointer;background:#fff;box-shadow:0 5px 0 #4c58771a}
+.helperBtn:disabled{opacity:.42;cursor:not-allowed}
+.helperStatus{text-align:center;font-size:14px;font-weight:900;margin-top:8px;color:#8a6799}
+.flashWord{display:none;text-align:center;margin:12px auto;padding:14px 20px;border-radius:20px;background:linear-gradient(135deg,#fff1a8,#ffd6e7);font-size:clamp(34px,8vw,62px);font-weight:1000;letter-spacing:3px;color:#4a4770;box-shadow:0 12px 28px #8d77aa25}
+.flashWord.show{display:block;animation:popIn .25s ease}
+@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.actionRow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.feedback{display:none;text-align:center;margin-top:15px;padding:18px;border-radius:20px;font-size:21px;font-weight:1000}
+.feedback.show{display:block}.feedback.ok{background:#e9fff6;color:#11785b}.feedback.bad{background:#fff0f4;color:#bc274b}
+.xmark{font-size:68px;line-height:1}.correctReveal{font-size:27px;color:#675bd0;margin-top:8px}
+.nextWrap{display:none;margin-top:12px}.nextWrap.show{display:block}
+.popup{position:fixed;inset:0;background:#27334d88;display:none;align-items:center;justify-content:center;padding:18px;z-index:30}.popup.show{display:flex}
+.popupCard{background:#fff;width:min(520px,100%);border-radius:28px;padding:22px;box-shadow:var(--shadow)}
+.choice{width:100%;border:0;background:#f3f6ff;border-radius:15px;padding:14px;margin:7px 0;font-size:18px;font-weight:1000;cursor:pointer}
+.choice:hover{background:#e8edff}
+.stageBanner{background:linear-gradient(135deg,#f5efff,#eafaff);border:2px solid #e6e8ff;border-radius:22px;padding:18px;text-align:center;margin:12px 0 18px}
+.finalHero{text-align:center}.scoreCircle{width:150px;height:150px;border-radius:50%;margin:12px auto;display:grid;place-items:center;background:linear-gradient(135deg,#93e5c2,#8bd8ff);box-shadow:inset 0 0 0 8px white;font-size:40px;font-weight:1000}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{text-align:center;background:#f5f7ff;border-radius:17px;padding:14px;font-weight:1000}
+.report{max-height:340px;overflow:auto;border:2px solid #edf0f7;border-radius:18px}
+.row{display:grid;grid-template-columns:38px 1fr 1fr 68px;gap:8px;align-items:center;padding:11px;border-bottom:1px solid #edf0f7}
+.row:nth-child(even){background:#fbfcff}.oktxt{color:#159a70;font-weight:1000}.badtxt{color:#dc4669;font-weight:1000}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:40}.conf{position:absolute;top:-20px;width:11px;height:17px;border-radius:4px;animation:fall 1.7s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}.shake{animation:shake .28s 2}@keyframes shake{25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
+@media(max-width:720px){
+  .hero{grid-template-columns:1fr}.art{height:220px}.actionRow,.stats{grid-template-columns:1fr}
+  .slot,.tile{width:47px;height:52px;font-size:23px}.card{border-radius:23px}.app{padding:9px}
+  .row{grid-template-columns:32px 1fr 58px}.answerCol{display:none}.helperBtns{grid-template-columns:1fr}
+}
+@media print{body{background:#fff}.app{padding:0}.screen{display:none!important}#summaryScreen{display:block!important}.btn{display:none!important}.report{max-height:none;overflow:visible}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<section id="startScreen" class="screen active">
+  <div class="card">
+    <div class="hero">
+      <div>
+        <div class="brand">Kru Pai Classroom ✨ English Game</div>
+        <h1>Spell Buddy<br>Memory Quest</h1>
+        <p>เรียนทีละคำ แล้วสอบคำนั้นทันที 💡<br>ครบ 20 คำ เจอ Final Test สุ่ม 10 คำ!</p>
+        <div class="tags">
+          <span class="tag">🎧 ฟังคำ</span><span class="tag">🔤 ฟังสะกด</span><span class="tag">🧠 ทดสอบทันที</span><span class="tag">🎓 Final 10/20</span>
+        </div>
+        <div class="nameRow">
+          <input id="playerName" placeholder="พิมพ์ชื่อเล่นของนักเรียน">
+          <button class="btn primary" onclick="startMission()">เริ่มภารกิจ 🚀</button>
+        </div>
+      </div>
+      <div class="art" aria-hidden="true">
+        <div class="orb o1">A</div><div class="orb o2">B</div><div class="orb o3">C</div><div class="orb o4">✏️</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviewScreen" class="screen">
+  <div class="card">
+    <div class="topbar">
+      <div class="brand">STEP 1 • เรียนรู้คำศัพท์</div>
+      <div class="counter" id="learnCounter">คำที่ 1 / 20</div>
+    </div>
+    <div class="progress"><div id="learnProgress"></div></div>
+    <div class="review">
+      <div class="phase">👀 ดู • ฟัง • จำ</div>
+      <div class="bigword" id="reviewWord"></div>
+      <div class="meaning" id="reviewMeaning"></div>
+      <div class="spellRow" id="spellRow"></div>
+      <div class="reviewBtns">
+        <button class="btn mint" onclick="speakReviewWord()">🔊 ฟังคำ</button>
+        <button class="btn yellow" onclick="spellReviewWord()">🔤 ฟังสะกด</button>
+        <button class="btn primary" onclick="goMicroQuiz()">พร้อมแล้ว! ภารกิจสอบ 🎯</button>
+      </div>
+      <div class="miniNote">📱 บนมือถือ กรุณาแตะปุ่ม 🔊 หรือ 🔤 เพื่อเริ่มเสียงครั้งแรก • เมื่อกด “ภารกิจสอบ” คำศัพท์จะถูกซ่อนและตัวอักษรจะสลับทันที</div>
+    </div>
+  </div>
+</section>
+
+<section id="quizScreen" class="screen">
+  <div class="card" id="quizCard">
+    <div class="topbar">
+      <div>
+        <div class="brand" id="quizBrand">STEP 2 • ภารกิจจำทันที</div>
+        <div class="counter" id="quizCounter"></div>
+      </div>
+      <div class="badge" id="quizBadge">ฝึกจำ</div>
+    </div>
+    <div class="progress"><div id="quizProgress"></div></div>
+    <div class="questTitle" id="questTitle">เรียงอักษรและเลือกคำแปลให้ถูกต้อง</div>
+    <div style="text-align:center"><button class="btn mint" onclick="speakQuizWord()">🎧 ฟังเสียงคำศัพท์</button></div>
+    <div class="helperBox" id="helperBox">
+      <div class="helperTitle">🪄 ตัวช่วยความจำ — เลือกได้ 1 อย่าง / คำนี้</div>
+      <div class="helperBtns">
+        <button class="helperBtn" id="helperShowBtn" onclick="useShowHelper()">👀 โชว์คำ 3 วินาที</button>
+        <button class="helperBtn" id="helperFillBtn" onclick="useFillHelper()">🧩 เติมให้ 3 ตัว</button>
+      </div>
+      <div class="helperStatus" id="helperStatus">ยังไม่ได้ใช้ตัวช่วย</div>
+    </div>
+    <div class="flashWord" id="flashWord"></div>
+    <div class="slots" id="slots"></div>
+    <div class="tiles" id="tiles"></div>
+    <div class="selectedMeaning" id="selectedMeaning">ยังไม่ได้เลือกคำแปล</div>
+    <div class="actionRow">
+      <button class="btn yellow wide" onclick="openMeaningPopup()">🌼 เลือกคำแปล</button>
+      <button class="btn pink wide" onclick="submitQuiz()">ส่งคำตอบ 💌</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+    <div id="nextWrap" class="nextWrap"><button id="nextBtn" class="btn primary wide" onclick="nextAfterQuiz()">ไปต่อ ➜</button></div>
+  </div>
+</section>
+
+<section id="finalIntroScreen" class="screen">
+  <div class="card">
+    <div class="stageBanner">
+      <div style="font-size:58px">🏆</div>
+      <div class="brand">FINAL TEST UNLOCKED</div>
+      <h2>ทบทวนครบ 20 คำแล้ว!</h2>
+      <p>ระบบจะสุ่ม <b>10 คำจาก 20 คำ</b> มาให้สอบจริง<br>คำที่ได้แต่ละครั้งอาจไม่เหมือนกันนะ 🎲</p>
+      <p><b>Final Test:</b> ข้อละ 1 คะแนน • ตอบได้ครั้งเดียว</p>
+      <button class="btn primary" onclick="startFinal()">เริ่ม Final Test 10 คำ 🎓</button>
+    </div>
+  </div>
+</section>
+
+<section id="summaryScreen" class="screen">
+  <div class="card">
+    <div class="finalHero">
+      <div class="brand">Kru Pai Classroom • Mission Complete 🎉</div>
+      <h2>สรุปผล Spell Buddy Memory Quest</h2>
+      <p id="summaryName"></p>
+      <div class="scoreCircle" id="percent">0%</div>
+    </div>
+    <div class="stats">
+      <div class="stat">🎓 Final Test<br><span id="finalScore">0 / 10</span></div>
+      <div class="stat">⚡ ฝึกผ่านครั้งแรก<br><span id="practiceFirst">0 / 20</span></div>
+      <div class="stat">🔁 คำที่ต้องลองซ้ำ<br><span id="practiceRetry">0</span></div>
+    </div>
+    <h3>📋 รายงาน Final Test</h3>
+    <div class="report" id="report"></div>
+    <div class="actionRow">
+      <button class="btn mint wide" onclick="window.print()">🖨️ พิมพ์ / บันทึก PDF</button>
+      <button class="btn primary wide" onclick="restartAll()">🔄 เล่นใหม่</button>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="popup" id="meaningPopup">
+  <div class="popupCard">
+    <h2 style="text-align:center">เลือกคำแปล 🌷</h2>
+    <div id="meaningChoices"></div>
+    <button class="btn wide" style="background:#edf1f7;margin-top:8px" onclick="closeMeaningPopup()">ปิด</button>
+  </div>
+</div>
+<div class="confetti" id="confetti"></div>
+
+<script>
+const VOCAB=[
+ {w:"window",m:"หน้าต่าง"},{w:"pencil",m:"ดินสอ"},{w:"school",m:"โรงเรียน"},{w:"teacher",m:"ครู"},
+ {w:"flower",m:"ดอกไม้"},{w:"garden",m:"สวน"},{w:"rabbit",m:"กระต่าย"},{w:"orange",m:"ส้ม"},
+ {w:"purple",m:"สีม่วง"},{w:"kitchen",m:"ห้องครัว"},{w:"family",m:"ครอบครัว"},{w:"friend",m:"เพื่อน"},
+ {w:"morning",m:"ตอนเช้า"},{w:"banana",m:"กล้วย"},{w:"animal",m:"สัตว์"},{w:"market",m:"ตลาด"},
+ {w:"picture",m:"รูปภาพ"},{w:"computer",m:"คอมพิวเตอร์"},{w:"library",m:"ห้องสมุด"},{w:"notebook",m:"สมุดบันทึก"}
+];
+
+let player="",learnList=[],learnIndex=0,mode="practice",current=null;
+let selectedLetters=[],selectedMeaning="",tileState=[],attempts=0;
+let helperUsed=false, helperType="", fixedHints={};
+let practiceResults=[],finalList=[],finalIndex=0,finalScore=0,finalResults=[];
+
+let audioCtx=null, speechUnlocked=false, speechQueueBusy=false, cachedVoice=null;
+
+function ensureAudio(){
+ try{
+   const AC=window.AudioContext||window.webkitAudioContext;
+   if(AC){
+     if(!audioCtx) audioCtx=new AC();
+     if(audioCtx.state==="suspended") audioCtx.resume().catch(()=>{});
+   }
+ }catch(e){}
+ try{
+   if("speechSynthesis" in window){
+     // Mobile browsers often need a direct user gesture before speech is allowed.
+     const warm=new SpeechSynthesisUtterance(" ");
+     warm.volume=0;
+     warm.lang="en-US";
+     speechSynthesis.speak(warm);
+     speechUnlocked=true;
+   }
+ }catch(e){}
+}
+
+function beep(freq=520,dur=.07,type="sine",vol=.045){
+ try{
+   ensureAudio();
+   if(!audioCtx) return;
+   const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+   o.type=type;o.frequency.value=freq;g.gain.value=vol;o.connect(g);g.connect(audioCtx.destination);o.start();
+   g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur);o.stop(audioCtx.currentTime+dur);
+ }catch(e){}
+}
+
+document.addEventListener("pointerdown",e=>{
+ if(e.target.closest("button")) ensureAudio();
+},{passive:true});
+
+document.addEventListener("click",e=>{
+ if(e.target.closest("button")) beep(620,.05,"triangle",.035);
+});
+
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+
+function pickEnglishVoice(){
+ if(!("speechSynthesis" in window)) return null;
+ const voices=speechSynthesis.getVoices()||[];
+ if(cachedVoice && voices.includes(cachedVoice)) return cachedVoice;
+ cachedVoice =
+   voices.find(v=>/^en-US$/i.test(v.lang) && /Samantha|Google|Microsoft|English/i.test(v.name)) ||
+   voices.find(v=>/^en-US/i.test(v.lang)) ||
+   voices.find(v=>/^en-/i.test(v.lang)) ||
+   voices[0] || null;
+ return cachedVoice;
+}
+if("speechSynthesis" in window){
+ speechSynthesis.onvoiceschanged=()=>{cachedVoice=null;pickEnglishVoice();};
+}
+
+function speakOnce(text,rate=.82){
+ return new Promise(resolve=>{
+   if(!("speechSynthesis" in window)){ resolve(false); return; }
+   try{
+     ensureAudio();
+     speechSynthesis.cancel();
+     const u=new SpeechSynthesisUtterance(text);
+     u.lang="en-US";
+     u.rate=rate;
+     u.pitch=1.02;
+     u.volume=1;
+     const v=pickEnglishVoice();
+     if(v) u.voice=v;
+     let done=false;
+     const finish=()=>{if(!done){done=true;resolve(true);}};
+     u.onend=finish;u.onerror=finish;
+     // Small delay after cancel improves iOS/Android reliability.
+     setTimeout(()=>{try{speechSynthesis.speak(u)}catch(e){finish()}},60);
+     setTimeout(finish,4000);
+   }catch(e){resolve(false);}
+ });
+}
+
+async function speak(text,rate=.82){
+ await speakOnce(text,rate);
+}
+
+async function speakSpelling(word, highlightPrefix="sp"){
+ if(speechQueueBusy) return;
+ speechQueueBusy=true;
+ try{
+   if("speechSynthesis" in window) speechSynthesis.cancel();
+   for(let i=0;i<word.length;i++){
+     document.querySelectorAll(".spellLetter").forEach(x=>x.classList.remove("active"));
+     const el=document.getElementById(highlightPrefix+i);
+     if(el) el.classList.add("active");
+     await speakOnce(word[i].toUpperCase(),0.62);
+     await new Promise(r=>setTimeout(r,180));
+   }
+   document.querySelectorAll(".spellLetter").forEach(x=>x.classList.remove("active"));
+   await new Promise(r=>setTimeout(r,150));
+   await speakOnce(word,0.78);
+ } finally {
+   speechQueueBusy=false;
+ }
+}
+
+function startMission(){
+ player=document.getElementById("playerName").value.trim()||"นักเรียน";
+ learnList=shuffle(VOCAB);learnIndex=0;practiceResults=[];show("reviewScreen");renderReview();
+}
+function renderReview(){
+ current=learnList[learnIndex];
+ document.getElementById("learnCounter").textContent=`คำที่ ${learnIndex+1} / ${learnList.length}`;
+ document.getElementById("learnProgress").style.width=`${((learnIndex+1)/learnList.length)*100}%`;
+ document.getElementById("reviewWord").textContent=current.w;
+ document.getElementById("reviewMeaning").textContent=current.m;
+ const row=document.getElementById("spellRow");row.innerHTML="";
+ [...current.w].forEach((c,i)=>{let d=document.createElement("div");d.className="spellLetter";d.id="sp"+i;d.textContent=c.toUpperCase();row.appendChild(d)});
+
+}
+function speakReviewWord(){ensureAudio();speak(current.w,.78)}
+function spellReviewWord(){
+ ensureAudio();
+ speakSpelling(current.w,"sp");
+}
+function goMicroQuiz(){
+ mode="practice";current=learnList[learnIndex];attempts=0;
+ prepareQuiz();
+ document.getElementById("quizBrand").textContent="STEP 2 • ภารกิจจำทันที";
+ document.getElementById("quizCounter").textContent=`คำที่ ${learnIndex+1} / 20`;
+ document.getElementById("quizBadge").textContent="ฝึกจำทันที";
+ document.getElementById("quizProgress").style.width=`${((learnIndex+1)/20)*100}%`;
+ document.getElementById("questTitle").textContent="จำคำเมื่อกี้ได้ไหม? เรียงอักษร + เลือกคำแปล";
+ document.getElementById("helperBox").style.display="block";
+ show("quizScreen");
+}
+function startFinal(){
+ mode="final";finalList=shuffle(VOCAB).slice(0,10);finalIndex=0;finalScore=0;finalResults=[];
+ current=finalList[finalIndex];attempts=0;prepareQuiz();renderFinalHeader();show("quizScreen");
+}
+function renderFinalHeader(){
+ document.getElementById("quizBrand").textContent="FINAL TEST • สุ่ม 10 จาก 20 คำ";
+ document.getElementById("quizCounter").textContent=`ข้อ ${finalIndex+1} / 10`;
+ document.getElementById("quizBadge").textContent=`⭐ ${finalScore} คะแนน`;
+ document.getElementById("quizProgress").style.width=`${(finalIndex/10)*100}%`;
+ document.getElementById("questTitle").textContent="สอบจริง! เรียงอักษรและเลือกคำแปลให้ถูกต้อง";
+ document.getElementById("helperBox").style.display="none";
+}
+function prepareQuiz(){
+ selectedLetters=Array(current.w.length).fill(null);selectedMeaning="";tileState=[];helperUsed=false;helperType="";fixedHints={};
+ document.getElementById("selectedMeaning").textContent="ยังไม่ได้เลือกคำแปล";
+ const hs=document.getElementById("helperStatus"); if(hs) hs.textContent="ยังไม่ได้ใช้ตัวช่วย";
+ const hb1=document.getElementById("helperShowBtn"),hb2=document.getElementById("helperFillBtn");
+ if(hb1) hb1.disabled=false;if(hb2) hb2.disabled=false;
+ const fw=document.getElementById("flashWord");if(fw){fw.className="flashWord";fw.textContent="";}
+ document.getElementById("feedback").className="feedback";document.getElementById("feedback").innerHTML="";
+ document.getElementById("nextWrap").className="nextWrap";
+ renderSlots();makeTiles();
+}
+function makeTiles(){
+ tileState=shuffle([...current.w].map((ch,i)=>({ch,id:i+"-"+Math.random(),used:false})));drawTiles();
+}
+function renderSlots(){
+ let box=document.getElementById("slots");box.innerHTML="";
+ for(let i=0;i<current.w.length;i++){
+  let b=document.createElement("button");
+  const fixed=fixedHints[i]!==undefined;
+  const chosen=selectedLetters[i];
+  b.className="slot"+((fixed||chosen)?" filled":"");
+  b.textContent=fixed?fixedHints[i].toUpperCase():(chosen?.ch?.toUpperCase()||"");
+  if(fixed){
+    b.style.background="#fff2b8";
+    b.style.borderColor="#f2bf3d";
+    b.title="ตัวช่วยเติมให้";
+    b.disabled=true;
+  }else{
+    b.onclick=()=>removeLetter(i);
+  }
+  box.appendChild(b);
+ }
+}
+function drawTiles(){
+ let box=document.getElementById("tiles");box.innerHTML="";
+ tileState.forEach((t,i)=>{let b=document.createElement("button");b.className="tile"+(t.used?" used":"");b.textContent=t.ch.toUpperCase();b.onclick=()=>chooseLetter(i);box.appendChild(b)});
+}
+function chooseLetter(i){
+ if(tileState[i].used)return;
+ // หา "ช่องว่างจริง" แรกที่ไม่ได้ถูกตัวช่วยล็อกไว้
+ let target=-1;
+ for(let p=0;p<current.w.length;p++){
+   if(fixedHints[p]===undefined && !selectedLetters[p]){
+     target=p;
+     break;
+   }
+ }
+ if(target<0)return;
+ selectedLetters[target]={ch:tileState[i].ch,tile:i};
+ tileState[i].used=true;
+ beep(760,.05,"square",.03);
+ renderSlots();
+ drawTiles();
+}
+function removeLetter(i){
+ if(fixedHints[i]!==undefined)return;
+ if(!selectedLetters[i])return;
+ const t=selectedLetters[i].tile;
+ tileState[t].used=false;
+ selectedLetters[i]=null;
+ renderSlots();
+ drawTiles();
+}
+function currentSpelling(){
+ let result=[];
+ for(let i=0;i<current.w.length;i++){
+   if(fixedHints[i]!==undefined) result.push(fixedHints[i]);
+   else result.push(selectedLetters[i]?.ch||"");
+ }
+ return result.join("");
+}
+function lockHelpers(label){
+ helperUsed=true;
+ document.getElementById("helperShowBtn").disabled=true;
+ document.getElementById("helperFillBtn").disabled=true;
+ document.getElementById("helperStatus").textContent="ใช้ตัวช่วยแล้ว: "+label+" • ใช้ได้เพียง 1 ครั้ง";
+}
+function useShowHelper(){
+ if(helperUsed)return;
+ helperType="show";lockHelpers("โชว์คำ 3 วินาที");
+ const fw=document.getElementById("flashWord");
+ fw.textContent=current.w.toUpperCase();fw.className="flashWord show";
+ beep(820,.08,"triangle",.035);
+ setTimeout(()=>{fw.className="flashWord";fw.textContent="";},3000);
+}
+function hintPositions(word){
+ const n=word.length;
+ if(n<=3)return [...Array(n).keys()];
+ let pos=[0,Math.floor((n-1)/2),n-1];
+ return [...new Set(pos)].slice(0,3);
+}
+function useFillHelper(){
+ if(helperUsed)return;
+ helperType="fill";lockHelpers("เติมให้ 3 ตัว");
+ fixedHints={};
+ const positions=hintPositions(current.w);
+ positions.forEach(p=>fixedHints[p]=current.w[p]);
+ // Remove exactly the hinted letter occurrences from the tile pool.
+ positions.forEach(p=>{
+   const ch=current.w[p];
+   const idx=tileState.findIndex(t=>!t.used&&t.ch===ch);
+   if(idx>=0) tileState[idx].used=true;
+ });
+ selectedLetters=Array(current.w.length).fill(null);
+ renderSlots();drawTiles();
+ beep(900,.08,"triangle",.035);
+}
+function speakQuizWord(){ensureAudio();speak(current.w,.78)}
+function meaningOptions(){
+ let wrong=shuffle(VOCAB.filter(v=>v.m!==current.m)).slice(0,3).map(v=>v.m);return shuffle([current.m,...wrong]);
+}
+function openMeaningPopup(){
+ let box=document.getElementById("meaningChoices");box.innerHTML="";
+ meaningOptions().forEach(m=>{let b=document.createElement("button");b.className="choice";b.textContent=m;b.onclick=()=>selectMeaning(m);box.appendChild(b)});
+ document.getElementById("meaningPopup").classList.add("show");
+}
+function closeMeaningPopup(){document.getElementById("meaningPopup").classList.remove("show")}
+function selectMeaning(m){selectedMeaning=m;document.getElementById("selectedMeaning").textContent="คำแปลที่เลือก: "+m;closeMeaningPopup()}
+function disableInputs(){document.querySelectorAll("#tiles button,#slots button").forEach(b=>b.disabled=true)}
+function submitQuiz(){
+ let spelling=currentSpelling();
+ if(spelling.length!==current.w.length||!selectedMeaning){
+  let f=document.getElementById("feedback");f.className="feedback bad show";f.innerHTML="🧩 เรียงอักษรให้ครบ และเลือกคำแปลก่อนนะ";return;
+ }
+ attempts++;
+ let ok=spelling===current.w&&selectedMeaning===current.m;
+ if(mode==="practice"){
+   if(ok){
+     practiceResults.push({word:current.w,meaning:current.m,ok:true,attempts});
+     successFX();showFeedback(true,`🎉 จำได้แล้ว! <b>${current.w}</b> = ${current.m}`);
+     document.getElementById("nextBtn").textContent=learnIndex===19?"ไป Final Test 🏆":"เรียนคำถัดไป ➜";
+     document.getElementById("nextWrap").className="nextWrap show";disableInputs();
+   }else if(attempts<2){
+     wrongFX();showFeedback(false,'<div class="xmark">✖</div>ยังไม่ถูก ลองจำอีกครั้งนะ');
+     selectedLetters=Array(current.w.length).fill(null);selectedMeaning="";document.getElementById("selectedMeaning").textContent="ยังไม่ได้เลือกคำแปล";
+     makeTiles();
+     if(helperType==="fill" || Object.keys(fixedHints).length){
+       Object.keys(fixedHints).forEach(k=>{
+         const ch=fixedHints[k];
+         const idx=tileState.findIndex(t=>!t.used&&t.ch===ch);
+         if(idx>=0)tileState[idx].used=true;
+       });
+       drawTiles();
+     }
+     renderSlots();
+   }else{
+     practiceResults.push({word:current.w,meaning:current.m,ok:false,attempts});
+     wrongFX();showFeedback(false,`<div class="xmark">✖</div>เฉลยคือ<div class="correctReveal">${current.w.toUpperCase()} = ${current.m}</div>`);
+     document.getElementById("nextBtn").textContent=learnIndex===19?"ไป Final Test 🏆":"เรียนคำถัดไป ➜";
+     document.getElementById("nextWrap").className="nextWrap show";disableInputs();setTimeout(()=>speak(current.w),450);
+   }
+ }else{
+   if(ok){finalScore++;successFX();showFeedback(true,`✅ ถูกต้อง! <b>${current.w}</b> = ${current.m}`)}
+   else{wrongFX();showFeedback(false,`<div class="xmark">✖</div>เฉลย: <span class="correctReveal">${current.w.toUpperCase()} = ${current.m}</span>`)}
+   finalResults.push({word:current.w,meaning:current.m,user:spelling,selected:selectedMeaning,ok});
+   document.getElementById("quizBadge").textContent=`⭐ ${finalScore} คะแนน`;
+   document.getElementById("nextBtn").textContent=finalIndex===9?"ดูสรุปผล 🎓":"ข้อถัดไป ➜";
+   document.getElementById("nextWrap").className="nextWrap show";disableInputs();
+ }
+}
+function showFeedback(ok,html){let f=document.getElementById("feedback");f.className="feedback "+(ok?"ok":"bad")+" show";f.innerHTML=html}
+function nextAfterQuiz(){
+ if(mode==="practice"){
+   if(learnIndex<19){learnIndex++;show("reviewScreen");renderReview()}
+   else show("finalIntroScreen");
+ }else{
+   if(finalIndex<9){finalIndex++;current=finalList[finalIndex];attempts=0;prepareQuiz();renderFinalHeader();window.scrollTo({top:0,behavior:"smooth"})}
+   else showSummary();
+ }
+}
+function successFX(){
+ beep(880,.11,"triangle",.05);setTimeout(()=>beep(1120,.17,"triangle",.045),100);
+ let box=document.getElementById("confetti");box.innerHTML="";let colors=["#ff79ad","#ffd868","#8bd8ff","#93e5c2","#9f8cff"];
+ for(let i=0;i<58;i++){let d=document.createElement("div");d.className="conf";d.style.left=Math.random()*100+"vw";d.style.background=colors[i%colors.length];d.style.animationDelay=Math.random()*.35+"s";box.appendChild(d)}
+ setTimeout(()=>box.innerHTML="",2100);
+}
+function wrongFX(){beep(170,.22,"sawtooth",.045);let c=document.getElementById("quizCard");c.classList.add("shake");setTimeout(()=>c.classList.remove("shake"),620)}
+function showSummary(){
+ show("summaryScreen");
+ let pct=Math.round(finalScore/10*100),first=practiceResults.filter(r=>r.ok&&r.attempts===1).length,retry=practiceResults.filter(r=>r.attempts>1||!r.ok).length;
+ document.getElementById("summaryName").textContent=`ผู้เล่น: ${player}`;
+ document.getElementById("percent").textContent=pct+"%";
+ document.getElementById("finalScore").textContent=`${finalScore} / 10`;
+ document.getElementById("practiceFirst").textContent=`${first} / 20`;
+ document.getElementById("practiceRetry").textContent=retry+" คำ";
+ let report=document.getElementById("report");report.innerHTML="";
+ finalResults.forEach((r,i)=>{let d=document.createElement("div");d.className="row";
+ d.innerHTML=`<div>${i+1}</div><div><b>${r.word}</b><br><small>${r.meaning}</small></div><div class="answerCol"><small>ตอบ:</small> ${r.user||"-"}<br><small>${r.selected||"-"}</small></div><div class="${r.ok?"oktxt":"badtxt"}">${r.ok?"✓ ถูก":"✗ ผิด"}</div>`;
+ report.appendChild(d)});
+}
+function restartAll(){document.getElementById("playerName").value=player;show("startScreen")}
+</script>
+</body>
+</html>
