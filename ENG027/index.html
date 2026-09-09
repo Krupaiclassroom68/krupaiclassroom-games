@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><title>Kru Pai Classroom - Adjective Mastery M1 Set 2 • Context Challenge</title>
+<style>
+:root{--ink:#25324d;--vio:#7467f5;--vio2:#9e87ff;--pink:#ff7cad;--mint:#8ce1c1;--yellow:#ffd86a;--red:#e94f70;--green:#18a875}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:"Trebuchet MS","Segoe UI",Tahoma,sans-serif;color:var(--ink);background:linear-gradient(135deg,#edf9ff,#fff6fb 48%,#f3efff)}button,input{font:inherit}button{touch-action:manipulation}.app{max-width:1080px;margin:auto;min-height:100vh;padding:10px;display:flex;align-items:center}.screen{display:none;width:100%}.screen.active{display:block}.card{background:#fffffff2;border:4px solid #fff;border-radius:28px;padding:clamp(18px,4vw,34px);box-shadow:0 18px 46px #2d396122}.brand{font-weight:1000;color:#6658d2}h1{font-size:clamp(38px,7vw,66px);line-height:1.03;margin:7px 0}h2{font-size:clamp(28px,5vw,42px);margin:8px 0}p{font-size:clamp(16px,2.3vw,20px);line-height:1.55}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center}.art{height:290px;position:relative}.orb{position:absolute;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:1000;box-shadow:inset 0 0 0 5px #fff7,0 14px 30px #68729c22}.o1{width:138px;height:138px;background:#7467f5;left:8%;top:8%;font-size:44px}.o2{width:112px;height:112px;background:#ff7cad;right:8%;top:18%;font-size:35px}.o3{width:102px;height:102px;background:#8ce1c1;left:37%;bottom:4%;font-size:31px;color:#244}.o4{width:78px;height:78px;background:#ffd86a;right:5%;bottom:5%;font-size:28px;color:#5c4b14}.tags{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tag{background:#eef3ff;padding:9px 13px;border-radius:999px;font-weight:900}.nameRow{display:flex;gap:10px;flex-wrap:wrap}input{flex:1;min-width:220px;padding:15px;border:2px solid #dfe6f6;border-radius:17px;font-size:18px}.btn{border:0;border-radius:17px;padding:13px 17px;font-weight:1000;cursor:pointer;box-shadow:0 6px 0 #4753721c}.btn:active{transform:translateY(3px)}.primary{background:linear-gradient(135deg,var(--vio),var(--vio2));color:white}.mint{background:#8ce1c1;color:#173e37}.yellow{background:#ffe188;color:#5f4b12}.pink{background:linear-gradient(135deg,#ff74aa,#ff9b7f);color:white}.wide{width:100%}.reviewGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}.reviewBox{background:#f6f7ff;border-radius:18px;padding:15px}.reviewBox b{color:#675bd0}.topbar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.counter,.score{background:#eef3ff;border-radius:15px;padding:9px 13px;font-weight:1000}.progress{height:13px;background:#edf0f6;border-radius:999px;overflow:hidden;margin-top:10px}.progress>div{height:100%;background:linear-gradient(90deg,#7addbd,#8177f6)}.qLayout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;align-items:start;margin-top:18px}.question{font-size:clamp(19px,3vw,25px);font-weight:900;line-height:1.52;background:#fbfcff;border:2px solid #edf0f8;padding:18px;border-radius:20px}.options{display:grid;gap:10px;margin-top:14px}.option{border:2px solid #e2e7f5;background:white;border-radius:17px;padding:14px;text-align:left;font-size:18px;font-weight:800;cursor:pointer}.option.selected{border-color:#7a70f6;background:#f1efff}.option.eliminated{opacity:.28;text-decoration:line-through;pointer-events:none}.helperPanel{background:linear-gradient(135deg,#fff8db,#f4efff);border:2px solid #eee2b7;border-radius:20px;padding:14px;position:sticky;top:10px}.helperPanel h3{margin:0 0 10px;text-align:center;color:#6e5dc8}.helperBtns{display:grid;gap:9px}.helperStatus{text-align:center;font-size:14px;font-weight:900;color:#866696;margin-top:8px}.vocabBox{display:none;margin-top:12px;background:white;border:2px solid #eadff7;border-radius:16px;padding:10px}.vocabBox.show{display:block}.wordChip{padding:8px;border-bottom:1px dashed #e1e5ef;font-size:15px}.wordChip:last-child{border-bottom:0}.wordChip b{color:#6558cf}.feedback{display:none;margin-top:14px;padding:16px;border-radius:18px;font-weight:900;font-size:18px}.feedback.show{display:block}.feedback.ok{background:#e9fff6;color:#12785a}.feedback.bad{background:#fff0f4;color:#bd284d}.explain{margin-top:8px;font-size:16px;font-weight:700;color:#3d4a62}.nextWrap{display:none;margin-top:12px}.nextWrap.show{display:block}
+.navRow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.navBtn{border:0;border-radius:16px;padding:12px;font-weight:1000;cursor:pointer;background:#eef3ff;color:#35425f}
+.qNav{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 0}
+.qDot{width:38px;height:38px;border:0;border-radius:12px;background:#eef2f8;font-weight:1000;cursor:pointer}
+.qDot.current{outline:3px solid #7a70f6;background:#f2efff}
+.qDot.done{background:#dff8ee;color:#11785a}
+.qDot.skipped{background:#fff3cf;color:#856000}
+.qDot.wrong{background:#ffe3e9;color:#b52f50}.summaryHero{text-align:center}.scoreCircle{width:150px;height:150px;border-radius:50%;margin:12px auto;display:grid;place-items:center;background:linear-gradient(135deg,#8ce1c1,#8fd8ff);box-shadow:inset 0 0 0 8px white;font-size:39px;font-weight:1000}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.stat{background:#f5f7ff;border-radius:17px;padding:14px;text-align:center;font-weight:1000}.report{max-height:400px;overflow:auto;border:2px solid #edf0f6;border-radius:18px}.row{display:grid;grid-template-columns:38px 1fr 70px;gap:8px;padding:11px;border-bottom:1px solid #edf0f6;align-items:center}.row:nth-child(even){background:#fbfcff}.oktxt{color:#13986d;font-weight:1000}.badtxt{color:#d94867;font-weight:1000}
+@media(max-width:760px){#summaryScreen .card>div[style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}.hero{grid-template-columns:1fr}.art{height:205px}.reviewGrid{grid-template-columns:1fr}.qLayout{grid-template-columns:1fr}.helperPanel{position:static}.stats{grid-template-columns:1fr}.app{padding:7px}.card{border-radius:22px}}
+@media print{body{background:#fff}.screen{display:none!important}#summaryScreen{display:block!important}.btn{display:none!important}.report{max-height:none;overflow:visible}}
+
+.teacherBtn{position:fixed;right:12px;bottom:12px;z-index:50;border:0;border-radius:999px;padding:10px 14px;background:#293653;color:#fff;font-weight:1000;cursor:pointer;box-shadow:0 8px 24px #26324d44}
+.teacherBadge{display:none;position:fixed;right:12px;bottom:62px;z-index:49;background:#e7fff5;color:#087653;border:2px solid #9ce2c9;border-radius:999px;padding:8px 12px;font-weight:1000}
+.teacherBadge.show{display:block}
+.teacherModal{display:none;position:fixed;inset:0;z-index:100;background:#202a407d;padding:14px;align-items:center;justify-content:center}
+.teacherModal.show{display:flex}
+.teacherCard{width:min(760px,96vw);max-height:88vh;overflow:auto;background:white;border:4px solid white;border-radius:26px;padding:20px;box-shadow:0 25px 70px #16203966}
+.teacherLogin{display:grid;gap:10px}
+.teacherInput{width:100%;padding:14px 16px;border:2px solid #dfe5f4;border-radius:15px;font-size:18px}
+.teacherHint{background:#fff7d6;border-radius:14px;padding:10px 12px;font-weight:900;color:#705b13}
+.teacherExplain{display:grid;gap:10px}
+.teacherSection{background:#f7f8ff;border-radius:16px;padding:13px;line-height:1.55}
+.teacherSection b{color:#6558cf}
+.choiceExplain{padding:8px 0;border-bottom:1px dashed #dfe4ef}
+.choiceExplain:last-child{border-bottom:0}
+.teacherError{min-height:22px;color:#c52e52;font-weight:900}
+
+</style></head><body><div class="app">
+<section id="startScreen" class="screen active"><div class="card"><div class="hero"><div><div class="brand">Kru Pai Classroom ✨ English Entrance</div><h1>ADJECTIVE CONTEXT<br>CHALLENGE • SET 2</h1><p>ข้อสอบ Adjective แบบอ่านบริบทจริง • 20 ข้อ<br>เลือกคำให้ตรงกับความหมาย • -ed/-ing • Comparison • Order</p><div class="tags"><span class="tag">20 Questions</span><span class="tag">⚡ Context Battle</span><span class="tag">🧠 วิเคราะห์จริง</span><span class="tag">🪄 ตัวช่วย 2 แบบ</span><span class="tag">🔤 Adjective Focus</span><span class="tag">👩‍🏫 Classroom Sync</span></div><div class="nameRow"><input id="playerName" placeholder="พิมพ์ชื่อเล่นของผู้ทดสอบ"><button class="btn primary" onclick="show('reviewScreen')">ทบทวนก่อนสอบ 📘</button></div>
+<div style="margin-top:10px"><button class="btn" style="font-size:14px;opacity:.78" onclick="teacherTestStart()">🔒 Teacher Test • ไปข้อสอบทันที</button></div></div><div class="art">
+<div class="orb o1">ADJ</div><div class="orb o2">?</div><div class="orb o3">WORD</div><div class="orb o4">⚡</div>
+<div style="position:absolute;left:24%;top:44%;width:52%;height:4px;background:linear-gradient(90deg,#7467f5,#ff7cad,#ffd86a);transform:rotate(-16deg);border-radius:99px;box-shadow:0 0 18px #8b7df788"></div>
+<div style="position:absolute;left:38%;top:18%;font-size:24px;font-weight:1000;color:#6558cf;transform:rotate(-8deg)">CONTEXT</div>
+</div></div></div></section>
+<section id="reviewScreen" class="screen"><div class="card"><div class="brand">REVIEW 1/3 • Adjective Foundation</div><h2>1. Adjective อยู่ตรงไหนในประโยค? 🎯</h2><div class="reviewGrid"><div class="reviewBox"><b>หน้าคำนาม</b><br>a <b>beautiful</b> garden<br>an <b>expensive</b> watch<br>three <b>small</b> boxes</div><div class="reviewBox"><b>หลัง Linking Verb</b><br>be / look / feel / smell / taste / sound / become + adjective<br>✅ The soup tastes <b>good</b>.<br>❌ tastes well (ถ้าหมายถึงรสชาติ)</div><div class="reviewBox"><b>Adjective ≠ Adverb</b><br>✅ She looks <b>happy</b>.<br>✅ She sings <b>happily</b>.</div><div class="reviewBox"><b>คำที่ออกสอบบ่อย</b><br>slippery, patient, crowded, expensive, careful, nervous, spacious, ancient, clear, generous, narrow, convenient, confident</div></div><div style="background:#fff8da;padding:14px;border-radius:16px"><b>ทริค:</b> ถ้าเห็น look / feel / smell / taste / become ให้เช็กก่อนว่าหลังคำเหล่านี้ต้องการ <b>adjective</b> หรือไม่</div><button class="btn primary wide" style="margin-top:14px" onclick="show('reviewScreen2')">หน้าทบทวนถัดไป ➜</button></div></section>
+<section id="reviewScreen2" class="screen"><div class="card"><div class="brand">REVIEW 2/3 • Comparison</div><h2>2. Comparative / Superlative / as...as 📏</h2><div class="reviewGrid"><div class="reviewBox"><b>Comparative</b><br>tall → taller<br>large → larger<br>heavy → heavier<br>difficult → more difficult<br><b>สัญญาณ:</b> than</div><div class="reviewBox"><b>Superlative</b><br>the tallest / the heaviest / the most difficult<br><b>สัญญาณ:</b> of all / in the class / in the world</div><div class="reviewBox"><b>เท่ากัน</b><br>as + adjective + as<br>Anna is <b>as careful as</b> May.</div><div class="reviewBox"><b>รูปพิเศษ</b><br>good → better → best<br>bad → worse → worst<br>far → farther/further</div><div class="reviewBox"><b>too + adj + to...</b><br>This box is <b>too heavy to carry</b>.</div><div class="reviewBox"><b>adj + enough + to...</b><br>She is <b>old enough to travel</b> alone.<br>❌ enough old</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn yellow" onclick="show('reviewScreen')">⬅️ ย้อนกลับ</button><button class="btn primary" onclick="show('reviewScreen3')">หน้าทบทวนถัดไป ➜</button></div></div></section>
+<section id="reviewScreen3" class="screen"><div class="card"><div class="brand">REVIEW 3/3 • Tricky Adjectives</div><h2>3. -ed / -ing และ Adjective Order 🧠</h2><div class="reviewGrid"><div class="reviewBox"><b>-ed = คนรู้สึก</b><br>I am <b>bored</b>.<br>The students were <b>excited</b>.<br>She looked <b>frightened</b>.</div><div class="reviewBox"><b>-ing = สิ่งที่ทำให้รู้สึก</b><br>The movie is <b>boring</b>.<br>The trip was <b>exciting</b>.<br>The noise was <b>frightening</b>.</div><div class="reviewBox"><b>Adjective Order</b><br>Opinion → Size → Age → Shape → Color → Origin → Material → Noun<br>✅ a <b>beautiful small old wooden</b> box</div><div class="reviewBox"><b>ตัวอย่างเพิ่ม</b><br>a lovely old wooden house<br>a beautiful red silk dress<br>three round red balloons</div><div class="reviewBox"><b>Context Vocabulary</b><br>slippery → wet road<br>patient → waits calmly<br>crowded → many people<br>generous → gives/help others<br>convenient → easy to use</div><div class="reviewBox"><b>ก่อนตอบทุกข้อ</b><br>1) หา clue<br>2) ดูตำแหน่ง adjective<br>3) เช็ก comparison<br>4) อ่านความหมายทั้งประโยค</div></div><p><b>ตัวช่วยต่อข้อ:</b> เลือกได้ 1 แบบ — ✂️ ตัดตัวเลือกผิด 1 ตัว หรือ 📘 แปลศัพท์สำคัญ <b>5 คำ</b></p><p style="background:#eef8ff;padding:12px 14px;border-radius:14px;font-weight:900">👩‍🏫 Classroom Sync: ข้อ 1–20 เรียงเหมือนกันทุกเครื่อง</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn yellow" onclick="show('reviewScreen2')">⬅️ ย้อนกลับ</button><button class="btn primary" onclick="startGame()">เริ่มสอบ 20 ข้อ 🚀</button></div></div></section>
+<section id="gameScreen" class="screen"><div class="card"><div class="topbar"><div><div class="brand">ADJECTIVE CONTEXT MISSION</div><div class="counter" id="counter"></div></div><div class="score">⭐ <span id="score">0</span></div></div><div class="progress"><div id="progress"></div></div><div class="qLayout"><div><div class="question" id="question"></div><div class="options" id="options"></div><button id="submitBtn" class="btn pink wide" style="display:none;margin-top:12px" onclick="submitAnswer()">ส่งคำตอบ 💌</button><div id="feedback" class="feedback"></div><div id="nextWrap" class="nextWrap"><button class="btn primary wide" onclick="nextQuestion()">ข้อถัดไป ➜</button></div>
+<div class="navRow">
+  <button class="navBtn" onclick="prevQuestion()">⬅️ ย้อนกลับ</button>
+  <button class="navBtn" onclick="skipQuestion()">⏭️ ข้ามข้อนี้</button>
+  <button class="navBtn" onclick="goNextManual()">ถัดไป ➡️</button>
+</div>
+<div class="qNav" id="qNav"></div>
+</div><aside class="helperPanel"><h3>🪄 ตัวช่วยข้อนี้</h3><div class="helperBtns"><button class="btn yellow wide" id="cutBtn" onclick="useCut()">✂️ ตัดตัวเลือกผิด 1 ตัว</button><button class="btn mint wide" id="vocabBtn" onclick="useVocab()">📘 ดูศัพท์สำคัญ 5 คำ</button></div><div class="helperStatus" id="helperStatus">เลือกได้ 1 ตัวช่วย / ข้อ • ใช้แล้วอีกปุ่มจะล็อก</div><div class="vocabBox" id="vocabBox"></div></aside></div></div></section>
+<section id="summaryScreen" class="screen"><div class="card"><div class="summaryHero"><div class="brand">Kru Pai Classroom • Mission Complete 🎓</div><h2>สรุปผล Adjective Context Challenge • Set 2</h2><p id="summaryName"></p><div class="scoreCircle" id="percent"></div></div><div class="stats"><div class="stat">⭐ คะแนน<br><span id="sumScore"></span></div><div class="stat">🌟 ทำได้เอง<br><span id="starCount"></span></div><div class="stat">📘 ดูศัพท์<br><span id="vocabCount"></span></div><div class="stat">✂️ ตัดตัวเลือก<br><span id="cutCount"></span></div></div><div class="report" id="report"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px"><button class="btn mint wide" onclick="window.print()">🖨️ พิมพ์ / PDF</button><button class="btn yellow wide" onclick="openVocabReview()">📚 ทบทวนศัพท์ทั้งหมด</button><button class="btn primary wide" onclick="restart()">🔄 เล่นใหม่</button></div></div></section>
+<section id="vocabReviewScreen" class="screen"><div class="card">
+<div class="brand">VOCAB REVIEW VAULT 📚✨</div>
+<h2>ทบทวนศัพท์จากข้อสอบทั้ง 20 ข้อ</h2>
+<p>รวมศัพท์ช่วยที่ปรากฏในแต่ละข้อ <b>ข้อละ 5 คำ</b> เพื่ออ่านทวนหลังจบภารกิจ โดยคงเรียงตามข้อสอบเดิม</p>
+<div id="vocabReviewList" style="display:grid;gap:12px;margin-top:16px"></div>
+<div class="actions" style="margin-top:16px">
+<button class="btn yellow" onclick="show('summaryScreen')">⬅️ กลับผลคะแนน</button>
+<button class="btn mint" onclick="window.print()">🖨️ พิมพ์ / PDF</button>
+<button class="btn primary" onclick="restart()">🔄 เล่นใหม่</button>
+</div></div></section>
+</div><script>
+const QUESTIONS=[{"q":"The mountain road is very ______ during the rainy season because the surface becomes wet and cars may slide easily.","opts":["slippery","patient","crowded","generous"],"ans":0,"exp":"บริบทบอกว่าพื้นถนนเปียกและรถอาจลื่นไถล จึงต้องใช้ slippery = ลื่น","words":[["mountain road","ถนนบนภูเขา"],["rainy season","ฤดูฝน"],["surface","พื้นผิว"],["slide","ลื่นไถล"],["slippery","ลื่น"]]},{"q":"Nina always waits calmly when her younger brother takes a long time to finish his homework. She is very ______.","opts":["careless","patient","nervous","ancient"],"ans":1,"exp":"รออย่างสงบและไม่หงุดหงิด แสดงว่า patient = อดทน","words":[["waits","รอ"],["calmly","อย่างสงบ"],["younger brother","น้องชาย"],["takes a long time","ใช้เวลานาน"],["patient","อดทน"]]},{"q":"The hall was so ______ after the concert ended that we had to move slowly through the people.","opts":["silent","narrow","crowded","modern"],"ans":2,"exp":"ต้องเดินช้าเพราะมีคนจำนวนมาก จึงใช้ crowded = แออัด","words":[["hall","ห้องโถง"],["concert","คอนเสิร์ต"],["ended","จบลง"],["move slowly","เดินช้า"],["crowded","แออัด"]]},{"q":"This restaurant is too ______ for my family. A simple dinner for four people costs nearly 3,000 baht.","opts":["convenient","narrow","useful","expensive"],"ans":3,"exp":"ค่าอาหารสูงมาก จึงใช้ expensive = ราคาแพง","words":[["restaurant","ร้านอาหาร"],["simple dinner","อาหารเย็นธรรมดา"],["costs","มีราคา"],["nearly","เกือบ"],["expensive","ราคาแพง"]]},{"q":"Ploy checked every answer twice before handing in her test. She was very ______.","opts":["careful","popular","enormous","silent"],"ans":0,"exp":"ตรวจคำตอบซ้ำก่อนส่งงาน แสดงว่า careful = รอบคอบ","words":[["checked","ตรวจสอบ"],["twice","สองครั้ง"],["handing in","ส่งงาน"],["test","แบบทดสอบ"],["careful","รอบคอบ"]]},{"q":"The little boy looked ______ when the lights suddenly went out and he heard a strange sound.","opts":["exciting","frightened","generous","modern"],"ans":1,"exp":"เด็กเป็นผู้รู้สึกกลัว จึงใช้ frightened = รู้สึกกลัว","words":[["lights went out","ไฟดับ"],["suddenly","ทันใดนั้น"],["strange sound","เสียงแปลก"],["looked","ดูมีลักษณะ"],["frightened","รู้สึกกลัว"]]},{"q":"The new library has wider aisles and larger reading areas, so it feels much more ______ than the old one.","opts":["nervous","slippery","spacious","dangerous"],"ans":2,"exp":"ทางเดินกว้างและพื้นที่อ่านใหญ่ขึ้น จึงรู้สึก spacious = กว้างขวาง","words":[["library","ห้องสมุด"],["aisles","ทางเดินระหว่างชั้น"],["reading areas","พื้นที่อ่าน"],["old one","แห่งเก่า"],["spacious","กว้างขวาง"]]},{"q":"The temple is more than 800 years old. It is one of the most ______ buildings in the province.","opts":["crowded","useful","confident","ancient"],"ans":3,"exp":"อายุเกิน 800 ปี จึงใช้ ancient = โบราณ/เก่าแก่มาก","words":[["temple","วัด"],["more than","มากกว่า"],["province","จังหวัด"],["buildings","อาคาร"],["ancient","โบราณ"]]},{"q":"The instructions were very ______, so everyone knew exactly what to do without asking questions.","opts":["clear","nervous","heavy","careless"],"ans":0,"exp":"ทุกคนเข้าใจว่าต้องทำอะไรโดยไม่ต้องถาม แสดงว่า clear = ชัดเจน","words":[["instructions","คำชี้แจง"],["exactly","อย่างชัดเจน"],["without","โดยไม่"],["asking questions","ถามคำถาม"],["clear","ชัดเจน"]]},{"q":"Ben gave his lunch to a classmate who had forgotten to bring food. His action was very ______.","opts":["silent","generous","narrow","dangerous"],"ans":1,"exp":"แบ่งอาหารให้เพื่อนที่ไม่มีอาหาร เป็นการกระทำที่ generous = มีน้ำใจ/ใจกว้าง","words":[["classmate","เพื่อนร่วมชั้น"],["forgotten","ลืม"],["bring food","นำอาหารมา"],["action","การกระทำ"],["generous","มีน้ำใจ"]]},{"q":"The alley is too ______ for two cars to pass each other at the same time.","opts":["popular","patient","narrow","confident"],"ans":2,"exp":"รถสองคันผ่านพร้อมกันไม่ได้ จึงใช้ narrow = แคบ","words":[["alley","ตรอก"],["two cars","รถสองคัน"],["pass each other","สวนกัน"],["at the same time","พร้อมกัน"],["narrow","แคบ"]]},{"q":"The new train system is fast, easy to use, and close to many schools. It is very ______ for students.","opts":["frightened","ancient","boring","convenient"],"ans":3,"exp":"ใช้ง่ายและอยู่ใกล้โรงเรียน จึง convenient = สะดวก","words":[["train system","ระบบรถไฟ"],["easy to use","ใช้ง่าย"],["close to","ใกล้กับ"],["students","นักเรียน"],["convenient","สะดวก"]]},{"q":"Although Max had never spoken on stage before, he walked to the microphone with a smile and spoke in a ______ voice.","opts":["confident","crowded","slippery","expensive"],"ans":0,"exp":"เดินขึ้นเวทีพร้อมรอยยิ้มและพูดอย่างมั่นใจ จึง confident = มั่นใจ","words":[["stage","เวที"],["microphone","ไมโครโฟน"],["with a smile","พร้อมรอยยิ้ม"],["voice","น้ำเสียง"],["confident","มั่นใจ"]]},{"q":"The science show was so ______ that the students did not want it to end.","opts":["interested","exciting","tired","silent"],"ans":1,"exp":"science show เป็นสิ่งที่ทำให้คนตื่นเต้น จึงใช้ exciting","words":[["science show","การแสดงวิทยาศาสตร์"],["students","นักเรียน"],["did not want","ไม่ต้องการ"],["end","จบ"],["exciting","น่าตื่นเต้น"]]},{"q":"After walking for six hours in the hot sun, everyone felt extremely ______.","opts":["boring","useful","tired","modern"],"ans":2,"exp":"เดินหกชั่วโมงกลางแดดร้อน จึงรู้สึก tired = เหนื่อย","words":[["walking","การเดิน"],["six hours","หกชั่วโมง"],["hot sun","แดดร้อน"],["extremely","อย่างมาก"],["tired","เหนื่อย"]]},{"q":"Which phrase has the correct adjective order?","opts":["a wooden beautiful old table","an old beautiful wooden table","a wooden old beautiful table","a beautiful old wooden table"],"ans":3,"exp":"ลำดับคือ Opinion → Age → Material → Noun จึงเป็น a beautiful old wooden table","words":[["phrase","วลี"],["correct","ถูกต้อง"],["beautiful","สวย"],["old","เก่า"],["wooden","ทำจากไม้"]]},{"q":"The documentary was ______, but the students were very ______ in the topic.","opts":["interesting / interested","interested / interesting","boring / boredly","interest / interested"],"ans":0,"exp":"สิ่งที่ทำให้เกิดความรู้สึกใช้ -ing; คนที่รู้สึกใช้ -ed","words":[["documentary","สารคดี"],["topic","หัวข้อ"],["students","นักเรียน"],["interesting","น่าสนใจ"],["interested","รู้สึกสนใจ"]]},{"q":"The red suitcase is ______ than the black one, so it is easier to carry.","opts":["more light","lighter","lightest","lightly"],"ans":1,"exp":"มี than และ light เป็นคำสั้น จึงใช้ comparative ว่า lighter","words":[["suitcase","กระเป๋าเดินทาง"],["than","กว่า"],["easier","ง่ายกว่า"],["carry","ถือ"],["lighter","เบากว่า"]]},{"q":"Mali is not tall ______ to reach the top shelf without a chair.","opts":["too","very","enough","so"],"ans":2,"exp":"โครงสร้าง adjective + enough + to... คือ tall enough to reach","words":[["tall","สูง"],["reach","เอื้อมถึง"],["top shelf","ชั้นบนสุด"],["without","โดยไม่ใช้"],["enough","เพียงพอ"]]},{"q":"Of all the bags in the shop, this one is the ______, but it also has the strongest material.","opts":["more expensive","expensively","expensive","most expensive"],"ans":3,"exp":"Of all... เป็นสัญญาณของ superlative จึงใช้ the most expensive","words":[["of all","ในบรรดาทั้งหมด"],["bags","กระเป๋า"],["shop","ร้านค้า"],["strongest","แข็งแรงที่สุด"],["most expensive","แพงที่สุด"]]}];
+let order=[],idx=0,score=0,selected=null,helperUsed=false,helperType="none",results=[],answered=false,player="";
+let state=[];
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+let sharedAudio=null;
+function beep(f=620,d=.05,type="triangle",vol=.035){
+ try{
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!sharedAudio)sharedAudio=new AC();
+  if(sharedAudio.state==="suspended")sharedAudio.resume();
+  const o=sharedAudio.createOscillator(),g=sharedAudio.createGain();
+  o.type=type;o.frequency.value=f;g.gain.value=vol;o.connect(g);g.connect(sharedAudio.destination);o.start();
+  g.gain.exponentialRampToValueAtTime(.0001,sharedAudio.currentTime+d);o.stop(sharedAudio.currentTime+d);
+ }catch(e){}
+}
+document.addEventListener("click",e=>{if(e.target.closest("button"))beep()});
+function startGame(){
+ player=document.getElementById("playerName").value.trim()||"นักเรียน";
+ order=QUESTIONS.map((_,i)=>i);idx=0;score=0;results=[];
+ state=order.map(()=>({selected:null,answered:false,helperUsed:false,helperType:"none",eliminated:null,showVocab:false,skipped:false,ok:null}));
+ show("gameScreen");render();
+}
+function render(){
+ const st=state[idx],q=QUESTIONS[order[idx]];
+ selected=st.selected;answered=st.answered;helperUsed=st.helperUsed;helperType=st.helperType;
+ document.getElementById("counter").textContent=`ข้อ ${idx+1} / 20`;
+ document.getElementById("score").textContent=score;
+ document.getElementById("progress").style.width=`${((idx+1)/20)*100}%`;
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("feedback").className="feedback";
+ document.getElementById("feedback").innerHTML="";
+ document.getElementById("nextWrap").className="nextWrap";
+ document.getElementById("helperStatus").textContent=st.helperUsed?"ใช้ตัวช่วยแล้ว: "+(st.helperType==="cut"?"ตัดตัวเลือก":"แปลคำศัพท์"):"เลือกได้ 1 ตัวช่วย / ข้อ • ใช้แล้วอีกปุ่มจะล็อก";
+ document.getElementById("vocabBox").className=st.showVocab?"vocabBox show":"vocabBox";
+ document.getElementById("vocabBox").innerHTML=st.showVocab?q.words.map(w=>`<div class="wordChip"><b>${w[0]}</b> = ${w[1]}</div>`).join(""):"";
+ document.getElementById("cutBtn").disabled=st.helperUsed||st.answered;
+ document.getElementById("vocabBtn").disabled=st.helperUsed||st.answered;
+ document.getElementById("submitBtn").style.display=(!st.answered && st.selected!==null)?"block":"none";
+
+ const box=document.getElementById("options");box.innerHTML="";
+ q.opts.forEach((op,i)=>{
+   let b=document.createElement("button");
+   b.className="option";
+   if(st.selected===i)b.classList.add("selected");
+   if(st.eliminated===i)b.classList.add("eliminated");
+   b.dataset.i=i;b.textContent=`${String.fromCharCode(65+i)}. ${op}`;
+   b.onclick=()=>selectOption(i);
+   if(st.answered){
+     b.disabled=true;
+     if(i===q.ans)b.style.borderColor="#18a875";
+   }
+   box.appendChild(b)
+ });
+ if(st.answered){
+   const ok=st.ok;
+   const f=document.getElementById("feedback");
+   f.className="feedback "+(ok?"ok":"bad")+" show";
+   f.innerHTML=(ok?"✅ ถูกต้อง!":"❌ ยังไม่ถูก")+`<div class="explain">${q.exp}</div>`;
+ }
+ renderQNav();
+}function selectOption(i){
+ const st=state[idx];
+ if(st.answered)return;
+ st.selected=i;st.skipped=false;selected=i;
+ render();
+}
+function lockHelpers(type){
+ const st=state[idx];
+ st.helperUsed=true;st.helperType=type;helperUsed=true;helperType=type;
+}
+function useCut(){
+ const st=state[idx];if(st.helperUsed||st.answered)return;
+ lockHelpers("cut");
+ const q=QUESTIONS[order[idx]],wrong=shuffle([0,1,2,3].filter(i=>i!==q.ans));
+ st.eliminated=wrong[0];render();
+}
+function useVocab(){
+ const st=state[idx];if(st.helperUsed||st.answered)return;
+ lockHelpers("vocab");st.showVocab=true;render();
+}
+function submitAnswer(){
+ const st=state[idx];if(st.answered||st.selected===null)return;
+ const q=QUESTIONS[order[idx]];
+ st.answered=true;st.ok=st.selected===q.ans;st.skipped=false;
+ if(st.ok){score++;beep(900,.10,"triangle",.05);setTimeout(()=>beep(1180,.12,"triangle",.04),90);}else{beep(190,.18,"sawtooth",.045);}
+ results[idx]={q:q.q,user:q.opts[st.selected],correct:q.opts[q.ans],ok:st.ok,helper:st.helperType};
+ render();
+ document.getElementById("nextWrap").className="nextWrap show";
+}
+function skipQuestion(){
+ const st=state[idx];
+ if(!st.answered)st.skipped=true;
+ if(idx<19){idx++;render()}else{goFirstUnansweredOrSummary()}
+}
+function prevQuestion(){if(idx>0){idx--;render()}}
+function goNextManual(){if(idx<19){idx++;render()}else{goFirstUnansweredOrSummary()}}
+function nextQuestion(){goNextManual()}
+function jumpToQuestion(i){idx=i;render()}
+function renderQNav(){
+ const box=document.getElementById("qNav");box.innerHTML="";
+ state.forEach((st,i)=>{
+   let b=document.createElement("button");b.className="qDot";b.textContent=i+1;
+   if(i===idx)b.classList.add("current");
+   if(st.answered)b.classList.add(st.ok?"done":"wrong");
+   else if(st.skipped)b.classList.add("skipped");
+   b.onclick=()=>jumpToQuestion(i);box.appendChild(b);
+ });
+}
+function goFirstUnansweredOrSummary(){
+ const first=state.findIndex(st=>!st.answered);
+ if(first>=0){idx=first;render();return}
+ summary();
+}
+function summary(){
+ const unanswered=state.filter(st=>!st.answered).length;
+ if(unanswered>0){const first=state.findIndex(st=>!st.answered);idx=first;render();const f=document.getElementById("feedback");f.className="feedback bad show";f.innerHTML=`⚠️ ยังเหลือ ${unanswered} ข้อที่ยังไม่ได้ตอบ ระบบพากลับมาข้อแรกที่ค้างไว้แล้ว`;return;}
+ show("summaryScreen");
+ const pct=Math.round(score/20*100),stars=state.filter(st=>st.answered&&st.ok&&!st.helperUsed).length,vocabUsed=state.filter(st=>st.helperType==="vocab").length,cutUsed=state.filter(st=>st.helperType==="cut").length;
+ document.getElementById("summaryName").textContent=`ผู้ทดสอบ: ${player}`;document.getElementById("percent").textContent=pct+"%";document.getElementById("sumScore").textContent=`${score} / 20`;document.getElementById("starCount").textContent=stars+" ดาว";document.getElementById("vocabCount").textContent=vocabUsed+" ข้อ";document.getElementById("cutCount").textContent=cutUsed+" ข้อ";
+ const box=document.getElementById("report");box.innerHTML="";
+ state.forEach((st,i)=>{const q=QUESTIONS[order[i]],r=results[i];const helperLabel=r.helper==="cut"?"✂️ ตัดตัวเลือก":r.helper==="vocab"?"📘 ดูศัพท์ 5 คำ":"🌟 ทำได้เอง";let d=document.createElement("div");d.className="row";d.innerHTML=`<div>${i+1}</div><div><b>${q.q}</b><br><small>ตอบ: ${r.user}<br>เฉลย: ${r.correct}<br>สถานะ: ${helperLabel}</small></div><div class="${r.ok?"oktxt":"badtxt"}">${r.ok?"✓ ถูก":"✗ ผิด"}</div>`;box.appendChild(d);});
+}
+function openVocabReview(){
+ const box=document.getElementById("vocabReviewList");
+ box.innerHTML=QUESTIONS.map((q,i)=>{
+   const chips=q.words.map(w=>`<span style="display:inline-block;margin:4px;padding:8px 11px;border-radius:999px;background:#eef3ff;border:1px solid #dfe5fa"><b style="color:#6558cf">${w[0]}</b> = ${w[1]}</span>`).join("");
+   return `<div style="background:#fbfcff;border:2px solid #edf0f8;border-radius:18px;padding:14px">
+     <div style="font-weight:1000;color:#6558cf;margin-bottom:6px">ข้อ ${i+1}</div>
+     <div style="font-size:15px;line-height:1.45;margin-bottom:7px">${q.q}</div>
+     <div>${chips}</div>
+   </div>`;
+ }).join("");
+ show("vocabReviewScreen");
+}
+function restart(){document.getElementById("playerName").value=player;show("startScreen")}
+
+let teacherUnlocked=false;
+const TEACHER_CODE="adj08022522";
+
+function teacherTestStart(){
+ const code=prompt("🔐 รหัสครูสำหรับทดสอบข้อสอบ");
+ if(code===null)return;
+ if(code!==TEACHER_CODE){alert("รหัสครูไม่ถูกต้อง");beep(200,.12);return;}
+ document.getElementById("playerName").value=document.getElementById("playerName").value.trim()||"ครูทดสอบ";
+ startGame();
+}
+function openTeacher(){
+ const modal=document.getElementById("teacherModal");
+ modal.classList.add("show");
+ document.getElementById("teacherError").textContent="";
+ if(teacherUnlocked){
+   showTeacherExplanation();
+ }else{
+   document.getElementById("teacherLogin").style.display="grid";
+   document.getElementById("teacherContent").style.display="none";
+   setTimeout(()=>document.getElementById("teacherCode").focus(),100);
+ }
+}
+function closeTeacher(){document.getElementById("teacherModal").classList.remove("show")}
+function modalBackdrop(e){if(e.target===document.getElementById("teacherModal"))closeTeacher()}
+function unlockTeacher(){
+ const code=document.getElementById("teacherCode").value.trim();
+ if(code!==TEACHER_CODE){
+   document.getElementById("teacherError").textContent="❌ รหัสยังไม่ถูก ลองดูคำใบ้อีกครั้ง";
+   beep(220,.12);return;
+ }
+ teacherUnlocked=true;
+ document.getElementById("teacherCode").value="";
+ document.getElementById("teacherBadge").classList.add("show");
+ beep(920,.1);
+ showTeacherExplanation();
+}
+function lockTeacher(){
+ teacherUnlocked=false;
+ document.getElementById("teacherBadge").classList.remove("show");
+ closeTeacher();
+}
+function thaiQuestionTranslation(q){
+ const map = {
+  "Which sentence uses the adjective correctly?":"ประโยคใดใช้คำคุณศัพท์ได้ถูกต้อง",
+  "Which adjective best describes a person who is willing to give money, food, or help to others?":"คำคุณศัพท์ใดเหมาะที่สุดสำหรับคนที่เต็มใจให้เงิน อาหาร หรือช่วยเหลือผู้อื่น",
+  "Ken never checks his work and often makes small mistakes. Which adjective describes him best?":"เคนไม่เคยตรวจงานและมักทำผิดเล็ก ๆ น้อย ๆ คำคุณศัพท์ใดบรรยายเขาได้ดีที่สุด",
+  "The opposite of 'narrow' in the sentence 'This is a narrow street' is ______.":"คำตรงข้ามของ narrow (แคบ) ในประโยคนี้คืออะไร",
+  "Choose the adjective closest in meaning to 'enormous' in the sentence: 'An enormous whale appeared beside the boat.'":"เลือกคำคุณศัพท์ที่มีความหมายใกล้กับ enormous (ใหญ่มหึมา) มากที่สุด",
+  "Choose the sentence with the correct order of adjectives.":"เลือกประโยคที่เรียงลำดับคำคุณศัพท์ได้ถูกต้อง",
+  "Which phrase has the correct adjective order?":"วลีใดเรียงลำดับคำคุณศัพท์ได้ถูกต้อง",
+  "Which sentence means that Anna and May are equally careful?":"ประโยคใดหมายความว่า Anna และ May ระมัดระวังเท่ากัน"
+ };
+ return map[q] || "แปลโดยสรุป: อ่านบริบทเพื่อเลือก adjective หรือรูป adjective ที่ถูกต้องตามความหมายและโครงสร้างของประโยค";
+}
+function choiceReason(q,i){
+ if(i===q.ans) return "✅ ถูก — "+q.exp;
+ const op=q.opts[i];
+ if(/ly\b/i.test(op)) return "❌ ไม่เลือก เพราะรูปนี้เป็น adverb หรือไม่เข้าตำแหน่งที่โจทย์ต้องการ adjective";
+ if(/most|est\b/i.test(op) && !/the/i.test(q.q)) return "❌ ไม่เหมาะกับบริบท/โครงสร้างการเปรียบเทียบในข้อนี้";
+ if(/more|er\b/i.test(op)) return "❌ รูป comparative นี้ไม่ตรงกับสัญญาณหรือโครงสร้างของโจทย์";
+ return "❌ ตัวเลือกนี้ไม่สอดคล้องกับความหมายของบริบทหรือหลัก adjective ที่ข้อนี้ทดสอบ";
+}
+function showTeacherExplanation(){
+ document.getElementById("teacherLogin").style.display="none";
+ document.getElementById("teacherContent").style.display="block";
+ let qi=(typeof order!=="undefined" && order.length)?order[idx]:0;
+ let q=QUESTIONS[qi];
+ document.getElementById("teacherQTitle").textContent=`เฉลยข้อ ${idx+1}`;
+ const vocab=q.words.map(w=>`<span style="display:inline-block;margin:3px 5px 3px 0;padding:6px 9px;border-radius:999px;background:#eef3ff"><b>${w[0]}</b> = ${w[1]}</span>`).join("");
+ const choices=q.opts.map((op,i)=>`<div class="choiceExplain"><b>${String.fromCharCode(65+i)}. ${op}</b><br>${choiceReason(q,i)}</div>`).join("");
+ document.getElementById("teacherDetail").innerHTML=`
+  <div class="teacherSection"><b>โจทย์:</b><br>${q.q}</div>
+  <div class="teacherSection"><b>ความหมายโจทย์:</b><br>${thaiQuestionTranslation(q.q)}</div>
+  <div class="teacherSection"><b>คำตอบ:</b> ${String.fromCharCode(65+q.ans)}. ${q.opts[q.ans]}<br><b>หลักที่ใช้:</b> ${q.exp}</div>
+  <div class="teacherSection"><b>วิเคราะห์ตัวเลือก:</b>${choices}</div>
+  <div class="teacherSection"><b>ศัพท์สำคัญ:</b><br>${vocab}</div>`;
+}
+
+</script>
+<button class="teacherBtn" onclick="openTeacher()">🔒 Teacher</button>
+<div class="teacherBadge" id="teacherBadge">👩‍🏫 Teacher Mode เปิดอยู่</div>
+<div class="teacherModal" id="teacherModal" onclick="modalBackdrop(event)">
+  <div class="teacherCard">
+    <div id="teacherLogin" class="teacherLogin">
+      <div class="brand">TEACHER ACCESS 🔐</div>
+      <h2 style="margin:0">โหมดครู</h2>
+      <div class="teacherHint">💡 คำใบ้: เติม <b>adj</b></div>
+      <input id="teacherCode" class="teacherInput" type="password" inputmode="text" autocomplete="off" placeholder="ใส่รหัส Teacher">
+      <div id="teacherError" class="teacherError"></div>
+      <button class="btn primary wide" onclick="unlockTeacher()">เปิดโหมดครู 👩‍🏫</button>
+      <button class="btn wide" onclick="closeTeacher()">ยกเลิก</button>
+    </div>
+    <div id="teacherContent" style="display:none">
+      <div class="brand">TEACHER EXPLANATION 👩‍🏫</div>
+      <h2 id="teacherQTitle" style="margin-bottom:8px"></h2>
+      <div id="teacherDetail" class="teacherExplain"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+        <button class="btn mint" onclick="closeTeacher()">กลับไปข้อสอบ</button>
+        <button class="btn yellow" onclick="lockTeacher()">🔒 ปิดโหมดครู</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>
