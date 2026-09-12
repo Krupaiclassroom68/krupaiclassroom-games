@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kru Pai Classroom | CELL RANDOM CARD ARENA</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:system-ui,"Noto Sans Thai",sans-serif;color:#fff;background:radial-gradient(circle at 50% -10%,#4f2a82 0,#171739 42%,#080a17 100%);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(#d8b8ff 1px,transparent 1px);background-size:30px 30px;opacity:.11}.wrap{width:min(1080px,96vw);margin:12px auto}.top{display:flex;justify-content:space-between;gap:8px;align-items:center;font-weight:1000;color:#e4d4ff}.tag,.chip{border:1px solid #8f69c5;background:#241748cc;border-radius:999px;padding:8px 12px}.panel{position:relative;margin-top:10px;padding:clamp(18px,3.4vw,34px);border-radius:28px;border:1px solid #8d65c5;background:linear-gradient(145deg,#24164af2,#10142cf7);box-shadow:0 22px 80px #000a,inset 0 1px #fff2;overflow:hidden}.panel:before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 90deg,transparent,#b77cff13,transparent,#6ae8ff12,transparent);animation:spin 14s linear infinite;pointer-events:none}@keyframes spin{to{transform:rotate(1turn)}}.content{position:relative;z-index:1}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:center}.kicker{font-size:14px;font-weight:1000;letter-spacing:2px;color:#b8f5ff}.title{font-size:clamp(44px,8vw,84px);line-height:.92;margin:8px 0;background:linear-gradient(90deg,#fff,#b996ff,#6deaff);color:transparent;background-clip:text}.sub{font-size:clamp(18px,2.3vw,23px);line-height:1.65;color:#dfd8f3}.orb{width:min(290px,70vw);aspect-ratio:1;border-radius:50%;margin:auto;background:radial-gradient(circle,#fff 0 4%,#c8a4ff 5% 10%,#8a5de0 11% 25%,#3f267c 26% 44%,#16183c 45% 58%,#74e8ff 59% 62%,#0d1027 63%);box-shadow:0 0 38px #ae79ff,0 0 110px #6adfff55;position:relative;animation:pulse 2.2s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.045);filter:brightness(1.12)}}.orb:before,.orb:after{content:"";position:absolute;inset:12%;border:2px solid #fff5;border-radius:50%;animation:orbit 4.5s linear infinite}.orb:after{inset:28%;animation-duration:2.8s;animation-direction:reverse}@keyframes orbit{to{transform:rotate(1turn)}}input{width:100%;padding:15px 17px;border-radius:15px;border:1px solid #9874cb;background:#0b1026;color:#fff;font-size:20px;font-weight:800}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:16px;padding:14px 19px;font:inherit;font-weight:1000;cursor:pointer;transition:.18s}.btn:hover{transform:translateY(-2px) scale(1.02)}.pri{background:linear-gradient(90deg,#c895ff,#72efff);color:#16102e;box-shadow:0 9px 30px #9b6dff55}.sec{background:#2a1c50;color:#fff;border:1px solid #805eb5}.hidden{display:none!important}.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.rule{background:#171435;border:1px solid #6a5596;border-radius:18px;padding:15px;text-align:center}.rule .ico{font-size:34px}.rule b{display:block;font-size:19px;margin:3px 0}.rule span{color:#d8d0e8;line-height:1.45}
+.hud{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.usedbar{display:grid;grid-template-columns:repeat(10,1fr);gap:7px;margin:14px 0}.mini{aspect-ratio:1;border-radius:13px;background:#171638;border:1px solid #59497c;display:grid;place-items:center;font-weight:1000;color:#9f91bb}.mini.done{background:linear-gradient(145deg,#4e347d,#1c5b69);border-color:#76eaff;color:#fff;animation:pop .42s cubic-bezier(.2,1.5,.3,1)}@keyframes pop{from{transform:scale(.5);opacity:.2}}
+.machine{display:grid;grid-template-columns:1fr .82fr;gap:18px;align-items:center}.numPanel{padding:20px;border-radius:25px;background:linear-gradient(145deg,#291754,#11152e);border:1px solid #9167ca;box-shadow:inset 0 1px #fff2}.numberGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.numBtn{min-height:68px;border-radius:17px;border:2px solid #8a6ab2;background:linear-gradient(145deg,#2f2154,#17172f);color:#fff;font-size:25px;font-weight:1000;box-shadow:inset 0 4px #ffffff14,0 7px 0 #090b18;cursor:pointer}.numBtn.used{opacity:.32;filter:grayscale(.7);box-shadow:none}.numBtn.spinActive{border-color:#7cf2ff;box-shadow:0 0 30px #6cecffaa,inset 0 0 22px #a56fff55;transform:scale(1.08)}.numBtn.land{animation:land .65s cubic-bezier(.2,1.5,.3,1);background:linear-gradient(145deg,#b675ff,#4c8fcf);box-shadow:0 0 32px #a973ff,0 8px 0 #24143d}@keyframes land{0%{transform:scale(.6) rotate(-8deg)}65%{transform:scale(1.25) rotate(4deg)}100%{transform:scale(1)}}.roulette{min-height:330px;border-radius:28px;display:grid;place-items:center;text-align:center;background:radial-gradient(circle,#2c2a69,#171735 62%,#0b0c1c);border:1px solid #7664ae;box-shadow:inset 0 0 50px #0007}.roulette .big{font-size:clamp(72px,12vw,132px);font-weight:1000;line-height:1;text-shadow:0 0 18px #b77cff,0 8px 0 #351a57}.roulette .label{font-size:20px;font-weight:1000;color:#c8b9dd}.roulette.spinning{animation:shake .14s linear infinite}@keyframes shake{25%{transform:translateX(2px) rotate(.5deg)}75%{transform:translateX(-2px) rotate(-.5deg)}}
+.questionOverlay{position:fixed;z-index:50;inset:0;background:#03050edb;display:grid;place-items:center;padding:16px;backdrop-filter:blur(8px)}.qpopup{width:min(820px,96vw);max-height:92vh;overflow:auto;border-radius:30px;padding:clamp(20px,4vw,34px);background:linear-gradient(145deg,#2a1b52,#111731);border:2px solid #9b77d1;box-shadow:0 22px 100px #000e,0 0 55px #8065ff66;animation:popup .62s cubic-bezier(.16,1,.3,1)}@keyframes popup{from{opacity:0;transform:translateY(70px) scale(.72) rotate(-2deg)}70%{transform:translateY(-7px) scale(1.03)}to{opacity:1;transform:none}}.cardNo{display:inline-block;padding:8px 14px;border-radius:999px;background:#7d56c7;color:#fff;font-weight:1000;box-shadow:0 0 20px #9f79ff}.qtext{font-size:clamp(27px,4vw,40px);line-height:1.4;font-weight:1000;margin:18px 0;text-align:center;text-wrap:balance}.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}.opt{min-height:76px;border-radius:18px;border:1px solid #735c9f;background:#1a193d;color:#fff;padding:15px;text-align:left;font:inherit;font-size:19px;font-weight:900;cursor:pointer;transition:.18s}.opt:hover{transform:translateY(-2px);filter:brightness(1.12)}.opt.correct{background:#164c3d;border-color:#7affe0}.opt.wrong{background:#5b213d;border-color:#ff8db5}.fb{margin-top:14px;border-radius:16px;background:#0c1230;border:1px solid #564b82;padding:15px;font-size:18px;line-height:1.55}.good{color:#7affdb}.bad{color:#ff96bc}.celebrate{position:fixed;z-index:80;left:50%;top:20%;transform:translate(-50%,-50%) scale(.7);opacity:0;pointer-events:none;padding:16px 22px;border-radius:22px;background:#231646f2;border:2px solid #b892ff;box-shadow:0 18px 80px #000c,0 0 55px #9c73ff88;font-size:clamp(28px,5vw,46px);font-weight:1000;text-align:center;transition:.2s}.celebrate.show{opacity:1;transform:translate(-50%,-50%) scale(1)}.result{text-align:center}.result h1{font-size:clamp(38px,7vw,68px);margin:4px 0}.nameBig{font-size:clamp(28px,5vw,44px);font-weight:1000;color:#8cf1ff}.scoreOrb{width:220px;height:220px;border-radius:50%;margin:20px auto;display:grid;place-items:center;background:radial-gradient(circle,#fff 0 4%,#bc97ff 5% 11%,#5a3db0 12% 43%,#172554 44% 68%,#69e8ff 69% 72%,#0d1430 73%);box-shadow:0 0 35px #a878ff,0 0 90px #67e9ff55}.scoreOrb b{font-size:54px}.scoreOrb span{display:block;font-size:18px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:760px;margin:18px auto}.stat{padding:15px;border-radius:18px;background:#16183c;border:1px solid #725da3;font-weight:900;font-size:18px}.details{text-align:left;margin-top:16px}.row{padding:13px;border-bottom:1px solid #3a315a;line-height:1.5}.homeFloat{position:fixed;z-index:60;right:13px;bottom:13px;border:0;border-radius:999px;padding:11px 15px;background:#f0e9ff;color:#28164b;font-weight:1000;box-shadow:0 8px 28px #0008;cursor:pointer}
+@media(max-width:760px){.hero,.machine{grid-template-columns:1fr}.rules{grid-template-columns:1fr}.numberGrid{grid-template-columns:repeat(4,1fr)}.numBtn{min-height:58px;font-size:22px}.roulette{min-height:240px}.opts{grid-template-columns:1fr}.usedbar{grid-template-columns:repeat(5,1fr)}.statgrid{grid-template-columns:1fr}.panel{padding:16px;border-radius:20px}.qpopup{padding:18px;border-radius:22px}.qtext{font-size:26px}}
+
+/* V3: result marks on the 10 selected cards */
+.mini{position:relative;overflow:visible}
+.mini.result-ok,.mini.result-bad{font-weight:1000}
+.mini .resultMark{
+  position:absolute;right:-7px;top:-9px;width:31px;height:31px;border-radius:50%;
+  display:grid;place-items:center;font-size:22px;font-weight:1000;line-height:1;
+  border:2px solid rgba(255,255,255,.92);box-shadow:0 4px 12px rgba(0,0,0,.45);
+  transform:rotate(-10deg) scale(0);animation:stampIn .42s cubic-bezier(.2,1.7,.35,1) forwards;
+  z-index:3;
+}
+.mini.result-ok .resultMark{background:#18b979;color:#fff;text-shadow:0 2px 3px #075a3b}
+.mini.result-bad .resultMark{background:#ed4264;color:#fff;text-shadow:0 2px 3px #7a1025}
+@keyframes stampIn{70%{transform:rotate(-10deg) scale(1.18)}100%{transform:rotate(-10deg) scale(1)}}
+
+
+/* V4: 20-question preview (questions only, no choices/answers) */
+.previewPanel{max-width:1050px;margin:0 auto}
+.previewHead{text-align:center;margin-bottom:18px}
+.previewHead h1{margin:6px 0 8px;font-size:clamp(30px,5vw,52px)}
+.previewNote{max-width:760px;margin:0 auto 20px;color:#d9edff;font-size:clamp(15px,2.4vw,18px);line-height:1.6}
+.previewGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;text-align:left}
+.previewCard{position:relative;padding:18px 18px 18px 76px;min-height:94px;border-radius:20px;background:linear-gradient(145deg,rgba(15,42,82,.96),rgba(8,23,48,.96));border:1px solid rgba(126,220,255,.25);box-shadow:inset 0 1px rgba(255,255,255,.08)}
+.previewNo{position:absolute;left:14px;top:15px;width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-weight:1000;font-size:20px;background:linear-gradient(145deg,#f5fbff,#aeeeff);color:#09264a;box-shadow:0 6px 14px rgba(0,0,0,.3)}
+.previewQ{font-weight:850;font-size:clamp(16px,2.2vw,19px);line-height:1.5}
+.previewBack{position:sticky;bottom:10px;z-index:5;margin-top:20px;padding:10px;border-radius:18px;background:rgba(5,15,34,.82);backdrop-filter:blur(8px)}
+.previewHint{margin-top:10px;font-size:14px;color:#b9d9ee}
+@media(max-width:700px){.previewGrid{grid-template-columns:1fr}.previewCard{padding-left:68px}.previewNo{width:42px;height:42px}}
+
+
+/* V5: 10-second question timer */
+.qTimerWrap{margin:10px 0 16px}
+.qTimerTop{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:1000}
+.qTimerNum{font-size:clamp(24px,5vw,38px);font-weight:1000}
+.qTimerTrack{height:12px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;border:1px solid rgba(255,255,255,.18);margin-top:7px}
+.qTimerBar{height:100%;width:100%;background:linear-gradient(90deg,#65f1b7,#ffe267,#ff5675);transform-origin:left center;transition:width .1s linear}
+.qTimerWrap.danger .qTimerNum{animation:timerPulse .45s infinite alternate}
+@keyframes timerPulse{from{transform:scale(1)}to{transform:scale(1.12)}}
+
+
+/* TV SHOW MODE V6 — bright, cute, large-screen readable */
+@media (min-width: 900px){
+  body{background:radial-gradient(circle at 15% 0%,#fff8cf 0,#dffbff 25%,#dcd7ff 58%,#ffdff0 100%);color:#24325f}
+  body:before{background:radial-gradient(#fff 2px,transparent 2px);background-size:34px 34px;opacity:.48}
+  .wrap{width:min(1580px,97vw);margin:14px auto}
+  .top{font-size:clamp(20px,1.65vw,30px);color:#563b87}
+  .tag,.chip{background:#ffffffd9;border:2px solid #b69be8;color:#473276;padding:12px 18px;box-shadow:0 5px 18px #8065b622}
+  .panel{padding:clamp(28px,2.8vw,48px);border:3px solid #ffffff;background:linear-gradient(145deg,#ffffffee,#f7f3ffff);box-shadow:0 20px 65px #7254a42b,inset 0 1px #fff;border-radius:36px}
+  .panel:before{background:conic-gradient(from 90deg,transparent,#ff8fc92c,transparent,#58d9ef25,transparent,#ffd75a25)}
+  .hero{grid-template-columns:1.2fr .8fr;gap:38px}
+  .kicker{font-size:clamp(19px,1.4vw,27px);color:#008ba5}
+  .title{font-size:clamp(78px,7vw,126px);background:linear-gradient(90deg,#6b4bd8,#ff5796,#00a9c7);background-clip:text}
+  h2{font-size:clamp(28px,2.2vw,42px);color:#3b3370}
+  .sub{font-size:clamp(25px,1.8vw,34px);line-height:1.55;color:#4a4c70}
+  input{padding:20px 22px;font-size:clamp(25px,1.7vw,32px);background:#fff;color:#31345d;border:3px solid #bda9ec}
+  .btn{padding:18px 28px;font-size:clamp(23px,1.55vw,30px);border-radius:20px}
+  .pri{background:linear-gradient(90deg,#ff8cc6,#ffe36c,#75e7f6);color:#382858;box-shadow:0 10px 28px #ef88b640}
+  .sec{background:#fff;color:#514078;border:2px solid #b7a4df}
+  .rules{gap:18px}.rule{padding:22px;background:#fff9fe;border:2px solid #d6c7f1;box-shadow:0 8px 22px #7e63a617}
+  .rule .ico{font-size:50px}.rule b{font-size:clamp(25px,1.7vw,32px);color:#45346e}.rule span{font-size:clamp(20px,1.35vw,26px);color:#62637c}
+  .orb{width:min(380px,28vw);background:radial-gradient(circle,#fff 0 5%,#fff09a 6% 12%,#ff8fc9 13% 28%,#a995ff 29% 44%,#75e8f5 45% 61%,#fff 62%);box-shadow:0 0 45px #ff87bd80,0 0 120px #65dff080}
+  .hud{font-size:clamp(22px,1.55vw,30px)}
+  .usedbar{gap:10px;margin:18px 0}.mini{font-size:clamp(23px,1.6vw,31px);background:#fff;border:2px solid #c8b9e8;color:#69558e}.mini.done{background:linear-gradient(145deg,#a895ff,#64dce9);color:#fff}
+  .machine{grid-template-columns:1.12fr .88fr;gap:26px}.numPanel{padding:28px;background:linear-gradient(145deg,#fff8fd,#eefcff);border:3px solid #d7c9f3}
+  .numberGrid{gap:14px}.numBtn{min-height:88px;border:3px solid #b6a4df;background:linear-gradient(145deg,#fff,#f3efff);color:#4b397a;font-size:clamp(31px,2vw,40px);box-shadow:inset 0 4px #fff,0 7px 0 #c9bde4}
+  .roulette{min-height:430px;background:radial-gradient(circle,#fff8b9,#ffc5df 42%,#c4eaff 76%,#b9aaff);border:4px solid #fff;box-shadow:inset 0 0 55px #fff8,0 15px 40px #8b72b62e}
+  .roulette .big{font-size:clamp(150px,12vw,220px);color:#553d91;text-shadow:0 5px 0 #fff,0 0 25px #fff}.roulette .label{font-size:clamp(25px,1.7vw,34px);color:#493b72}
+  .questionOverlay{background:#5d4d858f;padding:24px}.qpopup{width:min(1320px,94vw);max-height:94vh;padding:clamp(30px,3vw,50px);background:linear-gradient(145deg,#fff,#fdf5ff 48%,#effcff);border:4px solid #fff;box-shadow:0 24px 90px #4f3c7366,0 0 0 5px #d3c4f2;color:#34345e}
+  .cardNo{font-size:clamp(22px,1.5vw,29px);background:linear-gradient(90deg,#8e73e8,#ff78b3)}
+  .qTimerTop{font-size:clamp(22px,1.5vw,30px);color:#5b477e}.qTimerNum{font-size:clamp(38px,3vw,56px)}.qTimerTrack{height:18px;background:#ddd5ef}
+  .qtext{font-size:clamp(38px,3.1vw,58px);line-height:1.35;margin:24px 0 28px;color:#2d315d}
+  .opts{gap:18px}.opt{min-height:105px;padding:20px 24px;border:3px solid #c6b7e6;background:#fff;color:#34355d;font-size:clamp(26px,1.85vw,35px);line-height:1.35;border-radius:24px;box-shadow:0 7px 18px #75609618}.opt.correct{background:#c9ffe9;border-color:#35c894;color:#145a46}.opt.wrong{background:#ffe0eb;border-color:#ef719e;color:#7b2748}
+  .fb{padding:22px;font-size:clamp(23px,1.55vw,31px);background:#fff;border:2px solid #d1c5eb;color:#4a4968}.good{color:#087c5d}.bad{color:#c73e70}
+  .celebrate{top:17%;padding:22px 32px;background:#fff7fcf5;border:4px solid #fff;color:#51357d;font-size:clamp(46px,4vw,76px);box-shadow:0 18px 70px #7652a94f,0 0 0 5px #ff9bc7}
+  .result h1{font-size:clamp(58px,5vw,88px);color:#4b367f}.nameBig{font-size:clamp(38px,3vw,58px);color:#008ca6}.scoreOrb{width:300px;height:300px}.scoreOrb b{font-size:76px}.scoreOrb span{font-size:28px}.stat{font-size:clamp(23px,1.6vw,31px);background:#fff;border:2px solid #cdbfeb;color:#4a3c70}.details{font-size:22px;color:#41415e}.row{border-bottom:2px solid #ded6ef}
+  .previewHead h1{font-size:clamp(50px,4vw,74px);color:#493879}.previewNote{max-width:1100px;font-size:clamp(23px,1.55vw,30px);color:#545677}.previewGrid{gap:18px}.previewCard{padding:24px 24px 24px 96px;min-height:125px;background:linear-gradient(145deg,#fff,#effcff);border:2px solid #d5c8ef}.previewNo{width:60px;height:60px;font-size:27px;background:linear-gradient(145deg,#fff09b,#ff9dcb);color:#503873}.previewQ{font-size:clamp(24px,1.7vw,32px);color:#3f4166}.previewHint{font-size:clamp(20px,1.35vw,26px);color:#615b7c}
+  .homeFloat{font-size:22px;padding:15px 22px;background:#fff;color:#4b3776}
+}
+
+
+/* V7: 3-second celebration confetti for correct answers */
+#confettiLayer{position:fixed;inset:0;z-index:79;pointer-events:none;overflow:hidden}
+.confettiPiece{position:absolute;top:-10vh;width:14px;height:22px;border-radius:4px;opacity:.98;animation:confettiFall 3s linear forwards;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+@keyframes confettiFall{
+  0%{transform:translate3d(0,-8vh,0) rotate(0deg);opacity:0}
+  8%{opacity:1}
+  100%{transform:translate3d(var(--drift),112vh,0) rotate(var(--spin));opacity:.95}
+}
+.celebrate.correctParty{top:24%;font-size:clamp(42px,6vw,76px);padding:22px 34px;background:linear-gradient(135deg,#fff8b8f2,#ffd6eff2,#caf7fff2);color:#64318f;border:4px solid #fff;box-shadow:0 20px 90px #6943a066,0 0 70px #ffd768aa;text-shadow:0 3px 0 #fff}
+</style></head><body>
+<div id="confettiLayer"></div><div id="celebrate" class="celebrate"></div><button id="homeFloat" class="homeFloat hidden">⌂ หน้าแรก</button>
+<main class="wrap"><div class="top"><div>🧬 KRU PAI CLASSROOM</div><div class="tag">CELL MISSION • FINAL ARENA</div></div>
+<section id="cover" class="panel"><div class="content hero"><div><div class="kicker">FINAL RANDOM CARD CHALLENGE</div><h1 class="title">CELL<br>ROULETTE</h1><h2>สุ่มหมายเลข • เปิดการ์ด • พิชิต 10 ภารกิจ</h2><p class="sub">กดสุ่มแล้วเครื่องจะหมุนหมายเลขประมาณ <b>4 วินาที</b> 🎰 เมื่อหยุดที่เลขใด การ์ดหมายเลขนั้นจะเปิดคำถามแบบป๊อปอัพขึ้นมา ตอบให้ถูกและสะสมคะแนนให้ครบ 10 ภารกิจ!</p><input id="playerName" placeholder="ชื่อผู้เล่น"><div class="rules"><div class="rule"><div class="ico">🎰</div><b>สุ่ม 10 จาก 20</b><span>หมายเลขที่ออกแล้วจะถูกล็อก ไม่ออกซ้ำ</span></div><div class="rule"><div class="ico">⏱️</div><b>หมุน 4 วินาที</b><span>มีเสียงติ๊กกระตุ้นก่อนเลขหยุด</span></div><div class="rule"><div class="ico">💥</div><b>การ์ดป๊อปอัพ</b><span>คำถาม 4 ตัวเลือกเด้งออกมาทันที</span></div></div><div class="actions"><button id="startBtn" class="btn pri">🚀 START — เข้าสนามสุ่มการ์ด</button><button id="previewBtn" class="btn sec">👀 ดูคำถามทั้ง 20 ข้อ</button></div><div class="previewHint">🎴 เกมจะสุ่ม 10 การ์ดจากคำถาม 20 ใบ โดยไม่ซ้ำกัน</div></div><div class="orb"></div></div></section>
+<section id="preview" class="panel hidden"><div class="content previewPanel"><div class="previewHead"><div class="kicker">QUESTION DECK • CARD 01–20</div><h1>👀 คำถามทั้งหมด 20 การ์ด</h1><div class="previewNote">หน้านี้แสดงเฉพาะโจทย์เพื่อให้เห็นว่ามีการ์ดคำถามครบทั้ง 20 ใบจริง <b>ไม่แสดงตัวเลือกและไม่แสดงเฉลย</b> เมื่อเริ่มเกม ระบบจะสุ่มเพียง 10 การ์ดและไม่ออกซ้ำ 🎰</div></div><div id="previewGrid" class="previewGrid"></div><div class="previewBack"><div class="actions" style="justify-content:center"><button id="previewBackBtn" class="btn pri">← กลับหน้าเริ่มเกม</button></div></div></div></section>
+<section id="game" class="panel hidden"><div class="content"><div class="hud"><span id="who" class="chip"></span><span id="progress" class="chip"></span><span id="score" class="chip"></span></div><div id="usedbar" class="usedbar"></div><div class="machine"><div class="numPanel"><div class="kicker">NUMBER CONTROL PANEL • 1–20</div><h2>กดปุ่มสุ่ม แล้วจับตาดูหมายเลข!</h2><div id="numberGrid" class="numberGrid"></div><div class="actions"><button id="spinBtn" class="btn pri">🎰 กดสุ่มหมายเลข</button></div></div><div id="roulette" class="roulette"><div><div class="label">RANDOM SIGNAL</div><div id="bigNum" class="big">?</div><div id="statusText" class="label">พร้อมสุ่มการ์ดใบต่อไป</div></div></div></div></div></section>
+<section id="result" class="panel hidden"><div class="content result"><div class="kicker">FINAL CELL CARD REPORT</div><h1 id="resultTitle"></h1><div id="resultName" class="nameBig"></div><div class="scoreOrb"><div><b id="finalScore"></b><span id="finalPct"></span></div></div><div id="resultMsg" class="sub"></div><div class="statgrid"><div id="correctStat" class="stat"></div><div id="wrongStat" class="stat"></div><div id="cardsStat" class="stat"></div></div><div class="actions" style="justify-content:center"><button id="detailsBtn" class="btn pri">🔎 ดูรายละเอียด 10 การ์ด</button><button id="restartBtn" class="btn sec">↻ เล่นใหม่</button><button id="homeBtn" class="btn sec">⌂ หน้าแรก</button></div><div id="details" class="details hidden"></div></div></section>
+</main>
+<div id="questionOverlay" class="questionOverlay hidden"><div class="qpopup"><div id="cardNo" class="cardNo"></div><div id="qTimerWrap" class="qTimerWrap"><div class="qTimerTop"><span>⏱️ ตอบให้ทัน!</span><span id="qTimerNum" class="qTimerNum">10</span></div><div class="qTimerTrack"><div id="qTimerBar" class="qTimerBar"></div></div></div><div id="qtext" class="qtext"></div><div id="opts" class="opts"></div><div id="fb" class="fb hidden"></div><div class="actions" style="justify-content:center"><button id="continueBtn" class="btn pri hidden">กลับไปสุ่มใบต่อไป →</button></div></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const pool=[
+{q:'ถ้าเยื่อหุ้มเซลล์เสียหายรุนแรง ผลใดเกิดโดยตรงที่สุด?',opts:['การควบคุมสารเข้า–ออกผิดปกติ','สร้างโปรตีนเพิ่มทันที','สร้างผนังเซลล์เพิ่ม','สังเคราะห์ด้วยแสงเร็วขึ้น'],a:0,e:'เยื่อหุ้มเซลล์ควบคุมการแลกเปลี่ยนสารกับสิ่งแวดล้อม'},
+{q:'เซลล์กล้ามเนื้อที่ใช้พลังงานมากควรมีออร์แกเนลล์ใดเด่น?',opts:['ไรโบโซม','ไมโทคอนเดรีย','แวคิวโอล','กอลจิบอดี'],a:1,e:'ไมโทคอนเดรียเกี่ยวข้องกับการสร้างพลังงานให้เซลล์'},
+{q:'ถ้าไรโบโซมหยุดทำงาน กระบวนการใดกระทบโดยตรง?',opts:['เก็บน้ำ','ควบคุมสารเข้าออก','สังเคราะห์โปรตีน','ค้ำจุนเซลล์'],a:2,e:'ไรโบโซมเป็นบริเวณสังเคราะห์โปรตีน'},
+{q:'ข้อใดทำหน้าที่เหมือนศูนย์บรรจุและจัดส่งผลิตภัณฑ์ของเซลล์?',opts:['นิวเคลียส','คลอโรพลาสต์','ไมโทคอนเดรีย','กอลจิบอดี'],a:3,e:'กอลจิบอดีดัดแปลง คัดแยก บรรจุ และจัดส่งสาร'},
+{q:'โครงสร้างใดพบทั้งในเซลล์พืชและเซลล์สัตว์?',opts:['เยื่อหุ้มเซลล์','ผนังเซลล์','คลอโรพลาสต์','แวคิวโอลกลางขนาดใหญ่'],a:0,e:'ทั้งเซลล์พืชและสัตว์มีเยื่อหุ้มเซลล์'},
+{q:'คลอโรฟิลล์อยู่ในออร์แกเนลล์ใด?',opts:['นิวเคลียส','คลอโรพลาสต์','กอลจิบอดี','ไลโซโซม'],a:1,e:'คลอโรฟิลล์อยู่ในคลอโรพลาสต์และรับพลังงานแสง'},
+{q:'โครงสร้างใดช่วยให้เซลล์พืชแข็งแรงและคงรูป?',opts:['ไซโทพลาซึม','นิวเคลียส','ผนังเซลล์','ไรโบโซม'],a:2,e:'ผนังเซลล์ช่วยค้ำจุนและป้องกันเซลล์พืช'},
+{q:'ข้อใดอธิบายแวคิวโอลของเซลล์พืชได้เหมาะสมที่สุด?',opts:['สร้างโปรตีน','ควบคุมพันธุกรรม','สร้าง ATP เป็นหลัก','เก็บน้ำและสารต่าง ๆ ช่วยรักษาความเต่ง'],a:3,e:'แวคิวโอลกลางช่วยเก็บน้ำและมีส่วนรักษาแรงดันภายในเซลล์'},
+{q:'เซลล์หนึ่งสูญเสียนิวเคลียสที่เคยควบคุมกิจกรรม ผลใดสมเหตุสมผล?',opts:['การควบคุมกิจกรรมสำคัญของเซลล์ผิดปกติ','เกิดคลอโรพลาสต์ทันที','ผนังเซลล์หายเสมอ','สร้างโปรตีนได้มากขึ้นทันที'],a:0,e:'นิวเคลียสเป็นศูนย์ควบคุมสำคัญและเก็บสารพันธุกรรม'},
+{q:'ระบบเยื่อภายในที่ช่วยสร้างและลำเลียงสารบางชนิดคืออะไร?',opts:['กอลจิบอดี','เอนโดพลาสมิกเรติคูลัม (ER)','ไลโซโซม','แวคิวโอล'],a:1,e:'ER เป็นระบบเยื่อภายในที่เกี่ยวข้องกับการสร้างและลำเลียงสาร'},
+{q:'เซลล์ใบพืชสูญเสียคลอโรพลาสต์จำนวนมาก กระบวนการใดกระทบมากที่สุด?',opts:['การย่อยภายในเซลล์','การบรรจุโปรตีน','การสังเคราะห์ด้วยแสง','การควบคุมสารเข้าออก'],a:2,e:'คลอโรพลาสต์เป็นบริเวณสำคัญของการสังเคราะห์ด้วยแสง'},
+{q:'ออร์แกเนลล์ใดมีเอนไซม์ช่วยย่อยสลายสิ่งที่เสื่อมสภาพภายในเซลล์?',opts:['ไรโบโซม','กอลจิบอดี','ไมโทคอนเดรีย','ไลโซโซม'],a:3,e:'ไลโซโซมมีเอนไซม์สำหรับย่อยสลายสารบางชนิด'},
+{q:'ข้อใดเป็นหน้าที่สำคัญของไซโทพลาซึม?',opts:['เป็นบริเวณที่มีออร์แกเนลล์และเกิดปฏิกิริยาหลายชนิด','เก็บสารพันธุกรรมหลัก','สร้างผนังเซลล์โดยตรง','รับพลังงานแสง'],a:0,e:'ไซโทพลาซึมเป็นสภาพแวดล้อมภายในที่มีออร์แกเนลล์และปฏิกิริยาหลายอย่าง'},
+{q:'นักเรียนพบเซลล์มีผนังเซลล์ คลอโรพลาสต์ และแวคิวโอลใหญ่ น่าจะเป็นเซลล์ใด?',opts:['เซลล์สัตว์','เซลล์พืช','เม็ดเลือดแดง','เซลล์ประสาท'],a:1,e:'ลักษณะทั้งสามเป็นจุดเด่นของเซลล์พืชในระดับนี้'},
+{q:'เซลล์ต่อมผลิตโปรตีนเพื่อส่งออกนอกเซลล์จำนวนมาก หลังสร้างโปรตีนแล้วออร์แกเนลล์ใดเด่นเรื่องบรรจุและจัดส่ง?',opts:['ผนังเซลล์','คลอโรพลาสต์','กอลจิบอดี','แวคิวโอล'],a:2,e:'กอลจิบอดีทำหน้าที่ดัดแปลง บรรจุ และจัดส่งสาร'},
+{q:'ถ้าพบเซลล์หนึ่งไม่มีคลอโรพลาสต์ ข้อสรุปใดดีที่สุด?',opts:['ต้องเป็นเซลล์สัตว์','ต้องเป็นเซลล์ราก','ต้องเป็นเซลล์ตาย','ยังสรุปพืชหรือสัตว์ไม่ได้จากข้อมูลนี้เพียงอย่างเดียว'],a:3,e:'เซลล์พืชบางชนิด เช่น เซลล์รากทั่วไป ไม่มีคลอโรพลาสต์'},
+{q:'คู่ใดสัมพันธ์กันถูกต้อง?',opts:['ไมโทคอนเดรีย — พลังงาน','ไรโบโซม — เก็บน้ำ','นิวเคลียส — สังเคราะห์ด้วยแสง','ผนังเซลล์ — สร้างโปรตีน'],a:0,e:'ไมโทคอนเดรียสัมพันธ์กับการหายใจระดับเซลล์และการสร้างพลังงาน'},
+{q:'ถ้าต้องการหาส่วนที่เก็บสารพันธุกรรมหลักของเซลล์ยูคาริโอต ควรดูที่ใด?',opts:['ไซโทพลาซึม','นิวเคลียส','แวคิวโอล','ผนังเซลล์'],a:1,e:'สารพันธุกรรมหลักอยู่ในนิวเคลียส'},
+{q:'ข้อใดเป็นเหตุผลที่เซลล์รากพืชทั่วไปไม่จำเป็นต้องมีคลอโรพลาสต์จำนวนมาก?',opts:['ไม่มีเยื่อหุ้มเซลล์','ไม่มีไซโทพลาซึม','อยู่ใต้ดินจึงได้รับแสงน้อยและไม่ได้เป็นบริเวณหลักของการสังเคราะห์ด้วยแสง','ไม่ต้องใช้พลังงาน'],a:2,e:'รากทั่วไปอยู่ในบริเวณที่ได้รับแสงน้อย จึงไม่ใช่บริเวณหลักของการสังเคราะห์ด้วยแสง'},
+{q:'ข้อใดกล่าวถูกต้องที่สุดเกี่ยวกับผนังเซลล์กับเยื่อหุ้มเซลล์?',opts:['ทั้งคู่พบเฉพาะในพืช','ผนังเซลล์ควบคุมสารแทนเยื่อหุ้มทั้งหมด','สัตว์มีผนังเซลล์แต่พืชไม่มี','เซลล์พืชมีทั้งผนังเซลล์และเยื่อหุ้มเซลล์'],a:3,e:'เซลล์พืชมีเยื่อหุ้มเซลล์เช่นเดียวกับสัตว์ และมีผนังเซลล์เพิ่มด้านนอก'}
+];
+let player='',used=new Set(),played=[],score=0,current=-1,spinning=false,audioCtx=null,spinTimer=null,qTimer=null,qDeadline=0,questionAnswered=false;
+function ac(){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}
+function tone(f,d=.07,t='sine',v=.04,delay=0){let c=ac(),o=c.createOscillator(),g=c.createGain(),s=c.currentTime+delay;o.type=t;o.frequency.setValueAtTime(f,s);g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(v,s+.008);g.gain.exponentialRampToValueAtTime(.0001,s+d);o.connect(g);g.connect(c.destination);o.start(s);o.stop(s+d+.03)}
+function sTick(){tone(680,.025,'square',.018)} function sClock(){tone(920,.035,'square',.015)} function sLand(){[392,523,659,784].forEach((f,n)=>tone(f,.12,'triangle',.05,n*.07))} function sGood(){[523,659,784,1047].forEach((f,n)=>tone(f,.11,'sine',.05,n*.08))} function sBad(){tone(180,.18,'sawtooth',.04);tone(110,.28,'square',.03,.12)}
+function show(id){['cover','preview','game','result'].forEach(x=>$(x).classList.toggle('hidden',x!==id));$('homeFloat').classList.toggle('hidden',id==='cover'||id==='preview');scrollTo({top:0,behavior:'smooth'})}
+function openPreview(){let g=$('previewGrid');g.innerHTML=pool.map((x,i)=>`<div class="previewCard"><div class="previewNo">${String(i+1).padStart(2,'0')}</div><div class="previewQ">${x.q}</div></div>`).join('');show('preview')}
+function closePreview(){show('cover')}
+function renderNumbers(){let g=$('numberGrid');g.innerHTML='';for(let n=1;n<=20;n++){let b=document.createElement('button');b.className='numBtn'+(used.has(n-1)?' used':'');b.textContent=n;b.disabled=used.has(n-1)||spinning;b.dataset.idx=n-1;g.appendChild(b)} }
+function renderUsed(){let u=$('usedbar');u.innerHTML='';for(let k=0;k<10;k++){let d=document.createElement('div');let r=played[k];d.className='mini'+(r?' done '+(r.ok?'result-ok':'result-bad'):'');if(r){d.innerHTML=`<span>${r.num}</span><span class="resultMark" aria-label="${r.ok?'ตอบถูก':'ตอบผิด'}">${r.ok?'✓':'✕'}</span>`}else{d.textContent='?'}u.appendChild(d)}}
+function updateHud(){$('who').textContent='🔬 '+player;$('progress').textContent=`การ์ด ${played.length}/10`;$('score').textContent=`⭐ ${score}`;renderUsed();renderNumbers()}
+function start(){clearInterval(qTimer);player=$('playerName').value.trim()||'นักสำรวจเซลล์';used=new Set();played=[];score=0;current=-1;spinning=false;questionAnswered=false;show('game');$('bigNum').textContent='?';$('statusText').textContent='พร้อมสุ่มการ์ดใบแรก';updateHud()}
+function spin(){if(spinning||played.length>=10)return;spinning=true;$('spinBtn').disabled=true;renderNumbers();$('roulette').classList.add('spinning');$('statusText').textContent='กำลังสุ่มสัญญาณ...';let available=pool.map((_,i)=>i).filter(i=>!used.has(i));let startTime=performance.now(),lastIdx=null;
+  function tick(){
+    let elapsed=performance.now()-startTime;
+    let idx=available[Math.floor(Math.random()*available.length)];
+    if(available.length>1&&idx===lastIdx){let alt=available.filter(i=>i!==lastIdx);idx=alt[Math.floor(Math.random()*alt.length)]}
+    lastIdx=idx;$('bigNum').textContent=idx+1;sTick();
+    document.querySelectorAll('.numBtn').forEach(b=>b.classList.remove('spinActive'));
+    let active=document.querySelector(`.numBtn[data-idx="${idx}"]`);if(active)active.classList.add('spinActive');
+    let progress=Math.min(elapsed/4000,1);
+    let delay=55+Math.pow(progress,2.35)*520;
+    if(elapsed+delay>=4000){spinTimer=setTimeout(()=>finishSpin(lastIdx),Math.max(40,4000-elapsed));return}
+    spinTimer=setTimeout(tick,delay);
+  }
+  tick();
+}
+function finishSpin(finalIdx){current=finalIdx;used.add(current);spinning=false;$('roulette').classList.remove('spinning');document.querySelectorAll('.numBtn').forEach(b=>b.classList.remove('spinActive'));let landed=document.querySelector(`.numBtn[data-idx="${current}"]`);if(landed)landed.classList.add('land');$('bigNum').textContent=current+1;$('statusText').textContent=`หยุดที่หมายเลข ${current+1} — เปิดการ์ด!`;sLand();setTimeout(openCard,700)}
+function startQuestionTimer(){
+  clearInterval(qTimer);
+  questionAnswered=false;
+  qDeadline=performance.now()+10000;
+  const wrap=$('qTimerWrap'),num=$('qTimerNum'),bar=$('qTimerBar');
+  wrap.classList.remove('danger');num.textContent='10';bar.style.width='100%';
+  let lastShown=10;
+  qTimer=setInterval(()=>{
+    let remain=Math.max(0,qDeadline-performance.now());
+    let sec=Math.ceil(remain/1000);
+    num.textContent=sec;
+    bar.style.width=(remain/10000*100)+'%';
+    wrap.classList.toggle('danger',remain<=3000);
+    if(sec!==lastShown&&sec>0){sClock();lastShown=sec}
+    if(remain<=0){clearInterval(qTimer);timeoutQuestion()}
+  },100)
+}
+function timeoutQuestion(){
+  if(questionAnswered)return;
+  questionAnswered=true;
+  let x=pool[current];
+  [...$('opts').children].forEach((el,n)=>{el.disabled=true;if(n===x.a)el.classList.add('correct')});
+  sBad();celebrate('⏰ หมดเวลา!');
+  played.push({num:current+1,q:x.q,user:'หมดเวลา',correct:x.opts[x.a],ok:false,e:x.e,timeout:true});
+  $('fb').innerHTML=`<b class="bad">⏰ หมดเวลา — ข้อนี้นับเป็นผิด ✕</b><br>${x.e}<br><b>เฉลย:</b> ${x.opts[x.a]}`;
+  $('fb').classList.remove('hidden');$('continueBtn').classList.remove('hidden');updateHud()
+}
+function openCard(){
+  let x=pool[current];
+  $('cardNo').textContent=`CARD ${current+1}`;
+  $('qtext').textContent=x.q;
+  $('fb').classList.add('hidden');
+  $('continueBtn').classList.add('hidden');
+  $('opts').innerHTML='';
+  x.opts.forEach((v,i)=>{let b=document.createElement('button');b.className='opt';b.textContent=`${['ก','ข','ค','ง'][i]}. ${v}`;b.addEventListener('click',()=>answer(i,b));$('opts').appendChild(b)});
+  $('questionOverlay').classList.remove('hidden');
+  startQuestionTimer()
+}
+function answer(i,b){
+  if(questionAnswered)return;
+  questionAnswered=true;clearInterval(qTimer);
+  let x=pool[current];let ok=i===x.a;
+  [...$('opts').children].forEach((el,n)=>{el.disabled=true;if(n===x.a)el.classList.add('correct')});
+  if(!ok)b.classList.add('wrong');
+  if(ok){
+    score++;sGood();
+    $('continueBtn').classList.add('hidden');
+    celebrateCorrect(['🎉 เยี่ยมมาก!','🌟 เก่งมาก!','🏆 สุดยอด!','🚀 อเมซิ่ง!'][Math.floor(Math.random()*4)]);
+  } else {
+    sBad();celebrate('💥 เกือบแล้ว!');
+  }
+  played.push({num:current+1,q:x.q,user:x.opts[i],correct:x.opts[x.a],ok,e:x.e,timeout:false});
+  $('fb').innerHTML=`<b class="${ok?'good':'bad'}">${ok?'✓ ตอบถูก!':'✗ ยังไม่ถูก'}</b><br>${x.e}<br><b>เฉลย:</b> ${x.opts[x.a]}`;
+  $('fb').classList.remove('hidden');
+  if(ok){setTimeout(()=>$('continueBtn').classList.remove('hidden'),3000)}else{$('continueBtn').classList.remove('hidden')}
+  updateHud()
+}
+function launchConfetti(){
+  const layer=$('confettiLayer'); layer.innerHTML='';
+  const colors=['#ff5d8f','#ffd84d','#4fd9ff','#7af0a5','#b47cff','#ff914d','#ff7ce5','#ffffff'];
+  for(let i=0;i<150;i++){
+    const p=document.createElement('i');p.className='confettiPiece';
+    p.style.left=(Math.random()*100)+'vw';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDelay=(Math.random()*.6)+'s';
+    p.style.animationDuration=(2.3+Math.random()*.9)+'s';
+    p.style.setProperty('--drift',((-120+Math.random()*240)|0)+'px');
+    p.style.setProperty('--spin',((540+Math.random()*1080)|0)+'deg');
+    p.style.width=(8+Math.random()*10)+'px';p.style.height=(12+Math.random()*14)+'px';
+    layer.appendChild(p)
+  }
+  setTimeout(()=>layer.innerHTML='',3400)
+}
+function celebrateCorrect(msg){
+  launchConfetti();
+  const c=$('celebrate');c.textContent=msg;c.classList.add('show','correctParty');
+  setTimeout(()=>c.classList.remove('show','correctParty'),3000)
+}
+function celebrate(msg){$('celebrate').textContent=msg;$('celebrate').classList.remove('correctParty');$('celebrate').classList.add('show');setTimeout(()=>$('celebrate').classList.remove('show'),900)}
+function continueGame(){clearInterval(qTimer);$('questionOverlay').classList.add('hidden');if(played.length>=10)finish();else{$('spinBtn').disabled=false;$('bigNum').textContent='?';$('statusText').textContent='พร้อมสุ่มการ์ดใบต่อไป';renderNumbers()}}
+function finish(){show('result');let pct=Math.round(score/10*100),wrong=10-score;$('resultTitle').textContent=pct>=80?'🏆 CELL ROULETTE MASTER!':'🧬 RANDOM CARD CHALLENGE COMPLETE';$('resultName').textContent=player;$('finalScore').textContent=`${score}/10`;$('finalPct').textContent=`${pct}%`;$('resultMsg').textContent=pct>=80?'พิชิตสนามสุ่มการ์ดได้ยอดเยี่ยม! 🎰✨':'ลองทบทวนแล้วกลับมาสุ่มใหม่อีกครั้งนะ';$('correctStat').innerHTML=`✅ ถูกต้อง<br><b>${score} ข้อ</b>`;$('wrongStat').innerHTML=`❌ ตอบผิด<br><b>${wrong} ข้อ</b>`;$('cardsStat').innerHTML=`🎴 การ์ดที่สุ่ม<br><b>${played.map(x=>x.num).join(', ')}</b>`;$('details').classList.add('hidden');$('details').innerHTML=played.map((r,n)=>`<div class="row"><b>${n+1}. CARD ${r.num} — ${r.q}</b><br>ตอบ: <span class="${r.ok?'good':'bad'}">${r.user} ${r.ok?'✓':'✗'}</span><br>เฉลย: <b>${r.correct}</b><br><small>${r.e}</small></div>`).join('')}
+function toggleDetails(){$('details').classList.toggle('hidden');if(!$('details').classList.contains('hidden'))setTimeout(()=>$('details').scrollIntoView({behavior:'smooth',block:'start'}),80)}
+function goHome(){clearTimeout(spinTimer);clearInterval(spinTimer);clearInterval(qTimer);$('questionOverlay').classList.add('hidden');show('cover')}
+$('startBtn').addEventListener('click',start);$('previewBtn').addEventListener('click',openPreview);$('previewBackBtn').addEventListener('click',closePreview);$('spinBtn').addEventListener('click',spin);$('continueBtn').addEventListener('click',continueGame);$('detailsBtn').addEventListener('click',toggleDetails);$('restartBtn').addEventListener('click',start);$('homeBtn').addEventListener('click',goHome);$('homeFloat').addEventListener('click',goHome);
+</script></body></html>
