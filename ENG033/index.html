@@ -1,0 +1,627 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Kru Pai Classroom | Takeoff Vocab Battle</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:linear-gradient(145deg,#dff5ff,#eeeaff 55%,#ffe8f2);color:#26385f;min-height:100vh}button{font:inherit}.screen{display:none;min-height:100vh;padding:16px}.screen.show{display:grid;place-items:center}.card{width:min(1500px,97vw);min-height:calc(100vh - 32px);background:#ffffffef;border:4px solid #fff;border-radius:30px;box-shadow:0 28px 85px #4a5a8738;overflow:hidden}.btn{border:0;border-radius:16px;padding:14px 22px;font-weight:1000;cursor:pointer;color:#fff;background:#68758e;box-shadow:0 6px #4f5a70}.pink{background:linear-gradient(135deg,#ef76aa,#8b78e2)}.blue{background:linear-gradient(135deg,#66c6ed,#6e8ee2)}.green{background:linear-gradient(135deg,#65ceb1,#57a8d4)}.cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px}.cover h1{font-size:clamp(48px,7vw,94px);line-height:.95;color:#df68a0;margin:5px}.cover h2{font-size:clamp(22px,3vw,40px);margin:14px;color:#536580}.cover p{font-size:clamp(16px,2vw,22px);font-weight:800;color:#758199;line-height:1.6}.modeBtns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:18px}.brand{font-weight:1000;color:#7366bd}.emoji{font-size:clamp(70px,10vw,130px)}
+.topbar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;padding:13px 17px;border-radius:18px;color:#fff;font-weight:1000;background:linear-gradient(100deg,#607bc8,#8d79de)}.counter,.pill{background:#ffffffec;color:#665eaf;border-radius:999px;padding:7px 12px}.wrap{padding:18px}.reviewOne{min-height:calc(100vh - 190px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.wordBig{font-size:clamp(60px,8vw,118px);font-weight:1000;color:#6259ae}.thaiBig{font-size:clamp(38px,5vw,68px);font-weight:1000;color:#dc679f;margin:12px}.example{width:min(1000px,92%);background:#f8f4ff;border:2px solid #e4daf8;border-radius:18px;padding:17px;font-size:clamp(22px,2.5vw,34px);font-weight:900;color:#4f5e80}.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.allGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:18px}.vocabCard{background:#fff;border:2px solid #e1e7ef;border-radius:18px;padding:15px;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.vocabCard b{font-size:clamp(22px,2.2vw,32px);color:#665ab1}.vocabCard span{font-size:clamp(17px,1.8vw,24px);font-weight:900;color:#d56298;margin-top:5px}.vocabCard button{margin-top:8px;border:0;border-radius:999px;padding:7px 12px;font-weight:1000;color:#5876a2;background:#edf6ff}
+.game{padding:16px}.hud{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-radius:18px;background:linear-gradient(100deg,#607bc8,#8c78dc);color:#fff;font-weight:1000}.pills{display:flex;gap:8px;flex-wrap:wrap}.target{margin:14px auto 10px;width:min(1100px,96%);padding:14px 18px;text-align:center;background:#fff4f9;border:2px solid #f0c9db;border-radius:20px}.target small{font-weight:1000;color:#8d7181}.targetThai{font-size:clamp(42px,5.3vw,76px);font-weight:1000;color:#33496e;line-height:1.1;margin-top:4px}.board{position:relative;margin:10px auto;width:min(1280px,98%);min-height:340px;border-radius:28px;overflow:hidden;border:3px solid #d8e4ef;background:linear-gradient(#bfeaff 0 57%,#9fd681 57% 72%,#6c717c 72%)}.board:after{content:"";position:absolute;left:0;right:0;bottom:45px;height:7px;background:repeating-linear-gradient(90deg,#fff 0 60px,transparent 60px 105px);opacity:.9}.planeWrap{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);width:290px;height:190px;z-index:3;pointer-events:none;transition:bottom .6s cubic-bezier(.2,.8,.25,1),transform .6s}.plane{font-size:165px;filter:drop-shadow(0 16px 12px #2f405a55);transform:rotate(-6deg)}.cargo{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:190px;height:64px;display:flex;flex-wrap:wrap;gap:4px;align-content:center;justify-content:center;overflow:hidden}.cargoTag{font-size:10px;font-weight:1000;background:#ffffffdd;color:#6059a8;border-radius:999px;padding:2px 5px;animation:pop .35s}.alt{position:absolute;right:16px;top:16px;background:#ffffffdc;color:#5c66a4;border-radius:999px;padding:8px 12px;font-weight:1000;z-index:5}.choiceStage{margin-top:10px;padding:14px;border-radius:22px;background:#f9fbff;border:2px solid #e0e7f0}.choiceTitle{text-align:center;font-weight:1000;color:#625db0;font-size:19px;margin-bottom:10px}.choices{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.wordBtn{min-height:92px;border:2px solid #dfe5ef;background:#fff;border-radius:18px;padding:12px;color:#425476;font-size:clamp(23px,2.2vw,32px);font-weight:1000;cursor:pointer;box-shadow:0 7px #e4e8ef}.wordBtn.flyIn{animation:slamIn .65s cubic-bezier(.18,.9,.22,1) both}.wordBtn:nth-child(1){animation-delay:.02s}.wordBtn:nth-child(2){animation-delay:.10s}.wordBtn:nth-child(3){animation-delay:.18s}.wordBtn:nth-child(4){animation-delay:.26s}.wordBtn.good{background:#dff8ef;border-color:#61caaa;color:#23755e;animation:good .55s}.wordBtn.bad{background:#ffe4ec;border-color:#e86e8d;color:#a9405e;animation:bad .5s}@keyframes slamIn{0%{transform:translateX(-130vw) rotate(-8deg) scale(.7);opacity:0}65%{transform:translateX(20px) rotate(2deg) scale(1.05);opacity:1}85%{transform:translateX(-8px) rotate(-1deg) scale(.98)}100%{transform:none;opacity:1}}@keyframes good{50%{transform:scale(1.13)}}@keyframes bad{20%{transform:translateX(-12px)}40%{transform:translateX(12px)}60%{transform:translateX(-8px)}80%{transform:translateX(8px)}}@keyframes pop{50%{transform:scale(1.25)}}
+.overlay{position:fixed;inset:0;z-index:21000;display:none;place-items:center;background:#26365f88;backdrop-filter:blur(7px);padding:18px}.overlay.show{display:grid}.overlayCard{width:min(650px,94vw);background:linear-gradient(160deg,#fff,#fff4f9,#eef9ff);border:5px solid #fff;border-radius:32px;text-align:center;padding:30px;box-shadow:0 35px 100px #26365f77}.overlayCard h1{font-size:clamp(40px,7vw,76px);margin:6px;color:#dc659c}.overlayCard p{font-size:19px;font-weight:850;color:#67738d;line-height:1.55}.launch{position:fixed;inset:0;z-index:22000;display:none;overflow:hidden;background:linear-gradient(#bfeaff 0 67%,#9bd57e 67% 75%,#68707a 75%)}.launch.show{display:block}.launchPlane{position:absolute;left:8%;bottom:9%;font-size:clamp(140px,18vw,250px);filter:drop-shadow(0 18px 16px #2e405755);animation:takeoff 4.2s cubic-bezier(.18,.78,.2,1) forwards}.speedLines{position:absolute;inset:0;background:repeating-linear-gradient(-12deg,transparent 0 24px,#ffffff55 24px 28px,transparent 28px 55px);opacity:.35;animation:lines .45s linear infinite}.praise{position:absolute;left:50%;top:10%;transform:translateX(-50%) scale(.3);width:min(1100px,94vw);text-align:center;color:#fff;text-shadow:0 5px 18px #405070aa;font-weight:1000;opacity:0;animation:praise 1s 2.7s cubic-bezier(.16,.95,.25,1) forwards}.praise .big{font-size:clamp(58px,9vw,125px);line-height:.95}.praise .sub{font-size:clamp(24px,3vw,42px);margin-top:12px}.confetti{position:fixed;top:-20px;width:11px;height:18px;z-index:23000;animation:fall 3s linear forwards}@keyframes takeoff{0%{left:5%;bottom:9%;transform:rotate(0) scale(1)}25%{left:28%;bottom:10%;transform:rotate(-4deg) scale(1.08)}48%{left:52%;bottom:22%;transform:rotate(-12deg) scale(1.14)}72%{left:76%;bottom:52%;transform:rotate(-20deg) scale(1.03)}100%{left:118%;bottom:94%;transform:rotate(-28deg) scale(.7)}}@keyframes lines{to{transform:translateX(-80px)}}@keyframes praise{to{opacity:1;transform:translateX(-50%) scale(1)}}@keyframes fall{to{transform:translateY(110vh) rotate(800deg)}}
+@media(max-width:900px){.allGrid{grid-template-columns:repeat(2,1fr)}.choices{grid-template-columns:repeat(2,1fr)}.board{min-height:300px}.plane{font-size:130px}.planeWrap{width:220px}.cargo{width:145px}}@media(max-width:520px){.screen{padding:0}.card{width:100%;min-height:100vh;border:0;border-radius:0}.allGrid{grid-template-columns:1fr;padding:10px}.choices{grid-template-columns:1fr 1fr;gap:8px}.wordBtn{font-size:19px;min-height:76px}.board{min-height:265px}.plane{font-size:105px}.planeWrap{width:180px}.cargo{width:125px;height:42px}.cargoTag{font-size:8px}}
+</style>
+<style id="v11-tv-storm">
+/* ===== V1.1 TV FIT + VIVID STORM ===== */
+body{
+ background:
+ radial-gradient(circle at 12% 10%,#fff36f 0 6%,transparent 7%),
+ radial-gradient(circle at 86% 12%,#ff73c5 0 7%,transparent 8%),
+ linear-gradient(135deg,#28c8ff 0%,#7b5cff 48%,#ff5aa9 100%);
+}
+.gameCard{
+ background:
+ linear-gradient(155deg,#ffffff 0%,#edf9ff 35%,#fff0fb 70%,#fffbea 100%);
+}
+.hud{
+ background:linear-gradient(95deg,#005cff,#7b31ef 52%,#ff2f91);
+ box-shadow:0 10px 24px #5b3be455, inset 0 0 18px #ffffff44;
+}
+.pill{
+ background:#fff;color:#5926b4;border:2px solid #ffffff;
+ box-shadow:0 4px 10px #301c7830;
+}
+.target{
+ background:linear-gradient(135deg,#fff14f,#ff9ad4 42%,#91eaff);
+ border:3px solid #fff;
+ box-shadow:0 10px 24px #ff4cac38;
+}
+.target small{color:#642f73}
+.targetThai{
+ color:#172a57;
+ text-shadow:0 2px 0 #fff,0 5px 14px #ffffffb8;
+}
+.board{
+ min-height:220px;
+ background:
+  radial-gradient(circle at 14% 16%,#ffffff 0 24px,transparent 25px),
+  radial-gradient(circle at 80% 18%,#ffffffdd 0 32px,transparent 33px),
+  linear-gradient(#43cfff 0 50%,#6de06f 50% 66%,#595d6b 66%);
+ border:4px solid #ffffff;
+ box-shadow:inset 0 0 0 3px #35b9f6,0 12px 30px #35488735;
+}
+.planeWrap{
+ width:220px;height:145px;bottom:18px;
+}
+.plane{
+ font-size:124px;
+ filter:drop-shadow(0 13px 8px #25395a66);
+}
+.cargo{
+ width:150px;height:48px;
+}
+.choiceStage{
+ background:linear-gradient(135deg,#00c9ff18,#7b5cff12,#ff3f9c18);
+ border:3px solid #ffffff;
+ box-shadow:0 10px 24px #6c5eea25;
+ padding:10px 12px 12px;
+}
+.choiceTitle{
+ color:#531bb4;
+ font-size:18px;
+ text-shadow:0 1px 0 white;
+}
+.wordChoices{gap:10px}
+.wordBtn{
+ min-height:70px;
+ background:linear-gradient(150deg,#ffffff,#f4fbff);
+ border:3px solid #ffffff;
+ color:#203b78;
+ font-size:clamp(22px,2vw,30px);
+ box-shadow:0 7px 0 #cdd9f0,0 12px 24px #304b8130;
+}
+.wordBtn:nth-child(1){background:linear-gradient(135deg,#fff,#ffe177)}
+.wordBtn:nth-child(2){background:linear-gradient(135deg,#fff,#a6efff)}
+.wordBtn:nth-child(3){background:linear-gradient(135deg,#fff,#ffc0df)}
+.wordBtn:nth-child(4){background:linear-gradient(135deg,#fff,#c6b5ff)}
+.wordBtn:hover{
+ transform:translateY(-3px) scale(1.02);
+ border-color:#fff;
+ filter:saturate(1.2);
+}
+
+/* สะบัดมาแบบพายุ */
+.wordBtn.flyIn{animation:stormSlam .85s cubic-bezier(.12,.82,.15,1) both}
+.wordBtn:nth-child(1).flyIn{animation-delay:.02s}
+.wordBtn:nth-child(2).flyIn{animation-delay:.10s}
+.wordBtn:nth-child(3).flyIn{animation-delay:.18s}
+.wordBtn:nth-child(4).flyIn{animation-delay:.26s}
+@keyframes stormSlam{
+ 0%{
+   transform:translate(-120vw,-55vh) rotate(-760deg) scale(.18);
+   opacity:0;filter:blur(7px)
+ }
+ 45%{
+   transform:translate(55px,20px) rotate(28deg) scale(1.18);
+   opacity:1;filter:blur(0)
+ }
+ 62%{transform:translate(-25px,-12px) rotate(-16deg) scale(.96)}
+ 77%{transform:translate(12px,7px) rotate(7deg) scale(1.05)}
+ 90%{transform:translate(-5px,-3px) rotate(-3deg) scale(.99)}
+ 100%{transform:none;opacity:1}
+}
+
+/* TV: ทุกองค์ประกอบอยู่ในจอเดียว */
+@media(min-width:1000px) and (min-height:650px){
+ body{overflow:hidden}
+ #game.screen.show{
+   display:block;
+   padding:8px;
+   height:100vh;
+   min-height:100vh;
+   overflow:hidden;
+ }
+ #game .card{
+   width:calc(100vw - 16px);
+   height:calc(100vh - 16px);
+   min-height:0;
+   border-radius:24px;
+ }
+ .gameCard{
+   padding:10px 14px;
+   display:flex;
+   flex-direction:column;
+ }
+ .hud{padding:9px 14px;min-height:50px}
+ .target{
+   margin:8px auto 7px;
+   padding:8px 16px;
+ }
+ .target small{font-size:14px}
+ .targetThai{
+   font-size:clamp(34px,4vw,54px);
+   margin-top:1px;
+ }
+ .board{
+   min-height:0;
+   height:28vh;
+   max-height:225px;
+   flex:0 0 auto;
+   margin:4px auto 6px;
+ }
+ .planeWrap{width:205px;height:130px}
+ .plane{font-size:112px}
+ .cargo{width:140px;height:42px}
+ .choiceStage{
+   margin-top:4px;
+   padding:8px 10px 10px;
+ }
+ .choiceTitle{font-size:16px;margin-bottom:6px}
+ .wordChoices{gap:9px}
+ .wordBtn{
+   min-height:62px;
+   font-size:clamp(20px,1.8vw,27px);
+   padding:8px 10px;
+ }
+ #game .nav{
+   margin-top:7px;
+ }
+ #game .nav .btn{
+   min-height:42px;
+   padding:8px 14px;
+   font-size:15px;
+ }
+}
+
+/* Short TV / laptop */
+@media(min-width:900px) and (max-height:750px){
+ .board{height:190px !important;max-height:190px}
+ .targetThai{font-size:38px !important}
+ .wordBtn{min-height:56px !important;font-size:21px !important}
+ .plane{font-size:96px}
+ .planeWrap{width:180px;height:115px}
+}
+</style>
+
+
+<style id="v12-clean-bigwords">
+/* ===== V1.2 CLEANER LAYOUT + BIGGER WORDS + STORM SOUND ===== */
+
+/* เอากรอบคำไทยออก ให้เหลือคำใหญ่ลอยเด่น ๆ */
+.target{
+ background:transparent !important;
+ border:0 !important;
+ box-shadow:none !important;
+ margin:5px auto 3px !important;
+ padding:2px 8px !important;
+}
+.target small{
+ font-size:13px !important;
+ color:#5f4b86 !important;
+}
+.targetThai{
+ font-size:clamp(48px,5.8vw,82px) !important;
+ line-height:1 !important;
+ margin-top:0 !important;
+ color:#172a57 !important;
+ text-shadow:0 3px 0 #fff,0 6px 16px #ffffffaa !important;
+}
+
+/* ลดส่วนบนให้กินพื้นที่น้อยลง */
+.hud{
+ padding:7px 12px !important;
+ min-height:44px !important;
+ border-radius:14px !important;
+}
+.hud > span:first-child{
+ font-size:15px !important;
+}
+.pill{
+ padding:5px 9px !important;
+ font-size:14px !important;
+}
+.board{
+ margin-top:2px !important;
+}
+
+/* ตัวเลือกศัพท์ใหญ่และอ่านชัดขึ้น */
+.choiceStage{
+ padding:7px 9px 9px !important;
+}
+.choiceTitle{
+ font-size:14px !important;
+ margin-bottom:5px !important;
+}
+.wordChoices{
+ gap:10px !important;
+}
+.wordBtn{
+ min-height:68px !important;
+ font-size:clamp(28px,2.7vw,40px) !important;
+ line-height:1.05 !important;
+ letter-spacing:.2px;
+ padding:8px 8px !important;
+}
+
+/* จอทีวี: กดส่วนบนลงอีก */
+@media(min-width:1000px) and (min-height:650px){
+ .gameCard{padding:7px 12px !important}
+ .hud{min-height:40px !important;padding:6px 10px !important}
+ .target{margin:2px auto !important;padding:0 6px !important}
+ .target small{font-size:12px !important}
+ .targetThai{font-size:clamp(42px,4.5vw,62px) !important}
+ .board{
+   height:25vh !important;
+   max-height:205px !important;
+   margin:2px auto 4px !important;
+ }
+ .choiceStage{margin-top:2px !important;padding:6px 8px 8px !important}
+ .choiceTitle{font-size:13px !important;margin-bottom:4px !important}
+ .wordBtn{
+   min-height:64px !important;
+   font-size:clamp(27px,2.5vw,37px) !important;
+ }
+ #game .nav{margin-top:5px !important}
+ #game .nav .btn{min-height:38px !important;padding:6px 12px !important;font-size:14px !important}
+}
+@media(min-width:900px) and (max-height:750px){
+ .targetThai{font-size:42px !important}
+ .board{height:175px !important;max-height:175px !important}
+ .wordBtn{min-height:58px !important;font-size:27px !important}
+}
+
+/* เพิ่มแรงสะบัดอีกนิด */
+@keyframes stormSlam{
+ 0%{
+   transform:translate(-125vw,-65vh) rotate(-920deg) scale(.1);
+   opacity:0;filter:blur(9px)
+ }
+ 38%{
+   transform:translate(65px,26px) rotate(35deg) scale(1.22);
+   opacity:1;filter:blur(1px)
+ }
+ 58%{transform:translate(-30px,-14px) rotate(-18deg) scale(.94)}
+ 74%{transform:translate(16px,8px) rotate(9deg) scale(1.07)}
+ 88%{transform:translate(-7px,-4px) rotate(-4deg) scale(.99)}
+ 100%{transform:none;opacity:1;filter:blur(0)}
+}
+</style>
+
+
+<style id="v13-timer-sound">
+.timerPill{
+ min-width:88px;text-align:center;
+ background:linear-gradient(135deg,#fff86b,#ffb14f) !important;
+ color:#6e3a00 !important;
+ border:2px solid #fff !important;
+ font-size:18px !important;
+ font-weight:1000 !important;
+}
+.timerPill.warn{
+ background:linear-gradient(135deg,#ff8ab9,#ff5353) !important;
+ color:white !important;
+ animation:timerPulse .48s infinite alternate;
+}
+@keyframes timerPulse{
+ from{transform:scale(1)}
+ to{transform:scale(1.10);box-shadow:0 0 0 7px #ff557733}
+}
+</style>
+
+
+<style id="v15-win-record">
+.victoryCard{
+ background:
+ radial-gradient(circle at 15% 18%,#fff47a55 0 6%,transparent 7%),
+ radial-gradient(circle at 86% 15%,#ff77c855 0 7%,transparent 8%),
+ linear-gradient(145deg,#ffffff,#eefaff 36%,#fff0fa 72%,#fff9cf);
+ position:relative;overflow:hidden;
+}
+.victoryBadge{
+ font-size:clamp(78px,10vw,140px);
+ filter:drop-shadow(0 10px 12px #4c478744);
+ animation:victoryPop .9s cubic-bezier(.16,.9,.2,1);
+}
+.victoryTitle{
+ font-size:clamp(52px,7vw,96px)!important;
+ color:#6a3be7!important;
+ text-shadow:0 4px 0 #fff,0 10px 24px #7658d84c;
+ margin:2px 0!important;
+}
+.victorySub{
+ font-size:clamp(28px,3.4vw,44px)!important;
+ color:#e4519d!important;
+ margin:4px 0 10px!important;
+}
+.victoryScore{
+ display:inline-block;
+ font-size:clamp(58px,7vw,92px);
+ font-weight:1000;color:#173e70;
+ background:linear-gradient(135deg,#fff36d,#8df2ff,#ff9fd2);
+ border:4px solid white;border-radius:26px;padding:8px 28px;
+ box-shadow:0 14px 34px #4d55983d;
+}
+.victoryText{
+ font-size:clamp(24px,2.5vw,34px);font-weight:1000;color:#52627f;
+ line-height:1.45;margin:16px 0 10px;
+}
+.victorySeal{
+ margin:8px auto 18px;width:max-content;max-width:94%;
+ padding:10px 18px;border-radius:999px;background:#e8fff5;
+ border:2px solid #77d5b4;color:#23815f;
+ font-size:clamp(16px,1.7vw,22px);font-weight:1000;
+}
+@keyframes victoryPop{
+ 0%{transform:scale(.2) rotate(-18deg);opacity:0}
+ 70%{transform:scale(1.15) rotate(5deg);opacity:1}
+ 100%{transform:scale(1);opacity:1}
+}
+@media(max-width:520px){
+ .victoryCard{padding:22px 14px!important}
+ .victoryBadge{font-size:76px}
+ .victoryTitle{font-size:48px!important}
+ .victorySub{font-size:25px!important}
+ .victoryScore{font-size:58px}
+ .victoryText{font-size:21px}
+}
+</style>
+
+</head><body>
+<section id="cover" class="screen show"><div class="card cover"><div class="brand">KRU PAI CLASSROOM • AIRPORT VOCABULARY</div><div class="emoji">✈️ ☁️ 🎫 🧳</div><h1>TAKEOFF<br>VOCAB BATTLE</h1><h2>จับคู่ศัพท์ให้ครบ แล้วช่วยเครื่องบินทะยานขึ้นฟ้า!</h2><p>คำแปลไทยเป็นโจทย์ • คำศัพท์อังกฤษสะบัดเข้าหน้ากระดาน<br>ตอบถูก = เครื่องบินลอยขึ้นทีละนิด 🚀 | ตอบผิด = เครื่องบินตกกลับพื้นและเริ่มใหม่</p><div class="modeBtns"><button class="btn pink" onclick="startReviewOne()">📖 ทบทวนทีละคำ</button><button class="btn blue" onclick="showAllReview()">🗂️ ทบทวนรวม 20 คำ</button><button class="btn green" onclick="startGame()">🎮 เริ่ม TAKEOFF BATTLE</button></div></div></section>
+<section id="reviewOne" class="screen"><div class="card wrap"><div class="topbar"><span>📖 ทบทวนทีละคำ</span><span id="reviewCount" class="counter">1 / 20</span></div><div class="reviewOne"><div id="rWord" class="wordBig"></div><div id="rThai" class="thaiBig"></div><div id="rExample" class="example"></div><div class="modeBtns"><button class="btn pink" onclick="speakReview()">🔊 ฟังคำศัพท์</button><button class="btn blue" onclick="speakExample()">🗣️ ฟังประโยค</button></div></div><div class="nav"><button class="btn" onclick="goHome()">⌂ หน้าแรก</button><div><button class="btn blue" onclick="prevReview()">← ก่อนหน้า</button> <button class="btn pink" onclick="nextReview()">ถัดไป →</button></div></div></div></section>
+<section id="reviewAll" class="screen"><div class="card wrap"><div class="topbar"><span>🗂️ AIRPORT VOCABULARY • 20 คำ</span><span class="counter">ทบทวนก่อนขึ้นบิน</span></div><div id="allGrid" class="allGrid"></div><div class="nav"><button class="btn" onclick="goHome()">⌂ หน้าแรก</button><button class="btn green" onclick="startGame()">🎮 พร้อมแล้ว เริ่มเกม!</button></div></div></section>
+<section id="game" class="screen"><div class="card game"><div class="hud"><span>✈️ TAKEOFF VOCAB BATTLE</span><div class="pills"><span id="progressPill" class="pill">✅ 0 / 20</span><span id="altitudePill" class="pill">⬆️ ALTITUDE 0%</span>
+    <span id="timerPill" class="pill timerPill">⏱️ 7</span></div></div><div class="target"><small>เลือกคำศัพท์ภาษาอังกฤษที่ตรงกับภาษาไทย</small><div id="targetThai" class="targetThai"></div></div><div class="board"><div id="alt" class="alt">GROUND LEVEL</div><div id="planeWrap" class="planeWrap"><div class="plane">✈️</div><div id="cargo" class="cargo"></div></div></div><div class="choiceStage"><div class="choiceTitle">⚡ คำศัพท์กำลังเข้าประจำตำแหน่ง — เลือกให้ไว!</div><div id="choices" class="choices"></div></div><div class="nav"><button class="btn" onclick="goHome()">⌂ ออกจากเกม</button><button class="btn blue" onclick="showAllReview()">🗂️ ทบทวนคำศัพท์</button></div></div></section>
+<div id="gameOver" class="overlay"><div class="overlayCard"><div style="font-size:82px">💥✈️</div><h1>เครื่องบินตกกลับพื้น!</h1><p>เลือกผิดแล้วจ้า ภารกิจนี้ต้องเริ่มนับใหม่ตั้งแต่คำแรก<br>ถ้ายังไม่มั่นใจ แวะทบทวนศัพท์ก่อน แล้วค่อยกลับมาพาเครื่องบินขึ้นฟ้า 🌸</p><div class="modeBtns"><button class="btn blue" onclick="closeGameOver();showAllReview()">📚 ไปทบทวน</button><button class="btn pink" onclick="closeGameOver();startGame()">↻ เริ่มใหม่</button></div></div></div>
+
+<section id="victory" class="screen">
+ <div class="card cover victoryCard">
+  <div class="brand">KRU PAI CLASSROOM • MISSION RECORD</div>
+  <div class="victoryBadge">🏆✈️🌟</div>
+  <h1 class="victoryTitle">MISSION CLEARED!</h1>
+  <h2 class="victorySub">AIRPORT VOCAB MASTER</h2>
+  <div class="victoryScore">20 / 20</div>
+  <div class="victoryText">ผ่านด่านสำเร็จแล้วจ้า!<br>เครื่องบินทะยานขึ้นฟ้าเรียบร้อย 🚀</div>
+  <div class="victorySeal">✅ VOCABULARY TAKEOFF COMPLETE</div>
+  <div class="modeBtns">
+    <button class="btn pink" onclick="startGame()">↻ เล่นอีกครั้ง</button>
+    <button class="btn blue" onclick="showAllReview()">📚 ทบทวนคำศัพท์</button>
+    <button class="btn green" onclick="goHome()">⌂ หน้าแรก</button>
+  </div>
+ </div>
+</section>
+
+<div id="launch" class="launch"><div class="speedLines"></div><div class="launchPlane">✈️</div><div class="praise"><div class="big">MISSION CLEARED!</div><div class="sub">🌟 ผ่านด่าน AIRPORT VOCAB MASTER แล้วจ้า! 🌟<br>20 / 20 คำ • พร้อมทะยานสู่ด่านต่อไป ✈️🚀</div></div></div>
+<script>
+const vocab=[
+['passport','หนังสือเดินทาง','May I see your passport, please?'],['ticket','ตั๋วโดยสาร','Here is my ticket.'],['luggage','สัมภาระ','Do you have any luggage to check in?'],['suitcase','กระเป๋าเดินทาง','I have one suitcase.'],['window seat','ที่นั่งริมหน้าต่าง','A window seat, please.'],['aisle seat','ที่นั่งริมทางเดิน','Would you like an aisle seat?'],['phone','โทรศัพท์','Please put your phone in the tray.'],['tray','ถาด','Put your bag in the tray.'],['liquids','ของเหลว','Do you have any liquids in your bag?'],['shoes','รองเท้า','Do I need to take off my shoes?'],['purpose','จุดประสงค์','What is the purpose of your visit?'],['holiday','วันหยุด / การท่องเที่ยว',"I'm here for a holiday."],['stay','พักอยู่','How long will you stay?'],['hotel','โรงแรม',"I'll be staying at a hotel."],['boarding gate','ประตูขึ้นเครื่อง','Where is my boarding gate?'],['flight','เที่ยวบิน','Is this flight delayed?'],['delayed','ล่าช้า','The flight is delayed by thirty minutes.'],['boarding pass','บัตรขึ้นเครื่อง','Please have your boarding pass ready.'],['seat','ที่นั่ง','Where is seat 18A?'],['exit','ทางออก','Which way is the exit?']];
+let ri=0,order=[],q=0,correct=0,locked=false;
+let roundTimer=null,timeLeft=7;
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
+  scrollTo(0,0);
+}
+function goHome(){
+  stopTimer();
+  speechSynthesis.cancel();
+  show('cover');
+}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function speak(t,r=.78){
+  if(!window.speechSynthesis)return;
+  speechSynthesis.cancel();
+  let u=new SpeechSynthesisUtterance(t);
+  u.lang='en-US';u.rate=r;
+  speechSynthesis.speak(u);
+}
+function tone(freq=600,d=.05,vol=.08,type='sine'){
+  try{
+    const C=window.AudioContext||window.webkitAudioContext,ctx=new C();
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.type=type;o.frequency.value=f;
+    o.connect(g);g.connect(ctx.destination);
+    g.gain.setValueAtTime(.001,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(vol,ctx.currentTime+.01);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d);
+    o.start();o.stop(ctx.currentTime+d+.02);
+  }catch(e){}
+}
+function stormSound(){
+  [0,90,180,270].forEach((ms,k)=>setTimeout(()=>{
+    try{
+      const C=window.AudioContext||window.webkitAudioContext,ctx=new C();
+      const o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+      o.type='sawtooth'; f.type='lowpass'; f.frequency.value=1500-k*180;
+      o.frequency.setValueAtTime(135+k*8,ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(520+k*70,ctx.currentTime+.18);
+      o.connect(f);f.connect(g);g.connect(ctx.destination);
+      g.gain.setValueAtTime(.001,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.065,ctx.currentTime+.02);
+      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.22);
+      o.start();o.stop(ctx.currentTime+.24);
+    }catch(e){}
+  },ms));
+}
+function clickSound(){tone(420,.055,.10);setTimeout(()=>tone(610,.045,.08),35)}
+function liftSound(){
+  try{
+    const C=window.AudioContext||window.webkitAudioContext,ctx=new C();
+    const o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+    o.type='sawtooth';f.type='lowpass';f.frequency.value=1200;
+    o.frequency.setValueAtTime(160,ctx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(760,ctx.currentTime+.42);
+    o.connect(f);f.connect(g);g.connect(ctx.destination);
+    g.gain.setValueAtTime(.001,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.12,ctx.currentTime+.04);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.44);
+    o.start();o.stop(ctx.currentTime+.46);
+  }catch(e){}
+}
+function takeoffSound(){
+  try{
+    const C=window.AudioContext||window.webkitAudioContext,ctx=new C();
+    const o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+    o.type='sawtooth';f.type='lowpass';
+    f.frequency.setValueAtTime(400,ctx.currentTime);
+    f.frequency.exponentialRampToValueAtTime(2800,ctx.currentTime+1.8);
+    o.frequency.setValueAtTime(65,ctx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(590,ctx.currentTime+2);
+    o.connect(f);f.connect(g);g.connect(ctx.destination);
+    g.gain.setValueAtTime(.001,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.16,ctx.currentTime+.1);
+    g.gain.setValueAtTime(.16,ctx.currentTime+1.2);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+2.2);
+    o.start();o.stop(ctx.currentTime+2.25);
+  }catch(e){}
+}
+
+/* review */
+function startReviewOne(){ri=0;renderReview();show('reviewOne')}
+function renderReview(){
+  let v=vocab[ri];
+  reviewCount.textContent=`${ri+1} / 20`;
+  rWord.textContent=v[0];rThai.textContent=v[1];rExample.textContent=v[2];
+}
+function nextReview(){if(ri<19){ri++;renderReview()}else showAllReview()}
+function prevReview(){if(ri>0){ri--;renderReview()}}
+function speakReview(){speak(vocab[ri][0],.7)}
+function speakExample(){speak(vocab[ri][2],.75)}
+function showAllReview(){
+  stopTimer();
+  show('reviewAll');
+  allGrid.innerHTML=vocab.map((v,i)=>`<div class="vocabCard"><b>${v[0]}</b><span>${v[1]}</span><button onclick="speak(vocab[${i}][0],.7)">🔊 ฟัง</button></div>`).join('');
+}
+
+/* timer */
+function stopTimer(){
+  if(roundTimer){clearInterval(roundTimer);roundTimer=null}
+}
+function paintTimer(){
+  const p=document.getElementById('timerPill');
+  if(!p)return;
+  p.textContent=`⏱️ ${timeLeft}`;
+  p.classList.toggle('warn',timeLeft<=3);
+}
+function tickSound(){
+  if(timeLeft<=0)return;
+  tone(timeLeft<=3?1050:650,timeLeft<=3?.07:.04,timeLeft<=3?.14:.07);
+}
+function startTimer(){
+  stopTimer();
+  timeLeft=7;
+  paintTimer();
+  tickSound();
+  roundTimer=setInterval(()=>{
+    if(locked){stopTimer();return}
+    timeLeft--;
+    paintTimer();
+    if(timeLeft>0) tickSound();
+    if(timeLeft<=0){
+      stopTimer();
+      locked=true;
+      tone(220,.14,.16,'sawtooth');
+      setTimeout(()=>failRound('หมดเวลา! เครื่องบินกลับสู่พื้น'),260);
+    }
+  },1000);
+}
+
+/* game */
+function startGame(){
+  stopTimer();
+  order=shuffle([...Array(20).keys()]);
+  q=0;correct=0;locked=false;
+  cargo.innerHTML='';
+  show('game');
+  updatePlane();
+  progressPill.textContent='✅ 0 / 20';
+  altitudePill.textContent='⬆️ ALTITUDE 0%';
+  renderQ();
+}
+function renderQ(){
+  stopTimer();
+  locked=false;
+  let idx=order[q];
+  targetThai.textContent=vocab[idx][1];
+  let wrong=shuffle([...Array(20).keys()].filter(i=>i!==idx)).slice(0,3);
+  let opts=shuffle([idx,...wrong]);
+  choices.innerHTML=opts.map(i=>`<button class="wordBtn flyIn" data-i="${i}">${vocab[i][0]}</button>`).join('');
+  choices.querySelectorAll('button').forEach(b=>b.onclick=()=>choose(b,+b.dataset.i));
+  stormSound();
+  startTimer();
+}
+function choose(btn,idx){
+  if(locked)return;
+  clickSound();
+  stopTimer();
+  locked=true;
+  let answer=order[q];
+
+  if(idx===answer){
+    btn.className='wordBtn good';
+    correct++;
+    let t=document.createElement('div');
+    t.className='cargoTag';
+    t.textContent=vocab[answer][0];
+    cargo.appendChild(t);
+    speak(vocab[answer][0],.7);
+    liftSound();
+    updatePlane();
+    progressPill.textContent=`✅ ${correct} / 20`;
+    altitudePill.textContent=`⬆️ ALTITUDE ${correct*5}%`;
+    setTimeout(()=>{
+      if(correct===20)win();
+      else{q++;renderQ()}
+    },850);
+  }else{
+    btn.className='wordBtn bad';
+    tone(190,.12,.15,'sawtooth');
+    setTimeout(()=>failRound('เลือกผิด! เครื่องบินกลับสู่พื้น'),350);
+  }
+}
+function failRound(msg){
+  stopTimer();
+  correct=0;q=0;locked=true;
+  cargo.innerHTML='';
+  updatePlane();
+  progressPill.textContent='✅ 0 / 20';
+  altitudePill.textContent='⬆️ ALTITUDE 0%';
+  timeLeft=7;paintTimer();
+  const h=gameOver.querySelector('h1');
+  if(h)h.textContent=msg;
+  gameOver.classList.add('show');
+}
+function updatePlane(){
+  let p=correct/20;
+  planeWrap.style.bottom=(28+p*155)+'px';
+  planeWrap.style.transform=`translateX(-50%) rotate(${-6-p*8}deg) scale(${1+p*.12})`;
+  alt.textContent=correct===0?'GROUND LEVEL':correct<20?`LIFT ${correct}/20`:'READY!';
+}
+function closeGameOver(){
+  gameOver.classList.remove('show');
+}
+function win(){
+  stopTimer();
+  takeoffSound();
+  confetti(180);
+  launch.classList.add('show');
+  setTimeout(()=>takeoffSound(),1100);
+  setTimeout(()=>confetti(120),2500);
+  setTimeout(()=>{
+    launch.classList.remove('show');
+    show('victory');
+    confetti(120);
+    tone(880,.10,.11);
+    setTimeout(()=>tone(1175,.12,.10),120);
+    setTimeout(()=>tone(1568,.16,.09),260);
+  },5600);
+}
+function confetti(n){
+  let c=['#ff7faf','#7a7ee8','#5ed0b4','#ffd46b','#7fd3f2','#fff'];
+  for(let i=0;i<n;i++){
+    let d=document.createElement('i');
+    d.className='confetti';
+    d.style.left=Math.random()*100+'vw';
+    d.style.background=c[i%c.length];
+    d.style.animationDelay=Math.random()*.8+'s';
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(),3800);
+  }
+}
+
+</script></body></html>

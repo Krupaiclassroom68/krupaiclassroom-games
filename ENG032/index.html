@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kru Pai Classroom | Airport Listen & Answer</title>
+<style>
+*{box-sizing:border-box}
+:root{
+ --ink:#21345f;--pink:#ff5aa9;--violet:#7256e8;--sky:#39c7ff;--mint:#65d7b2;--gold:#ffd95b;
+ --danger:#ff5d77;
+}
+body{
+ margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+ background:linear-gradient(135deg,#37c9ff,#7460ed 50%,#ff65ad);
+ overflow-x:hidden;
+}
+button{font:inherit}
+.screen{display:none;min-height:100vh;padding:12px}
+.screen.show{display:grid;place-items:center}
+.card{
+ width:min(1500px,98vw);min-height:calc(100vh - 24px);background:#ffffffee;border:4px solid #fff;
+ border-radius:28px;box-shadow:0 26px 80px #23305f55;overflow:hidden;
+}
+.btn{
+ border:0;border-radius:16px;padding:13px 20px;min-height:50px;font-weight:1000;cursor:pointer;color:white;
+ box-shadow:0 6px #536078;
+}
+.btn:active{transform:translateY(2px);box-shadow:0 3px #536078}
+.pink{background:linear-gradient(135deg,#ff5ca8,#935ee6);box-shadow:0 6px #7346bd}
+.blue{background:linear-gradient(135deg,#26c4fa,#557ce3);box-shadow:0 6px #4266b8}
+.green{background:linear-gradient(135deg,#5bd4aa,#4fb0d7);box-shadow:0 6px #3d94aa}
+.gray{background:#6d7890}
+.brand{font-weight:1000;color:#6958c6;font-size:18px}
+.cover{
+ min-height:calc(100vh - 24px);display:flex;align-items:center;justify-content:center;flex-direction:column;
+ text-align:center;padding:28px;background:
+ radial-gradient(circle at 12% 16%,#fff56b66 0 6%,transparent 7%),
+ radial-gradient(circle at 86% 12%,#ff81c766 0 7%,transparent 8%),
+ linear-gradient(145deg,#fff,#eefaff 42%,#fff0f9);
+}
+.cover .emoji{font-size:clamp(72px,10vw,135px)}
+.cover h1{font-size:clamp(48px,7vw,94px);line-height:.95;margin:5px;color:#6e46e3;text-shadow:0 5px 0 #fff}
+.cover h2{font-size:clamp(24px,3vw,40px);margin:12px 0 4px;color:#e34d9a}
+.cover p{font-size:clamp(17px,2vw,24px);font-weight:850;line-height:1.6;color:#64718d}
+.mode{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+
+/* review */
+.wrap{padding:14px}
+.topbar{
+ display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+ background:linear-gradient(100deg,#1a86e8,#7552e4,#f450a3);color:white;
+ border-radius:17px;padding:10px 14px;font-weight:1000;
+}
+.reviewGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:14px}
+.pair{
+ background:linear-gradient(150deg,#fff,#f5fbff 48%,#fff4fa);border:2px solid #e1e8f1;
+ border-radius:20px;padding:16px;box-shadow:0 8px 18px #3b518722;
+}
+.pairNo{display:inline-block;border-radius:999px;background:#ece8ff;color:#6a57cd;font-weight:1000;padding:5px 10px;margin-bottom:8px}
+.q{font-size:clamp(22px,2.2vw,31px);font-weight:1000;color:#30436e;line-height:1.3}
+.a{font-size:clamp(21px,2.1vw,30px);font-weight:1000;color:#d84991;margin-top:8px;line-height:1.3}
+.th{font-size:16px;color:#7b8498;font-weight:750;margin-top:5px;line-height:1.45}
+.pairBtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.listenBtn{
+ border:0;border-radius:999px;padding:7px 11px;font-weight:1000;background:#eaf6ff;color:#376da5;cursor:pointer;
+}
+
+/* game */
+.game{padding:10px 12px;background:linear-gradient(155deg,#fff,#f1fbff 42%,#fff1fb)}
+.hud{
+ display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+ background:linear-gradient(95deg,#006cf0,#7446e7,#ff3c98);color:white;border-radius:16px;padding:8px 12px;font-weight:1000;
+}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
+.pill{background:#ffffffef;color:#5f45bd;border-radius:999px;padding:6px 10px}
+.hangar{
+ width:min(1200px,96%);margin:8px auto 5px;padding:8px 10px;border-radius:18px;
+ background:linear-gradient(135deg,#e8fbff,#fff5cf,#ffe8f5);border:2px solid #fff;box-shadow:0 7px 20px #4c609528;
+}
+.hangarTitle{text-align:center;font-size:15px;font-weight:1000;color:#6a5d9d}
+.planes{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;min-height:38px;align-items:center}
+.planeToken{font-size:31px;animation:planePop .45s cubic-bezier(.16,.9,.2,1)}
+@keyframes planePop{0%{transform:scale(.2) rotate(-25deg);opacity:0}75%{transform:scale(1.25) rotate(7deg)}100%{transform:scale(1)}}
+
+.listenZone{
+ width:min(1200px,96%);margin:7px auto;text-align:center;padding:10px;border-radius:22px;
+ background:linear-gradient(135deg,#79dcff,#9a87ff 55%,#ff83bd);border:3px solid #fff;
+ box-shadow:0 12px 28px #4b4d9b42;
+}
+.listenLabel{font-size:16px;font-weight:1000;color:#fff}
+.bigListen{
+ margin:7px auto 4px;border:0;border-radius:999px;width:120px;height:120px;cursor:pointer;
+ font-size:55px;background:linear-gradient(145deg,#fff,#dff7ff);box-shadow:0 10px 0 #5a66ba,0 16px 30px #293e7b55;
+}
+.bigListen:active{transform:translateY(4px);box-shadow:0 6px 0 #5a66ba}
+.helpRow{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:5px}
+.questionText{
+ display:none;margin:8px auto 0;width:min(980px,94%);padding:9px 12px;background:#ffffffee;color:#2a3d6c;
+ border-radius:14px;font-size:clamp(22px,2.3vw,31px);font-weight:1000;
+}
+.questionText.show{display:block;animation:reveal .35s ease}
+@keyframes reveal{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+
+.answerTitle{text-align:center;font-weight:1000;color:#624bb6;font-size:16px;margin:5px}
+.answers{
+ width:min(1240px,97%);margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
+}
+.answer{
+ min-height:86px;border:3px solid #fff;border-radius:18px;padding:11px 14px;cursor:pointer;
+ font-size:clamp(23px,2.35vw,34px);line-height:1.15;font-weight:1000;color:#25436b;
+ box-shadow:0 7px 0 #d4dcea,0 12px 22px #334b7825;
+}
+.answer:nth-child(1){background:linear-gradient(135deg,#fff,#fff0a2)}
+.answer:nth-child(2){background:linear-gradient(135deg,#fff,#a8eeff)}
+.answer:nth-child(3){background:linear-gradient(135deg,#fff,#ffc3df)}
+.answer:nth-child(4){background:linear-gradient(135deg,#fff,#cbbcff)}
+.answer:hover{transform:translateY(-2px) scale(1.01)}
+.answer.good{background:#d9f8eb!important;color:#1f7a5d;animation:good .48s}
+.answer.bad{background:#ffe1e8!important;color:#aa3e57;animation:bad .42s}
+@keyframes good{50%{transform:scale(1.05);box-shadow:0 0 0 10px #5bd4aa33}}
+@keyframes bad{25%{transform:translateX(-10px)}50%{transform:translateX(10px)}75%{transform:translateX(-6px)}}
+.feedback{
+ min-height:40px;text-align:center;font-size:clamp(18px,1.8vw,25px);font-weight:1000;margin-top:7px;color:#56637f;
+}
+.bottom{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:6px}
+
+/* result */
+.resultScore{
+ font-size:clamp(58px,8vw,105px);font-weight:1000;color:#6b47df;
+ background:linear-gradient(135deg,#fff36c,#9cf2ff,#ff9fd0);border:4px solid white;
+ border-radius:24px;padding:8px 30px;box-shadow:0 14px 30px #4e57953b;
+}
+.resultPlanes{font-size:clamp(40px,5vw,70px);max-width:900px;line-height:1.15;margin:12px}
+
+@media(min-width:1100px) and (min-height:650px){
+ #game.screen.show{display:block;padding:7px;height:100vh;overflow:hidden}
+ #game .card{height:calc(100vh - 14px);min-height:0}
+ .game{display:flex;flex-direction:column}
+ .hud{padding:6px 10px}
+ .hangar{margin:5px auto 3px;padding:5px 8px}
+ .planeToken{font-size:27px}
+ .listenZone{margin:4px auto;padding:6px}
+ .bigListen{width:96px;height:96px;font-size:44px;margin:4px}
+ .questionText{font-size:24px;padding:6px 10px}
+ .answers{gap:8px}
+ .answer{min-height:72px;font-size:clamp(21px,2vw,30px);padding:8px 10px}
+ .feedback{min-height:31px;margin-top:4px}
+ .bottom{margin-top:3px}
+}
+@media(max-width:720px){
+ .screen{padding:0}.card{width:100%;min-height:100vh;border:0;border-radius:0}
+ .reviewGrid{grid-template-columns:1fr;padding:10px}
+ .answers{grid-template-columns:1fr 1fr;gap:8px}
+ .answer{font-size:19px;min-height:82px;padding:9px}
+ .bigListen{width:105px;height:105px}
+ .questionText{font-size:21px}
+}
+</style>
+
+
+<style id="random-number-v3">
+.randomCard{
+ padding:12px;display:flex;flex-direction:column;align-items:center;
+ background:linear-gradient(155deg,#fff,#eefaff 44%,#fff0f8);text-align:center;
+}
+.randomIntro{font-size:clamp(23px,2.5vw,35px);font-weight:1000;color:#624bc8;margin:14px 0 6px}
+.randomIntro small{display:block;font-size:.6em;color:#75809a;margin-top:4px}
+.numberBoard{
+ width:min(980px,96%);display:grid;grid-template-columns:repeat(10,1fr);gap:8px;
+ margin:12px auto;
+}
+.numTile{
+ aspect-ratio:1/1;display:grid;place-items:center;border-radius:16px;border:3px solid white;
+ font-size:clamp(20px,2.2vw,32px);font-weight:1000;color:#263d70;
+ box-shadow:0 5px 0 #ccd5e6;transition:.12s;
+}
+.numTile:nth-child(5n+1){background:#ffe8f4}
+.numTile:nth-child(5n+2){background:#fff2aa}
+.numTile:nth-child(5n+3){background:#dff8ff}
+.numTile:nth-child(5n+4){background:#e9e1ff}
+.numTile:nth-child(5n){background:#ddf8ec}
+.numTile.flash{transform:scale(1.13);background:#ffde59!important;color:#8b3f00;box-shadow:0 0 0 7px #ffdf5960}
+.numTile.chosen{transform:scale(1.17);background:linear-gradient(135deg,#ff66ad,#7658e8)!important;color:white;box-shadow:0 0 0 8px #7658e830}
+.numTile.used{opacity:.25;filter:grayscale(1)}
+.randomResult{font-size:clamp(24px,2.8vw,38px);font-weight:1000;color:#e24f98;min-height:50px;margin:4px}
+.randomBtn{
+ border:0;border-radius:999px;padding:15px 30px;font-size:clamp(23px,2.4vw,34px);font-weight:1000;color:white;cursor:pointer;
+ background:linear-gradient(135deg,#ff4f9e,#7a55e7,#22bfea);box-shadow:0 8px 0 #5542aa,0 14px 28px #41457945;
+}
+.randomBtn:active{transform:translateY(4px);box-shadow:0 4px 0 #5542aa}
+.randomBtn:disabled{opacity:.6;filter:grayscale(.4)}
+.nextWrap{display:flex;justify-content:center;margin:8px 0 2px}
+#nextBtn{display:none;font-size:clamp(20px,2vw,28px);padding:12px 28px}
+#nextBtn.show{display:inline-block;animation:nextPop .38s ease}
+@keyframes nextPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.resultBreakdown{
+ width:min(920px,95%);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px auto;
+}
+.resultBox{border-radius:18px;padding:14px;background:#fff;border:2px solid #e6eaf1}
+.resultBox b{display:block;font-size:clamp(30px,4vw,54px);color:#674be0}
+.resultBox span{font-weight:900;color:#69758e}
+@media(max-width:720px){
+ .numberBoard{grid-template-columns:repeat(5,1fr);gap:7px}
+ .numTile{font-size:22px;border-radius:13px}
+ .resultBreakdown{grid-template-columns:1fr 1fr 1fr;gap:6px}
+ .resultBox{padding:10px 5px}
+}
+</style>
+
+
+<style id="v31-celebrate">
+.correctBurst{
+ position:fixed;inset:0;z-index:9999;display:none;pointer-events:none;
+ align-items:center;justify-content:center;background:#ffffff18;
+}
+.correctBurst.show{display:flex;animation:flashWin 2.25s ease both}
+.correctBurst .boom{
+ font-size:clamp(55px,9vw,125px);font-weight:1000;color:#fff;
+ text-align:center;text-shadow:0 5px 0 #4d43b8,0 0 28px #fff,0 0 55px #ff4fa8;
+ animation:boomWin 2.15s cubic-bezier(.15,.9,.18,1);
+}
+.starFx{position:fixed;z-index:10000;pointer-events:none;font-size:32px;animation:starFly 2.1s ease-out forwards}
+@keyframes flashWin{0%{background:#fff0}20%{background:#fff8}100%{background:#fff0}}
+@keyframes boomWin{0%{transform:scale(.15) rotate(-12deg);opacity:0}18%{transform:scale(1.2) rotate(4deg);opacity:1}78%{transform:scale(1) rotate(0);opacity:1}100%{transform:scale(.98);opacity:0}}
+@keyframes starFly{0%{transform:translate(0,0) scale(.3) rotate(0);opacity:1}100%{transform:translate(var(--x),var(--y)) scale(1.6) rotate(420deg);opacity:0}}
+.randomBtn.pulsing{animation:randomPulse .28s infinite alternate}
+@keyframes randomPulse{to{transform:scale(1.04);filter:brightness(1.18)}}
+</style>
+
+</head>
+<body>
+
+<section id="cover" class="screen show">
+ <div class="card cover">
+  <div class="brand">KRU PAI CLASSROOM • AIRPORT SPEAKING</div>
+  <div class="emoji">🎧 ✈️ 🗣️</div>
+  <h1>LISTEN & ANSWER</h1>
+  <h2>ฟังคำถามให้ทัน แล้วเลือกประโยคตอบกลับ!</h2>
+  <p>ตอบถูก = สะสมเครื่องบิน 1 ลำ ✈️<br>
+  ตอบผิด = ไม่ได้เครื่องบิน แต่เล่นต่อได้<br>
+  ฟังไม่ออก? กดตัวช่วยเพื่อเปิดดูประโยคคำถามได้<br>🎲 แต่ละข้อ เด็กเป็นคนกดสุ่มหมายเลขคำถามเอง</p>
+  <div class="mode">
+   <button class="btn pink" onclick="showTeachPair()">🗣️ สอนทีละคู่</button>
+   <button class="btn blue" onclick="showReview()">📖 ดูทั้งหมด 20 คู่</button>
+   <button class="btn green" onclick="startGame()">🎲 เริ่มสุ่มหมายเลข 10 ข้อ</button>
+  </div>
+ </div>
+</section>
+
+
+<section id="teachPair" class="screen">
+ <div class="card cover" style="justify-content:flex-start;padding-top:18px">
+  <div class="topbar" style="width:min(1100px,96%)">
+   <span>🗣️ TEACH ONE PAIR AT A TIME</span>
+   <span id="teachCount">คู่ที่ 1 / 20</span>
+  </div>
+
+  <div style="width:min(1050px,95%);margin:18px auto 8px;text-align:center">
+   <div style="font-size:17px;font-weight:1000;color:#7a6bbb">ฟัง → อ่านตาม → พูดตอบเอง</div>
+
+   <div style="margin:14px 0;padding:18px;border-radius:24px;background:linear-gradient(135deg,#eaf8ff,#f3efff);border:3px solid #fff;box-shadow:0 10px 24px #4b5f8d22">
+    <div style="font-size:17px;font-weight:1000;color:#4e78a9">❓ QUESTION</div>
+    <div id="teachQ" style="font-size:clamp(28px,3.1vw,45px);font-weight:1000;line-height:1.25;color:#2b4270;margin-top:8px"></div>
+    <div id="teachQT" style="font-size:clamp(18px,2vw,25px);font-weight:800;color:#74809a;margin-top:7px"></div>
+    <button class="listenBtn" style="font-size:18px;margin-top:12px;padding:10px 16px" onclick="speak(pairs[teachIndex].q,.72)">🔊 ฟังคำถาม</button>
+   </div>
+
+   <div style="margin:14px 0;padding:18px;border-radius:24px;background:linear-gradient(135deg,#fff0f8,#fff8df);border:3px solid #fff;box-shadow:0 10px 24px #4b5f8d22">
+    <div style="font-size:17px;font-weight:1000;color:#c34a8b">💬 ANSWER</div>
+    <div id="teachA" style="font-size:clamp(28px,3.1vw,45px);font-weight:1000;line-height:1.25;color:#d34b93;margin-top:8px"></div>
+    <div id="teachAT" style="font-size:clamp(18px,2vw,25px);font-weight:800;color:#74809a;margin-top:7px"></div>
+    <button class="listenBtn" style="font-size:18px;margin-top:12px;padding:10px 16px" onclick="speak(pairs[teachIndex].a,.72)">🔊 ฟังคำตอบ</button>
+   </div>
+  </div>
+
+  <div class="mode" style="margin-top:6px">
+   <button class="btn gray" onclick="teachPrev()">← คู่ก่อนหน้า</button>
+   <button class="btn blue" onclick="goHome()">⌂ หน้าแรก</button>
+   <button class="btn pink" onclick="teachNext()">คู่ถัดไป →</button>
+  </div>
+  <button class="btn green" style="margin-top:10px" onclick="startGame()">🎲 พร้อมแล้ว เริ่มเกม</button>
+ </div>
+</section>
+
+<section id="review" class="screen">
+ <div class="card wrap">
+  <div class="topbar"><span>📖 ทบทวน AIRPORT QUESTION & ANSWER</span><span>20 คู่ • 40 ประโยค</span></div>
+  <div id="reviewGrid" class="reviewGrid"></div>
+  <div class="bottom">
+   <button class="btn gray" onclick="goHome()">⌂ หน้าแรก</button>
+   <button class="btn green" onclick="startGame()">🎲 พร้อมแล้ว ไปสุ่มหมายเลข</button>
+  </div>
+ </div>
+</section>
+
+
+
+<section id="randomPick" class="screen">
+ <div class="card randomCard">
+  <div class="topbar" style="width:100%">
+   <span>🎲 RANDOM QUESTION</span>
+   <span id="randomRound">รอบ 1 / 10</span>
+  </div>
+  <div class="randomIntro">เด็กเป็นคนกดสุ่มเอง 🎯
+   <small>ตัวเลขจะวิ่งลุ้นพร้อมเสียง แล้วหยุดที่คำถามจากคลัง 20 ข้อ</small>
+  </div>
+  <div id="numberBoard" class="numberBoard"></div>
+  <div id="randomResult" class="randomResult">พร้อมแล้ว กดสุ่ม!</div>
+  <button id="randomBtn" class="randomBtn" onclick="randomQuestion()">🎲 กดสุ่มคำถาม</button>
+  <div class="bottom wheelBottom" style="width:min(900px,95%);margin-top:12px">
+   <button class="btn gray" onclick="goHome()">⌂ หน้าแรก</button>
+   <button class="btn blue" onclick="showReview()">📖 ทบทวนก่อน</button>
+  </div>
+ </div>
+</section>
+
+<section id="game" class="screen">
+ <div class="card game">
+  <div class="hud">
+   <span>🎧 AIRPORT LISTEN & ANSWER</span>
+   <div class="pills">
+    <span id="qPill" class="pill">ข้อ 1 / 10</span>
+    <span id="planePill" class="pill">✈️ 0 ลำ</span>
+    <span id="helpPill" class="pill">👀 ตัวช่วย 0 ครั้ง</span>
+   </div>
+  </div>
+
+  <div class="hangar">
+   <div class="hangarTitle">✈️ เครื่องบินที่สะสมได้</div>
+   <div id="planes" class="planes"><span style="font-weight:900;color:#8790a5">ยังไม่มีเครื่องบิน</span></div>
+  </div>
+
+  <div class="listenZone">
+   <div class="listenLabel">ฟังคำถามก่อน — ยังไม่โชว์ประโยค</div>
+   <button class="bigListen" onclick="playQuestion()">🔊</button>
+   <div class="helpRow">
+    <button class="btn pink" onclick="revealQuestion()">👀 ขอดูประโยคคำถาม</button>
+    <button class="btn blue" onclick="playQuestion()">🔁 ฟังอีกครั้ง</button>
+   </div>
+   <div id="questionText" class="questionText"></div>
+  </div>
+
+  <div class="answerTitle">เลือกประโยคที่ควรตอบ</div>
+  <div id="answers" class="answers"></div>
+  <div id="feedback" class="feedback"></div>
+  <div class="nextWrap"><button id="nextBtn" class="btn green" onclick="nextQuestion()">ถัดไป ➜</button></div>
+
+  <div class="bottom">
+   <button class="btn gray" onclick="goHome()">⌂ ออกจากเกม</button>
+   <button class="btn blue" onclick="showReview()">📖 ทบทวนถาม–ตอบ</button>
+  </div>
+ </div>
+</section>
+
+<section id="result" class="screen">
+ <div class="card cover">
+  <div class="brand">KRU PAI CLASSROOM • MISSION RECORD</div>
+  <div class="emoji">🏆🎧✈️</div>
+  <h1>MISSION COMPLETE!</h1>
+  <h2>ผ่านการฝึกฟังและตอบบทสนทนาสนามบิน</h2>
+  <div id="resultScore" class="resultScore">0 / 10</div>
+  <div class="resultBreakdown">
+   <div class="resultBox"><b id="sumCorrect">0</b><span>✅ ตอบถูก</span></div>
+   <div class="resultBox"><b id="sumWrong">0</b><span>❌ ตอบผิด</span></div>
+   <div class="resultBox"><b id="sumHelp">0</b><span>👀 ใช้ตัวช่วย</span></div>
+  </div>
+  <div id="resultPlanes" class="resultPlanes"></div>
+  <p id="resultText"></p>
+  <div class="mode">
+   <button class="btn pink" onclick="startGame()">↻ เล่นอีกครั้ง</button>
+   <button class="btn blue" onclick="showReview()">📖 ทบทวนอีกครั้ง</button>
+   <button class="btn green" onclick="goHome()">⌂ หน้าแรก</button>
+  </div>
+ </div>
+</section>
+
+<div id="correctBurst" class="correctBurst"><div class="boom">PERFECT! ✈️<br>+1 AIRPLANE 🌟</div></div>
+<script>
+const pairs=[
+ {q:"May I see your passport and ticket, please?",a:"Sure. Here you are.",qt:"ขอดูหนังสือเดินทางกับตั๋วของคุณหน่อยได้ไหมคะ?",at:"ได้ค่ะ นี่ค่ะ"},
+ {q:"Do you have any luggage to check in?",a:"Yes. I have one suitcase.",qt:"คุณมีสัมภาระที่จะโหลดใต้เครื่องไหมคะ?",at:"มีค่ะ ฉันมีกระเป๋าเดินทางหนึ่งใบ"},
+ {q:"Would you like a window seat or an aisle seat?",a:"A window seat, please.",qt:"คุณต้องการที่นั่งริมหน้าต่างหรือริมทางเดินคะ?",at:"ขอที่นั่งริมหน้าต่างค่ะ"},
+ {q:"Do you have any liquids in your bag?",a:"No, I don't.",qt:"คุณมีของเหลวอยู่ในกระเป๋าไหมคะ?",at:"ไม่มีค่ะ"},
+ {q:"What is the purpose of your visit?",a:"I'm here for a holiday.",qt:"คุณเดินทางมาที่นี่เพื่ออะไรคะ?",at:"ฉันมาที่นี่เพื่อท่องเที่ยวค่ะ"},
+ {q:"How long will you stay?",a:"I'll stay for five days.",qt:"คุณจะพักอยู่กี่วันคะ?",at:"ฉันจะพักห้าวันค่ะ"},
+ {q:"Where will you be staying?",a:"I'll be staying at a hotel.",qt:"คุณจะพักที่ไหนคะ?",at:"ฉันจะพักที่โรงแรมค่ะ"},
+ {q:"Is this flight delayed?",a:"Yes. The flight is delayed by about thirty minutes.",qt:"เที่ยวบินนี้ล่าช้าไหมคะ?",at:"ใช่ค่ะ เที่ยวบินล่าช้าประมาณสามสิบนาที"},
+ {q:"Do you have anything to declare?",a:"No, I have nothing to declare.",qt:"คุณมีสิ่งของอะไรที่ต้องสำแดงไหมคะ?",at:"ไม่มีค่ะ ฉันไม่มีอะไรต้องสำแดง"},
+ {q:"Do you need any help finding your gate?",a:"Yes, please. Where is Gate 8?",qt:"ต้องการให้ช่วยหาประตูขึ้นเครื่องไหมคะ?",at:"ค่ะ กรุณาช่วยด้วย Gate 8 อยู่ที่ไหนคะ?"},
+ {q:"Can I see your boarding pass, please?",a:"Yes, of course. Here you are.",qt:"ขอดูบัตรขึ้นเครื่องหน่อยได้ไหมคะ?",at:"ได้แน่นอนค่ะ นี่ค่ะ"},
+ {q:"Did you pack your bags yourself?",a:"Yes, I did.",qt:"คุณจัดกระเป๋าด้วยตัวเองใช่ไหมคะ?",at:"ใช่ค่ะ ฉันจัดเอง"},
+ {q:"Do you have any sharp objects in your bag?",a:"No, I don't.",qt:"คุณมีของมีคมในกระเป๋าไหมคะ?",at:"ไม่มีค่ะ"},
+ {q:"Could you take off your shoes, please?",a:"Sure. No problem.",qt:"กรุณาถอดรองเท้าได้ไหมคะ?",at:"ได้ค่ะ ไม่มีปัญหา"},
+ {q:"Where are you flying to today?",a:"I'm flying to Singapore.",qt:"วันนี้คุณจะบินไปที่ไหนคะ?",at:"ฉันจะบินไปสิงคโปร์ค่ะ"},
+ {q:"When is your return flight?",a:"My return flight is on Friday.",qt:"เที่ยวบินขากลับของคุณวันไหนคะ?",at:"เที่ยวบินขากลับของฉันคือวันศุกร์ค่ะ"},
+ {q:"May I ask where you are from?",a:"I'm from Thailand.",qt:"ขอถามได้ไหมว่าคุณมาจากไหนคะ?",at:"ฉันมาจากประเทศไทยค่ะ"},
+ {q:"Can I see your boarding pass and passport?",a:"Sure. Here they are.",qt:"ขอดูบัตรขึ้นเครื่องและหนังสือเดินทางได้ไหมคะ?",at:"ได้ค่ะ นี่ค่ะ"},
+ {q:"Would you like some help with your luggage?",a:"Yes, please. Thank you.",qt:"ต้องการให้ช่วยเรื่องสัมภาระไหมคะ?",at:"ค่ะ ช่วยด้วย ขอบคุณค่ะ"},
+ {q:"Excuse me, is this your suitcase?",a:"Yes, it is. That's my suitcase.",qt:"ขอโทษค่ะ นี่คือกระเป๋าเดินทางของคุณใช่ไหมคะ?",at:"ใช่ค่ะ นั่นคือกระเป๋าเดินทางของฉัน"}
+];
+
+let order=[],pos=0,planesCount=0,helpCount=0,locked=false,answeredCorrect=0,wrongCount=0,currentIdx=null,spinning=false,usedNums=new Set();
+
+function show(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("show"));
+ document.getElementById(id).classList.add("show");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function goHome(){speechSynthesis.cancel();show("cover")}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function speak(text,rate=.77){
+ if(!("speechSynthesis" in window))return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=rate;u.pitch=1;
+ speechSynthesis.speak(u);
+}
+function tone(freq=600,d=.05,vol=.09,type="sine"){
+ try{
+  const C=window.AudioContext||window.webkitAudioContext,ctx=new C();
+  const o=ctx.createOscillator(),g=ctx.createGain();
+  o.type=type;o.frequency.value=f;o.connect(g);g.connect(ctx.destination);
+  g.gain.setValueAtTime(.001,ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(vol,ctx.currentTime+.01);
+  g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d);
+  o.start();o.stop(ctx.currentTime+d+.02);
+ }catch(e){}
+}
+function correctSound(){tone(620,.08,.12);setTimeout(()=>tone(880,.10,.1),80);setTimeout(()=>tone(1160,.12,.09),170)}
+function wrongSound(){tone(220,.12,.13,"sawtooth");setTimeout(()=>tone(150,.15,.10,"sawtooth"),90)}
+
+function randomHypeSound(){
+  // intentionally loud, fixed-energy arcade randomizer
+  tone(180,.18,.22,"square");
+  setTimeout(()=>tone(180,.18,.22,"square"),180);
+  setTimeout(()=>tone(180,.18,.22,"square"),360);
+  setTimeout(()=>tone(180,.18,.22,"square"),540);
+  setTimeout(()=>tone(180,.18,.22,"square"),720);
+  setTimeout(()=>tone(180,.18,.22,"square"),900);
+  setTimeout(()=>tone(180,.18,.22,"square"),1080);
+  setTimeout(()=>tone(180,.18,.22,"square"),1260);
+  setTimeout(()=>tone(180,.18,.22,"square"),1440);
+  setTimeout(()=>tone(180,.18,.22,"square"),1620);
+}
+function megaCorrect(){
+  correctBurst.classList.add("show");
+  correctSound();
+  setTimeout(()=>tone(1320,.10,.15),110);
+  setTimeout(()=>tone(1760,.13,.13),220);
+  setTimeout(()=>tone(2100,.16,.11),340);
+  const icons=["⭐","✨","✈️","🌟","💫"];
+  for(let i=0;i<28;i++){
+    const e=document.createElement("span");
+    e.className="starFx";e.textContent=icons[i%icons.length];
+    e.style.left=(45+Math.random()*10)+"vw";e.style.top=(45+Math.random()*10)+"vh";
+    e.style.setProperty("--x",(Math.random()*900-450)+"px");
+    e.style.setProperty("--y",(Math.random()*700-350)+"px");
+    document.body.appendChild(e);setTimeout(()=>e.remove(),2300);
+  }
+  setTimeout(()=>correctBurst.classList.remove("show"),2200);
+}
+
+
+function showReview(){
+ speechSynthesis.cancel();show("review");
+ reviewGrid.innerHTML=pairs.map((p,i)=>`
+ <div class="pair">
+  <span class="pairNo">คู่ที่ ${i+1}</span>
+  <div class="q">❓ ${p.q}</div><div class="th">${p.qt}</div>
+  <div class="a">💬 ${p.a}</div><div class="th">${p.at}</div>
+  <div class="pairBtns">
+   <button class="listenBtn" onclick="speak(pairs[${i}].q,.74)">🔊 ฟังคำถาม</button>
+   <button class="listenBtn" onclick="speak(pairs[${i}].a,.74)">🗣️ ฟังคำตอบ</button>
+  </div>
+ </div>`).join("");
+}
+
+
+let teachIndex=0;
+function showTeachPair(){
+ speechSynthesis.cancel();
+ teachIndex=0;
+ show("teachPair");
+ renderTeachPair();
+}
+function renderTeachPair(){
+ const p=pairs[teachIndex];
+ teachCount.textContent=`คู่ที่ ${teachIndex+1} / ${pairs.length}`;
+ teachQ.textContent=p.q;
+ teachQT.textContent=p.qt;
+ teachA.textContent=p.a;
+ teachAT.textContent=p.at;
+}
+function teachNext(){
+ speechSynthesis.cancel();
+ teachIndex=(teachIndex+1)%pairs.length;
+ renderTeachPair();
+}
+function teachPrev(){
+ speechSynthesis.cancel();
+ teachIndex=(teachIndex-1+pairs.length)%pairs.length;
+ renderTeachPair();
+}
+
+function startGame(){
+ speechSynthesis.cancel();
+ order=shuffle([...Array(pairs.length).keys()]).slice(0,10);
+ pos=0;planesCount=0;helpCount=0;answeredCorrect=0;wrongCount=0;
+ locked=false;currentIdx=null;spinning=false;usedNums=new Set();
+ buildNumberBoard();
+ show("randomPick");
+ prepareRandom();
+}
+function buildNumberBoard(){
+ numberBoard.innerHTML=Array.from({length:20},(_,i)=>`<div class="numTile" data-n="${i+1}">${i+1}</div>`).join("");
+}
+function prepareRandom(){
+ randomRound.textContent=`รอบ ${pos+1} / 10`;
+ randomResult.textContent="พร้อมแล้ว กดสุ่ม!";
+ randomBtn.disabled=false;
+ document.querySelectorAll(".numTile").forEach(t=>{
+   t.classList.remove("flash","chosen");
+   if(usedNums.has(+t.dataset.n))t.classList.add("used");
+ });
+}
+function randomQuestion(){
+ if(spinning)return;
+ spinning=true;randomBtn.disabled=true;
+ currentIdx=order[pos];
+ const chosen=currentIdx+1;
+ let ticks=0,total=25+Math.floor(Math.random()*8);
+ const tiles=[...document.querySelectorAll(".numTile:not(.used)")];
+ randomResult.textContent="กำลังสุ่ม... 🎲";
+ randomBtn.classList.add("pulsing");
+ randomHypeSound();
+
+ const iv=setInterval(()=>{
+   document.querySelectorAll(".numTile").forEach(t=>t.classList.remove("flash"));
+   const t=tiles[Math.floor(Math.random()*tiles.length)];
+   if(t)t.classList.add("flash");
+   tone(210,.045,.16,"square");
+   ticks++;
+   if(ticks>=total){
+     clearInterval(iv);
+     document.querySelectorAll(".numTile").forEach(t=>t.classList.remove("flash"));
+     const chosenTile=document.querySelector(`.numTile[data-n="${chosen}"]`);
+     if(chosenTile)chosenTile.classList.add("chosen");
+     tone(520,.16,.23,"square");setTimeout(()=>tone(880,.18,.22,"square"),120);
+     randomResult.textContent=`🎯 ได้คำถามหมายเลข ${chosen}!`;
+     randomBtn.classList.remove("pulsing");
+     usedNums.add(chosen);
+     setTimeout(()=>{
+       spinning=false;
+       show("game");
+       renderQuestion();
+     },850);
+   }
+ },75);
+}
+function renderQuestion(){
+ locked=false;
+ nextBtn.classList.remove("show");
+ const idx=currentIdx,p=pairs[idx];
+ qPill.textContent=`ข้อ ${pos+1} / 10`;
+ planePill.textContent=`✈️ ${planesCount} ลำ`;
+ helpPill.textContent=`👀 ตัวช่วย ${helpCount} ครั้ง`;
+ questionText.classList.remove("show");
+ questionText.textContent=p.q;
+ feedback.textContent="กดฟังคำถาม แล้วเลือกประโยคตอบกลับ";
+ renderPlanes();
+
+ const others=shuffle(pairs.map((x,i)=>i).filter(i=>i!==idx)).slice(0,3);
+ const choices=shuffle([idx,...others]);
+ answers.innerHTML=choices.map(i=>`<button class="answer" data-i="${i}">${pairs[i].a}</button>`).join("");
+ answers.querySelectorAll(".answer").forEach(b=>b.onclick=()=>chooseAnswer(b,+b.dataset.i));
+ setTimeout(()=>playQuestion(),420);
+}
+function playQuestion(){
+ const idx=currentIdx;
+ tone(520,.035,.07);
+ speak(pairs[idx].q,.73);
+}
+function revealQuestion(){
+ if(!questionText.classList.contains("show")){
+  helpCount++;helpPill.textContent=`👀 ตัวช่วย ${helpCount} ครั้ง`;
+ }
+ questionText.classList.add("show");
+ tone(720,.045,.07);
+}
+function chooseAnswer(btn,idx){
+ if(locked)return;
+ locked=true;
+ const correct=currentIdx;
+ const all=[...answers.querySelectorAll(".answer")];
+ all.forEach(b=>b.disabled=true);
+
+ if(idx===correct){
+   btn.classList.add("good");
+   planesCount++;answeredCorrect++;
+   megaCorrect();
+   planePill.textContent=`✈️ ${planesCount} ลำ`;
+   feedback.innerHTML=`✅ ถูกต้อง! <b>ออกเสียงคำตอบด้วยตัวเองก่อน แล้วกด “ถัดไป”</b>`;
+   renderPlanes();
+ }else{
+   btn.classList.add("bad");
+   wrongCount++;
+   wrongSound();
+   const right=all.find(b=>+b.dataset.i===correct);
+   if(right)right.classList.add("good");
+   feedback.innerHTML=`❌ ยังไม่ถูก — คำตอบที่เหมาะสมคือ <b>${pairs[correct].a}</b><br>อ่านออกเสียงเองหนึ่งครั้ง แล้วกด “ถัดไป”`;
+ }
+ nextBtn.classList.add("show");
+}
+function renderPlanes(){
+ if(planesCount<=0){
+  planes.innerHTML=`<span style="font-weight:900;color:#8790a5">ยังไม่มีเครื่องบิน</span>`;
+  return;
+ }
+ planes.innerHTML=Array.from({length:planesCount},()=>`<span class="planeToken">✈️</span>`).join("");
+}
+function nextQuestion(){
+ pos++;
+ if(pos>=10){finishGame();return}
+ currentIdx=null;
+ show("randomPick");
+ prepareRandom();
+}
+function finishGame(){
+ speechSynthesis.cancel();
+ show("result");
+ resultScore.textContent=`${answeredCorrect} / 10`;
+ sumCorrect.textContent=answeredCorrect;
+ sumWrong.textContent=wrongCount;
+ sumHelp.textContent=helpCount;
+ resultPlanes.textContent=planesCount?Array.from({length:planesCount},()=>"✈️").join(" "):"—";
+ let msg=planesCount>=9?"ยอดเยี่ยมมาก! ฟังและตอบได้คล่องแล้ว 🌟":
+         planesCount>=7?"ดีมาก! พร้อมใช้จริงที่สนามบินแล้ว ✈️":
+         planesCount>=5?"ทำได้ดีจ้า ทบทวนอีกนิดแล้วลองใหม่ 🎧":
+         "แนะนำให้กลับไปทบทวนถาม–ตอบ แล้วลองใหม่อีกครั้ง 💪";
+ resultText.textContent=`ตอบถูก ${answeredCorrect} จาก 10 ข้อ • ตอบผิด ${wrongCount} ข้อ • ใช้ตัวช่วยดูคำถาม ${helpCount} ครั้ง • ${msg}`;
+ correctSound();
+}
+</script>
+</body>
+</html>

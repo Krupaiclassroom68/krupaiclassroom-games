@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kru Pai Classroom | Airport Dialogue Adventure</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --ink:#263b67; --lav:#8f7bdc; --blue:#7ccdf2; --pink:#ef79ad;
+  --pinksoft:#ffe4ef; --mint:#67d4b7; --white:#fff; --line:#e5ebf4;
+}
+body{
+  margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+  background:linear-gradient(135deg,#e5f7ff,#ece8ff 52%,#ffeaf3);
+}
+.wrap{min-height:100vh;padding:16px}
+.panel{
+  max-width:1220px;margin:auto;background:#fbfdff;border:3px solid white;border-radius:28px;
+  overflow:hidden;box-shadow:0 20px 60px #5f6ba83d;
+}
+.top{
+  background:linear-gradient(100deg,#5f79c9,#8f7bdc);color:#fff;padding:13px 18px;
+  display:flex;justify-content:space-between;align-items:center;font-weight:900;gap:12px;
+}
+.top .sceneNo{background:#ffffffeb;color:#6a5eb4;padding:6px 11px;border-radius:999px;white-space:nowrap}
+.hero{text-align:center;padding:12px 14px 7px;background:linear-gradient(90deg,#f8fcff,#fff,#fff8fb)}
+.hero h1{color:#df679f;margin:4px;font-size:clamp(28px,4.7vw,54px);text-shadow:0 3px #fff}
+.hero .emoji{font-size:26px;margin-top:4px}
+.hero .sub{font-weight:800;color:#73809b;margin-top:4px}
+.progress{display:flex;gap:8px;justify-content:center;padding:7px 15px 13px;background:#fff}
+.dot{height:9px;flex:1;max-width:110px;border-radius:999px;background:#dfe5ef;transition:.25s}
+.dot.on{background:#ef83b4;box-shadow:0 0 0 3px #ffe0ed}
+.dot.done{background:#67d4b7}
+.grid{display:grid;grid-template-columns:1.7fr .75fr;gap:14px;padding:14px}
+.dialog{
+  background:linear-gradient(160deg,#eef8ff,#f9f7ff);border:2px solid #dcecf5;
+  border-radius:20px;padding:14px;min-height:420px;
+}
+.line{
+  background:white;border:1px solid #e4ebf3;border-radius:15px;padding:10px 12px;margin:8px 0;
+  font-size:clamp(17px,1.9vw,24px);line-height:1.72;box-shadow:0 4px #e4eaf1;
+}
+.line:nth-child(odd){border-left:6px solid #8fd7f5}
+.line:nth-child(even){border-left:6px solid #e8a6c9}
+.sp{font-weight:1000;color:#6a5fc0}
+.blank{
+  display:inline-flex;min-width:88px;min-height:34px;justify-content:center;align-items:center;
+  background:#ffe4ef;border:2px dashed #e995ba;color:#7b4762;border-radius:9px;
+  padding:0 8px;font-weight:1000;box-shadow:inset 0 -3px #f3c7da;vertical-align:middle;cursor:pointer;
+}
+.blank.sel{outline:3px solid #efa2c4;background:#ffd6e8}
+.blank.good{background:#e0f8ef!important;border-color:#5fc6a5!important;color:#25785f}
+.blank.bad{background:#ffe7ed!important;border-color:#ed7290!important;color:#ad3b58;animation:shake .35s}
+.type{
+  width:110px;max-width:28vw;border:0;border-bottom:3px solid #aa96e7;background:#f8f5ff;
+  text-align:center;font-weight:1000;font-size:inherit;color:#574a9c;outline:none;border-radius:7px 7px 0 0;
+}
+.type::placeholder{color:#8e86a9;opacity:.4}
+.type.good{background:#e0f8ef!important;border-bottom-color:#5fc6a5!important}
+.type.bad{background:#ffe7ed!important;border-bottom-color:#ed7290!important;animation:shake .35s}
+.bank{
+  background:linear-gradient(155deg,#fff8fb,#f9fbff);border:2px solid #efc9dc;border-radius:20px;
+  padding:13px;box-shadow:0 8px 20px #8a779d1f;align-self:start;position:sticky;top:10px;
+}
+.bank h3{text-align:center;color:#d26098;margin:2px 0 10px}
+.words{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.word{
+  border:1px solid #f0bfd4;border-radius:12px;background:#fff4f8;padding:8px 11px;
+  font-weight:1000;color:#654456;box-shadow:0 4px #e4c4d2;cursor:pointer;transition:.15s;
+}
+.word:nth-child(3n+2){background:#f7f3ff;border-color:#d8cdf6;color:#63589a}
+.word:nth-child(3n){background:#f1fbff;border-color:#cce8f6;color:#4a6b7d}
+.word:hover{transform:translateY(-1px)}
+.word.used{opacity:.2;pointer-events:none}
+.tip{margin:12px 2px 0;font-weight:750;line-height:1.55;color:#6f7890;font-size:14px}
+.actions{display:flex;justify-content:space-between;gap:10px;padding:0 14px 15px}
+.btn{
+  border:0;border-radius:14px;padding:12px 18px;font-weight:1000;color:#fff;background:#65738d;
+  cursor:pointer;font-size:16px;box-shadow:0 5px #4b566c;
+}
+.btn.pri{background:linear-gradient(135deg,#ef78ad,#8b78e9);box-shadow:0 6px #6d5fc0}
+.btn.next{background:linear-gradient(135deg,#62c9af,#5fa9dd);box-shadow:0 6px #438ba8}
+.btn:active{transform:translateY(2px);box-shadow:0 2px #555}
+@keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-5px)}}
+
+/* suspense */
+#sceneSuspense{
+  position:fixed;inset:0;z-index:9999;display:none;place-items:center;
+  background:rgba(39,45,91,.42);backdrop-filter:blur(6px)
+}
+#sceneSuspense.show{display:grid}
+.suspenseCard{
+  width:min(560px,90vw);min-height:350px;padding:28px;border:4px solid white;border-radius:34px;
+  background:linear-gradient(145deg,#fff,#fff5fa 58%,#edf8ff);box-shadow:0 30px 90px #20255c66;
+  display:grid;place-items:center;text-align:center
+}
+.spinWrap{width:175px;height:175px;position:relative}
+.r1,.r2,.r3{position:absolute;border-radius:50%;border:11px solid transparent}
+.r1{inset:0;border-top-color:#ef79ad;border-right-color:#ef79ad;animation:spin 1s linear infinite}
+.r2{inset:19px;border-left-color:#8f7bdc;border-bottom-color:#8f7bdc;animation:spinR .76s linear infinite}
+.r3{inset:40px;border-top-color:#79ccef;border-right-color:#79ccef;animation:spin .57s linear infinite}
+.core{position:absolute;inset:59px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:33px;box-shadow:0 5px 18px #7672c733}
+@keyframes spin{to{transform:rotate(360deg)}} @keyframes spinR{to{transform:rotate(-360deg)}}
+.susTitle{font-size:clamp(22px,3.5vw,34px);font-weight:1000;color:#6b5fb6;margin-top:14px}
+.susSub{color:#7c879d;font-weight:750;margin-top:5px}
+.successPhase{display:none}
+.successEmoji{font-size:76px}
+.successTitle{font-size:clamp(30px,5vw,52px);font-weight:1000;color:#df679f;text-shadow:0 3px #fff}
+.burst{animation:burst .6s cubic-bezier(.2,1.55,.3,1)}
+@keyframes burst{0%{transform:scale(.55) rotate(-8deg);opacity:0}65%{transform:scale(1.12) rotate(2deg)}100%{transform:scale(1);opacity:1}}
+
+/* reading overlay */
+#reading{
+  position:fixed;inset:0;z-index:9000;background:#16234ddf;display:none;place-items:center;padding:20px;color:white;
+}
+#reading.show{display:grid}
+.readCard{width:min(920px,94vw);text-align:center}
+.readBadge{display:inline-block;background:#ffddec;color:#8e4770;padding:7px 13px;border-radius:999px;font-weight:1000;margin-bottom:12px}
+.readSpeaker{font-size:clamp(18px,2.5vw,25px);color:#ffd6e7;font-weight:1000}
+.readText{font-size:clamp(27px,4vw,46px);font-weight:900;line-height:1.45;margin-top:8px}
+.readDone{font-size:clamp(26px,4vw,44px);font-weight:1000;color:#c8ffe9;margin:12px}
+
+/* final */
+#finish{
+  position:fixed;inset:0;z-index:10000;background:linear-gradient(135deg,#7bcdf3,#9d88e6 55%,#f39bc0);
+  display:none;place-items:center;padding:20px;text-align:center
+}
+#finish.show{display:grid}
+.finishCard{background:#ffffffee;border:5px solid white;border-radius:34px;padding:30px;width:min(720px,92vw);box-shadow:0 30px 80px #33457b55}
+.finishCard h1{font-size:clamp(34px,6vw,64px);color:#db639a;margin:8px}
+.finishCard p{font-size:clamp(18px,2.5vw,25px);font-weight:800;color:#596986}
+
+.conf{position:fixed;top:-25px;width:9px;height:17px;z-index:12000;animation:fall 2.7s linear forwards;border-radius:2px}
+@keyframes fall{to{transform:translateY(115vh) rotate(900deg)}}
+
+@media(max-width:780px){
+  .wrap{padding:0}.panel{border-radius:0;min-height:100vh;border-width:0}
+  .grid{grid-template-columns:1fr;padding:8px}.dialog{padding:8px;min-height:auto}
+  .line{font-size:17px;padding:8px;margin:7px 0;line-height:1.65}
+  .bank{position:static;padding:9px}.word{padding:7px 9px}.blank{min-width:72px;min-height:30px}
+  .type{width:88px}.top{font-size:12px;padding:9px}.actions{padding:5px 8px 12px}
+  .btn{padding:10px 12px;font-size:14px}.hero h1{font-size:29px}.hero .emoji{font-size:21px}
+}
+</style>
+
+<style id="large-word-bank-v61">
+.bank h3{
+  font-size:clamp(21px,2.2vw,29px);
+  margin-bottom:14px;
+}
+.words{
+  gap:11px;
+  align-content:flex-start;
+}
+.word{
+  font-size:clamp(20px,2.05vw,27px) !important;
+  line-height:1.22;
+  padding:11px 15px;
+  min-height:48px;
+  border-radius:14px;
+}
+.bank{
+  padding:16px;
+  min-height:420px;
+}
+.tip{
+  font-size:15px;
+  margin-top:18px;
+}
+@media(max-width:780px){
+  .bank{min-height:auto;padding:11px}
+  .bank h3{font-size:21px;margin-bottom:10px}
+  .words{gap:8px}
+  .word{
+    font-size:18px !important;
+    padding:9px 11px;
+    min-height:42px;
+  }
+  .tip{font-size:13px;margin-top:12px}
+}
+@media(min-width:1200px){
+  .word{font-size:28px !important;padding:12px 17px}
+}
+</style>
+
+
+<style id="thai-hint-timer-v62">
+.topRight{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.timer{
+ display:inline-flex;align-items:center;justify-content:center;
+ min-width:112px;background:#ffffffee;color:#5668b3;
+ border-radius:999px;padding:7px 12px;font-size:19px;font-weight:1000;
+ font-variant-numeric:tabular-nums;box-shadow:0 3px 10px #334a8c22;
+ transition:.2s;
+}
+.timer.warning{background:#fff2f7;color:#d75f93;transform:scale(1.04)}
+.timer.danger{
+ background:#ffdce9;color:#c33d78;
+ animation:timerPulse .75s ease-in-out infinite alternate;
+}
+@keyframes timerPulse{to{transform:scale(1.1);box-shadow:0 0 0 6px #ffd8e777}}
+.thai{
+ margin-top:7px;padding:7px 10px;border-radius:10px;
+ background:#f7f3ff;color:#665d8b;
+ font-size:clamp(15px,1.45vw,19px);font-weight:750;line-height:1.48;
+ border-left:4px solid #dacff6;
+}
+#timeUp{
+ position:fixed;inset:0;z-index:11000;display:none;place-items:center;
+ background:rgba(39,45,91,.48);backdrop-filter:blur(6px);
+}
+#timeUp.show{display:grid}
+.timeCard{
+ width:min(530px,90vw);padding:30px;text-align:center;
+ border:4px solid #fff;border-radius:32px;
+ background:linear-gradient(145deg,#fff,#fff3f8,#eef8ff);
+ box-shadow:0 30px 90px #20255c66;
+}
+.timeIcon{font-size:80px;animation:clockWiggle .55s ease-in-out 3}
+@keyframes clockWiggle{25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+.timeTitle{font-size:clamp(31px,5vw,49px);font-weight:1000;color:#dc679d;margin:4px}
+.timeSub{font-size:18px;font-weight:750;color:#68758f;line-height:1.5;margin:8px 0 20px}
+@media(max-width:780px){
+ .topRight{gap:6px}
+ .timer{min-width:92px;font-size:15px;padding:6px 8px}
+ .thai{font-size:14px;padding:6px 8px;margin-top:5px}
+}
+</style>
+
+
+<style id="cover-and-word-highlight-v63">
+.coverScreen{
+ position:fixed;inset:0;z-index:20000;display:grid;place-items:center;
+ overflow:hidden;padding:20px;
+ background:linear-gradient(160deg,#dff5ff 0%,#eae8ff 50%,#ffeaf3 100%);
+}
+.coverSky{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.cloud{position:absolute;font-size:clamp(54px,8vw,110px);opacity:.72;filter:drop-shadow(0 8px 15px #8290ba22)}
+.c1{left:5%;top:7%;animation:floatCloud 8s ease-in-out infinite alternate}
+.c2{right:7%;top:15%;font-size:clamp(42px,6vw,82px);animation:floatCloud 10s ease-in-out infinite alternate-reverse}
+.c3{left:13%;bottom:8%;font-size:clamp(36px,5vw,70px);animation:floatCloud 9s ease-in-out infinite alternate}
+@keyframes floatCloud{to{transform:translateX(22px) translateY(-8px)}}
+.coverPlane{
+ position:absolute;left:-12%;top:25%;font-size:clamp(58px,9vw,120px);
+ filter:drop-shadow(0 12px 14px #4b5c9844);
+ transform:rotate(-7deg);
+}
+.coverScreen.launch .coverPlane{animation:flyIntoGame 1.35s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes flyIntoGame{
+ 0%{left:-12%;top:25%;transform:rotate(-7deg) scale(1)}
+ 55%{left:47%;top:18%;transform:rotate(4deg) scale(1.25)}
+ 100%{left:118%;top:5%;transform:rotate(7deg) scale(.75)}
+}
+.coverCard{
+ position:relative;z-index:2;width:min(760px,92vw);text-align:center;
+ background:#ffffffed;border:5px solid #fff;border-radius:36px;
+ padding:clamp(24px,4vw,42px);box-shadow:0 30px 90px #53658e3d;
+}
+.coverBadge{
+ display:inline-block;background:#f4efff;color:#7264c7;border-radius:999px;
+ padding:8px 15px;font-weight:1000;letter-spacing:.3px;font-size:14px;
+}
+.coverEmoji{font-size:clamp(38px,6vw,66px);margin-top:14px}
+.coverCard h1{
+ margin:6px 0;color:#e16da5;font-size:clamp(42px,7vw,82px);
+ line-height:.98;text-shadow:0 4px #fff;
+}
+.coverCard p{font-size:clamp(17px,2.2vw,24px);font-weight:800;color:#65718c;margin:12px 0}
+.coverMission{
+ display:inline-block;background:#eef9ff;color:#55718d;border:2px solid #d3ecf8;
+ padding:8px 14px;border-radius:13px;font-weight:1000;margin-bottom:20px;
+}
+.startGameBtn{
+ display:flex;flex-direction:column;align-items:center;gap:2px;margin:4px auto 0;
+ border:0;border-radius:18px;padding:14px 28px;min-width:min(360px,82vw);
+ color:#fff;background:linear-gradient(135deg,#ef78ad,#8b78e9);
+ box-shadow:0 7px #6c5fc0;font-weight:1000;font-size:21px;cursor:pointer;
+}
+.startGameBtn small{font-size:12px;opacity:.9;font-weight:800}
+.startGameBtn:active{transform:translateY(2px);box-shadow:0 4px #6c5fc0}
+
+.wordReading{display:flex;flex-wrap:wrap;justify-content:center;gap:.18em .28em}
+.readWord{
+ display:inline-block;padding:.05em .13em;border-radius:.24em;
+ transition:background .14s ease,color .14s ease,transform .14s ease;
+}
+.readWord.active{
+ background:#ffdbe9;color:#5a3c75;transform:scale(1.09);
+ box-shadow:0 0 0 3px #ffffff30;
+}
+.readWord.done{color:#c8ffe9}
+@media(max-width:780px){
+ .coverCard{border-radius:26px;padding:24px 16px}
+ .coverCard h1{font-size:43px}
+ .startGameBtn{font-size:18px}
+ .coverMission{font-size:13px}
+}
+</style>
+
+
+<style id="summary-v64">
+.timeActions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.summaryCard{width:min(780px,94vw);max-height:92vh;overflow:auto}
+.finalScore{
+ display:flex;flex-direction:column;gap:5px;margin:8px auto 16px;
+ padding:12px 16px;border-radius:16px;background:#f8f4ff;color:#6659a9;
+}
+.finalScore strong{font-size:clamp(26px,4.5vw,44px);color:#df679f}
+.finalScore span{font-size:16px;font-weight:800;color:#6d7892}
+.summaryTableWrap{overflow-x:auto;margin:12px 0}
+.summaryTable{
+ width:100%;border-collapse:separate;border-spacing:0;
+ background:#fff;border:2px solid #e7eaf3;border-radius:16px;overflow:hidden;
+ font-weight:850;color:#53617d;
+}
+.summaryTable th,.summaryTable td{padding:11px 10px;border-bottom:1px solid #edf0f5;text-align:center}
+.summaryTable th{background:#f3f0ff;color:#6f63ba;font-size:15px}
+.summaryTable tr:last-child td{border-bottom:0}
+.summaryTable td.passed{color:#25876b}
+.summaryTable td.skipped{color:#c15e83}
+.totalTime{
+ display:inline-block;margin:4px 0 18px;padding:9px 14px;border-radius:999px;
+ background:#eef9ff;color:#58758d;font-weight:1000;
+}
+@media(max-width:780px){
+ .summaryCard{max-height:88vh;padding:18px 12px}
+ .summaryTable th,.summaryTable td{padding:9px 6px;font-size:14px}
+}
+</style>
+
+
+<style id="word-bank-balanced-v65">
+/* Keep dialogue exactly as original; only slightly reduce Word Bank from V6.4 */
+.word{
+  font-size:clamp(19px,1.85vw,25px) !important;
+  line-height:1.2;
+  padding:9px 13px;
+  min-height:44px;
+}
+.words{gap:9px}
+.bank{padding:14px;min-height:auto}
+.bank h3{font-size:clamp(20px,2vw,27px);margin-bottom:11px}
+.tip{font-size:14px;margin-top:13px}
+@media(min-width:1200px){.word{font-size:25px !important;padding:10px 14px}}
+@media(max-width:780px){.word{font-size:17px !important;padding:8px 10px;min-height:40px}.words{gap:7px}}
+</style>
+</head>
+<body>
+
+<div id="coverScreen" class="coverScreen">
+  <div class="coverSky">
+    <div class="cloud c1">☁️</div>
+    <div class="cloud c2">☁️</div>
+    <div class="cloud c3">☁️</div>
+    <div class="coverPlane" id="coverPlane">✈️</div>
+  </div>
+  <div class="coverCard">
+    <div class="coverBadge">KRU PAI CLASSROOM • ENGLISH GAME</div>
+    <div class="coverEmoji">✈️ 🎫 🧳 🛂</div>
+    <h1>AIRPORT DIALOGUE<br>ADVENTURE</h1>
+    <p>เติมบทสนทนา • จำคำศัพท์ • ฝึกอ่านออกเสียง</p>
+    <div class="coverMission">6 SCENES • 5 MIN / SCENE</div>
+    <button id="startGameBtn" class="startGameBtn" type="button">
+      <span>▶ เริ่มเล่นเกม</span>
+      <small>พร้อมแล้ว บินเข้าสนามบินกันเลย!</small>
+    </button>
+  </div>
+</div>
+
+<div class="wrap" id="gameWrap" style="display:none">
+  <div class="panel">
+    <div class="top">
+      <span>KRU PAI CLASSROOM • AIRPORT DIALOGUE ✈️</span>
+      <div class="topRight"><span id="timer" class="timer">⏱️ 05:00</span><span id="sceneNo" class="sceneNo">SCENE 1 / 6</span></div>
+    </div>
+    <div class="hero">
+      <h1 id="sceneTitle"></h1>
+      <div id="sceneEmoji" class="emoji"></div>
+      <div id="sceneSub" class="sub"></div>
+    </div>
+    <div id="progress" class="progress"></div>
+
+    <div class="grid">
+      <main id="dialog" class="dialog"></main>
+      <aside class="bank">
+        <h3>🌸 WORD BANK</h3>
+        <div id="words" class="words"></div>
+        <div class="tip">👆 แตะช่องชมพูก่อน แล้วเลือกคำ<br>⌨️ ช่องเส้นใต้ต้องพิมพ์เอง<br>🔀 คำศัพท์จะสลับตำแหน่งทุกครั้ง</div>
+      </aside>
+    </div>
+
+    <div class="actions">
+      <button class="btn" onclick="resetScene()">↻ เริ่มฉากนี้ใหม่</button>
+      <button class="btn pri" onclick="checkScene()">⚡ CHECK SCENE</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="timeUp">
+  <div class="timeCard">
+    <div class="timeIcon">⏰</div>
+    <div class="timeTitle">หมดเวลาแล้วจ้า!</div>
+    <div class="timeSub">ครบ 5 นาทีแล้วจ้า ถ้ายังไม่พร้อม สามารถข้ามซีนนี้ไปก่อน แล้วดูสรุปรวบยอดตอนจบได้ 🌸</div>
+    <div class="timeActions">
+      <button id="retryTime" class="btn" type="button">↻ ลองซีนนี้ใหม่</button>
+      <button id="skipSceneBtn" class="btn next" type="button">ข้ามซีนนี้ ➜</button>
+    </div>
+  </div>
+</div>
+
+<div id="sceneSuspense">
+  <div class="suspenseCard">
+    <div id="spinPhase">
+      <div class="spinWrap">
+        <div class="r1"></div><div class="r2"></div><div class="r3"></div>
+        <div class="core">✈️</div>
+      </div>
+      <div class="susTitle">กำลังตรวจภารกิจ...</div>
+      <div class="susSub">ลุ้นกันหน่อยนะ 🌸</div>
+    </div>
+    <div id="successPhase" class="successPhase">
+      <div class="burst">
+        <div class="successEmoji">🎉✈️</div>
+        <div id="successTitle" class="successTitle">SCENE สำเร็จแล้วจ้า!</div>
+        <div class="susSub">เตรียมฟังบทสนทนาที่เราสร้างสำเร็จ 🔊</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="reading">
+  <div class="readCard">
+    <div id="readBadge" class="readBadge">🔊 COMPLETE DIALOGUE</div>
+    <div id="readSpeaker" class="readSpeaker"></div>
+    <div id="readText" class="readText wordReading"></div>
+    <div id="readDone" class="readDone"></div>
+    <button id="nextBtn" class="btn next" style="display:none" onclick="nextScene()">ไปฉากต่อไป ➜</button>
+  </div>
+</div>
+
+<div id="finish">
+  <div class="finishCard summaryCard">
+    <div style="font-size:76px">🎉🛬🧳</div>
+    <h1>AIRPORT ADVENTURE SUMMARY</h1>
+    <div id="finalScore" class="finalScore"></div>
+    <div id="summaryTableWrap" class="summaryTableWrap"></div>
+    <div id="totalTime" class="totalTime"></div>
+    <button class="btn pri" onclick="restartAll()">เล่นใหม่ตั้งแต่ SCENE 1 ↻</button>
+  </div>
+</div>
+
+<script>
+const scenes=[
+{
+ title:"✈️ SCENE 1 • AT THE AIRPORT",
+ emoji:"☁️ 🎫 🧳",
+ sub:"เริ่มการเดินทาง • เตรียมเอกสาร • เช็กอิน",
+ bank:["airport","now","Do","have","passport","ticket","Yes","in","Great","go","check-in","Good morning","May","see","your","please","any","luggage"],
+ decoys:["where","can","with","at"],
+ lines:[
+ ["Mom","We’re at the {airport} {now}. {Do} you {have} your {passport} and {ticket}?","ตอนนี้เรามาถึงสนามบินแล้ว ลูกมีหนังสือเดินทางกับตั๋วโดยสารไหม?"],
+ ["Mina","{Yes}, Mom. My passport and ticket are {in} my <bag>.","มีค่ะคุณแม่ หนังสือเดินทางกับตั๋วของหนูอยู่ในกระเป๋า"],
+ ["Mom","{Great}! Let’s {go} to the {check-in} counter.","ดีมาก! ไปที่เคาน์เตอร์เช็กอินกันเถอะ"],
+ ["Staff","{Good morning}. {May} I {see} {your} passport and ticket, {please}?","สวัสดีตอนเช้า ขอดูหนังสือเดินทางกับตั๋วของคุณหน่อยได้ไหมคะ?"],
+ ["Mina","Sure. <Here> you are.","ได้ค่ะ นี่ค่ะ"],
+ ["Staff","Thank you. Do you have {any} {luggage}?","ขอบคุณค่ะ คุณมีสัมภาระไหมคะ?"],
+ ["Mina","Yes. I have one <suitcase>.","มีค่ะ ฉันมีกระเป๋าเดินทางหนึ่งใบ"]
+ ]
+},
+{
+ title:"🎫 SCENE 2 • BOARDING PASS & GATE",
+ emoji:"🧳 ➜ 🎫 ➜ 🚪",
+ sub:"รับ Boarding Pass • เช็กเที่ยวบิน • หา Gate",
+ bank:["All right","Here","boarding pass","flight","and","gate","Thank you","ready","check","number","before","walk"],
+ decoys:["arrival","customs","security","pilot"],
+ lines:[
+ ["Staff","{All right}. {Here} is your {boarding pass}. Your {flight} is TG405, {and} your {gate} is Gate 8.","เรียบร้อยค่ะ นี่คือบัตรขึ้นเครื่อง เที่ยวบินของคุณคือ TG405 และประตูขึ้นเครื่องคือ Gate 8"],
+ ["Mina","{Thank you}!","ขอบคุณค่ะ!"],
+ ["Mom","Put your <ticket> and <passport> in your <bag>.","เก็บตั๋วและหนังสือเดินทางไว้ในกระเป๋าของลูกนะ"],
+ ["Mina","All right, Mom. I’m {ready}.","ได้ค่ะคุณแม่ หนูพร้อมแล้ว"],
+ ["Mom","We should {check} the gate {number} again {before} we {walk} there.","เราควรตรวจหมายเลขประตูอีกครั้งก่อนเดินไปที่นั่น"]
+ ]
+},
+{
+ title:"🛂 SCENE 3 • SECURITY & IMMIGRATION",
+ emoji:"📱 🧺 🛂",
+ sub:"ผ่านจุดตรวจความปลอดภัย • เตรียมของ • ผ่านด่านตรวจคนเข้าเมือง",
+ bank:["Next","have to","go through","security","Do","need","phone","out of","Yes","Put","tray","please","Thank you","immigration","now"],
+ decoys:["departure","seat","baggage claim","pilot"],
+ lines:[
+ ["Mom","{Next}, we {have to} {go through} {security}.","ต่อไปเราต้องผ่านจุดตรวจความปลอดภัย"],
+ ["Mina","{Do} I {need} to take my {phone} {out of} my <bag>?","หนูต้องเอาโทรศัพท์ออกจากกระเป๋าไหมคะ?"],
+ ["Mom","{Yes}. {Put} it in the {tray}.","ใช่จ้ะ วางโทรศัพท์ลงในถาด"],
+ ["Officer","<Passport>, {please}.","ขอหนังสือเดินทางด้วยครับ/ค่ะ"],
+ ["Mina","<Here> you are.","นี่ค่ะ"],
+ ["Officer","{Thank you}. You can go through {immigration} {now}.","ขอบคุณครับ/ค่ะ ตอนนี้คุณผ่านด่านตรวจคนเข้าเมืองได้แล้ว"],
+ ["Mina","Okay!","โอเคค่ะ!"]
+ ]
+},
+{
+ title:"🛫 SCENE 4 • DEPARTURE AREA",
+ emoji:"🏢 📺 ⏰",
+ sub:"ดู Departure Board • หา Gate • รับมือเที่ยวบินล่าช้า",
+ bank:["terminal","huge","Where","Look","departure","board","Oh","see","our","says","DELAY","has","30","minutes","That’s okay","wait"],
+ decoys:["customs","passport","seat","arrival"],
+ lines:[
+ ["Mina","Mom, this {terminal} is {huge}! {Where} is Gate 8?","แม่คะ อาคารผู้โดยสารนี้ใหญ่มาก! Gate 8 อยู่ที่ไหนคะ?"],
+ ["Mom","{Look} at the {departure} {board}.","ดูที่กระดานเที่ยวบินขาออกสิ"],
+ ["Mina","{Oh}! I can {see} {our} <flight>. But it {says} “{DELAY}.”","โอ้! หนูเห็นเที่ยวบินของเราแล้ว แต่บนจอเขียนว่า “ล่าช้า”"],
+ ["Mom","Our flight {has} a delay of {30} {minutes}.","เที่ยวบินของเราล่าช้า 30 นาที"],
+ ["Mina","{That’s okay}. We can {wait} at the <gate>.","ไม่เป็นไรค่ะ เรารอที่ประตูขึ้นเครื่องได้"]
+ ]
+},
+{
+ title:"🪑 SCENE 5 • BOARDING THE PLANE",
+ emoji:"🎫 👩‍✈️ 🪟",
+ sub:"เตรียมขึ้นเครื่อง • หาที่นั่ง • พบ Pilot",
+ bank:["Passengers","Flight TG405","please","prepare","your","That’s us","Welcome aboard","seat","18A","Wow","next to","window","And look","pilot","getting ready","fly"],
+ decoys:["customs","terminal","immigration","luggage"],
+ lines:[
+ ["Staff","{Passengers} for {Flight TG405}, {please} {prepare} {your} <boarding pass>.","ผู้โดยสารเที่ยวบิน TG405 กรุณาเตรียมบัตรขึ้นเครื่องของคุณ"],
+ ["Mina","{That’s us}!","นั่นพวกเรานี่!"],
+ ["Staff","{Welcome aboard}. Your {seat} is {18A}.","ยินดีต้อนรับขึ้นเครื่อง ที่นั่งของคุณคือ 18A"],
+ ["Mina","{Wow}! It’s {next to} the {window}.","ว้าว! อยู่ติดหน้าต่างด้วย"],
+ ["Mom","{And look}—the {pilot} is {getting ready} to {fly} the <plane>.","แล้วดูสิ นักบินกำลังเตรียมพร้อมที่จะขับเครื่องบิน"]
+ ]
+},
+{
+ title:"🛬 SCENE 6 • ARRIVAL & CUSTOMS",
+ emoji:"🧳 📍 🌏",
+ sub:"ถึงจุดหมาย • รับกระเป๋า • ผ่านศุลกากร",
+ bank:["arrived","Yes","Check","arrival","board","follow","signs","Where","get","our","baggage claim","There it is","see","Good","Now","go through","customs","anything"],
+ decoys:["gate","pilot","departure","security"],
+ lines:[
+ ["Mina","We’ve {arrived}!","เรามาถึงแล้ว!"],
+ ["Mom","{Yes}. {Check} the {arrival} {board} and {follow} the {signs}.","ใช่จ้ะ ดูกระดานเที่ยวบินขาเข้า แล้วเดินตามป้าย"],
+ ["Mina","{Where} do we {get} {our} <suitcase>?","เราจะไปรับกระเป๋าเดินทางของเราที่ไหนคะ?"],
+ ["Mom","At {baggage claim}.","ที่จุดรับกระเป๋า"],
+ ["Mina","{There it is}! I can {see} my <suitcase>.","อยู่นั่นไง! หนูเห็นกระเป๋าเดินทางของหนูแล้ว"],
+ ["Mom","{Good}. {Now} we have to {go through} {customs}.","ดีมาก ตอนนี้เราต้องผ่านศุลกากร"],
+ ["Customs Officer","Do you have {anything} to declare?","คุณมีสิ่งของอะไรที่ต้องสำแดงไหมครับ/คะ?"],
+ ["Mom","No, we don’t.","ไม่มีค่ะ"],
+ ["Officer","All right. Welcome to Singapore!","เรียบร้อยครับ/ค่ะ ยินดีต้อนรับสู่สิงคโปร์!"],
+ ["Mina","Yay! Our airport adventure is complete! 🎉✈️","เย้! ภารกิจผจญภัยในสนามบินของเราสำเร็จแล้ว!"]
+ ]
+}
+];
+
+let sceneIndex=0, selected=null, completed=new Set();
+let timeLeft=300, timerId=null, timerRunning=false, timeUp=false;
+let sceneResults=scenes.map(()=>({status:"pending",seconds:0}));
+
+function norm(x){return (x||"").trim().toLowerCase().replace(/\s+/g," ")}
+function full(t){return t.replace(/\{([^}]+)\}|<([^>]+)>/g,(m,a,b)=>a||b)}
+function escapeHtml(v){return v.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function shuffle(a){return a.map(v=>({v,r:Math.random()})).sort((x,y)=>x.r-y.r).map(x=>x.v)}
+
+function sound(notes,vol=.035,dur=.09){
+ try{
+  const C=sound.ctx||(sound.ctx=new (window.AudioContext||window.webkitAudioContext)());
+  notes.forEach((f,i)=>{
+   let o=C.createOscillator(),g=C.createGain();
+   o.type="sine";o.frequency.value=f;g.gain.value=vol;o.connect(g);g.connect(C.destination);
+   let st=C.currentTime+i*.055;o.start(st);g.gain.exponentialRampToValueAtTime(.0001,st+dur);o.stop(st+dur+.01);
+  });
+ }catch(e){}
+}
+function confetti(n=100){
+ for(let i=0;i<n;i++){
+  let e=document.createElement("i");e.className="conf";e.style.left=Math.random()*100+"vw";
+  e.style.background=`hsl(${Math.random()*360} 80% 65%)`;e.style.animationDelay=Math.random()*.5+"s";
+  document.body.appendChild(e);setTimeout(()=>e.remove(),3300);
+ }
+}
+
+
+function formatTime(sec){
+ const m=Math.floor(sec/60), ss=sec%60;
+ return String(m).padStart(2,"0")+":"+String(ss).padStart(2,"0");
+}
+function updateTimerUI(){
+ const el=document.getElementById("timer");
+ if(!el)return;
+ el.textContent="⏱️ "+formatTime(timeLeft);
+ el.classList.toggle("warning",timeLeft<=30 && timeLeft>10);
+ el.classList.toggle("danger",timeLeft<=10);
+}
+function stopTimer(){
+ if(timerId){clearInterval(timerId);timerId=null}
+ timerRunning=false;
+}
+function startTimer(){
+ stopTimer();timeLeft=300;timeUp=false;updateTimerUI();timerRunning=true;
+ timerId=setInterval(()=>{
+   timeLeft--;updateTimerUI();
+   if(timeLeft<=10 && timeLeft>0){sound([980],.035,.055)}
+   else if(timeLeft===30){sound([660,660],.03,.08)}
+   else if(timeLeft===60 || timeLeft===120){sound([520],.024,.07)}
+   if(timeLeft<=0){
+     stopTimer();timeUp=true;sound([240,190,150],.065,.22);showTimeUp();
+   }
+ },1000);
+}
+
+function recordPass(){
+ sceneResults[sceneIndex]={status:"passed",seconds:Math.max(0,300-timeLeft)};
+}
+function formatElapsed(sec){
+ const m=Math.floor(sec/60), ss=sec%60;
+ return `${m}:${String(ss).padStart(2,"0")}`;
+}
+function renderFinalSummary(){
+ const passed=sceneResults.filter(r=>r.status==="passed").length;
+ const attempted=sceneResults.filter(r=>r.status!=="pending").length;
+ const total=sceneResults.reduce((sum,r)=>sum+r.seconds,0);
+ document.getElementById("finalScore").innerHTML=
+   `<strong>ผ่าน ${passed} / ${scenes.length} ซีน</strong><span>${passed===scenes.length?"ยอดเยี่ยม! ผ่านครบทุกซีน ✈️":"ยังมีบางซีนที่ข้ามไว้ ลองกลับมาเล่นใหม่ได้ 🌸"}</span>`;
+ document.getElementById("summaryTableWrap").innerHTML=
+   `<table class="summaryTable">
+      <thead><tr><th>ซีน</th><th>ผล</th><th>เวลาที่ใช้</th></tr></thead>
+      <tbody>${sceneResults.map((r,i)=>{
+        const status=r.status==="passed"?"✅ ผ่าน":r.status==="skipped"?"⏭️ ข้าม":"—";
+        const tm=r.status==="pending"?"—":formatElapsed(r.seconds);
+        return `<tr><td>SCENE ${i+1}</td><td class="${r.status}">${status}</td><td>${tm}</td></tr>`;
+      }).join("")}</tbody>
+    </table>`;
+ document.getElementById("totalTime").textContent=`⏱️ เวลารวมที่ใช้: ${formatElapsed(total)}`;
+}
+function skipCurrentScene(){
+ stopTimer();
+ sceneResults[sceneIndex]={status:"skipped",seconds:300};
+ document.getElementById("timeUp").classList.remove("show");
+ if(sceneIndex<scenes.length-1){
+   sceneIndex++;
+   render();
+ }else{
+   renderFinalSummary();
+   document.getElementById("finish").classList.add("show");
+   confetti(120);
+ }
+}
+
+function showTimeUp(){
+ document.querySelectorAll(".blank").forEach(e=>e.style.pointerEvents="none");
+ document.querySelectorAll(".word").forEach(e=>e.disabled=true);
+ document.querySelectorAll(".type").forEach(e=>e.disabled=true);
+ document.getElementById("timeUp").classList.add("show");
+}
+
+function render(){
+ const s=scenes[sceneIndex];
+ document.getElementById("sceneNo").textContent=`SCENE ${sceneIndex+1} / ${scenes.length}`;
+ document.getElementById("sceneTitle").textContent=s.title;
+ document.getElementById("sceneEmoji").textContent=s.emoji;
+ document.getElementById("sceneSub").textContent=s.sub;
+ document.getElementById("progress").innerHTML=scenes.map((_,i)=>`<div class="dot ${completed.has(i)?"done":i===sceneIndex?"on":""}"></div>`).join("");
+
+ document.getElementById("dialog").innerHTML=s.lines.map(x=>{
+   let txt=x[1].replace(/\{([^}]+)\}|<([^>]+)>/g,(m,b,t)=>{
+     if(b) return `<span class="blank" data-a="${escapeHtml(b)}">...</span>`;
+     return `<input class="type" data-a="${escapeHtml(t)}" placeholder="พิมพ์..." autocomplete="off" spellcheck="false">`;
+   });
+   return `<div class="line"><div><span class="sp">${x[0]}: </span>${txt}</div><div class="thai">💬 ${x[2]}</div></div>`;
+ }).join("");
+
+ const mixed=shuffle([...s.bank,...s.decoys].map((w,i)=>({w,id:i})));
+ document.getElementById("words").innerHTML=mixed.map(o=>`<button class="word" data-id="${o.id}" data-w="${escapeHtml(o.w)}">${o.w}</button>`).join("");
+
+ selected=null;
+ document.querySelectorAll(".blank").forEach(el=>el.onclick=()=>{
+   document.querySelectorAll(".blank").forEach(x=>x.classList.remove("sel"));
+   selected=el;el.classList.add("sel");sound([520],.02,.06);
+ });
+ document.querySelectorAll(".word").forEach(btn=>btn.onclick=()=>{
+   if(!selected)return;
+   if(selected.dataset.bid!==undefined){
+     const old=document.querySelector(`.word[data-id="${selected.dataset.bid}"]`);
+     if(old)old.classList.remove("used");
+   }
+   selected.textContent=btn.dataset.w;selected.dataset.v=btn.dataset.w;selected.dataset.bid=btn.dataset.id;
+   btn.classList.add("used");
+   selected.animate([{transform:"scale(.82)"},{transform:"scale(1.16)"},{transform:"scale(1)"}],{duration:300,easing:"cubic-bezier(.2,1.4,.3,1)"});
+   sound([660,920],.032,.08);selected.classList.remove("sel");selected=null;
+ });
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(window.gameStarted) startTimer();
+}
+
+function resetScene(){speechSynthesis.cancel();stopTimer();document.getElementById("timeUp").classList.remove("show");render()}
+
+document.getElementById("retryTime").addEventListener("click",resetScene);
+document.getElementById("skipSceneBtn").addEventListener("click",skipCurrentScene);
+
+function checkScene(){
+ if(timeUp)return;
+ let all=true;
+ document.querySelectorAll(".blank").forEach(e=>{
+   let yes=norm(e.dataset.v)===norm(e.dataset.a);
+   e.classList.remove("good","bad");e.classList.add(yes?"good":"bad");
+   if(!yes){
+     all=false;
+     if(e.dataset.bid!==undefined){
+       const old=document.querySelector(`.word[data-id="${e.dataset.bid}"]`);
+       if(old)old.classList.remove("used");
+     }
+     e.textContent="...";delete e.dataset.v;delete e.dataset.bid;
+   }else{ e.style.pointerEvents="none"; }
+ });
+ document.querySelectorAll(".type").forEach(e=>{
+   let yes=norm(e.value)===norm(e.dataset.a);
+   e.classList.remove("good","bad");e.classList.add(yes?"good":"bad");
+   if(!yes)all=false; else e.readOnly=true;
+ });
+ if(all){stopTimer();recordPass();startSuspense();}
+ else sound([220,180],.05,.13);
+}
+
+function startSuspense(){
+ const ov=document.getElementById("sceneSuspense"), spin=document.getElementById("spinPhase"), suc=document.getElementById("successPhase");
+ document.getElementById("successTitle").textContent=`SCENE ${sceneIndex+1} สำเร็จแล้วจ้า!`;
+ spin.style.display="block";suc.style.display="none";ov.classList.add("show");
+ sound([330,392,440,523],.025,.11);
+ setTimeout(()=>sound([392,466,554],.025,.11),900);
+ setTimeout(()=>{
+   spin.style.display="none";suc.style.display="block";confetti(90);sound([523,659,784,1047],.045,.16);
+ },2200);
+ setTimeout(()=>{
+   ov.classList.remove("show");completed.add(sceneIndex);readScene();
+ },4100);
+}
+
+
+function speak(text,cb){
+ const readText=document.getElementById("readText");
+ const words=text.split(/\s+/).filter(Boolean);
+ readText.innerHTML=words.map((w,i)=>`<span class="readWord" data-wi="${i}">${escapeHtml(w)}</span>`).join(" ");
+ const spans=[...readText.querySelectorAll(".readWord")];
+
+ function activate(i){
+   spans.forEach((el,idx)=>{
+     el.classList.toggle("active",idx===i);
+     if(idx<i) el.classList.add("done");
+   });
+ }
+
+ if(!("speechSynthesis" in window)){
+   let i=0;
+   const iv=setInterval(()=>{
+     if(i>=spans.length){clearInterval(iv);spans.forEach(x=>x.classList.remove("active"));setTimeout(cb,180);return}
+     activate(i++);
+   },Math.max(180,Math.round(1400/Math.max(1,spans.length))));
+   return;
+ }
+
+ speechSynthesis.cancel();
+ let u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=.78;u.pitch=1;
+ let fallbackIndex=0, fallbackTimer=null, gotBoundary=false;
+
+ if("onboundary" in u){
+   u.onboundary=(ev)=>{
+     if(ev.name==="word" || ev.charLength>0){
+       gotBoundary=true;
+       let idx=0,count=0;
+       for(let j=0;j<text.length;j++){
+         if(j>=ev.charIndex)break;
+         if(/\s/.test(text[j]) && j>0 && !/\s/.test(text[j-1])) count++;
+       }
+       idx=Math.min(count,spans.length-1);
+       activate(idx);
+     }
+   };
+ }
+
+ // Some browsers don't emit boundary events reliably.
+ fallbackTimer=setInterval(()=>{
+   if(gotBoundary)return;
+   if(fallbackIndex<spans.length) activate(fallbackIndex++);
+ }, Math.max(220, Math.round((text.length*48)/Math.max(1,spans.length))));
+
+ u.onend=()=>{
+   if(fallbackTimer)clearInterval(fallbackTimer);
+   spans.forEach(x=>{x.classList.remove("active");x.classList.add("done")});
+   setTimeout(cb,180)
+ };
+ u.onerror=()=>{
+   if(fallbackTimer)clearInterval(fallbackTimer);
+   spans.forEach(x=>x.classList.remove("active"));
+   setTimeout(cb,300)
+ };
+ speechSynthesis.speak(u);
+}
+function readScene(){
+ const s=scenes[sceneIndex], overlay=document.getElementById("reading");
+ document.getElementById("readBadge").textContent=`🔊 COMPLETE DIALOGUE • SCENE ${sceneIndex+1}`;
+ document.getElementById("nextBtn").style.display="none";
+ document.getElementById("readDone").textContent="";
+ overlay.classList.add("show");
+ let i=0;
+ function go(){
+   if(i>=s.lines.length){
+     document.getElementById("readSpeaker").textContent="";
+     document.getElementById("readText").textContent="";
+     document.getElementById("readDone").textContent=sceneIndex===scenes.length-1?"✓ COMPLETE ALL SCENES":"✓ COMPLETE DIALOGUE";
+     if(sceneIndex===scenes.length-1){
+       setTimeout(()=>{overlay.classList.remove("show");renderFinalSummary();document.getElementById("finish").classList.add("show");confetti(150)},900);
+     }else document.getElementById("nextBtn").style.display="inline-block";
+     return;
+   }
+   const x=s.lines[i++], t=full(x[1]);
+   document.getElementById("readSpeaker").textContent=x[0];
+   document.getElementById("readText").textContent=t;
+   speak(t,go);
+ }
+ go();
+}
+function nextScene(){
+ stopTimer();speechSynthesis.cancel();document.getElementById("reading").classList.remove("show");
+ if(sceneIndex<scenes.length-1){sceneIndex++;render()}
+}
+function restartAll(){
+ stopTimer();speechSynthesis.cancel();completed.clear();sceneResults=scenes.map(()=>({status:"pending",seconds:0}));sceneIndex=0;document.getElementById("finish").classList.remove("show");render();
+}
+
+window.gameStarted=false;
+document.getElementById("startGameBtn").addEventListener("click",()=>{
+ const cover=document.getElementById("coverScreen");
+ const game=document.getElementById("gameWrap");
+ sound([440,554,659,880],.032,.12);
+ cover.classList.add("launch");
+ setTimeout(()=>{
+   cover.style.transition="opacity .45s ease";
+   cover.style.opacity="0";
+ },850);
+ setTimeout(()=>{
+   cover.style.display="none";
+   game.style.display="block";
+   window.gameStarted=true;
+   render();
+   window.scrollTo({top:0,behavior:"smooth"});
+ },1350);
+});
+render();
+
+// V6.5 balanced: audible click for all main buttons
+document.addEventListener("pointerdown",(e)=>{
+  const b=e.target.closest("button");
+  if(!b || b.disabled)return;
+  sound([620,780],.026,.055);
+});
+</script>
+</body>
+</html>

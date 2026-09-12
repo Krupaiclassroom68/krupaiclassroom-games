@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kru Pai Classroom | Airport Vocab Dual Challenge</title>
+<style>
+*{box-sizing:border-box}
+:root{--ink:#23365e;--violet:#7355df;--pink:#ff559e;--sky:#37c7ff;--mint:#65d7b2;--gold:#ffd85a;--bad:#ff647c}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+background:radial-gradient(circle at 10% 8%,#fff36c55 0 6%,transparent 7%),radial-gradient(circle at 88% 10%,#ff71c255 0 7%,transparent 8%),linear-gradient(135deg,#32c8ff,#7659eb 50%,#ff5ca9)}
+button{font:inherit}
+.screen{display:none;min-height:100vh;padding:10px}
+.screen.show{display:grid;place-items:center}
+.card{width:min(1480px,98vw);min-height:calc(100vh - 20px);background:#ffffffef;border:4px solid #fff;border-radius:28px;box-shadow:0 25px 80px #26365f55;overflow:hidden}
+.cover{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:26px;background:linear-gradient(145deg,#fff,#eefaff 42%,#fff0fa)}
+.brand{font-weight:1000;color:#6c58c7;font-size:18px}
+.emoji{font-size:clamp(70px,9vw,125px)}
+h1{font-size:clamp(48px,7vw,90px);line-height:.95;margin:5px;color:#6d47df;text-shadow:0 5px 0 #fff}
+h2{font-size:clamp(24px,3vw,40px);margin:10px;color:#e34e98}
+.cover p{font-size:clamp(17px,2vw,24px);font-weight:850;line-height:1.55;color:#67738e}
+.btn{border:0;border-radius:16px;padding:13px 20px;min-height:50px;font-weight:1000;cursor:pointer;color:white;box-shadow:0 6px #4f5b75}
+.btn:active{transform:translateY(2px);box-shadow:0 3px #4f5b75}
+.pink{background:linear-gradient(135deg,#ff5ca8,#915be7);box-shadow:0 6px #7345bb}
+.blue{background:linear-gradient(135deg,#27c4fa,#567ce4);box-shadow:0 6px #4266b8}
+.green{background:linear-gradient(135deg,#5bd4aa,#4eb2d9);box-shadow:0 6px #3b95ab}
+.gray{background:#6c7892}
+.mode{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.topbar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 13px;border-radius:16px;color:white;font-weight:1000;background:linear-gradient(95deg,#056dec,#7548e8,#ff3e98)}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
+.pill{background:#fff;color:#6349be;border-radius:999px;padding:6px 10px}
+.wrap{padding:10px 12px;background:linear-gradient(155deg,#fff,#f1fbff 43%,#fff1fa)}
+.reviewGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:12px}
+.vcard{background:linear-gradient(145deg,#fff,#f8fbff);border:2px solid #e5eaf2;border-radius:18px;padding:13px;text-align:center;min-height:118px;display:flex;flex-direction:column;justify-content:center}
+.vcard b{font-size:clamp(21px,2vw,30px);color:#6554c0}
+.vcard span{font-size:clamp(16px,1.6vw,22px);font-weight:900;color:#d85494;margin-top:5px}
+.vcard small{font-size:13px;color:#7b8498;margin-top:6px;line-height:1.35}
+.gameMain{display:flex;flex-direction:column;gap:7px}
+.prompt{text-align:center;margin:2px auto;width:min(1150px,97%)}
+.promptLabel{font-size:14px;font-weight:1000;color:#715fa7}
+.promptBig{font-size:clamp(42px,5vw,70px);font-weight:1000;color:#213766;line-height:1.05;text-shadow:0 2px white}
+.progressBar{height:11px;border-radius:999px;background:#e7eaf1;overflow:hidden;width:min(1000px,94%);margin:2px auto}
+.progressFill{height:100%;width:0;background:linear-gradient(90deg,#3bc8ff,#7356e7,#ff56a5);transition:.4s}
+.choiceGrid{width:min(1220px,97%);margin:2px auto;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.choice{min-height:78px;border:3px solid white;border-radius:18px;padding:10px 14px;cursor:pointer;font-size:clamp(22px,2.2vw,32px);font-weight:1000;color:#28436c;box-shadow:0 7px 0 #d5dce9,0 12px 22px #334a7822}
+.choice:nth-child(1){background:linear-gradient(135deg,#fff,#fff0a0)}
+.choice:nth-child(2){background:linear-gradient(135deg,#fff,#a9efff)}
+.choice:nth-child(3){background:linear-gradient(135deg,#fff,#ffc5df)}
+.choice:nth-child(4){background:linear-gradient(135deg,#fff,#cfc1ff)}
+.choice.good{background:#d9f8eb!important;color:#1f7a5d;animation:good .55s}
+.choice.bad{background:#ffe0e8!important;color:#a43c55;animation:bad .45s}
+.feedback{min-height:36px;text-align:center;font-size:clamp(18px,1.8vw,25px);font-weight:1000;color:#5d6882}
+@keyframes good{50%{transform:scale(1.05);box-shadow:0 0 0 10px #5bd4aa33}}
+@keyframes bad{25%{transform:translateX(-9px)}50%{transform:translateX(9px)}75%{transform:translateX(-5px)}}
+
+.scrambleWord{text-align:center;font-size:clamp(25px,2.5vw,36px);font-weight:1000;color:#e4519c;margin:2px}
+.answerSlots,.letterBank{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;width:min(1200px,97%);margin:5px auto}
+.slot,.letter{width:52px;height:58px;border-radius:13px;display:grid;place-items:center;font-size:28px;font-weight:1000}
+.slot{background:#fff;border:3px solid #ccd6e7;color:#2d426a}
+.slot.space{border:0;background:transparent;width:18px}
+.letter{border:2px solid #fff;background:linear-gradient(145deg,#fff,#dff5ff);color:#34517c;box-shadow:0 5px #cbd8e9;cursor:pointer}
+.letter.used{opacity:.22;pointer-events:none}
+.letter:hover{transform:translateY(-2px)}
+.scrambleBtns{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:5px}
+.stageBanner{text-align:center;font-size:clamp(22px,2.5vw,34px);font-weight:1000;color:#6949d8;margin:3px}
+.stars{text-align:center;font-size:clamp(30px,4vw,50px);min-height:54px}
+.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:min(900px,95%);margin:12px auto}
+.resultBox{background:white;border:2px solid #e6eaf2;border-radius:18px;padding:14px}
+.resultBox b{display:block;font-size:clamp(34px,4vw,55px);color:#6949dc}
+.resultBox span{font-weight:900;color:#69748b}
+.overlay{position:fixed;inset:0;z-index:9999;display:none;place-items:center;background:#27375e85;backdrop-filter:blur(6px);padding:15px}
+.overlay.show{display:grid}
+.overlayCard{width:min(700px,94vw);background:linear-gradient(145deg,#fff,#fff1f8,#eefaff);border:5px solid white;border-radius:30px;text-align:center;padding:28px;box-shadow:0 30px 90px #26365f66}
+.overlayCard h3{font-size:clamp(38px,6vw,72px);margin:3px;color:#6b48dc}
+.confetti{position:fixed;top:-20px;width:10px;height:18px;z-index:10000;animation:fall 2.8s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+@media(min-width:1000px) and (min-height:650px){
+ body{overflow:hidden}
+ #stage1.screen.show,#stage2.screen.show{display:block;padding:6px;height:100vh}
+ #stage1 .card,#stage2 .card{height:calc(100vh - 12px);min-height:0}
+ .wrap{height:100%;display:flex;flex-direction:column}
+ .choice{min-height:68px}
+ .slot,.letter{width:47px;height:52px;font-size:25px}
+}
+@media(max-width:760px){
+ .screen{padding:0}.card{width:100%;min-height:100vh;border:0;border-radius:0}
+ .reviewGrid{grid-template-columns:repeat(2,1fr);padding:9px}
+ .choiceGrid{grid-template-columns:1fr 1fr;gap:7px}
+ .choice{font-size:19px;min-height:76px;padding:8px}
+ .slot,.letter{width:39px;height:45px;font-size:22px;border-radius:10px}
+ .answerSlots,.letterBank{gap:5px}
+ .resultGrid{grid-template-columns:1fr 1fr 1fr;gap:6px}
+}
+</style>
+
+<style id="tv-big-scramble-v11">
+/* ===== STAGE 2: TV FULL-SCREEN BIG MODE ===== */
+@media (min-width: 900px){
+  #stage2.screen.show{
+    display:block !important;
+    padding:6px !important;
+    height:100vh !important;
+    min-height:100vh !important;
+    overflow:hidden !important;
+  }
+  #stage2 .card{
+    width:calc(100vw - 12px) !important;
+    height:calc(100vh - 12px) !important;
+    min-height:0 !important;
+    border-radius:24px !important;
+  }
+  #stage2 .wrap{
+    height:100% !important;
+    padding:8px 14px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-start !important;
+    gap:5px !important;
+  }
+  #stage2 .topbar{
+    min-height:48px !important;
+    padding:8px 14px !important;
+    font-size:18px !important;
+  }
+  #stage2 .pill{
+    font-size:17px !important;
+    padding:6px 12px !important;
+  }
+  #stage2 .progressBar{
+    height:12px !important;
+    margin:1px auto !important;
+  }
+  #stage2 .prompt{
+    margin:2px auto 0 !important;
+  }
+  #stage2 .promptLabel{
+    font-size:18px !important;
+    margin-bottom:2px !important;
+  }
+  #stage2 #thaiPrompt{
+    font-size:clamp(58px,6vw,88px) !important;
+    line-height:1 !important;
+    margin:0 !important;
+  }
+  #stage2 #scrambleHint{
+    font-size:clamp(25px,2.4vw,36px) !important;
+    margin:0 0 2px !important;
+  }
+
+  /* ช่องคำตอบใหญ่ อ่านจากท้ายห้องได้ */
+  #stage2 .answerSlots{
+    width:min(1420px,99%) !important;
+    gap:8px !important;
+    margin:3px auto !important;
+  }
+  #stage2 .slot{
+    width:clamp(56px,4.3vw,76px) !important;
+    height:clamp(64px,5vw,86px) !important;
+    border-width:4px !important;
+    border-radius:16px !important;
+    font-size:clamp(34px,3.4vw,50px) !important;
+    box-shadow:0 8px 0 #d6deed,0 12px 24px #2e477b20 !important;
+  }
+  #stage2 .slot.space{
+    width:30px !important;
+    box-shadow:none !important;
+  }
+
+  /* ตัวอักษรเลือกใหญ่เต็มพื้นที่ */
+  #stage2 .letterBank{
+    width:min(1450px,99%) !important;
+    gap:10px !important;
+    margin:5px auto !important;
+    align-content:center !important;
+  }
+  #stage2 .letter{
+    width:clamp(62px,4.8vw,84px) !important;
+    height:clamp(68px,5.3vw,92px) !important;
+    border-radius:17px !important;
+    font-size:clamp(38px,3.8vw,56px) !important;
+    border-width:3px !important;
+    box-shadow:0 8px 0 #cbd8e9,0 13px 25px #304b8130 !important;
+  }
+  #stage2 .letter:active{
+    transform:translateY(5px) scale(.96) !important;
+    box-shadow:0 3px 0 #cbd8e9 !important;
+  }
+
+  #stage2 .scrambleBtns{
+    gap:12px !important;
+    margin:5px auto !important;
+  }
+  #stage2 .scrambleBtns .btn{
+    min-height:54px !important;
+    padding:9px 20px !important;
+    font-size:20px !important;
+  }
+  #stage2 #feedback2{
+    min-height:38px !important;
+    font-size:24px !important;
+    margin:0 !important;
+  }
+  #stage2 #stars2{
+    min-height:38px !important;
+    font-size:34px !important;
+    line-height:1 !important;
+  }
+  #stage2 .mode{
+    margin-top:auto !important;
+  }
+  #stage2 .mode .btn{
+    min-height:42px !important;
+    padding:7px 16px !important;
+    font-size:16px !important;
+  }
+}
+
+/* จอทีวี/โน้ตบุ๊กที่ความสูงไม่มาก: ยังต้องเห็นครบหน้า */
+@media (min-width:900px) and (max-height:760px){
+  #stage2 .topbar{min-height:42px !important;padding:6px 12px !important}
+  #stage2 #thaiPrompt{font-size:52px !important}
+  #stage2 .promptLabel{font-size:15px !important}
+  #stage2 #scrambleHint{font-size:22px !important}
+  #stage2 .slot{
+    width:52px !important;height:60px !important;font-size:33px !important;
+  }
+  #stage2 .slot.space{width:22px !important}
+  #stage2 .letter{
+    width:58px !important;height:64px !important;font-size:36px !important;
+  }
+  #stage2 .answerSlots,#stage2 .letterBank{gap:6px !important;margin:2px auto !important}
+  #stage2 .scrambleBtns{margin:2px auto !important}
+  #stage2 .scrambleBtns .btn{min-height:46px !important;padding:6px 16px !important;font-size:17px !important}
+  #stage2 #feedback2{font-size:20px !important;min-height:30px !important}
+  #stage2 #stars2{font-size:28px !important;min-height:28px !important}
+}
+
+/* มือถือคงรูปแบบเดิม ไม่บังคับให้ช่องใหญ่จนล้น */
+@media (max-width:899px){
+  #stage2 .slot{max-width:46px}
+  #stage2 .letter{max-width:46px}
+}
+</style>
+
+</head>
+<body>
+
+<section id="cover" class="screen show">
+<div class="card cover">
+ <div class="brand">KRU PAI CLASSROOM • AIRPORT VOCABULARY</div>
+ <div class="emoji">🔤✈️🎫🧳</div>
+ <h1>VOCAB<br>DUAL CHALLENGE</h1>
+ <h2>เลือกคำแปล + เรียงอักษร</h2>
+ <p>ใช้คำศัพท์สนามบินชุดเดิม 20 คำ<br>
+ ด่าน 1 เลือกความหมายให้ถูก • ด่าน 2 เรียงตัวอักษรเป็นคำศัพท์<br>
+ เล่นครบสองด่านแล้วดูคะแนนรวมได้เลย 🌟</p>
+ <div class="mode">
+  <button class="btn blue" onclick="showReview()">📖 ทบทวน 20 คำ</button>
+  <button class="btn green" onclick="startStage1()">🎮 เริ่มด่าน 1</button>
+ </div>
+</div>
+</section>
+
+<section id="review" class="screen">
+<div class="card wrap">
+ <div class="topbar"><span>📖 AIRPORT VOCABULARY REVIEW</span><span>20 คำ</span></div>
+ <div id="reviewGrid" class="reviewGrid"></div>
+ <div class="mode"><button class="btn gray" onclick="goHome()">⌂ หน้าแรก</button><button class="btn green" onclick="startStage1()">🎮 เริ่มเล่น</button></div>
+</div>
+</section>
+
+<section id="stage1" class="screen">
+<div class="card wrap">
+ <div class="topbar">
+  <span>🎯 STAGE 1 • CHOOSE THE MEANING</span>
+  <div class="pills"><span id="s1q" class="pill">1 / 20</span><span id="s1score" class="pill">⭐ 0</span></div>
+ </div>
+ <div class="progressBar"><div id="bar1" class="progressFill"></div></div>
+ <div class="prompt">
+  <div class="promptLabel">เลือกคำแปลภาษาไทยที่ตรงกับคำศัพท์</div>
+  <div id="wordPrompt" class="promptBig"></div>
+ </div>
+ <div id="meaningChoices" class="choiceGrid"></div>
+ <div id="feedback1" class="feedback"></div>
+ <div class="stars" id="stars1"></div>
+ <div class="mode" style="margin-top:auto"><button class="btn gray" onclick="goHome()">⌂ ออกจากเกม</button></div>
+</div>
+</section>
+
+<section id="stage2" class="screen">
+<div class="card wrap">
+ <div class="topbar">
+  <span>🔤 STAGE 2 • BUILD THE WORD</span>
+  <div class="pills"><span id="s2q" class="pill">1 / 20</span><span id="s2score" class="pill">⭐ 0</span></div>
+ </div>
+ <div class="progressBar"><div id="bar2" class="progressFill"></div></div>
+ <div class="prompt">
+  <div class="promptLabel">ดูความหมาย แล้วเรียงอักษรให้เป็นคำศัพท์ภาษาอังกฤษ</div>
+  <div id="thaiPrompt" class="promptBig"></div>
+ </div>
+ <div id="scrambleHint" class="scrambleWord"></div>
+ <div id="answerSlots" class="answerSlots"></div>
+ <div id="letterBank" class="letterBank"></div>
+ <div class="scrambleBtns">
+   <button class="btn blue" onclick="undoLetter()">↶ ย้อน 1 ตัว</button>
+   <button class="btn pink" onclick="resetLetters()">🔄 เรียงใหม่</button>
+   <button class="btn green" onclick="checkSpelling()">✓ ตรวจคำตอบ</button>
+ </div>
+ <div id="feedback2" class="feedback"></div>
+ <div class="stars" id="stars2"></div>
+ <div class="mode" style="margin-top:auto"><button class="btn gray" onclick="goHome()">⌂ ออกจากเกม</button></div>
+</div>
+</section>
+
+<section id="result" class="screen">
+<div class="card cover">
+ <div class="brand">KRU PAI CLASSROOM • MISSION RECORD</div>
+ <div class="emoji">🏆✈️🌟</div>
+ <h1>MISSION COMPLETE!</h1>
+ <h2>AIRPORT VOCAB DUAL CHALLENGE</h2>
+ <div class="resultGrid">
+  <div class="resultBox"><b id="r1">0/20</b><span>🎯 เลือกคำแปล</span></div>
+  <div class="resultBox"><b id="r2">0/20</b><span>🔤 เรียงอักษร</span></div>
+  <div class="resultBox"><b id="rt">0/40</b><span>🏆 คะแนนรวม</span></div>
+ </div>
+ <p id="resultMsg"></p>
+ <div class="mode">
+  <button class="btn pink" onclick="startStage1()">↻ เล่นใหม่</button>
+  <button class="btn blue" onclick="showReview()">📖 ทบทวนคำศัพท์</button>
+  <button class="btn green" onclick="goHome()">⌂ หน้าแรก</button>
+ </div>
+</div>
+</section>
+
+<div id="stageClear" class="overlay">
+ <div class="overlayCard">
+  <div style="font-size:86px">🎉✈️</div>
+  <h3>STAGE 1 CLEAR!</h3>
+  <p style="font-size:22px;font-weight:900;color:#63708a">ผ่านด่านเลือกคำแปลแล้ว<br>พร้อมไปเรียงอักษร 20 คำต่อเลย!</p>
+  <button class="btn green" onclick="closeStageClear()">ไปด่าน 2 ➜</button>
+ </div>
+</div>
+
+<script>
+const vocab=[["passport", "หนังสือเดินทาง", "May I see your passport, please?"], ["ticket", "ตั๋วโดยสาร", "Here is my ticket."], ["luggage", "สัมภาระ", "Do you have any luggage to check in?"], ["suitcase", "กระเป๋าเดินทาง", "I have one suitcase."], ["window seat", "ที่นั่งริมหน้าต่าง", "A window seat, please."], ["aisle seat", "ที่นั่งริมทางเดิน", "Would you like an aisle seat?"], ["phone", "โทรศัพท์", "Please put your phone in the tray."], ["tray", "ถาด", "Put your bag in the tray."], ["liquids", "ของเหลว", "Do you have any liquids in your bag?"], ["shoes", "รองเท้า", "Do I need to take off my shoes?"], ["purpose", "จุดประสงค์", "What is the purpose of your visit?"], ["holiday", "วันหยุด / การท่องเที่ยว", "I'm here for a holiday."], ["stay", "พักอยู่", "How long will you stay?"], ["hotel", "โรงแรม", "I'll be staying at a hotel."], ["boarding gate", "ประตูขึ้นเครื่อง", "Where is my boarding gate?"], ["flight", "เที่ยวบิน", "Is this flight delayed?"], ["delayed", "ล่าช้า", "The flight is delayed by thirty minutes."], ["boarding pass", "บัตรขึ้นเครื่อง", "Please have your boarding pass ready."], ["seat", "ที่นั่ง", "Where is seat 18A?"], ["exit", "ทางออก", "Which way is the exit?"]];
+let order1=[],q1=0,score1=0,locked1=false;
+let order2=[],q2=0,score2=0,currentLetters=[],chosenLetters=[],locked2=false;
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));document.getElementById(id).classList.add('show');scrollTo(0,0)}
+function goHome(){speechSynthesis.cancel();show('cover')}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function speak(t,r=.75){if(!window.speechSynthesis)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=r;speechSynthesis.speak(u)}
+let actx=null;
+function tone(f=600,d=.06,v=.10,type='sine'){try{if(!actx){const C=window.AudioContext||window.webkitAudioContext;actx=new C()}if(actx.state==='suspended')actx.resume();const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=f;o.connect(g);g.connect(actx.destination);const n=actx.currentTime;g.gain.setValueAtTime(.001,n);g.gain.exponentialRampToValueAtTime(v,n+.01);g.gain.exponentialRampToValueAtTime(.001,n+d);o.start(n);o.stop(n+d+.02)}catch(e){}}
+function goodSound(){tone(620,.08,.13);setTimeout(()=>tone(900,.09,.12),80);setTimeout(()=>tone(1240,.12,.10),160)}
+function badSound(){tone(190,.12,.15,'sawtooth');setTimeout(()=>tone(145,.14,.12,'sawtooth'),90)}
+function popConfetti(n=45){const c=['#ff64a6','#6f5be8','#38c9ff','#ffd85f','#61d7ae','#fff'];for(let i=0;i<n;i++){let d=document.createElement('i');d.className='confetti';d.style.left=Math.random()*100+'vw';d.style.background=c[i%c.length];d.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),3300)}}
+
+function showReview(){
+ show('review');
+ reviewGrid.innerHTML=vocab.map((v,i)=>`<div class="vcard"><b>${v[0]}</b><span>${v[1]}</span><small>${v[2]}</small><button class="btn blue" style="margin-top:8px;padding:6px 10px;min-height:38px" onclick="speak(vocab[${i}][0],.7)">🔊 ฟัง</button></div>`).join('');
+}
+
+function startStage1(){
+ order1=shuffle([...Array(20).keys()]);q1=0;score1=0;locked1=false;
+ show('stage1');renderStage1();
+}
+function renderStage1(){
+ locked1=false;
+ const idx=order1[q1];
+ s1q.textContent=`${q1+1} / 20`;s1score.textContent=`⭐ ${score1}`;
+ bar1.style.width=`${q1/20*100}%`;
+ wordPrompt.textContent=vocab[idx][0];
+ feedback1.textContent='เลือกคำแปลที่ถูกต้อง';
+ stars1.textContent='⭐'.repeat(Math.min(score1,10));
+ const wrong=shuffle([...Array(20).keys()].filter(i=>i!==idx)).slice(0,3);
+ const opts=shuffle([idx,...wrong]);
+ meaningChoices.innerHTML=opts.map(i=>`<button class="choice" data-i="${i}">${vocab[i][1]}</button>`).join('');
+ meaningChoices.querySelectorAll('button').forEach(b=>b.onclick=()=>chooseMeaning(b,+b.dataset.i));
+}
+function chooseMeaning(btn,idx){
+ if(locked1)return;locked1=true;
+ const ans=order1[q1];
+ const all=[...meaningChoices.querySelectorAll('button')];all.forEach(b=>b.disabled=true);
+ if(idx===ans){score1++;btn.classList.add('good');goodSound();feedback1.textContent='✅ ถูกต้อง!';}
+ else{btn.classList.add('bad');badSound();const r=all.find(b=>+b.dataset.i===ans);if(r)r.classList.add('good');feedback1.textContent=`❌ คำตอบคือ ${vocab[ans][1]}`;}
+ s1score.textContent=`⭐ ${score1}`;bar1.style.width=`${(q1+1)/20*100}%`;
+ setTimeout(()=>{q1++;if(q1>=20){popConfetti(70);stageClear.classList.add('show')}else renderStage1()},900);
+}
+function closeStageClear(){stageClear.classList.remove('show');startStage2()}
+
+function startStage2(){
+ order2=shuffle([...Array(20).keys()]);q2=0;score2=0;locked2=false;
+ show('stage2');renderStage2();
+}
+function cleanWord(w){return w.toLowerCase().replace(/[^a-z]/g,'')}
+function renderStage2(){
+ locked2=false;chosenLetters=[];
+ const idx=order2[q2],word=vocab[idx][0];
+ s2q.textContent=`${q2+1} / 20`;s2score.textContent=`⭐ ${score2}`;bar2.style.width=`${q2/20*100}%`;
+ thaiPrompt.textContent=vocab[idx][1];
+ scrambleHint.textContent=`${word.includes(' ')?'วลี '+word.split(' ').length+' คำ':'คำศัพท์ '+cleanWord(word).length+' ตัวอักษร'}`;
+ feedback2.textContent='แตะตัวอักษรตามลำดับ';
+ const chars=[...cleanWord(word)];
+ currentLetters=shuffle(chars.map((ch,i)=>({ch,id:i})));
+ renderSlots(word);
+ renderLetters();
+}
+function renderSlots(word){
+ let pos=0;
+ answerSlots.innerHTML='';
+ [...word].forEach(ch=>{
+   if(ch===' '){const s=document.createElement('div');s.className='slot space';answerSlots.appendChild(s)}
+   else{const s=document.createElement('div');s.className='slot';s.dataset.pos=pos;s.textContent=chosenLetters[pos]?.ch?.toUpperCase()||'';answerSlots.appendChild(s);pos++}
+ });
+}
+function renderLetters(){
+ letterBank.innerHTML=currentLetters.map((x,i)=>`<button class="letter ${chosenLetters.some(c=>c.bank===i)?'used':''}" data-bank="${i}">${x.ch.toUpperCase()}</button>`).join('');
+ letterBank.querySelectorAll('button').forEach(b=>b.onclick=()=>pickLetter(+b.dataset.bank));
+}
+function pickLetter(bank){
+ if(locked2||chosenLetters.some(c=>c.bank===bank))return;
+ chosenLetters.push({bank,ch:currentLetters[bank].ch});
+ tone(480,.04,.07);
+ renderSlots(vocab[order2[q2]][0]);renderLetters();
+}
+function undoLetter(){if(locked2||!chosenLetters.length)return;chosenLetters.pop();tone(320,.04,.06);renderSlots(vocab[order2[q2]][0]);renderLetters()}
+function resetLetters(){if(locked2)return;chosenLetters=[];tone(260,.05,.07);renderSlots(vocab[order2[q2]][0]);renderLetters()}
+function checkSpelling(){
+ if(locked2)return;
+ const idx=order2[q2],ans=cleanWord(vocab[idx][0]);
+ if(chosenLetters.length!==ans.length){feedback2.textContent='⚠️ เรียงตัวอักษรให้ครบก่อนจ้า';tone(250,.08,.09);return}
+ locked2=true;
+ const made=chosenLetters.map(x=>x.ch).join('');
+ if(made===ans){score2++;goodSound();popConfetti(25);feedback2.textContent='✅ ถูกต้อง! เก่งมาก';}
+ else{badSound();feedback2.textContent=`❌ คำที่ถูกคือ “${vocab[idx][0]}”`;}
+ s2score.textContent=`⭐ ${score2}`;bar2.style.width=`${(q2+1)/20*100}%`;
+ setTimeout(()=>{q2++;if(q2>=20)finish() ;else renderStage2()},1100);
+}
+function finish(){
+ show('result');r1.textContent=`${score1}/20`;r2.textContent=`${score2}/20`;rt.textContent=`${score1+score2}/40`;
+ const total=score1+score2;
+ resultMsg.textContent= total>=36?'ยอดเยี่ยมมาก! พร้อมใช้ศัพท์สนามบินแล้ว 🌟✈️':total>=30?'ดีมาก! อีกนิดเดียวก็คล่องแล้ว ✈️':total>=24?'ทำได้ดีจ้า ทบทวนคำที่พลาดแล้วเล่นอีกครั้ง 💪':'กลับไปทบทวน 20 คำก่อน แล้วลองใหม่อีกครั้งจ้า 📖';
+ popConfetti(100);goodSound();
+}
+</script>
+</body>
+</html>

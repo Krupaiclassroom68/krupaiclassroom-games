@@ -1,0 +1,437 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Kru Pai Classroom | AIRPORT ADVENTURE</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Noto Sans Thai",sans-serif;background:radial-gradient(circle at top,#183a70,#07152d 55%,#030815);color:#fff;min-height:100vh}button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.wrap{max-width:1050px;margin:auto;padding:20px}.panel{background:#0c2143dd;border:1px solid #4fc9ff55;border-radius:28px;padding:clamp(18px,4vw,36px);box-shadow:0 18px 60px #0008}.brand{font-weight:1000;letter-spacing:2px;color:#80e8ff}h1{font-size:clamp(36px,8vw,76px);line-height:.95;margin:12px 0}h2{font-size:clamp(22px,4vw,36px)}.sub{font-size:18px;line-height:1.6;color:#d9efff}.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}.btn{border:0;border-radius:18px;padding:14px 20px;font-weight:900;color:#fff;background:#263e69;box-shadow:0 7px 0 #0a1630;min-height:52px}.btn:active{transform:translateY(5px);box-shadow:0 2px 0 #0a1630}.pri{background:linear-gradient(135deg,#12b7ef,#7557ff)}.help{background:linear-gradient(135deg,#e6a315,#ff6f61)}input{width:min(480px,100%);padding:15px;border-radius:16px;border:2px solid #6ddcff;background:#07182e;color:white;font-size:18px}.reviewGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.review{background:#102d58;border:1px solid #65dfff44;border-radius:18px;padding:15px;display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center}.review b{font-size:22px;color:#7eeaff}.review small{font-size:16px}.speak{border:0;border-radius:12px;padding:9px;background:#244b7d;color:white}.hud,.used{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}.chip{padding:8px 13px;border-radius:999px;background:#0a1730;border:1px solid #6bdfff55;font-weight:850}.mini{position:relative;width:54px;height:54px;display:grid;place-items:center;border-radius:14px;background:#18375f;border:1px solid #6ddfff66;font-weight:1000;font-size:18px}.mark{position:absolute;right:-6px;top:-8px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:white;border:2px solid white;font-size:18px}.ok .mark{background:#18b979}.bad .mark{background:#ed4264}.machine{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.numbers{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.num{border:1px solid #5cdcff66;background:#102d58;color:white;border-radius:14px;min-height:50px;font-weight:1000;font-size:19px}.num.used{opacity:.28}.num.active{outline:4px solid #fff;transform:scale(1.08);background:#7a55ff}.roulette{display:grid;place-items:center;text-align:center;border-radius:26px;background:radial-gradient(circle,#503d9e,#0b1e42 65%);min-height:300px;border:2px solid #70e5ff55}.big{font-size:clamp(90px,18vw,170px);font-weight:1000;line-height:1}.overlay{position:fixed;inset:0;background:#020713ef;z-index:20;display:grid;place-items:center;padding:16px;overflow:auto}.card{width:min(760px,100%);background:linear-gradient(155deg,#112e59,#091a37);border:2px solid #6de8ff;border-radius:28px;padding:22px;box-shadow:0 20px 80px #000;animation:pop .35s cubic-bezier(.2,1.5,.3,1)}@keyframes pop{from{transform:scale(.65) rotate(-3deg);opacity:0}}.cardNo{font-weight:1000;color:#77e9ff;letter-spacing:2px}.timerTop{display:flex;justify-content:space-between;align-items:center;font-weight:1000;margin:10px 0 5px}.timerNum{font-size:34px}.track{height:12px;background:#ffffff1c;border-radius:999px;overflow:hidden}.bar{height:100%;width:100%;background:linear-gradient(90deg,#58e4a4,#ffe25b,#ff526d)}.scramble{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:20px 0}.letter{min-width:48px;height:54px;border:0;border-radius:13px;background:#eaf7ff;color:#0a2245;font-size:26px;font-weight:1000;box-shadow:0 5px 0 #8cb8d0}.answerSlots{min-height:65px;border:2px dashed #6de5ff88;border-radius:18px;padding:9px;display:flex;gap:7px;justify-content:center;flex-wrap:wrap;align-items:center}.placed{min-width:42px;padding:8px;border-radius:10px;background:#795cff;font-size:23px;font-weight:1000}.meaningGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.meaning{padding:13px;border-radius:15px;border:1px solid #65dfff55;background:#102d58;color:white;font-weight:800}.meaning.sel{outline:3px solid #ffe06a;background:#3a356a}.feedback{margin-top:14px;padding:13px;border-radius:14px;background:#06152c;font-size:17px;line-height:1.5}.result{text-align:center}.score{font-size:70px;font-weight:1000;color:#7eeaff}@media(max-width:720px){.reviewGrid,.machine,.meaningGrid{grid-template-columns:1fr}.roulette{min-height:220px}}
+
+/* V2: kid-friendly cover + dramatic 3D center feedback */
+#cover{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 14% 18%,rgba(255,255,255,.75) 0 4px,transparent 5px),
+    radial-gradient(circle at 82% 24%,rgba(255,255,255,.7) 0 5px,transparent 6px),
+    linear-gradient(145deg,#fff4b8 0%,#ffd4ed 42%,#c8ecff 100%);
+  color:#163253;
+  border:3px solid #fff;
+}
+#cover:before,#cover:after{
+  content:"";
+  position:absolute;border-radius:50%;filter:blur(.2px);opacity:.75;pointer-events:none
+}
+#cover:before{width:210px;height:210px;left:-60px;bottom:-70px;background:#9be7ff}
+#cover:after{width:180px;height:180px;right:-45px;top:-55px;background:#ffb6dc}
+#cover .brand{color:#5b55d6}
+#cover h1{
+  color:#ff5f9e;
+  text-shadow:0 4px 0 #fff,0 8px 0 #f7c7df,0 14px 30px #9a68d344;
+  letter-spacing:1px
+}
+#cover h2{color:#3b4c7d}
+#cover .sub{color:#42516c;background:#ffffffb8;border:2px dashed #fff;padding:15px 18px;border-radius:20px}
+#cover input{background:#fff;color:#2f3c55;border:3px solid #8ad8ff;box-shadow:0 6px 0 #b8d9ee}
+#cover .btn{box-shadow:0 7px 0 #c4b7de;color:#fff}
+#cover .pri{background:linear-gradient(135deg,#ff76ae,#7c78ff)}
+#cover .actions .btn:first-child{background:linear-gradient(135deg,#56cfe1,#4a9ff5)}
+.kidDecor{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px;font-size:clamp(30px,5vw,48px)}
+.kidDecor span{display:inline-block;animation:bob 1.8s ease-in-out infinite}
+.kidDecor span:nth-child(2){animation-delay:.2s}.kidDecor span:nth-child(3){animation-delay:.4s}.kidDecor span:nth-child(4){animation-delay:.6s}.kidDecor span:nth-child(5){animation-delay:.8s}
+@keyframes bob{50%{transform:translateY(-8px) rotate(4deg)}}
+
+.bigFeedback{
+  position:fixed;inset:0;z-index:60;display:grid;place-items:center;pointer-events:none;
+  background:rgba(3,9,24,.18);backdrop-filter:blur(2px)
+}
+.bigFeedback.hidden{display:none}
+.bigFeedbackCard{
+  min-width:min(520px,88vw);max-width:88vw;text-align:center;padding:28px 24px 24px;
+  border-radius:34px;border:4px solid #fff;
+  transform:perspective(900px) rotateX(8deg) scale(.55);
+  opacity:0;
+  animation:feedbackPop .55s cubic-bezier(.15,1.6,.25,1) forwards;
+  box-shadow:0 18px 0 rgba(0,0,0,.22),0 35px 80px rgba(0,0,0,.45),inset 0 3px rgba(255,255,255,.8)
+}
+.bigFeedback.good .bigFeedbackCard{
+  background:linear-gradient(145deg,#53efb1,#1fcf80 58%,#159b67);
+}
+.bigFeedback.bad .bigFeedbackCard{
+  background:linear-gradient(145deg,#ff8b9e,#ff4d73 58%,#c92b4b);
+}
+.bigFeedbackIcon{font-size:clamp(68px,13vw,110px);line-height:1;text-shadow:0 8px 0 rgba(0,0,0,.18),0 13px 20px rgba(0,0,0,.3)}
+.bigFeedbackTitle{font-size:clamp(34px,7vw,60px);font-weight:1000;line-height:1.05;text-shadow:0 4px 0 rgba(0,0,0,.18);margin-top:8px}
+.bigFeedbackWord{font-size:clamp(26px,5vw,42px);font-weight:1000;margin-top:10px;background:#fff;color:#173550;border-radius:20px;padding:10px 16px;box-shadow:inset 0 -5px 0 #d7edf8}
+.bigFeedbackMeaning{font-size:clamp(18px,3vw,24px);font-weight:850;margin-top:9px}
+@keyframes feedbackPop{
+  60%{transform:perspective(900px) rotateX(0deg) scale(1.12);opacity:1}
+  100%{transform:perspective(900px) rotateX(0deg) scale(1);opacity:1}
+}
+
+
+/* V3: dual review system */
+#teachReview,#review{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,#fff4b8 0%,#ffd4ed 42%,#c8ecff 100%);
+  color:#163253;border:3px solid #fff;
+}
+#teachReview .brand,#review .brand{color:#5b55d6}
+#teachReview h2,#review h2{color:#3b4c7d}
+#teachReview .sub,#review .sub{color:#42516c}
+#review .review{background:#ffffffc9;border:2px solid #fff;color:#29445e;box-shadow:0 5px 0 #bfd8ea}
+#review .review b{color:#4f5cd6}
+#review .speak{background:#6b7cff}
+.teachCard{
+  width:min(650px,100%);margin:22px auto 10px;text-align:center;
+  background:#ffffffd9;border:3px solid #fff;border-radius:30px;padding:26px 20px;
+  box-shadow:0 12px 0 #c9dbea,0 25px 50px #7b6ca329;
+  min-height:330px;display:grid;place-items:center
+}
+.teachNo{font-weight:1000;color:#7b64d8;letter-spacing:2px}
+.teachWord{font-size:clamp(42px,10vw,76px);font-weight:1000;color:#ff5f9e;line-height:1;text-shadow:0 4px 0 #fff,0 7px 0 #f3c6db}
+.teachMeaning{font-size:clamp(25px,5vw,38px);font-weight:900;color:#284d70}
+.teachHint{font-size:18px;color:#526d87;background:#eef9ff;border-radius:16px;padding:10px 14px}
+.teachNav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.teachDots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.teachDot{width:12px;height:12px;border-radius:50%;background:#ffffffaa;border:1px solid #aebfd5}
+.teachDot.on{background:#ff69a8;transform:scale(1.3)}
+.reviewChoice{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0
+}
+.reviewMode{
+  border:3px solid #fff;border-radius:24px;padding:20px;background:#ffffffbd;color:#29445e;
+  box-shadow:0 8px 0 #c8dce8;text-align:left
+}
+.reviewMode h3{margin:0 0 8px;font-size:24px;color:#5b55d6}
+.reviewMode p{margin:0;line-height:1.5}
+@media(max-width:720px){.reviewChoice{grid-template-columns:1fr}}
+
+
+/* Airport Set 2 */
+.airportSky{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;font-size:clamp(32px,6vw,56px);margin:5px 0 10px}.airportSky span{display:inline-block;animation:airportFloat 2.1s ease-in-out infinite}.airportSky span:nth-child(2){animation-delay:.25s}.airportSky span:nth-child(3){animation-delay:.5s}.airportSky span:nth-child(4){animation-delay:.75s}@keyframes airportFloat{50%{transform:translateY(-9px) rotate(4deg)}}.exampleBox{margin-top:14px;background:linear-gradient(135deg,#fff8cf,#fff);border:2px solid #ffd56a;border-radius:18px;padding:13px 16px;color:#314b67;box-shadow:0 5px 0 #efd894}.exampleEn{font-size:clamp(20px,4vw,27px);font-weight:1000;color:#5a58cf}.exampleTh{font-size:17px;margin-top:4px}
+
+/* V4: TV focus review — full 16:9 classroom display */
+html,body{width:100%;min-height:100%;}
+.wrap{max-width:none;width:100%;min-height:100vh;padding:clamp(10px,1.4vw,22px);display:flex;align-items:stretch}
+.panel{width:100%;min-height:calc(100vh - clamp(20px,2.8vw,44px));}
+#teachReview{display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(18px,2.3vw,38px) clamp(20px,4vw,70px);}
+#teachReview.hidden{display:none!important}
+#teachReview .airportSky{position:absolute;right:3vw;top:2vh;opacity:.7;margin:0}
+#teachReview h2{font-size:clamp(32px,3.3vw,58px);margin:8px 0 2px;text-align:center;font-weight:1000}
+#teachReview>.sub{font-size:clamp(20px,1.55vw,29px);text-align:center;margin:3px auto 8px;font-weight:750}
+#teachReview .brand{text-align:center;font-size:clamp(14px,1vw,20px)}
+.teachCard{width:min(1180px,92vw);margin:1vh auto .5vh;min-height:0;flex:1;padding:clamp(16px,2vh,28px) clamp(22px,3vw,44px);border-radius:34px;display:flex;align-items:center;justify-content:center}
+.teachCard>div{width:100%}
+.teachNo{font-size:clamp(18px,1.4vw,25px);margin-bottom:.5vh}
+.teachWord{font-size:clamp(76px,8.5vw,150px);letter-spacing:2px;line-height:.92;margin:.5vh 0 1vh}
+.teachMeaning{font-size:clamp(36px,3.8vw,66px);line-height:1.05;margin-bottom:1vh}
+.teachHint{font-size:clamp(20px,1.55vw,29px);padding:10px 18px;width:min(900px,96%);margin:auto}
+.exampleBox{width:min(900px,96%);margin:1.2vh auto 0;padding:12px 18px}
+.exampleEn{font-size:clamp(28px,2.6vw,46px)}
+.exampleTh{font-size:clamp(20px,1.55vw,28px)}
+#teachReview .actions{margin-top:1.2vh}
+#teachReview .btn{font-size:clamp(17px,1.15vw,22px);padding:11px 20px;min-height:48px}
+.teachDots{margin-top:.8vh}.teachDot{width:10px;height:10px}
+.teachNav{margin-top:1vh}
+#teachReview>.actions{margin-top:1vh}
+@media (min-aspect-ratio:16/10) and (min-width:1000px){
+ #teachReview{height:calc(100vh - 2.8vw);min-height:680px;overflow:hidden}
+ .teachCard{max-height:58vh}
+}
+@media(max-width:720px){.wrap{padding:8px}.panel{min-height:calc(100vh - 16px)}.teachWord{font-size:clamp(54px,17vw,88px)}.teachMeaning{font-size:clamp(28px,8vw,42px)}}
+
+/* V5: balanced TV controls + full-screen letter challenge */
+#teachReview .teachNav{
+  width:min(1180px,92vw);
+  margin:1.2vh auto 0;
+  justify-content:space-between;
+  align-items:center;
+  gap:24px;
+}
+#teachReview>.actions{
+  width:min(1180px,92vw);
+  margin:1.2vh auto 0;
+  justify-content:space-between;
+  align-items:center;
+  gap:24px;
+}
+#teachReview .teachNav .btn,#teachReview>.actions .btn{min-width:clamp(170px,18vw,290px)}
+
+/* make the game question fill the TV / laptop screen */
+.overlay{padding:10px;align-items:stretch;overflow:auto}
+.overlay .card{
+  width:calc(100vw - 20px);
+  max-width:none;
+  min-height:calc(100vh - 20px);
+  margin:0;
+  border-radius:24px;
+  padding:clamp(16px,2vw,30px) clamp(18px,3vw,46px);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+.overlay .cardNo{font-size:clamp(17px,1.3vw,24px)}
+.overlay .timerTop{font-size:clamp(18px,1.45vw,26px)}
+.overlay .timerNum{font-size:clamp(38px,3.2vw,58px)}
+.overlay .track{height:16px}
+.overlay .card h2{font-size:clamp(25px,2.2vw,40px);margin:14px 0 8px;text-align:center}
+.overlay .scramble{gap:clamp(8px,1vw,15px);margin:12px 0}
+.overlay .letter{min-width:clamp(54px,4.3vw,78px);height:clamp(58px,5vw,84px);font-size:clamp(28px,2.6vw,44px);border-radius:16px}
+.overlay .answerSlots{min-height:clamp(74px,7vh,108px);font-size:clamp(18px,1.4vw,25px);padding:12px}
+.overlay .placed{min-width:clamp(48px,3.7vw,68px);font-size:clamp(27px,2.3vw,39px);padding:10px 12px}
+.overlay .meaningGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:min(1200px,100%);margin:10px auto 0}
+.overlay .meaning{min-height:clamp(58px,7vh,86px);font-size:clamp(19px,1.55vw,28px);padding:14px 18px}
+.overlay .actions{margin-top:12px;gap:18px}
+.overlay .btn{font-size:clamp(17px,1.25vw,23px);padding:12px 22px}
+.overlay .feedback{font-size:clamp(17px,1.25vw,23px);width:min(1200px,100%);margin:12px auto 0}
+#nextBtn{min-width:min(360px,90vw)}
+@media(max-width:720px){
+  #teachReview .teachNav,#teachReview>.actions{width:100%;gap:10px}
+  #teachReview .teachNav .btn,#teachReview>.actions .btn{min-width:0;flex:1}
+  .overlay{padding:6px}
+  .overlay .card{width:calc(100vw - 12px);min-height:calc(100vh - 12px);padding:14px 12px;border-radius:18px}
+  .overlay .meaningGrid{grid-template-columns:1fr}
+  .overlay .letter{min-width:46px;height:54px;font-size:25px}
+}
+
+/* V4: celebration confetti */
+#celebrationFX{position:fixed;inset:0;z-index:75;pointer-events:none;overflow:hidden}
+#celebrationFX.hidden{display:none!important}
+.confettiPiece{position:absolute;top:-12vh;width:14px;height:24px;border-radius:4px;opacity:.98;animation:confettiFall var(--dur) cubic-bezier(.12,.72,.25,1) forwards;transform:translate3d(0,0,0) rotate(0deg)}
+.confettiPiece.round{border-radius:50%;width:16px;height:16px}
+.confettiPiece.ribbon{width:8px;height:34px;border-radius:999px}
+@keyframes confettiFall{0%{transform:translate3d(0,-8vh,0) rotate(0deg) scale(.7);opacity:0}8%{opacity:1}55%{transform:translate3d(var(--drift),52vh,0) rotate(var(--spin)) scale(1)}100%{transform:translate3d(calc(var(--drift)*1.5),112vh,0) rotate(calc(var(--spin)*2)) scale(.9);opacity:.95}}
+.celebrateGlow{position:fixed;inset:0;z-index:74;pointer-events:none;background:radial-gradient(circle at center,rgba(255,255,255,.48),rgba(255,227,98,.18) 28%,transparent 65%);animation:celebrateFlash .9s ease-out forwards}
+@keyframes celebrateFlash{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+
+
+/* V4.1: one-file responsive layout for TV + laptop + mobile */
+html,body{max-width:100%;overflow-x:hidden}
+body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button{touch-action:manipulation}
+
+/* Prefer dynamic viewport units where supported */
+@supports (min-height:100dvh){
+  .wrap{min-height:100dvh}
+  .panel{min-height:calc(100dvh - clamp(20px,2.8vw,44px))}
+  .overlay .card{min-height:calc(100dvh - 20px)}
+}
+
+/* Medium screens / tablets */
+@media (max-width:900px){
+  .wrap{padding:10px}
+  .panel{border-radius:22px;padding:18px}
+  #cover h1{font-size:clamp(48px,10vw,76px)}
+  .reviewGrid{grid-template-columns:1fr}
+  .machine{grid-template-columns:1fr}
+  .numbers{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .roulette{min-height:190px}
+  #teachReview{padding:16px}
+  .teachCard{width:100%;padding:16px 14px;border-radius:24px}
+  .teachHint,.exampleBox{width:100%}
+  #teachReview .teachNav,#teachReview>.actions{width:100%}
+}
+
+/* Phones: portrait and narrow screens */
+@media (max-width:720px){
+  .wrap{padding:0;min-height:100svh}
+  .panel{min-height:100svh;border-radius:0;border-left:0;border-right:0;padding:14px 12px}
+  .brand{font-size:12px;letter-spacing:1px}
+  h1{font-size:clamp(42px,14vw,66px)}
+  h2{font-size:clamp(21px,6.2vw,30px);line-height:1.15}
+  .sub{font-size:15px;line-height:1.45}
+  .btn{min-height:46px;padding:10px 12px;border-radius:14px;font-size:15px;box-shadow:0 5px 0 #0a1630}
+  input{font-size:16px;padding:13px}
+  .reviewChoice{gap:12px;margin:14px 0}
+  .reviewMode{padding:14px;border-radius:18px}
+  .reviewMode h3{font-size:20px}
+  .airportSky{font-size:clamp(28px,9vw,42px);gap:8px}
+
+  /* One-word review: large focal word without horizontal overflow */
+  #teachReview{min-height:100svh;overflow-y:auto;overflow-x:hidden;justify-content:flex-start;padding:12px}
+  #teachReview .airportSky{display:none}
+  .teachCard{flex:0 0 auto;width:100%;margin:8px auto;padding:14px 10px;min-height:0;border-radius:22px}
+  .teachNo{font-size:14px;margin-bottom:5px}
+  .teachWord{font-size:clamp(48px,16vw,78px);line-height:.96;letter-spacing:.5px;overflow-wrap:anywhere;word-break:break-word;margin:4px 0 8px}
+  .teachMeaning{font-size:clamp(26px,8vw,38px);line-height:1.05;margin-bottom:8px}
+  .teachHint{font-size:15px;line-height:1.35;padding:9px 10px;border-radius:13px}
+  .exampleBox{margin-top:9px;padding:9px 10px;border-radius:14px}
+  .exampleEn{font-size:clamp(19px,5.8vw,27px);line-height:1.2;overflow-wrap:anywhere}
+  .exampleTh{font-size:15px;line-height:1.25}
+  #teachReview .actions{gap:8px;margin-top:10px}
+  #teachReview .btn{font-size:14px;padding:9px 10px;min-height:44px}
+  .teachDots{margin-top:10px;gap:4px}
+  .teachDot{width:8px;height:8px}
+  #teachReview .teachNav,#teachReview>.actions{gap:8px;margin-top:10px;display:grid;grid-template-columns:1fr 1fr}
+  #teachReview .teachNav .btn,#teachReview>.actions .btn{width:100%;min-width:0}
+
+  /* Game hub */
+  .hud,.used{gap:6px;margin-bottom:10px}
+  .chip{font-size:13px;padding:6px 9px}
+  .mini{width:42px;height:42px;font-size:15px;border-radius:11px}
+  .numbers{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+  .num{min-height:44px;font-size:16px;border-radius:11px;padding:6px}
+  .roulette{min-height:160px;border-radius:20px}
+  .big{font-size:clamp(74px,25vw,120px)}
+
+  /* Letter challenge fills phone safely; vertical overflow stays inside the card */
+  .overlay{padding:0;align-items:stretch;overflow:hidden}
+  .overlay .card{
+    width:100vw;max-width:100vw;height:100svh;min-height:100svh;
+    border-radius:0;border-left:0;border-right:0;padding:10px 10px 14px;
+    overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+  .overlay .cardNo{font-size:13px;letter-spacing:1px}
+  .overlay .timerTop{font-size:15px;margin:6px 0 4px}
+  .overlay .timerNum{font-size:32px}
+  .overlay .track{height:10px}
+  .overlay .card h2{font-size:clamp(20px,5.8vw,27px);margin:9px 0 6px;line-height:1.15}
+  .overlay .actions{gap:8px;margin-top:8px;flex-wrap:wrap}
+  .overlay .actions .btn{flex:1 1 135px;min-width:0;max-width:100%;font-size:14px;padding:9px 10px;min-height:43px}
+  .overlay .scramble{gap:6px;margin:8px 0}
+  .overlay .letter{min-width:clamp(36px,10.5vw,48px);width:auto;height:48px;font-size:clamp(21px,6vw,28px);padding:0 9px;border-radius:11px;box-shadow:0 4px 0 #8cb8d0}
+  .overlay .answerSlots{min-height:58px;font-size:15px;padding:7px;gap:5px;border-radius:14px}
+  .overlay .placed{min-width:35px;font-size:21px;padding:6px 7px;border-radius:8px}
+  .overlay .meaningGrid{grid-template-columns:1fr;gap:7px;margin-top:7px;width:100%}
+  .overlay .meaning{min-height:47px;font-size:16px;line-height:1.25;padding:9px 10px;border-radius:12px}
+  .overlay .feedback{font-size:15px;line-height:1.35;margin-top:8px;padding:9px;border-radius:11px;width:100%}
+  #nextBtn{min-width:0;width:100%}
+
+  /* Result and all-word review */
+  .review{grid-template-columns:34px 1fr auto;padding:10px;gap:8px}
+  .review b{font-size:19px}
+  .review small{font-size:14px}
+  .score{font-size:clamp(52px,16vw,74px)}
+}
+
+/* Very small phones */
+@media (max-width:390px){
+  .panel{padding:11px 9px}
+  .btn{font-size:14px}
+  .teachWord{font-size:clamp(43px,15vw,62px)}
+  .teachMeaning{font-size:clamp(24px,7.6vw,32px)}
+  .overlay .card{padding:8px 8px 12px}
+  .overlay .letter{min-width:34px;height:44px;font-size:22px;padding:0 7px}
+  .overlay .placed{min-width:32px;font-size:19px;padding:5px 6px}
+  .overlay .meaning{font-size:15px;min-height:44px}
+  .overlay .actions .btn{flex-basis:120px}
+}
+
+/* Short landscape phones: compact vertically but retain two-column meanings */
+@media (max-height:520px) and (orientation:landscape){
+  .wrap{padding:0}
+  .panel{min-height:100svh;border-radius:0;padding:10px 14px}
+  #teachReview{padding:8px 14px}
+  .teachCard{margin:4px auto;padding:8px 14px}
+  .teachWord{font-size:clamp(42px,8vw,68px);margin:2px 0 4px}
+  .teachMeaning{font-size:clamp(24px,4vw,34px);margin-bottom:4px}
+  .teachHint{font-size:13px;padding:6px 9px}
+  .exampleBox{margin-top:5px;padding:6px 9px}
+  .exampleEn{font-size:18px}.exampleTh{font-size:13px}
+  #teachReview .actions,#teachReview .teachNav,#teachReview>.actions{margin-top:5px}
+  .teachDots{display:none}
+  .overlay .card{height:100svh;min-height:100svh;padding:6px 10px}
+  .overlay .timerTop{margin:2px 0}.overlay .timerNum{font-size:27px}.overlay .track{height:8px}
+  .overlay .card h2{font-size:18px;margin:5px 0 3px}
+  .overlay .scramble{margin:4px 0;gap:5px}
+  .overlay .letter{height:40px;min-width:38px;font-size:21px}
+  .overlay .answerSlots{min-height:46px;padding:5px}
+  .overlay .placed{font-size:18px;padding:4px 6px;min-width:30px}
+  .overlay .meaningGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:4px}
+  .overlay .meaning{min-height:38px;font-size:14px;padding:6px 8px}
+  .overlay .actions{margin-top:5px}.overlay .actions .btn{min-height:37px;padding:6px 9px;font-size:13px}
+  .overlay .feedback{font-size:13px;margin-top:5px;padding:6px}
+}
+
+/* TV / large desktop: keep dramatic full-screen scale */
+@media (min-width:1400px){
+  .overlay .card{padding-left:clamp(40px,4vw,80px);padding-right:clamp(40px,4vw,80px)}
+  .teachCard{width:min(1320px,90vw)}
+  #teachReview .teachNav,#teachReview>.actions{width:min(1320px,90vw)}
+}
+
+</style></head><body><!-- Kru Pai Airport Adventure V4.1 Responsive TV + Mobile --><div class="wrap">
+<section id="cover" class="panel"><div class="brand">KRU PAI CLASSROOM • ENGLISH GAME ZONE</div><div class="airportSky"><span>☁️</span><span>✈️</span><span>🧳</span><span>🛂</span><span>☁️</span></div><h1>AIRPORT<br>ADVENTURE</h1><h2>✈️ AIRPORT VOCAB SET 2 — บินไปกับคำศัพท์!</h2><p class="sub">ทบทวนคำศัพท์ 20 คำก่อน แล้วเข้าสนามสุ่ม <b>10 คำจาก 20 คำแบบไม่ซ้ำ</b> เมื่อสุ่มได้คำไหน จะพบตัวอักษรสลับตำแหน่ง ต้องเรียงคำศัพท์และเลือกความหมายให้ถูกภายใน <b>30 วินาที</b> ผิดได้ 1 ครั้ง</p><input id="name" placeholder="ชื่อผู้เล่น"><div class="reviewChoice">
+<div class="reviewMode"><h3>🧠 ฝึกทบทวนทีละคำ</h3><p>ทบทวนทีละคำ ฟังเสียง อ่านตาม และท่องให้จำขึ้นใจ ก่อนเข้าสู่เกม</p><div class="actions"><button id="teachBtn" class="btn">✨ เริ่มฝึกทบทวนทีละคำ</button></div></div>
+<div class="reviewMode"><h3>📚 โหมดทบทวน 20 คำ</h3><p>เหมาะสำหรับเด็กกดดูเอง เห็นคำศัพท์ทั้งหมดพร้อมกันและกดฟังเสียงได้</p><div class="actions"><button id="reviewBtn" class="btn">🔤 ดูครบทั้ง 20 คำ</button></div></div>
+</div>
+<div class="actions"><button id="startBtn" class="btn pri">🚀 พร้อมแล้ว — ไปสุ่มกัน!</button></div></section>
+<section id="teachReview" class="panel hidden"><div class="teachCard"><div><div id="teachNo" class="teachNo"></div><div id="teachWord" class="teachWord"></div><div id="teachMeaning" class="teachMeaning"></div><div id="teachHint" class="teachHint"></div><div class="exampleBox"><div id="teachExample" class="exampleEn"></div><div id="teachExampleTh" class="exampleTh"></div></div><div class="actions"><button id="teachSpeak" class="btn">🔊 ฟังเสียงคำศัพท์</button><button id="exampleSpeak" class="btn">🗣️ ฟังประโยค</button></div></div></div><div id="teachDots" class="teachDots"></div><div class="teachNav"><button id="teachPrev" class="btn">← คำก่อนหน้า</button><button id="teachNext" class="btn pri">คำถัดไป →</button></div><div class="actions"><button id="teachHome" class="btn">⌂ กลับหน้าแรก</button><button id="teachStart" class="btn pri">🎰 พร้อมแล้ว ไปสุ่ม!</button></div></section>
+<section id="review" class="panel hidden"><div class="brand">SELF REVIEW • ALL 20 WORDS</div><div class="airportSky"><span>📚</span><span>✈️</span><span>🔤</span><span>🛂</span><span>🧳</span></div><h2>📚 ทบทวนพร้อมกันทั้ง 20 คำ</h2><p class="sub">เหมาะสำหรับเด็กกดดูเอง เห็นคำศัพท์ทั้งหมดพร้อมความหมาย และกด 🔊 ฟังเสียงได้</p><div id="reviewGrid" class="reviewGrid"></div><div class="actions"><button id="backBtn" class="btn">← หน้าแรก</button><button id="reviewStartBtn" class="btn pri">🎰 พร้อมแล้ว ไปสุ่ม!</button></div></section>
+<section id="game" class="panel hidden"><div class="hud"><span id="who" class="chip"></span><span id="prog" class="chip"></span><span id="scoreHud" class="chip"></span></div><div id="usedbar" class="used"></div><div class="machine"><div><h2>NUMBER CONTROL • 1–20</h2><div id="numbers" class="numbers"></div><div class="actions"><button id="spinBtn" class="btn pri">🎰 สุ่มคำศัพท์</button></div></div><div class="roulette"><div><div class="brand">AIRPORT GATE SIGNAL</div><div id="bigNum" class="big">?</div><div id="status">พร้อมสุ่มคำแรก</div></div></div></div></section>
+<section id="result" class="panel result hidden"><div class="brand">MISSION COMPLETE</div><h2>🏆 AIRPORT ADVENTURE</h2><div id="resultName"></div><div id="finalScore" class="score"></div><div id="resultText" class="sub"></div><div class="actions"><button id="again" class="btn pri">↻ เล่นใหม่</button><button id="home" class="btn">⌂ หน้าแรก</button></div></section></div>
+<div id="overlay" class="overlay hidden"><div class="card"><div id="cardNo" class="cardNo"></div><div class="timerTop"><span>⏱️ เรียงคำ + เลือกความหมาย</span><span id="timerNum" class="timerNum">30</span></div><div class="track"><div id="timerBar" class="bar"></div></div><div class="actions"><button id="hintBtn" class="btn help">💡 ดูคำใบ้</button><button id="soundBtn" class="btn">🔊 ฟังเสียง</button></div><div id="hint" class="feedback hidden"></div><h2>กดตัวอักษรเพื่อเรียงคำศัพท์</h2><div id="scramble" class="scramble"></div><div id="slots" class="answerSlots">คำที่เรียงจะอยู่ตรงนี้</div><div class="actions"><button id="undoBtn" class="btn">↶ ย้อนตัวอักษร</button><button id="clearBtn" class="btn">ล้าง</button></div><h2>คำนี้หมายถึงอะไร?</h2><div id="meanings" class="meaningGrid"></div><div class="actions"><button id="checkBtn" class="btn pri">⚡ ตรวจคำตอบ</button></div><div id="fb" class="feedback hidden"></div><div class="actions"><button id="nextBtn" class="btn pri hidden">🎰 ไปสุ่มคำต่อไป</button></div></div></div>
+<div id="bigFeedback" class="bigFeedback hidden"><div class="bigFeedbackCard"><div id="bigFeedbackIcon" class="bigFeedbackIcon"></div><div id="bigFeedbackTitle" class="bigFeedbackTitle"></div><div id="bigFeedbackWord" class="bigFeedbackWord"></div><div id="bigFeedbackMeaning" class="bigFeedbackMeaning"></div></div></div>
+<div id="celebrationFX" class="hidden"></div><script>
+const pool=[{"word": "airport", "meaning": "สนามบิน", "hint": "สถานที่สำหรับขึ้นและลงเครื่องบิน", "example": "I am at the airport.", "exampleTh": "ฉันอยู่ที่สนามบิน", "opts": ["จุดตรวจความปลอดภัย", "ด่านตรวจคนเข้าเมือง", "ศุลกากร", "สนามบิน"], "a": 3}, {"word": "passport", "meaning": "หนังสือเดินทาง", "hint": "เอกสารสำคัญที่ใช้เดินทางไปต่างประเทศ", "example": "Here is my passport.", "exampleTh": "นี่คือหนังสือเดินทางของฉัน", "opts": ["ที่นั่ง", "หนังสือเดินทาง", "เที่ยวบิน", "ศุลกากร"], "a": 1}, {"word": "ticket", "meaning": "ตั๋วโดยสาร", "hint": "เอกสารหรือหลักฐานที่ใช้สำหรับการเดินทาง", "example": "I have my ticket.", "exampleTh": "ฉันมีตั๋วแล้ว", "opts": ["ตั๋วโดยสาร", "นักบิน", "บัตรขึ้นเครื่อง", "กระเป๋าเดินทาง"], "a": 0}, {"word": "luggage", "meaning": "สัมภาระ", "hint": "กระเป๋าและสิ่งของที่นำติดตัวในการเดินทาง", "example": "This is my luggage.", "exampleTh": "นี่คือสัมภาระของฉัน", "opts": ["ตั๋วโดยสาร", "อาคารผู้โดยสาร", "บัตรขึ้นเครื่อง", "สัมภาระ"], "a": 3}, {"word": "suitcase", "meaning": "กระเป๋าเดินทาง", "hint": "กระเป๋าที่ใช้ใส่เสื้อผ้าและของใช้เวลาเดินทาง", "example": "My suitcase is heavy.", "exampleTh": "กระเป๋าเดินทางของฉันหนัก", "opts": ["สนามบิน", "กระเป๋าเดินทาง", "ที่นั่ง", "นักบิน"], "a": 1}, {"word": "boarding pass", "meaning": "บัตรขึ้นเครื่อง", "hint": "บัตรที่แสดงข้อมูลสำหรับขึ้นเครื่องบิน", "example": "Here is my boarding pass.", "exampleTh": "นี่คือบัตรขึ้นเครื่องของฉัน", "opts": ["ผู้โดยสาร", "การออกเดินทาง", "หนังสือเดินทาง", "บัตรขึ้นเครื่อง"], "a": 3}, {"word": "gate", "meaning": "ประตูขึ้นเครื่อง", "hint": "จุดที่ผู้โดยสารรอและผ่านไปขึ้นเครื่อง", "example": "Where is Gate 5?", "exampleTh": "ประตูขึ้นเครื่องหมายเลข 5 อยู่ที่ไหน", "opts": ["ความล่าช้า", "ประตูขึ้นเครื่อง", "จุดรับกระเป๋า", "ศุลกากร"], "a": 1}, {"word": "flight", "meaning": "เที่ยวบิน", "hint": "การเดินทางด้วยเครื่องบินในเที่ยวหนึ่ง", "example": "My flight is at noon.", "exampleTh": "เที่ยวบินของฉันตอนเที่ยง", "opts": ["ศุลกากร", "กระเป๋าเดินทาง", "จุดรับกระเป๋า", "เที่ยวบิน"], "a": 3}, {"word": "pilot", "meaning": "นักบิน", "hint": "ผู้ควบคุมและขับเครื่องบิน", "example": "The pilot flies the plane.", "exampleTh": "นักบินขับเครื่องบิน", "opts": ["บัตรขึ้นเครื่อง", "กระเป๋าเดินทาง", "จุดรับกระเป๋า", "นักบิน"], "a": 3}, {"word": "passenger", "meaning": "ผู้โดยสาร", "hint": "ผู้ที่เดินทางโดยเครื่องบินหรือยานพาหนะ", "example": "The passengers are waiting.", "exampleTh": "ผู้โดยสารกำลังรอ", "opts": ["ผู้โดยสาร", "ศุลกากร", "การมาถึง", "บัตรขึ้นเครื่อง"], "a": 0}, {"word": "departure", "meaning": "การออกเดินทาง", "hint": "ช่วงหรือบริเวณสำหรับเที่ยวบินที่กำลังออกเดินทาง", "example": "Check the departure time.", "exampleTh": "ตรวจสอบเวลาออกเดินทาง", "opts": ["การออกเดินทาง", "เที่ยวบิน", "จุดตรวจความปลอดภัย", "อาคารผู้โดยสาร"], "a": 0}, {"word": "arrival", "meaning": "การมาถึง", "hint": "ช่วงหรือบริเวณสำหรับเที่ยวบินที่เดินทางมาถึง", "example": "The arrival time is 3 p.m.", "exampleTh": "เวลามาถึงคือบ่ายสามโมง", "opts": ["อาคารผู้โดยสาร", "บัตรขึ้นเครื่อง", "ที่นั่ง", "การมาถึง"], "a": 3}, {"word": "check-in", "meaning": "การเช็กอิน", "hint": "ขั้นตอนยืนยันการเดินทางและรับบัตรขึ้นเครื่อง", "example": "Let's check in now.", "exampleTh": "ไปเช็กอินกันตอนนี้", "opts": ["กระเป๋าเดินทาง", "อาคารผู้โดยสาร", "ผู้โดยสาร", "การเช็กอิน"], "a": 3}, {"word": "security", "meaning": "จุดตรวจความปลอดภัย", "hint": "บริเวณตรวจผู้โดยสารและสัมภาระเพื่อความปลอดภัย", "example": "Go through security.", "exampleTh": "ผ่านจุดตรวจความปลอดภัย", "opts": ["บัตรขึ้นเครื่อง", "จุดตรวจความปลอดภัย", "หนังสือเดินทาง", "สนามบิน"], "a": 1}, {"word": "customs", "meaning": "ศุลกากร", "hint": "จุดตรวจสิ่งของที่นำเข้าหรือออกจากประเทศ", "example": "We must go through customs.", "exampleTh": "เราต้องผ่านศุลกากร", "opts": ["เที่ยวบิน", "สัมภาระ", "ศุลกากร", "ผู้โดยสาร"], "a": 2}, {"word": "immigration", "meaning": "ด่านตรวจคนเข้าเมือง", "hint": "จุดตรวจหนังสือเดินทางและการเข้าออกประเทศ", "example": "Immigration checks my passport.", "exampleTh": "ด่านตรวจคนเข้าเมืองตรวจหนังสือเดินทางของฉัน", "opts": ["การออกเดินทาง", "ด่านตรวจคนเข้าเมือง", "อาคารผู้โดยสาร", "เที่ยวบิน"], "a": 1}, {"word": "terminal", "meaning": "อาคารผู้โดยสาร", "hint": "อาคารที่ผู้โดยสารใช้บริการในสนามบิน", "example": "Meet me at the terminal.", "exampleTh": "มาพบฉันที่อาคารผู้โดยสาร", "opts": ["อาคารผู้โดยสาร", "ศุลกากร", "ที่นั่ง", "สัมภาระ"], "a": 0}, {"word": "seat", "meaning": "ที่นั่ง", "hint": "ตำแหน่งที่ผู้โดยสารนั่งบนเครื่องบิน", "example": "This is my seat.", "exampleTh": "นี่คือที่นั่งของฉัน", "opts": ["ที่นั่ง", "บัตรขึ้นเครื่อง", "ผู้โดยสาร", "อาคารผู้โดยสาร"], "a": 0}, {"word": "delay", "meaning": "ความล่าช้า", "hint": "เที่ยวบินออกหรือมาถึงช้ากว่าเวลาที่กำหนด", "example": "The flight has a delay.", "exampleTh": "เที่ยวบินล่าช้า", "opts": ["หนังสือเดินทาง", "ความล่าช้า", "ตั๋วโดยสาร", "ผู้โดยสาร"], "a": 1}, {"word": "baggage claim", "meaning": "จุดรับกระเป๋า", "hint": "บริเวณรับสัมภาระหลังลงจากเครื่องบิน", "example": "Go to baggage claim.", "exampleTh": "ไปที่จุดรับกระเป๋า", "opts": ["จุดรับกระเป๋า", "เที่ยวบิน", "ตั๋วโดยสาร", "กระเป๋าเดินทาง"], "a": 0}];
+const $=id=>document.getElementById(id);let player='',used=new Set(),played=[],score=0,current=-1,teachIndex=0,spinning=false,spinTimer=null,qTimer=null,deadline=0,attempts=0,selectedMeaning=-1,placed=[],availableLetters=[],audioCtx=null;
+function show(id){['cover','teachReview','review','game','result'].forEach(x=>$(x).classList.toggle('hidden',x!==id));scrollTo(0,0)}
+function ac(){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}function tone(f,d=.05,v=.025){let c=ac(),o=c.createOscillator(),g=c.createGain();o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(c.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+d);o.stop(c.currentTime+d+.02)}
+function speak(w){if('speechSynthesis'in window){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(w);u.lang='en-US';u.rate=.78;speechSynthesis.speak(u)}}
+function celebrationSound(){
+  const notes=[523,659,784,1047,1319,1568];
+  notes.forEach((f,i)=>setTimeout(()=>tone(f,.16,.075),i*85));
+  setTimeout(()=>{[784,988,1175,1568].forEach((f,i)=>setTimeout(()=>tone(f,.22,.065),i*70))},520);
+}
+function launchConfetti(){
+  const fx=$('celebrationFX');
+  fx.innerHTML='';fx.classList.remove('hidden');
+  const colors=['#ff4f9a','#ffd84d','#5be7ff','#7d63ff','#55e88f','#ff8b3d','#ffffff'];
+  for(let i=0;i<150;i++){
+    const c=document.createElement('i');
+    const type=i%7===0?'round':(i%5===0?'ribbon':'');
+    c.className='confettiPiece '+type;
+    c.style.left=(Math.random()*100)+'vw';
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.setProperty('--dur',(1.9+Math.random()*1.8)+'s');
+    c.style.setProperty('--drift',((-18+Math.random()*36))+'vw');
+    c.style.setProperty('--spin',((-540+Math.random()*1080))+'deg');
+    c.style.animationDelay=(Math.random()*.38)+'s';
+    fx.appendChild(c);
+  }
+  const glow=document.createElement('div');glow.className='celebrateGlow';document.body.appendChild(glow);
+  setTimeout(()=>glow.remove(),1000);
+  setTimeout(()=>{fx.classList.add('hidden');fx.innerHTML=''},3900);
+}
+function celebrateCorrect(){launchConfetti();celebrationSound()}
+
+function renderTeach(){
+  let x=pool[teachIndex];
+  $('teachNo').textContent=`WORD ${String(teachIndex+1).padStart(2,'0')} / 20`;
+  $('teachWord').textContent=x.word.toUpperCase();
+  $('teachMeaning').textContent=x.meaning;
+  $('teachHint').textContent='💡 '+x.hint;$('teachExample').textContent='💬 '+x.example;$('teachExampleTh').textContent=x.exampleTh;
+  $('teachPrev').disabled=teachIndex===0;
+  $('teachNext').textContent=teachIndex===pool.length-1?'✓ ครบ 20 คำแล้ว':'คำถัดไป →';
+  $('teachDots').innerHTML=pool.map((_,i)=>`<span class="teachDot ${i===teachIndex?'on':''}"></span>`).join('');
+}
+function openTeach(){teachIndex=0;renderTeach();show('teachReview')}
+function nextTeach(){if(teachIndex<pool.length-1){teachIndex++;renderTeach();tone(620,.04,.018)}else{tone(820,.08,.025)}}
+function prevTeach(){if(teachIndex>0){teachIndex--;renderTeach();tone(520,.04,.018)}}
+
+function review(){$('reviewGrid').innerHTML=pool.map((x,i)=>`<div class="review"><span>${i+1}</span><div><b>${x.word}</b><br><small>${x.meaning}</small><br><small style="color:#61738b">💬 ${x.example}</small></div><button class="speak" data-w="${x.word}">🔊</button></div>`).join('');$('reviewGrid').querySelectorAll('.speak').forEach(b=>b.onclick=()=>speak(b.dataset.w));show('review')}
+function start(){clearInterval(qTimer);player=$('name').value.trim()||'นักเดินทางตัวน้อย';used=new Set();played=[];score=0;current=-1;spinning=false;show('game');$('bigNum').textContent='?';$('status').textContent='พร้อมสุ่มคำแรก';update()}
+function renderNumbers(){$('numbers').innerHTML=pool.map((x,i)=>`<button class="num ${used.has(i)?'used':''}" data-i="${i}" disabled>${i+1}</button>`).join('')}
+function renderUsed(){$('usedbar').innerHTML=Array.from({length:10},(_,i)=>{let r=played[i];return `<div class="mini ${r?(r.ok?'ok':'bad'):''}">${r?r.num:'?'}${r?`<span class="mark">${r.ok?'✓':'✕'}</span>`:''}</div>`}).join('')}
+function update(){$('who').textContent='👤 '+player;$('prog').textContent=`คำ ${played.length}/10`;$('scoreHud').textContent=`⭐ ${score}`;renderUsed();renderNumbers()}
+function spin(){if(spinning||played.length>=10)return;spinning=true;$('spinBtn').disabled=true;let avail=pool.map((_,i)=>i).filter(i=>!used.has(i)),startT=performance.now(),last=null;function tick(){let e=performance.now()-startT,idx=avail[Math.floor(Math.random()*avail.length)];if(avail.length>1&&idx===last){let a=avail.filter(v=>v!==last);idx=a[Math.floor(Math.random()*a.length)]}last=idx;$('bigNum').textContent=idx+1;tone(760,.045,.05);document.querySelectorAll('.num').forEach(b=>b.classList.toggle('active',+b.dataset.i===idx));let p=Math.min(e/4000,1),delay=55+Math.pow(p,2.3)*520;if(e+delay>=4000){spinTimer=setTimeout(()=>land(last),Math.max(40,4000-e));return}spinTimer=setTimeout(tick,delay)}tick()}
+function land(i){current=i;used.add(i);spinning=false;document.querySelectorAll('.num').forEach(b=>b.classList.remove('active'));$('bigNum').textContent=i+1;$('status').textContent=`หยุดที่ CARD ${i+1}!`;[420,560,720].forEach((f,n)=>setTimeout(()=>tone(f,.14,.07),n*80));setTimeout(openCard,650)}
+function shuffleLetters(w){let a=[...w];do{for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}while(a.join('').toLowerCase()===w.toLowerCase()&&w.length>2);return a}
+function openCard(){let x=pool[current];attempts=0;selectedMeaning=-1;placed=[];availableLetters=shuffleLetters(x.word).map((ch,i)=>({ch,id:i,used:false}));$('cardNo').textContent=`CARD ${current+1} • RANDOM WORD`;$('hint').classList.add('hidden');$('hint').textContent='💡 '+x.hint;$('fb').classList.add('hidden');$('nextBtn').classList.add('hidden');$('checkBtn').disabled=false;renderLetters();renderMeanings();$('overlay').classList.remove('hidden');startTimer()}
+function renderLetters(){$('scramble').innerHTML=availableLetters.map((o,i)=>`<button class="letter" data-i="${i}" ${o.used?'disabled style="opacity:.25"':''}>${o.ch.toUpperCase()}</button>`).join('');$('scramble').querySelectorAll('.letter').forEach(b=>b.onclick=()=>{let i=+b.dataset.i;if(availableLetters[i].used)return;availableLetters[i].used=true;placed.push(i);renderLetters();renderSlots()});renderSlots()}
+function renderSlots(){if(!placed.length){$('slots').innerHTML='คำที่เรียงจะอยู่ตรงนี้';return}$('slots').innerHTML=placed.map(i=>`<span class="placed">${availableLetters[i].ch.toUpperCase()}</span>`).join('')}
+function renderMeanings(){let x=pool[current];$('meanings').innerHTML=x.opts.map((m,i)=>`<button class="meaning" data-i="${i}">${m}</button>`).join('');$('meanings').querySelectorAll('.meaning').forEach(b=>b.onclick=()=>{selectedMeaning=+b.dataset.i;$('meanings').querySelectorAll('.meaning').forEach(z=>z.classList.toggle('sel',z===b))})}
+function startTimer(){clearInterval(qTimer);deadline=performance.now()+30000;$('timerNum').textContent='30';$('timerBar').style.width='100%';let last=30;qTimer=setInterval(()=>{let r=Math.max(0,deadline-performance.now()),s=Math.ceil(r/1000);$('timerNum').textContent=s;$('timerBar').style.width=(r/30000*100)+'%';if(s!==last&&s>0){tone(s<=5?980:680,.025,.012);last=s}if(r<=0){clearInterval(qTimer);finishWord(false,true)}},100)}
+function check(){let x=pool[current],spelled=placed.map(i=>availableLetters[i].ch).join('').toLowerCase(),okWord=spelled===x.word.toLowerCase(),okMeaning=selectedMeaning===x.a;if(okWord&&okMeaning){finishWord(true,false);return}attempts++;tone(160,.18,.035);if(attempts>=2){finishWord(false,false)}else{$('fb').innerHTML=`❌ ยังไม่ถูก — เหลือโอกาสแก้อีก <b>1 ครั้ง</b><br>${!okWord?'ตรวจการเรียงตัวอักษรอีกครั้ง ':''}${!okMeaning?'และเลือกความหมายใหม่':''}`;$('fb').classList.remove('hidden')}}
+function showBigFeedback(ok,timeout){
+  let x=pool[current],box=$('bigFeedback');
+  box.className='bigFeedback '+(ok?'good':'bad');
+  $('bigFeedbackIcon').textContent=ok?'✓':'✕';
+  $('bigFeedbackTitle').textContent=ok?['เยี่ยมมาก!','เก่งมาก!','สุดยอด!','อเมซิ่ง!'][Math.floor(Math.random()*4)]:(timeout?'หมดเวลา!':'เกือบแล้ว!');
+  $('bigFeedbackWord').textContent=x.word.toUpperCase();
+  $('bigFeedbackMeaning').textContent='= '+x.meaning;
+  box.classList.remove('hidden');
+  setTimeout(()=>box.classList.add('hidden'),ok?1500:1350);
+}
+function finishWord(ok,timeout){clearInterval(qTimer);let x=pool[current];showBigFeedback(ok,timeout);$('checkBtn').disabled=true;document.querySelectorAll('.letter,.meaning').forEach(b=>b.disabled=true);if(ok){score++;celebrateCorrect()}else{tone(130,.25,.04)}played.push({num:current+1,word:x.word,ok,timeout});$('fb').innerHTML=ok?`🏆 <b>ถูกต้อง!</b> ${x.word.toUpperCase()} = ${x.meaning}<br>💬 ${x.example}<br><small>${x.exampleTh}</small>`:`${timeout?'⏰ หมดเวลา!':'💥 ใช้โอกาสครบแล้ว'}<br>คำที่ถูกคือ <b>${x.word.toUpperCase()}</b> = ${x.meaning}`;$('fb').classList.remove('hidden');$('nextBtn').classList.remove('hidden');update()}
+function next(){$('overlay').classList.add('hidden');if(played.length>=10)finish();else{$('bigNum').textContent='?';$('status').textContent='พร้อมสุ่มคำต่อไป';$('spinBtn').disabled=false;renderNumbers()}}
+function finish(){show('result');let pct=score*10;$('resultName').textContent=player;$('finalScore').textContent=`${score}/10 • ${pct}%`;$('resultText').textContent=pct>=80?'สุดยอด! พิชิตสนามคำศัพท์สำเร็จ 🎰🔤✨':'ทบทวนอีกนิด แล้วกลับมาสุ่มใหม่ได้เลย 💪'}
+$('teachBtn').onclick=openTeach;$('teachPrev').onclick=prevTeach;$('teachNext').onclick=nextTeach;$('teachSpeak').onclick=()=>speak(pool[teachIndex].word);$('exampleSpeak').onclick=()=>speak(pool[teachIndex].example);$('teachHome').onclick=()=>show('cover');$('teachStart').onclick=start;$('reviewBtn').onclick=review;$('backBtn').onclick=()=>show('cover');$('startBtn').onclick=start;$('reviewStartBtn').onclick=start;$('spinBtn').onclick=spin;$('hintBtn').onclick=()=>{$('hint').classList.toggle('hidden');tone(600)};$('soundBtn').onclick=()=>speak(pool[current].word);$('undoBtn').onclick=()=>{let i=placed.pop();if(i!==undefined)availableLetters[i].used=false;renderLetters()};$('clearBtn').onclick=()=>{placed=[];availableLetters.forEach(x=>x.used=false);renderLetters()};$('checkBtn').onclick=check;$('nextBtn').onclick=next;$('again').onclick=start;$('home').onclick=()=>show('cover');
+</script></body></html>
