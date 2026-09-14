@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MONEY MATH BATTLE – Discount Profit Percent | Kru Pai Classroom</title>
+<style>
+:root{
+  --bg0:#05070f;--bg1:#0f1430;--bg2:#1a1033;--ink:#f8fafc;--muted:rgba(248,250,252,.82);
+  --yellow:#ffd86b;--pink:#ff72c8;--pink2:#ffe0f2;--violet:#9f8cff;--cyan:#67efff;--green:#7ef0c0;--bad:#ff607d;
+  --shadow:rgba(0,0,0,.42);--panel:rgba(14,18,38,.88);--panel2:rgba(24,29,58,.82);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);min-height:100vh;
+  background:
+    radial-gradient(1200px 800px at 8% 12%, rgba(103,239,255,.18), transparent 46%),
+    radial-gradient(1000px 720px at 92% 18%, rgba(255,114,200,.18), transparent 40%),
+    radial-gradient(900px 680px at 50% 100%, rgba(104,242,163,.12), transparent 42%),
+    linear-gradient(180deg,var(--bg0),#11183a 42%,#22103d);
+  overflow:hidden;-webkit-text-size-adjust:100%
+}
+.sparkles,.bubbles,.confettiLayer,.emojiLayer,.dnaLayer,.flashLayer{position:fixed;inset:0;pointer-events:none}
+.flashLayer{opacity:0;background:radial-gradient(circle at center, rgba(255,255,255,.22), rgba(255,255,255,0) 58%);transition:opacity .18s ease;z-index:210}
+.flashLayer.show{opacity:1}
+.sparkles i{position:absolute;width:7px;height:7px;border-radius:50%;background:rgba(255,228,92,.95);box-shadow:0 0 14px rgba(255,228,92,.65);animation:twinkle 2.8s ease-in-out infinite}
+.sparkles i:nth-child(odd){background:rgba(255,123,194,.95);box-shadow:0 0 14px rgba(255,123,194,.55)}
+@keyframes twinkle{0%,100%{transform:scale(.6);opacity:.25}50%{transform:scale(1.45);opacity:1}}
+.bubbles span{position:absolute;border-radius:50%;background:rgba(142,247,255,.08);border:1px solid rgba(142,247,255,.12);animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(20vh) scale(.8);opacity:0}10%{opacity:1}100%{transform:translateY(-120vh) scale(1.15);opacity:0}}
+.dnaLayer i{position:absolute;width:90px;height:18px;border-radius:999px;border:2px solid rgba(142,247,255,.12);opacity:.35;transform:rotate(40deg);animation:dnaDrift linear infinite}
+@keyframes dnaDrift{0%{transform:translateY(30px) rotate(35deg)}100%{transform:translateY(-110vh) rotate(45deg)}}
+.screen{display:none;width:100vw;height:100dvh;min-height:100vh;overflow-y:auto;overflow-x:hidden;padding:12px}
+.screen.active{display:block}
+.wrap{max-width:1260px;margin:0 auto}
+.brand{display:flex;justify-content:center;margin-top:4px}
+.badge{width:62px;height:62px;border-radius:20px;display:grid;place-items:center;font-weight:1000;letter-spacing:.8px;color:#1a1430;background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet));box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.heroTitle{text-align:center;margin:10px 0 4px;font-size:clamp(34px,4.6vw,64px);line-height:1.02;font-weight:1000;letter-spacing:.3px}
+.heroTitle .glow{background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 14px 22px rgba(0,0,0,.35))}
+.subtitle{text-align:center;color:var(--muted);font-weight:900;line-height:1.42;font-size:clamp(14px,1.35vw,20px);margin:0 0 14px}
+.card{background:linear-gradient(180deg, rgba(20,26,51,.95), rgba(17,20,41,.92));border:1px solid rgba(255,255,255,.10);border-radius:28px;padding:18px;box-shadow:0 20px 40px var(--shadow);backdrop-filter: blur(6px)}
+input{width:100%;padding:18px 18px;font-size:22px;font-weight:1000;border-radius:18px;border:1px solid rgba(255,255,255,.14);outline:none;background:rgba(7,8,17,.55);color:var(--ink)}
+.btn,.miniBtn,.modeBtn{border:none;cursor:pointer;font-weight:1000;transition:transform .12s ease, filter .12s ease, box-shadow .18s ease}
+.btn:active,.miniBtn:active,.modeBtn:active,.pulseCell:active{transform:translateY(2px)}
+.btn{width:100%;margin-top:12px;padding:17px 18px;border-radius:18px;background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet));color:#170f27;font-size:clamp(19px,1.9vw,25px);box-shadow:0 18px 36px rgba(0,0,0,.32)}
+.miniRow{display:flex;gap:10px;flex-wrap:wrap}
+.miniBtn,.modeBtn{flex:1 1 200px;padding:12px 13px;border-radius:15px;background:linear-gradient(180deg, rgba(10,13,27,.74), rgba(20,26,51,.68));border:1px solid rgba(255,255,255,.10);color:var(--pink2);font-size:14px;box-shadow:0 12px 24px rgba(0,0,0,.22)}
+.modeBtn.active{background:linear-gradient(135deg,rgba(255,228,92,.22),rgba(255,123,194,.22));color:var(--yellow);border-color:rgba(255,228,92,.35)}
+.howtoList{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.howtoBox{background:linear-gradient(180deg, rgba(13,16,33,.76), rgba(20,26,51,.66));border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:14px}
+.howtoBox h3{margin:0 0 8px;color:var(--yellow);font-size:20px}.howtoBox p{margin:0;font-weight:800;line-height:1.45}
+.goalBanner{margin-top:12px;padding:12px 14px;border-radius:18px;text-align:center;background:linear-gradient(135deg, rgba(255,228,92,.14), rgba(255,123,194,.16));border:1px solid rgba(255,255,255,.10);font-weight:1000}
+.topZone{display:grid;grid-template-columns:1fr 114px;gap:12px;align-items:start;margin-bottom:10px}
+.topbar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.chip{background:linear-gradient(180deg, rgba(9,12,27,.82), rgba(20,26,51,.68));border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:9px 10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 12px 24px rgba(0,0,0,.26);font-size:14px;font-weight:1000;color:var(--muted)}
+.chip strong{font-size:18px;color:var(--ink)}
+.timerBox{background:linear-gradient(180deg, rgba(9,12,27,.82), rgba(20,26,51,.68));border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:8px 8px 10px;box-shadow:0 12px 24px rgba(0,0,0,.26);text-align:center}
+.timerWheel{width:96px;height:96px;margin:0 auto;border-radius:50%;background:conic-gradient(var(--pink) calc(var(--deg,360) * 1deg), rgba(255,255,255,.08) 0);position:relative;display:grid;place-items:center;box-shadow:0 12px 22px rgba(0,0,0,.32)}
+.timerWheel::before{content:"";position:absolute;inset:8px;border-radius:50%;background:linear-gradient(180deg, rgba(8,13,25,.96), rgba(20,26,51,.90));border:1px solid rgba(255,255,255,.08)}
+.timerNum{position:relative;z-index:1;font-size:34px;font-weight:1000;color:var(--yellow)}
+.timerLabel{margin-top:4px;font-size:12px;font-weight:1000;color:var(--muted)}
+.thaiBox{background:linear-gradient(135deg, rgba(255,228,92,.16), rgba(255,123,194,.13));border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:14px 18px;text-align:center;font-weight:1000;color:var(--yellow);font-size:clamp(22px,2.4vw,34px);margin-bottom:10px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.commandBox{display:none!important;background:linear-gradient(180deg, rgba(9,12,27,.70), rgba(20,26,51,.62));border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:12px 14px;font-weight:900;color:var(--muted);text-align:center;margin-bottom:10px;font-size:clamp(14px,1.2vw,18px)}
+.battleWrap{position:relative;min-height:360px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border-radius:28px;border:1px solid rgba(255,255,255,.07);padding:6px 0}
+.battleLane{position:relative;min-height:345px}
+.energyLine{position:absolute;left:50%;top:50%;width:min(560px,60vw);height:6px;transform:translate(-50%,-50%);background:linear-gradient(90deg,rgba(255,99,184,.0),rgba(255,99,184,.75),rgba(255,228,92,.95),rgba(142,247,255,.8),rgba(142,247,255,0));filter:blur(2px);opacity:.58;animation:energyMove 1.4s linear infinite;z-index:1}
+@keyframes energyMove{0%,100%{opacity:.3;transform:translate(-50%,-50%) scaleX(.92)}50%{opacity:.95;transform:translate(-50%,-50%) scaleX(1.04)}}
+.pulseCell{position:absolute;width:min(44%,450px);min-height:178px;border-radius:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px 18px;font-size:clamp(26px,2.2vw,38px);line-height:1.22;font-weight:1000;color:var(--ink);border:2px solid rgba(255,255,255,.14);background:radial-gradient(circle at 20% 20%, rgba(255,255,255,.18), rgba(255,255,255,0) 32%),linear-gradient(180deg, rgba(18,20,42,.98), rgba(28,22,54,.94));box-shadow:0 22px 36px rgba(0,0,0,.34), 0 0 24px rgba(255,123,194,.14), inset 0 0 0 1px rgba(255,255,255,.04);transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;z-index:2}
+.pulseCell.left{left:-58%;top:78px;--tilt:-4deg;transform:rotate(-6deg)}
+.pulseCell.right{right:-58%;top:78px;--tilt:4deg;transform:rotate(6deg)}
+.pulseCell.left.enter{animation:leftCardRush .6s cubic-bezier(.2,.84,.22,1) forwards}
+.pulseCell.right.enter{animation:rightCardRush .6s cubic-bezier(.2,.84,.22,1) forwards}
+@keyframes leftCardRush{0%{left:-62%;transform:rotate(-9deg) scale(.88)}100%{left:4%;transform:rotate(-4deg) scale(1)}}
+@keyframes rightCardRush{0%{right:-62%;transform:rotate(9deg) scale(.88)}100%{right:4%;transform:rotate(4deg) scale(1)}}
+.pulseCell:hover{border-color:rgba(255,228,92,.78);box-shadow:0 0 0 2px rgba(255,228,92,.25),0 0 40px rgba(255,228,92,.28),0 22px 36px rgba(0,0,0,.34)}
+.pulseCell.correct{border-color:rgba(104,242,163,.95);box-shadow:0 0 0 2px rgba(104,242,163,.20),0 0 36px rgba(104,242,163,.26),0 22px 36px rgba(0,0,0,.34);animation:hitImpact .35s ease}
+.pulseCell.wrong{border-color:rgba(255,95,117,.95);box-shadow:0 0 0 2px rgba(255,95,117,.20),0 0 36px rgba(255,95,117,.26),0 22px 36px rgba(0,0,0,.34);animation:hitImpact .35s ease}
+.pulseCell.dim{opacity:.32;filter:saturate(.66)}
+@keyframes hitImpact{0%{transform:scale(1)}30%{transform:scale(1.08)}100%{transform:scale(1)}}
+.cellCore{display:none}.cellLabel{position:absolute;top:12px;left:14px;font-size:14px;font-weight:1000;color:var(--pink2);letter-spacing:1px}.cellText{position:relative;z-index:2;width:100%;text-shadow:0 6px 18px rgba(0,0,0,.22)}
+.vsOrb{position:absolute;left:50%;top:122px;transform:translateX(-50%);width:106px;height:106px;border-radius:50%;display:grid;place-items:center;font-size:30px;font-weight:1000;color:#1b1530;background:radial-gradient(circle at 30% 30%, #fff6bc, var(--yellow) 45%, var(--pink2));box-shadow:0 16px 30px rgba(0,0,0,.34), 0 0 22px rgba(255,123,194,.20);z-index:5;animation:vsPulse 1.2s infinite}
+@keyframes vsPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.12)}}
+.statusText{text-align:center;font-weight:1000;font-size:clamp(16px,1.3vw,22px);color:var(--pink2);margin-top:10px;min-height:30px}
+.comboBadge,.winnerBanner,.countdownOverlay{position:fixed;left:50%;transform:translateX(-50%) scale(.9);background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet));color:#170f27;border-radius:999px;padding:10px 20px;font-weight:1000;box-shadow:0 16px 34px rgba(0,0,0,.35);opacity:0;pointer-events:none;z-index:220;transition:opacity .18s ease, transform .18s ease}
+.comboBadge{top:12px;font-size:clamp(16px,2vw,28px)}
+.winnerBanner{top:12px;font-size:clamp(18px,2.2vw,34px)}
+.countdownOverlay{top:50%;transform:translateX(-50%) translateY(-50%) scale(.75);font-size:clamp(54px,12vw,120px);padding:16px 32px;border-radius:30px;z-index:260}
+.comboBadge.show,.winnerBanner.show{opacity:1;transform:translateX(-50%) scale(1)}
+.countdownOverlay.show{opacity:1;transform:translateX(-50%) translateY(-50%) scale(1)}
+.floatEmoji{position:absolute;font-size:56px;animation:popRise .9s ease-out forwards;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28))}
+@keyframes popRise{0%{transform:translateY(0) scale(.65);opacity:0}20%{opacity:1}100%{transform:translateY(-70px) scale(1.15);opacity:0}}
+.certificate{position:relative;padding:clamp(18px,2vw,28px);border-radius:28px;background:radial-gradient(circle at 15% 12%, rgba(255,192,203,.22), transparent 24%),radial-gradient(circle at 85% 18%, rgba(255,228,92,.24), transparent 26%),radial-gradient(circle at 50% 100%, rgba(104,242,163,.16), transparent 30%),linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,248,252,.98));color:#17212f;border:8px double rgba(255,182,193,.8);box-shadow:0 30px 70px rgba(0,0,0,.35), 0 0 36px rgba(255,192,203,.28);overflow:hidden}
+.certificate::after{content:"✨  ⭐  ✨  🌈  ✨";position:absolute;left:50%;bottom:10px;transform:translateX(-50%);font-size:clamp(18px,2vw,28px);opacity:.9;z-index:1}
+.certTop{text-align:center;position:relative;z-index:1}.certSeal{width:96px;height:96px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet));color:#08111f;font-size:42px;font-weight:1000;box-shadow:0 18px 34px rgba(0,0,0,.22);border:4px solid rgba(255,255,255,.7)}
+.certTitle{font-size:clamp(30px,3.2vw,52px);font-weight:1000;color:#b45309;text-shadow:0 4px 10px rgba(255,192,203,.22);margin-bottom:4px}.certSub{font-size:clamp(15px,1.5vw,22px);font-weight:900;color:#3b4758;margin-bottom:14px}.certPlayer{font-size:clamp(22px,2.2vw,34px);font-weight:1000;color:#14532d;margin:10px 0 14px;text-align:center;position:relative;z-index:1}.certBigScore{text-align:center;font-size:clamp(54px,5vw,88px);font-weight:1000;color:#b45309;margin:6px 0 0;position:relative;z-index:1}.certMini{text-align:center;font-size:clamp(16px,1.4vw,20px);font-weight:900;color:#475569;margin-bottom:14px;position:relative;z-index:1}
+.certGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px;position:relative;z-index:1}.certStat{background:rgba(255,255,255,.85);border:2px solid rgba(255,228,92,.65);border-radius:18px;padding:14px 10px;text-align:center;box-shadow:0 12px 22px rgba(0,0,0,.08)}.certStat .k{font-weight:1000;font-size:clamp(14px,1.2vw,18px);color:#475569;margin-bottom:6px}.certStat .v{font-weight:1000;font-size:clamp(24px,2vw,34px);color:#0f172a}
+.certPass{margin:16px auto 8px;width:fit-content;padding:12px 22px;border-radius:999px;font-weight:1000;font-size:clamp(18px,1.8vw,26px);position:relative;z-index:1}.certPass.pass{background:rgba(34,197,94,.18);color:#166534;border:2px solid rgba(34,197,94,.45)}.certPass.fail{background:rgba(239,68,68,.14);color:#991b1b;border:2px solid rgba(239,68,68,.35)}.certFooter{text-align:center;margin-top:16px;color:#475569;font-weight:900;font-size:clamp(13px,1.2vw,17px);position:relative;z-index:1}
+.confettiLayer i{position:absolute;top:-20px;width:10px;height:18px;border-radius:8px;opacity:.96;animation:megaDrop linear forwards}
+@keyframes megaDrop{0%{transform:translateY(-30px) rotate(0deg);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:.95}}
+.tv body,.tvMode body{font-size:112%}
+.tvMode .wrap{max-width:1560px}
+.tvMode .heroTitle{font-size:clamp(40px,5vw,76px)}
+.tvMode .subtitle{font-size:clamp(18px,1.55vw,26px)}
+.tvMode .thaiBox{font-size:clamp(28px,2.6vw,42px);padding:18px 22px}
+.tvMode .commandBox{display:none!important;font-size:clamp(18px,1.35vw,24px);padding:14px 18px}
+.tvMode .chip{font-size:16px;padding:12px 14px}.tvMode .chip strong{font-size:22px}
+.tvMode .battleWrap,.tvMode .battleLane{min-height:450px}
+.tvMode .pulseCell{min-height:220px;font-size:clamp(32px,2.2vw,46px);width:min(44%,520px);padding:24px 20px}
+.tvMode .pulseCell.left,.tvMode .pulseCell.right{top:104px}
+.tvMode .vsOrb{top:150px;width:132px;height:132px;font-size:38px}
+.tvMode .energyLine{height:9px;width:min(720px,62vw)}
+@media (max-width:920px){.howtoList{grid-template-columns:1fr}.topZone{grid-template-columns:1fr 100px;gap:8px}.battleWrap,.battleLane{min-height:310px}.pulseCell{width:44%;min-height:144px;font-size:20px;padding:14px 12px}.pulseCell.left,.pulseCell.right{top:58px}.vsOrb{top:106px;width:80px;height:80px;font-size:25px}.energyLine{width:72vw}}
+@media (max-width:768px){body{overflow:auto}.screen{padding:8px 8px 14px}.badge{width:44px;height:44px;border-radius:12px;font-size:14px}.heroTitle{font-size:clamp(24px,6.4vw,34px);margin:4px 0 2px}.subtitle{font-size:12px;line-height:1.3;margin:0 0 8px}.card{padding:10px;border-radius:18px}.topbar{gap:6px}.chip{min-height:38px;border-radius:12px;padding:6px 8px;font-size:10px;line-height:1.05}.chip strong{font-size:13px}.timerWheel{width:82px;height:82px}.timerWheel::before{inset:7px}.timerNum{font-size:28px}.thaiBox{font-size:20px;padding:12px 10px;line-height:1.28}.commandBox{display:none!important;font-size:12px;padding:9px 10px}.battleWrap,.battleLane{min-height:280px}.pulseCell{width:min(45vw,230px);min-width:148px;min-height:130px;padding:12px 10px;font-size:18px;border-radius:18px}.pulseCell.left,.pulseCell.right{top:50px}.vsOrb{top:96px;width:72px;height:72px;font-size:22px}.statusText{font-size:14px;min-height:24px}.miniBtn,.modeBtn{flex:1 1 calc(50% - 6px);padding:10px 8px;border-radius:12px;font-size:12px}.btn{margin-top:8px;padding:13px 12px;border-radius:14px;font-size:17px}.comboBadge{top:8px;width:calc(100vw - 22px);padding:8px 10px;text-align:center;font-size:clamp(14px,4.2vw,20px)}.winnerBanner{top:8px;width:calc(100vw - 18px);text-align:center;padding:10px 12px;font-size:clamp(14px,4.2vw,20px)}.countdownOverlay{width:calc(100vw - 40px);text-align:center}.certGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.certSeal{width:70px;height:70px;font-size:32px}.certTitle{font-size:clamp(22px,6vw,30px)}.certSub{font-size:12px;margin-bottom:8px}.certPlayer{font-size:clamp(18px,5vw,24px);margin:8px 0 10px}.certBigScore{font-size:clamp(40px,11vw,58px)}.certMini{font-size:13px;margin-bottom:10px}.certStat{padding:10px 8px;border-radius:14px}.certStat .k{font-size:12px}.certStat .v{font-size:21px}.certPass{padding:10px 16px;font-size:18px}}
+
+/* Kru Pai MATH BRIGHT upgrade */
+body{background:radial-gradient(900px 650px at 12% 10%,rgba(20,184,166,.28),transparent 48%),radial-gradient(850px 650px at 90% 15%,rgba(59,130,246,.24),transparent 45%),radial-gradient(800px 600px at 50% 100%,rgba(168,85,247,.18),transparent 46%),linear-gradient(180deg,#061c2b,#082f49 48%,#172554)}
+.badge{background:linear-gradient(135deg,#67e8f9,#86efac,#fde047);color:#083344;box-shadow:0 0 30px rgba(103,232,249,.4)}
+.heroTitle .glow{background:linear-gradient(90deg,#67e8f9,#86efac,#fde047,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:linear-gradient(180deg,rgba(7,40,55,.94),rgba(15,46,70,.92));border:1px solid rgba(103,232,249,.22)}
+.howtoBox{background:linear-gradient(180deg,rgba(6,45,59,.82),rgba(17,55,75,.76));border-color:rgba(134,239,172,.20)}
+.goalBanner{background:linear-gradient(135deg,rgba(103,232,249,.18),rgba(134,239,172,.16));}
+.pulseCell{font-size:clamp(30px,2.55vw,43px);background:radial-gradient(circle at 18% 18%,rgba(103,232,249,.18),transparent 30%),linear-gradient(180deg,rgba(7,40,55,.98),rgba(20,52,78,.96));border-color:rgba(103,232,249,.24)}
+.thaiBox{font-size:clamp(25px,2.65vw,38px);background:linear-gradient(135deg,rgba(103,232,249,.18),rgba(134,239,172,.14));color:#fef08a}
+.commandBox{display:none!important;font-size:clamp(16px,1.35vw,20px)}
+.cellLabel{font-size:16px;color:#a7f3d0}.miniBtn,.modeBtn{font-size:15px}.chip{font-size:15px}.chip strong{font-size:20px}
+.scienceHero{display:flex;justify-content:center;gap:12px;align-items:center;margin:4px auto 8px;font-size:clamp(38px,5vw,64px);filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}.scienceHero span{animation:sciFloat 2.6s ease-in-out infinite}.scienceHero span:nth-child(2){animation-delay:.35s}.scienceHero span:nth-child(3){animation-delay:.7s}@keyframes sciFloat{50%{transform:translateY(-7px) rotate(4deg)}}
+@media(max-width:768px){.pulseCell{font-size:20px}.thaiBox{font-size:22px}.scienceHero{font-size:38px}}
+</style>
+
+<style>
+.scienceIcons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px auto 16px}
+.scienceIcons span{width:68px;height:68px;border-radius:20px;display:grid;place-items:center;font-size:25px;font-weight:1000;
+background:linear-gradient(145deg,rgba(103,239,255,.24),rgba(126,240,192,.16));border:2px solid rgba(103,239,255,.42);
+box-shadow:0 12px 26px rgba(0,0,0,.22),inset 0 0 18px rgba(255,255,255,.06)}
+.heroTitle .glow{background:linear-gradient(135deg,#8ef7ff,#7ef0c0,#fff19a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{background:linear-gradient(135deg,#8ef7ff,#7ef0c0,#fff19a)}
+.thaiBox{font-size:clamp(27px,2.8vw,40px);line-height:1.3;padding:17px 20px}
+.pulseCell{font-size:clamp(30px,2.55vw,42px);line-height:1.2;min-height:190px}
+.cellLabel{font-size:17px}
+@media(max-width:768px){
+ .scienceIcons span{width:52px;height:52px;border-radius:15px;font-size:20px}
+ .thaiBox{font-size:clamp(22px,5.8vw,28px)}
+ .pulseCell{font-size:clamp(20px,5.2vw,25px);min-height:140px}
+}
+</style>
+
+
+<style>
+:root{
+ --bg0:#050816;--bg1:#0b1637;--bg2:#1b0e3a;
+ --yellow:#ffef8a;--pink:#ff7bd8;--pink2:#d9f4ff;
+ --violet:#8f7cff;--cyan:#63e7ff;--green:#77f2d0;--bad:#ff5f7f;
+}
+body{
+ background:
+ radial-gradient(900px 640px at 18% 12%, rgba(99,231,255,.22), transparent 45%),
+ radial-gradient(860px 620px at 82% 18%, rgba(143,124,255,.23), transparent 42%),
+ radial-gradient(900px 700px at 50% 100%, rgba(255,123,216,.14), transparent 42%),
+ linear-gradient(180deg,#040713,#0a1433 42%,#1c0b35);
+}
+.heroTitle .glow{
+ background:linear-gradient(135deg,#7eefff,#b9a7ff,#ffb7ec,#fff19b);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.badge{background:linear-gradient(135deg,#77f2d0,#63e7ff,#b9a7ff)}
+.scienceIcons span{
+ background:linear-gradient(145deg,rgba(99,231,255,.25),rgba(143,124,255,.22));
+ border-color:rgba(126,239,255,.48);
+ box-shadow:0 12px 26px rgba(0,0,0,.24),0 0 22px rgba(99,231,255,.13),inset 0 0 18px rgba(255,255,255,.07)
+}
+.thaiBox{
+ background:linear-gradient(135deg,rgba(99,231,255,.16),rgba(143,124,255,.15),rgba(255,123,216,.11));
+ border-color:rgba(126,239,255,.25);color:#f5fbff;
+}
+.pulseCell{
+ background:
+ radial-gradient(circle at 18% 18%, rgba(255,255,255,.18), transparent 32%),
+ linear-gradient(180deg,rgba(13,22,51,.98),rgba(30,19,68,.95));
+ border-color:rgba(126,239,255,.18);
+}
+.vsOrb{
+ background:radial-gradient(circle at 30% 30%,#ffffff,#8ef7ff 36%,#a78bfa 68%,#ff9fdf);
+ color:#121633;
+ box-shadow:0 16px 30px rgba(0,0,0,.36),0 0 30px rgba(99,231,255,.26)
+}
+.timerNum{color:#8ef7ff}
+.timerWheel{background:conic-gradient(#8ef7ff calc(var(--deg,360) * 1deg),rgba(255,255,255,.08) 0)}
+</style>
+
+
+<style>
+.reviewGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:10px}
+.reviewCard{position:relative;background:linear-gradient(145deg,rgba(12,27,60,.96),rgba(33,20,72,.94));
+border:1px solid rgba(126,239,255,.20);border-radius:24px;padding:18px 18px 17px;
+box-shadow:0 18px 34px rgba(0,0,0,.25),inset 0 0 24px rgba(99,231,255,.025)}
+.reviewCard h3{margin:0 0 12px;padding-right:48px;color:#9cf4ff;font-size:clamp(20px,1.7vw,27px)}
+.reviewCard p{margin:8px 0;font-size:clamp(16px,1.25vw,20px);font-weight:750;line-height:1.45;color:#f4f7ff}
+.reviewIcon{position:absolute;right:16px;top:13px;font-size:32px}
+.particleRow{display:flex;justify-content:space-between;gap:12px;padding:9px 11px;margin:7px 0;border-radius:14px;
+background:rgba(255,255,255,.055);font-size:clamp(15px,1.15vw,19px)}
+.particleRow b{color:#fff19b}.particleRow span{text-align:right;font-weight:750}
+.bigFormula{display:inline-block;margin:4px 6px 4px 0;padding:7px 13px;border-radius:12px;
+background:linear-gradient(135deg,rgba(99,231,255,.20),rgba(143,124,255,.20));color:#fff19b;
+font-size:clamp(23px,2vw,31px);font-weight:1000}
+.atomExample{text-align:center;font-size:clamp(50px,5vw,72px);font-weight:1000;color:#fff19b;line-height:1.15;margin:6px 0}
+.atomExample sup{font-size:.45em;vertical-align:1.0em}.atomExample sub{font-size:.45em;vertical-align:-.15em}
+.calcLine{text-align:center;padding:10px;border-radius:14px;background:rgba(119,242,208,.10);font-size:clamp(17px,1.4vw,22px);font-weight:900}
+.ionPair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.ionPair span{text-align:center;padding:10px;border-radius:14px;background:rgba(255,255,255,.06);font-size:18px}
+.tip{color:#fff19b!important}
+.wideCard{grid-column:1/-1}
+.modelFlow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
+.modelFlow>div:not(.arrow){padding:13px;border-radius:16px;background:rgba(255,255,255,.055);text-align:center}
+.modelFlow b{display:block;color:#fff19b;font-size:20px;margin-bottom:6px}.modelFlow span{font-weight:750;line-height:1.35}
+.arrow{display:grid;place-items:center;color:#7eefff;font-size:27px}
+.factGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.factGrid div{text-align:center;padding:12px 8px;border-radius:15px;background:rgba(255,255,255,.055)}
+.factGrid b{display:block;color:#9cf4ff;margin-bottom:5px}.factGrid span{font-size:18px;font-weight:950}
+.reviewBottom{margin-top:13px;padding:13px 16px;border-radius:18px;text-align:center;
+background:linear-gradient(135deg,rgba(255,241,155,.13),rgba(99,231,255,.12));border:1px solid rgba(255,241,155,.22);
+font-size:clamp(16px,1.35vw,21px)}
+.reviewStart{flex:2 1 420px;margin-top:0}
+@media(max-width:768px){
+ .reviewGrid{grid-template-columns:1fr;gap:9px}.wideCard{grid-column:auto}.reviewCard{padding:14px;border-radius:18px}
+ .particleRow{display:block}.particleRow span{display:block;text-align:left;margin-top:3px}
+ .modelFlow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);height:20px}
+ .factGrid{grid-template-columns:1fr 1fr}.factGrid span{font-size:15px}
+ .reviewIcon{font-size:26px}.reviewCard h3{font-size:20px}
+}
+</style>
+
+
+<style>
+.modelFlow4{grid-template-columns:1fr auto 1fr auto 1fr auto 1fr}
+.currentTip{background:linear-gradient(135deg,rgba(255,241,155,.16),rgba(119,242,208,.12));border-color:rgba(255,241,155,.30)}
+@media(max-width:900px){.modelFlow4{grid-template-columns:1fr}.modelFlow4 .arrow{transform:rotate(90deg);height:20px}}
+</style>
+
+
+<style>
+:root{--bg0:#071812;--bg1:#12352d;--bg2:#4a2617;--cyan:#8ff4d2;--green:#b9f27c;--yellow:#ffd978;--violet:#ff9a62}
+body{
+ background:
+ radial-gradient(850px 600px at 12% 10%,rgba(91,224,174,.22),transparent 45%),
+ radial-gradient(850px 620px at 88% 16%,rgba(255,154,98,.19),transparent 44%),
+ radial-gradient(900px 600px at 50% 100%,rgba(255,217,120,.13),transparent 42%),
+ linear-gradient(180deg,#06140f,#12342c 48%,#3c2117);
+}
+.heroTitle .glow{background:linear-gradient(135deg,#a7ffd9,#ffe18b,#ff9b66);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{background:linear-gradient(135deg,#a7ffd9,#ffe18b,#ff9b66)}
+.thaiBox{background:linear-gradient(135deg,rgba(91,224,174,.14),rgba(255,217,120,.12),rgba(255,154,98,.10))}
+.vsOrb{background:radial-gradient(circle at 30% 30%,#fff,#ffe18b 34%,#ff9b66 67%,#8ff4d2)}
+</style>
+
+
+<style>
+body{
+ background:
+ radial-gradient(850px 600px at 12% 10%,rgba(82,208,255,.22),transparent 45%),
+ radial-gradient(850px 620px at 88% 16%,rgba(255,190,75,.20),transparent 44%),
+ radial-gradient(900px 600px at 50% 100%,rgba(112,113,255,.15),transparent 42%),
+ linear-gradient(180deg,#071426,#102b45 48%,#35254b);
+}
+.heroTitle .glow{background:linear-gradient(135deg,#8cecff,#ffe08a,#d1b3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{background:linear-gradient(135deg,#8cecff,#ffe08a,#d1b3ff)}
+</style>
+
+<style>body{background:radial-gradient(900px 650px at 12% 10%,rgba(80,235,190,.22),transparent 45%),radial-gradient(850px 620px at 88% 16%,rgba(255,125,170,.18),transparent 44%),linear-gradient(180deg,#071a1c,#12363a 50%,#321b3a)}</style>
+<style>
+:root{--bg0:#fffaf0;--bg1:#eefaff;--bg2:#fff1fb;--cyan:#19c6ff;--pink:#ff6fb5;--pink2:#ff91c8;--yellow:#ffd84d;--violet:#8f78ff;--green:#36d399}
+html,body{background:#f8fcff!important;color:#20304a!important}
+body{
+background:
+radial-gradient(900px 600px at 10% 5%,rgba(25,198,255,.20),transparent 48%),
+radial-gradient(900px 600px at 90% 10%,rgba(255,111,181,.18),transparent 48%),
+radial-gradient(900px 650px at 50% 100%,rgba(255,216,77,.16),transparent 45%),
+linear-gradient(180deg,#ffffff,#effaff 55%,#fff5fb)!important;
+}
+.card,.timerBox{background:rgba(255,255,255,.88)!important;border:1px solid rgba(70,120,180,.15)!important;box-shadow:0 12px 28px rgba(60,110,160,.12)!important}
+.heroTitle .glow{background:linear-gradient(135deg,#12bdf4,#8b6cff,#ff65ac,#ffb72b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle,.muted,.timerLabel{color:#52708e!important}
+.thaiBox{background:linear-gradient(135deg,#ffffff,#eefaff,#fff3fb)!important;color:#172b4d!important;border:2px solid rgba(25,198,255,.20)!important;box-shadow:0 12px 30px rgba(65,120,180,.12)!important;font-weight:1000}
+.chip{background:#ffffff!important;color:#28445f!important;border:1px solid rgba(80,140,190,.15)!important;box-shadow:0 8px 20px rgba(60,110,160,.10)!important}
+.chip span{color:#6686a5!important}.chip strong{color:#142a44!important}
+.timerWheel{background:conic-gradient(#ff7eb6 calc(var(--deg,360) * 1deg),rgba(50,90,140,.10) 0)!important;box-shadow:0 10px 24px rgba(255,111,181,.18)!important}
+.timerWheel::before{background:#ffffff!important;border-color:rgba(100,130,170,.12)!important}
+.timerNum{color:#ff4f9a!important}
+.battleLane{background:linear-gradient(135deg,rgba(25,198,255,.08),rgba(143,120,255,.08),rgba(255,111,181,.08))!important;border:1px solid rgba(80,130,180,.12)!important}
+.pulseCell{background:linear-gradient(145deg,#ffffff,#f4fbff)!important;color:#18304d!important;border:2px solid rgba(55,155,230,.18)!important;box-shadow:0 18px 40px rgba(50,110,170,.14)!important}
+.pulseCell .cellText{color:#18304d!important;font-size:clamp(28px,4.5vw,56px)!important}
+.vsOrb{background:radial-gradient(circle at 30% 30%,#fff,#ffe16a 38%,#ff8dc6 70%,#79dfff)!important;color:#44355f!important}
+.btn{background:linear-gradient(135deg,#1fc7ff,#8d74ff,#ff73b6)!important;color:white!important}
+.reviewCard{background:rgba(255,255,255,.92)!important;color:#243a55!important;border:1px solid rgba(70,130,180,.14)!important;box-shadow:0 10px 24px rgba(60,110,160,.10)!important}
+.reviewCard p,.reviewCard span{color:#46617c!important}.reviewCard h3{color:#17385c!important}
+.bigFormula{background:linear-gradient(135deg,#eefaff,#fff1f8)!important;color:#17385c!important}
+.certCard{background:linear-gradient(180deg,#ffffff,#f4fbff,#fff4fa)!important;color:#213a54!important}
+</style>
+
+<style>
+/* Math readability upgrade */
+.thaiBox, .cellText { font-variant-numeric: lining-nums tabular-nums; }
+.thaiBox { font-size: clamp(30px, 5.2vw, 64px) !important; }
+.pulseCell .cellText { font-size: clamp(36px, 6vw, 72px) !important; line-height: 1.15 !important; }
+.fracBig { font-size: 1.24em !important; font-weight: 1000; letter-spacing: .01em; }
+
+/* mode selector */
+.speedModePanel{
+  display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+  margin:14px auto 4px; max-width:780px;
+}
+.speedModeBtn{
+  border:none; cursor:pointer; border-radius:20px; padding:14px 20px;
+  font-weight:1000; font-size:clamp(16px,2vw,22px);
+  background:#fff; color:#24415f;
+  box-shadow:0 8px 20px rgba(60,110,160,.13);
+  border:2px solid rgba(45,160,230,.16);
+}
+.speedModeBtn.active{
+  background:linear-gradient(135deg,#1fc7ff,#8d74ff,#ff73b6);
+  color:#fff; transform:translateY(-1px);
+}
+.speedModeNote{
+  text-align:center; font-weight:900; color:#57718d; margin:6px 0 12px;
+}
+</style>
+
+<style>
+body{background:
+radial-gradient(850px 520px at 8% 5%,rgba(62,220,170,.20),transparent 48%),
+radial-gradient(800px 560px at 92% 8%,rgba(255,207,72,.22),transparent 48%),
+radial-gradient(800px 600px at 50% 100%,rgba(53,190,255,.15),transparent 46%),
+linear-gradient(180deg,#fffef7,#f0fff9 55%,#effaff)!important}
+.heroTitle .glow{background:linear-gradient(135deg,#0dbb83,#20bff3,#ffb629,#ff6f91);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+</head>
+<body>
+<div class="sparkles" aria-hidden="true"><i style="left:12%; top:14%; animation-delay:0s"></i><i style="left:22%; top:30%; animation-delay:.6s"></i><i style="left:38%; top:18%; animation-delay:1.2s"></i><i style="left:54%; top:10%; animation-delay:.3s"></i><i style="left:72%; top:24%; animation-delay:1.6s"></i><i style="left:84%; top:12%; animation-delay:.9s"></i><i style="left:18%; top:72%; animation-delay:1.1s"></i><i style="left:46%; top:78%; animation-delay:.5s"></i></div>
+<div class="bubbles" aria-hidden="true"><span style="left:10%; width:14px; height:14px; animation-duration:12s; animation-delay:0s;"></span><span style="left:25%; width:20px; height:20px; animation-duration:10s; animation-delay:1s;"></span><span style="left:48%; width:12px; height:12px; animation-duration:13s; animation-delay:.4s;"></span><span style="left:70%; width:22px; height:22px; animation-duration:11s; animation-delay:1.4s;"></span><span style="left:86%; width:16px; height:16px; animation-duration:14s; animation-delay:.8s;"></span></div>
+<div class="dnaLayer" aria-hidden="true"><i style="left:8%; top:70%; animation-duration:15s"></i><i style="left:72%; top:82%; animation-duration:17s"></i><i style="left:48%; top:76%; animation-duration:18s"></i></div>
+
+<div id="winnerBanner" class="winnerBanner">💖 MONEY MATH BATTLE MASTER 💖</div>
+<div id="emojiLayer" class="emojiLayer"></div>
+<div id="confettiLayer" class="confettiLayer"></div>
+<div id="flashLayer" class="flashLayer"></div>
+<div id="countdownOverlay" class="countdownOverlay">3</div>
+
+<section id="startScreen" class="screen active"><div class="wrap">
+    <div class="brand"><div class="badge">MATH</div></div>
+    <div class="scienceHero"><span>💰</span><span>🛒</span><span>🏷️</span></div>
+    <div class="heroTitle"><span class="glow">MATH SPEED</span><br/>BATTLE</div>
+    <div class="subtitle">💰 MATH MISSION • ตั้งราคาขาย • ส่วนลด • กำไร–ขาดทุน • ร้อยละ • 25 MISSIONS</div>
+    <div class="scienceIcons"><span>💵</span><span>🏷️</span><span>%</span><span>📈</span><span>🧾</span></div>
+    <div class="card"><div style="font-weight:1000; margin-bottom:8px; font-size:20px;">ชื่อผู้เล่น</div>
+    <input id="playerNameInput" type="text" placeholder="Type your name..." />
+    <div class="miniRow" style="margin-top:10px;">
+      <button class="miniBtn" onclick="showScreen('reviewScreen')">📘 ดูกติกาคิดเร็วก่อนเริ่ม</button>
+      <button id="tvModeBtn" class="modeBtn" onclick="toggleTVMode()">🖥️ TV MODE: OFF</button>
+      <button class="modeBtn" onclick="toggleFullscreen()">⛶ FULL SCREEN</button>
+    </div>
+    <div class="speedModePanel" id="speedModePanel">
+      <button class="speedModeBtn active" type="button" data-time="15" onclick="setSpeedMode(18,this)">🧠 NORMAL • 18 วิ</button>
+      <button class="speedModeBtn" type="button" data-time="9" onclick="setSpeedMode(12,this)">⚡ FAST • 12 วิ</button>
+    </div>
+    <div class="speedModeNote" id="speedModeNote">โหมดปกติ: 18 วินาที/ข้อ</div>
+    <button class="btn" onclick="startGame()">⚡ START MONEY MATH BATTLE</button>
+    </div></div></section>
+
+<section id="howToScreen" class="screen"><div class="wrap">
+    <div class="brand"><div class="badge">KP</div></div>
+    <div class="heroTitle"><span class="glow">HOW TO</span><br/>PLAY</div>
+    <div class="subtitle">เกมคิดเร็วเรื่องเงิน • ส่วนลด • กำไร–ขาดทุน • ร้อยละ • 2 ตัวเลือก</div>
+    <div class="card"><div class="howtoList">
+      <div class="howtoBox"><h3>🎯 ฝึกอะไร?</h3><p>ฝึกคิดเงิน ส่วนลด กำไร ขาดทุน และร้อยละจากสถานการณ์สั้น ๆ ที่คิดในใจหรือทดได้เร็ว</p></div>
+      <div class="howtoBox"><h3>⏱️ เลือกความเร็ว</h3><p><b>NORMAL 18 วินาที</b> เหมาะกับการฝึก • <b>FAST 12 วินาที</b> สำหรับเด็กที่คิดคล่องและอยากท้าทายตัวเอง</p></div>
+      <div class="howtoBox"><h3>⚔️ วิธีเล่น</h3><p>อ่านโจทย์ แล้วเลือกคำตอบ A หรือ B คำตอบถูกจะถูกสุ่มซ้าย–ขวาทุกข้อ จึงเดาตำแหน่งไม่ได้</p></div>
+      <div class="howtoBox"><h3>🏆 เป้าหมาย</h3><p>ทำให้ได้อย่างน้อย 80% และพยายามรักษาความแม่นแม้เล่น FAST MODE</p></div>
+    </div>
+    <div class="goalBanner">💡 จำให้แม่น: 10% = หาร 10 • 20% = 2×10% • 25% = ¼ • 50% = ครึ่งหนึ่ง</div>
+    <div class="miniRow" style="margin-top:14px;">
+      <button class="miniBtn" onclick="showScreen('startScreen')">⬅ Back</button>
+      <button class="modeBtn" onclick="toggleTVMode()">🖥️ Toggle TV Mode</button>
+      <button class="miniBtn" onclick="startGame()">⚡ Start Battle</button>
+    </div></div></div></section>
+
+
+<section id="reviewScreen" class="screen">
+  <div class="wrap">
+    <div class="brand"><div class="badge">KP</div></div>
+    <div class="heroTitle"><span class="glow">MONEY MATH REVIEW</span></div>
+    <div class="subtitle">⚡ อ่านกติกาสั้น ๆ ก่อนเริ่ม • เลือกโหมด 15 วินาที หรือ FAST 12 วินาที แล้วลุย 25 ข้อ</div>
+
+    <div class="reviewGrid">
+<div class="reviewCard wideCard"><div class="reviewIcon">💰</div><h3>1. ร้อยละคิดเร็ว</h3>
+<div class="bigFormula">10% = หาร 10 • 20% = 2×10% • 25% = ¼ • 50% = ครึ่งหนึ่ง</div>
+<p><b>ทศนิยม → % ให้ ×100</b> เช่น 0.25 = 25% และ 2.55 = 255%</p></div>
+<div class="reviewCard"><div class="reviewIcon">🏷️</div><h3>2. ตั้งราคาขายให้ได้กำไร</h3>
+<p><b>กำไร = ต้นทุน × %กำไร</b></p>
+<p><b>ราคาขาย = ต้นทุน + กำไร</b></p>
+<p>ต้นทุน 500 ต้องการกำไร 30% → กำไร 150 → <b>ขาย 650 บาท</b></p></div>
+<div class="reviewCard"><div class="reviewIcon">📈</div><h3>3. หากำไรเป็น %</h3>
+<p><b>กำไร = ราคาขาย − ต้นทุน</b></p>
+<p><b>%กำไร = กำไร ÷ ต้นทุน × 100</b></p>
+<p>จำไว้: เวลาโจทย์บอก “กำไรของต้นทุน” ตัวหารคือ <b>ต้นทุน</b></p></div>
+<div class="reviewCard"><div class="reviewIcon">📉</div><h3>4. ขาดทุน</h3>
+<p><b>ขาดทุน = ต้นทุน − ราคาขาย</b></p>
+<p><b>%ขาดทุน = ขาดทุน ÷ ต้นทุน × 100</b></p></div>
+<div class="reviewCard"><div class="reviewIcon">🛍️</div><h3>5. ส่วนลด</h3>
+<p><b>เงินที่ลด = ราคาป้าย × %ลด</b></p>
+<p><b>ราคาที่จ่าย = ราคาป้าย − เงินที่ลด</b></p>
+<p>ลดต่อกัน 20% แล้ว 10% ต้องคิดทีละรอบ — <b>ไม่ใช่ลด 30% ตรง ๆ</b></p></div>
+</div><div class="reviewBottom currentTip"><div>🎯 <b>ทริค:</b> ก่อนกดคำตอบ ให้ถามตัวเองก่อนว่าโจทย์กำลังหา “เงินกำไร”, “ราคาขาย” หรือ “เปอร์เซ็นต์”</div></div>
+    <div class="reviewBottom">
+      <div>💡 <b>ชุดนี้เน้นจำ:</b> ชื่อ ↔ ชนิด ↔ ลักษณะ ↔ ประโยชน์ แล้วสุ่มถามกลับไปกลับมา</div>
+    </div>
+    <div class="miniRow" style="margin-top:14px">
+      <button class="miniBtn" onclick="showScreen('startScreen')">⬅ กลับหน้าปก</button>
+      <button class="btn reviewStart" onclick="startGame()">🚀 พร้อมแล้ว • START MONEY MATH BATTLE</button>
+    </div>
+  </div>
+</section>
+
+
+<section id="gameScreen" class="screen"><div class="wrap"><div class="topZone"><div class="topbar"><div class="chip"><span>Q</span><strong id="qDisplay">1/25</strong></div><div class="chip"><span>✓</span><strong id="correctDisplay">0</strong></div><div class="chip"><span>✗</span><strong id="wrongDisplay">0</strong></div><div class="chip"><span>ถูก</span><strong id="scoreDisplay">0</strong></div><div class="chip"><span>P</span><strong id="playerNameDisplay">-</strong></div></div><div class="timerBox"><div class="timerWheel" id="timerWheel"><div class="timerNum" id="timerNum">18</div></div><div class="timerLabel">MATH TIMER</div></div></div><div class="thaiBox" id="thaiPrompt">...</div><div class="commandBox" id="commandBox">อ่านโจทย์ แล้วเลือกคำตอบที่ถูกต้องก่อนนาฬิกาด้านบนหมดเวลา ⏳</div><div class="battleWrap"><div class="battleLane"><div class="energyLine"></div><div class="pulseCell left" id="choiceLeft" onclick="pickAnswer(0)"><div class="cellCore"></div><div class="cellLabel">A</div><div class="cellText" id="textLeft"></div></div><div class="pulseCell right" id="choiceRight" onclick="pickAnswer(1)"><div class="cellCore"></div><div class="cellLabel">B</div><div class="cellText" id="textRight"></div></div><div class="vsOrb">VS</div></div></div><div class="statusText" id="statusText"></div><div class="card"><div class="miniRow"><button class="miniBtn" onclick="openHowTo()">📘 HOW TO PLAY</button><button id="tvModeBtnGame" class="modeBtn" onclick="toggleTVMode()">🖥️ TV MODE</button><button class="modeBtn" onclick="toggleFullscreen()">⛶ FULL SCREEN</button><button class="miniBtn" onclick="resetAll()">🏠 Back to Home</button></div></div></div></section>
+
+<section id="finalScreen" class="screen"><div class="wrap"><div class="certificate"><div class="certTop"><div class="certSeal">⚡</div><div class="certTitle">MONEY MATH MASTER Certificate</div><div class="certSub">Math Speed Battle • Kru Pai Classroom</div></div><div class="certPlayer" id="finalName">Awarded to: -</div><div class="certBigScore" id="finalScore">0</div><div class="certMini" id="finalMini">MONEY MATH BATTLE SCORE</div><div class="certGrid"><div class="certStat"><div class="k">Correct</div><div class="v" id="finalCorrect">0</div></div><div class="certStat"><div class="k">Wrong</div><div class="v" id="finalWrong">0</div></div><div class="certStat"><div class="k">Skipped</div><div class="v" id="finalSkipped">0</div></div><div class="certStat"><div class="k">Accuracy</div><div class="v" id="finalAccuracy">0%</div></div></div><div id="passBadge" class="certPass pass">PASS ✅</div><div class="certGrid" style="margin-top:10px;"><div class="certStat"><div class="k">Rank</div><div class="v" id="finalRank">A</div></div><div class="certStat"><div class="k">Mode</div><div class="v" id="finalMode">NORMAL</div></div><div class="certStat"><div class="k">Speed</div><div class="v" id="finalSpeed">15s</div></div><div class="certStat"><div class="k">Target</div><div class="v">80%+</div></div></div><div class="certFooter" id="finalFooter">Kru Pai Classroom • Math Mission • Speed Battle</div><div class="miniRow" style="margin-top:18px; position:relative; z-index:1;"><button class="miniBtn" onclick="replayAll()">🎮 Play Again</button><button class="miniBtn" onclick="resetAll()">🏠 Back to Home</button></div></div></div></section>
+
+<script>
+const QUESTIONS = [
+  {
+    "th": "ราคา 100 บาท ลด 20% เหลือเท่าไร?",
+    "left": "80 บาท",
+    "right": "85 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ราคา 200 บาท ลด 25% ลดไปกี่บาท?",
+    "left": "50 บาท",
+    "right": "40 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ราคา 300 บาท ลด 10% เหลือเท่าไร?",
+    "left": "270 บาท",
+    "right": "280 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ราคา 400 บาท ลด 15% ลดไปกี่บาท?",
+    "left": "60 บาท",
+    "right": "50 บาท",
+    "correct": 0
+  },
+  {
+    "th": "เสื้อราคา 500 บาท ลด 20% ต้องจ่ายเท่าไร?",
+    "left": "400 บาท",
+    "right": "420 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ซื้อเสื้อมา 500 บาท ต้องการกำไร 30% ของต้นทุน ควรตั้งราคาขายเท่าไร?",
+    "left": "650 บาท",
+    "right": "630 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ซื้อกระเป๋ามา 400 บาท ต้องการกำไร 25% ของต้นทุน ควรขายเท่าไร?",
+    "left": "500 บาท",
+    "right": "480 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ต้นทุนรองเท้า 800 บาท ต้องการกำไร 20% ของต้นทุน ควรขายเท่าไร?",
+    "left": "960 บาท",
+    "right": "940 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ซื้อของมา 250 บาท ต้องการกำไร 40% ของต้นทุน ควรขายเท่าไร?",
+    "left": "350 บาท",
+    "right": "340 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ต้นทุน 600 บาท ต้องการกำไร 15% ของต้นทุน ควรขายเท่าไร?",
+    "left": "690 บาท",
+    "right": "675 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ต้นทุน 200 บาท ขาย 250 บาท กำไรกี่เปอร์เซ็นต์ของต้นทุน?",
+    "left": "25%",
+    "right": "20%",
+    "correct": 0
+  },
+  {
+    "th": "ต้นทุน 80 บาท ขาย 100 บาท กำไรกี่เปอร์เซ็นต์ของต้นทุน?",
+    "left": "25%",
+    "right": "20%",
+    "correct": 0
+  },
+  {
+    "th": "ซื้อมา 150 บาท ขาย 120 บาท ขาดทุนกี่เปอร์เซ็นต์ของต้นทุน?",
+    "left": "20%",
+    "right": "25%",
+    "correct": 0
+  },
+  {
+    "th": "ต้นทุน 500 บาท ขาดทุน 10% ต้องขายเท่าไร?",
+    "left": "450 บาท",
+    "right": "460 บาท",
+    "correct": 0
+  },
+  {
+    "th": "ต้นทุน 300 บาท ขาย 360 บาท กำไรกี่เปอร์เซ็นต์ของต้นทุน?",
+    "left": "20%",
+    "right": "25%",
+    "correct": 0
+  },
+  {
+    "th": "ร้านลดจาก 250 บาท เหลือ 200 บาท ลดกี่เปอร์เซ็นต์?",
+    "left": "20%",
+    "right": "25%",
+    "correct": 0
+  },
+  {
+    "th": "ป้ายราคา 500 บาท ลดเหลือ 400 บาท ลดกี่เปอร์เซ็นต์?",
+    "left": "20%",
+    "right": "25%",
+    "correct": 0
+  },
+  {
+    "th": "ป้ายราคา 800 บาท ลด 25% ต้องจ่ายเท่าไร?",
+    "left": "600 บาท",
+    "right": "620 บาท",
+    "correct": 0
+  },
+  {
+    "th": "สินค้าราคา 600 บาท ลด 20% แล้วลดเพิ่มอีก 10% ของราคาที่ลดแล้ว ต้องจ่ายเท่าไร?",
+    "left": "432 บาท",
+    "right": "420 บาท",
+    "correct": 0
+  },
+  {
+    "th": "สินค้าราคา 400 บาท เพิ่มราคา 25% แล้วลด 20% จากราคาที่เพิ่มแล้ว ราคาสุดท้ายเท่าไร?",
+    "left": "400 บาท",
+    "right": "420 บาท",
+    "correct": 0
+  },
+  {
+    "th": "0.25 คิดเป็นกี่เปอร์เซ็นต์?",
+    "left": "25%",
+    "right": "2.5%",
+    "correct": 0
+  },
+  {
+    "th": "2.55 คิดเป็นกี่เปอร์เซ็นต์?",
+    "left": "255%",
+    "right": "25.5%",
+    "correct": 0
+  },
+  {
+    "th": "0.25 + 2.55 คิดเป็นกี่เปอร์เซ็นต์?",
+    "left": "280%",
+    "right": "28%",
+    "correct": 0
+  },
+  {
+    "th": "125% เขียนเป็นทศนิยมได้เท่าไร?",
+    "left": "1.25",
+    "right": "0.125",
+    "correct": 0
+  },
+  {
+    "th": "ร้านค้าตั้งราคา 600 บาท แล้วลด 20% เหลือ 480 บาท ถ้าต้นทุน 400 บาท ยังได้กำไรกี่เปอร์เซ็นต์ของต้นทุน?",
+    "left": "20%",
+    "right": "16%",
+    "correct": 0
+  }
+];
+let selectedQuestionTime=18;
+let playerName="", qIndex=0, correct=0, wrong=0, skipped=0, score=0, timer=null, timeLeft=15, answered=false, audioCtx=null, streak=0, tvMode=false;
+const TOTAL_QUESTIONS = QUESTIONS.length;
+
+function shuffleQuestions(){
+  for(let i=QUESTIONS.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [QUESTIONS[i],QUESTIONS[j]]=[QUESTIONS[j],QUESTIONS[i]];
+  }
+}
+
+function ensureAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==="suspended") audioCtx.resume(); }
+function tone(freq=440,dur=0.08,type="sine",gain=0.11){ ensureAudio(); const t0=audioCtx.currentTime, osc=audioCtx.createOscillator(), g=audioCtx.createGain(); osc.type=type; osc.frequency.setValueAtTime(freq,t0); g.gain.setValueAtTime(0.0001,t0); g.gain.exponentialRampToValueAtTime(gain,t0+0.015); g.gain.exponentialRampToValueAtTime(0.0001,t0+dur); osc.connect(g); g.connect(audioCtx.destination); osc.start(t0); osc.stop(t0+dur+0.065); }
+function noiseBurst(dur=0.12, gainVal=0.055){ ensureAudio(); const bufferSize = audioCtx.sampleRate * dur; const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate); const data = buffer.getChannelData(0); for(let i=0;i<bufferSize;i++) data[i]=(Math.random()*2-1)*(1-i/bufferSize); const src = audioCtx.createBufferSource(); src.buffer = buffer; const filter = audioCtx.createBiquadFilter(); filter.type='highpass'; filter.frequency.value=1000; const g = audioCtx.createGain(); g.gain.value = gainVal; src.connect(filter); filter.connect(g); g.connect(audioCtx.destination); src.start(); }
+function sfxCorrect(){ tone(784,0.08,"sine",0.12); setTimeout(()=>tone(988,0.09,"sine",0.06),70); setTimeout(()=>tone(1175,0.1,"triangle",0.06),140); setTimeout(()=>tone(1568,0.08,"triangle",0.05),210); }
+function sfxWrong(){ tone(220,0.16,"square",0.11); setTimeout(()=>tone(176,0.18,"square",0.05),120); noiseBurst(0.09,0.04); }
+function sfxTick(){ tone(520,0.05,"triangle",0.055); }
+function sfxBioPulse(){ tone(140,0.08,"sine",0.065); setTimeout(()=>tone(190,0.06,"sine",0.024),95); }
+function sfxEnter(){ tone(290,0.06,"sawtooth",0.055); setTimeout(()=>tone(620,0.07,"sawtooth",0.025),60); }
+function sfxCountdown(n){ const map={3:520,2:620,1:760}; tone(map[n]||700,0.14,"triangle",0.10); }
+function sfxStartBlast(){ tone(880,0.08,"square",0.10); setTimeout(()=>tone(1180,0.09,"triangle",0.05),80); setTimeout(()=>noiseBurst(0.10,0.022),70); }
+function sfxWin(){ [784,988,1175,1318,1568].forEach((f,i)=>setTimeout(()=>tone(f,0.14,"triangle",0.055), i*80)); }
+function flashHit(){ const el=document.getElementById('flashLayer'); el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),130); }
+function showScreen(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); syncModeButtons(); }
+function openHowTo(){ showScreen('howToScreen'); }
+function updateTopBar(){ document.getElementById('qDisplay').textContent=`${qIndex+1}/${TOTAL_QUESTIONS}`; document.getElementById('correctDisplay').textContent=correct; document.getElementById('wrongDisplay').textContent=wrong; document.getElementById('scoreDisplay').textContent=score; document.getElementById('playerNameDisplay').textContent=playerName||'-'; }
+function updateTimer(){ document.getElementById('timerNum').textContent=timeLeft; const deg=Math.max(0,(timeLeft/selectedQuestionTime)*360); document.getElementById('timerWheel').style.setProperty('--deg',deg); }
+function showCombo(text){ const el=document.getElementById('comboBadge'); el.textContent=text; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),1000); }
+function burstEmoji(emoji, count=3){ const layer=document.getElementById('emojiLayer'); for(let i=0;i<count;i++){ const e=document.createElement('div'); e.className='floatEmoji'; e.textContent=emoji; e.style.left=(44+Math.random()*14)+'%'; e.style.top=(44+Math.random()*10)+'%'; layer.appendChild(e); setTimeout(()=>e.remove(),900); } }
+function confettiBurst(amount=80){ const layer=document.getElementById('confettiLayer'), colors=['#ffe45c','#ff7bc2','#ffffff','#b891ff','#8ef7ff','#68f2a3']; for(let i=0;i<amount;i++){ const c=document.createElement('i'); c.style.left=((i*7+Math.random()*8)%100)+'%'; c.style.background=colors[i%colors.length]; c.style.animationDuration=(1.8+(i%7)*0.16)+'s'; c.style.animationDelay=((i%10)*0.03)+'s'; c.style.transform='rotate('+((i*19)%360)+'deg)'; layer.appendChild(c); setTimeout(()=>c.remove(),2600); } }
+function syncModeButtons(){ document.body.classList.toggle('tvMode', tvMode); ['tvModeBtn','tvModeBtnGame'].forEach(id=>{ const b=document.getElementById(id); if(b){ b.textContent = tvMode ? '🖥️ TV MODE: ON' : '🖥️ TV MODE: OFF'; b.classList.toggle('active', tvMode); } }); }
+function toggleTVMode(){ tvMode=!tvMode; syncModeButtons(); }
+async function toggleFullscreen(){ try{ if(!document.fullscreenElement) await document.documentElement.requestFullscreen(); else await document.exitFullscreen(); }catch(e){ console.log(e); } }
+function markCells(lock=true){ document.querySelectorAll('.pulseCell').forEach(el=>{ if(lock) el.style.pointerEvents='none'; else { el.style.pointerEvents='auto'; el.classList.remove('correct','wrong','dim','enter'); el.style.animation=''; } }); }
+function resetAll(){ clearInterval(timer); const tn=document.getElementById('timerNum'); if(tn) tn.textContent=selectedQuestionTime; document.getElementById('winnerBanner').classList.remove('show'); document.getElementById('playerNameInput').value=''; playerName=''; showScreen('startScreen'); }
+
+function emphasizeFractions(root=document){
+  const rx=/([¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞]|[0-9]+\s*⁄\s*[0-9]+)/g;
+  root.querySelectorAll(".thaiBox,.cellText").forEach(el=>{
+    if(el.dataset.fracStyled==="1") return;
+    el.innerHTML=el.textContent.replace(rx,'<span class="fracBig">$1</span>');
+    el.dataset.fracStyled="1";
+  });
+}
+
+
+function setSpeedMode(sec, btn){
+  selectedQuestionTime = sec;
+  document.querySelectorAll(".speedModeBtn").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  const note=document.getElementById("speedModeNote");
+  if(note) note.textContent = sec===12 ? "FAST MODE: 12 วินาที/ข้อ ⚡" : "โหมดปกติ: 18 วินาที/ข้อ";
+  const timerNum=document.getElementById("timerNum");
+  if(timerNum) timerNum.textContent=sec;
+}
+
+async function startGame(){
+  timeLeft=selectedQuestionTime; const name=document.getElementById('playerNameInput').value.trim(); if(!name){ document.getElementById('playerNameInput').focus(); return; } ensureAudio(); playerName=name; shuffleQuestions(); qIndex=0; correct=0; wrong=0; skipped=0; score=0; streak=0; showScreen('gameScreen'); await showCountdown(); loadQuestion(); }
+async function showCountdown(){ const overlay=document.getElementById('countdownOverlay'); for(const n of [3,2,1]){ overlay.textContent=n; overlay.classList.add('show'); sfxCountdown(n); await new Promise(r=>setTimeout(r,520)); overlay.classList.remove('show'); await new Promise(r=>setTimeout(r,110)); } overlay.textContent='FIGHT!'; overlay.classList.add('show'); sfxStartBlast(); flashHit(); await new Promise(r=>setTimeout(r,560)); overlay.classList.remove('show'); }
+function loadQuestion(){ answered=false; clearInterval(timer); const q=QUESTIONS[qIndex];
+const swapSides=Math.random()<0.5;
+q._displayLeft=swapSides?q.right:q.left;
+q._displayRight=swapSides?q.left:q.right;
+q._displayCorrect=swapSides?1-q.correct:q.correct;
+document.getElementById('thaiPrompt').textContent=q.th;
+document.getElementById('textLeft').textContent=q._displayLeft;
+document.getElementById('textRight').textContent=q._displayRight; document.getElementById('commandBox').innerHTML='อ่านโจทย์ แล้วเลือกคำตอบที่ถูกต้องก่อนนาฬิกาด้านบนหมดเวลา ⏳'; document.getElementById('statusText').textContent=''; markCells(false); const left=document.getElementById('choiceLeft'), right=document.getElementById('choiceRight'); void left.offsetWidth; void right.offsetWidth; left.classList.add('enter'); right.classList.add('enter'); updateTopBar(); timeLeft=selectedQuestionTime; updateTimer(); sfxEnter(); timer=setInterval(()=>{ timeLeft--; sfxBioPulse(); if(timeLeft<=5 && timeLeft>0) sfxTick(); updateTimer(); if(timeLeft<=0){ clearInterval(timer); if(!answered){ answered=true; skipped++; streak=0; document.getElementById('statusText').textContent='⏱ ไม่ทันเวลา! ไปข้อถัดไป'; document.getElementById('commandBox').textContent='เฉลย: '+(q._displayCorrect===0?q._displayLeft:q._displayRight); burstEmoji('😵',3); flashHit(); setTimeout(nextQuestion,900); } } },1000); }
+function pickAnswer(side){ if(answered) return; answered=true; clearInterval(timer); const q=QUESTIONS[qIndex], left=document.getElementById('choiceLeft'), right=document.getElementById('choiceRight'); markCells(true); const chosen=side===0?left:right, correctCell=q._displayCorrect===0?left:right, otherCell=q._displayCorrect===0?right:left; chosen.style.animation='hitImpact .35s ease'; if(side===q._displayCorrect){ correct++; score=correct; streak++; chosen.classList.add('correct'); otherCell.classList.add('dim'); document.getElementById('statusText').textContent='⚡ QUICK HIT!'; document.getElementById('commandBox').innerHTML='✔ คำตอบถูกต้อง! <b>'+(q._displayCorrect===0?q._displayLeft:q._displayRight)+'</b>'; sfxCorrect(); confettiBurst(52); burstEmoji('⚡',2); flashHit(); } else { wrong++; streak=0; chosen.classList.add('wrong'); correctCell.classList.add('correct'); otherCell.classList.add('dim'); document.getElementById('statusText').textContent='💥 MATH MISS!'; document.getElementById('commandBox').innerHTML='❌ คำตอบที่ถูกคือ: <b>'+(q._displayCorrect===0?q._displayLeft:q._displayRight)+'</b>'; sfxWrong(); burstEmoji('😵',3); flashHit(); } updateTopBar(); setTimeout(nextQuestion,980); }
+function nextQuestion(){ qIndex++; if(qIndex>=QUESTIONS.length) endGame(); else loadQuestion(); }
+function endGame(){ clearInterval(timer); const accuracy=Math.round((correct/TOTAL_QUESTIONS)*100); const rank=accuracy>=95?'S+':accuracy>=90?'S':accuracy>=85?'A+':accuracy>=80?'A':accuracy>=70?'B':'C'; showScreen('finalScreen'); document.getElementById('finalName').textContent=`Awarded to: ${playerName}`; document.getElementById('finalScore').textContent=score; document.getElementById('finalMini').textContent=`MONEY MATH BATTLE SCORE • Correct ${correct}/${TOTAL_QUESTIONS}`; document.getElementById('finalCorrect').textContent=correct; document.getElementById('finalWrong').textContent=wrong; document.getElementById('finalSkipped').textContent=skipped; document.getElementById('finalAccuracy').textContent=`${accuracy}%`; document.getElementById('finalRank').textContent=rank; const fs=document.getElementById('finalSpeed'); if(fs) fs.textContent=selectedQuestionTime+'s'; const fm=document.getElementById('finalMode'); if(fm) fm.textContent=selectedQuestionTime===12?'FAST':'NORMAL'; const pass=accuracy>=80; const badge=document.getElementById('passBadge'); badge.textContent=pass?'PASS WITH HONORS ✅':'KEEP TRAINING 💪'; badge.className=pass?'certPass pass':'certPass fail'; document.getElementById('finalFooter').textContent=pass?'Kru Pai Classroom • Math Mission • Speed Battle':'ลองอีกครั้ง แล้วทำเวลาให้เร็วและแม่นกว่าเดิม'; const wb=document.getElementById('winnerBanner'); if(pass){ wb.classList.add('show'); confettiBurst(150); sfxWin(); } else wb.classList.remove('show'); }
+function replayAll(){ document.getElementById('winnerBanner').classList.remove('show'); shuffleQuestions(); qIndex=0; correct=0; wrong=0; skipped=0; score=0; streak=0; showScreen('gameScreen'); showCountdown().then(loadQuestion); }
+document.addEventListener('keydown', (e)=>{ if(document.getElementById('gameScreen').classList.contains('active') && !answered){ if(e.key.toLowerCase()==='a' || e.key==='ArrowLeft') pickAnswer(0); if(e.key.toLowerCase()==='b' || e.key==='ArrowRight') pickAnswer(1); } if(e.key.toLowerCase()==='f') toggleFullscreen(); });
+syncModeButtons();
+
+document.addEventListener("DOMContentLoaded",()=>{
+  emphasizeFractions(document);
+  const mo=new MutationObserver(()=>emphasizeFractions(document));
+  mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+});
+
+</script>
+</body>
+</html>
