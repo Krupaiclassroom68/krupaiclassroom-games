@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AREA FORMULA BATTLE | Kru Pai Classroom</title>
+<style>
+:root{--ink:#17324d;--blue:#23b7ff;--purple:#806cff;--pink:#ff69b4;--green:#31d49a;--yellow:#ffd54f;--bad:#ff5878}
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+body{background:radial-gradient(900px 600px at 8% 4%,rgba(35,183,255,.22),transparent 48%),radial-gradient(850px 600px at 92% 8%,rgba(128,108,255,.18),transparent 46%),radial-gradient(800px 600px at 50% 100%,rgba(255,105,180,.14),transparent 45%),linear-gradient(180deg,#fff,#f2fbff 52%,#fff6fb);overflow-x:hidden}
+.screen{display:none;min-height:100dvh;padding:14px}.screen.active{display:block}.wrap{max-width:1240px;margin:auto}
+.screenTools{position:fixed;right:12px;top:10px;z-index:1000;display:flex;gap:7px}.toolBtn{border:1px solid rgba(40,100,150,.14);background:rgba(255,255,255,.88);padding:8px 10px;border-radius:12px;font-weight:900;color:#31516d;cursor:pointer;box-shadow:0 6px 18px rgba(40,100,150,.12)}
+.hero{text-align:center;padding-top:8px}.logo{width:68px;height:68px;margin:auto;border-radius:22px;display:grid;place-items:center;font-weight:1000;background:linear-gradient(135deg,#73e8ff,#a996ff,#ff8bc5,#ffe071);box-shadow:0 12px 28px rgba(80,90,170,.2)}
+h1{font-size:clamp(34px,5vw,66px);line-height:1;margin:10px 0 5px;background:linear-gradient(90deg,#11aee9,#735dff,#ff58a7);-webkit-background-clip:text;color:transparent;font-weight:1000}
+.sub{font-size:clamp(15px,1.5vw,21px);font-weight:900;color:#5b7690}
+.card{background:rgba(255,255,255,.91);border:1px solid rgba(60,120,180,.14);border-radius:26px;padding:18px;box-shadow:0 18px 42px rgba(60,110,160,.12)}
+input{width:100%;font-size:22px;font-weight:900;padding:16px;border-radius:16px;border:2px solid #d8ebf6;outline:none}
+.btn,.mini,.speedBtn{border:0;cursor:pointer;font-weight:1000;border-radius:17px}.btn{width:100%;padding:16px;font-size:clamp(19px,2vw,25px);background:linear-gradient(135deg,#1fc7ff,#826cff,#ff70b5);color:#fff;box-shadow:0 12px 25px rgba(100,100,200,.2);margin-top:10px}.mini{padding:11px 14px;background:#eef8ff;color:#31516d}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.row>*{flex:1 1 190px}
+.stageCards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}.stageCard{padding:18px;border-radius:22px;background:linear-gradient(145deg,#fff,#f2faff);border:2px solid rgba(35,183,255,.14);text-align:center}.stageCard b{display:block;font-size:23px;margin-bottom:5px}.locked{opacity:.48;filter:grayscale(.6)}
+.speedPanel{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0}.speedBtn{padding:12px 18px;background:#fff;color:#31516d;border:2px solid #dcecf7;font-size:17px}.speedBtn.active{background:linear-gradient(135deg,#1fc7ff,#806cff);color:#fff}
+.formulaGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.formula{background:#fff;border-radius:22px;padding:16px;border:1px solid #dcecf7;box-shadow:0 10px 24px rgba(50,100,150,.08)}.formula h3{margin:0 0 8px;font-size:22px;color:#3a55a8}.formula .f{font-size:clamp(24px,2.5vw,34px);font-weight:1000;color:#e44c8e;margin:8px 0}.formula p{margin:5px 0;font-weight:750;line-height:1.4}.tip{background:linear-gradient(135deg,#fff8d8,#effcff);padding:14px;border-radius:18px;font-weight:900;margin-top:12px}
+.hud{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:10px}.chip{background:#fff;border:1px solid #e0edf6;border-radius:15px;padding:9px;text-align:center;box-shadow:0 8px 18px rgba(50,100,150,.08)}.chip small{display:block;color:#7890a5;font-weight:900}.chip strong{font-size:20px}
+.promptTimer{display:grid;grid-template-columns:1fr 120px;gap:10px;align-items:stretch}.prompt{min-height:118px;border-radius:23px;background:linear-gradient(135deg,#fff,#eefaff,#fff1f8);border:2px solid rgba(35,183,255,.16);display:grid;place-items:center;text-align:center;padding:16px;font-size:clamp(27px,4vw,52px);font-weight:1000;line-height:1.2;box-shadow:0 12px 28px rgba(50,100,160,.1)}
+.timerBox{background:#fff;border-radius:22px;display:grid;place-items:center;border:1px solid #e0edf6}.timer{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#ff69b4 calc(var(--p,100)*1%),#eaf0f5 0);position:relative}.timer:before{content:"";position:absolute;inset:8px;background:#fff;border-radius:50%}.timer span{position:relative;font-size:31px;font-weight:1000;color:#ff4e98}
+.arena{position:relative;min-height:330px;margin-top:10px;border-radius:27px;background:linear-gradient(135deg,rgba(35,183,255,.07),rgba(128,108,255,.07),rgba(255,105,180,.07));overflow:hidden;border:1px solid #e3edf6}.choice{position:absolute;top:74px;width:43%;min-height:180px;border:2px solid rgba(35,183,255,.17);background:linear-gradient(145deg,#fff,#f5fbff);border-radius:26px;padding:22px 15px;display:grid;place-items:center;text-align:center;font-size:clamp(27px,4vw,50px);font-weight:1000;cursor:pointer;box-shadow:0 18px 36px rgba(50,100,160,.13);transition:.15s}.choice.left{left:4%}.choice.right{right:4%}.choice:hover{transform:scale(1.025);border-color:#806cff}.choice.correct{border-color:#31d49a;box-shadow:0 0 0 5px rgba(49,212,154,.12),0 18px 36px rgba(50,100,160,.13)}.choice.wrong{border-color:#ff5878;animation:shake .28s}.vs{position:absolute;left:50%;top:118px;transform:translateX(-50%);width:82px;height:82px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,#fff,#ffe36d 42%,#ff83bd);font-weight:1000;font-size:22px;box-shadow:0 10px 25px rgba(100,80,150,.2)}
+@keyframes shake{25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-5px)}}
+.status{text-align:center;min-height:36px;font-size:21px;font-weight:1000;margin:7px}
+.taunt{position:fixed;left:50%;top:48%;transform:translate(-50%,-50%) scale(.65);z-index:900;opacity:0;pointer-events:none;width:min(90vw,850px);text-align:center;padding:24px;border-radius:30px;background:linear-gradient(135deg,#fff3b5,#ff8fc7,#8fdfff);font-size:clamp(32px,5vw,68px);font-weight:1000;color:#24365d;box-shadow:0 25px 80px rgba(60,60,120,.3);transition:.2s}.taunt.show{opacity:1;transform:translate(-50%,-50%) scale(1);animation:floaty .55s ease-in-out infinite alternate}@keyframes floaty{to{transform:translate(-50%,-54%) scale(1.03)}}
+.stageResult{text-align:center}.bigScore{font-size:clamp(60px,9vw,110px);font-weight:1000;background:linear-gradient(135deg,#17b8ef,#7c63ff,#ff5da8);-webkit-background-clip:text;color:transparent}.passPill{display:inline-block;padding:12px 22px;border-radius:999px;font-size:22px;font-weight:1000;background:#dcfff1;color:#157455}.failPill{background:#ffe3e8;color:#a52c48}
+.frac{display:inline-grid;grid-template-rows:auto auto;vertical-align:middle;text-align:center;line-height:1;font-size:.9em;margin:0 .08em}.frac span:first-child{border-bottom:2px solid currentColor;padding:0 .12em .08em}.frac span:last-child{padding:.08em .12em 0}
+@media(max-width:760px){.screen{padding:8px}.screenTools{top:5px;right:5px}.toolBtn{padding:6px 8px;font-size:11px}.formulaGrid,.stageCards{grid-template-columns:1fr}.hud{grid-template-columns:repeat(5,1fr);gap:4px}.chip{padding:6px 3px}.chip small{font-size:9px}.chip strong{font-size:13px}.promptTimer{grid-template-columns:1fr 86px}.prompt{font-size:clamp(23px,6vw,31px);min-height:100px;padding:10px}.timer{width:72px;height:72px}.timer span{font-size:25px}.arena{min-height:280px}.choice{top:55px;width:44%;min-height:155px;padding:12px 8px;font-size:clamp(20px,5.2vw,27px)}.choice.left{left:3%}.choice.right{right:3%}.vs{width:60px;height:60px;top:101px;font-size:17px}.taunt{font-size:clamp(29px,8vw,45px)}}
+
+/* v2: rushing choices + more breathing room + stage-1 7s */
+.arena{min-height:320px}
+.choice{width:39%;min-height:158px;top:80px;opacity:0}
+.choice.left{left:-48%}
+.choice.right{right:-48%}
+.choice.left.rush{animation:rushLeft .58s cubic-bezier(.16,.86,.22,1) forwards}
+.choice.right.rush{animation:rushRight .58s cubic-bezier(.16,.86,.22,1) forwards}
+@keyframes rushLeft{
+  0%{left:-48%;opacity:0;transform:rotate(-8deg) scale(.86)}
+  72%{left:5.8%;opacity:1;transform:rotate(2deg) scale(1.035)}
+  100%{left:6%;opacity:1;transform:rotate(-1.5deg) scale(1)}
+}
+@keyframes rushRight{
+  0%{right:-48%;opacity:0;transform:rotate(8deg) scale(.86)}
+  72%{right:5.8%;opacity:1;transform:rotate(-2deg) scale(1.035)}
+  100%{right:6%;opacity:1;transform:rotate(1.5deg) scale(1)}
+}
+.vs{z-index:8;top:121px;width:76px;height:76px;animation:vsCharge .9s ease-in-out infinite alternate}
+@keyframes vsCharge{
+  from{transform:translateX(-50%) scale(.92);box-shadow:0 8px 20px rgba(100,80,150,.18)}
+  to{transform:translateX(-50%) scale(1.09);box-shadow:0 0 34px rgba(128,108,255,.38),0 0 22px rgba(255,105,180,.30)}
+}
+.arena:before,.arena:after{content:"";position:absolute;top:50%;height:5px;width:34%;z-index:0;filter:blur(1px);opacity:.65}
+.arena:before{left:9%;background:linear-gradient(90deg,transparent,#23b7ff,#806cff)}
+.arena:after{right:9%;background:linear-gradient(90deg,#806cff,#ff69b4,transparent)}
+.choice.rush:after{content:"⚡";position:absolute;top:-22px;font-size:28px;animation:sparkJump .65s ease-out both}
+.choice.left.rush:after{right:12px}.choice.right.rush:after{left:12px}
+@keyframes sparkJump{0%{opacity:0;transform:translateY(18px) scale(.4)}45%{opacity:1;transform:translateY(-5px) scale(1.25)}100%{opacity:0;transform:translateY(-22px) scale(.7)}}
+.prompt.stageFlash{animation:promptFlash .45s ease}
+@keyframes promptFlash{0%{transform:scale(.96);filter:brightness(1.25)}100%{transform:scale(1);filter:brightness(1)}}
+@media(max-width:760px){
+ .arena{min-height:265px}
+ .choice{width:39%;min-height:138px;top:58px;font-size:clamp(18px,4.8vw,25px);padding:10px 7px}
+ .vs{top:98px;width:58px;height:58px}
+ @keyframes rushLeft{0%{left:-55%;opacity:0;transform:rotate(-8deg) scale(.84)}72%{left:5.8%;opacity:1;transform:rotate(2deg) scale(1.03)}100%{left:6%;opacity:1;transform:rotate(-1deg) scale(1)}}
+ @keyframes rushRight{0%{right:-55%;opacity:0;transform:rotate(8deg) scale(.84)}72%{right:5.8%;opacity:1;transform:rotate(-2deg) scale(1.03)}100%{right:6%;opacity:1;transform:rotate(1deg) scale(1)}}
+}
+
+</style>
+</head>
+<body>
+<div class="screenTools"><button class="toolBtn" onclick="toggleTV()">🖥️ TV</button><button class="toolBtn" onclick="toggleFS()">⛶ FULL</button></div>
+
+<section id="home" class="screen active"><div class="wrap hero">
+<div class="logo">AREA</div><h1>AREA FORMULA BATTLE</h1>
+<div class="sub">📐 สามเหลี่ยม • สี่เหลี่ยม • จำสูตรให้แม่น แล้วคำนวณให้ไว | Kru Pai Classroom</div>
+<div class="card" style="max-width:850px;margin:18px auto;text-align:left">
+<label style="font-size:20px;font-weight:1000">ชื่อผู้เล่น</label><input id="name" placeholder="พิมพ์ชื่อก่อนเริ่ม...">
+<div class="stageCards"><div class="stageCard"><b>🧠 STAGE 1</b>Formula Rush • 20 ข้อ • ⏱️ 7 วิ/ข้อ<br>ผ่าน 80% เพื่อปลดล็อกด่าน 2</div><div class="stageCard locked" id="stage2Card"><b>⚡ STAGE 2</b>Quick Calculation • 20 ข้อ<br>ตัวเลขคิดในใจหรือทดเร็ว ๆ ได้</div></div>
+<div class="speedPanel"><button class="speedBtn active" onclick="setSpeed(25,this)">🧠 STAGE 2 NORMAL • 25 วิ</button><button class="speedBtn" onclick="setSpeed(15,this)">⚡ STAGE 2 FAST • 15 วิ</button></div>
+<div class="row"><button class="mini" onclick="show('review')">📘 ทบทวนสูตรก่อน</button><button class="btn" onclick="startStage(1)">🚀 เริ่ม STAGE 1</button></div>
+</div></div></section>
+
+<section id="review" class="screen"><div class="wrap">
+<div class="hero"><div class="logo">📐</div><h1>AREA FORMULA REVIEW</h1><div class="sub">อ่านให้แม่นก่อนเข้าสนามจริง</div></div>
+<div class="formulaGrid">
+<div class="formula"><h3>🔺 สามเหลี่ยม</h3><div class="f">พื้นที่ = ½ × ฐาน × สูง</div><p>“สูง” ต้องตั้งฉากกับฐานเสมอ</p><p>ถ้ารู้พื้นที่และฐาน: สูง = 2×พื้นที่ ÷ ฐาน</p></div>
+<div class="formula"><h3>🟦 สี่เหลี่ยมจัตุรัส</h3><div class="f">พื้นที่ = ด้าน × ด้าน = ด้าน²</div><p>ทุกด้านยาวเท่ากัน</p><p>ถ้ารู้พื้นที่: ด้าน = √พื้นที่</p></div>
+<div class="formula"><h3>▭ สี่เหลี่ยมผืนผ้า</h3><div class="f">พื้นที่ = กว้าง × ยาว</div><p>ด้านตรงข้ามยาวเท่ากัน</p><p>หาอีกด้าน = พื้นที่ ÷ ด้านที่รู้</p></div>
+<div class="formula"><h3>▱ สี่เหลี่ยมด้านขนาน</h3><div class="f">พื้นที่ = ฐาน × สูง</div><p>ใช้ “ความสูงตั้งฉาก” ไม่ใช่ด้านเอียง</p></div>
+<div class="formula"><h3>⏢ สี่เหลี่ยมคางหมู</h3><div class="f">พื้นที่ = ½ × (ผลบวกด้านคู่ขนาน) × สูง</div><p>ด้านที่นำมาบวกกันต้องเป็นด้านคู่ขนาน</p></div>
+<div class="formula"><h3>◇ สี่เหลี่ยมขนมเปียกปูน</h3><div class="f">พื้นที่ = ½ × เส้นทแยงมุม₁ × เส้นทแยงมุม₂</div><p>หรือใช้ ฐาน × สูง เมื่อโจทย์ให้ฐานและความสูง</p></div>
+<div class="formula"><h3>🪁 สี่เหลี่ยมรูปว่าว</h3><div class="f">พื้นที่ = ½ × เส้นทแยงมุม₁ × เส้นทแยงมุม₂</div><p>จำเป็นคู่กับขนมเปียกปูนได้เลย</p></div>
+<div class="formula"><h3>🔷 สี่เหลี่ยมทั่วไปเมื่อมีเส้นทแยงมุม</h3><div class="f">แบ่งเป็น 2 สามเหลี่ยม</div><p>พื้นที่รวม = พื้นที่สามเหลี่ยมส่วนที่ 1 + ส่วนที่ 2</p><p>ใช้เมื่อข้อมูลไม่เข้ากับสูตรพิเศษด้านบน</p></div>
+</div>
+<div class="tip">⚡ เทคนิคคิดเร็ว: ½ × 18 × 12 ให้ “หาร 18 ด้วย 2 ก่อน” → 9 × 12 = 108 • คางหมูให้บวกด้านคู่ขนานก่อน แล้วค่อยหาร 2</div>
+<div class="row"><button class="mini" onclick="show('home')">⬅ กลับหน้าปก</button><button class="btn" onclick="startStage(1)">🚀 พร้อมแล้ว • STAGE 1</button></div>
+</div></section>
+
+<section id="game" class="screen"><div class="wrap">
+<div class="hud"><div class="chip"><small>STAGE</small><strong id="stageHud">1</strong></div><div class="chip"><small>ข้อ</small><strong id="qHud">1/20</strong></div><div class="chip"><small>✓ ถูก</small><strong id="cHud">0</strong></div><div class="chip"><small>✗ พลาด</small><strong id="wHud">0</strong></div><div class="chip"><small>PLAYER</small><strong id="pHud">-</strong></div></div>
+<div class="promptTimer"><div id="prompt" class="prompt">...</div><div class="timerBox"><div class="timer" id="timer"><span id="time">25</span></div></div></div>
+<div class="arena"><button class="choice left" id="left" onclick="answer(0)"></button><div class="vs">VS</div><button class="choice right" id="right" onclick="answer(1)"></button></div>
+<div class="status" id="status"></div><div class="taunt" id="taunt"></div>
+<div class="row"><button class="mini" onclick="show('review')">📘 สูตร</button><button class="mini" onclick="goHome()">🏠 Home</button></div>
+</div></section>
+
+<section id="result" class="screen"><div class="wrap"><div class="card stageResult" style="max-width:900px;margin:40px auto">
+<div class="logo" id="resultIcon">🏆</div><h1 id="resultTitle">STAGE COMPLETE</h1><div class="bigScore" id="resultScore">0%</div>
+<div id="resultPill" class="passPill">PASS ✅</div><p id="resultText" style="font-size:20px;font-weight:900"></p>
+<div class="row" id="resultButtons"></div></div></div></section>
+
+<script>
+const S1=[
+["สูตรพื้นที่สามเหลี่ยมคือข้อใด?","½ × ฐาน × สูง","ฐาน × สูง",0],
+["สูตรพื้นที่สี่เหลี่ยมผืนผ้าคือข้อใด?","กว้าง × ยาว","½ × กว้าง × ยาว",0],
+["สูตรพื้นที่สี่เหลี่ยมจัตุรัสคือข้อใด?","ด้าน²","4 × ด้าน",0],
+["สูตรพื้นที่สี่เหลี่ยมด้านขนานคือข้อใด?","ฐาน × สูง","ด้าน × ด้าน",0],
+["สูตรพื้นที่สี่เหลี่ยมคางหมูคือข้อใด?","½ × (ด้านคู่ขนานรวมกัน) × สูง","ด้านคู่ขนานรวมกัน × สูง",0],
+["สูตรพื้นที่รูปว่าวคือข้อใด?","½ × ทแยงมุม₁ × ทแยงมุม₂","ทแยงมุม₁ × ทแยงมุม₂",0],
+["สูตรพื้นที่สี่เหลี่ยมขนมเปียกปูนเมื่อรู้เส้นทแยงมุมคือ?","½ × d₁ × d₂","d₁ + d₂",0],
+["สามเหลี่ยม: คำว่า “สูง” หมายถึงข้อใด?","ระยะตั้งฉากกับฐาน","ด้านที่ยาวที่สุดเสมอ",0],
+["ด้านขนาน: ควรใช้ความยาวใดเป็น “สูง”?","ระยะตั้งฉากระหว่างฐาน","ด้านเอียง",0],
+["คางหมู: ด้านใดต้องนำมาบวกกันในสูตร?","ด้านคู่ขนาน","ด้านเอียงทั้งสอง",0],
+["ถ้ารู้พื้นที่สามเหลี่ยมและฐาน จะหาความสูงอย่างไร?","2×พื้นที่ ÷ ฐาน","พื้นที่ ÷ ฐาน",0],
+["ถ้ารู้พื้นที่ผืนผ้าและความยาว จะหาความกว้างอย่างไร?","พื้นที่ ÷ ความยาว","พื้นที่ × ความยาว",0],
+["จัตุรัสพื้นที่ 81 ต้องหาด้านด้วยแนวคิดใด?","√พื้นที่","พื้นที่ ÷ 4",0],
+["รูปใดใช้สูตร ½ × d₁ × d₂ ได้?","รูปว่าว","สี่เหลี่ยมผืนผ้า",0],
+["ขนมเปียกปูนให้ฐานกับความสูง ใช้สูตรใดได้?","ฐาน × สูง","½ × ฐาน × สูง",0],
+["สามเหลี่ยมกับด้านขนานมีฐานและสูงเท่ากัน พื้นที่สามเหลี่ยมเป็นเท่าใด?","ครึ่งหนึ่งของด้านขนาน","เท่ากับด้านขนาน",0],
+["สูตรคางหมูมี ½ เพราะแนวคิดใดเหมาะที่สุด?","เฉลี่ยความยาวด้านคู่ขนานแล้วคูณสูง","หารความสูงครึ่งหนึ่งเสมอ",0],
+["ถ้าเส้นที่โจทย์ให้ไม่ตั้งฉากกับฐาน ใช้เป็นความสูงได้หรือไม่?","ไม่ได้","ได้เสมอ",0],
+["สี่เหลี่ยมทั่วไปที่ไม่มีสูตรตรง สามารถทำอย่างไร?","แบ่งเป็นสามเหลี่ยมแล้วรวมพื้นที่","คูณด้านทั้ง 4",0],
+["สูตรใดมีโครงสร้างเหมือนกัน?","รูปว่าวกับขนมเปียกปูน","ผืนผ้ากับคางหมู",0]
+];
+
+const S2=[
+["สามเหลี่ยม ฐาน 18 ซม. สูง 12 ซม. พื้นที่เท่าใด?","108 ตร.ซม.","216 ตร.ซม.",0],
+["สี่เหลี่ยมผืนผ้า กว้าง 14 ซม. ยาว 25 ซม. พื้นที่เท่าใด?","350 ตร.ซม.","390 ตร.ซม.",0],
+["จัตุรัส ด้าน 18 ซม. พื้นที่เท่าใด?","324 ตร.ซม.","288 ตร.ซม.",0],
+["ด้านขนาน ฐาน 24 ซม. สูง 15 ซม. พื้นที่เท่าใด?","360 ตร.ซม.","180 ตร.ซม.",0],
+["คางหมู ด้านคู่ขนาน 12 และ 20 ซม. สูง 10 ซม. พื้นที่?","160 ตร.ซม.","320 ตร.ซม.",0],
+["รูปว่าว เส้นทแยงมุม 16 และ 22 ซม. พื้นที่?","176 ตร.ซม.","352 ตร.ซม.",0],
+["ขนมเปียกปูน เส้นทแยงมุม 18 และ 24 ซม. พื้นที่?","216 ตร.ซม.","432 ตร.ซม.",0],
+["สามเหลี่ยม พื้นที่ 120 ตร.ซม. ฐาน 20 ซม. สูงเท่าใด?","12 ซม.","6 ซม.",0],
+["ผืนผ้า พื้นที่ 432 ตร.ซม. ยาว 24 ซม. กว้างเท่าใด?","18 ซม.","16 ซม.",0],
+["จัตุรัสพื้นที่ 289 ตร.ซม. ด้านยาวเท่าใด?","17 ซม.","19 ซม.",0],
+["ด้านขนานพื้นที่ 336 ตร.ซม. ฐาน 24 ซม. สูงเท่าใด?","14 ซม.","12 ซม.",0],
+["คางหมู ด้านคู่ขนาน 15 และ 25 ซม. สูง 12 ซม. พื้นที่?","240 ตร.ซม.","480 ตร.ซม.",0],
+["สามเหลี่ยม ฐาน 35 ซม. สูง 16 ซม. พื้นที่?","280 ตร.ซม.","560 ตร.ซม.",0],
+["รูปว่าว d₁=25 ซม. d₂=16 ซม. พื้นที่?","200 ตร.ซม.","400 ตร.ซม.",0],
+["ขนมเปียกปูน ฐาน 28 ซม. สูง 15 ซม. พื้นที่?","420 ตร.ซม.","210 ตร.ซม.",0],
+["ผืนผ้า ยาว 32 ซม. กว้างเป็นครึ่งหนึ่งของความยาว พื้นที่?","512 ตร.ซม.","256 ตร.ซม.",0],
+["สามเหลี่ยมมีฐานเท่ากับ 24 ซม. สูงเป็น ¾ ของฐาน พื้นที่?","216 ตร.ซม.","432 ตร.ซม.",0],
+["คางหมู ด้านคู่ขนานรวมกัน 46 ซม. สูง 14 ซม. พื้นที่?","322 ตร.ซม.","644 ตร.ซม.",0],
+["ด้านขนานพื้นที่ 450 ตร.ซม. สูง 18 ซม. ฐานยาวเท่าใด?","25 ซม.","30 ซม.",0],
+["รูปว่าวพื้นที่ 270 ตร.ซม. เส้นทแยงมุมหนึ่งยาว 18 ซม. อีกเส้นยาว?","30 ซม.","15 ซม.",0]
+];
+
+let stage=1, questions=[], idx=0, correct=0, wrong=0, calcSeconds=25, seconds=7, timeLeft=7, timerId=null, answered=false, player="", audio=null;
+const taunts=["🧠 กระตุ้นสมองหน่อยน้อง!","⚡ ให้ไวอีกนิด!","🐢 อย่าอืดเลยนะ!","📐 สูตรอยู่ในหัวหรือยัง!","🚀 สมองติดเทอร์โบหน่อย!","⏰ เวลาไม่รอนะน้อง!"];
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");scrollTo(0,0)}
+function setSpeed(s,b){calcSeconds=s;document.querySelectorAll(".speedBtn").forEach(x=>x.classList.remove("active"));b.classList.add("active")}
+function toggleFS(){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()}
+function toggleTV(){document.body.style.zoom=document.body.style.zoom==="1.12"?"":"1.12"}
+function ensureAudio(){if(!audio)audio=new (window.AudioContext||window.webkitAudioContext)();if(audio.state==="suspended")audio.resume()}
+function tone(freq,dur=.08,vol=.16,type="sine"){ensureAudio();let o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=freq;g.gain.value=vol;o.connect(g);g.connect(audio.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.stop(audio.currentTime+dur)}
+function tick(){tone(timeLeft<=3?1050:820,.07,.22,"square")}
+function good(){tone(660,.08,.2);setTimeout(()=>tone(880,.11,.2),80)}
+function bad(){tone(180,.18,.22,"sawtooth")}
+function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function startStage(n){
+ player=document.getElementById("name").value.trim()||player;if(!player){show("home");document.getElementById("name").focus();return}
+ stage=n;seconds=(n===1?7:calcSeconds);questions=shuffle((n===1?S1:S2).map(q=>[...q]));idx=0;correct=0;wrong=0;show("game");load()
+}
+function load(){
+ if(idx>=20)return finishStage();
+ answered=false;clearInterval(timerId);timeLeft=seconds;
+ document.getElementById("stageHud").textContent=stage;document.getElementById("qHud").textContent=`${idx+1}/20`;document.getElementById("cHud").textContent=correct;document.getElementById("wHud").textContent=wrong;document.getElementById("pHud").textContent=player;
+ let q=questions[idx], opts=[[q[1],q[3]===0],[q[2],q[3]===1]];if(Math.random()<.5)opts.reverse();
+ let pr=document.getElementById("prompt");pr.textContent=q[0];pr.classList.remove("stageFlash");void pr.offsetWidth;pr.classList.add("stageFlash");
+ let L=document.getElementById("left"),R=document.getElementById("right");L.textContent=opts[0][0];R.textContent=opts[1][0];
+ L.dataset.ok=opts[0][1]?"1":"0";R.dataset.ok=opts[1][1]?"1":"0";
+ L.className="choice left";R.className="choice right";void L.offsetWidth;
+ setTimeout(()=>{L.classList.add("rush");R.classList.add("rush");tone(330,.08,.12,"sawtooth");setTimeout(()=>tone(520,.09,.11,"sine"),70)},70);
+ document.getElementById("status").textContent="";
+ updateTimer();timerId=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft>0 && ((stage===1&&timeLeft<=5)||(stage===2&&timeLeft<=9)))tick();if(timeLeft<=0){clearInterval(timerId);timeout()}},1000)
+}
+function updateTimer(){document.getElementById("time").textContent=timeLeft;document.getElementById("timer").style.setProperty("--p",Math.max(0,timeLeft/seconds*100))}
+function answer(side){
+ if(answered)return;answered=true;clearInterval(timerId);let el=side===0?document.getElementById("left"):document.getElementById("right"),ok=el.dataset.ok==="1";
+ if(ok){correct++;el.classList.add("correct");document.getElementById("status").textContent="✨ ถูกต้อง! ไปต่อ!";good();setTimeout(next,800)}
+ else{wrong++;el.classList.add("wrong");bad();showTaunt();setTimeout(next,3200)}
+}
+function timeout(){if(answered)return;answered=true;wrong++;bad();showTaunt("⏰ หมดเวลา! เร็วกว่านี้อีกนิด!");setTimeout(next,3200)}
+function showTaunt(txt){let t=document.getElementById("taunt");t.textContent=txt||taunts[Math.floor(Math.random()*taunts.length)];t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2850)}
+function next(){idx++;load()}
+function finishStage(){
+ clearInterval(timerId);let pct=Math.round(correct/20*100),pass=pct>=80;show("result");
+ document.getElementById("resultScore").textContent=pct+"%";document.getElementById("resultIcon").textContent=pass?"🏆":"💪";
+ document.getElementById("resultTitle").textContent=stage===1?"STAGE 1 • FORMULA RESULT":"STAGE 2 • CALCULATION RESULT";
+ let pill=document.getElementById("resultPill");pill.textContent=pass?"PASS ✅":"ยังไม่ผ่าน • 80% ขึ้นไป";pill.className=pass?"passPill":"passPill failPill";
+ document.getElementById("resultText").textContent=`${player} • ถูก ${correct}/20 • พลาด ${wrong}/20`;
+ let b=document.getElementById("resultButtons");b.innerHTML="";
+ if(stage===1&&pass){document.getElementById("stage2Card").classList.remove("locked");b.innerHTML='<button class="mini" onclick="show(\'review\')">📘 ดูสูตรอีกครั้ง</button><button class="btn" onclick="startStage(2)">⚡ ปลดล็อกแล้ว • ไป STAGE 2</button>'}
+ else if(stage===1){b.innerHTML='<button class="mini" onclick="show(\'review\')">📘 ทบทวนสูตร</button><button class="btn" onclick="startStage(1)">🔁 แก้มือ STAGE 1</button>'}
+ else if(stage===2&&pass){b.innerHTML='<button class="mini" onclick="goHome()">🏠 Home</button><button class="btn" onclick="startStage(2)">🔥 เล่น STAGE 2 อีกครั้ง</button>'}
+ else{b.innerHTML='<button class="mini" onclick="show(\'review\')">📘 ทบทวนสูตร</button><button class="btn" onclick="startStage(2)">🔁 แก้มือ STAGE 2</button>'}
+}
+function goHome(){clearInterval(timerId);show("home")}
+</script>
+</body></html>
