@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>จับให้มั่น ฉันคือ อโลหะ - Kru Pai Classroom</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent} 
+:root{--navy:#12315f;--sky:#bfeeff;--cyan:#35cfff;--pink:#ff7fb8;--yellow:#ffe36e;--green:#36d78c;--red:#ff4d5e;--purple:#8e67ff;--ink:#15243e;--white:#fff}
+html,body{margin:0;min-height:100%;font-family:Tahoma,'Noto Sans Thai',Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#b9f5ff 0%,#e8fbff 45%,#fff5d7 100%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 18% 12%,rgba(255,255,255,.78),transparent 8%),radial-gradient(circle at 86% 20%,rgba(255,255,255,.6),transparent 10%),radial-gradient(circle at 58% 78%,rgba(53,207,255,.23),transparent 18%);pointer-events:none;z-index:0}.wrap{position:relative;z-index:1;width:min(1180px,96vw);margin:auto;padding:12px 0 28px}.brand{position:fixed;right:12px;bottom:8px;z-index:4;font-weight:1000;color:rgba(18,49,95,.55)}.screen{display:none}.screen.active{display:block}.card{position:relative;min-height:calc(100vh - 42px);background:rgba(255,255,255,.86);border:5px solid var(--navy);border-radius:30px;padding:clamp(16px,3vw,34px);box-shadow:0 14px 0 rgba(18,49,95,.14),0 22px 46px rgba(0,0,0,.15);overflow:hidden}.card:before{content:"🔬";position:absolute;right:24px;top:16px;font-size:58px;opacity:.24;transform:rotate(14deg)}.card:after{content:"🧪";position:absolute;left:22px;bottom:18px;font-size:62px;opacity:.25;transform:rotate(-15deg)}h1{font-size:clamp(32px,6vw,68px);line-height:1.08;margin:4px 0 12px;text-align:center;color:var(--navy);text-shadow:0 3px 0 rgba(53,207,255,.22)}p,.rule{font-size:clamp(17px,2.2vw,24px);line-height:1.55;font-weight:900}.subtitle{text-align:center;font-size:clamp(19px,3vw,32px);font-weight:1000;color:#e02d7d;margin-bottom:12px}.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px;margin:16px 0}.rule{background:linear-gradient(#fff,#eafeff);border:3px dashed #20b9db;border-radius:20px;padding:14px}.startGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:stretch}.infoBox{background:#fff;border:4px solid var(--navy);border-radius:24px;padding:16px}.sample{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}.chip{background:#fff;border:3px solid var(--navy);border-radius:999px;padding:10px 12px;text-align:center;font-weight:1000;box-shadow:0 5px 0 rgba(18,49,95,.13)}.chip.good{border-color:#08a965;background:#eafff4}.chip.bad{border-color:#ff9f2f;background:#fff8e0}.nameRow,.btnRow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}input{border:4px solid var(--navy);border-radius:18px;padding:14px 16px;font-size:clamp(20px,3vw,28px);font-weight:1000;outline:0;color:var(--navy);background:#fff;min-width:0}#playerName{width:min(560px,100%);text-align:center}button{border:0;border-radius:18px;padding:14px 20px;font-size:clamp(18px,2.4vw,25px);font-weight:1000;cursor:pointer;color:#071729;background:linear-gradient(#ffe982,#ffc928);box-shadow:0 8px 0 #b88400;transition:.12s}button:active{transform:translateY(4px);box-shadow:0 4px 0 #b88400}.btnBlue{background:linear-gradient(#8de7ff,#28bff0);box-shadow:0 8px 0 #08759b}.btnPink{background:linear-gradient(#ffb7d8,#ff6caf);box-shadow:0 8px 0 #b51b69;color:#250018}.btnGreen{background:linear-gradient(#99ffc9,#29d57f);box-shadow:0 8px 0 #078545}.btnRed{background:linear-gradient(#ff9aa4,#ff4d5e);box-shadow:0 8px 0 #a91322;color:#250005}.btnGray{background:linear-gradient(#fff,#dfeaf4);box-shadow:0 8px 0 #8b97a6}.topbar{display:grid;grid-template-columns:1.2fr auto auto auto;gap:10px;align-items:center;margin-bottom:10px}.pill{background:#fff;border:3px solid var(--navy);border-radius:999px;padding:8px 13px;font-weight:1000;text-align:center;font-size:clamp(15px,2vw,21px)}.pill.timer{color:#d51e36;border-color:#d51e36;background:#fff4f5}.title{font-size:clamp(24px,4vw,44px);font-weight:1000;color:var(--navy);text-align:center;margin:6px 0}.roundHint{text-align:center;font-size:clamp(16px,2.3vw,23px);font-weight:1000;color:#e02d7d;margin-bottom:8px}.collectedBox{background:rgba(255,255,255,.94);border:4px solid #20b9db;border-radius:22px;padding:10px;margin:8px 0 12px;box-shadow:0 8px 0 rgba(32,185,219,.14)}.collectedTitle{font-weight:1000;color:var(--navy);text-align:center;font-size:clamp(16px,2.2vw,22px);margin-bottom:8px}.caughtWords{min-height:48px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center}.caughtTag{background:linear-gradient(#fff,#eafff4);border:3px solid #08a965;border-radius:999px;padding:8px 12px;font-weight:1000;color:#075c39;animation:floatIn .35s ease both}@keyframes floatIn{from{transform:translateY(34px) scale(.8);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}.arena{position:relative;height:min(56vh,500px);min-height:390px;border:5px solid var(--navy);border-radius:28px;overflow:hidden;background:linear-gradient(180deg,#d6fbff 0%,#efffff 55%,#ccf2ff 100%);box-shadow:inset 0 -18px 32px rgba(53,207,255,.2)}.arena:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 80%,rgba(255,255,255,.9),transparent 7%),radial-gradient(circle at 45% 92%,rgba(255,255,255,.65),transparent 6%),radial-gradient(circle at 76% 86%,rgba(255,255,255,.8),transparent 8%);pointer-events:none}.labBase{position:absolute;left:0;right:0;bottom:0;height:74px;background:linear-gradient(#93e9ff,#36c7ee);border-top:5px solid rgba(18,49,95,.35);display:flex;align-items:center;justify-content:center;font-size:40px;gap:18px}.bubble{position:absolute;width:clamp(92px,14vw,150px);height:clamp(92px,14vw,150px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-size:clamp(18px,2.3vw,27px);font-weight:1000;color:var(--navy);border:4px solid rgba(255,255,255,.95);background:radial-gradient(circle at 32% 24%,#fff 0 10%,rgba(255,255,255,.82) 11% 22%,rgba(105,224,255,.75) 42%,rgba(255,127,184,.35) 100%);box-shadow:inset -12px -18px 22px rgba(18,49,95,.08),0 10px 24px rgba(18,49,95,.18);cursor:pointer;user-select:none;transition:left .78s cubic-bezier(.2,.9,.25,1.1),top .78s cubic-bezier(.2,.9,.25,1.1);z-index:3}.bubble small{display:block;font-size:.68em;color:#e02d7d}.bubble.floaty{animation:driftBubble 1.9s ease-in-out infinite alternate}.bubble.popped{animation:popBubble .28s ease forwards;pointer-events:none}.bubble.wrong{background:radial-gradient(circle at 32% 24%,#fff 0 12%,#ffd5d9 25%,#ff6b78 100%)}.bubble.correct{background:radial-gradient(circle at 32% 24%,#fff 0 12%,#d9fff0 25%,#42e79a 100%)}@keyframes wiggle{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-12px) rotate(2deg)}}@keyframes driftBubble{from{transform:translate(0,0) rotate(-2deg)}to{transform:translate(var(--dx,10px),var(--dy,-12px)) rotate(2deg)}}@keyframes popBubble{0%{transform:scale(1);opacity:1}70%{transform:scale(1.35);opacity:.8}100%{transform:scale(0);opacity:0}}.spark{position:absolute;pointer-events:none;font-size:44px;animation:spark .55s ease forwards;z-index:7}.miniBubble{position:absolute;width:14px;height:14px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 32% 24%,#fff 0 25%,rgba(132,230,255,.92) 45%,rgba(255,127,184,.42) 100%);border:2px solid rgba(255,255,255,.9);box-shadow:0 2px 8px rgba(18,49,95,.18);animation:miniPop .85s ease-out forwards;z-index:6}@keyframes miniPop{from{transform:translate(0,0) scale(.7);opacity:1}to{transform:translate(var(--x),var(--y)) scale(.25);opacity:0}}@keyframes spark{from{transform:scale(.3);opacity:0}50%{opacity:1}to{transform:scale(1.7) translateY(-30px);opacity:0}}.toast{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:8;background:#fff;border:5px solid var(--navy);border-radius:26px;padding:18px 22px;text-align:center;font-size:clamp(24px,4vw,46px);font-weight:1000;color:var(--navy);box-shadow:0 16px 36px rgba(0,0,0,.18);display:none}.toast.show{display:block;animation:toast .7s ease both}@keyframes toast{from{transform:translate(-50%,-50%) scale(.7);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}.roundPanel{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}.mini{background:#fff;border:3px solid var(--navy);border-radius:18px;padding:10px;text-align:center;font-weight:1000}.mini b{font-size:28px;color:#e02d7d}.summaryGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0}.sumCard{background:#fff;border:4px solid var(--navy);border-radius:20px;padding:14px;text-align:center;font-weight:1000}.sumCard b{display:block;font-size:clamp(30px,4vw,46px);color:#e02d7d}.rankBox{background:linear-gradient(135deg,#fff,#eaffff);border:5px solid #20b9db;border-radius:26px;padding:18px;text-align:center;margin:12px 0;font-weight:1000;font-size:clamp(21px,3vw,36px);color:var(--navy)}table{width:100%;border-collapse:collapse;background:#fff;border:4px solid var(--navy);border-radius:18px;overflow:hidden;margin-top:12px}th,td{padding:10px;border-bottom:2px solid #bfeeff;text-align:center;font-weight:900;font-size:clamp(13px,1.8vw,18px)}th{background:#dff8ff;color:var(--navy)}.legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px}.legend span{background:#fff;border:3px solid #20b9db;border-radius:999px;padding:7px 10px;font-weight:1000}@media(max-width:840px){.startGrid{grid-template-columns:1fr}.topbar{grid-template-columns:1fr 1fr}.topbar .pill:first-child{grid-column:1/-1}.arena{height:55vh;min-height:420px}.bubble{width:104px;height:104px;font-size:18px}.labBase{height:62px;font-size:30px}button{width:100%}.card{border-width:4px;border-radius:24px}}
+@media(max-width:430px){.wrap{width:98vw}.card{padding:12px}.arena{min-height:430px}.bubble{width:94px;height:94px;font-size:16px}.pill{padding:7px 8px}.caughtWords{min-height:42px}.labBase{gap:8px}}
+</style>
+</head>
+<body>
+<div class="brand">Kru Pai Classroom</div>
+<div class="wrap">
+<section id="startScreen" class="screen active">
+  <div class="card">
+    <h1>🫧 จับให้มั่น<br>ฉันคือ อโลหะ</h1>
+    <div class="subtitle">เกมล่าฟองธาตุอโลหะ 🔬</div>
+    <div class="startGrid">
+      <div class="infoBox">
+        <p>ฟองสบู่จะปล่อยชื่อธาตุออกมารอบละ 5 ชนิด ให้รีบกดเฉพาะ <b style="color:#e02d7d">อโลหะ</b> ก่อนหมดเวลา 10 วินาที</p>
+        <div class="rules">
+          <div class="rule">✅ กดอโลหะถูก +1 คะแนน</div>
+          <div class="rule">❌ กดผิด -1 คะแนน</div>
+          <div class="rule">⏰ ปล่อยอโลหะแตก = 0 คะแนน</div>
+          <div class="rule">🏆 เล่น 10 รอบ รอบละ 10 วิ ผ่านที่ 90%</div>
+        </div>
+      </div>
+      <div class="infoBox">
+        <p style="text-align:center;margin-top:0">ตัวอย่างธาตุที่ควรจำ</p>
+        <div class="sample">
+          <div class="chip good">เหล็ก Fe</div><div class="chip good">ทองแดง Cu</div><div class="chip good">อะลูมิเนียม Al</div><div class="chip good">สังกะสี Zn</div><div class="chip bad">ออกซิเจน O</div><div class="chip bad">ซิลิคอน Si</div>
+        </div>
+        <div class="legend"><span>อโลหะ = ไม่นำไฟฟ้าเป็นส่วนใหญ่</span><span>ไม่มันวาว</span><span>เปราะหรือเป็นแก๊สได้</span></div>
+      </div>
+    </div>
+    <div class="nameRow"><input id="playerName" placeholder="พิมพ์ชื่อผู้เล่น..." maxlength="30"><button id="startBtn" class="btnBlue">เริ่มล่าธาตุ 🫧</button><button id="fullBtn" class="btnGray">เต็มจอ 📺</button></div>
+  </div>
+</section>
+
+<section id="gameScreen" class="screen">
+  <div class="card">
+    <div class="topbar">
+      <div class="pill">ผู้เล่น: <span id="nameShow">-</span></div>
+      <div class="pill">รอบ <span id="roundNo">1</span>/10</div>
+      <div class="pill">คะแนนสุทธิ <span id="scoreShow">0</span></div>
+      <div class="pill timer">⏱ <span id="timeShow">10</span> วิ</div>
+    </div>
+    <div class="title">กดเฉพาะฟองที่เป็น “อโลหะ”</div>
+    <div id="roundHint" class="roundHint">รอบนี้มีอโลหะ 2–3 ฟอง ซ่อนอยู่!</div>
+    <div class="collectedBox"><div id="collectedTitle" class="collectedTitle">อโลหะที่จับได้ทั้งหมด 0 คำ ✨</div><div id="caughtWords" class="caughtWords"></div></div>
+    <div id="arena" class="arena"><div id="toast" class="toast"></div><div class="labBase">⚗️ 🧫 🧪 🔬 🧬</div></div>
+    <div class="roundPanel"><div class="mini">กดถูก <b id="correctShow">0</b></div><div class="mini">กดผิด <b id="wrongShow">0</b></div><div class="mini">พลาดอโลหะ <b id="missShow">0</b></div></div>
+  </div>
+</section>
+
+<section id="summaryScreen" class="screen">
+  <div class="card">
+    <h1>🏆 สรุปผลภารกิจอโลหะ</h1>
+    <div class="summaryGrid">
+      <div class="sumCard">ผู้เล่น <b id="sumName">-</b></div>
+      <div class="sumCard">คะแนน <b id="sumScore">0</b></div>
+      <div class="sumCard">เปอร์เซ็นต์ <b id="sumPercent">0%</b></div>
+      <div class="sumCard">กดถูก <b id="sumCorrect">0</b></div>
+      <div class="sumCard">กดผิด <b id="sumWrong">0</b></div>
+      <div class="sumCard">พลาดอโลหะ <b id="sumMiss">0</b></div>
+    </div>
+    <div id="rankBox" class="rankBox"></div>
+    <div class="btnRow"><button id="restartBtn" class="btnBlue">เล่นใหม่อีกครั้ง 🔁</button><button id="printBtn" class="btnGreen">พิมพ์/บันทึก PDF 📝</button></div>
+    <table><thead><tr><th>รอบ</th><th>อโลหะที่ต้องหา</th><th>จับได้</th><th>กดผิด</th><th>ผลรอบ</th></tr></thead><tbody id="resultRows"></tbody></table>
+  </div>
+</section>
+</div>
+<script>
+(function(){
+const rounds=[
+ {items:[['ออกซิเจน O','colloid'],['เหล็ก Fe','solution'],['คาร์บอน C','colloid'],['ซิลิคอน Si','suspension'],['ทองแดง Cu','solution']]},
+ {items:[['คลอรีน Cl','colloid'],['อะลูมิเนียม Al','solution'],['กำมะถัน S','colloid'],['โบรอน B','suspension'],['สังกะสี Zn','solution']]},
+ {items:[['ไนโตรเจน N','colloid'],['เงิน Ag','solution'],['ฟอสฟอรัส P','colloid'],['เจอร์เมเนียม Ge','suspension'],['ทองคำ Au','solution']]},
+ {items:[['ไฮโดรเจน H','colloid'],['โซเดียม Na','solution'],['ไอโอดีน I','colloid'],['สารหนู As','suspension'],['แคลเซียม Ca','solution']]},
+ {items:[['โบรมีน Br','colloid'],['แมกนีเซียม Mg','solution'],['ฮีเลียม He','colloid'],['พลวง Sb','suspension'],['ตะกั่ว Pb','solution']]},
+ {items:[['นีออน Ne','colloid'],['ดีบุก Sn','solution'],['ซีลีเนียม Se','colloid'],['เทลลูเรียม Te','suspension'],['ปรอท Hg','solution']]},
+ {items:[['อาร์กอน Ar','colloid'],['โพแทสเซียม K','solution'],['ฟลูออรีน F','colloid'],['ซิลิคอน Si','suspension'],['นิกเกิล Ni','solution']]},
+ {items:[['คาร์บอน C','colloid'],['โครเมียม Cr','solution'],['คลอรีน Cl','colloid'],['โบรอน B','suspension'],['แมงกานีส Mn','solution']]},
+ {items:[['ฟอสฟอรัส P','colloid'],['แพลทินัม Pt','solution'],['กำมะถัน S','colloid'],['เจอร์เมเนียม Ge','suspension'],['ไทเทเนียม Ti','solution']]},
+ {items:[['ไนโตรเจน N','colloid'],['ลิเทียม Li','solution'],['ไอโอดีน I','colloid'],['แบเรียม Ba','solution'],['ออกซิเจน O','colloid']]}
+];
+let player='';let roundIndex=0;let score=0;let time=10;let timer=null;let active=false;let correct=0,wrong=0,miss=0,totalTargets=0;let caughtThis=[],wrongThis=[],roundResults=[];let streak=0;let caughtAll=[];
+const $=id=>document.getElementById(id);
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
+function beep(type){try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);if(type==='bad'){o.type='sawtooth';o.frequency.setValueAtTime(180,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(80,ctx.currentTime+.22);g.gain.setValueAtTime(.12,ctx.currentTime)}else if(type==='end'){o.type='triangle';o.frequency.setValueAtTime(420,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(180,ctx.currentTime+.45);g.gain.setValueAtTime(.1,ctx.currentTime)}else{o.type='sine';o.frequency.setValueAtTime(620,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+.14);g.gain.setValueAtTime(.1,ctx.currentTime)}g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.35);o.start();o.stop(ctx.currentTime+.36)}catch(e){}}
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+function start(){player=$('playerName').value.trim()||'นักล่าอโลหะตัวน้อย';$('nameShow').textContent=player;roundIndex=0;score=0;correct=wrong=miss=0;roundResults=[];streak=0;caughtAll=[];$('caughtWords').innerHTML='';updateCaughtTitle();show('gameScreen');loadRound()}
+function full(){const el=document.documentElement;if(el.requestFullscreen)el.requestFullscreen();else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen()}
+function loadRound(){clearInterval(timer);active=true;time=10;caughtThis=[];wrongThis=[];$('roundNo').textContent=roundIndex+1;$('scoreShow').textContent=score;$('timeShow').textContent=time;$('correctShow').textContent=correct;$('wrongShow').textContent=wrong;$('missShow').textContent=miss;const r=rounds[roundIndex];const targetCount=r.items.filter(x=>x[1]==='colloid').length;totalTargets+= roundIndex===0?0:0;$('roundHint').textContent='รอบนี้มีอโลหะ '+targetCount+' ฟอง รีบจับก่อนฟองแตก!';renderBubbles(r.items);timer=setInterval(()=>{time--;$('timeShow').textContent=time;if(time<=0){endRound(false)}},1000)}
+function renderBubbles(items){const arena=$('arena');Array.from(arena.querySelectorAll('.bubble,.spark,.miniBubble')).forEach(x=>x.remove());$('toast').classList.remove('show');const positions=shuffle([[8,12],[36,25],[62,10],[18,57],[66,56]]);shuffle(items).forEach((it,i)=>{const b=document.createElement('div');b.className='bubble';b.dataset.type=it[1];b.dataset.word=it[0];b.innerHTML=it[0];b.style.left='-180px';b.style.top=(18+i*12)+'%';b.style.setProperty('--dx',((i%2?1:-1)*(8+Math.random()*10)).toFixed(0)+'px');b.style.setProperty('--dy',((-10-Math.random()*10)).toFixed(0)+'px');b.addEventListener('click',()=>tapBubble(b));arena.appendChild(b);setTimeout(()=>{b.style.left=positions[i][0]+'%';b.style.top=positions[i][1]+'%';},70+i*115);setTimeout(()=>b.classList.add('floaty'),980+i*115)})}
+function tapBubble(b){if(!active||b.classList.contains('popped'))return;const word=b.dataset.word,type=b.dataset.type;if(type==='colloid'){b.classList.add('correct','popped');score+=1;correct++;streak++;caughtThis.push(word);caughtAll.push(word);addCaught(word);burstBubbles(b);sparkAt(b,'✨');beep('ok');if(streak===5)toast('ว้าว! เทพแห่งอโลหะ 🛡️');if(streak===10)toast('นักล่าอโลหะระดับตำนาน 🚀');const left=Array.from(document.querySelectorAll('.bubble')).filter(x=>x.dataset.type==='colloid'&&!x.classList.contains('popped')).length;if(left===0)setTimeout(()=>endRound(true),450)}else{b.classList.add('wrong','popped');score-=1;wrong++;streak=0;wrongThis.push(word);burstBubbles(b);sparkAt(b,'💥');beep('bad');toast('อุ๊ย! อันนี้ไม่ใช่อโลหะ 😅')}updateStats()}
+function updateCaughtTitle(){$('collectedTitle').textContent='อโลหะที่จับได้ทั้งหมด '+caughtAll.length+' คำ ✨'}
+function addCaught(word){const tag=document.createElement('div');tag.className='caughtTag';tag.textContent=word;$('caughtWords').appendChild(tag);updateCaughtTitle()}
+function sparkAt(b,txt){const arena=$('arena');const s=document.createElement('div');s.className='spark';s.textContent=txt;const br=b.getBoundingClientRect(),ar=arena.getBoundingClientRect();s.style.left=(br.left-ar.left+br.width/2-20)+'px';s.style.top=(br.top-ar.top+br.height/2-20)+'px';arena.appendChild(s);setTimeout(()=>s.remove(),600)}
+function burstBubbles(b){const arena=$('arena');const br=b.getBoundingClientRect(),ar=arena.getBoundingClientRect();const cx=br.left-ar.left+br.width/2,cy=br.top-ar.top+br.height/2;for(let i=0;i<10;i++){const m=document.createElement('div');m.className='miniBubble';m.style.left=(cx-7)+'px';m.style.top=(cy-7)+'px';const ang=(Math.PI*2*i/10)+(Math.random()*.45);const dist=38+Math.random()*46;m.style.setProperty('--x',Math.cos(ang)*dist+'px');m.style.setProperty('--y',Math.sin(ang)*dist+'px');arena.appendChild(m);setTimeout(()=>m.remove(),900)}}
+function toast(t){const el=$('toast');el.textContent=t;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),900)}
+function updateStats(){$('scoreShow').textContent=score;$('correctShow').textContent=correct;$('wrongShow').textContent=wrong;$('missShow').textContent=miss}
+function endRound(cleared){if(!active)return;active=false;clearInterval(timer);const r=rounds[roundIndex];const targets=r.items.filter(x=>x[1]==='colloid').map(x=>x[0]);const missed=targets.filter(x=>!caughtThis.includes(x));if(missed.length){miss+=missed.length;streak=0}updateStats();roundResults.push({round:roundIndex+1,targets,caught:[...caughtThis],wrong:[...wrongThis],missed,result:missed.length===0?'ผ่าน':'พลาด '+missed.length+' คำ'});beep(missed.length?'end':'ok');toast(missed.length?'หมดเวลา! ยังเหลือ '+missed.join(', '):'จับอโลหะครบ! เก่งมาก ✅');setTimeout(()=>{roundIndex++;if(roundIndex>=rounds.length)summary();else loadRound()},1700)}
+function summary(){show('summaryScreen');const max=rounds.reduce((s,r)=>s+r.items.filter(x=>x[1]==='colloid').length,0);const net=Math.max(0,score);const percent=Math.round((net/max)*100);$('sumName').textContent=player;$('sumScore').textContent=score+'/'+max;$('sumPercent').textContent=percent+'%';$('sumCorrect').textContent=correct;$('sumWrong').textContent=wrong;$('sumMiss').textContent=miss;let rank='';if(percent>=90)rank='🥇 ผ่าน — ปรมาจารย์อโลหะ จับแม่นมาก!';else if(percent>=80)rank='🥈 เกือบผ่าน — เหลืออีกนิดเดียว ลองแก้มือได้เลย!';else if(percent>=60)rank='🥉 กำลังดีขึ้น — ทบทวนธาตุอโลหะอีกนิด!';else rank='🧪 ยังไม่ผ่าน — อ่านทบทวนแล้วลุยใหม่ได้เลย!';$('rankBox').textContent=rank;$('resultRows').innerHTML=roundResults.map(r=>`<tr><td>${r.round}</td><td>${r.targets.join(', ')}</td><td>${r.caught.length?r.caught.join(', '):'-'}</td><td>${r.wrong.length?r.wrong.join(', '):'-'}</td><td>${r.result}</td></tr>`).join('')}
+function restart(){show('startScreen')}
+document.addEventListener('DOMContentLoaded',()=>{$('startBtn').addEventListener('click',start);$('fullBtn').addEventListener('click',full);$('restartBtn').addEventListener('click',restart);$('printBtn').addEventListener('click',()=>window.print())});
+})();
+</script>
+</body>
+</html>
