@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VOLUME MISSION SET 1 – ระดับปานกลาง • ฝึกสูตรให้แม่น | Kru Pai Classroom</title>
+<style>
+:root{
+  --bg0:#05070f;--bg1:#0f1430;--bg2:#1a1033;--ink:#f8fafc;--muted:rgba(248,250,252,.82);
+  --yellow:#ffd86b;--pink:#ff72c8;--pink2:#ffe0f2;--violet:#9f8cff;--cyan:#67efff;--green:#7ef0c0;--bad:#ff607d;
+  --shadow:rgba(0,0,0,.42);--panel:rgba(14,18,38,.88);--panel2:rgba(24,29,58,.82);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);min-height:100vh;
+  background:
+    radial-gradient(1200px 800px at 8% 12%, rgba(103,239,255,.18), transparent 46%),
+    radial-gradient(1000px 720px at 92% 18%, rgba(255,114,200,.18), transparent 40%),
+    radial-gradient(900px 680px at 50% 100%, rgba(104,242,163,.12), transparent 42%),
+    linear-gradient(180deg,var(--bg0),#11183a 42%,#22103d);
+  overflow:hidden;-webkit-text-size-adjust:100%
+}
+.sparkles,.bubbles,.confettiLayer,.emojiLayer,.dnaLayer,.flashLayer{position:fixed;inset:0;pointer-events:none}
+.flashLayer{opacity:0;background:radial-gradient(circle at center, rgba(255,255,255,.22), rgba(255,255,255,0) 58%);transition:opacity .18s ease;z-index:210}
+.flashLayer.show{opacity:1}
+.sparkles i{position:absolute;width:7px;height:7px;border-radius:50%;background:rgba(255,228,92,.95);box-shadow:0 0 14px rgba(255,228,92,.65);animation:twinkle 2.8s ease-in-out infinite}
+.sparkles i:nth-child(odd){background:rgba(255,123,194,.95);box-shadow:0 0 14px rgba(255,123,194,.55)}
+@keyframes twinkle{0%,100%{transform:scale(.6);opacity:.25}50%{transform:scale(1.45);opacity:1}}
+.bubbles span{position:absolute;border-radius:50%;background:rgba(142,247,255,.08);border:1px solid rgba(142,247,255,.12);animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(20vh) scale(.8);opacity:0}10%{opacity:1}100%{transform:translateY(-120vh) scale(1.15);opacity:0}}
+.dnaLayer i{position:absolute;width:90px;height:18px;border-radius:999px;border:2px solid rgba(142,247,255,.12);opacity:.35;transform:rotate(40deg);animation:dnaDrift linear infinite}
+@keyframes dnaDrift{0%{transform:translateY(30px) rotate(35deg)}100%{transform:translateY(-110vh) rotate(45deg)}}
+.screen{display:none;width:100vw;height:100dvh;min-height:100vh;overflow-y:auto;overflow-x:hidden;padding:12px}
+.screen.active{display:block}
+.wrap{max-width:1260px;margin:0 auto}
+.brand{display:flex;justify-content:center;margin-top:4px}
+.badge{width:62px;height:62px;border-radius:20px;display:grid;place-items:center;font-weight:1000;letter-spacing:.8px;color:#1a1430;background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet));box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.heroTitle{text-align:center;margin:10px 0 4px;font-size:clamp(34px,4.6vw,64px);line-height:1.02;font-weight:1000;letter-spacing:.3px}
+.heroTitle .glow{background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 14px 22px rgba(0,0,0,.35))}
+.subtitle{text-align:center;color:var(--muted);font-weight:900;line-height:1.42;font-size:clamp(14px,1.35vw,20px);margin:0 0 14px}
+.card{background:linear-gradient(180deg, rgba(20,26,51,.95), rgba(17,20,41,.92));border:1px solid rgba(255,255,255,.10);border-radius:28px;padding:18px;box-shadow:0 20px 40px var(--shadow);backdrop-filter: blur(6px)}
+input{width:100%;padding:18px 18px;font-size:22px;font-weight:1000;border-radius:18px;border:1px solid rgba(255,255,255,.14);outline:none;background:rgba(7,8,17,.55);color:var(--ink)}
+.btn,.miniBtn,.modeBtn{border:none;cursor:pointer;font-weight:1000;transition:transform .12s ease, filter .12s ease, box-shadow .18s ease}
+.btn:active,.miniBtn:active,.modeBtn:active,.pulseCell:active{transform:translateY(2px)}
+.btn{width:100%;margin-top:12px;padding:17px 18px;border-radius:18px;background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet));color:#170f27;font-size:clamp(19px,1.9vw,25px);box-shadow:0 18px 36px rgba(0,0,0,.32)}
+.miniRow{display:flex;gap:10px;flex-wrap:wrap}
+.miniBtn,.modeBtn{flex:1 1 200px;padding:12px 13px;border-radius:15px;background:linear-gradient(180deg, rgba(10,13,27,.74), rgba(20,26,51,.68));border:1px solid rgba(255,255,255,.10);color:var(--pink2);font-size:14px;box-shadow:0 12px 24px rgba(0,0,0,.22)}
+.modeBtn.active{background:linear-gradient(135deg,rgba(255,228,92,.22),rgba(255,123,194,.22));color:var(--yellow);border-color:rgba(255,228,92,.35)}
+.howtoList{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.howtoBox{background:linear-gradient(180deg, rgba(13,16,33,.76), rgba(20,26,51,.66));border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:14px}
+.howtoBox h3{margin:0 0 8px;color:var(--yellow);font-size:20px}.howtoBox p{margin:0;font-weight:800;line-height:1.45}
+.goalBanner{margin-top:12px;padding:12px 14px;border-radius:18px;text-align:center;background:linear-gradient(135deg, rgba(255,228,92,.14), rgba(255,123,194,.16));border:1px solid rgba(255,255,255,.10);font-weight:1000}
+.topZone{display:grid;grid-template-columns:1fr 114px;gap:12px;align-items:start;margin-bottom:10px}
+.topbar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.chip{background:linear-gradient(180deg, rgba(9,12,27,.82), rgba(20,26,51,.68));border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:9px 10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 12px 24px rgba(0,0,0,.26);font-size:14px;font-weight:1000;color:var(--muted)}
+.chip strong{font-size:18px;color:var(--ink)}
+.timerBox{background:linear-gradient(180deg, rgba(9,12,27,.82), rgba(20,26,51,.68));border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:8px 8px 10px;box-shadow:0 12px 24px rgba(0,0,0,.26);text-align:center}
+.timerWheel{width:96px;height:96px;margin:0 auto;border-radius:50%;background:conic-gradient(var(--pink) calc(var(--deg,360) * 1deg), rgba(255,255,255,.08) 0);position:relative;display:grid;place-items:center;box-shadow:0 12px 22px rgba(0,0,0,.32)}
+.timerWheel::before{content:"";position:absolute;inset:8px;border-radius:50%;background:linear-gradient(180deg, rgba(8,13,25,.96), rgba(20,26,51,.90));border:1px solid rgba(255,255,255,.08)}
+.timerNum{position:relative;z-index:1;font-size:34px;font-weight:1000;color:var(--yellow)}
+.timerLabel{margin-top:4px;font-size:12px;font-weight:1000;color:var(--muted)}
+.thaiBox{background:linear-gradient(135deg, rgba(255,228,92,.16), rgba(255,123,194,.13));border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:14px 18px;text-align:center;font-weight:1000;color:var(--yellow);font-size:clamp(22px,2.4vw,34px);margin-bottom:10px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.commandBox{display:none!important;background:linear-gradient(180deg, rgba(9,12,27,.70), rgba(20,26,51,.62));border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:12px 14px;font-weight:900;color:var(--muted);text-align:center;margin-bottom:10px;font-size:clamp(14px,1.2vw,18px)}
+.battleWrap{position:relative;min-height:360px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border-radius:28px;border:1px solid rgba(255,255,255,.07);padding:6px 0}
+.battleLane{position:relative;min-height:345px}
+.energyLine{position:absolute;left:50%;top:50%;width:min(560px,60vw);height:6px;transform:translate(-50%,-50%);background:linear-gradient(90deg,rgba(255,99,184,.0),rgba(255,99,184,.75),rgba(255,228,92,.95),rgba(142,247,255,.8),rgba(142,247,255,0));filter:blur(2px);opacity:.58;animation:energyMove 1.4s linear infinite;z-index:1}
+@keyframes energyMove{0%,100%{opacity:.3;transform:translate(-50%,-50%) scaleX(.92)}50%{opacity:.95;transform:translate(-50%,-50%) scaleX(1.04)}}
+.pulseCell{position:absolute;width:min(44%,450px);min-height:178px;border-radius:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px 18px;font-size:clamp(26px,2.2vw,38px);line-height:1.22;font-weight:1000;color:var(--ink);border:2px solid rgba(255,255,255,.14);background:radial-gradient(circle at 20% 20%, rgba(255,255,255,.18), rgba(255,255,255,0) 32%),linear-gradient(180deg, rgba(18,20,42,.98), rgba(28,22,54,.94));box-shadow:0 22px 36px rgba(0,0,0,.34), 0 0 24px rgba(255,123,194,.14), inset 0 0 0 1px rgba(255,255,255,.04);transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;z-index:2}
+.pulseCell.left{left:-58%;top:78px;--tilt:-4deg;transform:rotate(-6deg)}
+.pulseCell.right{right:-58%;top:78px;--tilt:4deg;transform:rotate(6deg)}
+.pulseCell.left.enter{animation:leftCardRush .6s cubic-bezier(.2,.84,.22,1) forwards}
+.pulseCell.right.enter{animation:rightCardRush .6s cubic-bezier(.2,.84,.22,1) forwards}
+@keyframes leftCardRush{0%{left:-62%;transform:rotate(-9deg) scale(.88)}100%{left:4%;transform:rotate(-4deg) scale(1)}}
+@keyframes rightCardRush{0%{right:-62%;transform:rotate(9deg) scale(.88)}100%{right:4%;transform:rotate(4deg) scale(1)}}
+.pulseCell:hover{border-color:rgba(255,228,92,.78);box-shadow:0 0 0 2px rgba(255,228,92,.25),0 0 40px rgba(255,228,92,.28),0 22px 36px rgba(0,0,0,.34)}
+.pulseCell.correct{border-color:rgba(104,242,163,.95);box-shadow:0 0 0 2px rgba(104,242,163,.20),0 0 36px rgba(104,242,163,.26),0 22px 36px rgba(0,0,0,.34);animation:hitImpact .35s ease}
+.pulseCell.wrong{border-color:rgba(255,95,117,.95);box-shadow:0 0 0 2px rgba(255,95,117,.20),0 0 36px rgba(255,95,117,.26),0 22px 36px rgba(0,0,0,.34);animation:hitImpact .35s ease}
+.pulseCell.dim{opacity:.32;filter:saturate(.66)}
+@keyframes hitImpact{0%{transform:scale(1)}30%{transform:scale(1.08)}100%{transform:scale(1)}}
+.cellCore{display:none}.cellLabel{position:absolute;top:12px;left:14px;font-size:14px;font-weight:1000;color:var(--pink2);letter-spacing:1px}.cellText{position:relative;z-index:2;width:100%;text-shadow:0 6px 18px rgba(0,0,0,.22)}
+.vsOrb{position:absolute;left:50%;top:122px;transform:translateX(-50%);width:106px;height:106px;border-radius:50%;display:grid;place-items:center;font-size:30px;font-weight:1000;color:#1b1530;background:radial-gradient(circle at 30% 30%, #fff6bc, var(--yellow) 45%, var(--pink2));box-shadow:0 16px 30px rgba(0,0,0,.34), 0 0 22px rgba(255,123,194,.20);z-index:5;animation:vsPulse 1.2s infinite}
+@keyframes vsPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.12)}}
+.statusText{text-align:center;font-weight:1000;font-size:clamp(16px,1.3vw,22px);color:var(--pink2);margin-top:10px;min-height:30px}
+.comboBadge,.winnerBanner,.countdownOverlay{position:fixed;left:50%;transform:translateX(-50%) scale(.9);background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet));color:#170f27;border-radius:999px;padding:10px 20px;font-weight:1000;box-shadow:0 16px 34px rgba(0,0,0,.35);opacity:0;pointer-events:none;z-index:220;transition:opacity .18s ease, transform .18s ease}
+.comboBadge{top:12px;font-size:clamp(16px,2vw,28px)}
+.winnerBanner{top:12px;font-size:clamp(18px,2.2vw,34px)}
+.countdownOverlay{top:50%;transform:translateX(-50%) translateY(-50%) scale(.75);font-size:clamp(54px,12vw,120px);padding:16px 32px;border-radius:30px;z-index:260}
+.comboBadge.show,.winnerBanner.show{opacity:1;transform:translateX(-50%) scale(1)}
+.countdownOverlay.show{opacity:1;transform:translateX(-50%) translateY(-50%) scale(1)}
+.floatEmoji{position:absolute;font-size:56px;animation:popRise .9s ease-out forwards;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28))}
+@keyframes popRise{0%{transform:translateY(0) scale(.65);opacity:0}20%{opacity:1}100%{transform:translateY(-70px) scale(1.15);opacity:0}}
+.certificate{position:relative;padding:clamp(18px,2vw,28px);border-radius:28px;background:radial-gradient(circle at 15% 12%, rgba(255,192,203,.22), transparent 24%),radial-gradient(circle at 85% 18%, rgba(255,228,92,.24), transparent 26%),radial-gradient(circle at 50% 100%, rgba(104,242,163,.16), transparent 30%),linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,248,252,.98));color:#17212f;border:8px double rgba(255,182,193,.8);box-shadow:0 30px 70px rgba(0,0,0,.35), 0 0 36px rgba(255,192,203,.28);overflow:hidden}
+.certificate::after{content:"✨  ⭐  ✨  🌈  ✨";position:absolute;left:50%;bottom:10px;transform:translateX(-50%);font-size:clamp(18px,2vw,28px);opacity:.9;z-index:1}
+.certTop{text-align:center;position:relative;z-index:1}.certSeal{width:96px;height:96px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--yellow),var(--pink2),var(--violet));color:#08111f;font-size:42px;font-weight:1000;box-shadow:0 18px 34px rgba(0,0,0,.22);border:4px solid rgba(255,255,255,.7)}
+.certTitle{font-size:clamp(30px,3.2vw,52px);font-weight:1000;color:#b45309;text-shadow:0 4px 10px rgba(255,192,203,.22);margin-bottom:4px}.certSub{font-size:clamp(15px,1.5vw,22px);font-weight:900;color:#3b4758;margin-bottom:14px}.certPlayer{font-size:clamp(22px,2.2vw,34px);font-weight:1000;color:#14532d;margin:10px 0 14px;text-align:center;position:relative;z-index:1}.certBigScore{text-align:center;font-size:clamp(54px,5vw,88px);font-weight:1000;color:#b45309;margin:6px 0 0;position:relative;z-index:1}.certMini{text-align:center;font-size:clamp(16px,1.4vw,20px);font-weight:900;color:#475569;margin-bottom:14px;position:relative;z-index:1}
+.certGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px;position:relative;z-index:1}.certStat{background:rgba(255,255,255,.85);border:2px solid rgba(255,228,92,.65);border-radius:18px;padding:14px 10px;text-align:center;box-shadow:0 12px 22px rgba(0,0,0,.08)}.certStat .k{font-weight:1000;font-size:clamp(14px,1.2vw,18px);color:#475569;margin-bottom:6px}.certStat .v{font-weight:1000;font-size:clamp(24px,2vw,34px);color:#0f172a}
+.certPass{margin:16px auto 8px;width:fit-content;padding:12px 22px;border-radius:999px;font-weight:1000;font-size:clamp(18px,1.8vw,26px);position:relative;z-index:1}.certPass.pass{background:rgba(34,197,94,.18);color:#166534;border:2px solid rgba(34,197,94,.45)}.certPass.fail{background:rgba(239,68,68,.14);color:#991b1b;border:2px solid rgba(239,68,68,.35)}.certFooter{text-align:center;margin-top:16px;color:#475569;font-weight:900;font-size:clamp(13px,1.2vw,17px);position:relative;z-index:1}
+.confettiLayer i{position:absolute;top:-20px;width:10px;height:18px;border-radius:8px;opacity:.96;animation:megaDrop linear forwards}
+@keyframes megaDrop{0%{transform:translateY(-30px) rotate(0deg);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:.95}}
+.tv body,.tvMode body{font-size:112%}
+.tvMode .wrap{max-width:1560px}
+.tvMode .heroTitle{font-size:clamp(40px,5vw,76px)}
+.tvMode .subtitle{font-size:clamp(18px,1.55vw,26px)}
+.tvMode .thaiBox{font-size:clamp(28px,2.6vw,42px);padding:18px 22px}
+.tvMode .commandBox{display:none!important;font-size:clamp(18px,1.35vw,24px);padding:14px 18px}
+.tvMode .chip{font-size:16px;padding:12px 14px}.tvMode .chip strong{font-size:22px}
+.tvMode .battleWrap,.tvMode .battleLane{min-height:450px}
+.tvMode .pulseCell{min-height:220px;font-size:clamp(32px,2.2vw,46px);width:min(44%,520px);padding:24px 20px}
+.tvMode .pulseCell.left,.tvMode .pulseCell.right{top:104px}
+.tvMode .vsOrb{top:150px;width:132px;height:132px;font-size:38px}
+.tvMode .energyLine{height:9px;width:min(720px,62vw)}
+@media (max-width:920px){.howtoList{grid-template-columns:1fr}.topZone{grid-template-columns:1fr 100px;gap:8px}.battleWrap,.battleLane{min-height:310px}.pulseCell{width:44%;min-height:144px;font-size:20px;padding:14px 12px}.pulseCell.left,.pulseCell.right{top:58px}.vsOrb{top:106px;width:80px;height:80px;font-size:25px}.energyLine{width:72vw}}
+@media (max-width:768px){body{overflow:auto}.screen{padding:8px 8px 14px}.badge{width:44px;height:44px;border-radius:12px;font-size:14px}.heroTitle{font-size:clamp(24px,6.4vw,34px);margin:4px 0 2px}.subtitle{font-size:12px;line-height:1.3;margin:0 0 8px}.card{padding:10px;border-radius:18px}.topbar{gap:6px}.chip{min-height:38px;border-radius:12px;padding:6px 8px;font-size:10px;line-height:1.05}.chip strong{font-size:13px}.timerWheel{width:82px;height:82px}.timerWheel::before{inset:7px}.timerNum{font-size:28px}.thaiBox{font-size:20px;padding:12px 10px;line-height:1.28}.commandBox{display:none!important;font-size:12px;padding:9px 10px}.battleWrap,.battleLane{min-height:280px}.pulseCell{width:min(45vw,230px);min-width:148px;min-height:130px;padding:12px 10px;font-size:18px;border-radius:18px}.pulseCell.left,.pulseCell.right{top:50px}.vsOrb{top:96px;width:72px;height:72px;font-size:22px}.statusText{font-size:14px;min-height:24px}.miniBtn,.modeBtn{flex:1 1 calc(50% - 6px);padding:10px 8px;border-radius:12px;font-size:12px}.btn{margin-top:8px;padding:13px 12px;border-radius:14px;font-size:17px}.comboBadge{top:8px;width:calc(100vw - 22px);padding:8px 10px;text-align:center;font-size:clamp(14px,4.2vw,20px)}.winnerBanner{top:8px;width:calc(100vw - 18px);text-align:center;padding:10px 12px;font-size:clamp(14px,4.2vw,20px)}.countdownOverlay{width:calc(100vw - 40px);text-align:center}.certGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.certSeal{width:70px;height:70px;font-size:32px}.certTitle{font-size:clamp(22px,6vw,30px)}.certSub{font-size:12px;margin-bottom:8px}.certPlayer{font-size:clamp(18px,5vw,24px);margin:8px 0 10px}.certBigScore{font-size:clamp(40px,11vw,58px)}.certMini{font-size:13px;margin-bottom:10px}.certStat{padding:10px 8px;border-radius:14px}.certStat .k{font-size:12px}.certStat .v{font-size:21px}.certPass{padding:10px 16px;font-size:18px}}
+
+/* Kru Pai MATH BRIGHT upgrade */
+body{background:radial-gradient(900px 650px at 12% 10%,rgba(20,184,166,.28),transparent 48%),radial-gradient(850px 650px at 90% 15%,rgba(59,130,246,.24),transparent 45%),radial-gradient(800px 600px at 50% 100%,rgba(168,85,247,.18),transparent 46%),linear-gradient(180deg,#061c2b,#082f49 48%,#172554)}
+.badge{background:linear-gradient(135deg,#67e8f9,#86efac,#fde047);color:#083344;box-shadow:0 0 30px rgba(103,232,249,.4)}
+.heroTitle .glow{background:linear-gradient(90deg,#67e8f9,#86efac,#fde047,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:linear-gradient(180deg,rgba(7,40,55,.94),rgba(15,46,70,.92));border:1px solid rgba(103,232,249,.22)}
+.howtoBox{background:linear-gradient(180deg,rgba(6,45,59,.82),rgba(17,55,75,.76));border-color:rgba(134,239,172,.20)}
+.goalBanner{background:linear-gradient(135deg,rgba(103,232,249,.18),rgba(134,239,172,.16));}
+.pulseCell{font-size:clamp(30px,2.55vw,43px);background:radial-gradient(circle at 18% 18%,rgba(103,232,249,.18),transparent 30%),linear-gradient(180deg,rgba(7,40,55,.98),rgba(20,52,78,.96));border-color:rgba(103,232,249,.24)}
+.thaiBox{font-size:clamp(25px,2.65vw,38px);background:linear-gradient(135deg,rgba(103,232,249,.18),rgba(134,239,172,.14));color:#fef08a}
+.commandBox{display:none!important;font-size:clamp(16px,1.35vw,20px)}
+.cellLabel{font-size:16px;color:#a7f3d0}.miniBtn,.modeBtn{font-size:15px}.chip{font-size:15px}.chip strong{font-size:20px}
+.scienceHero{display:flex;justify-content:center;gap:12px;align-items:center;margin:4px auto 8px;font-size:clamp(38px,5vw,64px);filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}.scienceHero span{animation:sciFloat 2.6s ease-in-out infinite}.scienceHero span:nth-child(2){animation-delay:.35s}.scienceHero span:nth-child(3){animation-delay:.7s}@keyframes sciFloat{50%{transform:translateY(-7px) rotate(4deg)}}
+@media(max-width:768px){.pulseCell{font-size:20px}.thaiBox{font-size:22px}.scienceHero{font-size:38px}}
+
+/* No-timer exam mode: answer first, review after finishing */
+.timerBox{display:none!important}
+.topbar .chip:nth-child(2),.topbar .chip:nth-child(3),.topbar .chip:nth-child(4){display:none!important}
+.topbar{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.promptTimerRow{grid-template-columns:1fr!important}
+
+/* Kru Pai vNext: question navigator / teacher review */
+.qNavigator{margin:8px 0 12px;padding:10px;border-radius:18px;background:rgba(255,255,255,.78);border:1px solid rgba(50,120,180,.14);box-shadow:0 8px 22px rgba(60,110,160,.10)}
+.qNavTitle{font-size:13px;font-weight:1000;color:#49657f;text-align:center;margin-bottom:8px}
+.qNavGrid{display:grid;grid-template-columns:repeat(13,minmax(34px,1fr));gap:6px}
+.qNavBtn{min-height:38px;border:none;border-radius:11px;background:#fff;color:#27435f;font-weight:1000;font-size:14px;cursor:pointer;border:2px solid rgba(80,130,180,.14);box-shadow:0 4px 10px rgba(50,100,150,.08)}
+.qNavBtn.current{outline:3px solid rgba(255,151,45,.32);border-color:#ff9b45;transform:translateY(-1px)}
+.qNavBtn.correct{background:#eafff5;border-color:#36d399;color:#08734d}
+.qNavBtn.wrong{background:#fff0f3;border-color:#ff607d;color:#b72f49}
+.qNavBtn.unanswered{background:#fff;color:#5a7188}
+.qNavLegend{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;font-size:12px;font-weight:900;color:#55708a}
+.qNavLegend span{white-space:nowrap}
+@media(max-width:700px){.qNavGrid{grid-template-columns:repeat(5,minmax(38px,1fr));gap:6px}.qNavBtn{min-height:40px;font-size:14px}.qNavigator{padding:8px}}
+
+
+<style>/* force no timer */ .timerBox,.promptTimer{display:none!important}.promptTimerRow{grid-template-columns:1fr!important}
+/* Clear visual order: number strip -> question -> choices */
+#gameScreen .qNavigator{margin:2px 0 7px!important;padding:8px 10px!important}
+#gameScreen .promptTimerRow{margin:0!important}
+#gameScreen .thaiBox{margin:0 0 5px!important}
+#gameScreen .timerLabel{display:none!important}
+#gameScreen .commandBox{margin:0 0 5px!important}
+#gameScreen .quizChoices{margin:5px 0 8px!important}
+</style>
+
+
+<style>
+.scienceIcons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:8px auto 16px}
+.scienceIcons span{width:68px;height:68px;border-radius:20px;display:grid;place-items:center;font-size:25px;font-weight:1000;
+background:linear-gradient(145deg,rgba(103,239,255,.24),rgba(126,240,192,.16));border:2px solid rgba(103,239,255,.42);
+box-shadow:0 12px 26px rgba(0,0,0,.22),inset 0 0 18px rgba(255,255,255,.06)}
+.heroTitle .glow{background:linear-gradient(135deg,#8ef7ff,#7ef0c0,#fff19a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{background:linear-gradient(135deg,#8ef7ff,#7ef0c0,#fff19a)}
+.thaiBox{font-size:clamp(27px,2.8vw,40px);line-height:1.3;padding:17px 20px}
+.pulseCell{font-size:clamp(30px,2.55vw,42px);line-height:1.2;min-height:190px}
+.cellLabel{font-size:17px}
+@media(max-width:768px){
+ .scienceIcons span{width:52px;height:52px;border-radius:15px;font-size:20px}
+ .thaiBox{font-size:clamp(22px,5.8vw,28px)}
+ .pulseCell{font-size:clamp(20px,5.2vw,25px);min-height:140px}
+}
+</style>
+
+
+<style>
+:root{
+ --bg0:#050816;--bg1:#0b1637;--bg2:#1b0e3a;
+ --yellow:#ffef8a;--pink:#ff7bd8;--pink2:#d9f4ff;
+ --violet:#8f7cff;--cyan:#63e7ff;--green:#77f2d0;--bad:#ff5f7f;
+}
+body{
+ background:
+ radial-gradient(900px 640px at 18% 12%, rgba(99,231,255,.22), transparent 45%),
+ radial-gradient(860px 620px at 82% 18%, rgba(143,124,255,.23), transparent 42%),
+ radial-gradient(900px 700px at 50% 100%, rgba(255,123,216,.14), transparent 42%),
+ linear-gradient(180deg,#040713,#0a1433 42%,#1c0b35);
+}
+.heroTitle .glow{
+ background:linear-gradient(135deg,#7eefff,#b9a7ff,#ffb7ec,#fff19b);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.badge{background:linear-gradient(135deg,#77f2d0,#63e7ff,#b9a7ff)}
+.scienceIcons span{
+ background:linear-gradient(145deg,rgba(99,231,255,.25),rgba(143,124,255,.22));
+ border-color:rgba(126,239,255,.48);
+ box-shadow:0 12px 26px rgba(0,0,0,.24),0 0 22px rgba(99,231,255,.13),inset 0 0 18px rgba(255,255,255,.07)
+}
+.thaiBox{
+ background:linear-gradient(135deg,rgba(99,231,255,.16),rgba(143,124,255,.15),rgba(255,123,216,.11));
+ border-color:rgba(126,239,255,.25);color:#f5fbff;
+}
+.pulseCell{
+ background:
+ radial-gradient(circle at 18% 18%, rgba(255,255,255,.18), transparent 32%),
+ linear-gradient(180deg,rgba(13,22,51,.98),rgba(30,19,68,.95));
+ border-color:rgba(126,239,255,.18);
+}
+.vsOrb{
+ background:radial-gradient(circle at 30% 30%,#ffffff,#8ef7ff 36%,#a78bfa 68%,#ff9fdf);
+ color:#121633;
+ box-shadow:0 16px 30px rgba(0,0,0,.36),0 0 30px rgba(99,231,255,.26)
+}
+.timerNum{color:#8ef7ff}
+.timerWheel{background:conic-gradient(#8ef7ff calc(var(--deg,360) * 1deg),rgba(255,255,255,.08) 0)}
+</style>
+
+
+<style>
+.reviewGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:10px}
+.reviewCard{position:relative;background:linear-gradient(145deg,rgba(12,27,60,.96),rgba(33,20,72,.94));
+border:1px solid rgba(126,239,255,.20);border-radius:24px;padding:18px 18px 17px;
+box-shadow:0 18px 34px rgba(0,0,0,.25),inset 0 0 24px rgba(99,231,255,.025)}
+.reviewCard h3{margin:0 0 12px;padding-right:48px;color:#9cf4ff;font-size:clamp(20px,1.7vw,27px)}
+.reviewCard p{margin:8px 0;font-size:clamp(16px,1.25vw,20px);font-weight:750;line-height:1.45;color:#f4f7ff}
+.reviewIcon{position:absolute;right:16px;top:13px;font-size:32px}
+.particleRow{display:flex;justify-content:space-between;gap:12px;padding:9px 11px;margin:7px 0;border-radius:14px;
+background:rgba(255,255,255,.055);font-size:clamp(15px,1.15vw,19px)}
+.particleRow b{color:#fff19b}.particleRow span{text-align:right;font-weight:750}
+.bigFormula{display:inline-block;margin:4px 6px 4px 0;padding:7px 13px;border-radius:12px;
+background:linear-gradient(135deg,rgba(99,231,255,.20),rgba(143,124,255,.20));color:#fff19b;
+font-size:clamp(23px,2vw,31px);font-weight:1000}
+.atomExample{text-align:center;font-size:clamp(50px,5vw,72px);font-weight:1000;color:#fff19b;line-height:1.15;margin:6px 0}
+.atomExample sup{font-size:.45em;vertical-align:1.0em}.atomExample sub{font-size:.45em;vertical-align:-.15em}
+.calcLine{text-align:center;padding:10px;border-radius:14px;background:rgba(119,242,208,.10);font-size:clamp(17px,1.4vw,22px);font-weight:900}
+.ionPair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.ionPair span{text-align:center;padding:10px;border-radius:14px;background:rgba(255,255,255,.06);font-size:18px}
+.tip{color:#fff19b!important}
+.wideCard{grid-column:1/-1}
+.modelFlow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
+.modelFlow>div:not(.arrow){padding:13px;border-radius:16px;background:rgba(255,255,255,.055);text-align:center}
+.modelFlow b{display:block;color:#fff19b;font-size:20px;margin-bottom:6px}.modelFlow span{font-weight:750;line-height:1.35}
+.arrow{display:grid;place-items:center;color:#7eefff;font-size:27px}
+.factGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.factGrid div{text-align:center;padding:12px 8px;border-radius:15px;background:rgba(255,255,255,.055)}
+.factGrid b{display:block;color:#9cf4ff;margin-bottom:5px}.factGrid span{font-size:18px;font-weight:950}
+.reviewBottom{margin-top:13px;padding:13px 16px;border-radius:18px;text-align:center;
+background:linear-gradient(135deg,rgba(255,241,155,.13),rgba(99,231,255,.12));border:1px solid rgba(255,241,155,.22);
+font-size:clamp(16px,1.35vw,21px)}
+.reviewStart{flex:2 1 420px;margin-top:0}
+@media(max-width:768px){
+ .reviewGrid{grid-template-columns:1fr;gap:9px}.wideCard{grid-column:auto}.reviewCard{padding:14px;border-radius:18px}
+ .particleRow{display:block}.particleRow span{display:block;text-align:left;margin-top:3px}
+ .modelFlow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);height:20px}
+ .factGrid{grid-template-columns:1fr 1fr}.factGrid span{font-size:15px}
+ .reviewIcon{font-size:26px}.reviewCard h3{font-size:20px}
+}
+</style>
+
+
+<style>
+.modelFlow4{grid-template-columns:1fr auto 1fr auto 1fr auto 1fr}
+.currentTip{background:linear-gradient(135deg,rgba(255,241,155,.16),rgba(119,242,208,.12));border-color:rgba(255,241,155,.30)}
+@media(max-width:900px){.modelFlow4{grid-template-columns:1fr}.modelFlow4 .arrow{transform:rotate(90deg);height:20px}}
+</style>
+
+
+<style>
+:root{--bg0:#071812;--bg1:#12352d;--bg2:#4a2617;--cyan:#8ff4d2;--green:#b9f27c;--yellow:#ffd978;--violet:#ff9a62}
+body{
+ background:
+ radial-gradient(850px 600px at 12% 10%,rgba(91,224,174,.22),transparent 45%),
+ radial-gradient(850px 620px at 88% 16%,rgba(255,154,98,.19),transparent 44%),
+ radial-gradient(900px 600px at 50% 100%,rgba(255,217,120,.13),transparent 42%),
+ linear-gradient(180deg,#06140f,#12342c 48%,#3c2117);
+}
+.heroTitle .glow{background:linear-gradient(135deg,#a7ffd9,#ffe18b,#ff9b66);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{background:linear-gradient(135deg,#a7ffd9,#ffe18b,#ff9b66)}
+.thaiBox{background:linear-gradient(135deg,rgba(91,224,174,.14),rgba(255,217,120,.12),rgba(255,154,98,.10))}
+.vsOrb{background:radial-gradient(circle at 30% 30%,#fff,#ffe18b 34%,#ff9b66 67%,#8ff4d2)}
+</style>
+
+
+<style>
+body{
+ background:
+ radial-gradient(850px 600px at 12% 10%,rgba(82,208,255,.22),transparent 45%),
+ radial-gradient(850px 620px at 88% 16%,rgba(255,190,75,.20),transparent 44%),
+ radial-gradient(900px 600px at 50% 100%,rgba(112,113,255,.15),transparent 42%),
+ linear-gradient(180deg,#071426,#102b45 48%,#35254b);
+}
+.heroTitle .glow{background:linear-gradient(135deg,#8cecff,#ffe08a,#d1b3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{background:linear-gradient(135deg,#8cecff,#ffe08a,#d1b3ff)}
+</style>
+
+<style>body{background:radial-gradient(900px 650px at 12% 10%,rgba(80,235,190,.22),transparent 45%),radial-gradient(850px 620px at 88% 16%,rgba(255,125,170,.18),transparent 44%),linear-gradient(180deg,#071a1c,#12363a 50%,#321b3a)}</style>
+<style>
+:root{--bg0:#fffaf0;--bg1:#eefaff;--bg2:#fff1fb;--cyan:#19c6ff;--pink:#ff6fb5;--pink2:#ff91c8;--yellow:#ffd84d;--violet:#8f78ff;--green:#36d399}
+html,body{background:#f8fcff!important;color:#20304a!important}
+body{
+background:
+radial-gradient(900px 600px at 10% 5%,rgba(25,198,255,.20),transparent 48%),
+radial-gradient(900px 600px at 90% 10%,rgba(255,111,181,.18),transparent 48%),
+radial-gradient(900px 650px at 50% 100%,rgba(255,216,77,.16),transparent 45%),
+linear-gradient(180deg,#ffffff,#effaff 55%,#fff5fb)!important;
+}
+.card,.timerBox{background:rgba(255,255,255,.88)!important;border:1px solid rgba(70,120,180,.15)!important;box-shadow:0 12px 28px rgba(60,110,160,.12)!important}
+.heroTitle .glow{background:linear-gradient(135deg,#12bdf4,#8b6cff,#ff65ac,#ffb72b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle,.muted,.timerLabel{color:#52708e!important}
+.thaiBox{background:linear-gradient(135deg,#ffffff,#eefaff,#fff3fb)!important;color:#172b4d!important;border:2px solid rgba(25,198,255,.20)!important;box-shadow:0 12px 30px rgba(65,120,180,.12)!important;font-weight:1000}
+.chip{background:#ffffff!important;color:#28445f!important;border:1px solid rgba(80,140,190,.15)!important;box-shadow:0 8px 20px rgba(60,110,160,.10)!important}
+.chip span{color:#6686a5!important}.chip strong{color:#142a44!important}
+.timerWheel{background:conic-gradient(#ff7eb6 calc(var(--deg,360) * 1deg),rgba(50,90,140,.10) 0)!important;box-shadow:0 10px 24px rgba(255,111,181,.18)!important}
+.timerWheel::before{background:#ffffff!important;border-color:rgba(100,130,170,.12)!important}
+.timerNum{color:#ff4f9a!important}
+.battleLane{background:linear-gradient(135deg,rgba(25,198,255,.08),rgba(143,120,255,.08),rgba(255,111,181,.08))!important;border:1px solid rgba(80,130,180,.12)!important}
+.pulseCell{background:linear-gradient(145deg,#ffffff,#f4fbff)!important;color:#18304d!important;border:2px solid rgba(55,155,230,.18)!important;box-shadow:0 18px 40px rgba(50,110,170,.14)!important}
+.pulseCell .cellText{color:#18304d!important;font-size:clamp(28px,4.5vw,56px)!important}
+.vsOrb{background:radial-gradient(circle at 30% 30%,#fff,#ffe16a 38%,#ff8dc6 70%,#79dfff)!important;color:#44355f!important}
+.btn{background:linear-gradient(135deg,#1fc7ff,#8d74ff,#ff73b6)!important;color:white!important}
+.reviewCard{background:rgba(255,255,255,.92)!important;color:#243a55!important;border:1px solid rgba(70,130,180,.14)!important;box-shadow:0 10px 24px rgba(60,110,160,.10)!important}
+.reviewCard p,.reviewCard span{color:#46617c!important}.reviewCard h3{color:#17385c!important}
+.bigFormula{background:linear-gradient(135deg,#eefaff,#fff1f8)!important;color:#17385c!important}
+.certCard{background:linear-gradient(180deg,#ffffff,#f4fbff,#fff4fa)!important;color:#213a54!important}
+</style>
+
+<style>
+/* Math readability upgrade */
+.thaiBox, .cellText { font-variant-numeric: lining-nums tabular-nums; }
+.thaiBox { font-size: clamp(30px, 5.2vw, 64px) !important; }
+.pulseCell .cellText { font-size: clamp(36px, 6vw, 72px) !important; line-height: 1.15 !important; }
+.fracBig { font-size: 1.24em !important; font-weight: 1000; letter-spacing: .01em; }
+
+/* mode selector */
+.speedModePanel{
+  display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+  margin:14px auto 4px; max-width:780px;
+}
+.speedModeBtn{
+  border:none; cursor:pointer; border-radius:20px; padding:14px 20px;
+  font-weight:1000; font-size:clamp(16px,2vw,22px);
+  background:#fff; color:#24415f;
+  box-shadow:0 8px 20px rgba(60,110,160,.13);
+  border:2px solid rgba(45,160,230,.16);
+}
+.speedModeBtn.active{
+  background:linear-gradient(135deg,#1fc7ff,#8d74ff,#ff73b6);
+  color:#fff; transform:translateY(-1px);
+}
+.speedModeNote{
+  text-align:center; font-weight:900; color:#57718d; margin:6px 0 12px;
+}
+</style>
+
+<style>
+body{background:
+radial-gradient(850px 520px at 8% 5%,rgba(62,220,170,.20),transparent 48%),
+radial-gradient(800px 560px at 92% 8%,rgba(255,207,72,.22),transparent 48%),
+radial-gradient(800px 600px at 50% 100%,rgba(53,190,255,.15),transparent 46%),
+linear-gradient(180deg,#fffef7,#f0fff9 55%,#effaff)!important}
+.heroTitle .glow{background:linear-gradient(135deg,#0dbb83,#20bff3,#ffb629,#ff6f91);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+
+<style>
+/* v3: screen controls belong to the display layer, not the game controls */
+.displayControls{position:fixed;top:8px;right:10px;z-index:300;display:flex;gap:7px;align-items:center}
+.displayControlBtn{border:1px solid rgba(70,130,180,.20);background:rgba(255,255,255,.86);color:#38536e;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;cursor:pointer;box-shadow:0 5px 14px rgba(40,90,140,.10);backdrop-filter:blur(8px)}
+.displayControlBtn:hover{filter:brightness(1.03);transform:translateY(-1px)}
+.pressureTaunt{font-size:clamp(19px,2vw,29px)!important;color:#e73f78!important;animation:tauntPop .48s cubic-bezier(.2,.9,.25,1)}
+@keyframes tauntPop{0%{transform:scale(.72);opacity:.2}55%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@media(max-width:768px){.displayControls{top:5px;right:6px;gap:4px}.displayControlBtn{padding:6px 8px;font-size:10px}}
+</style>
+
+<style>
+/* v4: timer beside question + dramatic readable pressure message */
+.topZone{display:block!important;margin-bottom:8px}
+.promptTimerRow{display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:12px;align-items:center;margin-bottom:10px}
+.promptTimerRow .thaiBox{margin-bottom:0!important}
+.promptTimer{position:relative;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.tauntOverlay{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.45) rotate(-3deg);z-index:500;width:min(900px,90vw);padding:24px 30px;border-radius:32px;text-align:center;font-weight:1000;font-size:clamp(34px,5.5vw,76px);line-height:1.15;color:#fff;background:linear-gradient(135deg,#ff3f81,#8d5cff,#19bff5);border:5px solid rgba(255,255,255,.92);box-shadow:0 24px 80px rgba(45,35,90,.35),0 0 0 10px rgba(255,255,255,.22);opacity:0;pointer-events:none}
+.tauntOverlay.show{animation:tauntFly 2.7s cubic-bezier(.16,.85,.25,1) forwards}
+@keyframes tauntFly{0%{opacity:0;transform:translate(-50%,-35%) scale(.25) rotate(-8deg)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.16) rotate(3deg)}22%{transform:translate(-50%,-50%) scale(.98) rotate(-1deg)}30%,82%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}100%{opacity:0;transform:translate(-50%,-65%) scale(1.08)}}
+@media(max-width:768px){.promptTimerRow{grid-template-columns:minmax(0,1fr) 92px;gap:7px}.promptTimer .timerWheel{width:76px;height:76px}.promptTimer .timerNum{font-size:27px}.tauntOverlay{font-size:clamp(30px,9vw,52px);padding:20px 16px;border-radius:24px}}
+</style>
+
+<style>
+/* SET 2 • ORANGE + BLUE identity */
+body{background:radial-gradient(900px 560px at 8% 6%,rgba(35,174,255,.24),transparent 48%),radial-gradient(850px 560px at 92% 8%,rgba(255,151,45,.27),transparent 48%),radial-gradient(850px 620px at 50% 100%,rgba(255,196,73,.16),transparent 46%),linear-gradient(180deg,#fffdf8,#eef9ff 54%,#fff4e7)!important}
+.heroTitle .glow{background:linear-gradient(135deg,#079be8,#35c8ff,#ff9f2f,#ff6f3c)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+.badge{background:linear-gradient(135deg,#3cc8ff,#8ce4ff,#ffca62,#ff8a3d)!important;color:#17324d!important}
+.scienceIcons span{background:linear-gradient(145deg,#eaf8ff,#fff0dd)!important;border-color:rgba(30,155,225,.25)!important}
+.thaiBox{background:linear-gradient(135deg,#f8fdff,#e9f8ff,#fff1df)!important;border:2px solid rgba(26,157,226,.25)!important;box-shadow:0 12px 30px rgba(40,130,190,.14)!important}
+.timerWheel{background:conic-gradient(#ff8b32 calc(var(--deg,360) * 1deg),rgba(40,110,170,.10) 0)!important;box-shadow:0 10px 25px rgba(255,139,50,.24)!important}
+.timerNum{color:#f26d21!important}
+.battleLane{background:linear-gradient(135deg,rgba(27,174,245,.10),rgba(255,156,51,.10))!important}
+.pulseCell{background:linear-gradient(145deg,#ffffff,#eef9ff,#fff7ed)!important;border-color:rgba(32,157,225,.24)!important;box-shadow:0 18px 40px rgba(36,118,180,.15)!important}
+.vsOrb{background:radial-gradient(circle at 30% 30%,#fff,#ffe38b 32%,#ff9b45 62%,#58d2ff)!important;color:#17324d!important}
+.btn,.speedModeBtn.active{background:linear-gradient(135deg,#18aeea,#39c9ff,#ffad3d,#ff7b35)!important;color:#fff!important}
+.tauntOverlay{background:linear-gradient(135deg,#ff7b2f,#ffad35,#22b8ef,#187ed8)!important}
+.reviewCard{border-color:rgba(31,157,225,.18)!important}.bigFormula{background:linear-gradient(135deg,#eaf8ff,#fff0dd)!important}
+</style>
+<style>
+/* V4 • 4-choice quiz conversion — keeps original orange/blue identity */
+.quizChoices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0 8px}.quizChoice{position:relative;min-height:105px;border:2px solid rgba(32,157,225,.22);border-radius:24px;background:linear-gradient(145deg,#fff,#eef9ff,#fff7ed);box-shadow:0 14px 32px rgba(36,118,180,.13);color:#18304d;font:inherit;font-size:clamp(22px,2.4vw,34px);font-weight:1000;cursor:pointer;padding:18px 20px 18px 72px;text-align:center;transition:.18s}.quizChoice:hover{transform:translateY(-2px);border-color:#ff9b45;box-shadow:0 18px 36px rgba(255,139,50,.18)}.choiceLetter{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#22b8ef,#187ed8);color:#fff;font-size:22px}.quizChoice.correct{border-color:#36d399;background:#edfff7;animation:hitImpact .35s ease}.quizChoice.wrong{border-color:#ff607d;background:#fff0f3;animation:hitImpact .35s ease}.quizChoice.dim{opacity:.45}.quizChoice.correct:after{content:'✓';position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:48px;color:#16a56e}.quizChoice.wrong:after{content:'✕';position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:44px;color:#e74863}.quizChoice:disabled{cursor:default}.timerLabel:after{content:''}@media(max-width:700px){.quizChoices{grid-template-columns:1fr;gap:9px}.quizChoice{min-height:72px;padding:12px 52px 12px 58px;font-size:clamp(19px,5vw,25px);border-radius:18px}.choiceLetter{left:10px;width:36px;height:36px;border-radius:11px;font-size:19px}.quizChoice.correct:after,.quizChoice.wrong:after{right:10px;font-size:36px}}
+</style>
+
+<style>
+.solutionList{display:grid;gap:14px;margin:14px 0}.solutionItem{background:#fff;border:2px solid rgba(30,155,225,.16);border-radius:20px;padding:16px;color:#20304a;box-shadow:0 10px 24px rgba(60,110,160,.10)}.solutionItem h3{margin:0 0 8px;color:#087db8;font-size:20px}.solutionItem .eq{font-size:20px;font-weight:1000;color:#f26d21;margin:8px 0}.solutionItem .method{font-weight:800;line-height:1.55}.solutionItem .ans{margin-top:8px;font-weight:1000;color:#138a62}.solutionItem .chosen{margin-top:8px;font-weight:900}.solutionItem.good{border-color:rgba(54,211,153,.45)}.solutionItem.bad{border-color:rgba(255,111,145,.45)}
+</style>
+</head>
+<body>
+<div class="displayControls" aria-label="Display controls">
+  <button id="tvModeBtnTop" class="displayControlBtn" onclick="toggleTVMode()">🖥️ TV</button>
+  <button class="displayControlBtn" onclick="toggleFullscreen()">⛶ FULL</button>
+</div>
+
+<div class="sparkles" aria-hidden="true"><i style="left:12%; top:14%; animation-delay:0s"></i><i style="left:22%; top:30%; animation-delay:.6s"></i><i style="left:38%; top:18%; animation-delay:1.2s"></i><i style="left:54%; top:10%; animation-delay:.3s"></i><i style="left:72%; top:24%; animation-delay:1.6s"></i><i style="left:84%; top:12%; animation-delay:.9s"></i><i style="left:18%; top:72%; animation-delay:1.1s"></i><i style="left:46%; top:78%; animation-delay:.5s"></i></div>
+<div class="bubbles" aria-hidden="true"><span style="left:10%; width:14px; height:14px; animation-duration:12s; animation-delay:0s;"></span><span style="left:25%; width:20px; height:20px; animation-duration:10s; animation-delay:1s;"></span><span style="left:48%; width:12px; height:12px; animation-duration:13s; animation-delay:.4s;"></span><span style="left:70%; width:22px; height:22px; animation-duration:11s; animation-delay:1.4s;"></span><span style="left:86%; width:16px; height:16px; animation-duration:14s; animation-delay:.8s;"></span></div>
+<div class="dnaLayer" aria-hidden="true"><i style="left:8%; top:70%; animation-duration:15s"></i><i style="left:72%; top:82%; animation-duration:17s"></i><i style="left:48%; top:76%; animation-duration:18s"></i></div>
+
+<div id="winnerBanner" class="winnerBanner">📐 VOLUME MISSION MASTER 📐</div>
+<div id="emojiLayer" class="emojiLayer"></div>
+<div id="confettiLayer" class="confettiLayer"></div>
+<div id="flashLayer" class="flashLayer"></div>
+<div id="countdownOverlay" class="countdownOverlay">3</div>
+
+<section id="startScreen" class="screen active"><div class="wrap">
+    <div class="brand"><div class="badge">MATH</div></div>
+    <div class="scienceHero"><span>📦</span><span>🥫</span><span>🔺</span><span>🍦</span></div>
+    <div class="heroTitle"><span class="glow">VOLUME</span><br/>MISSION • SET 1</div>
+    <div class="subtitle">📐 ปริมาตรรูปทรงสามมิติ • ระดับปานกลาง • ฝึกสูตรให้แม่น • 25 ข้อ • 4 ตัวเลือก • ไม่จับเวลา</div>
+    <div class="scienceIcons"><span>V</span><span>π</span><span>r²</span><span>⅓</span><span>h</span></div>
+    <div class="card"><div style="font-weight:1000; margin-bottom:8px; font-size:20px;">ชื่อผู้เล่น</div>
+    <input id="playerNameInput" type="text" placeholder="Type your name..." />
+    <div class="miniRow" style="margin-top:10px;">
+      <button class="miniBtn" onclick="showScreen('reviewScreen')">📘 ทบทวนสูตรปริมาตรก่อนเริ่ม</button>
+    </div>
+    <div class="speedModePanel" id="speedModePanel"><button class="speedModeBtn active" type="button">🧠 โหมดคิดเต็มที่ • ไม่จับเวลา</button></div>
+    <div class="speedModeNote" id="speedModeNote">ค่อย ๆ เลือกสูตร แทนค่า และตรวจหน่วยได้เต็มที่ ไม่มีเวลาบังคับ</div>
+    <button class="btn" onclick="startGame()">🚀 START VOLUME • SET 1</button>
+    </div></div></section>
+
+<section id="howToScreen" class="screen"><div class="wrap">
+    <div class="brand"><div class="badge">KP</div></div>
+    <div class="heroTitle"><span class="glow">HOW TO</span><br/>PLAY</div>
+    <div class="subtitle">ปริมาตรรูปทรงสามมิติ • ระดับปานกลาง • ฝึกสูตรให้แม่น • 4 ตัวเลือก • ไม่จับเวลา</div>
+    <div class="card"><div class="howtoList">
+      <div class="howtoBox"><h3>🎯 ฝึกอะไร?</h3><p>ฝึกเลือกสูตรปริมาตร หาองค์ประกอบที่จำเป็น แทนค่า และคำนวณอย่างเป็นขั้นตอน</p></div>
+      <div class="howtoBox"><h3>🧠 คิดให้เต็มที่</h3><p><b>ไม่จับเวลา</b> คิดและทดเลขได้เต็มที่</p></div>
+      <div class="howtoBox"><h3>⚔️ วิธีเล่น</h3><p>อ่านโจทย์ เลือกสูตรให้ตรงรูปทรง แล้วเลือกคำตอบที่ถูกต้องจาก ก ข ค ง โดยตำแหน่งคำตอบถูกจะสลับทุกข้อ</p></div>
+      <div class="howtoBox"><h3>🏆 เป้าหมาย</h3><p>ทำให้ได้อย่างน้อย 80% โดยเน้นเลือกสูตรและใช้หน่วยลูกบาศก์ให้ถูก</p></div>
+    </div>
+    <div class="goalBanner">💡 ดูรูปทรง → เลือกสูตร → หา B/r/h → แทนค่า → ตรวจหน่วยลูกบาศก์</div>
+    <div class="miniRow" style="margin-top:14px;">
+      <button class="miniBtn" onclick="showScreen('startScreen')">⬅ Back</button>
+      <button class="modeBtn" onclick="toggleTVMode()">🖥️ Toggle TV Mode</button>
+      <button class="miniBtn" onclick="startGame()">⚡ Start Quiz</button>
+    </div></div></div></section>
+
+
+<section id="reviewScreen" class="screen"><div class="wrap">
+<div class="brand"><div class="badge">KP</div></div>
+<div class="heroTitle"><span class="glow">VOLUME REVIEW • SET 1</span></div>
+<div class="subtitle">📘 ทบทวนสูตรก่อนเริ่ม • ปริซึม • ทรงกระบอก • พีระมิด • กรวย • ไม่จับเวลา</div>
+<div class="reviewGrid">
+<div class="reviewCard"><div class="reviewIcon">📦</div><h3>1. ปริซึม</h3><div class="bigFormula">V = B × h</div><p><b>B</b> = พื้นที่ฐาน และ <b>h</b> = ความสูงของปริซึม</p><p class="tip">💡 หาพื้นที่ฐานให้ได้ก่อน แล้วคูณความสูง</p></div>
+<div class="reviewCard"><div class="reviewIcon">🥫</div><h3>2. ทรงกระบอก</h3><div class="bigFormula">V = πr²h</div><p><b>r</b> = รัศมีฐาน และ <b>h</b> = ความสูง</p><p class="tip">💡 ถ้าโจทย์ให้เส้นผ่านศูนย์กลาง d ต้องหา r = d ÷ 2 ก่อน</p></div>
+<div class="reviewCard"><div class="reviewIcon">🔺</div><h3>3. พีระมิด</h3><div class="bigFormula">V = ⅓Bh</div><p>ใช้พื้นที่ฐาน B คูณความสูงตั้งฉาก แล้วหาร 3</p><p class="tip">⚠️ จุดพลาดยอดฮิต: ลืม ⅓</p></div>
+<div class="reviewCard"><div class="reviewIcon">🍦</div><h3>4. กรวย</h3><div class="bigFormula">V = ⅓πr²h</div><p>เหมือนทรงกระบอก แต่ปริมาตรเหลือ <b>⅓</b> เมื่อฐานและความสูงเท่ากัน</p><p class="tip">⚠️ ใช้ความสูงตั้งฉาก ไม่ใช่ความยาวเอียง</p></div>
+<div class="reviewCard wideCard"><div class="reviewIcon">✏️</div><h3>ตัวอย่าง 1 • ปริซึม</h3><p>พื้นที่ฐาน 24 ซม.² สูง 5 ซม.</p><div class="calcLine">V = B×h = 24×5 = <b>120 ซม.³</b></div></div>
+<div class="reviewCard"><div class="reviewIcon">🧮</div><h3>ตัวอย่าง 2 • ทรงกระบอก</h3><p>r = 7 ซม., h = 10 ซม., ใช้ π = 22/7</p><div class="calcLine">V = 22/7×7²×10 = <b>1,540 ซม.³</b></div></div>
+<div class="reviewCard"><div class="reviewIcon">✨</div><h3>ตัวอย่าง 3 • กรวย</h3><p>r = 7 ซม., h = 12 ซม., ใช้ π = 22/7</p><div class="calcLine">V = ⅓×22/7×7²×12 = <b>616 ซม.³</b></div></div>
+</div><div class="reviewBottom currentTip">🎯 <b>จำเป็นภาพ:</b> ปริซึม/ทรงกระบอก = เต็มฐาน × สูง • พีระมิด/กรวย = ⅓ ของรูปทรงคู่กัน</div>
+<div class="miniRow" style="margin-top:14px"><button class="miniBtn" onclick="showScreen('startScreen')">⬅ กลับหน้าปก</button><button class="btn reviewStart" onclick="startGame()">🚀 พร้อมแล้ว • START VOLUME SET 1</button></div>
+</div></section>
+
+<section id="gameScreen" class="screen"><div class="wrap"><div class="topZone"><div class="topbar"><div class="chip"><span>Q</span><strong id="qDisplay">1/25</strong></div><div class="chip"><span>✓</span><strong id="correctDisplay">0</strong></div><div class="chip"><span>✗</span><strong id="wrongDisplay">0</strong></div><div class="chip"><span>ถูก</span><strong id="scoreDisplay">0</strong></div><div class="chip"><span>P</span><strong id="playerNameDisplay">-</strong></div></div></div><div class="qNavigator">
+<div class="qNavTitle">📍 ข้อ 1–25 • กดเลขข้อเพื่อย้อนกลับไปดูได้</div>
+<div id="qNavGrid" class="qNavGrid"></div>
+<div class="qNavLegend"><span>✓ ถูก</span><span>✕ ผิด</span><span>○ ยังไม่ได้ทำ</span><span>🟠 ข้อปัจจุบัน</span></div>
+</div><div class="promptTimerRow"><div class="thaiBox" id="thaiPrompt">...</div></div><div class="timerLabel">ไม่จับเวลา</div></div></div><div class="commandBox" id="commandBox">เลือกสูตรให้ถูก แล้วคำนวณอย่างรอบคอบ • ไม่จับเวลา • เฉลยหลังทำครบ</div><div class="quizChoices" id="quizChoices">
+<button class="quizChoice" id="choice0" onclick="pickAnswer(0)"><span class="choiceLetter">ก</span><span class="choiceText" id="text0"></span></button>
+<button class="quizChoice" id="choice1" onclick="pickAnswer(1)"><span class="choiceLetter">ข</span><span class="choiceText" id="text1"></span></button>
+<button class="quizChoice" id="choice2" onclick="pickAnswer(2)"><span class="choiceLetter">ค</span><span class="choiceText" id="text2"></span></button>
+<button class="quizChoice" id="choice3" onclick="pickAnswer(3)"><span class="choiceLetter">ง</span><span class="choiceText" id="text3"></span></button>
+</div><div class="statusText" id="statusText"></div><div id="tauntOverlay" class="tauntOverlay"></div><div class="card"><div class="miniRow"><button class="miniBtn" onclick="openHowTo()">📘 HOW TO PLAY</button><button class="miniBtn" onclick="resetAll()">🏠 Back to Home</button></div></div></div></section>
+
+<section id="finalScreen" class="screen"><div class="wrap"><div class="certificate"><div class="certTop"><div class="certSeal">⚡</div><div class="certTitle">VOLUME MISSION MASTER</div><div class="certSub">Volume Mission • ระดับปานกลาง • ฝึกสูตรให้แม่น • Kru Pai Classroom</div></div><div class="certPlayer" id="finalName">Awarded to: -</div><div class="certBigScore" id="finalScore">0</div><div class="certMini" id="finalMini">VOLUME SET 1 SCORE</div><div class="certGrid"><div class="certStat"><div class="k">Correct</div><div class="v" id="finalCorrect">0</div></div><div class="certStat"><div class="k">Wrong</div><div class="v" id="finalWrong">0</div></div><div class="certStat"><div class="k">Skipped</div><div class="v" id="finalSkipped">0</div></div><div class="certStat"><div class="k">Accuracy</div><div class="v" id="finalAccuracy">0%</div></div></div><div id="passBadge" class="certPass pass">PASS ✅</div><div class="certGrid" style="margin-top:10px;"><div class="certStat"><div class="k">Rank</div><div class="v" id="finalRank">A</div></div><div class="certStat"><div class="k">Mode</div><div class="v" id="finalMode">NORMAL</div></div><div class="certStat"><div class="k">เวลา</div><div class="v">ไม่จับเวลา</div></div><div class="certStat"><div class="k">Target</div><div class="v">80%+</div></div></div><div class="certFooter" id="finalFooter">Kru Pai Classroom • Volume Mission Set 1 • 4-Choice Quiz</div><div class="miniRow" style="margin-top:18px; position:relative; z-index:1;"><button class="miniBtn" onclick="openTeacherReview()">🔢 ย้อนดูข้อ 1–25</button><button class="miniBtn" onclick="showSolutions()">📖 ดูเฉลยและวิธีทำ</button><button class="miniBtn" onclick="replayAll()">🎮 Play Again</button><button class="miniBtn" onclick="resetAll()">🏠 Back to Home</button></div></div></div></section>
+
+
+<section id="solutionScreen" class="screen"><div class="wrap"><div class="brand"><div class="badge">KP</div></div><div class="heroTitle"><span class="glow">เฉลยวิธีทำ • VOLUME SET 1</span></div><div class="subtitle">เปิดดูได้หลังทำแบบทดสอบเสร็จแล้ว • แสดงสูตร การแทนค่า และวิธีคำนวณทีละข้อ</div><div id="solutionList" class="solutionList"></div><div class="miniRow" style="margin:18px 0"><button class="miniBtn" onclick="showScreen('finalScreen')">⬅ กลับผลคะแนน</button><button class="miniBtn" onclick="resetAll()">🏠 หน้าแรก</button></div></div></section>
+<script>
+const QUESTIONS = [
+  {
+    "th": "ปริซึมมีพื้นที่ฐาน 24 ซม.² สูง 5 ซม. ปริมาตรเท่าใด?",
+    "options": [
+      "100",
+      "120",
+      "125",
+      "144"
+    ],
+    "answer": 1,
+    "equation": "สูตร/แนวคิด: V=B×h=24×5=120 ซม.³",
+    "solution": "V=B×h=24×5=120 ซม.³"
+  },
+  {
+    "th": "ปริซึมฐานสี่เหลี่ยม 4×6 ซม. สูง 5 ซม. ปริมาตรเท่าใด?",
+    "options": [
+      "120",
+      "100",
+      "90",
+      "150"
+    ],
+    "answer": 0,
+    "equation": "สูตร/แนวคิด: B=4×6=24",
+    "solution": "B=4×6=24; V=24×5=120 ซม.³"
+  },
+  {
+    "th": "ปริซึมพื้นที่ฐาน 35 ซม.² สูง 8 ซม. ปริมาตรเท่าใด?",
+    "options": [
+      "240",
+      "270",
+      "280",
+      "300"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: 35×8=280 ซม.³",
+    "solution": "35×8=280 ซม.³"
+  },
+  {
+    "th": "ปริซึม V=360 ซม.³ พื้นที่ฐาน 45 ซม.² สูงเท่าใด?",
+    "options": [
+      "6",
+      "7",
+      "9",
+      "8"
+    ],
+    "answer": 3,
+    "equation": "สูตร/แนวคิด: h=360÷45=8 ซม.",
+    "solution": "h=360÷45=8 ซม."
+  },
+  {
+    "th": "ปริซึมฐานสามเหลี่ยม ฐาน 6 สูง 4 ซม. ปริซึมสูง 10 ซม. V เท่าใด?",
+    "options": [
+      "100",
+      "120",
+      "140",
+      "240"
+    ],
+    "answer": 1,
+    "equation": "สูตร/แนวคิด: B=½×6×4=12",
+    "solution": "B=½×6×4=12; V=120 ซม.³"
+  },
+  {
+    "th": "ทรงกระบอก r=7 สูง 10 ซม. π=22/7 V เท่าใด?",
+    "options": [
+      "1,540",
+      "1,400",
+      "1,320",
+      "1,760"
+    ],
+    "answer": 0,
+    "equation": "สูตร/แนวคิด: V=22/7×49×10=1,540 ซม.³",
+    "solution": "V=22/7×49×10=1,540 ซม.³"
+  },
+  {
+    "th": "ทรงกระบอก d=14 สูง 5 ซม. π=22/7 V เท่าใด?",
+    "options": [
+      "660",
+      "700",
+      "770",
+      "880"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: r=7",
+    "solution": "r=7; V=770 ซม.³"
+  },
+  {
+    "th": "ทรงกระบอก r=5 สูง 8 ซม. π=3.14 V เท่าใด?",
+    "options": [
+      "314",
+      "502.4",
+      "628",
+      "785"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: 3.14×25×8=628 ซม.³",
+    "solution": "3.14×25×8=628 ซม.³"
+  },
+  {
+    "th": "ทรงกระบอก V=616 ซม.³ r=7 π=22/7 สูงเท่าใด?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "answer": 1,
+    "equation": "สูตร/แนวคิด: B=154",
+    "solution": "B=154; h=616÷154=4 ซม."
+  },
+  {
+    "th": "ทรงกระบอก r=3 สูง 10 ซม. π=3.14 V เท่าใด?",
+    "options": [
+      "188.4",
+      "282.6",
+      "314",
+      "94.2"
+    ],
+    "answer": 1,
+    "equation": "สูตร/แนวคิด: 3.14×9×10=282.6 ซม.³",
+    "solution": "3.14×9×10=282.6 ซม.³"
+  },
+  {
+    "th": "พีระมิดพื้นที่ฐาน 36 ซม.² สูง 9 ซม. V เท่าใด?",
+    "options": [
+      "108",
+      "324",
+      "96",
+      "120"
+    ],
+    "answer": 0,
+    "equation": "สูตร/แนวคิด: ⅓×36×9=108 ซม.³",
+    "solution": "⅓×36×9=108 ซม.³"
+  },
+  {
+    "th": "พีระมิดฐานจัตุรัสด้าน 6 ซม. สูง 10 ซม. V เท่าใด?",
+    "options": [
+      "100",
+      "108",
+      "120",
+      "360"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: B=36",
+    "solution": "B=36; V=⅓×36×10=120"
+  },
+  {
+    "th": "พีระมิดพื้นที่ฐาน 48 ซม.² สูง 6 ซม. V เท่าใด?",
+    "options": [
+      "72",
+      "96",
+      "144",
+      "288"
+    ],
+    "answer": 1,
+    "equation": "สูตร/แนวคิด: ⅓×48×6=96",
+    "solution": "⅓×48×6=96"
+  },
+  {
+    "th": "พีระมิด V=100 ซม.³ พื้นที่ฐาน 30 ซม.² สูงเท่าใด?",
+    "options": [
+      "8",
+      "9",
+      "10",
+      "12"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: 100=10h",
+    "solution": "100=10h; h=10"
+  },
+  {
+    "th": "พีระมิดฐาน 5×8 ซม. สูง 9 ซม. V เท่าใด?",
+    "options": [
+      "100",
+      "110",
+      "120",
+      "360"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: B=40",
+    "solution": "B=40; V=⅓×40×9=120"
+  },
+  {
+    "th": "กรวย r=7 สูง 12 ซม. π=22/7 V เท่าใด?",
+    "options": [
+      "462",
+      "616",
+      "1,848",
+      "308"
+    ],
+    "answer": 1,
+    "equation": "สูตร/แนวคิด: ⅓×154×12=616",
+    "solution": "⅓×154×12=616"
+  },
+  {
+    "th": "กรวย d=14 สูง 6 ซม. π=22/7 V เท่าใด?",
+    "options": [
+      "154",
+      "264",
+      "308",
+      "924"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: r=7",
+    "solution": "r=7; V=⅓×154×6=308"
+  },
+  {
+    "th": "กรวย r=3 สูง 10 ซม. π=3.14 V เท่าใด?",
+    "options": [
+      "94.2",
+      "282.6",
+      "31.4",
+      "188.4"
+    ],
+    "answer": 0,
+    "equation": "สูตร/แนวคิด: ⅓×3.14×9×10=94.2",
+    "solution": "⅓×3.14×9×10=94.2"
+  },
+  {
+    "th": "กรวย V=308 ซม.³ r=7 π=22/7 สูงเท่าใด?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "8"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: 308=154h/3",
+    "solution": "308=154h/3; h=6"
+  },
+  {
+    "th": "กรวย r=5 สูง 12 ซม. π=3.14 V เท่าใด?",
+    "options": [
+      "157",
+      "314",
+      "376.8",
+      "628"
+    ],
+    "answer": 1,
+    "equation": "สูตร/แนวคิด: ⅓×3.14×25×12=314",
+    "solution": "⅓×3.14×25×12=314"
+  },
+  {
+    "th": "รูปทรงใดใช้ V=B×h โดยไม่มี ⅓?",
+    "options": [
+      "พีระมิด",
+      "กรวย",
+      "ปริซึม",
+      "พีระมิดและกรวย"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: ปริซึมใช้ V=B×h",
+    "solution": "ปริซึมใช้ V=B×h"
+  },
+  {
+    "th": "ปริซึมฐานจัตุรัสด้าน 9 สูง 4 ซม. V เท่าใด?",
+    "options": [
+      "324",
+      "162",
+      "243",
+      "360"
+    ],
+    "answer": 0,
+    "equation": "สูตร/แนวคิด: 81×4=324",
+    "solution": "81×4=324"
+  },
+  {
+    "th": "พีระมิดฐานจัตุรัสด้าน 9 สูง 4 ซม. V เท่าใด?",
+    "options": [
+      "324",
+      "81",
+      "108",
+      "36"
+    ],
+    "answer": 2,
+    "equation": "สูตร/แนวคิด: ⅓×81×4=108",
+    "solution": "⅓×81×4=108"
+  },
+  {
+    "th": "ทรงกระบอก r=7 สูง 3 ซม. π=22/7 V เท่าใด?",
+    "options": [
+      "308",
+      "462",
+      "616",
+      "154"
+    ],
+    "answer": 1,
+    "equation": "สูตร/แนวคิด: 154×3=462",
+    "solution": "154×3=462"
+  },
+  {
+    "th": "กรวยกับทรงกระบอกฐานและสูงเท่ากัน ถ้าทรงกระบอก V=900 ซม.³ กรวย V เท่าใด?",
+    "options": [
+      "300",
+      "450",
+      "600",
+      "2,700"
+    ],
+    "answer": 0,
+    "equation": "สูตร/แนวคิด: กรวย=⅓×900=300",
+    "solution": "กรวย=⅓×900=300"
+  }
+];
+let selectedQuestionTime=60;
+let playerName="", qIndex=0, correct=0, wrong=0, skipped=0, score=0, timer=null, timeLeft=60, answered=false, audioCtx=null, streak=0, tvMode=false; let userAnswers=[];
+const TOTAL_QUESTIONS = QUESTIONS.length;
+function shuffleArray(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function shuffleQuestions(){shuffleArray(QUESTIONS)}
+function ensureAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==="suspended") audioCtx.resume(); }
+function tone(freq=440,dur=0.08,type="sine",gain=0.11){ ensureAudio(); const t0=audioCtx.currentTime, osc=audioCtx.createOscillator(), g=audioCtx.createGain(); osc.type=type; osc.frequency.setValueAtTime(freq,t0); g.gain.setValueAtTime(0.0001,t0); g.gain.exponentialRampToValueAtTime(Math.min(gain*2.15,0.32),t0+0.015); g.gain.exponentialRampToValueAtTime(0.0001,t0+dur); osc.connect(g); g.connect(audioCtx.destination); osc.start(t0); osc.stop(t0+dur+0.065); }
+function noiseBurst(dur=0.12,gainVal=0.055){ensureAudio();const n=audioCtx.sampleRate*dur,b=audioCtx.createBuffer(1,n,audioCtx.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);const src=audioCtx.createBufferSource(),g=audioCtx.createGain();src.buffer=b;g.gain.value=gainVal;src.connect(g);g.connect(audioCtx.destination);src.start()}
+function sfxCorrect(){tone(784,.08,'sine',.12);setTimeout(()=>tone(988,.09,'sine',.06),70);setTimeout(()=>tone(1175,.1,'triangle',.06),140)}
+function sfxWrong(){tone(220,.16,'square',.11);setTimeout(()=>tone(176,.18,'square',.05),120)}
+function sfxTick(){tone(560,.065,'square',.08)} function sfxBioPulse(){} function sfxEnter(){tone(420,.05,'sine',.04)} function sfxCountdown(n){tone({3:520,2:620,1:760}[n]||700,.12,'triangle',.08)} function sfxStartBlast(){tone(880,.08,'square',.08)} function sfxWin(){[784,988,1175,1568].forEach((f,i)=>setTimeout(()=>tone(f,.12,'triangle',.05),i*80))}
+function flashHit(){const el=document.getElementById('flashLayer');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),130)}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);syncModeButtons()}
+function openHowTo(){showScreen('howToScreen')}
+function updateTopBar(){document.getElementById('qDisplay').textContent=`${qIndex+1}/${TOTAL_QUESTIONS}`;document.getElementById('correctDisplay').textContent=correct;document.getElementById('wrongDisplay').textContent=wrong;document.getElementById('scoreDisplay').textContent=score;document.getElementById('playerNameDisplay').textContent=playerName||'-'}
+function updateTimer(){document.getElementById('timerNum').textContent=timeLeft;document.getElementById('timerWheel').style.setProperty('--deg',Math.max(0,timeLeft/60*360))}
+function burstEmoji(emoji,count=3){const layer=document.getElementById('emojiLayer');for(let i=0;i<count;i++){const e=document.createElement('div');e.className='floatEmoji';e.textContent=emoji;e.style.left=(44+Math.random()*14)+'%';e.style.top=(44+Math.random()*10)+'%';layer.appendChild(e);setTimeout(()=>e.remove(),900)}}
+function confettiBurst(amount=80){const layer=document.getElementById('confettiLayer'),colors=['#ffe45c','#ff7bc2','#fff','#b891ff','#8ef7ff','#68f2a3'];for(let i=0;i<amount;i++){const c=document.createElement('i');c.style.left=Math.random()*100+'%';c.style.background=colors[i%colors.length];c.style.animationDuration=(1.8+(i%7)*.16)+'s';layer.appendChild(c);setTimeout(()=>c.remove(),2600)}}
+function syncModeButtons(){document.body.classList.toggle('tvMode',tvMode)} function toggleTVMode(){tvMode=!tvMode;syncModeButtons()} async function toggleFullscreen(){try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()}catch(e){}}
+function resetAll(){clearInterval(timer);document.getElementById('playerNameInput').value='';playerName='';showScreen('startScreen')}
+function emphasizeFractions(){} function setSpeedMode(){selectedQuestionTime=60}
+function makeDistractors(correctText, existingWrong){let out=[existingWrong];const m=String(correctText).match(/^([0-9,]+(?:\.[0-9]+)?)\s*(บาท|%)?$/);if(m){let v=parseFloat(m[1].replace(/,/g,'')),unit=m[2]||'';let vals=unit==='%'?[v+5,Math.max(0,v-5),v+10]:[v+10,Math.max(0,v-10),v+20];for(const x of vals){let txt=(Number.isInteger(x)?x.toLocaleString('en-US'):String(Math.round(x*100)/100))+(unit?' '+unit:'');if(!out.includes(txt)&&txt!==correctText)out.push(txt)}}const fallback=['10%','50%','100%','250 บาท','400 บาท','600 บาท','0.5','2.5'];for(const x of fallback){if(out.length>=3)break;if(x!==correctText&&!out.includes(x))out.push(x)}return out.slice(0,3)}
+async function startGame(){const name=document.getElementById('playerNameInput').value.trim();if(!name){document.getElementById('playerNameInput').focus();return}ensureAudio();playerName=name;shuffleQuestions();qIndex=0;correct=0;wrong=0;skipped=0;score=0;streak=0;userAnswers=[];showScreen('gameScreen');await showCountdown();loadQuestion()}
+async function showCountdown(){const overlay=document.getElementById('countdownOverlay');for(const n of [3,2,1]){overlay.textContent=n;overlay.classList.add('show');sfxCountdown(n);await new Promise(r=>setTimeout(r,400));overlay.classList.remove('show');await new Promise(r=>setTimeout(r,80))}overlay.textContent='START!';overlay.classList.add('show');sfxStartBlast();await new Promise(r=>setTimeout(r,450));overlay.classList.remove('show')}
+function loadQuestion(){answered=false;clearInterval(timer);const q=QUESTIONS[qIndex];let opts=q._options&&userAnswers[qIndex]?q._options:q.options.map((text,idx)=>({text,correct:idx===q.answer}));if(!userAnswers[qIndex])opts=shuffleArray(opts);q._options=opts;q._displayCorrect=opts.findIndex(o=>o.correct);document.getElementById('thaiPrompt').textContent=q.th;opts.forEach((o,i)=>{document.getElementById('text'+i).textContent=o.text;const b=document.getElementById('choice'+i);b.classList.remove('correct','wrong','dim');b.disabled=false});document.getElementById('commandBox').textContent='เลือกคำตอบจาก ก ข ค ง • ไม่จับเวลา • บอกเฉพาะถูก/ผิด แต่ถ้าผิดจะไม่เฉลยคำตอบที่ถูก';document.getElementById('statusText').textContent='';updateTopBar();renderQuestionNav();sfxEnter();}
+const PRESSURE_TAUNTS=[
+  '🧠 กระตุ้นสมองหน่อยน้อง!',
+  '⚡ ให้ไว ๆ อีกนิด!',
+  '🐢 อย่าอืดเลยนะ!',
+  '🔥 เร็วกว่านี้ได้อีก!',
+  '👀 โจทย์จ้องอยู่นะ!',
+  '💨 ช้าไปนิด ลุยใหม่!',
+  '🚀 สมองติดเทอร์โบหน่อย!',
+  '⏰ เวลาไม่รอนะน้อง!',
+  '😜 เกือบแล้ว! ไวอีกนิด!',
+  '🏃 คิดให้ไว มือให้ทัน!'
+];
+function pressureTaunt(){ return PRESSURE_TAUNTS[Math.floor(Math.random()*PRESSURE_TAUNTS.length)]; }
+function showPressureTaunt(prefix=''){
+  const msg=(prefix?prefix+'  ':'')+pressureTaunt();
+  const el=document.getElementById('statusText');
+  el.textContent=msg;
+  const ov=document.getElementById('tauntOverlay');
+  ov.classList.remove('show'); void ov.offsetWidth; ov.textContent=msg; ov.classList.add('show');
+}
+function pickAnswer(side){if(answered)return;answered=true;clearInterval(timer);const q=QUESTIONS[qIndex];document.querySelectorAll('.quizChoice').forEach(b=>b.disabled=true);userAnswers[qIndex]={chosen:q._options[side].text,correct:q._options[q._displayCorrect].text};const isCorrect=side===q._displayCorrect;if(isCorrect){correct++;score=correct;sfxCorrect();document.getElementById('statusText').textContent='✅ ถูกต้อง! เก่งมาก • ไปข้อถัดไป';document.getElementById('choice'+side).classList.add('correct');}else{wrong++;sfxWrong();document.getElementById('statusText').textContent='❌ ยังไม่ถูกนะ • จำคำตอบของเราไว้ แล้วค่อยสอบแก้';document.getElementById('choice'+side).classList.add('wrong');}updateTopBar(); renderQuestionNav(); document.getElementById('statusText').innerHTML += ` <button class=\"miniBtn\" style=\"display:inline-block;max-width:180px;margin-left:10px\" onclick=\"goNextAvailable()\">ข้อถัดไป ➜</button>`;}
+function nextQuestion(){ qIndex++; if(qIndex>=QUESTIONS.length) endGame(); else loadQuestion(); }
+function endGame(){ clearInterval(timer); const accuracy=Math.round((correct/TOTAL_QUESTIONS)*100); const rank=accuracy>=95?'S+':accuracy>=90?'S':accuracy>=85?'A+':accuracy>=80?'A':accuracy>=70?'B':'C'; showScreen('finalScreen'); document.getElementById('finalName').textContent=`Awarded to: ${playerName}`; document.getElementById('finalScore').textContent=score; document.getElementById('finalMini').textContent=`VOLUME SET 1 SCORE • Correct ${correct}/${TOTAL_QUESTIONS}`; document.getElementById('finalCorrect').textContent=correct; document.getElementById('finalWrong').textContent=wrong; document.getElementById('finalSkipped').textContent=skipped; document.getElementById('finalAccuracy').textContent=`${accuracy}%`; document.getElementById('finalRank').textContent=rank; const fs=document.getElementById('finalSpeed'); if(fs) fs.textContent='ไม่จับเวลา'; const fm=document.getElementById('finalMode'); if(fm) fm.textContent='ทำครบแล้วเฉลย'; const pass=accuracy>=80; const badge=document.getElementById('passBadge'); badge.textContent=pass?'PASS WITH HONORS ✅':'KEEP TRAINING 💪'; badge.className=pass?'certPass pass':'certPass fail'; document.getElementById('finalFooter').textContent=pass?'Kru Pai Classroom • Volume Mission Set 1 • 4-Choice Quiz':'ลองอีกครั้ง แล้วทบทวนแล้วลองใหม่ให้แม่นกว่าเดิม'; const wb=document.getElementById('winnerBanner'); if(pass){ wb.classList.add('show'); confettiBurst(150); sfxWin(); } else wb.classList.remove('show'); }
+
+function showSolutions(){
+ const list=document.getElementById('solutionList'); list.innerHTML='';
+ QUESTIONS.forEach((q,i)=>{const ua=userAnswers[i]||{};const good=ua.chosen===ua.correct;const div=document.createElement('div');div.className='solutionItem '+(good?'good':'bad');div.innerHTML=`<h3>ข้อ ${i+1}</h3><div>${q.th}</div><div class="chosen">คำตอบที่เลือก: ${ua.chosen??'ไม่ได้ตอบ'}</div><div class="ans">✓ คำตอบที่ถูก: ${ua.correct??'—'}</div><div class="eq">${q.equation}</div><div class="method">วิธีทำ: ${q.solution}</div>`;list.appendChild(div)});
+ showScreen('solutionScreen');
+}
+function replayAll(){ document.getElementById('winnerBanner').classList.remove('show'); shuffleQuestions(); qIndex=0; correct=0; wrong=0; skipped=0; score=0; streak=0; userAnswers=[]; showScreen('gameScreen'); showCountdown().then(loadQuestion); }
+
+function renderQuestionNav(){
+ const grid=document.getElementById('qNavGrid'); if(!grid)return;
+ grid.innerHTML='';
+ for(let i=0;i<TOTAL_QUESTIONS;i++){
+   const b=document.createElement('button');
+   b.type='button'; b.className='qNavBtn';
+   const a=userAnswers[i];
+   if(a){
+     const ok=a.chosen===a.correct;
+     b.classList.add(ok?'correct':'wrong');
+     b.textContent=(ok?'✓ ':'✕ ')+(i+1);
+     b.title=ok?`ข้อ ${i+1} • ถูก`:`ข้อ ${i+1} • ผิด`;
+   }else{
+     b.classList.add('unanswered'); b.textContent=i+1; b.title=`ข้อ ${i+1} • ยังไม่ได้ทำ`;
+   }
+   if(i===qIndex && document.getElementById('gameScreen').classList.contains('active')) b.classList.add('current');
+   b.onclick=()=>goToQuestion(i);
+   grid.appendChild(b);
+ }
+}
+function restoreAnsweredQuestion(i){
+ const a=userAnswers[i]; if(!a)return false;
+ answered=true;
+ document.querySelectorAll('.quizChoice').forEach(b=>b.disabled=true);
+ const q=QUESTIONS[i];
+ const chosenIndex=q._options.findIndex(o=>o.text===a.chosen);
+ if(chosenIndex>=0) document.getElementById('choice'+chosenIndex).classList.add(a.chosen===a.correct?'correct':'wrong');
+ document.getElementById('statusText').innerHTML=
+   (a.chosen===a.correct?'✅ ข้อนี้ตอบถูกแล้ว':'❌ ข้อนี้ตอบผิดแล้ว • ยังไม่บอกคำตอบที่ถูก')+
+   ` <button class="miniBtn" style="display:inline-block;max-width:190px;margin-left:10px" onclick="goNextAvailable()">ข้อถัดไป ➜</button>`;
+ return true;
+}
+function goToQuestion(i){
+ if(i<0||i>=TOTAL_QUESTIONS)return;
+ qIndex=i; loadQuestion();
+ restoreAnsweredQuestion(i);
+ renderQuestionNav();
+}
+function goNextAvailable(){
+ if(qIndex<TOTAL_QUESTIONS-1){ qIndex++; loadQuestion(); restoreAnsweredQuestion(qIndex); renderQuestionNav(); }
+ else if(userAnswers.filter(Boolean).length===TOTAL_QUESTIONS){ endGame(); }
+}
+function openTeacherReview(){
+ showScreen('gameScreen'); qIndex=0; loadQuestion(); restoreAnsweredQuestion(0); renderQuestionNav();
+}
+document.addEventListener('keydown',(e)=>{if(document.getElementById('gameScreen').classList.contains('active')&&!answered){const map={'1':0,'2':1,'3':2,'4':3,'ก':0,'ข':1,'ค':2,'ง':3};if(map[e.key]!==undefined)pickAnswer(map[e.key])}if(e.key.toLowerCase()==='f')toggleFullscreen()});
+syncModeButtons();
+
+document.addEventListener("DOMContentLoaded",()=>{
+  emphasizeFractions(document);
+  const mo=new MutationObserver(()=>emphasizeFractions(document));
+  mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+});
+
+</script>
+</body>
+</html>
