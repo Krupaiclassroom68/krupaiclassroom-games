@@ -1,0 +1,142 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SCIENCE ENTRANCE M.1 • MISSION 04 | Kru Pai Classroom</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#3b2a22;background:radial-gradient(circle at 10% 10%,#ff8a2a18 0 3px,transparent 4px) 0 0/36px 36px,linear-gradient(#fff,#fff7ef);min-height:100vh}
+.wrap{max-width:1100px;margin:auto;padding:18px} .brand{width:max-content;max-width:94%;margin:5px auto 14px;background:#fff;color:#ed6b1c;border:2px solid #ffd2b2;border-radius:999px;padding:8px 18px;font-weight:1000;box-shadow:0 8px 22px #d86b2420;cursor:pointer}
+.hero{position:relative;text-align:center;background:#fff;border:2px solid #ffe0c8;border-radius:34px;padding:28px 18px;box-shadow:0 22px 55px #d86b2420;overflow:hidden} .hero:before,.hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:#ff8a2a1c}.hero:before{left:-90px;top:-90px}.hero:after{right:-80px;bottom:-100px}
+.science{font-size:clamp(48px,8vw,86px);line-height:.95;font-weight:1000;color:#ff6d19;text-shadow:0 4px #ffe1ca} .entrance{font-size:clamp(21px,3vw,34px);font-weight:1000;margin:10px} .badge{display:inline-block;background:linear-gradient(135deg,#ff963a,#ff6d19);color:white;padding:10px 24px;border-radius:999px;font-size:clamp(22px,3vw,34px);font-weight:1000;box-shadow:0 8px 0 #d85c10}
+.theme{font-size:clamp(22px,3vw,34px);font-weight:1000;margin-top:16px} .tag{font-weight:800;color:#795342;margin:8px} .emoji{font-size:48px;margin:6px;animation:float 3s ease-in-out infinite} @keyframes float{50%{transform:translateY(-8px)}}
+.perks{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px 0} .perks span{background:#fff6ee;border:1px solid #ffd3b2;padding:8px 12px;border-radius:999px;font-weight:900}
+.card{background:#fff;border:2px solid #ffe0c8;border-radius:28px;padding:20px;margin-top:16px;box-shadow:0 16px 40px #d86b2418} input{font:inherit} .name{width:min(460px,100%);padding:14px;border:2px solid #ffd2b2;border-radius:16px;font-size:18px} button{font:inherit;cursor:pointer} .btn{border:0;border-radius:16px;padding:13px 20px;font-weight:1000;background:linear-gradient(135deg,#ff963a,#ff6d19);color:#fff;box-shadow:0 8px 18px #d86b2430} .btn.alt{background:#fff;color:#8a512e;border:2px solid #ffd2b2;box-shadow:none}
+.hidden{display:none!important} .top{position:sticky;top:0;z-index:20;background:#fffaf5ee;backdrop-filter:blur(10px);border-bottom:1px solid #ffe1ca;padding:10px} .toprow{max-width:1100px;margin:auto;display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap} .timer{font-weight:1000;color:#e85f16;font-size:20px} .nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:14px 0} .nav button{width:35px;height:35px;border-radius:50%;border:2px solid #ead8cb;background:#fff;font-weight:900} .nav .ok{background:#dff7ea;border-color:#42bd83} .nav .bad{background:#ffe1e4;border-color:#ef6570} .nav .cur{outline:4px solid #ffb477}
+.qtype{color:#e8671b;font-weight:1000} .q{font-size:clamp(21px,3vw,31px);font-weight:950;line-height:1.45;margin:12px 0 18px} .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px} .choice{text-align:left;padding:14px;border:2px solid #f1d4bf;background:#fffaf6;border-radius:17px;font-weight:800;color:#3f3029} .choice.sel{border-color:#ff8b34;background:#fff0e3} .choice.correct{background:#e3f8ec;border-color:#36b97b} .choice.wrong{background:#ffe4e6;border-color:#ef6570}
+.num{width:min(360px,100%);padding:14px;border:2px solid #ffd2b2;border-radius:15px;font-size:22px} .matchrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0} select{padding:10px;border:2px solid #ffd2b2;border-radius:12px;background:white}
+.feedback{font-size:24px;font-weight:1000;padding:14px;border-radius:18px;margin-top:14px} .good{background:#e4f8ed;color:#16794d} .no{background:#ffe5e7;color:#a92e3c} .actions{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:16px}
+.result h1{color:#f06b1c} .sol{background:#fff;border:2px solid #ffe0c8;border-radius:18px;padding:15px;margin:10px 0} .sol b{color:#dc681f} .teacher{position:fixed;inset:0;background:#2b1c16ee;z-index:99;padding:20px;overflow:auto} .teacherBox{max-width:950px;margin:auto;background:#fff;border-radius:24px;padding:20px} .pin{position:fixed;inset:0;background:#0008;z-index:100;display:grid;place-items:center} .pinbox{background:white;padding:22px;border-radius:22px;width:min(380px,90%);text-align:center}
+@media(max-width:700px){.choices{grid-template-columns:1fr}.wrap{padding:10px}.hero{padding:22px 12px}.matchrow{grid-template-columns:1fr}}
+</style>
+<style id="classicQuestionLayout">
+/* Restore the roomy, systematic Kru Pai question layout */
+.wrap{max-width:1180px!important}
+.card{padding:clamp(22px,3vw,34px)!important}
+.qtype{
+ display:inline-flex!important;align-items:center!important;gap:8px!important;
+ padding:7px 13px!important;border-radius:999px!important;
+ background:#fff1e5!important;border:1px solid #ffc89f!important;
+ font-size:clamp(15px,1.7vw,19px)!important;letter-spacing:.2px!important
+}
+.q{
+ font-size:clamp(26px,3.25vw,40px)!important;
+ line-height:1.42!important;font-weight:1000!important;
+ margin:18px 0 24px!important;max-width:1050px!important
+}
+.choices{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:16px!important;
+ align-items:stretch!important
+}
+.choice{
+ min-height:92px!important;
+ display:flex!important;align-items:center!important;
+ text-align:left!important;
+ padding:18px 20px!important;
+ border-radius:20px!important;
+ font-size:clamp(20px,2.15vw,27px)!important;
+ line-height:1.35!important;font-weight:900!important;
+ background:#fff!important;border:2px solid #efd3be!important;
+ box-shadow:0 7px 18px rgba(129,76,40,.08)!important;
+ transition:.15s ease!important
+}
+.choice:hover:not(:disabled){transform:translateY(-2px);border-color:#ff9a52!important}
+.choice b{
+ flex:0 0 48px!important;width:48px!important;height:48px!important;
+ display:inline-grid!important;place-items:center!important;
+ margin-right:14px!important;border-radius:14px!important;
+ background:linear-gradient(135deg,#ff9a3d,#ff6d19)!important;
+ color:white!important;font-size:22px!important
+}
+.choice.sel{border-color:#ff8b34!important;background:#fff5ec!important}
+.choice.correct{border-color:#36b97b!important;background:#e7f8ee!important}
+.choice.wrong{border-color:#ef6570!important;background:#ffe8ea!important}
+.num{
+ width:min(440px,100%)!important;min-height:64px!important;
+ font-size:clamp(22px,2.4vw,30px)!important;font-weight:900!important;
+ padding:15px 18px!important
+}
+.matchrow{
+ grid-template-columns:minmax(220px,1fr) minmax(260px,1.15fr)!important;
+ gap:14px!important;align-items:center!important;
+ padding:11px 0!important;border-bottom:1px dashed #f0d6c3!important;
+ font-size:clamp(19px,2vw,25px)!important
+}
+.matchrow select{
+ min-height:58px!important;font-size:clamp(18px,1.8vw,23px)!important;
+ font-weight:800!important;padding:10px 14px!important
+}
+.feedback{font-size:clamp(21px,2.4vw,29px)!important;padding:16px 18px!important}
+.actions{margin-top:22px!important;gap:12px!important}
+.actions .btn{font-size:clamp(17px,1.7vw,21px)!important;min-height:54px!important}
+.nav{gap:8px!important;margin:16px auto 20px!important;max-width:1000px!important}
+.nav button{
+ width:42px!important;height:42px!important;font-size:17px!important;
+ border-width:2px!important;box-shadow:0 3px 8px rgba(90,60,40,.08)!important
+}
+.toprow{font-size:clamp(16px,1.7vw,20px)!important}
+.timer{font-size:clamp(21px,2.2vw,28px)!important}
+@media(max-width:760px){
+ .wrap{padding:10px!important}
+ .card{padding:18px 14px!important;border-radius:22px!important}
+ .q{font-size:clamp(24px,7vw,31px)!important;margin:15px 0 19px!important}
+ .choices{grid-template-columns:1fr!important;gap:11px!important}
+ .choice{min-height:76px!important;font-size:clamp(19px,5.3vw,23px)!important;padding:14px!important}
+ .choice b{flex-basis:42px!important;width:42px!important;height:42px!important;font-size:19px!important;margin-right:11px!important}
+ .nav{gap:5px!important}
+ .nav button{width:34px!important;height:34px!important;font-size:14px!important}
+ .matchrow{grid-template-columns:1fr!important;gap:7px!important}
+}
+</style>
+
+<style id="mission04-two-by-two">
+.choices{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;align-items:stretch!important}
+.choice{width:100%!important;min-height:96px!important;display:flex!important;align-items:center!important}
+@media(max-width:600px){.choices{grid-template-columns:1fr!important;gap:11px!important}.choice{min-height:76px!important}}
+</style>
+</head><body>
+<div id="cover" class="wrap">
+<div class="brand secretBrand">Kru Pai Classroom</div>
+<div class="hero"><div class="emoji">⚡ 🔬 ✨</div><div class="science">SCIENCE</div><div class="entrance">ENTRANCE M.1</div><div class="badge">MISSION 04</div><div class="theme">ENERGY SPARK</div><div class="tag">เปิดสวิตช์สมอง • เชื่อมเหตุผล • พิชิตโจทย์</div>
+<div class="perks"><span>✓ 30 ข้อ</span><span>✓ คละทุกเนื้อหา</span><span>✓ จับเวลา 45 นาที</span><span>✓ เฉลยละเอียด</span></div></div>
+<div class="card" style="text-align:center"><h2>พร้อมเริ่มภารกิจหรือยัง? 🧡</h2><p>ตอบได้ครั้งเดียวต่อข้อ • ข้ามและย้อนดูได้ • หลังจบมีเฉลยละเอียด</p><input id="student" class="name" placeholder="ชื่อ / ชื่อเล่น"><br><br><button class="btn" onclick="startGame()">🚀 เริ่ม MISSION 04</button></div></div>
+
+<div id="game" class="hidden"><div class="top"><div class="toprow"><b>Kru Pai Classroom • MISSION 04</b><span id="progress"></span><span class="timer" id="timer">45:00</span></div></div>
+<div class="wrap"><div id="nav" class="nav"></div><div class="card"><div id="qtype" class="qtype"></div><div id="qtext" class="q"></div><div id="answerArea"></div><div id="feedback"></div><div class="actions"><button class="btn alt" onclick="prevQ()">← ก่อนหน้า</button><button id="checkBtn" class="btn" onclick="checkAnswer()">ตรวจคำตอบ ✓</button><button class="btn alt" onclick="nextQ()">ถัดไป →</button></div></div>
+<div style="text-align:center;margin:16px"><button class="btn" onclick="finishGame(false)">🏁 ส่งคำตอบและดูผล</button></div></div></div>
+
+<div id="result" class="wrap hidden result"></div>
+<div id="pin" class="pin hidden"><div class="pinbox"><h3>🔐 Teacher Access</h3><input id="pinInput" class="name" type="password" placeholder="PIN"><br><br><button class="btn" onclick="openTeacher()">เปิดเฉลยครู</button> <button class="btn alt" onclick="closePin()">ปิด</button></div></div>
+<div id="teacher" class="teacher hidden"><div class="teacherBox"><div style="display:flex;justify-content:space-between"><h2>🔐 Teacher Answer Panel • MISSION 04</h2><button class="btn alt" onclick="closeTeacher()">ปิด</button></div><div id="teacherContent"></div></div></div>
+
+<script>
+const Q=[{"type":"match","q":"จับคู่ระบบกับหน้าที่","pairs":[["ย่อยอาหาร","ย่อยและดูดซึมสารอาหาร"],["หายใจ","แลกเปลี่ยนแก๊ส"],["หมุนเวียนเลือด","ลำเลียงสาร"],["ขับถ่าย","กำจัดของเสีย"]],"principle":"ระบบต่าง ๆ มีหน้าที่หลักต่างกัน","solution":"จับคู่ตามหน้าที่"},{"type":"mc","q":"ผู้ล่าลดลงมาก เหยื่อของผู้ล่านั้นมีแนวโน้มอย่างไรในระยะแรก?","options":["ลดลงเสมอ","สูญพันธุ์ทันที","คงเดิมแน่นอน","เพิ่มขึ้น"],"answer":3,"principle":"ผู้ล่าช่วยควบคุมประชากรเหยื่อ","solution":"จึงอาจเห็นเหยื่อเพิ่ม"},{"type":"mc","q":"ข้อใดเป็นสารประกอบ?","options":["น้ำบริสุทธิ์","ออกซิเจน","ทองแดง","อากาศ"],"answer":0,"principle":"สารประกอบมีธาตุมากกว่าหนึ่งชนิดรวมทางเคมี","solution":"H₂O เป็นสารประกอบ"},{"type":"number","q":"สารละลาย 500 กรัม เข้มข้น 6% โดยมวล มีตัวละลายกี่กรัม?","answer":30,"unit":"กรัม","tolerance":0.01,"principle":"มวลตัวละลาย=0.06×500","solution":"=30 กรัม"},{"type":"mc","q":"ด้ามหม้อทำจากพลาสติกเพราะเหตุใด?","options":["นำความร้อนดีมาก","เป็นฉนวนค่อนข้างดี","สร้างความเย็น","เพิ่มจุดเดือด"],"answer":1,"principle":"วัสดุนำความร้อนน้อยช่วยป้องกันมือ","solution":"พลาสติกเป็นฉนวน"},{"type":"number","q":"แรง 12 N ไปขวา และ 7 N ไปซ้าย แรงลัพธ์มีขนาดเท่าใด?","answer":5,"unit":"N","tolerance":0.01,"principle":"แรงตรงข้ามหักลบ","solution":"12-7=5 N"},{"type":"mc","q":"A เดินทาง 100 m ใน 10 s; B 150 m ใน 15 s ข้อใดถูก?","options":["A เร็วกว่า","B เร็วกว่า","เร็วเท่ากัน","ข้อมูลไม่พอ"],"answer":2,"principle":"คำนวณ v=s/t","solution":"ทั้งคู่ 10 m/s"},{"type":"mc","q":"เพิ่มหลอดเหมือนกันแบบอนุกรม ความต้านทานรวมมีแนวโน้มอย่างไร?","options":["เป็นลบ","ลดเป็นศูนย์","คงที่เสมอ","เพิ่ม"],"answer":3,"principle":"ความต้านทานอนุกรมรวมกัน","solution":"จึงเพิ่ม"},{"type":"tf","q":"เสียงเป็นคลื่นกล จึงไม่เดินทางผ่านสุญญากาศแบบเสียงปกติ","answer":true,"principle":"เสียงต้องอาศัยตัวกลาง","solution":"ข้อความถูก"},{"type":"mc","q":"เซลล์ใบที่รับแสงมากมักมีคลอโรพลาสต์มาก เพราะเหตุใด?","options":["ใช้สังเคราะห์ด้วยแสง","ใช้ย่อยอาหาร","ใช้สร้างผนังเซลล์","ใช้ขับน้ำออกจากราก"],"answer":0,"principle":"คลอโรพลาสต์มีคลอโรฟิลล์","solution":"จึงเกี่ยวข้องโดยตรงกับการสังเคราะห์ด้วยแสง"},{"type":"match","q":"จับคู่ส่วนของพืชกับหน้าที่","pairs":[["ราก","ดูดน้ำและแร่ธาตุ"],["ปากใบ","แลกเปลี่ยนแก๊ส"],["ไซเล็ม","ลำเลียงน้ำ"],["โฟลเอ็ม","ลำเลียงน้ำตาล"]],"principle":"ส่วนต่าง ๆ ทำงานประสานกัน","solution":"คู่ทั้งหมดตรงกับหน้าที่หลัก"},{"type":"mc","q":"การดึงมือออกจากของร้อนอย่างรวดเร็วเกี่ยวข้องเด่นกับระบบใด?","options":["ระบบย่อยอาหาร","ระบบประสาท","ระบบสืบพันธุ์","ระบบต่อมเหงื่อเท่านั้น"],"answer":1,"principle":"ระบบประสาทรับสิ่งเร้าและสั่งตอบสนอง","solution":"รีเฟล็กซ์ช่วยลดอันตราย"},{"type":"mc","q":"พี่น้องพ่อแม่เดียวกันอาจต่างกันเพราะเหตุใด?","options":["สิ่งแวดล้อมไม่มีผลเลย","ไม่มี DNA","ได้รับชุดยีนผสมต่างกัน","เซลล์ไม่มีนิวเคลียส"],"answer":2,"principle":"การรวมกันของสารพันธุกรรมแตกต่างกัน","solution":"จึงเกิดความหลากหลาย"},{"type":"mc","q":"เหตุใดพลังงานถึงผู้บริโภคลำดับสูงจึงลดลง?","options":["ผู้ย่อยสลายสร้างพลังงานใหม่","พลังงานหมุนกลับครบ 100%","ผู้ผลิตไม่รับแสง","แต่ละระดับใช้พลังงานและสูญเป็นความร้อน"],"answer":3,"principle":"พลังงานไหลผ่านระบบนิเวศ","solution":"มีการใช้และสูญเป็นความร้อน"},{"type":"mc","q":"ข้อใดเป็นสารเนื้อผสม?","options":["น้ำโคลน","อากาศ","น้ำเกลือใส","น้ำตาลละลายน้ำ"],"answer":0,"principle":"สารเนื้อผสมไม่สม่ำเสมอ","solution":"น้ำโคลนเห็นองค์ประกอบต่างกัน"},{"type":"mc","q":"ของเหลวสองชนิดไม่ละลายกันและแยกชั้น ควรใช้อะไร?","options":["กระดาษกรอง","กรวยแยก","แม่เหล็ก","ตะแกรง"],"answer":1,"principle":"ของเหลวไม่ผสมกันใช้กรวยแยก","solution":"เปิดก๊อกแยกชั้นได้"},{"type":"tf","q":"การพาความร้อนเกิดเด่นในของเหลวและแก๊ส","answer":true,"principle":"การพาอาศัยการเคลื่อนที่ของของไหล","solution":"ข้อความถูก"},{"type":"mc","q":"พื้นรองเท้ามีร่องเพื่ออะไร?","options":["ลดแรงโน้มถ่วง","ลดมวล","เพิ่มแรงเสียดทาน","เพิ่มแรงลอยตัว"],"answer":2,"principle":"ผิวสัมผัสมีผลต่อแรงเสียดทาน","solution":"ร่องช่วยยึดเกาะ"},{"type":"number","q":"นักวิ่ง 240 m ใน 30 s มีอัตราเร็วเฉลี่ยเท่าใด?","answer":8,"unit":"m/s","tolerance":0.01,"principle":"v=s/t","solution":"240/30=8 m/s"},{"type":"tf","q":"เครื่องกลอย่างง่ายไม่สร้างพลังงานขึ้นใหม่ แต่ช่วยเปลี่ยนขนาดหรือทิศแรงได้","answer":true,"principle":"เครื่องกลไม่ให้พลังงานฟรี","solution":"ข้อความถูก"},{"type":"mc","q":"หลอดสองดวงต่อขนาน ถ้าหลอดหนึ่งขาด อีกหลอดเป็นอย่างไร?","options":["ดับด้วยเสมอ","แบตเตอรี่หยุดมีแรงดัน","ระเบิดทันที","ยังติดได้"],"answer":3,"principle":"วงจรขนานมีหลายแขนง","solution":"อีกแขนงยังปิดวงจรได้"},{"type":"mc","q":"เข็มทิศชี้เหนือ-ใต้เพราะอะไร?","options":["โลกมีสนามแม่เหล็ก","ดวงจันทร์ดึงโดยตรง","ลมพัดเข็ม","เข็มสร้างแรงโน้มถ่วง"],"answer":0,"principle":"โลกมีสนามแม่เหล็ก","solution":"เข็มวางตัวตามสนาม"},{"type":"mc","q":"รุ้งกินน้ำเกี่ยวข้องกับอะไร?","options":["นำและพาความร้อน","หักเห สะท้อนภายใน และกระจายสี","แรงเสียดทาน","กรองและระเหย"],"answer":1,"principle":"หยดน้ำแยกและเบนแสง","solution":"จึงเห็นสีรุ้ง"},{"type":"mc","q":"วัสดุนุ่มพรุนบุผนังห้องบันทึกเสียงเพื่ออะไร?","options":["สร้างเสียงใหม่","เพิ่มเสียงก้อง","ดูดซับเสียงและลดสะท้อน","เพิ่มความถี่ทุกเสียง"],"answer":2,"principle":"วัสดุพรุนดูดซับพลังงานเสียง","solution":"จึงลดก้อง"},{"type":"tf","q":"การผุพังของหินและการทับถมตะกอนเป็นส่วนหนึ่งของวัฏจักรหิน","answer":true,"principle":"หินเปลี่ยนผ่านหลายกระบวนการ","solution":"ข้อความถูก"},{"type":"mc","q":"เครื่องมือวัดปริมาณน้ำฝนคืออะไร?","options":["เข็มทิศ","บารอมิเตอร์","เทอร์มอมิเตอร์","เรนเกจ"],"answer":3,"principle":"เรนเกจวัดฝน","solution":"เครื่องมืออื่นวัดอย่างอื่น"},{"type":"tf","q":"ดวงจันทร์ไม่มีแสงในตัวเองแบบดาวฤกษ์ แต่เห็นได้เพราะสะท้อนแสงอาทิตย์","answer":true,"principle":"ดวงจันทร์สะท้อนแสง","solution":"ข้อความถูก"},{"type":"mc","q":"ทดสอบผลของแสงต่อการโตของถั่ว ควรควบคุมอะไร?","options":["ชนิดพืช น้ำ ดิน และเวลา","ปริมาณแสง","ความสูงสุดท้าย","ผลการทดลอง"],"answer":0,"principle":"เปลี่ยนตัวแปรต้นเพียงตัวเดียว","solution":"จึงควบคุมปัจจัยอื่น"},{"type":"mc","q":"บ้านใช้แผงโซลาร์และหลอด LED ประโยชน์ร่วมคืออะไร?","options":["เพิ่มแรงเสียดทาน","ใช้พลังงานหมุนเวียนและลดการใช้ไฟ","ทำให้ CO₂ เป็นศูนย์ทันที","เปลี่ยนน้ำเป็นเชื้อเพลิง"],"answer":1,"principle":"แหล่งพลังงานและประสิทธิภาพอุปกรณ์ช่วยลดทรัพยากร","solution":"โซลาร์ผลิตไฟและ LED ใช้พลังงานต่ำ"},{"type":"mc","q":"นำเซลล์พืชแช่สารละลายเข้มข้นกว่าภายในเซลล์ ผลใดมีแนวโน้มเกิดขึ้น?","options":["ผนังเซลล์หายไป","น้ำเข้าเซลล์อย่างเดียว","น้ำออกจากเซลล์","นิวเคลียสเปลี่ยนเป็นคลอโรพลาสต์"],"answer":2,"principle":"ออสโมซิสทำให้น้ำเคลื่อนผ่านเยื่อเลือกผ่าน","solution":"น้ำมีแนวโน้มออกสู่สารละลายที่เข้มข้นกว่า"}]; let idx=0,answers=Array(30).fill(null),locked=Array(30).fill(false),correct=Array(30).fill(null),remaining=45*60,timerId=null,studentName="";
+function beep(ok=true){try{let a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=ok?720:190;g.gain.value=.08;o.start();o.stop(a.currentTime+.14)}catch(e){}}
+function startGame(){studentName=document.getElementById('student').value.trim()||'นักเรียน';cover.classList.add('hidden');game.classList.remove('hidden');render();timerId=setInterval(()=>{remaining--;showTime();if(remaining<=0)finishGame(true)},1000)}
+function showTime(){let m=Math.floor(remaining/60),s=remaining%60;timer.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function renderNav(){nav.innerHTML='';Q.forEach((q,i)=>{let b=document.createElement('button');b.textContent=i+1;b.className=(i==idx?'cur ':'')+(correct[i]===true?'ok':correct[i]===false?'bad':'');b.onclick=()=>{idx=i;render()};nav.appendChild(b)})}
+function render(){renderNav();progress.textContent=`ข้อ ${idx+1} / 30`;let q=Q[idx];qtype.textContent=q.type==='mc'?'4 ตัวเลือก':q.type==='tf'?'ถูก / ผิด':q.type==='number'?'เติมคำตอบตัวเลข':'จับคู่';qtext.textContent=q.q;feedback.innerHTML='';let a=answerArea;a.innerHTML='';
+ if(q.type==='mc'){q.options.forEach((x,i)=>{let b=document.createElement('button');b.className='choice';b.innerHTML=`<b>${String.fromCharCode(65+i)}.</b> ${x}`;b.disabled=locked[idx];if(answers[idx]===i)b.classList.add('sel');if(locked[idx]&&i===q.answer)b.classList.add('correct');if(locked[idx]&&answers[idx]===i&&i!==q.answer)b.classList.add('wrong');b.onclick=()=>{answers[idx]=i;render()};a.appendChild(b)})}
+ else if(q.type==='tf'){['ถูก','ผิด'].forEach((x,i)=>{let val=i===0,b=document.createElement('button');b.className='choice';b.textContent=x;b.disabled=locked[idx];if(answers[idx]===val)b.classList.add('sel');if(locked[idx]&&val===q.answer)b.classList.add('correct');if(locked[idx]&&answers[idx]===val&&val!==q.answer)b.classList.add('wrong');b.onclick=()=>{answers[idx]=val;render()};a.appendChild(b)})}
+ else if(q.type==='number'){let inp=document.createElement('input');inp.className='num';inp.type='number';inp.step='any';inp.placeholder='พิมพ์คำตอบ '+(q.unit||'');inp.disabled=locked[idx];inp.value=answers[idx]??'';inp.oninput=e=>answers[idx]=e.target.value;a.appendChild(inp)}
+ else {let vals=q.pairs.map(x=>x[1]).sort(()=>.5-Math.random());q.pairs.forEach((p,j)=>{let r=document.createElement('div');r.className='matchrow';r.innerHTML=`<b>${p[0]}</b>`;let s=document.createElement('select');s.disabled=locked[idx];s.innerHTML='<option value="">เลือกคำตอบ</option>'+vals.map(v=>`<option>${v}</option>`).join('');let arr=answers[idx]||Array(q.pairs.length).fill('');s.value=arr[j]||'';s.onchange=e=>{let z=answers[idx]||Array(q.pairs.length).fill('');z[j]=e.target.value;answers[idx]=z};r.appendChild(s);a.appendChild(r)})}
+ checkBtn.disabled=locked[idx];if(locked[idx])showFeedback();
+}
+function isCorrect(i){let q=Q[i],a=answers[i];if(q.type==='mc'||q.type==='tf')return a===q.answer;if(q.type==='number')return a!==null&&a!==''&&Math.abs(Number(a)-Number(q.answer))<=q.tolerance;if(q.type==='match')return Array.isArray(a)&&q.pairs.every((p,j)=>a[j]===p[1]);return false}
+function checkAnswer(){if(locked[idx])return;if(answers[idx]===null||answers[idx]===''||(Array.isArray(answers[idx])&&answers[idx].some(x=>!x))){feedback.innerHTML='<div class="feedback no">ยังตอบไม่ครบจ้า 😊</div>';return}locked[idx]=true;correct[idx]=isCorrect(idx);beep(correct[idx]);render()}
+function showFeedback(){feedback.innerHTML=correct[idx]?'<div class="feedback good">✓ ถูกต้อง! เก่งมาก 🎉</div>':'<div class="feedback no">✕ ยังไม่ถูก ลองอ่านโจทย์อีกครั้งก่อนกดข้อถัดไปนะ</div>'}
+function prevQ(){idx=Math.max(0,idx-1);render()} function nextQ(){idx=Math.min(29,idx+1);render()}
+function answerText(q){if(q.type==='mc')return String.fromCharCode(65+q.answer)+'. '+q.options[q.answer];if(q.type==='tf')return q.answer?'ถูก':'ผิด';if(q.type==='number')return q.answer+' '+(q.unit||'');return q.pairs.map(x=>x[0]+' → '+x[1]).join(' | ')}
+function finishGame(timeup){if(timerId)clearInterval(timerId);let score=correct.filter(x=>x===true).length;game.classList.add('hidden');result.classList.remove('hidden');let h=`<div class="brand secretBrand">Kru Pai Classroom</div><div class="card" style="text-align:center"><h1>MISSION 04 COMPLETE 🏆</h1><h2>${studentName} • ${score} / 30</h2><p>${timeup?'หมดเวลาแล้ว':'ส่งคำตอบเรียบร้อย'} • ใช้เวลา ${45-Math.ceil(remaining/60)} นาทีโดยประมาณ</p></div><h2>📚 เฉลยละเอียด • MISSION 04</h2>`;Q.forEach((q,i)=>{h+=`<div class="sol"><b>ข้อ ${i+1}.</b> ${q.q}<br><b>คำตอบ:</b> ${answerText(q)}<br><b>หลักคิด:</b> ${q.principle}<br><b>วิธีอธิบาย:</b> ${q.solution}</div>`});h+=`<div style="text-align:center;margin:20px"><button class="btn" onclick="location.reload()">เล่นใหม่</button></div>`;result.innerHTML=h;bindSecret()}
+let taps=0,tapTimer=null;function bindSecret(){document.querySelectorAll('.secretBrand').forEach(el=>el.onclick=()=>{taps++;clearTimeout(tapTimer);tapTimer=setTimeout(()=>taps=0,1600);if(taps>=5){taps=0;pin.classList.remove('hidden');pinInput.focus()}})}
+function closePin(){pin.classList.add('hidden')} function openTeacher(){if(pinInput.value!=='8888'){alert('PIN ไม่ถูกต้อง');return}closePin();teacher.classList.remove('hidden');teacherContent.innerHTML=Q.map((q,i)=>`<div class="sol"><b>${i+1}. ${q.q}</b><br><b>เฉลย:</b> ${answerText(q)}<br><b>หลักคิด:</b> ${q.principle}<br>${q.solution}</div>`).join('')}
+function closeTeacher(){teacher.classList.add('hidden')} document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeTeacher();closePin()}});bindSecret();showTime();
+</script></body></html>
