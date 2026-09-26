@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kru Pai Classroom | Fraction Decimal Mixed Problems SET 1</title>
+<style>
+:root{--c1:#5c6be8;--c2:#ff6f7d;--ink:#17233c;--bg:#f7f8ff;--ok:#16a36a;--bad:#e5485d}
+*{box-sizing:border-box} body{margin:0;font-family:Tahoma,"Noto Sans Thai",sans-serif;color:var(--ink);
+background:radial-gradient(circle at 10% 10%,color-mix(in srgb,var(--c1) 16%,white),transparent 30%),
+radial-gradient(circle at 90% 5%,color-mix(in srgb,var(--c2) 17%,white),transparent 32%),var(--bg);min-height:100vh}
+button{font:inherit;cursor:pointer} .top{position:sticky;top:0;z-index:20;background:#ffffffee;backdrop-filter:blur(10px);
+display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:2px solid #ffffff;box-shadow:0 4px 18px #26365a18}
+.brand{font-weight:900;letter-spacing:.4px;flex:1} .home,.mini{border:0;border-radius:14px;padding:10px 14px;font-weight:900;background:#fff;box-shadow:0 4px 14px #26365a20}
+.home{background:linear-gradient(135deg,var(--c1),var(--c2));color:white} .wrap{width:min(1160px,94vw);margin:18px auto 40px}
+.hero{background:white;border-radius:28px;padding:28px;box-shadow:0 18px 55px #26365a16;border:1px solid #fff}
+.kicker{font-weight:900;color:var(--c2);font-size:15px} h1{margin:6px 0 10px;font-size:clamp(34px,6vw,70px);line-height:.95}
+.grad{background:linear-gradient(100deg,var(--c1),var(--c2));-webkit-background-clip:text;color:transparent}
+.sub{font-size:clamp(18px,2.4vw,28px);font-weight:800} .pills{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.pill{background:#f2f3fb;padding:8px 12px;border-radius:999px;font-weight:800} .primary{border:0;border-radius:18px;padding:14px 24px;color:white;
+font-size:20px;font-weight:900;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 10px 24px color-mix(in srgb,var(--c1) 25%,transparent)}
+.screen{display:none} .screen.active{display:block} .review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}
+.review-card{background:white;border-radius:20px;padding:18px;font-size:18px;line-height:1.6;box-shadow:0 8px 24px #26365a12;border-left:7px solid var(--c1)}
+.namebox{margin:18px 0} input{width:min(430px,100%);font-size:20px;padding:14px;border:2px solid #dfe3f0;border-radius:16px}
+.gamehead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px} .score{margin-left:auto;font-weight:900}
+.nav{display:grid;grid-template-columns:repeat(13,1fr);gap:5px;margin:10px 0 14px} .nav button{border:0;border-radius:10px;padding:7px 2px;background:#fff;box-shadow:0 2px 8px #26365a15;font-weight:900}
+.nav .now{outline:3px solid var(--c1)} .nav .right{background:#dff8ec;color:#08784b} .nav .wrong{background:#ffe2e6;color:#b92039} .nav .skip{background:#fff1c9}
+.card{background:white;border-radius:28px;padding:clamp(18px,3vw,34px);box-shadow:0 18px 55px #26365a16;min-height:420px;position:relative;overflow:hidden}
+.qno{font-weight:900;color:var(--c2)} .q{font-size:clamp(23px,3vw,38px);font-weight:900;line-height:1.45;margin:12px 0 20px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px} .choice{min-height:96px;border:2px solid #e7e9f3;background:#fff;border-radius:20px;
+padding:15px;text-align:left;font-size:clamp(17px,2vw,25px);font-weight:800;display:flex;align-items:center;gap:12px;box-shadow:0 7px 20px #26365a0d}
+.choice:hover{transform:translateY(-2px);border-color:var(--c1)} .letter{width:42px;height:42px;flex:0 0 42px;border-radius:13px;display:grid;place-items:center;color:white;font-weight:900;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.choice.sel{outline:4px solid color-mix(in srgb,var(--c1) 35%,transparent)} .choice.correct{background:#e6fbf2;border-color:var(--ok)} .choice.incorrect{background:#ffeaed;border-color:var(--bad)}
+.solution{display:none;margin-top:18px;background:#f6f7ff;border-radius:18px;padding:16px;font-size:18px;line-height:1.65;border-left:6px solid var(--c2)} .solution.show{display:block}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px} .controls button{border:0;border-radius:14px;padding:11px 16px;font-weight:900;background:#fff;box-shadow:0 4px 14px #26365a18}
+.controls .check{background:linear-gradient(135deg,var(--c1),var(--c2));color:white} .overlay{position:fixed;inset:0;pointer-events:none;display:grid;place-items:center;z-index:99;font-size:min(34vw,300px);font-weight:900;opacity:0;transform:scale(.5)}
+.overlay.pop{animation:pop .75s ease} @keyframes pop{40%{opacity:1;transform:scale(1.12)}100%{opacity:0;transform:scale(1)}}
+.final{background:white;border-radius:28px;padding:28px;box-shadow:0 18px 55px #26365a16} .bigscore{font-size:clamp(48px,10vw,100px);font-weight:900;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;color:transparent}
+.answer-list{display:grid;gap:10px;margin-top:18px} .ans{padding:14px;border-radius:16px;background:#f7f8fd;line-height:1.55}
+.frac{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;line-height:1.05;margin:0 .16em;font-weight:900} .frac .top{position:static;background:none;box-shadow:none;border:0;padding:0 4px;border-bottom:2px solid currentColor;display:block} .frac .bot{padding:2px 4px 0}
+@media(max-width:650px){.choices,.review-grid{grid-template-columns:1fr}.nav{grid-template-columns:repeat(10,1fr)}.choice{min-height:72px}.top{padding:8px}.wrap{width:96vw;margin-top:10px}}
+
+/* ===== Kru Pai Teacher Pen Core — iPad/S23/Windows stable ===== */
+.kp-penbar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;padding:8px 14px;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid #e7e9f3;position:sticky;top:0;z-index:140}
+.kp-penbar.pen-collapsed{display:none}
+.kp-penbar button,.kp-penbar input{min-height:44px;border:0;border-radius:12px;padding:8px 11px;font-weight:900;background:white;color:#26334a;box-shadow:0 3px 10px #26365a18}
+.kp-penbar .active{outline:3px solid var(--c1,#2b66d9);background:#eef5ff}
+.kp-penbar input[type=color]{width:50px;padding:4px}.kp-penbar input[type=range]{width:110px}
+body.kp-pen-active,body.kp-pen-active *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+.kp-draw-layer{position:fixed;inset:0;z-index:80;pointer-events:none;touch-action:auto;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+.kp-draw-layer.on{pointer-events:auto;cursor:crosshair;touch-action:none}
+.kp-penhint{font-size:13px;font-weight:800;color:#65708a}
+.kp-pen-fab{display:none;position:fixed;right:12px;top:74px;z-index:150;width:52px;height:52px;border:0;border-radius:50%;font-size:24px;background:linear-gradient(135deg,var(--c1,#2b66d9),var(--c2,#ff7a45));color:white;box-shadow:0 8px 22px #26365a35}
+.kp-pen-fab.show{display:grid;place-items:center}.kp-tool-label{font-size:12px;font-weight:900;color:#65708a}.kp-hidepen{margin-left:auto}
+@media(max-width:650px){.kp-penbar{padding:6px 8px;gap:6px}.kp-penhint,.kp-tool-label{display:none}.kp-penbar input[type=range]{width:82px}.kp-penbar button,.kp-penbar input{min-height:44px}.kp-hidepen{margin-left:0}.kp-pen-fab{top:66px;right:8px}}
+</style></head><body>
+<div id="kpPenbar" class="kp-penbar">
+  <button id="kpPenToggle" type="button" onclick="kpTogglePen()">✏️ Pen: OFF</button>
+  <button id="kpHiToggle" type="button" onclick="kpSetTool('highlight')">🖍️ Highlight</button>
+  <button id="kpEraseToggle" type="button" onclick="kpSetTool('eraser')">🧽 Eraser</button>
+  <span class="kp-tool-label">สี</span><input id="kpPenColor" type="color" value="#e5485d" aria-label="สีปากกา">
+  <span class="kp-tool-label">ขนาด</span><input id="kpPenSize" type="range" min="2" max="18" value="5" aria-label="ความหนาปากกา">
+  <button type="button" onclick="kpUndoInk()">↩️ Undo</button>
+  <button type="button" onclick="kpClearInk()">🗑️ Clear</button>
+  <button type="button" class="kp-hidepen" onclick="kpHidePenbar()">◀ ซ่อน</button>
+  <span class="kp-penhint">ปิด Pen แล้วหมึกยังอยู่ • เปิด Pen เมื่อต้องการเขียนต่อ</span>
+</div>
+<button id="kpPenFab" class="kp-pen-fab" type="button" onclick="kpShowPenbar()" aria-label="เปิดเครื่องมือปากกา">✏️</button>
+<canvas id="kpDrawLayer" class="kp-draw-layer"></canvas>
+
+<div class="top"><div class="brand">✨ Kru Pai Classroom</div><button class="home" onclick="goHome()">🏠 Home</button></div>
+<div class="wrap">
+<section id="home" class="screen active"><div class="hero"><div class="kicker">MATH MISSION • ป.6</div>
+<h1><span class="grad">FRACTION × DECIMAL</span><br>WORD PROBLEMS V3</h1><div class="sub">โจทย์ผสม • ป.6 • บวก ลบ คูณ หาร • หลายขั้น</div>
+<div class="pills"><span class="pill">25 ข้อ</span><span class="pill">ตัวเลือก 2×2</span><span class="pill">เฉลยวิธีคิดทุกข้อ</span></div>
+<div class="namebox"><input id="name" placeholder="ชื่อ / ชื่อเล่น"></div><button class="primary" onclick="showReview()">📚 ทบทวนก่อนเล่น</button></div></section>
+<section id="review" class="screen"><div class="hero"><div class="kicker">QUICK REVIEW</div><h1 style="font-size:clamp(30px,5vw,55px)">ทบทวนก่อนภารกิจ 🧠</h1><div class="review-grid"><div class="review-card"><b>เลือกภาษาที่ง่าย</b><br>บางข้อแปลงเศษส่วนเป็นทศนิยมง่ายกว่า บางข้อแปลงทศนิยมเป็นเศษส่วนง่ายกว่า</div><div class="review-card"><b>บวก–ลบ</b><br>ต้องให้อยู่ในรูปเดียวกันก่อน เช่น 0.25 = 1/4</div><div class="review-card"><b>คูณ–หาร</b><br>มองหาจำนวนที่ตัดทอนกันได้ หรือทศนิยมที่หารลงตัว</div><div class="review-card"><b>ฐานของโจทย์</b><br>แยกให้ชัดว่าเป็น “ของทั้งหมด” หรือ “ของที่เหลือ”</div><div class="review-card"><b>หลายขั้น</b><br>คำนวณตามเหตุการณ์ทีละช่วง อย่าใช้ฐานเดิมผิดขั้น</div><div class="review-card"><b>ตรวจหน่วย</b><br>กิโลกรัม ลิตร เมตร บาท และจำนวนชิ้นต้องตรงกับสิ่งที่โจทย์ถาม</div></div><button class="primary" onclick="startGame()">🚀 เริ่มเกม</button></div></section>
+<section id="game" class="screen"><div class="gamehead"><b id="player">นักเรียน</b><div class="score">คะแนน <span id="score">0</span>/25</div></div><div id="nav" class="nav"></div>
+<div class="card"><div class="qno" id="qno"></div><div class="q" id="question"></div><div class="choices" id="choices"></div><div class="solution" id="solution"></div>
+<div class="controls"><button onclick="prev()">← ก่อนหน้า</button><button class="check" onclick="check()">ตรวจคำตอบ ✓</button><button onclick="skipQ()">ข้ามก่อน</button><button onclick="next()">ถัดไป →</button><button onclick="finish()">สรุปผล</button></div></div></section>
+<section id="final" class="screen"><div class="final"><div class="kicker">MISSION COMPLETE</div><h1 style="font-size:clamp(30px,5vw,58px)">MIXED MISSION COMPLETE 🎉</h1><div class="bigscore"><span id="finalscore">0</span>/25</div><div id="finalmsg" class="sub"></div>
+<div class="controls"><button class="primary" onclick="restart()">🔄 เล่นใหม่</button><button onclick="goHome()">🏠 Home</button></div><div id="answers" class="answer-list"></div></div></section>
+</div><div id="overlay" class="overlay"></div>
+<script>
+const Q=[{"q":"เหยือกมีน้ำผลไม้ 2.5 ลิตร แม่ตักออกไป [f:3/5] ลิตรเพื่อทำเครื่องดื่ม หลังจากตักออกแล้วจะเหลือน้ำผลไม้กี่ลิตร","o":["1.9","2.0","1.8","2.1"],"a":0,"s":"3/5=0.6; 2.5−0.6=1.9"},{"q":"ครูมีริบบิ้นยาว 4.8 เมตร ต้องการตัดเป็นชิ้นยาวชิ้นละ [f:3/5] เมตรเท่า ๆ กัน จะตัดได้เต็มทั้งหมดกี่ชิ้น","o":["6","8","9","10"],"a":1,"s":"3/5=0.6; 4.8÷0.6=8"},{"q":"นักเรียนอ่านหนังสือวันแรก [f:3/8] ของเล่ม และวันที่สองอ่านเพิ่มอีก 0.25 ของหนังสือทั้งเล่ม รวมสองวันอ่านไปเป็นเศษส่วนเท่าใดของเล่ม","o":["[f:1/2]","[f:9/16]","[f:5/8]","[f:3/4]"],"a":2,"s":"0.25=1/4=2/8; รวม5/8"},{"q":"ร้านมีข้าวสาร 7.5 กิโลกรัม และนำไปใช้ [f:2/3] ของข้าวสารทั้งหมด หลังจากใช้แล้วจะเหลือข้าวสารกี่กิโลกรัม","o":["2","3","3.5","2.5"],"a":3,"s":"ใช้5กก. เหลือ2.5กก."},{"q":"ขวดหนึ่งมีน้ำ 1.75 ลิตร แล้วเติมน้ำเพิ่มอีก [f:3/4] ลิตร หลังจากเติมแล้วจะมีน้ำทั้งหมดกี่ลิตร","o":["2.5","2.25","2.75","3"],"a":0,"s":"3/4=0.75; รวม2.5"},{"q":"การทำเค้กหนึ่งก้อนใช้แป้ง 0.75 กิโลกรัม ถ้ามีแป้ง 5 [f:1/4] กิโลกรัม และใช้เท่ากันทุกก้อน จะทำเค้กได้เต็มกี่ก้อน","o":["6","7","8","9"],"a":1,"s":"5.25÷0.75=7"},{"q":"พ่อมีเงิน 1,200 บาท ใช้ไป [f:3/8] ของเงินทั้งหมด แล้วจ่ายค่าอุปกรณ์เพิ่มอีก 175.50 บาท หลังจากนั้นพ่อจะเหลือเงินกี่บาท","o":["564.50","584.50","574.50","594.50"],"a":2,"s":"ใช้450; 1200−450−175.50=574.50"},{"q":"เชือกยาว 6.4 เมตร ครั้งแรกตัดไป 1 [f:3/5] เมตร และครั้งที่สองตัดไปอีก 0.8 เมตร สุดท้ายจะเหลือเชือกยาวกี่เมตร","o":["3.6","4.2","3.8","4.0"],"a":3,"s":"1 3/5=1.6; 6.4−1.6−0.8=4.0"},{"q":"รถใช้น้ำมัน 2.4 ลิตรเดินทางได้ 36 กิโลเมตร ถ้าอัตราการใช้น้ำมันคงเดิม และมีน้ำมัน 5 [f:3/5] ลิตร รถจะเดินทางได้กี่กิโลเมตร","o":["84","80","90","96"],"a":0,"s":"36÷2.4=15; 5.6×15=84"},{"q":"ร้านมีขนมหนัก 3.6 กิโลกรัม ต้องการแบ่งใส่ถุง ถุงละ [f:3/10] กิโลกรัมเท่า ๆ กัน จะได้ขนมเต็มทั้งหมดกี่ถุง","o":["10","12","14","16"],"a":1,"s":"3/10=0.3; 3.6÷0.3=12"},{"q":"ถังมีความจุ 16 ลิตร และมีน้ำอยู่ [f:7/8] ของความจุ จากนั้นเติมน้ำเพิ่มอีก 1.5 ลิตร ขณะนี้มีน้ำทั้งหมดกี่ลิตร","o":["14.5","15","15.5","16"],"a":2,"s":"16×7/8=14; +1.5=15.5"},{"q":"สมุดราคาเล่มละ 18.50 บาท ซื้อ 4 เล่ม ส่วนปากกามีราคาเท่ากับ [f:1/4] ของค่าสมุดทั้งหมด ถ้าซื้อทั้งสมุดและปากกา ต้องจ่ายเงินรวมกี่บาท","o":["88.50","90.50","94.50","92.50"],"a":3,"s":"สมุด74; ปากกา18.50; รวม92.50"},{"q":"สวนมีพื้นที่ 2.5 ไร่ เจ้าของสวนใช้ [f:3/5] ของพื้นที่ทั้งหมดปลูกผัก หลังจากแบ่งพื้นที่ปลูกผักแล้ว จะเหลือพื้นที่อีกกี่ไร่","o":["1","1.25","1.5","0.75"],"a":0,"s":"ปลูก1.5 เหลือ1ไร่"},{"q":"มีน้ำหวาน 4 [f:1/2] ลิตร ต้องการแบ่งใส่แก้ว แก้วละ 0.375 ลิตรเท่า ๆ กัน ถ้าแบ่งได้พอดีจะได้น้ำหวานทั้งหมดกี่แก้ว","o":["10","12","14","16"],"a":1,"s":"4.5÷0.375=12"},{"q":"นักเรียนวิ่งวันแรก 1.75 กิโลเมตร วันที่สองวิ่ง [f:5/4] กิโลเมตร และวันที่สามวิ่ง 0.9 กิโลเมตร สามวันวิ่งรวมกันกี่กิโลเมตร","o":["3.7","3.8","3.9","4.0"],"a":2,"s":"5/4=1.25; รวม3.9"},{"q":"แม่มีน้ำตาล 8 กิโลกรัม ครั้งแรกใช้ [f:3/8] ของน้ำตาลทั้งหมด และครั้งที่สองใช้อีก 1.25 กิโลกรัม สุดท้ายจะเหลือน้ำตาลกี่กิโลกรัม","o":["3.25","4.25","4.0","3.75"],"a":3,"s":"ใช้3+1.25=4.25; เหลือ3.75"},{"q":"นักเรียนอ่านหนังสือไป 0.3 ของทั้งเล่ม แล้วอ่านเพิ่มอีก [f:1/4] ของทั้งเล่ม หลังจากนั้นเหลือหนังสือที่ยังไม่ได้อ่าน 180 หน้า หนังสือเล่มนี้มีทั้งหมดกี่หน้า","o":["400","360","420","450"],"a":0,"s":"ใช้11/20 เหลือ9/20=180; ทั้งหมด400"},{"q":"ร้านมีข้าวสาร 9.6 กิโลกรัม แบ่งให้ครอบครัวหนึ่ง [f:5/12] ของข้าวสารทั้งหมด หลังจากแบ่งแล้วร้านจะเหลือข้าวสารกี่กิโลกรัม","o":["5.2","5.6","6.0","6.4"],"a":1,"s":"ให้4กก. เหลือ5.6"},{"q":"มีผ้ายาว 5 [f:1/2] เมตร ใช้ตัดเสื้อไป 2.75 เมตร แล้วนำผ้าที่เหลือแบ่งเป็น 5 ชิ้นเท่า ๆ กัน ผ้าแต่ละชิ้นจะยาวกี่เมตร","o":["0.45","0.50","0.55","0.60"],"a":2,"s":"5.5−2.75=2.75; ÷5=0.55"},{"q":"เงิน 0.35 ของเงินทั้งหมดเท่ากับ 420 บาท หลังจากนั้นเจ้าของเงินใช้เพิ่มอีก [f:1/4] ของเงินทั้งหมด สุดท้ายจะเหลือเงินกี่บาท","o":["420","450","500","480"],"a":3,"s":"ทั้งหมด1200; ใช้รวม60%; เหลือ40%=480"},{"q":"ถังมีน้ำ 12.5 ลิตร ใช้ไป [f:2/5] ของน้ำทั้งหมด แล้วเติมน้ำกลับเข้าไปอีก 1.75 ลิตร ขณะนี้มีน้ำในถังกี่ลิตร","o":["9.25","8.75","9.75","10.25"],"a":0,"s":"ใช้5 เหลือ7.5 เติมเป็น9.25"},{"q":"ร้านมีผลไม้ 6.75 กิโลกรัม ขายไป [f:2/3] กิโลกรัม แล้วนำผลไม้ที่เหลือแบ่งใส่ถุง ถุงละ 0.25 กิโลกรัม จะจัดได้เต็มกี่ถุง","o":["23","24","25","26"],"a":1,"s":"เหลือ6 1/12 กก.; ÷1/4 =24 1/3 จึงเต็ม24ถุง"},{"q":"รถมีน้ำมัน 18 ลิตร ครั้งแรกใช้ไป 0.4 ของน้ำมันทั้งหมด และครั้งที่สองใช้อีก [f:1/6] ของปริมาณน้ำมันเดิม หลังจากนั้นจะเหลือน้ำมันกี่ลิตร","o":["7.2","7.5","7.8","8.0"],"a":2,"s":"ใช้2/5+1/6=17/30; เหลือ13/30×18=7.8"},{"q":"เชือกยาว 10 เมตร ครั้งแรกใช้ไป [f:3/10] ของความยาวทั้งหมด จากนั้นใช้เพิ่มอีก 0.25 ของความยาวที่เหลือ หลังใช้ทั้งสองครั้งจะเหลือเชือกกี่เมตร","o":["5.0","5.5","5.75","5.25"],"a":3,"s":"เหลือหลังครั้งแรก7; ใช้อีก1.75; เหลือ5.25"},{"q":"ถังจุ 24 ลิตร มีน้ำอยู่ [f:5/8] ของความจุ เติมน้ำเพิ่มอีก 3.6 ลิตร แล้วนำทั้งหมดแบ่งใส่ขวด ขวดละ 0.6 ลิตร จะบรรจุได้เต็มกี่ขวด","o":["31","30","32","29"],"a":0,"s":"มี15 เติมเป็น18.6; 18.6÷0.6=31"}]; let idx=0,score=0,sel=null,state=[];
+function screens(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function goHome(){screens('home')} function showReview(){screens('review')}
+function startGame(){idx=0;score=0;sel=null;state=Q.map(()=>({done:false,choice:null,correct:false,skip:false}));document.getElementById('player').textContent=document.getElementById('name').value.trim()||'นักเรียน';screens('game');render()}
+function frac(s){return s.replace(/\[f:(-?\d+)\/(\d+)\]/g,'<span class="frac"><span class="top">$1</span><span class="bot">$2</span></span>')}
+function renderNav(){let n=document.getElementById('nav');n.innerHTML='';Q.forEach((_,i)=>{let b=document.createElement('button');b.textContent=i+1;b.className=(i===idx?'now ':'')+(state[i]?.done?(state[i].correct?'right':'wrong'):(state[i]?.skip?'skip':''));b.onclick=()=>{idx=i;render()};n.appendChild(b)})}
+function render(){sel=state[idx].choice;document.getElementById('qno').textContent=`ข้อ ${idx+1} / ${Q.length}`;document.getElementById('question').innerHTML=frac(Q[idx].q);let c=document.getElementById('choices');c.innerHTML='';
+Q[idx].o.forEach((o,i)=>{let b=document.createElement('button');b.className='choice';if(sel===i)b.classList.add('sel');if(state[idx].done){if(i===Q[idx].a)b.classList.add('correct');else if(i===state[idx].choice)b.classList.add('incorrect')}b.innerHTML=`<span class="letter">${'ABCD'[i]}</span><span>${frac(o)}</span>`;b.disabled=state[idx].done;b.onclick=()=>{sel=i;state[idx].choice=i;render()};c.appendChild(b)});let sol=document.getElementById('solution');sol.className='solution'+(state[idx].done?' show':'');sol.innerHTML=state[idx].done?'<b>💡 วิธีคิด</b><br>'+frac(Q[idx].s):'';document.getElementById('score').textContent=score;renderNav()}
+function tone(ok){try{let a=new AudioContext(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=ok?740:190;g.gain.value=.12;o.start();o.stop(a.currentTime+.16)}catch(e){}}
+function pop(ok){let x=document.getElementById('overlay');x.textContent=ok?'✓':'✕';x.style.color=ok?'#16a36a':'#e5485d';x.classList.remove('pop');void x.offsetWidth;x.classList.add('pop')}
+function check(){if(state[idx].done||sel===null)return;state[idx].done=true;state[idx].skip=false;state[idx].correct=sel===Q[idx].a;if(state[idx].correct)score++;tone(state[idx].correct);pop(state[idx].correct);render()}
+function skipQ(){if(!state[idx].done)state[idx].skip=true;next()} function prev(){idx=Math.max(0,idx-1);render()} function next(){idx=Math.min(Q.length-1,idx+1);render()}
+function finish(){document.getElementById('finalscore').textContent=score;let done=state.filter(x=>x.done).length;document.getElementById('finalmsg').textContent=`ทำแล้ว ${done} ข้อ • คะแนนดิบ ${score}/${Q.length}`;
+document.getElementById('answers').innerHTML=Q.map((q,i)=>`<div class="ans"><b>ข้อ ${i+1} — คำตอบ ${'ABCD'[q.a]}: ${frac(q.o[q.a])}</b><br>${frac(q.s)}</div>`).join('');screens('final')}
+function restart(){startGame()}
+
+// ===== Kru Pai Teacher Pen Core — stable iPad long-press build =====
+const kpDraw=document.getElementById('kpDrawLayer'),kpCtx=kpDraw.getContext('2d',{alpha:true});
+const kpPenbar=document.getElementById('kpPenbar'),kpPenFab=document.getElementById('kpPenFab');
+let kpDrawing=false,kpPenOn=false,kpTool='pen',kpActivePointer=null,kpStrokes=[],kpCurrent=null;
+function kpDpr(){return Math.min(window.devicePixelRatio||1,3)}
+function kpResizeDraw(){const ratio=kpDpr();kpDraw.width=Math.round(innerWidth*ratio);kpDraw.height=Math.round(innerHeight*ratio);kpDraw.style.width=innerWidth+'px';kpDraw.style.height=innerHeight+'px';kpCtx.setTransform(ratio,0,0,ratio,0,0);kpRedrawInk()}
+function kpUpdatePenUI(){kpDraw.classList.toggle('on',kpPenOn);document.body.classList.toggle('kp-pen-active',kpPenOn);const p=document.getElementById('kpPenToggle');p.classList.toggle('active',kpPenOn&&kpTool==='pen');p.textContent=kpPenOn?'✏️ Pen: ON':'✏️ Pen: OFF';document.getElementById('kpHiToggle').classList.toggle('active',kpPenOn&&kpTool==='highlight');document.getElementById('kpEraseToggle').classList.toggle('active',kpPenOn&&kpTool==='eraser')}
+function kpTogglePen(){kpPenOn=!kpPenOn;if(kpPenOn&&kpTool==='eraser')kpTool='pen';kpUpdatePenUI()}
+function kpSetTool(t){kpTool=t;kpPenOn=true;kpUpdatePenUI()}
+function kpHidePenbar(){kpPenbar.classList.add('pen-collapsed');kpPenFab.classList.add('show')}
+function kpShowPenbar(){kpPenbar.classList.remove('pen-collapsed');kpPenFab.classList.remove('show')}
+function kpPointFromEvent(e){return{x:e.clientX,y:e.clientY,pressure:(typeof e.pressure==='number'&&e.pressure>0)?e.pressure:.5}}
+function kpStyleNow(){return{tool:kpTool,color:document.getElementById('kpPenColor').value,size:+document.getElementById('kpPenSize').value}}
+function kpPaintPath(points,st){if(!points||points.length<1)return;kpCtx.save();kpCtx.lineCap='round';kpCtx.lineJoin='round';kpCtx.globalCompositeOperation=st.tool==='eraser'?'destination-out':'source-over';kpCtx.globalAlpha=st.tool==='highlight'?.26:1;kpCtx.strokeStyle=st.color;kpCtx.lineWidth=st.tool==='highlight'?st.size*3.2:st.tool==='eraser'?st.size*4:st.size;kpCtx.beginPath();kpCtx.moveTo(points[0].x,points[0].y);if(points.length===1){kpCtx.lineTo(points[0].x+.01,points[0].y+.01)}else if(points.length===2){kpCtx.lineTo(points[1].x,points[1].y)}else{for(let i=1;i<points.length-1;i++){const mx=(points[i].x+points[i+1].x)/2,my=(points[i].y+points[i+1].y)/2;kpCtx.quadraticCurveTo(points[i].x,points[i].y,mx,my)}const z=points[points.length-1];kpCtx.lineTo(z.x,z.y)}kpCtx.stroke();kpCtx.restore()}
+function kpRedrawInk(){kpCtx.clearRect(0,0,innerWidth,innerHeight);for(const st of kpStrokes)kpPaintPath(st.points,st)}
+function kpBeginInk(e){if(!kpPenOn||kpActivePointer!==null)return;try{window.getSelection()?.removeAllRanges()}catch(_){}kpActivePointer=e.pointerId;kpDrawing=true;kpCurrent={...kpStyleNow(),points:[kpPointFromEvent(e)]};try{kpDraw.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault()}
+function kpMoveInk(e){if(!kpDrawing||e.pointerId!==kpActivePointer)return;const events=typeof e.getCoalescedEvents==='function'?e.getCoalescedEvents():[e];for(const ev of events)kpCurrent.points.push(kpPointFromEvent(ev));kpRedrawInk();kpPaintPath(kpCurrent.points,kpCurrent);e.preventDefault()}
+function kpEndInk(e){if(!kpDrawing||e.pointerId!==kpActivePointer)return;const events=typeof e.getCoalescedEvents==='function'?e.getCoalescedEvents():[e];for(const ev of events)kpCurrent.points.push(kpPointFromEvent(ev));kpStrokes.push(kpCurrent);kpCurrent=null;kpDrawing=false;kpActivePointer=null;try{kpDraw.releasePointerCapture(e.pointerId)}catch(_){}kpRedrawInk();e.preventDefault()}
+kpDraw.addEventListener('pointerdown',kpBeginInk,{passive:false});kpDraw.addEventListener('pointermove',kpMoveInk,{passive:false});kpDraw.addEventListener('pointerup',kpEndInk,{passive:false});kpDraw.addEventListener('pointercancel',kpEndInk,{passive:false});
+['contextmenu','selectstart','dragstart'].forEach(type=>document.addEventListener(type,e=>{if(kpPenOn){e.preventDefault();try{window.getSelection()?.removeAllRanges()}catch(_){}}},{passive:false}));
+kpDraw.addEventListener('touchstart',e=>{if(kpPenOn)e.preventDefault()},{passive:false});
+kpDraw.addEventListener('touchmove',e=>{if(kpPenOn)e.preventDefault()},{passive:false});
+function kpUndoInk(){if(kpDrawing)return;kpStrokes.pop();kpRedrawInk()}
+function kpClearInk(){if(kpDrawing)return;kpStrokes=[];kpRedrawInk()}
+window.addEventListener('resize',()=>{clearTimeout(window.__kpPenResize);window.__kpPenResize=setTimeout(kpResizeDraw,80)},{passive:true});
+kpResizeDraw();kpUpdatePenUI();
+
+</script></body></html>
