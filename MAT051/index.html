@@ -415,7 +415,9 @@ body{background:radial-gradient(900px 560px at 8% 6%,rgba(35,174,255,.24),transp
 /* Kru Pai Classroom • Teacher Pen overlay */
 #kpPenCanvas{position:fixed;inset:0;width:100vw;height:100vh;z-index:2147483000;pointer-events:none;touch-action:auto;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #kpPenCanvas.kp-pen-active{pointer-events:auto;touch-action:none;cursor:crosshair}
-#kpPenDock{position:fixed;right:12px;bottom:12px;z-index:2147483640;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:flex-end;gap:8px;-webkit-user-select:none;user-select:none}
+html.kp-pen-mode,html.kp-pen-mode body,html.kp-pen-mode body *:not(#kpPenDock):not(#kpPenDock *){-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+html.kp-pen-mode body{overscroll-behavior:none}
+#kpPenDock{position:fixed;left:12px;top:72px;z-index:2147483640;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:flex-end;gap:8px;-webkit-user-select:none;user-select:none}
 #kpPenDock button{font:inherit;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 #kpPenToggle{min-width:54px;height:54px;border-radius:18px!important;background:#fff!important;color:#172033!important;box-shadow:0 8px 26px rgba(15,23,42,.22)!important;border:2px solid rgba(249,115,22,.35)!important;font-size:25px!important;font-weight:900!important;padding:0 13px!important}
 #kpPenToggle.kp-on{background:#172033!important;color:#fff!important;border-color:#fb923c!important}
@@ -427,7 +429,7 @@ body{background:radial-gradient(900px 560px at 8% 6%,rgba(35,174,255,.24),transp
 #kpPenPanel .kp-black{background:#111827!important}.kp-blue{background:#2563eb!important}.kp-red{background:#dc2626!important}
 #kpPenPanel .kp-color.kp-selected{box-shadow:0 0 0 3px #fb923c!important;outline:none!important}
 #kpPenStatus{font-size:12px;font-weight:900;color:#475569;padding:0 4px;white-space:nowrap}
-@media(max-width:600px){#kpPenDock{right:8px;bottom:8px}#kpPenToggle{height:50px;min-width:50px;border-radius:16px!important}#kpPenPanel{gap:5px;padding:7px;max-width:calc(100vw - 70px)}#kpPenPanel button{height:40px;min-width:40px;padding:0 8px!important}#kpPenStatus{display:none}}
+@media(max-width:600px){#kpPenDock{left:8px;top:64px}#kpPenToggle{height:50px;min-width:50px;border-radius:16px!important}#kpPenPanel{gap:5px;padding:7px;max-width:calc(100vw - 70px)}#kpPenPanel button{height:40px;min-width:40px;padding:0 8px!important}#kpPenStatus{display:none}}
 </style>
 
 </head>
@@ -1005,7 +1007,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
   function end(e){if(!drawing)return;drawing=false;currentStroke=null;last=null;try{canvas.releasePointerCapture(e.pointerId)}catch(_){}}
   function setEnabled(on){
-    enabled=on; canvas.classList.toggle('kp-pen-active',on); toggle.classList.toggle('kp-on',on);
+    enabled=on; canvas.classList.toggle('kp-pen-active',on); toggle.classList.toggle('kp-on',on); document.documentElement.classList.toggle('kp-pen-mode',on);
     dock.classList.toggle('kp-open',on); toggle.setAttribute('aria-expanded',String(on)); toggle.textContent=on?'✕':'✏️';
     if(!on){drawing=false;currentStroke=null;last=null;}
   }
@@ -1018,6 +1020,9 @@ document.addEventListener("DOMContentLoaded",()=>{
   clearBtn.addEventListener('click',()=>{if(strokes.length && confirm('ล้างหมึกทั้งหมดบนหน้านี้?')){strokes=[];redraw()}});
   canvas.addEventListener('pointerdown',start,{passive:false});canvas.addEventListener('pointermove',move,{passive:false});canvas.addEventListener('pointerup',end);canvas.addEventListener('pointercancel',end);
   canvas.addEventListener('contextmenu',e=>{if(enabled)e.preventDefault()});
+  document.addEventListener('contextmenu',e=>{if(enabled && !dock.contains(e.target))e.preventDefault()},{capture:true});
+  document.addEventListener('selectstart',e=>{if(enabled && !dock.contains(e.target))e.preventDefault()},{capture:true});
+  document.addEventListener('dragstart',e=>{if(enabled && !dock.contains(e.target))e.preventDefault()},{capture:true});
   let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(setupCanvas,120)});
   setupCanvas();setEnabled(false);
 })();
