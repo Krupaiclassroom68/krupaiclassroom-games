@@ -96,7 +96,7 @@ function finishAttempt(){
  let correct=state.answers.filter(a=>a.correct).length,total=state.set.length,pct=Math.round(correct/total*100);
  let rec={date:new Date().toISOString(),student:student,mode:state.mode,score:correct,total,percent:pct,solutionsViewed:state.solutionsViewed.length};
  let hist=JSON.parse(localStorage.getItem('kp_m1_thinking_master01_history')||'[]');hist.push(rec);localStorage.setItem('kp_m1_thinking_master01_history',JSON.stringify(hist.slice(-20)));
- saveInk();persistWork();localStorage.setItem(completedKey()+(state.mode==='retry'?':retry':''),new Date().toISOString());localStorage.removeItem(workKey());renderHistory();showScreen('result');document.getElementById('submissionCount').textContent='บันทึกแล้ว '+submissionRecords.length+' ข้อ';scoreBig.textContent=pct+'%';let passed=pct>=UNIT.passPercent;
+ saveInk();flushWorkSave();localStorage.setItem(completedKey()+(state.mode==='retry'?':retry':''),new Date().toISOString());localStorage.removeItem(workKey());renderHistory();showScreen('result');document.getElementById('submissionCount').textContent='บันทึกแล้ว '+submissionRecords.length+' ข้อ';scoreBig.textContent=pct+'%';let passed=pct>=UNIT.passPercent;
  resultTitle.textContent=passed?'🏆 M.1 MATH PASSED!':'🌱 ยังไม่ถึง 80%';
  let mine=hist.filter(x=>x.student===student);let rows=mine.map((x,i)=>`<div class="skillrow"><span>${i===0?'รอบแรก':'ฝึกซ้ำครั้งที่ '+i} • ${x.score}/${x.total} ข้อ</span><span>${x.percent}% ${x.percent>=UNIT.passPercent?'🏆':''}</span></div>`).join('');
  skillReport.innerHTML=rows||'<p>ยังไม่มีประวัติ</p>';
@@ -303,7 +303,7 @@ function captureSubmittedWork(choice){
   }catch(err){console.error('Could not capture work',err);alert('ยังบันทึกกระดาษทดไม่ได้ กรุณาตรวจสอบก่อนออกจากเกม');}
 }
 function downloadSubmittedWork(){
-  persistWork();
+  flushWorkSave();
   if(!submissionRecords.length){alert('ยังไม่มีข้อที่กดตอบจ้า');return}
   const params=new URLSearchParams(location.search);
   const doc={format:'KruPaiScratchSubmission',version:1,gameId:UNIT.id,gameTitle:UNIT.title,studentName:student,studentCode:params.get('student')||'',mode:state.mode,exportedAt:new Date().toISOString(),questions:cloneWork(submissionRecords)};
@@ -317,11 +317,48 @@ function downloadSubmittedWork(){
 /* Phase 1B: local-only progress. Not a teacher-authenticated reset or online submission. */
 function workKey(){return 'kp_m1_thinking_master01_partial_'+encodeURIComponent(student.trim().toLowerCase())}
 function completedKey(){return 'kp_m1_thinking_master01_completed_'+encodeURIComponent(student.trim().toLowerCase())}
+/* Stable save: debounce pen-up writes; never interrupt Apple Pencil with repeated alerts. */
+let workSaveTimer=null, workSaveFailed=false, workSavePending=false;
+function workSnapshot(){
+ saveInk();
+ return {version:1,mode:state.mode,questionIds:state.set.map(q=>q.id),i:state.i,answers:state.answers,weak:state.weak,solutionsViewed:state.solutionsViewed,inkByQuestion,submissionRecords,savedAt:new Date().toISOString()};
+}
+function exportEmergencyBackup(){
+ const doc={format:'KruPaiEmergencyBackup',gameId:UNIT.id,studentName:student,exportedAt:new Date().toISOString(),work:workSnapshot()};
+ const blob=new Blob([JSON.stringify(doc)],{type:'application/json;charset=utf-8'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='KruPai-backup-'+Date.now()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);
+}
+function showSaveFailure(){
+ if(workSaveFailed)return;
+ workSaveFailed=true;
+ const bar=document.createElement('div');bar.id='kpSaveWarning';
+ bar.style.cssText='position:fixed;bottom:12px;left:12px;right:12px;z-index:99999;background:#7d2033;color:white;border:2px solid #fff;border-radius:16px;padding:12px 14px;font:700 15px system-ui;box-shadow:0 8px 30px #0005';
+ bar.innerHTML='<div>⚠️ บันทึกลงเครื่องไม่สำเร็จ — งานใหม่อาจยังไม่ถูกเก็บ กรุณาส่งออกสำรองก่อนปิดเกม</div><button id="kpBackupNow" type="button" style="margin-top:8px;padding:9px 14px;border:0;border-radius:10px;background:#fff;color:#7d2033;font-weight:800">📥 ส่งออกไฟล์สำรองทันที</button><button id="kpRetrySave" type="button" style="margin:8px 0 0 8px;padding:9px 14px;border:0;border-radius:10px;background:#ffe0a8;color:#4b2631;font-weight:800">ลองบันทึกอีกครั้ง</button>';
+ document.body.appendChild(bar);
+ document.getElementById('kpBackupNow').addEventListener('click',exportEmergencyBackup);
+ document.getElementById('kpRetrySave').addEventListener('click',()=>{workSaveFailed=false;bar.remove();flushWorkSave()});
+}
+function flushWorkSave(){
+ if(workSaveTimer){clearTimeout(workSaveTimer);workSaveTimer=null}
+ if(!state.set.length)return true;
+ try{
+  const snapshotJSON=JSON.stringify(workSnapshot());
+  window.kpDiagLastBytes=new Blob([snapshotJSON]).size;
+  localStorage.setItem(workKey(),snapshotJSON);
+  window.kpDiagStatus='บันทึกสำเร็จ'; window.kpDiagLastError='';
+  workSavePending=false;
+  if(workSaveFailed){workSaveFailed=false;document.getElementById('kpSaveWarning')?.remove()}
+  return true;
+ }catch(err){window.kpDiagStatus='บันทึกไม่สำเร็จ';window.kpDiagLastError=(err?.name||'Error')+': '+(err?.message||String(err));console.error('Kru Pai local progress save failed',err);workSavePending=true;showSaveFailure();return false}
+}
 function persistWork(){
  if(!state.set.length)return;
- try{saveInk();localStorage.setItem(workKey(),JSON.stringify({version:1,mode:state.mode,questionIds:state.set.map(q=>q.id),i:state.i,answers:state.answers,weak:state.weak,solutionsViewed:state.solutionsViewed,inkByQuestion,submissionRecords,savedAt:new Date().toISOString()}));}
- catch(err){console.error(err);alert('พื้นที่บันทึกในเครื่องอาจเต็ม กรุณาส่งออกงานก่อนปิดเกม')}
+ saveInk();workSavePending=true;
+ if(workSaveTimer)clearTimeout(workSaveTimer);
+ workSaveTimer=setTimeout(flushWorkSave,1500);
 }
+
 function restoreWork(){
  let raw=localStorage.getItem(workKey());if(!raw)return false;
  try{let d=JSON.parse(raw);if(d.version!==1||!Array.isArray(d.questionIds))throw Error('version');
@@ -331,10 +368,33 @@ function restoreWork(){
  showScreen('quiz');renderQuestion();loadInk();return true;
  }catch(e){alert('อ่านงานที่ค้างไว้ไม่ได้ กรุณาส่งไฟล์ให้ครูตรวจสอบก่อน');return true}
 }
-function pausePractice(){persistWork();showScreen('home');let h=document.getElementById('resumeHint');if(h)h.style.display='block';alert('💾 บันทึกไว้ในเบราว์เซอร์เครื่องนี้แล้ว กลับมาใช้เครื่องและเบราว์เซอร์เดิมเพื่อทำต่อได้จ้า')}
+function pausePractice(){if(!flushWorkSave())return;showScreen('home');let h=document.getElementById('resumeHint');if(h)h.style.display='block';alert('💾 บันทึกไว้ในเบราว์เซอร์เครื่องนี้แล้ว กลับมาใช้เครื่องและเบราว์เซอร์เดิมเพื่อทำต่อได้จ้า')}
 (function(){let h=document.getElementById('resumeHint');if(h&&student&&localStorage.getItem(workKey()))h.style.display='block';})();
-window.addEventListener('pagehide',()=>{if(document.getElementById('quiz').classList.contains('active'))persistWork()});
+window.addEventListener('pagehide',()=>{if(document.getElementById('quiz').classList.contains('active'))flushWorkSave()});
 </script>
 <script>
 function teacherReview(){if(prompt('รหัสสำหรับครู')!=='8888'){alert('รหัสไม่ถูกต้อง');return;}const body=document.getElementById('teacherPreviewBody');body.innerHTML=QUESTIONS.slice(0,20).map((q,i)=>`<div class="card"><h2>ข้อ ${i+1}</h2><div class="math" style="font-size:24px">${q.prompt}</div>${q.choices.map((x,j)=>`<p style="font-size:18px">${'กขคง'[j]}. ${x}</p>`).join('')}<div class="remember">✓ เฉลย ${'กขคง'[q.answer]} — ${q.choices[q.answer]}</div><div class="steps">${q.solution.steps.map((s,j)=>`<div class="step">${j+1}. ${s}</div>`).join('')}</div></div>`).join('');showScreen('teacherPreview')}
+</script><script>
+/* Diagnostic only: read-only status and export. Does not delete or reset any saved work. */
+(function(){
+ const btn=document.createElement('button');btn.type='button';btn.textContent='🔍 ตรวจการบันทึก';
+ btn.style.cssText='position:fixed;right:10px;bottom:10px;z-index:99997;padding:9px 12px;border-radius:12px;border:1px solid #bbb;background:#fff;color:#23214b;font:700 13px system-ui';
+ document.body.appendChild(btn);
+ const panel=document.createElement('section');panel.style.cssText='display:none;position:fixed;inset:8% 5%;z-index:99998;overflow:auto;padding:20px;background:#fff;color:#222;border:3px solid #6353c7;border-radius:18px;box-shadow:0 10px 50px #0008;font:15px system-ui';
+ panel.innerHTML='<h2>🔍 ตรวจการบันทึก (ไม่ลบข้อมูล)</h2><pre id="kpDiagText" style="white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6"></pre><button type="button" id="kpDiagRefresh">ตรวจอีกครั้ง</button> <button type="button" id="kpDiagCopy">คัดลอกรายงาน</button> <button type="button" id="kpDiagClose">ปิด</button>';
+ document.body.appendChild(panel);
+ let report='';
+ async function refresh(){
+  let items=[],total=0,origin=location.origin;
+  try{for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i),v=localStorage.getItem(k)||'';let bytes=new Blob([k,v]).size;total+=bytes;items.push({k,bytes})}}catch(e){items.push({k:'อ่านพื้นที่ไม่ได้',bytes:String(e)})}
+  items.sort((a,b)=>b.bytes-a.bytes);
+  let estimate='ไม่รองรับ';try{if(navigator.storage?.estimate){let e=await navigator.storage.estimate();estimate='usage '+e.usage+' bytes / quota '+e.quota+' bytes (ประมาณการของ browser; ไม่ใช่โควตา localStorage โดยตรง)'}}catch(e){estimate=String(e)}
+  report=['Kru Pai SAVE DIAGNOSTIC','เวลา: '+new Date().toISOString(),'Origin: '+origin,'สถานะล่าสุด: '+(window.kpDiagStatus||'ยังไม่ทราบ'),'ข้อผิดพลาดล่าสุด: '+(window.kpDiagLastError||'ไม่มี'),'ขนาดข้อมูลเกมครั้งล่าสุด: '+(window.kpDiagLastBytes??'ยังไม่มี')+' bytes','localStorage รวมโดยประมาณ: '+total+' bytes','Storage estimate: '+estimate,'คีย์ที่ใช้พื้นที่สูงสุด:'].concat(items.slice(0,12).map(x=>x.k+' : '+x.bytes+' bytes')).join('\n');
+  document.getElementById('kpDiagText').textContent=report;
+ }
+ btn.onclick=()=>{panel.style.display='block';refresh()};
+ document.getElementById('kpDiagRefresh').onclick=refresh;
+ document.getElementById('kpDiagClose').onclick=()=>panel.style.display='none';
+ document.getElementById('kpDiagCopy').onclick=()=>{const blob=new Blob([report],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='kru-pai-save-diagnostic.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),5000)};
+})();
 </script></body></html>
