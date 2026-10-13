@@ -1,0 +1,332 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Kru Pai Classroom | THINKING MASTER 01 — Galaxy Mint Edition</title><style>
+:root{--ink:#172033;--muted:#667085;--orange:#ff8a3d;--orange2:#ffb36b;--blue:#4d8cff;--green:#20b486;--red:#ef476f;--bg:#fff8f3;--card:#fff;--line:#eadfd7;--shadow:0 18px 45px #5d3b2417}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 10%,#ffe2cc 0,transparent 28%),radial-gradient(circle at 90% 15%,#dfeaff 0,transparent 26%),linear-gradient(160deg,#fffaf6,#f8fbff);-webkit-text-size-adjust:100%}body.pen-on,body.pen-on *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}.screen{display:none;min-height:100dvh;padding:18px}.screen.active{display:block}.wrap{max-width:1100px;margin:auto}.brand{font-weight:1000;color:var(--orange);letter-spacing:.3px;text-align:center;width:100%}.hero{font-size:clamp(34px,6vw,68px);line-height:1;margin:14px 0 10px;font-weight:1000}.sub{font-size:clamp(17px,2vw,22px);color:var(--muted);font-weight:750;line-height:1.5}.card{background:#fffffff2;border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow);margin:14px 0}.goal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pill{padding:13px;border-radius:18px;background:#fff3e9;font-weight:900;text-align:center}.btn{border:0;border-radius:18px;padding:15px 18px;font-weight:1000;font-size:18px;cursor:pointer;background:linear-gradient(135deg,var(--orange),var(--orange2));color:#fff;box-shadow:0 10px 24px #ff8a3d33}.btn.secondary{background:#eef4ff;color:#245cc7}.btn.green{background:linear-gradient(135deg,#16a77b,#49d2aa)}.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}.btn:disabled{opacity:.38;cursor:not-allowed}.row{display:flex;gap:10px;flex-wrap:wrap}.row .btn{flex:1 1 210px}.learnCard h2{margin:0 0 8px;font-size:28px}.math{font-family:"Aptos","Segoe UI",Arial,sans-serif!important;font-weight:850;font-size:clamp(26px,4vw,42px);letter-spacing:.3px}.steps{display:grid;gap:9px;margin-top:12px}.step{padding:12px 14px;background:#f7f9fc;border-radius:15px;border-left:5px solid var(--blue);font-weight:750}.remember{background:#fff2d9;border:1px solid #ffd38c;padding:14px;border-radius:17px;font-weight:900}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.progress{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#edf0f5;font-weight:900}.dot.now{outline:3px solid #ffb36b}.dot.ok{background:#d9f7ed;color:#087b5a}.dot.bad{background:#ffe0e8;color:#b91d45}.question{display:block!important;color:#172033!important;min-height:72px;background:#fff7ef;border:2px solid #ffd0ad;border-radius:20px;padding:16px 18px;font-size:clamp(23px,3.2vw,38px);font-weight:1000;line-height:1.35;margin:14px 0}.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{min-height:92px;border:2px solid #e4e8ef;border-radius:20px;background:#fff;padding:14px;font-size:clamp(19px,2.2vw,27px);font-weight:900;cursor:pointer}.choice:hover{border-color:#ffb36b}.choice.selected.ok{background:#ddf8ef;border-color:var(--green);box-shadow:0 0 0 4px #20b48622;transform:scale(1.015)}.choice.selected.bad{background:#ffe4eb;border-color:var(--red);animation:shake .32s ease}.choice{position:relative;transition:.18s ease}.choice .answerMark{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:28px;font-weight:1000;color:white}.choice .answerMark.ok{background:var(--green)}.choice .answerMark.bad{background:var(--red)}@keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}.feedback{display:none;margin-top:14px;padding:15px;border-radius:18px;font-weight:900}.feedback.show{display:block}.feedback.ok{background:#ddf8ef;color:#087b5a}.feedback.bad{background:#ffe4eb;color:#a91b40}.skillchips{display:flex;gap:8px;flex-wrap:wrap}.skillchip{padding:8px 11px;border-radius:999px;background:#eef4ff;color:#245cc7;font-weight:850;font-size:14px}.scoreBig{font-size:clamp(50px,9vw,94px);font-weight:1000;color:var(--orange);text-align:center}.skillrow{display:grid;grid-template-columns:1fr 110px;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);font-weight:850}.modal{display:none;position:fixed;inset:0;background:#17203399;z-index:1000;padding:18px;align-items:center;justify-content:center}.modal.show{display:flex}.modalBox{background:#fff;border-radius:28px;padding:22px;max-width:820px;width:100%;max-height:88dvh;overflow:auto;box-shadow:0 30px 80px #0004}.modalBox h2{margin-top:0}.solutionStep{padding:13px 15px;background:#f7f9fc;border-radius:15px;margin:9px 0;font-weight:800}.penDock{position:fixed;left:10px;top:10px;z-index:1200;display:flex;gap:6px;flex-wrap:wrap;max-width:min(94vw,560px);background:#ffffffed;border:1px solid var(--line);padding:7px;border-radius:16px;box-shadow:0 8px 24px #0002}.penDock button,.penDock input{height:38px;border-radius:11px;border:1px solid #ddd;background:#fff;font-weight:900}.penDock button{padding:0 10px}.penDock .active{background:#172033;color:#fff}.penCanvas{position:fixed;inset:0;z-index:1100;pointer-events:none}.penCanvas.on{pointer-events:auto;touch-action:none}.tiny{font-size:14px;color:var(--muted);font-weight:750}.confetti{position:fixed;inset:0;pointer-events:none;z-index:2000;overflow:hidden}.confetti i{position:absolute;top:-20px;width:10px;height:18px;background:hsl(var(--h) 85% 60%);animation:fall 2.8s linear forwards}@keyframes fall{to{transform:translate(var(--x),110vh) rotate(720deg)}}@media(max-width:700px){.choices,.goal{grid-template-columns:1fr}.screen{padding:68px 12px 14px}.card{padding:16px;border-radius:22px}.choice{min-height:74px}.penDock{top:6px;left:6px}.hero{font-size:42px}}
+.inkArea{position:relative;isolation:isolate}.inkArea>.penCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}.inkArea>.penCanvas.on{pointer-events:auto;touch-action:none}
+/* GALAXY MINT EDITION — presentation-only skin; game/pen/save engine unchanged */
+:root{--ink:#192543;--muted:#526581;--orange:#6a4ce8;--orange2:#9c68fa;--blue:#16a6b4;--green:#0caa82;--red:#e44774;--bg:#eef8ff;--card:#fff;--line:#dce8f6;--shadow:0 18px 44px #303e8020}
+html,body{background:radial-gradient(ellipse at 8% 3%,#d9ceff 0,transparent 30%),radial-gradient(ellipse at 92% 8%,#bffaf0 0,transparent 32%),radial-gradient(ellipse at 40% 85%,#ffdeeb 0,transparent 35%),linear-gradient(150deg,#f6f5ff,#effcff 55%,#fff6fc);background-attachment:fixed}
+.brand{color:#5b43d2;letter-spacing:.7px;text-shadow:0 1px #fff}
+.hero{color:#24396a;letter-spacing:-1.4px;text-shadow:2px 3px 0 #ffffffaa}
+.edition{font-size:clamp(23px,3.4vw,42px);color:#0b9f9a;letter-spacing:.6px;display:inline-block;margin-top:8px}
+.card{background:#ffffffed;border:1px solid #dfe8fb;box-shadow:0 16px 42px #5361a521,0 2px 8px #425c9110;backdrop-filter:blur(7px)}
+.pill{background:linear-gradient(140deg,#e9e2ff,#dcfbf5);border:1px solid #d7d7fb;color:#35446e}
+.btn{background:linear-gradient(135deg,#6b4ce9,#a568f4);box-shadow:0 9px 22px #6749d438}
+.btn.secondary{background:linear-gradient(135deg,#dff8f8,#e6edff);color:#175b7c}
+.btn.green{background:linear-gradient(135deg,#08a98c,#34c9c0)}
+.btn.ghost{background:#fff;color:#293b67;border-color:#cbd8f3}
+.question{background:linear-gradient(125deg,#f0ebff,#e8fbff);border-color:#c9c1fa;color:#1b3157!important;box-shadow:inset 0 1px 0 #fff}
+.choice{border-color:#d5e2f4;background:linear-gradient(165deg,#fff,#f7fbff);color:#1e3157;box-shadow:0 5px 13px #5361a510}
+.choice:hover{border-color:#7c65e7;background:#f4efff}
+.choice.selected.ok{background:#d9f9ed;border-color:#0caa82}.choice.selected.bad{background:#ffe1ed;border-color:#e44774}
+.dot{background:#e6ecfa;color:#3e4d77}.dot.now{outline-color:#8064e8;background:#f0eaff}.dot.ok{background:#d7f8e9}.dot.bad{background:#ffe2ed}
+.step,.solutionStep{background:#f0f6ff;border-left-color:#16a6b4}
+.remember{background:#e5fbf3;border-color:#8be0ca;color:#1a5d5c}
+.skillchip{background:#e8e4ff;color:#5944bd}
+.scoreBig{color:#6649dc}.penDock{border-color:#d5e0f3;box-shadow:0 10px 30px #354f8c26}.penDock .active{background:#5141ae;color:white}
+.feedback.ok{background:#dcf8ec;color:#087b5a}.feedback.bad{background:#ffe2ee;color:#9e244b}
+@media(max-width:700px){.hero{letter-spacing:-.7px}.edition{font-size:25px}.card{backdrop-filter:none}}
+</style></head><body>
+<div class="penDock" id="penDock"><button id="penToggle">✍️ ปากกา</button><button id="eraser">🧽 ลบ</button><input id="penColor" type="color" value="#e83e5b" aria-label="สีปากกา"><input id="penSize" type="range" min="2" max="12" value="5"><button id="undoPen">↶</button><button id="clearPen">ล้างหมึก</button><button id="closePen" title="ปิดแถบปากกา">✕ ปิด</button></div><button id="openPen" style="position:fixed;left:10px;top:10px;z-index:1201;border:0;border-radius:14px;padding:10px 12px;font-weight:1000;background:#fff;box-shadow:0 8px 24px #0002;display:none">✍️ ปากกา</button><div id="confetti" class="confetti"></div>
+<section id="home" class="screen active"><div class="wrap"><div class="brand">Kru Pai Classroom • M1 THINKING MASTER 01</div><div class="hero">THINKING MASTER 🧠<br><span class="edition">GALAXY MINT EDITION ✨</span></div><div class="sub">ทบทวนก่อนสอบ → ชุดหลัก 20 ข้อ → ชุดฝึกเสริม 10 ข้อเมื่อยังไม่ผ่าน 80% · ทดลองระบบปากกาและส่งงานบางส่วน</div><div class="card"><label style="font-weight:1000;font-size:20px">👤 ชื่อผู้เรียน</label><input id="studentName" placeholder="พิมพ์ชื่อหรือชื่อเล่น" style="width:100%;margin:10px 0 16px;padding:15px 16px;border:2px solid #e4e8ef;border-radius:16px;font-size:20px;font-weight:800"><div class="goal"><div class="pill">🧠 วิเคราะห์หลายขั้นตอน</div><div class="pill">📐 เรขาคณิตประยุกต์</div><div class="pill">✍️ โจทย์สอบเข้าคิดลึก</div></div><p class="tiny">💾 บันทึกในเครื่องเดิม · ยังไม่เชื่อมระบบครูออนไลน์ · กรุณาทดสอบปากกาบน iPad ก่อนใช้งานจริง</p><p class="tiny" id="historyHome">ยังไม่มีประวัติการเล่นบนเครื่องนี้</p><p id="resumeHint" class="remember" style="display:none">💾 มีงานที่ค้างไว้ กดเริ่ม Practice เพื่อกลับมาทำต่อได้เลย</p><div class="row"><button class="btn" onclick="enterLearn()">📘 เริ่มเรียน</button><button class="btn secondary" onclick="startPractice()">🎯 เริ่ม Practice</button></div><div style="text-align:right;margin-top:12px"><button class="btn ghost" style="font-size:13px;padding:8px" onclick="teacherReview()">🔐 ตรวจข้อสอบสำหรับครู</button></div></div></div></section>
+<section id="teacherPreview" class="screen"><div class="wrap"><div class="brand">Kru Pai Classroom • TEACHER REVIEW</div><h1>🔍 ตรวจทานข้อสอบ THINKING MASTER 01</h1><p class="sub">แสดงโจทย์และเฉลยทั้ง 20 ข้อสำหรับครู (ไม่แสดงในหน้าเล่นของนักเรียน)</p><div id="teacherPreviewBody"></div><button class="btn ghost" onclick="showScreen('home')">← กลับหน้าแรก</button></div></section>
+<section id="learn" class="screen"><div class="wrap"><div class="brand">Kru Pai Classroom • LEARN</div><div class="hero" style="font-size:clamp(32px,5vw,54px)">ทบทวนก่อนสอบ ม.1<br>คิดเป็นขั้น เขียนให้เห็นวิธีทำ</div><div id="learnCards"></div><div class="row"><button class="btn ghost" onclick="showScreen('home')">← หน้าแรก</button><button class="btn green" onclick="startPractice()">พร้อมแล้ว • เริ่ม Practice 🎯</button></div></div></section>
+<section id="quiz" class="screen"><div class="wrap"><div class="brand">Kru Pai Classroom</div><div class="top"><div><div class="brand" id="modeLabel">PRACTICE</div><div class="tiny" id="scoreLine"></div><div class="tiny" id="studentLine"></div></div><div class="skillchips" id="skillChips"></div></div><div class="progress" id="progress"></div><p class="tiny" style="text-align:center">🔒 ตอบแล้วล็อกคำตอบ · 💾 บันทึกในเบราว์เซอร์เครื่องนี้ · 📤 ส่งงานบางส่วนได้</p><div class="card"><div class="tiny" id="qMeta"></div><div id="inkArea" class="inkArea"><div class="question" id="prompt"></div><div class="choices" id="choices"></div><canvas id="penCanvas" class="penCanvas"></canvas></div><div id="feedback" class="feedback"></div><div id="answerFlash" aria-live="polite"></div><div class="row" style="margin-top:12px"><button type="button" class="btn secondary" onclick="openScratch()">📝 กระดาษทด</button><button id="solutionBtn" class="btn secondary" disabled onclick="openSolution()">🔒 ดูวิธีทำหลังตอบ</button><button id="prevBtn" class="btn ghost" onclick="prevQuestion()">← ย้อนกลับ</button><button id="nextBtn" class="btn" onclick="nextQuestion()">ข้อต่อไป →</button><button type="button" class="btn green" onclick="downloadSubmittedWork()">📤 ส่งงานที่ทำแล้ว</button><button type="button" class="btn ghost" onclick="pausePractice()">💾 พักไว้ทำต่อ</button></div></div></div></section>
+<section id="result" class="screen"><div class="wrap"><div class="brand">Kru Pai Classroom • RESULT</div><div id="resultTitle" class="hero" style="text-align:center"></div><div id="scoreBig" class="scoreBig"></div><div class="card"><h2>📈 ประวัติการทดสอบ</h2><div id="skillReport"></div></div><div id="resultMessage" class="card"></div><div class="row" id="resultActions"></div><div class="card" id="submissionExportCard"><h2>📝 งานกระดาษทดสำหรับครู (ทดลอง)</h2><p class="tiny">เก็บภาพลายเส้น ณ เวลาตอบแต่ละข้อ และดาวน์โหลดเป็นไฟล์ JSON ให้ครูตรวจบนอีกเครื่องได้ ยังไม่ได้ส่งขึ้นออนไลน์ · กรุณาเก็บไฟล์ JSON ที่ดาวน์โหลดไว้</p><button class="btn secondary" onclick="downloadSubmittedWork()">📥 ดาวน์โหลดกระดาษทดที่ตรวจแล้ว</button><p id="submissionCount" class="tiny"></p></div></div></section>
+<div id="solutionModal" class="modal"><div class="modalBox"><div class="brand">Kru Pai Classroom • SOLUTION</div><h2>✏️ มาดูวิธีคิดกัน</h2><div id="solutionBody"></div><button class="btn" onclick="closeSolution()">เข้าใจแล้ว ✓</button></div></div>
+<script>
+const UNIT={id:'m1-entrance-thinking-master01-20261013',title:'M1 ENTRANCE THINKING MASTER 01',passPercent:80,practiceCount:20,retryCount:10,features:{teacherPen:true,solutionPopup:true,history:true}};
+const SKILLS={"PERCENT": "ร้อยละ", "RATIO": "อัตราส่วนและมาตราส่วน", "NUMBER": "จำนวน ห.ร.ม. ค.ร.น.", "EQUATION": "สมการ", "GEOMETRY": "เรขาคณิต", "WORD": "โจทย์ปัญหา", "DATA": "สถิติ"};
+const LEARN=[{"skill": "PERCENT", "title": "1. ร้อยละ", "concept": "ร้อยละหมายถึงต่อหนึ่งร้อย คิดส่วนลดหรือกำไรจากฐานที่โจทย์กำหนด", "example": "20% ของ 350", "steps": ["20% = 0.20", "0.20 × 350 = 70"], "answer": "70", "tip": "ถ้าเป็นราคาหลังลด ให้นำส่วนลดไปลบจากราคาเดิม"}, {"skill": "RATIO", "title": "2. อัตราส่วน", "concept": "เทียบจำนวนส่วนก่อนคูณกลับเป็นจำนวนจริง", "example": "ชาย : หญิง = 2 : 3 รวม 25 คน", "steps": ["รวมส่วน = 5", "หญิง = 25 × 3 ÷ 5 = 15"], "answer": "15 คน", "tip": "อ่านให้ชัดว่าโจทย์ถามส่วนไหน"}, {"skill": "NUMBER", "title": "3. ห.ร.ม. และ ค.ร.น.", "concept": "ห.ร.ม. ใช้แบ่งให้มากที่สุด ค.ร.น. ใช้หาจุดร่วมของรอบซ้ำ", "example": "12 และ 18", "steps": ["ห.ร.ม. = 6", "ค.ร.น. = 36"], "answer": "6 และ 36", "tip": "ระวังเลือกผิดระหว่าง ห.ร.ม. กับ ค.ร.น."}, {"skill": "EQUATION", "title": "4. สมการ", "concept": "ทำสองข้างของสมการให้สมดุลเสมอ", "example": "3x + 4 = 19", "steps": ["3x = 19 − 4 = 15", "x = 15 ÷ 3 = 5"], "answer": "x = 5", "tip": "แทนคำตอบกลับเพื่อตรวจ"}, {"skill": "GEOMETRY", "title": "5. พื้นที่และปริมาตร", "concept": "อ่านหน่วยให้ถูกต้อง พื้นที่ใช้หน่วยกำลังสอง ปริมาตรใช้กำลังสาม", "example": "สามเหลี่ยมฐาน 10 สูง 6", "steps": ["พื้นที่ = ½ × ฐาน × สูง", "½ × 10 × 6 = 30"], "answer": "30 ตร.หน่วย", "tip": "สูงต้องตั้งฉากกับฐาน"}, {"skill": "WORD", "title": "6. โจทย์ปัญหา", "concept": "แยกข้อมูลที่รู้ สิ่งที่ถาม และหน่วยก่อนคำนวณ", "example": "4 ชิ้น ราคา 36 บาท", "steps": ["ชิ้นละ 36 ÷ 4 = 9", "7 ชิ้นราคา 9 × 7 = 63"], "answer": "63 บาท", "tip": "เขียนวิธีคิดลงกระดาษทดทุกข้อ"}, {"skill": "DATA", "title": "7. ค่าเฉลี่ยและมัธยฐาน", "concept": "ค่าเฉลี่ยคือผลรวมหารด้วยจำนวนข้อมูล มัธยฐานคือค่ากลางเมื่อเรียงข้อมูล", "example": "3, 5, 7", "steps": ["ค่าเฉลี่ย = 15 ÷ 3 = 5", "มัธยฐาน = 5"], "answer": "5", "tip": "เรียงข้อมูลก่อนหามัธยฐาน"}];
+const RAW=[["TM01","จำนวนเต็มบวกสามจำนวนเรียงกันมีผลคูณเท่ากับ 8 เท่าของผลบวกของทั้งสามจำนวน จำนวนที่มากที่สุดคือข้อใด",["5","6","7","8"],1,["NUMBER"],3,"TM01",["ให้จำนวนเป็น n−1, n, n+1","ผลคูณ = n(n²−1) และผลบวก = 3n","n(n²−1)=24n จึง n²=25 และ n=5","จำนวนทั้งสามคือ 4, 5, 6 ดังนั้นมากที่สุดคือ 6"]],["TM02","ร้านค้าตั้งราคาสินค้าให้ได้กำไร 40% ของต้นทุน แต่ลดราคาจากป้าย 15% แล้วขายได้กำไร 190 บาท ต้นทุนสินค้าเท่าใด",["900 บาท","1,000 บาท","1,100 บาท","1,200 บาท"],1,["PERCENT"],2,"TM02",["ราคาป้าย = 1.40 เท่าของทุน","ราคาขายจริง = 1.40 × 0.85 = 1.19 เท่าของทุน","กำไร = 0.19 เท่าของทุน = 190 บาท","ต้นทุน = 190 ÷ 0.19 = 1,000 บาท"]],["TM03","จำนวนสองจำนวนมี ห.ร.ม. เท่ากับ 12 และ ค.ร.น. เท่ากับ 180 ถ้าจำนวนหนึ่งคือ 36 อีกจำนวนคือเท่าใด",["48","60","72","90"],1,["NUMBER"],2,"TM03",["ผลคูณของสองจำนวน = ห.ร.ม. × ค.ร.น.","ผลคูณ = 12 × 180 = 2,160","อีกจำนวน = 2,160 ÷ 36 = 60","ตรวจสอบ ห.ร.ม. ของ 36 และ 60 = 12; ค.ร.น. = 180"]],["TM04","ถังน้ำใบหนึ่งมีน้ำอยู่ ⅗ ของความจุ เมื่อเติมน้ำอีก 24 ลิตร จะมีน้ำเป็น ⅘ ของความจุ ถังใบนี้จุน้ำกี่ลิตร",["96","100","120","144"],2,["WORD"],2,"TM04",["ส่วนที่เพิ่ม = ⅘ − ⅗ = ⅕ ของถัง","⅕ ของความจุเท่ากับ 24 ลิตร","ความจุ = 24 × 5 = 120 ลิตร"]],["TM05","รถยนต์เดินทางครึ่งหนึ่งของระยะทางด้วยความเร็ว 40 กม.ต่อชั่วโมง และอีกครึ่งด้วยความเร็ว 60 กม.ต่อชั่วโมง อัตราเร็วเฉลี่ยทั้งเส้นทางเท่าใด",["48 กม.ต่อชม.","50 กม.ต่อชม.","52 กม.ต่อชม.","54 กม.ต่อชม."],0,["WORD"],3,"TM05",["สมมติเดินทางครึ่งละ 120 กม. รวม 240 กม.","ช่วงแรกใช้เวลา 120 ÷ 40 = 3 ชั่วโมง","ช่วงหลังใช้เวลา 120 ÷ 60 = 2 ชั่วโมง","อัตราเร็วเฉลี่ย = 240 ÷ (3+2) = 48 กม.ต่อชั่วโมง"]],["TM06","อัตราส่วนจำนวนนักเรียนชายต่อหญิงเป็น 3 : 5 ต่อมามีนักเรียนชายเข้าเพิ่ม 8 คน และหญิงออก 4 คน ทำให้อัตราส่วนเป็น 1 : 1 เดิมมีนักเรียนทั้งหมดกี่คน",["40","48","56","64"],1,["RATIO"],3,"TM06",["ให้ชาย 3k คน และหญิง 5k คน","เมื่อจำนวนเท่ากัน: 3k+8 = 5k−4","2k = 12 ดังนั้น k = 6","จำนวนนักเรียนเดิม = 8k = 48 คน"]],["TM07","ถ้า 2(3x−4)−3(x+5)=4x−29 แล้ว x มีค่าเท่าใด",["4","5","6","7"],2,["EQUATION"],2,"TM07",["กระจายวงเล็บ: 6x−8−3x−15 = 4x−29","รวมพจน์: 3x−23 = 4x−29","ย้ายข้าง: x = 6","ตรวจสอบโดยแทนค่า x = 6 ทั้งสองข้าง"]],["TM08","สี่เหลี่ยมผืนผ้ารูปหนึ่งมีเส้นรอบรูป 70 ซม. หากเพิ่มความยาว 20% และลดความกว้าง 20% พื้นที่จะลดลง 12 ตร.ซม. พื้นที่เดิมเท่าใด",["240 ตร.ซม.","280 ตร.ซม.","300 ตร.ซม.","320 ตร.ซม."],2,["GEOMETRY"],3,"TM08",["พื้นที่ใหม่เป็น 1.20 × 0.80 = 0.96 เท่าของเดิม","พื้นที่ลดลง 4% เท่ากับ 12 ตร.ซม.","พื้นที่เดิม = 12 ÷ 0.04 = 300 ตร.ซม.","ตรวจสอบ: ด้าน 15 และ 20 มีผลบวก 35 และพื้นที่ 300"]],["TM09","ค่าเฉลี่ยของข้อมูล 6 จำนวนเป็น 18 ถ้าตัดข้อมูลจำนวนหนึ่งออก ค่าเฉลี่ยของ 5 จำนวนที่เหลือเป็น 16 ข้อมูลที่ตัดออกมีค่าเท่าใด",["24","26","28","30"],2,["DATA"],2,"TM09",["ผลรวมเดิม = 6 × 18 = 108","ผลรวมที่เหลือ = 5 × 16 = 80","จำนวนที่ตัดออก = 108−80 = 28"]],["TM10","งานหนึ่งชิ้น ก ทำคนเดียวเสร็จใน 6 วัน ข ทำคนเดียวเสร็จใน 9 วัน หากทำร่วมกัน 2 วัน แล้ว ก หยุด ข ต้องทำต่ออีกกี่วัน",["3 วัน","4 วัน","5 วัน","6 วัน"],1,["WORD"],3,"TM10",["ก ทำได้วันละ ⅙ ของงาน ข ทำได้วันละ ⅑","ทำร่วมกัน 2 วัน ได้ 2 × (⅙ + ⅑) = 5 ใน 9 ส่วน ของงาน","เหลือ 4 ใน 9 ส่วน ของงาน","ข ทำได้วันละ ⅑ จึงใช้เวลาอีก 4 วัน"]],["TM11","จำนวนสองหลักจำนวนหนึ่งมีผลบวกของเลขโดดเป็น 11 ถ้าสลับหลักจะได้จำนวนที่มากกว่าเดิม 27 จำนวนเดิมคือข้อใด",["38","47","56","65"],1,["NUMBER"],2,"TM11",["ให้หลักสิบเป็น a หลักหน่วยเป็น b","a+b = 11 และ 9(b−a)=27 จึง b−a=3","แก้ระบบได้ a=4, b=7","จำนวนเดิมคือ 47"]],["TM12","น้ำเกลือเข้มข้น 20% ปริมาณ 300 กรัม ต้องเติมน้ำเปล่ากี่กรัมจึงจะเหลือความเข้มข้น 12%",["150","180","200","240"],2,["PERCENT"],2,"TM12",["เกลือเดิม = 20% ของ 300 = 60 กรัม","เติมน้ำไม่เปลี่ยนมวลเกลือ","มวลสารละลายใหม่ = 60 ÷ 0.12 = 500 กรัม","ต้องเติมน้ำ = 500−300 = 200 กรัม"]],["TM13","กระดาษรูปสี่เหลี่ยมจัตุรัสด้านละ 18 ซม. ตัดสี่เหลี่ยมจัตุรัสด้านละ 3 ซม. ออกจากมุมทั้งสี่ แล้วพับเป็นกล่องไม่มีฝา กล่องมีปริมาตรกี่ลูกบาศก์เซนติเมตร",["324","396","432","486"],2,["GEOMETRY"],3,"TM13",["เมื่อตัดมุมด้านละ 3 ซม. ฐานยาว = 18−6 = 12 ซม.","ฐานกว้าง = 12 ซม. และกล่องสูง = 3 ซม.","ปริมาตร = 12 × 12 × 3 = 432 ลูกบาศก์เซนติเมตร"]],["TM14","หากจำนวนเต็มบวก n หารด้วย 5 เหลือเศษ 3 และหารด้วย 7 เหลือเศษ 4 จำนวนที่น้อยที่สุดที่เป็นไปได้คือเท่าใด",["18","23","28","33"],0,["NUMBER"],2,"TM14",["จำนวนที่หาร 5 เหลือเศษ 3 ได้แก่ 3, 8, 13, 18, ...","ตรวจสอบ 18 ÷ 7 = 2 เศษ 4","ดังนั้นจำนวนน้อยที่สุดคือ 18"]],["TM15","นักเรียน 40 คน ชอบคณิตศาสตร์ 25 คน ชอบวิทยาศาสตร์ 22 คน และไม่ชอบทั้งสองวิชา 5 คน มีนักเรียนที่ชอบทั้งสองวิชากี่คน",["7","10","12","15"],2,["DATA"],2,"TM15",["ชอบอย่างน้อยหนึ่งวิชา = 40−5 = 35 คน","ใช้หลักบวกลบจำนวนสมาชิกของสองกลุ่ม","ชอบทั้งสอง = 25+22−35 = 12 คน"]],["TM16","นาฬิกาเรือนหนึ่งเดินเร็วขึ้น 3 นาทีทุก ๆ 2 ชั่วโมง หากตั้งเวลาให้ตรงตอน 08:00 น. เมื่อเวลาจริงเป็น 20:00 น. นาฬิกาจะบอกเวลาเท่าใด",["20:12 น.","20:15 น.","20:18 น.","20:24 น."],2,["WORD"],2,"TM16",["เวลาจริงผ่านไป 12 ชั่วโมง","นาฬิกาเดินเร็วเพิ่ม = (12 ÷ 2) × 3 = 18 นาที","เวลาที่นาฬิกาแสดง = 20:18 น."]],["TM17","จำนวนเต็มบวกที่น้อยที่สุดซึ่งหารด้วย 6, 8 และ 10 แล้วเหลือเศษ 5 เท่ากันทุกครั้ง และมีค่ามากกว่า 100 คือจำนวนใด",["115","120","125","245"],2,["NUMBER"],3,"TM17",["ถ้าลบ 5 ออกจะหารด้วย 6, 8 และ 10 ลงตัว","ค.ร.น. ของ 6, 8, 10 คือ 120","จำนวนในรูป 120k+5 ที่มากกว่า 100 และน้อยที่สุดคือ 125"]],["TM18","ถ้ารัศมีของวงกลมเพิ่มขึ้น 20% พื้นที่จะเพิ่มขึ้นกี่เปอร์เซ็นต์",["20%","40%","44%","48%"],2,["GEOMETRY"],2,"TM18",["พื้นที่วงกลมแปรผันตามกำลังสองของรัศมี","รัศมีใหม่เป็น 1.2 เท่า พื้นที่ใหม่เป็น 1.2² = 1.44 เท่า","พื้นที่เพิ่มขึ้น 44%"]],["TM19","การแข่งขันหนึ่งให้คะแนนตอบถูก 5 คะแนน ตอบผิดหัก 2 คะแนน นักเรียนตอบครบ 20 ข้อ ได้ 65 คะแนน นักเรียนตอบถูกกี่ข้อ",["13","14","15","16"],2,["EQUATION"],3,"TM19",["ให้ x คือจำนวนข้อที่ตอบถูก ข้อผิด = 20−x","ตั้งสมการ 5x−2(20−x)=65","7x−40=65 จึง 7x=105","x=15 ข้อ ตรวจสอบ 75−10=65"]],["TM20","พ่อมีอายุเป็น 4 เท่าของลูก อีก 8 ปีข้างหน้า พ่อจะมีอายุเป็น 2 เท่าของลูก ปัจจุบันพ่ออายุเท่าใด",["16 ปี","20 ปี","24 ปี","32 ปี"],0,["EQUATION"],2,"TM20",["ให้ลูกอายุ x ปี พ่ออายุ 4x ปี","อีก 8 ปี: 4x+8 = 2(x+8)","แก้ได้ x=4","พ่ออายุ 4×4 = 16 ปี"]],["TM21","ร้านค้าขึ้นราคาจากทุน 25% แล้วลดราคาป้าย 12% ได้กำไร 150 บาท ต้นทุนเท่าใด",["1,200 บาท","1,500 บาท","1,800 บาท","2,000 บาท"],1,["PERCENT"],2,"TM21",["ราคาขายเป็น 1.25 × 0.88 = 1.10 เท่าของทุน","กำไร 10% = 150 บาท","ทุน = 1,500 บาท"]],["TM22","จำนวนสองจำนวนมี ห.ร.ม. เป็น 9 ค.ร.น. เป็น 126 และจำนวนหนึ่งคือ 18 อีกจำนวนคือเท่าใด",["54","63","72","81"],1,["NUMBER"],2,"TM22",["ผลคูณ = 9×126 = 1,134","อีกจำนวน = 1,134÷18 = 63","ตรวจสอบ ห.ร.ม. 18 กับ 63 = 9"]],["TM23","ถังมีน้ำ ⅔ ของความจุ ตักออก 15 ลิตร เหลือน้ำ ½ ของถัง ถังจุกี่ลิตร",["60","75","90","120"],2,["WORD"],2,"TM23",["น้ำลดลง ⅔ − ½ = ⅙ ของถัง","⅙ เท่ากับ 15 ลิตร","ความจุ = 90 ลิตร"]],["TM24","รถวิ่งครึ่งทางแรกด้วย 30 กม.ต่อชม. และครึ่งทางหลังด้วย 45 กม.ต่อชม. ความเร็วเฉลี่ยทั้งทางเท่าใด",["36 กม.ต่อชม.","37.5 กม.ต่อชม.","38 กม.ต่อชม.","40 กม.ต่อชม."],0,["WORD"],2,"TM24",["สมมติแต่ละครึ่งยาว 90 กม.","ใช้เวลา 3 และ 2 ชั่วโมง","ระยะทางรวม 180 กม. ใช้เวลา 5 ชม.","เฉลี่ย 36 กม.ต่อชม."]],["TM25","อัตราส่วนเด็กชายต่อหญิง 4 : 7 ถ้ามีชายเพิ่ม 9 คน และหญิงออก 6 คน จะมีจำนวนเท่ากัน เดิมมีเด็กกี่คน",["44","55","66","77"],1,["RATIO"],2,"TM25",["ให้ชาย 4k หญิง 7k","4k+9=7k−6","k=5 รวมเดิม 11×5 = 55 คน"]],["TM26","กล่องเปิดฝาทำจากกระดาษจัตุรัสด้านละ 20 ซม. ตัดมุมด้านละ 4 ซม. แล้วพับ กล่องจุกี่ลูกบาศก์เซนติเมตร",["480","576","600","640"],1,["GEOMETRY"],2,"TM26",["ฐานยาว 20−8=12 ซม.","สูง 4 ซม.","ปริมาตร 12×12×4=576"]],["TM27","ข้อมูล 8 จำนวนมีค่าเฉลี่ย 15 เมื่อตัด 2 จำนวนที่มีผลรวม 42 ออก ค่าเฉลี่ยใหม่เท่าใด",["12","13","14","15"],1,["DATA"],2,"TM27",["ผลรวมเดิม 8×15=120","ผลรวมใหม่ 120−42=78","เฉลี่ย 78÷6 = 13"]],["TM28","สารละลายมีเกลือ 15% จำนวน 400 กรัม เติมน้ำจนเข้มข้น 10% ต้องเติมน้ำกี่กรัม",["100","150","200","250"],2,["PERCENT"],2,"TM28",["เกลือเดิม 60 กรัม","ความเข้มข้นใหม่ 10% จึงต้องมีน้ำเกลือ 600 กรัม","เติมน้ำ 600−400=200 กรัม"]],["TM29","นาฬิกาเดินช้า 4 นาทีทุก 3 ชั่วโมง ตั้งตรงเวลา 07:00 น. เมื่อเวลาจริง 22:00 น. จะแสดงเวลาเท่าใด",["21:36 น.","21:40 น.","21:44 น.","21:48 น."],1,["WORD"],2,"TM29",["ผ่านไป 15 ชั่วโมง","ช้าไป 15÷3×4=20 นาที","แสดง 21:40 น."]],["TM30","ข้อสอบ 30 ข้อ ตอบถูกได้ 4 คะแนน ตอบผิดหัก 1 คะแนน ตอบครบได้ 85 คะแนน ตอบถูกกี่ข้อ",["21","22","23","24"],2,["EQUATION"],2,"TM30",["ให้ถูก x ผิด 30−x","4x−(30−x)=85","5x=115 จึง x=23"]]];
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){let r=a%b;a=b;b=r}return a||1}
+function supToNum(s){const m={'²':2,'³':3,'⁴':4,'⁵':5,'⁶':6,'⁷':7,'⁸':8,'⁹':9};return m[s]||1}
+function extractPoly(prompt){let x=prompt.includes('ของ ')?prompt.split('ของ ').pop():prompt;x=x.replace(/แยกตัวประกอบ\s*/,'').trim();return x}
+function parseTerms(expr){let s=expr.replace(/−/g,'-').replace(/\s+/g,'').replace(/-/g,'+-');if(s[0]==='+')s=s.slice(1);return s.split('+').filter(Boolean).map(raw=>{let sign=raw[0]==='-'?-1:1,body=raw.replace(/^-/,'');let cm=body.match(/^\d+/),coef=cm?Number(cm[0]):1;let vars={};for(const m of body.matchAll(/([a-zA-Z])([²³⁴⁵⁶⁷⁸⁹])?/g))vars[m[1]]=(vars[m[1]]||0)+supToNum(m[2]);return{raw,sign,coef,vars}})}
+function varText(vars){return Object.keys(vars).sort().map(v=>v+(vars[v]>1?({2:'²',3:'³',4:'⁴',5:'⁵',6:'⁶',7:'⁷',8:'⁸',9:'⁹'}[vars[v]]||'^'+vars[v]):'')).join('')}
+function factorInfo(expr){let terms=parseTerms(expr);let g=terms.map(t=>t.coef).reduce(gcd);let common={};let letters=[...new Set(terms.flatMap(t=>Object.keys(t.vars)))];letters.forEach(v=>{if(terms.every(t=>t.vars[v]))common[v]=Math.min(...terms.map(t=>t.vars[v]||0))});return{terms,g,common,factor:(g===1?'':g)+varText(common)||'1'}}
+function makeSolution(q){
+ const answer=q.choices[q.answer];
+ if(q.skills.length===1&&q.skills[0]==='VERIFY'){
+   let m=q.prompt.match(/ถ้า\s+(.+?)\s+เป็นผล/),fac=m?m[1]:'';let fm=fac.match(/^([0-9]*)([a-zA-Z]?)(?:\((.+)\))$/);let steps=[];
+   if(fm){let outside=(fm[1]||'1')+(fm[2]||''),inside=fm[3],parts=inside.replace(/−/g,'-').replace(/\s+/g,'').replace(/-/g,'+-').split('+').filter(Boolean);steps.push(`โจทย์ให้รูปแยกตัวประกอบเป็น <b class="math">${fac}</b>`);steps.push(`ใช้สมบัติการแจกแจง: นำ <b class="math">${outside}</b> คูณทุกพจน์ในวงเล็บ`);steps.push(parts.map(x=>`<span class="math">${outside} × (${x})</span>`).join(' &nbsp; และ &nbsp; '));steps.push(`เมื่อคูณครบ จะได้ <b class="math">${answer}</b>`);steps.push(`ดังนั้นคำตอบที่คูณกลับตรงกับพหุนามเดิมคือ <b class="math">${answer}</b>`)}
+   return{steps,answer,tip:'เวลาตรวจคำตอบ ให้คูณตัวหน้าวงเล็บเข้าไป “ทุกพจน์” ห้ามตกพจน์ใดพจน์หนึ่ง'};
+ }
+ let expr=extractPoly(q.prompt),info=factorInfo(expr),terms=info.terms;
+ let nums=terms.map(t=>t.coef).join(', '),steps=[];
+ steps.push(`เริ่มจากโจทย์ <b class="math">${expr}</b><br>ดูสัมประสิทธิ์ของทุกพจน์: <b>${nums}</b> → ห.ร.ม. = <b>${info.g}</b>`);
+ let cv=varText(info.common);
+ if(cv) steps.push(`ดูตัวแปรที่อยู่ใน <b>ทุกพจน์</b> แล้วเลือกกำลังน้อยที่สุด → ตัวแปรร่วมคือ <b class="math">${cv}</b><br>ดังนั้นตัวร่วมมากที่สุดคือ <b class="math">${info.factor}</b>`);
+ else steps.push(`ไม่มีตัวแปรที่อยู่ร่วมกันทุกพจน์ ดังนั้นตัวร่วมมากที่สุดคือ <b class="math">${info.factor}</b>`);
+ let inner=answer.includes('(')?answer.slice(answer.indexOf('(')+1,-1):'';
+ let divisions=terms.map(t=>`<span class="math">${t.raw} ÷ ${info.factor}</span>`).join('<br>');
+ steps.push(`นำ <b>แต่ละพจน์</b> หารด้วย <b class="math">${info.factor}</b><br>${divisions}<br>จึงได้พจน์ในวงเล็บ <b class="math">(${inner})</b>`);
+ steps.push(`เขียนคำตอบเป็น<br><b class="math" style="font-size:1.18em">${expr} = ${answer}</b>`);
+ steps.push(`ตรวจโดยคูณกลับ: กระจาย <b class="math">${info.factor}</b> เข้าไปทุกพจน์ใน <b class="math">(${inner})</b><br>จะกลับมาเป็น <b class="math">${expr}</b> ✓`);
+ return{steps,answer,tip:`จำจังหวะนี้ไว้: ห.ร.ม. ของตัวเลข → ตัวแปรร่วมกำลังต่ำสุด → หารทีละพจน์ → คูณกลับตรวจ`};
+}
+const QUESTIONS=RAW.map(r=>{let q={id:r[0],prompt:r[1],choices:r[2],answer:r[3],skills:r[4],difficulty:r[5],parallelGroup:r[6]};q.solution={steps:r[7],answer:q.choices[q.answer],tip:'ลองตรวจวิธีคิดในกระดาษทด และทบทวนขั้นตอนที่ยังไม่มั่นใจ'};return q});
+let student=localStorage.getItem('kp_student_name')||'';let state={mode:'practice',set:[],i:0,answers:[],answered:false,current:null,weak:{},solutionsViewed:[]};
+function requireName(){let el=document.getElementById('studentName');let n=(el?el.value:'').trim()||student;if(!n){alert('กรุณาใส่ชื่อผู้เรียนก่อนเริ่มจ้า');if(el)el.focus();return false}student=n;localStorage.setItem('kp_student_name',student);return true}function enterLearn(){if(!requireName())return;showScreen('learn')}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id!=='quiz'&&typeof togglePen==='function')togglePen(false)}
+function renderLearn(){learnCards.innerHTML=LEARN.map(x=>`<div class="card learnCard"><div class="skillchip">${SKILLS[x.skill]}</div><h2>${x.title}</h2><p class="sub">${x.concept}</p><div class="math">${x.example}</div><div class="steps">${x.steps.map((s,i)=>`<div class="step">${i+1}. ${s}</div>`).join('')}</div><p class="math" style="font-size:30px">→ ${x.answer}</p><div class="remember">💡 ${x.tip}</div></div>`).join('')}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function balancedPractice(){return QUESTIONS.slice(0,UNIT.practiceCount)}
+function startPractice(){if(!requireName())return;if(restoreWork())return;if(localStorage.getItem(completedKey())){alert('รอบแรกนี้ทำครบแล้ว หากต้องการเริ่มรอบใหม่ ต้องให้ครูอนุญาตผ่านระบบออนไลน์ (รุ่นทดลองยังไม่เปิดรีเซต)');return}submissionRecords=[];state={mode:'practice',set:balancedPractice(),i:0,answers:[],answered:false,current:null,weak:{},solutionsViewed:[]};inkByQuestion={};showScreen('quiz');renderQuestion();loadInk();persistWork()}
+function startRetry(){if(restoreWork())return;if(localStorage.getItem(completedKey()+':retry')){alert('ชุดฝึกเสริมทำครบแล้ว รอครูเปิดรอบใหม่จ้า');return;}submissionRecords=[];state={mode:'retry',set:QUESTIONS.slice(UNIT.practiceCount,UNIT.practiceCount+UNIT.retryCount),i:0,answers:[],answered:false,current:null,weak:{},solutionsViewed:[]};inkByQuestion={};showScreen('quiz');renderQuestion();loadInk();persistWork()}
+function renderQuestion(){
+ state.answered=!!state.answers[state.i]; const q=state.set[state.i]; state.current=q;
+ const modeEl=document.getElementById('modeLabel'), scoreEl=document.getElementById('scoreLine'), studentEl=document.getElementById('studentLine'), chipsEl=document.getElementById('skillChips'), metaEl=document.getElementById('qMeta'), promptEl=document.getElementById('prompt'), progressEl=document.getElementById('progress'), choicesEl=document.getElementById('choices'), feedbackEl=document.getElementById('feedback'), solutionEl=document.getElementById('solutionBtn'), nextEl=document.getElementById('nextBtn');
+ modeEl.textContent=state.mode==='practice'?'THINKING MASTER • 20 ข้อ':'THINKING RETRY • 10 ข้อ'; scoreEl.textContent=`ข้อ ${state.i+1} / ${state.set.length}`; studentEl.textContent=`👤 ${student}`;
+ chipsEl.innerHTML=''; metaEl.textContent=`ระดับ ${q.difficulty} • ${q.id}`;
+ promptEl.innerHTML=`<span style="display:block;font-size:.55em;color:#667085;margin-bottom:8px">โจทย์ข้อ ${state.i+1}</span><span class="math">${q.prompt}</span>`;
+ renderProgressOnly();
+ let mapped=q.choices.map((t,idx)=>({t,idx}));  choicesEl.innerHTML=mapped.map(c=>`<button class="choice" data-idx="${c.idx}" onclick="answer(this,${c.idx})">${c.t}</button>`).join('');
+ feedbackEl.className='feedback'; feedbackEl.textContent=''; solutionEl.disabled=!state.answered; solutionEl.textContent=state.answered?'🔍 ดูวิธีทำ':'🔒 ดูวิธีทำหลังตอบ'; nextEl.disabled=false;
+ const saved=state.answers[state.i];if(saved){document.querySelectorAll('.choice').forEach(b=>{b.disabled=true;if(Number(b.dataset.idx)===saved.choice){b.classList.add('selected',saved.correct?'ok':'bad');b.insertAdjacentHTML('beforeend',`<span class="answerMark ${saved.correct?'ok':'bad'}">${saved.correct?'✓':'✕'}</span>`)}});feedbackEl.className='feedback show '+(saved.correct?'ok':'bad');feedbackEl.textContent=saved.correct?'✓ ถูกต้อง! 🎉':'✕ ยังไม่ถูกนะ ลองดูวิธีทำ';} nextEl.textContent=state.i===state.set.length-1?'สรุปคะแนน →':'ข้อต่อไป →';document.getElementById('prevBtn').disabled=state.i===0;
+}
+function playTone(kind='tap'){try{const A=window.AudioContext||window.webkitAudioContext,ac=window._kpAudio||(window._kpAudio=new A());if(ac.state==='suspended')ac.resume();let o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=kind==='ok'?'sine':'triangle';o.frequency.setValueAtTime(kind==='ok'?660:260,ac.currentTime);if(kind==='ok')o.frequency.exponentialRampToValueAtTime(990,ac.currentTime+.16);g.gain.setValueAtTime(.11,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.22);o.start();o.stop(ac.currentTime+.23)}catch(e){}}
+function celebrate(){const box=document.getElementById('confetti');box.innerHTML='';for(let i=0;i<70;i++){let c=document.createElement('i');c.style.left=Math.random()*100+'vw';c.style.setProperty('--h',Math.floor(Math.random()*360));c.style.setProperty('--x',(Math.random()*180-90)+'px');c.style.animationDelay=(Math.random()*.35)+'s';box.appendChild(c)}setTimeout(()=>box.innerHTML='',3200)}
+function answer(el,idx){if(state.answers[state.i])return;captureSubmittedWork(idx);playTone('tap');state.answered=true;let q=state.current,correct=idx===q.answer;document.querySelectorAll('.choice').forEach(b=>b.disabled=true);el.classList.add('selected',correct?'ok':'bad');el.insertAdjacentHTML('beforeend',`<span class="answerMark ${correct?'ok':'bad'}">${correct?'✓':'✕'}</span>`);state.answers[state.i]={id:q.id,correct,skills:q.skills,choice:idx};flashAnswer(correct);if(correct){playTone('ok');celebrate();feedback.className='feedback show ok';feedback.textContent='✓ ถูกต้อง! เยี่ยมมาก 🎉';solutionBtn.disabled=false;solutionBtn.textContent='🔍 ดูวิธีทำ';}else{feedback.className='feedback show bad';feedback.textContent='✕ ยังไม่ถูกนะ — เปิดดูวิธีทำจากตัวเลขของข้อนี้ได้เลย';q.skills.forEach(s=>state.weak[s]=(state.weak[s]||0)+1);solutionBtn.disabled=false;solutionBtn.textContent='🔍 ดูวิธีทำทีละขั้น';}nextBtn.disabled=false;renderProgressOnly();persistWork()}
+function renderProgressOnly(){progress.innerHTML=state.set.map((_,i)=>{let a=state.answers[i];return `<button type="button" onclick="goQuestion(${i})" class="dot ${i===state.i?'now':''} ${a?(a.correct?'ok':'bad'):''}">${a?(a.correct?'✓':'✗'):i+1}</button>`}).join('')}
+function openSolution(){let q=state.current;if(!state.answered)return;if(!state.solutionsViewed.includes(q.id))state.solutionsViewed.push(q.id);solutionBody.innerHTML=`<div style="padding:14px 16px;background:#fff3e8;border-radius:18px;margin-bottom:14px"><div class="tiny">โจทย์ข้อนี้</div><div class="math" style="font-size:30px;font-weight:1000">${q.prompt}</div></div>${q.solution.steps.map((s,i)=>`<div class="solutionStep"><b>ขั้นที่ ${i+1}</b><br>${s}</div>`).join('')}<div class="remember"><b>คำตอบสุดท้าย</b><br><span class="math" style="font-size:28px">${q.solution.answer}</span><br><br>💡 ${q.solution.tip}</div>`;solutionModal.classList.add('show')}
+function closeSolution(){solutionModal.classList.remove('show')}
+function goQuestion(n){if(n<0||n>=state.set.length)return;persistWork();state.i=n;renderQuestion();loadInk();persistWork()}
+function nextQuestion(){if(state.i<state.set.length-1)goQuestion(state.i+1);else if(state.answers.filter(Boolean).length===state.set.length)finishAttempt();else alert('ยังมีข้อที่ไม่ได้ตอบจ้า กดเลขข้อเพื่อย้อนกลับไปทำให้ครบก่อนสรุปคะแนน')}
+function prevQuestion(){goQuestion(state.i-1)}
+function finishAttempt(){
+ let correct=state.answers.filter(a=>a.correct).length,total=state.set.length,pct=Math.round(correct/total*100);
+ let rec={date:new Date().toISOString(),student:student,mode:state.mode,score:correct,total,percent:pct,solutionsViewed:state.solutionsViewed.length};
+ let hist=JSON.parse(localStorage.getItem('kp_m1_thinking_master01_history')||'[]');hist.push(rec);localStorage.setItem('kp_m1_thinking_master01_history',JSON.stringify(hist.slice(-20)));
+ saveInk();persistWork();localStorage.setItem(completedKey()+(state.mode==='retry'?':retry':''),new Date().toISOString());localStorage.removeItem(workKey());renderHistory();showScreen('result');document.getElementById('submissionCount').textContent='บันทึกแล้ว '+submissionRecords.length+' ข้อ';scoreBig.textContent=pct+'%';let passed=pct>=UNIT.passPercent;
+ resultTitle.textContent=passed?'🏆 M.1 MATH PASSED!':'🌱 ยังไม่ถึง 80%';
+ let mine=hist.filter(x=>x.student===student);let rows=mine.map((x,i)=>`<div class="skillrow"><span>${i===0?'รอบแรก':'ฝึกซ้ำครั้งที่ '+i} • ${x.score}/${x.total} ข้อ</span><span>${x.percent}% ${x.percent>=UNIT.passPercent?'🏆':''}</span></div>`).join('');
+ skillReport.innerHTML=rows||'<p>ยังไม่มีประวัติ</p>';
+ if(passed){
+   resultMessage.innerHTML=`<h2>🎉 ผ่านเกณฑ์แล้ว</h2><p class="sub">รอบนี้ทำได้ ${correct}/${total} ข้อ • ${pct}%</p><p>ผ่านเกณฑ์ <b>${UNIT.passPercent}%</b> แล้ว พร้อมไป UNIT ถัดไปได้เลย</p>`;
+   resultActions.innerHTML=`<button class="btn ghost" onclick="showScreen('home')">🏠 หน้า Unit</button><button class="btn green" onclick="celebrate()">🎉 ฉลองอีกครั้ง</button>`;celebrate();
+ }else{
+   resultMessage.innerHTML=`<h2>🔄 ฝึกซ้ำอีกครั้ง</h2><p class="sub">รอบนี้ได้ <b>${pct}%</b> ยังไม่ถึงเกณฑ์ ${UNIT.passPercent}%</p><p>กดฝึกเสริมเพื่อทำ <b>10 ข้อ</b> โดยยังเก็บประวัติชุดแรกไว้</p>`;
+   resultActions.innerHTML=`<button class="btn secondary" onclick="showScreen('learn')">📘 ทบทวนก่อน</button><button class="btn" onclick="startRetry()">🔄 ฝึกซ้ำ 10 ข้อ</button>`;
+ }
+}
+function renderHistory(){let h=JSON.parse(localStorage.getItem('kp_m1_thinking_master01_history')||'[]').filter(x=>!student||x.student===student);if(!h.length){historyHome.textContent='ยังไม่มีประวัติการเล่นบนเครื่องนี้';return}historyHome.innerHTML='📈 พัฒนาการ: '+h.slice(-6).map((x,i)=>`${i===0&&h.length<=6?'รอบแรก':'ครั้ง '+(Math.max(1,h.length-5)+i)}: ${x.percent}%${x.percent>=UNIT.passPercent?' 🏆':''}`).join(' → ')}
+function celebrate(){let c=document.getElementById('confetti');c.innerHTML='';for(let i=0;i<90;i++){let e=document.createElement('i');e.style.left=Math.random()*100+'vw';e.style.setProperty('--h',Math.random()*360);e.style.setProperty('--x',(Math.random()*160-80)+'px');e.style.animationDelay=Math.random()*.5+'s';c.appendChild(e)}setTimeout(()=>c.innerHTML='',3400)}
+renderLearn();renderHistory();if(student){document.getElementById('studentName').value=student}
+/* Pen Engine V5 iPad Gesture Lock — adapted from verified Equation Advanced 01. */
+const canvas=document.getElementById('penCanvas'),ctx=canvas.getContext('2d'),inkArea=document.getElementById('inkArea');
+let penOn=false,erasing=false,drawing=false,activePointer=null,current=null,strokes=[];
+function resizeCanvas(){let r=inkArea.getBoundingClientRect();if(!r.width||!r.height)return;let d=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);ctx.setTransform(d,0,0,d,0,0);redraw()}
+function pos(e){let r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height}}
+function px(p){let r=canvas.getBoundingClientRect();return{x:p.x*r.width,y:p.y*r.height}}
+function redraw(){let r=canvas.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);for(let st of strokes){if(!st.pts||!st.pts.length)continue;ctx.globalCompositeOperation=st.erase?'destination-out':'source-over';ctx.strokeStyle=st.color||'#172033';ctx.fillStyle=st.color||'#172033';ctx.lineWidth=st.erase?22:(st.size||4);ctx.lineCap='round';ctx.lineJoin='round';let ps=st.pts.map(px);ctx.beginPath();if(ps.length===1){ctx.arc(ps[0].x,ps[0].y,ctx.lineWidth/2,0,Math.PI*2);ctx.fill()}else{ctx.moveTo(ps[0].x,ps[0].y);for(let j=1;j<ps.length;j++)ctx.lineTo(ps[j].x,ps[j].y);ctx.stroke()}ctx.globalCompositeOperation='source-over'}}
+function feed(e){let es=typeof e.getCoalescedEvents==='function'&&e.getCoalescedEvents().length?e.getCoalescedEvents():[e];for(let ev of es){let p=pos(ev);if(Number.isFinite(p.x)&&Number.isFinite(p.y))current.pts.push(p)}redraw()}
+function penDown(e){if(!penOn)return;if(e.cancelable)e.preventDefault();e.stopPropagation();if(drawing)return;drawing=true;activePointer=e.pointerId;current={erase:erasing,color:penColor.value,size:+penSize.value,pts:[]};strokes.push(current);try{canvas.setPointerCapture(e.pointerId)}catch(_){}feed(e)}
+function penMove(e){if(!drawing||e.pointerId!==activePointer)return;if(e.cancelable)e.preventDefault();feed(e)}
+function penEnd(e){if(!drawing||e.pointerId!==activePointer)return;if(e.cancelable)e.preventDefault();drawing=false;if(current&&!current.pts.length)strokes.pop();current=null;activePointer=null;if(state.set.length)persistWork()}
+function togglePen(v){penOn=typeof v==='boolean'?v:!penOn;canvas.classList.toggle('on',penOn);document.body.classList.toggle('pen-on',penOn);penToggle.classList.toggle('active',penOn);penToggle.textContent=penOn?'✓ เขียนบนโจทย์':'✍️ ปากกา';if(penOn)requestAnimationFrame(resizeCanvas)}
+canvas.addEventListener('pointerdown',penDown,{passive:false});window.addEventListener('pointermove',penMove,{passive:false});window.addEventListener('pointerup',penEnd,{passive:false});window.addEventListener('pointercancel',penEnd,{passive:false});
+const blockGesture=e=>{if(penOn){if(e.cancelable)e.preventDefault();e.stopPropagation()}};
+['contextmenu','selectstart','dragstart','gesturestart','gesturechange','gestureend'].forEach(t=>inkArea.addEventListener(t,blockGesture,{capture:true,passive:false}));
+['touchstart','touchmove','touchend'].forEach(t=>canvas.addEventListener(t,e=>{if(penOn&&e.cancelable)e.preventDefault()},{capture:true,passive:false}));
+document.addEventListener('selectionchange',()=>{if(!penOn)return;let sel=window.getSelection&&window.getSelection();if(sel&&!sel.isCollapsed&&sel.rangeCount){let inside=n=>n&&inkArea.contains(n.nodeType===1?n:n.parentNode);if(inside(sel.anchorNode)||inside(sel.focusNode))sel.removeAllRanges()}});
+penToggle.onclick=()=>togglePen();eraser.onclick=()=>{erasing=!erasing;eraser.classList.toggle('active',erasing)};
+undoPen.onclick=()=>{strokes.pop();redraw();if(state.set.length)persistWork()};clearPen.onclick=()=>{if(confirm('ลบรอยเขียนบนโจทย์และตัวเลือกข้อนี้?')){strokes=[];redraw();if(state.set.length)persistWork()}};
+closePen.onclick=()=>{togglePen(false);penDock.style.display='none';openPen.style.display='block'};openPen.onclick=()=>{penDock.style.display='flex';openPen.style.display='none'};
+new ResizeObserver(resizeCanvas).observe(inkArea);addEventListener('resize',resizeCanvas);
+</script>
+<style>
+.progress{display:flex;flex-wrap:nowrap;overflow-x:auto;padding:5px 3px 9px;gap:7px;scrollbar-width:thin}
+.dot{border:0;flex:0 0 37px;cursor:pointer}.dot.now{outline:3px solid #ff8a3d}
+.choices{grid-template-columns:repeat(2,minmax(0,1fr))}
+.choice{min-height:76px}
+#answerFlash{position:fixed;top:35%;left:50%;transform:translate(-50%,-50%) scale(.8);z-index:1900;pointer-events:none;opacity:0;font-size:clamp(70px,18vw,160px);font-weight:1000;text-shadow:0 7px 30px #0003}
+#answerFlash.show{animation:kpflash 1.25s ease forwards}
+@keyframes kpflash{15%{opacity:1;transform:translate(-50%,-50%) scale(1.18)}70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.9)}}
+#scratchModal{position:fixed;inset:0;z-index:2400;background:#172033b0;display:none;align-items:center;justify-content:center;padding:10px}
+#scratchModal.show{display:flex}
+.scratchSheet{width:min(900px,100%);height:min(92dvh,850px);background:white;border-radius:20px;display:flex;flex-direction:column;overflow:hidden}
+.scratchHead{display:flex;gap:7px;align-items:center;flex-wrap:wrap;padding:10px;background:#fff0e6}
+.scratchHead button{border:1px solid #ddd;background:white;border-radius:10px;padding:9px;font-weight:800}
+#scratchCanvas{width:100%;flex:1;min-height:0;touch-action:none;background:repeating-linear-gradient(#fff 0px,#fff 32px,#dfe9f6 33px,#fff 34px)}
+.penDock{max-width:min(95vw,510px)}.penDock input[type=range]{width:60px}
+@media(max-width:700px){.screen{padding:72px 10px 12px}.card{padding:12px}.choice{min-height:68px;font-size:clamp(17px,4vw,23px)}.question{font-size:clamp(22px,5vw,30px);padding:12px}.row .btn{flex:1 1 125px;padding:12px 8px;font-size:15px}}
+</style>
+<div id="scratchModal"><div class="scratchSheet">
+ <div class="scratchHead"><strong>📝 กระดาษทด · <span id="scratchNumber"></span></strong>
+ <button onclick="scratchColor='#172033'">⚫ ดำ</button><button onclick="scratchColor='#e53e54'">🔴 แดง</button><button onclick="scratchColor='#2469dc'">🔵 น้ำเงิน</button>
+ <button onclick="scratchErase=!scratchErase">🧽 ยางลบ</button><button onclick="scratchUndo()">↶ ย้อนหมึก</button><button onclick="scratchClear()">ล้าง</button>
+ <button style="margin-left:auto;background:#ff8a3d;color:white" onclick="closeScratch()">✕ ปิดกระดาษทด</button></div>
+ <div id="scratchScrollArea"><canvas id="scratchCanvas"></canvas></div>
+ <div id="scratchScrollGrip" aria-label="จับเลื่อนกระดาษทดโดยไม่เขียนหมึก"><button type="button" id="scratchUp">▲</button><span>↕<small>เลื่อน</small></span><button type="button" id="scratchDown">▼</button></div>
+</div></div>
+<script>
+let inkByQuestion={},scratchColor='#172033',scratchErase=false,scratchStrokes=[],scratchCurrent=null,scratchDrawing=false;
+function inkKey(){return state.mode+':'+state.i}
+function saveInk(){if(!state.set.length)return;let k=inkKey();inkByQuestion[k]={screen:strokes.map(x=>structuredClone(x)),scratch:structuredClone(scratchStrokes)}}
+function loadInk(){let d=inkByQuestion[inkKey()]||{};strokes=structuredClone(d.screen||[]);scratchStrokes=structuredClone(d.scratch||[]);requestAnimationFrame(resizeCanvas);drawScratch()}
+function flashAnswer(ok){let f=document.getElementById('answerFlash');f.textContent=ok?'✓':'✕';f.style.color=ok?'#14b884':'#ef476f';f.classList.remove('show');void f.offsetWidth;f.classList.add('show');}
+const sc=document.getElementById('scratchCanvas'),sx=sc.getContext('2d');
+function scratchResize(){let r=sc.getBoundingClientRect(),oldW=sc.width,oldH=sc.height;sc.width=Math.max(1,Math.round(r.width*devicePixelRatio));sc.height=Math.max(1,Math.round(r.height*devicePixelRatio));sx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);drawScratch()}
+function drawScratch(){if(!sx)return;sx.clearRect(0,0,sc.width,sc.height);let r=sc.getBoundingClientRect();for(let st of scratchStrokes){sx.beginPath();sx.strokeStyle=st.color;sx.lineWidth=st.size;sx.lineCap='round';sx.lineJoin='round';sx.globalCompositeOperation=st.erase?'destination-out':'source-over';st.pts.forEach((p,i)=>i?sx.lineTo(p.x*r.width,p.y*r.height):sx.moveTo(p.x*r.width,p.y*r.height));if(st.pts.length===1){let p=st.pts[0];sx.lineTo(p.x*r.width+.01,p.y*r.height+.01)}sx.stroke()}sx.globalCompositeOperation='source-over'}
+function scPos(e){let r=sc.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height}}
+sc.addEventListener('pointerdown',e=>{e.preventDefault();sc.setPointerCapture(e.pointerId);scratchDrawing=true;scratchCurrent={color:scratchColor,size:4,erase:scratchErase,pts:[scPos(e)]};scratchStrokes.push(scratchCurrent);drawScratch()});
+sc.addEventListener('pointermove',e=>{if(!scratchDrawing)return;e.preventDefault();for(let ev of (e.getCoalescedEvents?e.getCoalescedEvents():[e]))scratchCurrent.pts.push(scPos(ev));drawScratch()});
+function endScratch(){scratchDrawing=false;scratchCurrent=null}
+sc.addEventListener('pointerup',endScratch);sc.addEventListener('pointercancel',endScratch);
+function openScratch(){saveInk();document.getElementById('scratchNumber').textContent='ข้อ '+(state.i+1);document.getElementById('scratchModal').classList.add('show');requestAnimationFrame(scratchResize)}
+function closeScratch(){saveInk();persistWork();document.getElementById('scratchModal').classList.remove('show')}
+function scratchUndo(){scratchStrokes.pop();drawScratch();saveInk();persistWork()}
+function scratchClear(){if(confirm('ลบหมึกบนกระดาษทดข้อนี้?')){scratchStrokes=[];drawScratch();saveInk();persistWork()}}
+addEventListener('resize',()=>{if(document.getElementById('scratchModal').classList.contains('show'))scratchResize()});
+</script>
+
+<style>
+#scrollGrip{position:fixed;right:7px;top:43%;z-index:2300;width:49px;height:115px;border:2px solid #ffb36b;border-radius:19px;background:#fff7edee;box-shadow:0 5px 20px #0003;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab;color:#9b4a0b;font-weight:900}
+#scrollGrip:active{cursor:grabbing;background:#ffe2bf}
+#scrollGrip span{font-size:22px;line-height:1}#scrollGrip small{font-size:11px}
+#scrollGrip button{border:0;background:#ff8a3d;color:#fff;border-radius:8px;width:35px;height:27px;font-weight:900;touch-action:manipulation}
+@media(max-width:700px){#scrollGrip{right:3px;width:43px;height:106px}}
+</style>
+<div id="scrollGrip" aria-label="พื้นที่จับเลื่อนหน้าจอโดยไม่วาดหมึก">
+<button type="button" id="scrollUp" aria-label="เลื่อนขึ้น">▲</button>
+<span>↕</span><small>เลื่อน</small>
+<button type="button" id="scrollDown" aria-label="เลื่อนลง">▼</button>
+</div>
+<script>
+(function(){
+const grip=document.getElementById('scrollGrip');
+let active=false,lastY=0,travel=0;
+grip.addEventListener('pointerdown',function(e){
+ if(e.target.tagName==='BUTTON')return;
+ e.preventDefault();e.stopPropagation();active=true;lastY=e.clientY;travel=0;
+ grip.setPointerCapture(e.pointerId);
+});
+grip.addEventListener('pointermove',function(e){
+ if(!active)return;e.preventDefault();e.stopPropagation();
+ const dy=e.clientY-lastY;lastY=e.clientY;travel+=Math.abs(dy);
+ window.scrollBy(0,-dy*1.7);
+});
+for(const event of ['pointerup','pointercancel','lostpointercapture']){
+ grip.addEventListener(event,()=>{active=false});
+}
+document.getElementById('scrollUp').addEventListener('click',()=>window.scrollBy({top:-Math.round(innerHeight*.65),behavior:'smooth'}));
+document.getElementById('scrollDown').addEventListener('click',()=>window.scrollBy({top:Math.round(innerHeight*.65),behavior:'smooth'}));
+})();
+</script>
+
+<style>
+.scratchSheet{position:relative}
+#scratchScrollArea{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;background:#fff}
+#scratchCanvas{display:block;width:100%;height:1700px;flex:none;touch-action:none;background:repeating-linear-gradient(to bottom,#fff 0px,#fff 32px,#dfe9f6 33px,#fff 34px)}
+#scratchScrollGrip{position:absolute;right:8px;top:44%;z-index:5;width:46px;min-height:116px;border:2px solid #ffb36b;border-radius:16px;background:#fff4e7f5;box-shadow:0 4px 18px #0002;display:flex;align-items:center;flex-direction:column;justify-content:space-evenly;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab;color:#92400e;font-weight:900}
+#scratchScrollGrip button{border:0;border-radius:8px;background:#ff8a3d;color:#fff;font-weight:900;width:35px;height:27px;touch-action:manipulation}
+#scratchScrollGrip span{font-size:22px;display:flex;flex-direction:column;align-items:center;line-height:1}#scratchScrollGrip small{font-size:10px;margin-top:5px}
+</style>
+<script>
+(function(){
+const grip=document.getElementById('scratchScrollGrip'),area=document.getElementById('scratchScrollArea');let drag=false,last=0;
+grip.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;e.preventDefault();e.stopPropagation();drag=true;last=e.clientY;grip.setPointerCapture(e.pointerId)});
+grip.addEventListener('pointermove',e=>{if(!drag)return;e.preventDefault();e.stopPropagation();const delta=e.clientY-last;last=e.clientY;area.scrollTop+=delta*2.5});
+for(const ev of ['pointerup','pointercancel','lostpointercapture'])grip.addEventListener(ev,()=>{drag=false});
+document.getElementById('scratchUp').addEventListener('click',()=>area.scrollBy({top:-400,behavior:'smooth'}));
+document.getElementById('scratchDown').addEventListener('click',()=>area.scrollBy({top:400,behavior:'smooth'}));
+})();
+</script>
+
+<style>
+/* V3 full-size scratchpad, with an optional pinned question card */
+#scratchQuestionToggle{background:#2563eb!important;color:#fff!important;border-color:#2563eb!important}
+#scratchQuestionCard{display:none;flex:none;margin:0 10px 6px;padding:11px 14px;
+ border:2px solid #93c5fd;border-radius:15px;background:#eff6ff;
+ box-shadow:0 4px 14px #2563eb16;color:#172033;max-height:26dvh;overflow:auto}
+#scratchQuestionCard.visible{display:block}
+#scratchQuestionCard .sqTitle{font-weight:950;color:#1d4ed8;font-size:13px;margin-bottom:5px}
+#scratchQuestionCard .sqPrompt{font-size:clamp(20px,3vw,29px);font-weight:950;line-height:1.35;overflow-wrap:anywhere}
+#scratchQuestionCard .sqHint{font-size:12px;color:#475569;margin-top:5px;font-weight:700}
+@media(max-width:650px){
+ #scratchQuestionCard{padding:8px 10px;margin:0 6px 5px;max-height:22dvh}
+ #scratchQuestionCard .sqPrompt{font-size:clamp(19px,5vw,25px)}
+}
+</style>
+<script>
+(function(){
+ const sheet=document.querySelector('#scratchModal .scratchSheet');
+ const head=sheet.querySelector('.scratchHead');
+ const btn=document.createElement('button');
+ btn.type='button';btn.id='scratchQuestionToggle';btn.textContent='📌 ดูโจทย์';
+ head.insertBefore(btn,head.querySelector('button[onclick="closeScratch()"]'));
+ const card=document.createElement('div');card.id='scratchQuestionCard';
+ card.setAttribute('aria-live','polite');
+ head.after(card);
+ function update(){
+   const q=state && state.current;
+   if(!q)return;
+   card.innerHTML='<div class="sqTitle">📌 โจทย์ข้อ '+(state.i+1)+'</div>'+
+     '<div class="sqPrompt"></div><div class="sqHint">เลื่อนกระดาษทดด้านล่างเพื่อเขียนวิธีคิดได้ตามปกติ</div>';
+   card.querySelector('.sqPrompt').innerHTML=q.prompt;
+ }
+ btn.addEventListener('click',()=>{
+   update();const visible=card.classList.toggle('visible');
+   btn.textContent=visible?'🙈 ซ่อนโจทย์':'📌 ดูโจทย์';
+   if(typeof scratchResize==='function')requestAnimationFrame(scratchResize);
+ });
+ const original=window.openScratch;
+ window.openScratch=function(){
+   original();
+   update();
+   // Always start closed so the writing space stays as large as V3.
+   card.classList.remove('visible');btn.textContent='📌 ดูโจทย์';
+   if(typeof scratchResize==='function')requestAnimationFrame(scratchResize);
+ };
+})();
+</script>
+
+<script>
+/* Phase 1: local submission snapshots only. No remote transfer or credentials. */
+let submissionRecords=[];
+const cloneWork=x=>JSON.parse(JSON.stringify(x));
+function captureSubmittedWork(choice){
+  try{
+    saveInk();
+    const q=state.current;
+    const ink=inkByQuestion[inkKey()]||{screen:[],scratch:[]};
+    const params=new URLSearchParams(location.search);
+    submissionRecords.push({questionId:q.id,questionNumber:state.i+1,prompt:q.prompt,choiceIndex:choice,selectedAnswer:q.choices[choice],correct:choice===q.answer,submittedAt:new Date().toISOString(),screen:cloneWork(ink.screen||[]),scratch:cloneWork(ink.scratch||[])});
+    const el=document.getElementById('submissionCount');if(el)el.textContent='บันทึกแล้ว '+submissionRecords.length+' ข้อ';
+  }catch(err){console.error('Could not capture work',err);alert('ยังบันทึกกระดาษทดไม่ได้ กรุณาตรวจสอบก่อนออกจากเกม');}
+}
+function downloadSubmittedWork(){
+  persistWork();
+  if(!submissionRecords.length){alert('ยังไม่มีข้อที่กดตอบจ้า');return}
+  const params=new URLSearchParams(location.search);
+  const doc={format:'KruPaiScratchSubmission',version:1,gameId:UNIT.id,gameTitle:UNIT.title,studentName:student,studentCode:params.get('student')||'',mode:state.mode,exportedAt:new Date().toISOString(),questions:cloneWork(submissionRecords)};
+  const blob=new Blob([JSON.stringify(doc)],{type:'application/json;charset=utf-8'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='scratch-'+UNIT.id+'-'+(doc.studentCode||'student').replace(/[^a-zA-Z0-9_-]/g,'')+'-'+Date.now()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
+}
+</script>
+
+<script>
+/* Phase 1B: local-only progress. Not a teacher-authenticated reset or online submission. */
+function workKey(){return 'kp_m1_thinking_master01_partial_'+encodeURIComponent(student.trim().toLowerCase())}
+function completedKey(){return 'kp_m1_thinking_master01_completed_'+encodeURIComponent(student.trim().toLowerCase())}
+function persistWork(){
+ if(!state.set.length)return;
+ try{saveInk();localStorage.setItem(workKey(),JSON.stringify({version:1,mode:state.mode,questionIds:state.set.map(q=>q.id),i:state.i,answers:state.answers,weak:state.weak,solutionsViewed:state.solutionsViewed,inkByQuestion,submissionRecords,savedAt:new Date().toISOString()}));}
+ catch(err){console.error(err);alert('พื้นที่บันทึกในเครื่องอาจเต็ม กรุณาส่งออกงานก่อนปิดเกม')}
+}
+function restoreWork(){
+ let raw=localStorage.getItem(workKey());if(!raw)return false;
+ try{let d=JSON.parse(raw);if(d.version!==1||!Array.isArray(d.questionIds))throw Error('version');
+ let set=d.questionIds.map(id=>QUESTIONS.find(q=>q.id===id));if(set.some(q=>!q))throw Error('questions');
+ state={mode:d.mode,set,i:Math.min(Math.max(0,d.i||0),set.length-1),answers:d.answers||[],answered:false,current:null,weak:d.weak||{},solutionsViewed:d.solutionsViewed||[]};
+ inkByQuestion=d.inkByQuestion||{};submissionRecords=d.submissionRecords||[];
+ showScreen('quiz');renderQuestion();loadInk();return true;
+ }catch(e){alert('อ่านงานที่ค้างไว้ไม่ได้ กรุณาส่งไฟล์ให้ครูตรวจสอบก่อน');return true}
+}
+function pausePractice(){persistWork();showScreen('home');let h=document.getElementById('resumeHint');if(h)h.style.display='block';alert('💾 บันทึกไว้ในเบราว์เซอร์เครื่องนี้แล้ว กลับมาใช้เครื่องและเบราว์เซอร์เดิมเพื่อทำต่อได้จ้า')}
+(function(){let h=document.getElementById('resumeHint');if(h&&student&&localStorage.getItem(workKey()))h.style.display='block';})();
+window.addEventListener('pagehide',()=>{if(document.getElementById('quiz').classList.contains('active'))persistWork()});
+</script>
+<script>
+function teacherReview(){if(prompt('รหัสสำหรับครู')!=='8888'){alert('รหัสไม่ถูกต้อง');return;}const body=document.getElementById('teacherPreviewBody');body.innerHTML=QUESTIONS.slice(0,20).map((q,i)=>`<div class="card"><h2>ข้อ ${i+1}</h2><div class="math" style="font-size:24px">${q.prompt}</div>${q.choices.map((x,j)=>`<p style="font-size:18px">${'กขคง'[j]}. ${x}</p>`).join('')}<div class="remember">✓ เฉลย ${'กขคง'[q.answer]} — ${q.choices[q.answer]}</div><div class="steps">${q.solution.steps.map((s,j)=>`<div class="step">${j+1}. ${s}</div>`).join('')}</div></div>`).join('');showScreen('teacherPreview')}
+</script></body></html>
