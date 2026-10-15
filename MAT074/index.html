@@ -57,7 +57,86 @@ html,body{background:radial-gradient(ellipse at 8% 3%,#d9ceff 0,transparent 30%)
 #quiz .question .math{font-size:clamp(20px,2.5vw,30px)!important;line-height:1.9!important}
 .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.12;min-width:1.2em;margin:0 .09em}.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 .12em .07em}.frac>span:last-child{padding:.07em .12em 0}.paren{white-space:normal}
 @media(max-width:700px){.wow-stage{padding:30px 8px 24px;border-radius:25px}.wow-float{width:35px;height:35px;font-size:19px;border-radius:10px}.wow-float.a{left:2%}.wow-float.b{right:2%}.wow-float.c{left:3%}.wow-float.d{right:3%}.wow-title{letter-spacing:-1px}.wow-ribbon{padding:8px}.wow-tags{gap:5px}.wow-tags span{padding:7px}#quiz .question .math{font-size:clamp(18px,4vw,25px)!important}}
-</style></head><body>
+</style>
+<style>
+/* FRACTION TYPOGRAPHY RESTORE — visual only, do not touch the proven iPad pen engine */
+#quiz .question{
+  text-align:center!important;
+  background:#fff8eb!important;
+  border:3px solid #ffbb85!important;
+  padding:20px 12px!important;
+  line-height:2.3!important;
+  color:#172653!important;
+  box-shadow:0 6px 0 #ffe0bd,0 12px 24px #ee9c6520!important;
+}
+#quiz .question .math{
+  display:block;
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;
+  font-size:clamp(29px,4.2vw,45px)!important;
+  font-weight:1000!important;
+  line-height:2.3!important;
+  letter-spacing:.15px;
+  color:#172653!important;
+  overflow-wrap:normal;
+}
+#quiz .question .math b{font-weight:1000;color:#ef5085!important}
+#quiz .question .frac,
+#quiz .choice .frac{
+  display:inline-flex!important;
+  flex-direction:column!important;
+  vertical-align:middle!important;
+  text-align:center!important;
+  min-width:1.18em;
+  margin:0 .11em;
+  line-height:1.13!important;
+  font-weight:1000!important;
+  color:#142650!important;
+  white-space:nowrap;
+}
+#quiz .question .frac>span:first-child,
+#quiz .choice .frac>span:first-child{
+  display:block;
+  border-bottom:3px solid currentColor!important;
+  padding:0 .13em .09em!important;
+}
+#quiz .question .frac>span:last-child,
+#quiz .choice .frac>span:last-child{
+  display:block;
+  padding:.08em .13em 0!important;
+}
+#quiz .choice{
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;
+  font-size:clamp(25px,3.4vw,37px)!important;
+  font-weight:1000!important;
+  color:#1b2e62!important;
+  min-height:96px!important;
+  border:2.5px solid #b9caf1!important;
+  background:#fff!important;
+  box-shadow:0 5px 0 #e1e9fa!important;
+  line-height:1.6!important;
+  text-align:center;
+}
+#quiz .choice.selected.ok{background:#d9f9ed!important;border-color:#0caa82!important}
+#quiz .choice.selected.bad{background:#ffe1ed!important;border-color:#e44774!important}
+#quiz .choice .answerMark{font-size:24px}
+@media(max-width:700px){
+ #quiz .question{padding:15px 8px!important;line-height:2.2!important}
+ #quiz .question .math{font-size:clamp(26px,5.6vw,35px)!important;line-height:2.3!important}
+ #quiz .choice{font-size:clamp(23px,5vw,30px)!important;min-height:85px!important;padding:10px 6px!important}
+ #quiz .choices{gap:9px!important}
+}
+</style>
+<style>
+/* Compact answer choices: preserve prominent problem text and maximize writing space. */
+#quiz .choices{gap:8px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+#quiz .choice{min-height:62px!important;padding:5px 8px!important;font-size:clamp(19px,2.45vw,26px)!important;line-height:1.25!important;border-width:2px!important;box-shadow:0 3px 0 #e1e9fa!important;border-radius:14px!important}
+#quiz .choice .frac{line-height:1.03!important;margin:0 .07em!important}
+#quiz .choice .frac>span:first-child{border-bottom-width:2px!important;padding-bottom:.035em!important}
+#quiz .choice .frac>span:last-child{padding-top:.035em!important}
+#quiz .writingSpace{min-height:330px!important}
+@media(max-width:700px){#quiz .choices{gap:7px!important}#quiz .choice{min-height:55px!important;padding:4px 5px!important;font-size:clamp(18px,4.2vw,23px)!important;line-height:1.2!important}#quiz .writingSpace{min-height:390px!important}}
+</style>
+</head><body>
 <div class="penDock" id="penDock"><button id="penToggle">✍️ ปากกา</button><button id="eraser">🧽 ลบ</button><input id="penColor" type="color" value="#e83e5b" aria-label="สีปากกา"><input id="penSize" type="range" min="2" max="12" value="5"><button id="undoPen">↶</button><button id="clearPen">ล้างหมึก</button><button id="closePen" title="ปิดแถบปากกา">✕ ปิด</button></div><button id="openPen" style="position:fixed;left:10px;top:10px;z-index:1201;border:0;border-radius:14px;padding:10px 12px;font-weight:1000;background:#fff;box-shadow:0 8px 24px #0002;display:none">✍️ ปากกา</button><div id="confetti" class="confetti"></div>
 <section id="home" class="screen active"><div class="wrap"><div class="brand">Kru Pai Classroom • M1 FRACTION MIX MASTER 01</div><div class="wow-stage"><div class="wow-tag">⚡ MATH ADVENTURE • LEVEL UP ⚡</div><div class="wow-float a">½</div><div class="wow-float b">¾</div><div class="wow-float c">⅔</div><div class="wow-float d">⅝</div><div class="wow-title">FRACTION <span>MIX</span><br>MASTER <em>01</em></div><div class="wow-ribbon">🧠 ภารกิจพิชิตเศษส่วนระคน</div><div class="wow-equation">⅔ ＋ ¾ × ⅝ ÷ ½ ＝ <b>?</b></div><div class="wow-tags"><span>🎯 20 ภารกิจ</span><span>✍️ เขียนทดทั่วหน้า</span><span>🏆 ผ่าน 80%</span></div></div><div class="sub">เศษส่วนระคนหลายขั้นตอน • 20 ข้อ • เขียนทดทั่วหน้า</div><div class="card"><label style="font-weight:1000;font-size:20px">👤 ชื่อผู้เรียน</label><input id="studentName" placeholder="พิมพ์ชื่อหรือชื่อเล่น" style="width:100%;margin:10px 0 16px;padding:15px 16px;border:2px solid #e4e8ef;border-radius:16px;font-size:20px;font-weight:800"><div class="goal"><div class="pill">🧠 วงเล็บซ้อน</div><div class="pill">✖️ คูณและหาร</div><div class="pill">✍️ บวกลบระคน</div></div><p class="tiny">✍️ เขียนวิธีคิดได้ทุกข้อ และกลับมาทำต่อบนอุปกรณ์เดิม</p><p class="tiny" id="historyHome">ยังไม่มีประวัติการเล่นบนเครื่องนี้</p><p id="resumeHint" class="remember" style="display:none">💾 มีงานที่ค้างไว้ กดเริ่ม Practice เพื่อกลับมาทำต่อได้เลย</p><div class="row"><button class="btn" onclick="enterLearn()">📘 เริ่มเรียน</button><button class="btn secondary" onclick="startPractice()">🎯 เริ่ม Practice</button></div><div style="text-align:right;margin-top:12px"><button class="btn ghost" style="font-size:13px;padding:8px" onclick="teacherReview()">🔐 ตรวจข้อสอบสำหรับครู</button></div></div></div></section>
 <section id="teacherPreview" class="screen"><div class="wrap"><div class="brand">Kru Pai Classroom • TEACHER REVIEW</div><h1>🔍 ตรวจทานข้อสอบ FRACTION MIX MASTER 01</h1><p class="sub">แสดงโจทย์และเฉลยทั้ง 20 ข้อสำหรับครู (ไม่แสดงในหน้าเล่นของนักเรียน)</p><div id="teacherPreviewBody"></div><button class="btn ghost" onclick="showScreen('home')">← กลับหน้าแรก</button></div></section>
