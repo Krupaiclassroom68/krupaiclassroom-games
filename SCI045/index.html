@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kru Pai Classroom — Elements Showcase (Full)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Kodchasan:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#f8e9f1; --bg2:#e7f3ff; --ink:#1e1e2e; --muted:#627085;
+      --glass: rgba(255,255,255,.65); --shadow: 0 20px 60px rgba(0,0,0,.12);
+      --radius: 28px; --brand:#8a2b52;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 100% -10%, var(--bg2), transparent 60%),
+        radial-gradient(900px 700px at -20% 110%, var(--bg1), transparent 60%),
+        linear-gradient(180deg,#ffffff, #f7fbff 60%);
+      font-family:"Kanit","Kodchasan",system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      letter-spacing:.1px;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:18px 18px 100px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px;margin:12px auto 8px;border-radius:var(--radius);backdrop-filter: blur(10px);background: var(--glass);box-shadow: var(--shadow)}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:52px;height:52px;border-radius:18px;background:linear-gradient(135deg,#ffc2dc,#c9e2ff);display:grid;place-items:center;box-shadow:0 10px 24px rgba(255,106,169,.35)}
+    .logo span{font-weight:800;color:var(--brand);font-size:22px}
+    .brand h1{font-size:20px;margin:0;line-height:1.1}
+    .brand small{display:block;color:var(--muted);font-weight:600}
+    .tabs{display:flex;gap:10px;flex-wrap:wrap}
+    .tab{cursor:pointer;border:none;border-radius:999px;padding:10px 16px;font-weight:700;background:#fff;color:#475569;box-shadow:var(--shadow);transition:.2s}
+    .tab.active{background:linear-gradient(135deg,#ffd7ec,#cfe3ff); color:#221b2a; transform: translateY(-1px)}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{border:none;border-radius:14px;padding:10px 14px;font-weight:700;background:#fff;box-shadow:var(--shadow);cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg,#ff94c2,#7fb3ff); color:#1b1335}
+    .btn.ghost{background:transparent;border:2px solid #e6ecf7}
+    .search{flex:1;min-width:220px;display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:8px 12px;box-shadow:var(--shadow)}
+    .search input{border:none;outline:none;font-size:16px;width:100%}
+    .stage{margin-top:16px;position:relative}
+    .card{position:relative; border-radius:32px; padding:28px; background: linear-gradient(160deg, rgba(255,255,255,.9), rgba(255,255,255,.75)); box-shadow: var(--shadow); overflow:hidden; min-height:520px; display:grid; grid-template-columns: 340px 1fr; gap:26px}
+    @media (max-width:900px){ .card{grid-template-columns:1fr; min-height:auto; padding:22px}}
+    .glow{position:absolute; width:420px; height:420px; border-radius:50%; filter: blur(50px); opacity:.55; pointer-events:none; right:-120px; top:-120px; background: radial-gradient(closest-side,#ffd1eb,transparent)}
+    .glow2{position:absolute; width:380px; height:380px; left:-120px; bottom:-140px; border-radius:50%; filter: blur(60px); opacity:.5; background: radial-gradient(closest-side,#cfe3ff,transparent)}
+    .left{display:grid; place-items:center; padding:10px; border-radius:24px; background:linear-gradient(145deg,#ffffff, #f1f6ff); box-shadow: inset 0 0 0 1px rgba(0,0,0,.04)}
+    .symbol{font-size:120px; font-weight:800; line-height:0.9; letter-spacing:-4px; color:#231b39}
+    .en{font-size:22px; color:#3b2f59; margin-top:6px; font-weight:800}
+    .th{font-size:18px; color:#6b7280; margin-top:2px}
+    .chip{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:#fff;padding:6px 12px;margin-top:10px;box-shadow:var(--shadow);font-weight:700;color:#475569}
+    .right{padding:8px}
+    .big{font-size:30px; font-weight:800; margin:0 0 10px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .metric{background:#fff;border-radius:18px;padding:14px 16px;box-shadow:var(--shadow)}
+    .metric .k{color:#6b7280;font-weight:700;font-size:13px}
+    .metric .v{font-size:28px;font-weight:800;color:#231b39}
+    .panel{margin-top:14px;border-radius:18px;background:#fff;padding:16px;box-shadow:var(--shadow)}
+    .panel h3{margin:0 0 8px;font-size:18px}
+    .mini{display:flex;gap:8px;flex-wrap:wrap}
+    .mini span{background:#f6f7fb;border-radius:10px;padding:6px 10px;font-weight:700;color:#4b5563}
+    .nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:10px}
+    .index{font-weight:800;color:#475569}
+    .footer-note{position:fixed;left:0;right:0;bottom:0;padding:10px 16px;text-align:center;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);box-shadow:0 -8px 24px rgba(0,0,0,.08); font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo"><span>K</span></div>
+        <div>
+          <h1>Kru Pai Classroom</h1>
+          <small>Elements — 1 ธาตุ 1 หน้า (Metal · Metalloid · Nonmetal)</small>
+        </div>
+      </div>
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-cat="Metal">โลหะ <span id="count-metal"></span></button>
+        <button class="tab" data-cat="Metalloid">กึ่งโลหะ <span id="count-metalloid"></span></button>
+        <button class="tab" data-cat="Nonmetal">อโลหะ <span id="count-nonmetal"></span></button>
+      </div>
+    </header>
+
+    <div class="controls" style="margin:10px 0 6px">
+      <div class="search">🔎
+        <input id="q" placeholder="ค้นหา: สัญลักษณ์ / ชื่ออังกฤษ / ชื่อไทย (เช่น Na, sodium, โซเดียม)" />
+      </div>
+      <button class="btn" id="btn-random">สุ่ม</button>
+      <button class="btn" id="btn-prev">◀ ก่อนหน้า</button>
+      <button class="btn primary" id="btn-next">ถัดไป ▶</button>
+    </div>
+
+    <section class="stage">
+      <div class="card">
+        <div class="glow"></div><div class="glow2"></div>
+        <div class="left" id="left">
+          <div class="symbol" id="sym">Na</div>
+          <div class="en" id="en">Sodium</div>
+          <div class="th" id="th">โซเดียม</div>
+          <div class="chip" id="chip">โลหะ · Metal</div>
+        </div>
+        <div class="right">
+          <h2 class="big" id="title">ข้อมูลธาตุ</h2>
+          <div class="grid">
+            <div class="metric"><div class="k">เลขอะตอม (Z)</div><div class="v" id="z">11</div></div>
+            <div class="metric"><div class="k">เลขมวล (A)</div><div class="v" id="a">23</div></div>
+            <div class="metric"><div class="k">หมวดหมู่</div><div class="v" id="cat">โลหะ</div></div>
+          </div>
+          <div class="grid" style="margin-top:14px">
+            <div class="metric"><div class="k">Proton (p)</div><div class="v" id="p">11</div></div>
+            <div class="metric"><div class="k">Neutron (n)</div><div class="v" id="n">12</div></div>
+            <div class="metric"><div class="k">Electron (e⁻)</div><div class="v" id="e">11</div></div>
+          </div>
+          <div class="panel">
+            <h3>จุดเด่น/การนำไปใช้</h3>
+            <div class="mini" id="uses"></div>
+          </div>
+          <div class="nav">
+            <div class="index" id="progress">โลหะ · 1 / 1</div>
+            <div style="display:flex;gap:8px">
+              <button class="btn ghost" id="btn-copy">คัดลอกการ์ดนี้</button>
+              <button class="btn" id="btn-print">พิมพ์เป็นภาพ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="footer-note">กด <b>ถัดไป ▶</b> หรือใช้แป้นพิมพ์ ⬅ / ➡ เพื่อเลื่อนไปยังธาตุถัดไป — © Kru Pai Classroom</div>
+
+  <script>
+    // ——— Dataset ครบตามที่ครูยืนยัน: โลหะ 20 · กึ่งโลหะ 6 · อโลหะ 15 ———
+    const ELEMENTS = [
+      // Nonmetals — 15 ชนิดที่ใช้บ่อยในบทเรียนและชีวิตจริง
+      {sym:'H', en:'Hydrogen', th:'ไฮโดรเจน', Z:1, A:1, cat:'Nonmetal', uses:['เชื้อเพลิงจรวด','โมเลกุลน้ำ (H₂O)']},
+      {sym:'He', en:'Helium', th:'ฮีเลียม', Z:2, A:4, cat:'Nonmetal', uses:['บอลลูน','สภาพแวดล้อมเย็นจัด']},
+      {sym:'C', en:'Carbon', th:'คาร์บอน', Z:6, A:12, cat:'Nonmetal', uses:['กราไฟต์/เพชร','โครงสร้างของสิ่งมีชีวิต']},
+      {sym:'N', en:'Nitrogen', th:'ไนโตรเจน', Z:7, A:14, cat:'Nonmetal', uses:['ส่วนประกอบหลักของอากาศ','ปุ๋ยไนโตรเจน']},
+      {sym:'O', en:'Oxygen', th:'ออกซิเจน', Z:8, A:16, cat:'Nonmetal', uses:['หายใจ','การเผาไหม้']},
+      {sym:'F', en:'Fluorine', th:'ฟลูออรีน', Z:9, A:19, cat:'Nonmetal', uses:['ฟลูออไรด์ในยาสีฟัน']},
+      {sym:'Ne', en:'Neon', th:'นีออน', Z:10, A:20, cat:'Nonmetal', uses:['ป้ายไฟนีออน']},
+      {sym:'P', en:'Phosphorus', th:'ฟอสฟอรัส', Z:15, A:31, cat:'Nonmetal', uses:['ไม้ขีดไฟ','DNA/ATP']},
+      {sym:'S', en:'Sulfur', th:'กำมะถัน', Z:16, A:32, cat:'Nonmetal', uses:['ยางซัลเฟอร์','ยากำจัดเชื้อรา']},
+      {sym:'Cl', en:'Chlorine', th:'คลอรีน', Z:17, A:35, cat:'Nonmetal', uses:['ฆ่าเชื้อในน้ำ','เกลือแกง NaCl']},
+      {sym:'Ar', en:'Argon', th:'อาร์กอน', Z:18, A:40, cat:'Nonmetal', uses:['ก๊าซเฉื่อยเชื่อมโลหะ']},
+      {sym:'Br', en:'Bromine', th:'โบรมีน', Z:35, A:80, cat:'Nonmetal', uses:['ตัวหน่วงการลุกไหม้']},
+      {sym:'I', en:'Iodine', th:'ไอโอดีน', Z:53, A:127, cat:'Nonmetal', uses:['ยาฆ่าเชื้อ','เกลือเสริมไอโอดีน']},
+      {sym:'Kr', en:'Krypton', th:'คริปทอน', Z:36, A:84, cat:'Nonmetal', uses:['หลอดไฟพิเศษ','เลเซอร์บางชนิด']},
+      {sym:'Xe', en:'Xenon', th:'ซีนอน', Z:54, A:131, cat:'Nonmetal', uses:['ไฟซีนอน','ยาชาเฉพาะทาง']},
+
+      // Metalloids — 6 ชนิดตามที่ครูระบุ
+      {sym:'B', en:'Boron', th:'โบรอน', Z:5, A:11, cat:'Metalloid', uses:['แก้วบอโรซิลิเกต','ปุ๋ยเสริมธาตุ']},
+      {sym:'Si', en:'Silicon', th:'ซิลิกอน', Z:14, A:28, cat:'Metalloid', uses:['ชิปคอมพิวเตอร์','ทราย/แก้ว']},
+      {sym:'Ge', en:'Germanium', th:'เจอร์เมเนียม', Z:32, A:73, cat:'Metalloid', uses:['อุปกรณ์กึ่งตัวนำ']},
+      {sym:'As', en:'Arsenic', th:'อาร์เซนิก', Z:33, A:75, cat:'Metalloid', uses:['อัลลอย/สารกึ่งตัวนำ (ใช้ด้วยความระวัง)']},
+      {sym:'Sb', en:'Antimony', th:'แอนติโมนี', Z:51, A:122, cat:'Metalloid', uses:['ตัวหน่วงการลุกไหม้','โลหะผสมแบตเตอรี่']},
+      {sym:'Te', en:'Tellurium', th:'เทลลูเรียม', Z:52, A:128, cat:'Metalloid', uses:['เซลล์แสงอาทิตย์ CdTe','โลหะผสม']},
+
+      // Metals — 20 ชนิดยอดฮิตในการสอน/อุตสาหกรรม
+      {sym:'Li', en:'Lithium', th:'ลิเทียม', Z:3, A:7, cat:'Metal', uses:['แบตเตอรี่ลิเทียมไอออน','ยาบางชนิด']},
+      {sym:'Be', en:'Beryllium', th:'เบริลเลียม', Z:4, A:9, cat:'Metal', uses:['อัลลอยน้ำหนักเบา','อุปกรณ์อากาศยาน']},
+      {sym:'Na', en:'Sodium', th:'โซเดียม', Z:11, A:23, cat:'Metal', uses:['เกลือแกง (NaCl)','โซดาไฟ/สารเคมี']},
+      {sym:'Mg', en:'Magnesium', th:'แมกนีเซียม', Z:12, A:24, cat:'Metal', uses:['อัลลอยเบา','ดอกไม้ไฟ']},
+      {sym:'Al', en:'Aluminium', th:'อะลูมิเนียม', Z:13, A:27, cat:'Metal', uses:['กระป๋อง/ฟอยล์','โครงสร้างเบา']},
+      {sym:'K', en:'Potassium', th:'โพแทสเซียม', Z:19, A:39, cat:'Metal', uses:['ปุ๋ยโพแทสเซียม','สมดุลแร่ธาตุในร่างกาย']},
+      {sym:'Ca', en:'Calcium', th:'แคลเซียม', Z:20, A:40, cat:'Metal', uses:['กระดูก/ฟัน','ปูนซีเมนต์ (CaO)']},
+      {sym:'Ti', en:'Titanium', th:'ไทเทเนียม', Z:22, A:48, cat:'Metal', uses:['อัลลอยแข็งแรง-เบา','อุปกรณ์การแพทย์']},
+      {sym:'Cr', en:'Chromium', th:'โครเมียม', Z:24, A:52, cat:'Metal', uses:['สแตนเลส','ชุบโครม']},
+      {sym:'Mn', en:'Manganese', th:'แมงกานีส', Z:25, A:55, cat:'Metal', uses:['โลหะผสมเหล็กกล้า','แบตเตอรี่แห้ง']},
+      {sym:'Fe', en:'Iron', th:'เหล็ก', Z:26, A:56, cat:'Metal', uses:['เหล็กกล้า','ฮีโมโกลบิน']},
+      {sym:'Co', en:'Cobalt', th:'โคบอลต์', Z:27, A:59, cat:'Metal', uses:['แบตเตอรี่ลิเธียมไอออน','สีน้ำเงินโคบอลต์']},
+      {sym:'Ni', en:'Nickel', th:'นิกเกิล', Z:28, A:59, cat:'Metal', uses:['โลหะผสมนิกเกิล','ชุบนิกเกิลป้องกันสนิม']},
+      {sym:'Cu', en:'Copper', th:'ทองแดง', Z:29, A:63, cat:'Metal', uses:['สายไฟ','เหรียญ']},
+      {sym:'Zn', en:'Zinc', th:'สังกะสี', Z:30, A:65, cat:'Metal', uses:['ชุบกันสนิม','สังกะสีออกไซด์ในครีมกันแดด']},
+      {sym:'Ag', en:'Silver', th:'เงิน', Z:47, A:107, cat:'Metal', uses:['เครื่องประดับ','สื่อนำไฟฟ้าดี']},
+      {sym:'Sn', en:'Tin', th:'ดีบุก', Z:50, A:119, cat:'Metal', uses:['บัดกรี','กระป๋องดีบุก']},
+      {sym:'Pb', en:'Lead', th:'ตะกั่ว', Z:82, A:207, cat:'Metal', uses:['แบตเตอรี่ตะกั่วกรด','ฉากกันรังสี (ใช้อย่างปลอดภัย)']},
+      {sym:'Hg', en:'Mercury', th:'ปรอท', Z:80, A:201, cat:'Metal', uses:['เทอร์โมมิเตอร์รุ่นเก่า (ลดใช้ปัจจุบัน)','อุปกรณ์ไฟฟ้าบางชนิด']},
+      {sym:'Au', en:'Gold', th:'ทอง', Z:79, A:197, cat:'Metal', uses:['ทองคำแท่ง/เครื่องประดับ','อิเล็กทรอนิกส์คุณภาพสูง']},
+    ];
+
+    const PARTITIONS = {
+      'Metal': ELEMENTS.filter(e=>e.cat==='Metal'),
+      'Metalloid': ELEMENTS.filter(e=>e.cat==='Metalloid'),
+      'Nonmetal': ELEMENTS.filter(e=>e.cat==='Nonmetal'),
+    };
+
+    const $ = id=>document.getElementById(id);
+    const sym=$('sym'), en=$('en'), th=$('th'), chip=$('chip');
+    const z=$('z'), a=$('a'), p=$('p'), n=$('n'), eEl=$('e');
+    const uses=$('uses'), progress=$('progress'), title=$('title');
+
+    let currentCat='Metal';
+    let idx=0;
+
+    function render(){
+      const list = PARTITIONS[currentCat];
+      const item = list[idx];
+      if(!item) return;
+      const neut = item.A - item.Z;
+      sym.textContent = item.sym;
+      en.textContent = item.en;
+      th.textContent = item.th;
+      chip.textContent = (item.cat==='Metal'?'โลหะ':item.cat==='Metalloid'?'กึ่งโลหะ':'อโลหะ') + ' · ' + item.cat;
+      z.textContent = item.Z; a.textContent = item.A; p.textContent = item.Z; n.textContent = neut; eEl.textContent = item.Z;
+      title.textContent = `ธาตุ ${item.sym} — ${item.en}`;
+      uses.innerHTML = item.uses.map(t=>`<span>${t}</span>`).join('');
+      progress.textContent = `${(item.cat==='Metal'?'โลหะ':item.cat==='Metalloid'?'กึ่งโลหะ':'อโลหะ')} · ${idx+1} / ${list.length}`;
+      $('left').animate([{transform:'scale(.98)'},{transform:'scale(1)'}],{duration:180, easing:'ease-out'});
+    }
+
+    function updateCounts(){
+      $('count-metal').textContent = `(${PARTITIONS.Metal.length})`;
+      $('count-metalloid').textContent = `(${PARTITIONS.Metalloid.length})`;
+      $('count-nonmetal').textContent = `(${PARTITIONS.Nonmetal.length})`;
+    }
+
+    document.querySelectorAll('.tab').forEach(t=>{
+      t.addEventListener('click',()=>{
+        document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        currentCat = t.dataset.cat;
+        idx = 0; render();
+      })
+    });
+
+    $('btn-next').onclick=()=>{ const L = PARTITIONS[currentCat].length; idx = (idx+1)%L; render(); };
+    $('btn-prev').onclick=()=>{ const L = PARTITIONS[currentCat].length; idx = (idx-1+L)%L; render(); };
+    $('btn-random').onclick=()=>{ const L = PARTITIONS[currentCat].length; idx = Math.floor(Math.random()*L); render(); };
+
+    $('q').addEventListener('input', (e)=>{
+      const q = e.target.value.trim().toLowerCase();
+      if(!q){ render(); return; }
+      const all = [...ELEMENTS];
+      let found = all.find(x=>x.sym.toLowerCase()===q) || all.find(x=>x.en.toLowerCase().includes(q)) || all.find(x=>x.th.toLowerCase().includes(q));
+      if(found){
+        currentCat = found.cat;
+        document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x.dataset.cat===currentCat));
+        idx = PARTITIONS[currentCat].findIndex(x=>x.sym===found.sym);
+        render();
+      }
+    });
+
+    window.addEventListener('keydown', (e)=>{ if(e.key==='ArrowRight') $('btn-next').click(); if(e.key==='ArrowLeft') $('btn-prev').click(); });
+
+    $('btn-copy').onclick=()=>{
+      const list = PARTITIONS[currentCat];
+      const it = list[idx];
+      const neut = it.A - it.Z;
+      const text = `ธาตุ ${it.sym} (${it.en} — ${it.th})\nหมวด: ${it.cat}\nเลขอะตอม Z=${it.Z}\nเลขมวล A=${it.A}\nProton=${it.Z}, Neutron=${neut}, Electron=${it.Z}`;
+      navigator.clipboard.writeText(text).then(()=>{
+        $('btn-copy').textContent = 'คัดลอกแล้ว ✅';
+        setTimeout(()=>{$('btn-copy').textContent='คัดลอกการ์ดนี้'},1200)
+      })
+    }
+
+    $('btn-print').onclick=()=>{
+      const list = PARTITIONS[currentCat];
+      const it = list[idx];
+      const neut = it.A - it.Z;
+      const w = window.open('','_blank');
+      w.document.write(`<!doctype html><html><head><meta charset=\"utf-8\"><title>${it.sym} — Print</title>
+      <style>body{font-family:Kanit,Arial;padding:40px;background:#f7f8fc;color:#1e1e2e} .box{max-width:700px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 20px 50px rgba(0,0,0,.12);overflow:hidden}
+      .top{display:grid;grid-template-columns:260px 1fr} .left{display:grid;place-items:center;background:linear-gradient(135deg,#ffd7ec,#e6f0ff);padding:26px}
+      .symbol{font-size:120px;font-weight:800} .en{font-weight:800;font-size:26px} .th{color:#6b7280}
+      .right{padding:26px} h1{margin:0 0 10px} .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+      .cell{background:#f6f7fb;border-radius:14px;padding:14px;text-align:center} .k{color:#6b7280;font-weight:700} .v{font-size:28px;font-weight:800}
+      </style></head><body><div class=box><div class=top><div class=left>
+      <div class=symbol>${it.sym}</div><div class=en>${it.en}</div><div class=th>${it.th}</div></div>
+      <div class=right><h1>ข้อมูลธาตุ</h1><div class=grid>
+      <div class=cell><div class=k>เลขอะตอม (Z)</div><div class=v>${it.Z}</div></div>
+      <div class=cell><div class=k>เลขมวล (A)</div><div class=v>${it.A}</div></div>
+      <div class=cell><div class=k>หมวดหมู่</div><div class=v>${it.cat}</div></div>
+      <div class=cell><div class=k>Proton</div><div class=v>${it.Z}</div></div>
+      <div class=cell><div class=k>Neutron</div><div class=v>${neut}</div></div>
+      <div class=cell><div class=k>Electron</div><div class=v>${it.Z}</div></div>
+      </div></div></div></div></body></html>`);
+      w.document.close(); w.focus();
+    }
+
+    updateCounts();
+    // เริ่มต้นที่ Na เพื่อให้เหมือนตัวอย่างครูปาย
+    currentCat='Metal'; idx = PARTITIONS[currentCat].findIndex(x=>x.sym==='Na');
+    render();
+  </script>
+</body>
+</html>
