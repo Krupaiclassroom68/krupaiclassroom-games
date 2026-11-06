@@ -73,7 +73,7 @@
 <section id="quiz" class="card hidden"><div class="hud"><span id="counter"></span><b id="mode"></b><span id="scoreLive"></span></div><div class="progress"><div id="progressFill"></div></div><div class="navAction topNavigation" aria-label="นำทางข้อสอบ"><button class="secondary" onclick="move(-1)">← ข้อก่อนหน้า</button><button class="primary" onclick="move(1)">ข้อถัดไป →</button></div><details class="questionNavigator"><summary>🧭 เลือกหมายเลขข้อ <span id="navStatus">แตะเพื่อเปิด</span></summary><div class="numbers" id="numbers"></div></details><div class="questionPanel"><div class="topic" id="topic"></div><div class="question" id="question"></div></div><div id="answerArea"></div><div class="answerAction"><button class="primary" id="checkBtn" onclick="checkAnswer()">✓ ตรวจคำตอบ</button></div><div class="writingAction"><button class="secondary" onclick="togglePad()">📝 เปิดกระดาษทด</button><button class="secondary" onclick="toggleFull()">✍️ เขียนทั่วหน้า</button></div><div id="feedback" class="hidden"></div>
 <div id="scratch" class="paperShell hidden"><div class="paperHead"><b>📝 กระดาษทด — ข้อ <span id="paperQ"></span></b><button onclick="setPen()">✏️</button><button class="color active" id="blackBtn" style="background:#263238" onclick="setColor('#263238','blackBtn')" title="ดำ"></button><button class="color" id="redBtn" style="background:#e53935" onclick="setColor('#e53935','redBtn')" title="แดง"></button><button class="color" id="blueBtn" style="background:#1565c0" onclick="setColor('#1565c0','blueBtn')" title="น้ำเงิน"></button><button onclick="modePen='eraser'">🧽</button><button onclick="undo()">↶</button><button onclick="clearPaper()">ล้าง</button><button onclick="toggleFull()">⛶ เต็มจอ</button></div><div class="paper" id="paper"><canvas id="canvas" draggable="false"></canvas></div></div>
 <div class="endAction"><button class="secondary" onclick="view('cover')">⌂ Home</button><button class="gold" onclick="finishGame()">🏁 สรุปคะแนน</button></div><div class="note">ข้ามข้อและย้อนกลับได้ • คะแนนนับคำตอบครั้งแรก • งานค้างและรอยทดบันทึกเฉพาะเกมนี้บนอุปกรณ์นี้</div></section>
-<section id="result" class="card hidden"><h1>🏆 MISSION COMPLETE</h1><div id="resultName"></div><div class="resultScore" id="finalScore"></div><h2 id="passText"></h2><p id="resultSummary"></p><div class="resultRow" id="resultButtons"></div><div class="actions"><button class="gold" onclick="printScratchPDF()">📄 PDF คะแนน + รอยทด</button><button class="primary" onclick="sharePNG()">📤 แชร์รายงาน PNG ผ่าน LINE</button><button class="secondary" onclick="restartGame()">🔄 เริ่มรอบใหม่</button><button class="secondary" onclick="view('cover')">⌂ Home</button></div><p class="note">ภาพรายงาน PNG แสดงคะแนนและผลรายข้อ รอยทดจะเก็บไว้ในเกมบนอุปกรณ์นี้</p><h3>📈 ประวัติคะแนนเกมนี้</h3><div id="history"></div></section>
+<section id="result" class="card hidden"><h1>🏆 MISSION COMPLETE</h1><div id="resultName"></div><div class="resultScore" id="finalScore"></div><h2 id="passText"></h2><p id="resultSummary"></p><div class="resultRow" id="resultButtons"></div><div class="actions"><button class="gold" onclick="exportPortablePDF()">📄 PDF คะแนน + รอยทด</button><button class="primary" onclick="sharePNG()">📤 แชร์รายงาน PNG ผ่าน LINE</button><button class="secondary" onclick="restartGame()">🔄 เริ่มรอบใหม่</button><button class="secondary" onclick="view('cover')">⌂ Home</button></div><p class="note">ภาพรายงาน PNG แสดงคะแนนและผลรายข้อ รอยทดจะเก็บไว้ในเกมบนอุปกรณ์นี้</p><h3>📈 ประวัติคะแนนเกมนี้</h3><div id="history"></div></section>
 </main><article id="printReport" aria-label="รายงานสำหรับพิมพ์"></article><div id="celebrate" style="position:fixed;inset:0;z-index:120;pointer-events:none;overflow:hidden"></div><div id="penBar" class="penBar hidden"><b>✍️ เขียนทั่วหน้าจอ</b><button onclick="setColor('#263238','blackBtn')">⚫</button><button onclick="setColor('#e53935','redBtn')">🔴</button><button onclick="setColor('#1565c0','blueBtn')">🔵</button><button onclick="modePen='eraser'">🧽</button><button onclick="undo()">↶</button><button class="primary" onclick="toggleFull()">✓ กลับไปตอบ</button></div><div class="footer">KRU PAI CLASSROOM • INK REPORT LAB PDF PILOT 10</div>
 <script>
 const QUESTIONS=[{"t":"mc","topic":"ทฤษฎีเซลล์","q":"ข้อใดสอดคล้องกับทฤษฎีเซลล์มากที่สุด","opts":["สิ่งมีชีวิตทุกชนิดประกอบด้วยเซลล์อย่างน้อยหนึ่งเซลล์","เซลล์ทุกชนิดต้องมีนิวเคลียส","เซลล์ใหม่เกิดจากสารไม่มีชีวิตโดยตรง","ไวรัสทุกชนิดมีโครงสร้างเป็นเซลล์"],"a":0,"why":"ทฤษฎีเซลล์ระบุว่าสิ่งมีชีวิตประกอบด้วยเซลล์ เซลล์เป็นหน่วยพื้นฐาน และเซลล์ใหม่เกิดจากเซลล์เดิม"},{"t":"mc","topic":"เซลล์พืช–สัตว์","q":"โครงสร้างใดพบในเซลล์พืชทั่วไป แต่ไม่พบในเซลล์สัตว์ทั่วไป","opts":["เยื่อหุ้มเซลล์","ผนังเซลล์ที่ประกอบด้วยเซลลูโลส","ไซโทพลาซึม","ไมโทคอนเดรีย"],"a":1,"why":"ผนังเซลล์ของพืชมีเซลลูโลส ขณะที่ทั้งพืชและสัตว์มีเยื่อหุ้มเซลล์ ไซโทพลาซึม และไมโทคอนเดรีย"},{"t":"mc","topic":"การลำเลียงสาร","q":"นำเซลล์พืชไปแช่ในสารละลายเกลือเข้มข้นมาก เซลล์จะเกิดอะไรขึ้น","opts":["น้ำเข้าสู่เซลล์และเต่งมากขึ้น","ผนังเซลล์ละลายทันที","น้ำออกจากเซลล์และเยื่อหุ้มเซลล์อาจลอกจากผนังเซลล์","นิวเคลียสเพิ่มจำนวนทันที"],"a":2,"why":"สารละลายภายนอกเข้มข้นกว่า ทำให้น้ำออสโมซิสออก เกิดพลาสโมไลซิสได้"},{"t":"mc","topic":"การหายใจระดับเซลล์","q":"เหตุใดเซลล์กล้ามเนื้อที่ทำงานหนักจึงมักมีไมโทคอนเดรียจำนวนมาก","opts":["เพื่อสะสมสีเขียว","เพื่อสร้างผนังเซลล์","เพื่อย่อย DNA ในนิวเคลียส","เพื่อสร้าง ATP รองรับการใช้พลังงาน"],"a":3,"why":"ไมโทคอนเดรียเกี่ยวข้องกับการสร้าง ATP ซึ่งกล้ามเนื้อใช้ในการหดตัว"},{"t":"mc","topic":"โปรคาริโอต–ยูคาริโอต","q":"ข้อใดอธิบายเซลล์แบคทีเรียได้ถูกต้อง","opts":["มี DNA แต่ไม่มีนิวเคลียสที่มีเยื่อหุ้ม","มีนิวเคลียสที่มีเยื่อหุ้ม","ไม่มีเยื่อหุ้มเซลล์","มีไมโทคอนเดรียเช่นเดียวกับเซลล์สัตว์"],"a":0,"why":"แบคทีเรียเป็นโปรคาริโอต มี DNA บริเวณนิวคลีออยด์และไม่มีออร์แกเนลล์ที่มีเยื่อหุ้ม"},{"t":"mc","topic":"การแบ่งเซลล์","q":"ข้อใดเป็นผลสำคัญของไมโทซิสในสิ่งมีชีวิตหลายเซลล์","opts":["ลดจำนวนโครโมโซมลงครึ่งหนึ่ง","เพิ่มความหลากหลายทางพันธุกรรมผ่านการจับคู่โครโมโซม","สร้างเซลล์สืบพันธุ์ทุกชนิดโดยตรง","ช่วยการเจริญเติบโตและซ่อมแซมเนื้อเยื่อ"],"a":3,"why":"ไมโทซิสให้เซลล์ลูกที่มีจำนวนโครโมโซมเท่าเดิมโดยทั่วไป จึงเกี่ยวข้องกับการเติบโตและซ่อมแซม"},{"t":"mc","topic":"เซลล์เฉพาะทาง","q":"เซลล์เม็ดเลือดแดงของมนุษย์เมื่อโตเต็มที่ไม่มีนิวเคลียส มีข้อดีสำคัญอย่างไร","opts":["สร้าง DNA ได้เร็วขึ้น","มีพื้นที่ภายในสำหรับฮีโมโกลบินมากขึ้น","แบ่งตัวได้ตลอดเวลา","สังเคราะห์โปรตีนได้มากขึ้น"],"a":1,"why":"การไม่มีนิวเคลียสช่วยเพิ่มพื้นที่สำหรับฮีโมโกลบินและเอื้อต่อการขนส่งแก๊ส"},{"t":"mc","topic":"ระบบเนื้อเยื่อ","q":"ลำดับระดับโครงสร้างของสิ่งมีชีวิตหลายเซลล์ข้อใดถูกต้อง","opts":["อวัยวะ → เซลล์ → เนื้อเยื่อ → ระบบอวัยวะ","เนื้อเยื่อ → ระบบอวัยวะ → เซลล์ → อวัยวะ","เซลล์ → เนื้อเยื่อ → อวัยวะ → ระบบอวัยวะ","เซลล์ → อวัยวะ → เนื้อเยื่อ → ระบบอวัยวะ"],"a":2,"why":"เซลล์ชนิดต่าง ๆ รวมเป็นเนื้อเยื่อ เนื้อเยื่อรวมเป็นอวัยวะ และอวัยวะทำงานเป็นระบบ"},{"t":"mc","topic":"ออร์แกเนลล์","q":"เซลล์ที่สร้างและหลั่งโปรตีนออกนอกเซลล์จำนวนมาก ควรมีโครงสร้างใดเด่นเป็นพิเศษ","opts":["ร่างแหเอนโดพลาซึมชนิดขรุขระและกอลจิบอดี","คลอโรพลาสต์และผนังเซลล์","เซนทริโอลและแวคิวโอลกลาง","ไลโซโซมและคลอโรฟิลล์"],"a":0,"why":"RER ช่วยสังเคราะห์โปรตีนสำหรับการหลั่ง และกอลจิบอดีปรับแต่ง คัดแยก และบรรจุโปรตีน"},{"t":"mc","topic":"การทดลองเซลล์","q":"นักเรียนต้องการตรวจสอบผลของความเข้มข้นน้ำตาลต่อการเปลี่ยนมวลของชิ้นมันฝรั่ง ตัวแปรต้นคือข้อใด","opts":["มวลของมันฝรั่งหลังทดลอง","ชนิดของมันฝรั่งที่ต้องควบคุม","เวลาที่แช่ซึ่งต้องควบคุม","ความเข้มข้นของสารละลายน้ำตาล"],"a":3,"why":"ตัวแปรต้นคือความเข้มข้นของสารละลายที่ผู้ทดลองเปลี่ยน ส่วนมวลเป็นตัวแปรตาม"}];
@@ -173,4 +173,139 @@ canvas.addEventListener('pointerdown',penDown,{passive:false});window.addEventLi
 window.addEventListener('resize',()=>{if(!$('scratch').classList.contains('hidden')){resizeCanvas();redraw()}});
 async function sharePNG(){let c=document.createElement('canvas');c.width=1080;c.height=1500;let x=c.getContext('2d');x.fillStyle='#eefaff';x.fillRect(0,0,1080,1500);x.fillStyle='#102d50';x.fillRect(0,0,1080,230);x.fillStyle='#fff';x.font='bold 55px sans-serif';x.fillText('KRU PAI CLASSROOM',58,90);x.font='bold 38px sans-serif';x.fillText('INK REPORT LAB • SCIENCE PDF PILOT 10',58,157);x.fillStyle='#16324f';x.font='bold 42px sans-serif';x.fillText('Student: '+student.slice(0,28),60,315);x.font='bold 30px sans-serif';x.fillText('Code: '+studentCode.slice(0,20),60,362);x.font='bold 100px sans-serif';x.fillText(answers.filter(a=>a?.ok).length+' / '+QUESTIONS.length,60,450);x.font='30px sans-serif';x.fillText(new Date().toLocaleString('th-TH'),60,520);x.font='bold 36px sans-serif';x.fillText('RESULTS BY QUESTION',60,620);for(let j=0;j<QUESTIONS.length;j++){let cx=60+(j%5)*198,cy=675+Math.floor(j/5)*83;x.fillStyle=answers[j]?.ok?'#c7f5df':'#ffdae0';x.fillRect(cx,cy,175,67);x.fillStyle=answers[j]?.ok?'#126741':'#9c2942';x.font='bold 26px sans-serif';x.fillText('Q'+(j+1)+'  '+(answers[j]?.ok?'OK':'X'),cx+12,cy+42)}x.fillStyle='#3c5671';x.font='24px sans-serif';x.fillText('Score report • Scratch stays in the game on this device',60,1420);let blob=await new Promise(r=>c.toBlob(r,'image/png'));if(!blob)return;let file=new File([blob],'KPC_INK_REPORT_LAB_10_Report.png',{type:'image/png'});try{if(navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:'Kru Pai Classroom Science Report'});return}}catch(e){if(e.name==='AbortError')return}let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);alert('บันทึก PNG แล้ว ส่งต่อใน LINE ได้เลย')}
 try{let d=JSON.parse(localStorage.getItem(KEY)||'null');if(d?.student)$('studentName').value=d.student;if(d?.studentCode)$('studentCode').value=d.studentCode}catch(e){}
+
+/* Portable PDF: renders Thai text and scratch strokes to page images,
+   packages them into a self-contained PDF, then uses the iPad share sheet. */
+async function exportPortablePDF(){
+  const button=document.querySelector('button[onclick="exportPortablePDF()"]');
+  const original=button?.textContent;
+  if(button){button.disabled=true;button.textContent='⏳ กำลังสร้าง PDF...'}
+  try{
+    const W=794,H=1123,margin=55;
+    const pages=[];
+    const makePage=()=>{
+      const c=document.createElement('canvas');c.width=W*1.5;c.height=H*1.5;
+      const x=c.getContext('2d');x.scale(1.5,1.5);
+      x.fillStyle='#fff';x.fillRect(0,0,W,H);
+      x.fillStyle='#143d5d';x.fillRect(0,0,W,100);
+      x.fillStyle='#fff';x.font='bold 27px system-ui, sans-serif';
+      x.fillText('KRU PAI CLASSROOM',margin,44);
+      x.font='bold 19px system-ui, sans-serif';x.fillText('INK REPORT LAB • SCIENCE',margin,76);
+      x.fillStyle='#1b344c';return {c,x};
+    };
+    function lines(x,text,left,top,maxWidth,lineHeight,font,maxY){
+      x.font=font;let y=top,ln='';
+      const words=String(text).split(/(\s+)/);
+      const chunks=words.length===1?Array.from(String(text)):words;
+      for(const w of chunks){
+        if(x.measureText(ln+w).width>maxWidth && ln){
+          x.fillText(ln,left,y);y+=lineHeight;ln='';
+          if(y>maxY)return y;
+        }
+        if(x.measureText(w).width>maxWidth){
+          for(const ch of Array.from(w)){
+            if(x.measureText(ln+ch).width>maxWidth&&ln){
+              x.fillText(ln,left,y);y+=lineHeight;ln='';
+              if(y>maxY)return y;
+            }
+            ln+=ch;
+          }
+        }else ln+=w;
+      }
+      if(ln&&y<=maxY){x.fillText(ln,left,y);y+=lineHeight}
+      return y;
+    }
+    const score=answers.filter(a=>a?.ok).length;
+    let page=makePage(),x=page.x;
+    x.font='bold 29px system-ui, sans-serif';x.fillText('รายงานคะแนนและรอยทด',margin,158);
+    x.font='23px system-ui, sans-serif';
+    lines(x,'ผู้เรียน: '+student,margin,212,W-2*margin,35,'23px system-ui, sans-serif',360);
+    x.fillText('Student Code: '+studentCode,margin,295);
+    x.fillText('วันที่: '+new Date().toLocaleString('th-TH'),margin,337);
+    x.fillStyle='#e4f5f3';x.fillRect(margin,380,W-2*margin,170);
+    x.fillStyle='#087d80';x.font='bold 76px system-ui, sans-serif';
+    x.fillText(score+' / '+QUESTIONS.length,margin+30,478);
+    x.font='bold 25px system-ui, sans-serif';
+    x.fillText(score>=Math.ceil(QUESTIONS.length*.8)?'ผ่านเกณฑ์ 80%':'ยังไม่ผ่านเกณฑ์ 80%',margin+320,466);
+    x.fillStyle='#203d57';x.font='22px system-ui, sans-serif';
+    x.fillText('ผลการตอบแต่ละข้อ',margin,610);
+    QUESTIONS.forEach((q,j)=>{
+      const col=j%5,row=Math.floor(j/5),left=margin+col*140,top=645+row*100;
+      x.fillStyle=answers[j]?.ok?'#c9f3dd':'#ffe0e5';x.fillRect(left,top,125,72);
+      x.fillStyle=answers[j]?.ok?'#075d37':'#8e2944';
+      x.font='bold 23px system-ui, sans-serif';x.fillText('ข้อ '+(j+1),left+12,top+28);
+      x.font='bold 18px system-ui, sans-serif';x.fillText(answers[j]?.ok?'ถูก':'ผิด/ข้าม',left+12,top+57);
+    });
+    x.fillStyle='#546b7c';x.font='18px system-ui, sans-serif';
+    lines(x,'หน้าถัดไปแสดงคำถาม เฉลย และรอยทดของผู้เรียน',margin,930,W-2*margin,28,'18px system-ui, sans-serif',1040);
+    pages.push(page.c);
+    for(let j=0;j<QUESTIONS.length;j++){
+      const q=QUESTIONS[j],ans=answers[j],ink=strokes[j]||[];
+      page=makePage();x=page.x;
+      x.font='bold 28px system-ui, sans-serif';x.fillText('ข้อ '+(j+1)+' / '+QUESTIONS.length,margin,155);
+      x.fillStyle=ans?.ok?'#08774b':'#a3344b';x.font='bold 22px system-ui, sans-serif';
+      x.fillText(ans?.ok?'ตอบถูก':'ตอบผิดหรือยังไม่ตอบ',margin+175,155);
+      x.fillStyle='#18324c';
+      let y=lines(x,'หัวข้อ: '+q.topic,margin,205,W-2*margin,33,'bold 22px system-ui, sans-serif',315);
+      y=lines(x,q.q,margin,y+25,W-2*margin,38,'bold 25px system-ui, sans-serif',500);
+      y=lines(x,'เฉลย: '+formatAnswer(q),margin,y+25,W-2*margin,32,'20px system-ui, sans-serif',675);
+      y=lines(x,'เหตุผล: '+q.why,margin,y+18,W-2*margin,29,'19px system-ui, sans-serif',795);
+      const top=Math.min(850,Math.max(570,y+35)),height=Math.min(260,1050-top);
+      x.fillStyle='#f7fbff';x.fillRect(margin,top,W-2*margin,height);
+      x.strokeStyle='#b4ceda';x.lineWidth=1;x.strokeRect(margin,top,W-2*margin,height);
+      x.fillStyle='#36576b';x.font='bold 18px system-ui, sans-serif';
+      x.fillText('รอยทดของผู้เรียน',margin+12,top+26);
+      x.save();x.beginPath();x.rect(margin+8,top+40,W-2*margin-16,height-48);x.clip();
+      for(const st of ink){
+        const pts=st.pts||[];if(!pts.length)continue;
+        x.strokeStyle=st.erase?'#f7fbff':st.color||'#263238';
+        x.fillStyle=x.strokeStyle;x.lineWidth=st.erase?17:2.5;
+        x.lineCap='round';x.lineJoin='round';x.beginPath();
+        pts.forEach((p,k)=>{const px=margin+12+p.x*(W-2*margin-24),py=top+44+p.y*(height-56);if(k===0)x.moveTo(px,py);else x.lineTo(px,py)});
+        if(pts.length===1){x.arc(margin+12+pts[0].x*(W-2*margin-24),top+44+pts[0].y*(height-56),2,0,Math.PI*2);x.fill()}else x.stroke();
+      }
+      x.restore();pages.push(page.c);
+    }
+    // Construct a standards-compatible image-based PDF without external libraries.
+    const enc=new TextEncoder(),parts=[],offsets=[0];let position=0;
+    function add(bytes){parts.push(bytes);position+=bytes.length}
+    function ascii(s){return enc.encode(s)}
+    function obj(n,body){offsets[n]=position;add(ascii(n+' 0 obj\n'+body+'\nendobj\n'))}
+    add(ascii('%PDF-1.4\n'));
+    const n=2+pages.length*3;
+    obj(1,'<< /Type /Catalog /Pages 2 0 R >>');
+    const pageIds=pages.map((_,i)=>3+i*3);
+    obj(2,'<< /Type /Pages /Kids ['+pageIds.map(id=>id+' 0 R').join(' ')+'] /Count '+pages.length+' >>');
+    pages.forEach((canvas,i)=>{
+      const id=3+i*3,imgId=id+1,contentId=id+2;
+      obj(id,'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.5 842.25] /Resources << /XObject << /Im0 '+imgId+' 0 R >> >> /Contents '+contentId+' 0 R >>');
+      const b64=canvas.toDataURL('image/jpeg',.78).split(',')[1],binary=atob(b64);
+      const bytes=new Uint8Array(binary.length);
+      for(let k=0;k<binary.length;k++)bytes[k]=binary.charCodeAt(k);
+      offsets[imgId]=position;
+      add(ascii(imgId+' 0 obj\n<< /Type /XObject /Subtype /Image /Width '+canvas.width+' /Height '+canvas.height+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+bytes.length+' >>\nstream\n'));
+      add(bytes);add(ascii('\nendstream\nendobj\n'));
+      const cmd=ascii('q\n595.5 0 0 842.25 0 0 cm\n/Im0 Do\nQ\n');
+      offsets[contentId]=position;
+      add(ascii(contentId+' 0 obj\n<< /Length '+cmd.length+' >>\nstream\n'));
+      add(cmd);add(ascii('endstream\nendobj\n'));
+    });
+    const xref=position;
+    add(ascii('xref\n0 '+(n+1)+'\n0000000000 65535 f \n'));
+    for(let i=1;i<=n;i++)add(ascii(String(offsets[i]).padStart(10,'0')+' 00000 n \n'));
+    add(ascii('trailer\n<< /Size '+(n+1)+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF'));
+    const blob=new Blob(parts,{type:'application/pdf'});
+    const filename='KPC_SCI_INK_REPORT_'+(studentCode||'STUDENT').replace(/[^a-zA-Z0-9_-]/g,'')+'.pdf';
+    const file=new File([blob],filename,{type:'application/pdf'});
+    if(navigator.canShare?.({files:[file]})&&navigator.share){
+      try{await navigator.share({files:[file],title:'Kru Pai Classroom PDF Report'});return}
+      catch(e){if(e.name==='AbortError')return;console.warn('PDF share unavailable',e)}
+    }
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),60000);
+    alert('สร้าง PDF แล้ว หากไม่พบไฟล์ ให้เปิดเกมผ่าน Safari เพื่อบันทึก PDF');
+  }catch(e){console.error('Portable PDF failed',e);alert('สร้าง PDF ไม่สำเร็จ: '+(e.message||e))}
+  finally{if(button){button.disabled=false;button.textContent=original}}
+}
 </script></body></html>
