@@ -1,5 +1,9 @@
 <!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KPC FRACTION ORDER BALLOON PEN V5</title><style>
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,'Noto Sans Thai',sans-serif;color:white;background:radial-gradient(circle at 20% 10%,#423f9b,transparent 45%),linear-gradient(145deg,#11183e,#23124a);min-height:100dvh}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation;border:0;border-radius:15px;padding:11px 17px;font-weight:850}.wrap{max-width:1100px;margin:auto;padding:12px}.panel{border:1px solid #ffffff30;border-radius:25px;background:#ffffff12;padding:clamp(15px,3vw,28px);box-shadow:0 15px 45px #0005}.hidden{display:none!important}h1{font-size:clamp(37px,7vw,72px);line-height:1.05;margin:15px 0;background:linear-gradient(90deg,#86f5f4,#ffb3dc,#ffda78);background-clip:text;color:transparent}.sub{color:#cdd6ff;font-size:clamp(16px,2.2vw,21px)}.btn{background:#65e8d5;color:#142b48}.alt{background:#49558e;color:white}.gold{background:#ffd16d;color:#3b2657}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.hud{display:flex;justify-content:space-between;gap:10px;align-items:center}.slots{display:flex;justify-content:center;align-items:center;gap:7px;flex-wrap:wrap;margin:15px 0}.slot{width:clamp(75px,16vw,135px);height:clamp(100px,17vw,140px);border:3px dashed #9edaf8;border-radius:24px;background:#b0dfff12;display:flex;align-items:center;justify-content:center;color:#d8edff;position:relative}.slot.filled{border:3px solid #a8ffdf;background:#b0dfff30}.slot .frac{font-size:clamp(24px,4vw,35px)}.arrow{color:#ffdf8b;font-size:24px}.bank{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;min-height:160px;margin:15px 0}.balloon{width:clamp(80px,16vw,130px);height:clamp(105px,19vw,155px);border-radius:50% 50% 46% 46%;background:radial-gradient(circle at 32% 23%,#fff9,transparent 28%),linear-gradient(145deg,var(--c),#403ca8);border:2px solid #ffffff77;color:white;box-shadow:inset -12px -14px 20px #0002,0 13px 20px #0004;position:relative;animation:float 2.4s ease-in-out infinite alternate;animation-delay:var(--delay);font-size:26px;display:grid;place-items:center;padding:8px}.balloon:after{content:' ';position:absolute;bottom:-14px;left:calc(50% - 6px);border-left:6px solid transparent;border-right:6px solid transparent;border-top:14px solid var(--c)}.balloon:disabled{opacity:.35;filter:grayscale(.6)}@keyframes float{from{transform:translateY(4px) rotate(-3deg)}to{transform:translateY(-11px) rotate(3deg)}}.frac{display:inline-flex;flex-direction:column;vertical-align:middle;align-items:center;line-height:1.05;font-weight:950;min-width:1.5em;text-shadow:0 2px 4px #0003}.frac .n{border-bottom:3px solid currentColor;min-width:100%;padding:0 3px 3px;text-align:center}.frac .d{padding:3px 3px 0}.mixed{display:inline-flex;align-items:center;gap:4px;font-weight:950}.mixed .whole{font-size:1.05em}.paperWrap{margin-top:15px;border:2px solid #b1ddeb;border-radius:18px;overflow:hidden;background:white;color:#123}.paperHead{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:9px;background:#e3f6ff}.paperHead button{padding:8px 11px;font-size:14px}.paper{height:clamp(230px,35vh,360px);position:relative;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;background:repeating-linear-gradient(white 0 32px,#dcebf4 33px,white 34px)}canvas{width:100%;height:100%;display:block;touch-action:none;-webkit-user-select:none;-webkit-touch-callout:none}.color{width:30px;height:30px;border-radius:50%;padding:0;border:2px solid #889}.color.on{outline:3px solid #ffb84a}.feedback{font-size:clamp(18px,2.6vw,26px);font-weight:900;margin:10px 0;min-height:32px}.particle{position:fixed;z-index:100;pointer-events:none;font-size:24px;animation:fall 1.2s forwards}@keyframes fall{to{transform:translate(var(--dx),var(--dy)) rotate(700deg);opacity:0}}.coverArt{font-size:clamp(70px,13vw,135px);filter:drop-shadow(0 12px 20px #0005);margin:20px 0}.info{line-height:1.7;color:#cbd8ff}.status{color:#f9e4ac;font-weight:800}.padBtn{background:#e5f1ff;color:#19395d}.end{font-size:65px;color:#7df8d2;font-weight:1000}@media(max-width:600px){.panel{padding:14px}.slot{width:69px;height:96px;border-radius:15px}.balloon{width:76px;height:105px}.bank{gap:8px}.slots{gap:4px}.arrow{font-size:17px}}
+
+/* iPad continuous-ink gesture lock: only the writing surface is locked. */
+#paper,#paper canvas,#padBox .paper{touch-action:none!important;-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent!important;overscroll-behavior:contain}
+#paper canvas{display:block;cursor:crosshair}
 </style></head><body><div class="wrap"><div class="hud"><b>🎈 KRU PAI CLASSROOM</b><span class="status" id="status">FRACTION ORDER</span></div><main id="cover" class="panel" style="text-align:center;margin-top:22px"><div class="coverArt">🎈🧮🎈</div><h1>FRACTION<br>ORDER RACE</h1><p class="sub">แตะลูกโป่งเศษส่วนให้ไปเรียงแถวด้านบน ✨</p><p class="info">10 ด่าน • เรียงน้อย→มาก / มาก→น้อย • กระดาษทดเขียนได้ • เศษส่วนแนวตั้ง</p><div class="row" style="justify-content:center"><input id="name" placeholder="ชื่อผู้เล่น" style="padding:13px;border-radius:12px;border:0;font-size:20px;max-width:220px"><button class="btn" onclick="start()">🚀 เริ่มประลอง</button></div><p class="info">แตะบอลตามลำดับที่ต้องการ • แตะช่องด้านบนเพื่อเอาบอลกลับ • กดตรวจเมื่อเรียงครบ</p></main><main id="game" class="panel hidden" style="margin-top:12px"><div class="hud"><strong id="count"></strong><span id="score"></span></div><h2 id="prompt" style="text-align:center;font-size:clamp(23px,4vw,34px);margin:13px 0"></h2><div class="slots" id="slots"></div><div class="bank" id="bank"></div><div class="row" style="justify-content:center"><button class="gold" id="check" onclick="check()">✨ ตรวจคำตอบ</button><button class="alt" onclick="resetOrder()">↶ เรียงใหม่</button><button class="padBtn" onclick="togglePad()">✍️ กระดาษทด <span id="padState">เปิด</span></button></div><div id="feedback" class="feedback" style="text-align:center"></div><div class="row" style="justify-content:center"><button id="next" class="btn hidden" onclick="next()">ด่านถัดไป ➜</button></div><section id="padBox" class="paperWrap hidden"><div class="paperHead"><b>✍️ กระดาษทด ข้อ <span id="padQ"></span></b><button class="color on" id="black" style="background:#263238" onclick="setColor('#263238','black')" aria-label="สีดำ"></button><button class="color" id="red" style="background:#e53935" onclick="setColor('#e53935','red')" aria-label="สีแดง"></button><button class="color" id="blue" style="background:#1565c0" onclick="setColor('#1565c0','blue')" aria-label="สีน้ำเงิน"></button><button onclick="tool='eraser'">🧽 ยางลบ</button><button onclick="undo()">↶ ย้อน</button><button onclick="clearInk()">ล้าง</button><button onclick="togglePad()">พับเก็บ</button></div><div class="paper" id="paper"><canvas id="ink"></canvas></div></section></main><main id="finish" class="panel hidden" style="text-align:center;margin-top:20px"><h1>MISSION COMPLETE! 🎉</h1><div id="finalScore" class="end"></div><p class="sub">เก่งมาก! การเรียงเศษส่วนต้องเปรียบเทียบค่าจริง ไม่ใช่ดูแค่ตัวเศษหรือตัวส่วน</p><button class="btn" onclick="restart()">🔁 เล่นอีกครั้ง</button></main></div><script>
 const GAMEID='KPC-FRACTION-ORDER-BALLOON-PEN-20261111-V1';
 const qs=[
@@ -34,6 +38,47 @@ const canvas=$('ink'),ctx=canvas.getContext('2d');function resize(){let rect=$('
 function redraw(){let rect=canvas.getBoundingClientRect();if(!rect.width)return;ctx.clearRect(0,0,rect.width,rect.height);for(let s of inkData[idx])drawStroke(s,rect.width,rect.height);if(current)drawStroke(current,rect.width,rect.height)}
 function drawStroke(s,w,h){if(!s.points?.length)return;ctx.strokeStyle=s.color;ctx.lineWidth=s.color==='white'?20:3.3;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();s.points.forEach((p,i)=>{let x=p[0]*w,y=p[1]*h;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});if(s.points.length===1){let p=s.points[0];ctx.lineTo(p[0]*w+.1,p[1]*h+.1)}ctx.stroke()}
 function pos(e){let r=canvas.getBoundingClientRect();return [(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height]}
-canvas.addEventListener('pointerdown',e=>{if(pointer!==null)return;e.preventDefault();pointer=e.pointerId;canvas.setPointerCapture(e.pointerId);drawing=true;current={color:tool==='eraser'?'white':pen,points:[pos(e)]};redraw()},{passive:false});canvas.addEventListener('pointermove',e=>{if(!drawing||e.pointerId!==pointer)return;e.preventDefault();current.points.push(pos(e));redraw()},{passive:false});function end(e){if(e.pointerId!==pointer)return;e.preventDefault();if(current){inkData[idx].push(current);current=null;save()}drawing=false;pointer=null;redraw()}canvas.addEventListener('pointerup',end,{passive:false});canvas.addEventListener('pointercancel',end,{passive:false});
+// Pen V5 iPad: continuous writing without text selection / copy popups.
+const paperEl=$('paper');
+function preventInkGesture(e){if(e.cancelable)e.preventDefault()}
+for(const eventName of ['touchstart','touchmove','touchend','touchcancel']){
+  paperEl.addEventListener(eventName,preventInkGesture,{passive:false});
+}
+for(const eventName of ['contextmenu','selectstart','dragstart']){
+  paperEl.addEventListener(eventName,e=>e.preventDefault());
+}
+canvas.addEventListener('pointerdown',e=>{
+  if(pointer!==null)return;
+  e.preventDefault();
+  pointer=e.pointerId;
+  try{canvas.setPointerCapture(e.pointerId)}catch(err){}
+  drawing=true;
+  current={color:tool==='eraser'?'white':pen,points:[pos(e)]};
+  redraw();
+},{passive:false});
+canvas.addEventListener('pointermove',e=>{
+  if(!drawing||e.pointerId!==pointer||!current)return;
+  e.preventDefault();
+  const samples=typeof e.getCoalescedEvents==='function'?e.getCoalescedEvents():[e];
+  for(const sample of (samples.length?samples:[e]))current.points.push(pos(sample));
+  redraw();
+},{passive:false});
+function end(e){
+  if(e.pointerId!==pointer)return;
+  e.preventDefault();
+  if(current){
+    if(e.type==='pointerup')current.points.push(pos(e));
+    inkData[idx].push(current);
+    current=null;
+    save();
+  }
+  drawing=false;
+  pointer=null;
+  try{if(canvas.hasPointerCapture(e.pointerId))canvas.releasePointerCapture(e.pointerId)}catch(err){}
+  redraw();
+}
+canvas.addEventListener('pointerup',end,{passive:false});
+canvas.addEventListener('pointercancel',end,{passive:false});
+canvas.addEventListener('lostpointercapture',e=>{if(e.pointerId===pointer)end(e)},{passive:false});
 function setColor(c,id){pen=c;tool='pen';document.querySelectorAll('.color').forEach(x=>x.classList.remove('on'));$(id).classList.add('on')};function undo(){inkData[idx].pop();redraw();save()};function clearInk(){if(!confirm('ล้างรอยทดข้อนี้?'))return;inkData[idx]=[];redraw();save()};window.addEventListener('resize',()=>{resize();redraw()});
 </script></body></html>
