@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Conversation Club · ชุดที่ 5 · Kru Pai Classroom</title>
+<style>
+:root{font-family:system-ui,sans-serif;background:#e9efe5;color:#163d35;--green:#154b3c;--cream:#fffaf0;--yellow:#ffe391;--pink:#f7cbd8}
+*{box-sizing:border-box}body{margin:0}main{width:min(1280px,calc(100% - 24px));margin:auto;padding:16px 0 36px}
+header,.tools,.actions,.tiles,.top,.slots{display:flex;flex-wrap:wrap;align-items:center;gap:9px}header,.top{justify-content:space-between}header{margin-bottom:14px;font-weight:900;letter-spacing:.08em;font-size:.84rem}
+.card{background:var(--cream);border-radius:24px;padding:clamp(16px,3.4vw,46px);box-shadow:0 12px 35px #153b3023}
+button,input{font:inherit}button{min-height:44px;cursor:pointer;border:1px solid #447268;border-radius:12px;padding:.55em .85em;font-weight:800;background:#fffdf7;color:#164134;touch-action:manipulation}button:disabled{opacity:.5;cursor:default}
+button:focus-visible,input:focus-visible{outline:3px solid #bc3970;outline-offset:3px}.primary{background:var(--green);border-color:var(--green);color:white}.actions{margin-top:14px}
+#cover{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(16px,5vw,65px);align-items:center;min-height:68vh;background:linear-gradient(125deg,#fffaf0 47%,#e7efde)}
+.subject{display:inline-block;background:var(--yellow);border-radius:9px;padding:8px 13px;font-weight:900}h1{font-size:clamp(2.7rem,7.3vw,7.2rem);line-height:.95;letter-spacing:-.075em;margin:.23em 0}h1 span{display:block;color:#285e8e}h2{margin:.26em 0;font-size:clamp(1.4rem,3.35vw,2.6rem)}p{line-height:1.5}
+.conversation{display:grid;gap:20px;padding:18px 0}.bubble{position:relative;justify-self:start;margin:0;padding:.7em .9em;border-radius:21px;font-weight:850;font-size:clamp(1.05rem,2.4vw,2.1rem);box-shadow:4px 6px 0 #183e3c22;background:#d9edff;transform:rotate(-4deg)}
+.bubble::after{content:"";position:absolute;bottom:-9px;left:17px;border:10px solid transparent;border-top-color:#d9edff;border-bottom:0}
+.bubble:nth-child(2){justify-self:end;background:var(--pink);transform:rotate(4deg)}.bubble:nth-child(2)::after{left:auto;right:18px;border-top-color:var(--pink)}.bubble:nth-child(3){background:var(--yellow);transform:rotate(-2deg)}.bubble:nth-child(3)::after{border-top-color:var(--yellow)}
+label{display:block;font-weight:800}input{display:block;width:min(100%,280px);padding:10px;margin-top:6px;border:1px solid #719387;border-radius:10px;background:white;color:#163d35}
+progress{width:100%;height:10px;accent-color:var(--green);margin:10px 0 14px}.top,.caption{font-weight:850}.prompt{background:#194b3f;color:#fffaf0;border-radius:16px;padding:13px 18px}.prompt p{color:var(--yellow);margin:0}.caption{margin:13px 0 6px}
+.slots{background:#eaf0e7;border-radius:13px;padding:8px;min-height:62px}.slot{min-width:44px;border-style:dashed}.slot.filled{border-style:solid;background:#bdf1df}.slot.target{outline:2px solid #bc3970}.tile,.slot{font-size:clamp(1rem,2vw,1.38rem)}.tile[aria-pressed=true]{opacity:.36;text-decoration:line-through}.tile[draggable=true]{cursor:grab}
+.feedback{padding:10px 14px;background:#ffeab4;border-radius:12px;margin-top:12px;line-height:1.5}.feedback.good{background:#c4f2df}.feedback strong{display:block;font-size:1.25em;color:#194b3f}
+.fly{position:fixed;z-index:5;pointer-events:none;max-width:calc(100vw - 24px);padding:12px 20px;border-radius:16px;background:#bdf1df;color:#154b3c;box-shadow:0 0 25px #449d87;font-weight:900;font-size:clamp(1.15rem,3vw,2.5rem)}
+.sheet{background:white;border-radius:16px;overflow:hidden}.sheet-head{background:#194b3f;color:white;padding:17px 22px}.sheet-head p{margin:4px 0}.sheet-head small{color:var(--yellow);font-weight:850}
+#review{list-style:none;margin:0;padding:5px 16px 16px}.report-row{display:grid;grid-template-columns:auto 1fr;gap:12px;border-bottom:1px solid #dae7df;padding:10px 3px}.report-number{align-self:start;background:#dceee4;border-radius:7px;padding:4px 8px}.report-english{display:block;color:#244f83;font-weight:850}.muted,.report-status{color:#445d55}.report-empty{padding:12px}
+.tv main{width:min(1800px,calc(100% - 28px))}.tv #prompt{font-size:clamp(28px,3.6vw,62px)}.tv .tile,.tv .slot{font-size:clamp(17px,2.2vw,37px)}.tv .top,.tv .caption,.tv .actions,.tv .feedback,.tv .report-row{font-size:clamp(16px,1.55vw,28px)}
+[hidden]{display:none!important}@media(max-width:740px){#cover{grid-template-columns:1fr}.conversation{gap:10px;padding:4px 10px}.tools button{font-size:.82rem}}
+.lesson-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}.lesson-grid article{background:#e5f1e6;padding:16px;border-radius:15px}.lesson-grid b[lang]{color:#244f83}.tv .lesson-grid{font-size:clamp(17px,1.5vw,26px)}.tile.punct{background:#ffe391;color:#493819}
+</style>
+</head>
+<body>
+<main>
+<header>KRU PAI CLASSROOM / วิชาภาษาอังกฤษ<div class="tools"><button id="tv" aria-pressed="false">📺 โหมดทีวี</button><button id="sound" aria-pressed="true">🔊 เปิดเสียง</button><button id="study">📖 สรุปหลัก</button><button id="vault">📚 ดูสรุป · 0 / 20</button></div></header>
+<section id="cover" class="card cover">
+<div class="cover-copy">
+<div class="subject">วิชาภาษาอังกฤษ · ชุดที่ 5</div>
+<h1>English <span>Conversation Club</span></h1>
+<h2>Present Perfect</h2>
+<p>อ่านภาษาไทย แล้วเรียงคำให้เป็นประโยคภาษาอังกฤษ<br>20 ข้อ · บอกเล่า ปฏิเสธ และคำถาม · สุ่มลำดับทุกครั้ง</p>
+<form id="startForm"><label for="player">ชื่อผู้เล่น (ไม่บังคับ)</label><input id="player" maxlength="60" autocomplete="off" placeholder="ใส่ชื่อสำหรับรายงาน"><div class="actions"><button class="primary" type="submit">เริ่มเล่น →</button></div></form>
+</div>
+<div class="conversation" lang="en" aria-label="ตัวอย่างประโยคบอกเล่า">
+<p class="bubble">I have finished my homework.</p>
+<p class="bubble">She has not eaten yet.</p>
+<p class="bubble">Have you ever seen snow?</p>
+</div>
+</section>
+<section id="lesson" class="card" hidden>
+<h2 id="lessonTitle" tabindex="-1">Present Perfect · have / has + V3</h2>
+<div class="lesson-grid">
+<article><h3>เรียงประโยคอย่างไร?</h3>
+<p>ใช้ <b>have</b> กับ I, you, we, they และประธานพหูพจน์ ใช้ <b>has</b> กับ he, she, it และประธานเอกพจน์ เช่น Mom</p>
+<p>บอกเล่า · ประธาน + have/has + V3<br><b lang="en">Mom has finished cooking.</b></p>
+<p>ปฏิเสธ · ประธาน + have/has + not + V3<br><b lang="en">Mom has not finished cooking yet.</b></p>
+<p>คำถาม · Have/Has + ประธาน + V3 ...?<br><b lang="en">Has Mom finished cooking yet?</b></p></article>
+<article><h3>ใช้เมื่อไร?</h3>
+<p><b>ประสบการณ์</b> · ใช้ <b lang="en">ever</b> ในคำถามว่า “เคยไหม” เช่น <b lang="en">Have you ever seen snow?</b></p>
+<p><b>ผลที่เกี่ยวกับตอนนี้</b> · <b lang="en">just</b> = เพิ่ง, <b lang="en">already</b> = แล้ว, <b lang="en">yet</b> = ยัง / หรือยัง</p>
+<p><b>เริ่มในอดีตและยังต่อเนื่อง</b> · <b lang="en">since 2020</b> บอกจุดเริ่มต้น และ <b lang="en">for three years</b> บอกระยะเวลา</p>
+<p><b>จำ V3</b> · see → seen, eat → eaten, write → written, finish → finished</p></article></div>
+<p>คำถาม Wh- วางคำถามไว้หน้า have/has และแตะ <b>?</b> ลงช่องท้ายประโยค</p>
+<button id="lessonBack" class="primary">← กลับ</button>
+</section>
+<section id="game" class="card" hidden>
+<div class="top"><span id="progressText"></span><span id="score"></span></div>
+<progress id="progress" max="20" value="0" aria-label="ความคืบหน้า"></progress>
+<div class="prompt"><p>เรียงเป็นประโยคภาษาอังกฤษ</p><h2 id="prompt" tabindex="-1"></h2></div>
+<p class="caption">ประโยคของฉัน</p><div id="slots" class="slots" aria-label="ช่องเรียงประโยค"></div>
+<p class="caption">คลังคำ <span class="muted">· มีคำเกิน</span></p><div id="bank" class="tiles"></div>
+<p class="muted hint">แตะคำเพื่อเติมช่องว่างจากซ้ายไปขวา หรือแตะเลือกช่องก่อน · แตะคำในช่องเพื่อเอาออก</p>
+<div class="actions"><button id="clear">ล้างคำตอบ</button><button id="check" class="primary">✓ ตรวจคำตอบ</button><button id="next" class="primary" hidden>ข้อต่อไป →</button></div>
+<div id="feedback" class="feedback" role="status" hidden></div>
+</section>
+<section id="summary" class="card" hidden>
+<div class="sheet">
+<div class="sheet-head"><small>KRU PAI CLASSROOM / วิชาภาษาอังกฤษ</small><h2 id="finish" tabindex="-1">คลังประโยคไทย–อังกฤษ</h2>
+<p id="reportMeta"></p><p id="finalScore"></p></div>
+<ol id="review"></ol>
+</div>
+<div class="actions"><button id="back">← กลับ</button><button class="primary" id="share" hidden>แชร์รายงานทาง LINE</button><button id="download" hidden>บันทึกรูป PNG</button><button id="restart" hidden>↻ เล่นใหม่</button></div>
+<p id="reportNote" class="muted" role="status"></p>
+</section>
+</main>
+<script>
+const questionBank = "A|ฉันเคยเห็นหิมะมาก่อน|I/have/seen/snow/before|has/saw/see|see → saw → seen\nA|แม่ทำอาหารเย็นเสร็จแล้ว|Mom/has/finished/cooking dinner|have/finishes/finish|Mom ใช้ has ตามด้วย finished\nA|พวกเราอาศัยอยู่ที่นี่มาสามปีแล้ว|We/have/lived/here/for three years|has/live/since three years|ใช้ for กับระยะเวลา\nA|เบนทำกุญแจหาย|Ben/has/lost/his keys|have/lose/loses|lose → lost → lost และใช้ has กับ Ben\nA|พ่อเพิ่งกลับถึงบ้าน|Dad/has/just/come/home|have/came/comes|come → came → come วาง just ก่อน V3\nA|ฉันรู้จักแอนมาตั้งแต่ปี 2020|I/have/known/Ann/since 2020|has/knew/for 2020|ใช้ since กับจุดเริ่มต้น\nA|เมย์อ่านหนังสือเล่มนี้สองครั้งแล้ว|May/has/read/this book/twice|have/reads/reading|read เป็น V3 ในประโยคนี้\nN|ฉันยังไม่ได้ทำการบ้าน|I/have/not/done/my homework/yet|has/did/do|do → did → done ใช้ yet ท้ายประโยคได้\nN|ลิลลี่ยังไม่ได้เขียนอีเมล|Lily/has/not/written/the email/yet|have/wrote/write|write → wrote → written\nN|พวกเรายังไม่ได้ซื้อตั๋ว|We/have/not/bought/the tickets/yet|has/buy/buys|buy → bought → bought\nN|ทอมยังไม่ได้กินอาหารเช้า|Tom/has/not/eaten/breakfast/yet|have/ate/eats|eat → ate → eaten\nN|พวกเขายังไม่ได้เปิดประตู|They/have/not/opened/the door/yet|has/open/opens|They ใช้ have not + opened\nN|น้องสาวของฉันยังไม่ได้พบครูคนใหม่|My sister/has/not/met/the new teacher/yet|have/meet/meets|meet → met → met\nQ|เธอเคยกินซูชิไหม|Have/you/ever/eaten/sushi|Has/ate/eat|Have + you + ever + eaten\nQ|แอนส่งข้อความแล้วหรือยัง|Has/Ann/sent/the message/yet|Have/send/sends|Has + Ann + sent วาง yet ท้ายประโยคได้\nQ|พวกเขาเคยไปเชียงใหม่ไหม|Have/they/ever/been/to/Chiang Mai|Has/went/are|ใช้ have been to เพื่อถามประสบการณ์\nQ|พ่อกลับถึงบ้านแล้วหรือยัง|Has/Dad/come/home/yet|Have/came/comes|come เป็น V3 ของ come\nQ|เธอทำสมุดหายหรือเปล่า|Have/you/lost/your notebook|Has/lose/loses|Have + you + lost\nQ|เบนอ่านหนังสือไปแล้วกี่เล่ม|How many books/has/Ben/read|have/reads/reading|How many books + has + Ben + read\nQ|เธออาศัยอยู่ที่นี่มานานเท่าไรแล้ว|How long/have/you/lived/here|has/live/lives|How long + have + you + lived".split('\n').map(row => {
+  const [type, thai, answer, distractors, tip] = row.split('|');
+  const words = answer.split('/');
+  const extras = distractors.split('/');
+  if (type === 'Q') { words.push('?'); extras.push('.'); }
+  return {type,thai,words,extras,explanation:tip};
+});
+let questions = questionBank;
+const byId = id => document.getElementById(id);
+const results = [];
+let index, bank, slots, target, attempts, locked;
+let currentView='cover', returnView='cover', complete=false;
+let audio, soundOn=true, imageFile, exportVersion=0;
+
+function playSound(collected=false) {
+  if (!soundOn) return;
+  const Audio = window.AudioContext || window.webkitAudioContext;
+  if (!Audio) return;
+  try {
+    audio ||= new Audio();
+    if (audio.state === 'suspended') audio.resume().catch(() => {});
+    const now = audio.currentTime;
+    const notes = collected ? [523.25, 659.25, 783.99, 1046.5] : [440];
+    notes.forEach((frequency,i) => {
+      const oscillator=audio.createOscillator(), gain=audio.createGain();
+      const start=now+i*.085, duration=collected?.27:.065;
+      oscillator.frequency.value=frequency;
+      gain.gain.setValueAtTime(.001,start);
+      gain.gain.exponentialRampToValueAtTime(collected?.095:.045,start+.014);
+      gain.gain.exponentialRampToValueAtTime(.001,start+duration);
+      oscillator.connect(gain).connect(audio.destination);
+      oscillator.start(start);
+      oscillator.stop(start+duration+.01);
+    });
+  } catch {}
+}
+document.addEventListener('click',event=>{
+  if(event.target.closest('button:not(:disabled)') && !event.target.closest('#sound')) playSound();
+},true);
+byId('sound').onclick=()=>{
+  soundOn=!soundOn;
+  byId('sound').setAttribute('aria-pressed',String(soundOn));
+  byId('sound').textContent=soundOn?'🔊 เปิดเสียง':'🔇 ปิดเสียง';
+  if(soundOn)playSound();
+};
+byId('tv').onclick=()=>{
+  const enabled=document.body.classList.toggle('tv');
+  byId('tv').setAttribute('aria-pressed',String(enabled));
+  byId('tv').textContent=enabled?'📺 ทีวี · ตัวใหญ่':'📺 โหมดทีวี';
+};
+
+function collect(english) {
+  playSound(true);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !Element.prototype.animate) return;
+  const card=document.createElement('div');
+  card.className='fly';
+  card.textContent='✦ '+english;
+  card.setAttribute('aria-hidden','true');
+  document.body.append(card);
+  const from=byId('slots').getBoundingClientRect(), to=byId('vault').getBoundingClientRect();
+  const x=Math.max(12,from.left+(from.width-card.offsetWidth)/2), y=from.top;
+  card.style.left=x+'px';
+  card.style.top=y+'px';
+  const dx=to.left+to.width/2-x-card.offsetWidth/2,dy=to.top-y;
+  const flight=card.animate([
+    {opacity:0,transform:'scale(.65)'},
+    {opacity:1,transform:'translateY(-18px) scale(1.09)',offset:.28},
+    {opacity:1,transform:'translateY(-18px)',offset:.62},
+    {opacity:0,transform:'translate('+dx+'px,'+dy+'px) scale(.2)'}
+  ],{duration:860,easing:'ease-in-out'});
+  flight.onfinish=flight.oncancel=()=>card.remove();
+}
+function shuffle(words) {
+  const mixed = [...words];
+  for (let i = mixed.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [mixed[i], mixed[j]] = [mixed[j], mixed[i]];
+  }
+  return mixed;
+}
+function screen(id) {
+  currentView=id;
+  for (const view of ['cover', 'game', 'summary', 'lesson']) byId(view).hidden = view !== id;
+}
+function loadQuestion() {
+  const question = questions[index];
+  bank = shuffle([...question.words, ...question.extras]);
+  slots = Array(question.words.length).fill(null);
+  target = null;
+  attempts = 0;
+  locked = false;
+  byId('prompt').textContent = question.thai;
+  byId('progressText').textContent = 'ข้อ ' + (index + 1) + ' / ' + questions.length;
+  byId('feedback').hidden = true;
+  byId('next').hidden = true;
+  byId('clear').hidden = byId('check').hidden = false;
+  render();
+  byId('prompt').focus();
+}
+function render() {
+  byId('progress').value = results.length;
+  byId('vault').textContent='📚 ดูสรุป · '+results.filter(r=>r.correct).length+' / '+questions.length;
+  byId('score').textContent = '⭐ ' + results.filter(result => result.first).length + ' คะแนน';
+  byId('clear').disabled = slots.every(id => id === null);
+  byId('check').disabled = slots.includes(null);
+  byId('slots').replaceChildren(...slots.map((id, position) => {
+    const button = document.createElement('button');
+    button.className = 'slot' + (id === null ? '' : ' filled') + (position === target ? ' target' : '');
+    const punctuation = questions[index].type === 'Q' && position === slots.length-1;
+    button.textContent = id === null ? (punctuation?'ท้ายประโยค':position+1) : bank[id];
+    button.setAttribute('aria-label', 'ช่อง ' + (position + 1) + (id === null ? ' ว่าง' : ' ' + bank[id] + ' แตะเพื่อเอาออก'));
+    button.disabled = locked;
+    button.onclick = () => {
+      slots[position] = null;
+      target = position;
+      render();
+      byId('slots').children[position].focus();
+    };
+    button.ondragover = event => { if (!locked) event.preventDefault(); };
+    button.ondrop = event => {
+      event.preventDefault();
+      const value = event.dataTransfer.getData('application/x-kpc-tile');
+      if (value !== '') place(Number(value), position);
+    };
+    return button;
+  }));
+  byId('bank').replaceChildren(...bank.map((word, id) => {
+    const button = document.createElement('button');
+    const used = slots.includes(id);
+    button.className = 'tile' + (!used && !locked ? ' draggable' : '');
+    button.textContent = word;
+    if (word==='?' || word==='.') button.classList.add('punct');
+    button.setAttribute('aria-pressed', String(used));
+    button.disabled = locked;
+    button.draggable = !used && !locked;
+    button.ondragstart = event => {
+      event.dataTransfer.setData('application/x-kpc-tile', String(id));
+      event.dataTransfer.effectAllowed = 'move';
+    };
+    button.onclick = () => {
+      if (place(id, target ?? ((word==='?'||word==='.')&&slots.at(-1)===null ? slots.length-1 : slots.indexOf(null)))) {
+        (slots.includes(null) ? byId('bank').children[id] : byId('check')).focus();
+      }
+    };
+    return button;
+  }));
+}
+function place(id, position) {
+  if (locked || !Number.isInteger(id) || !bank[id] || slots.includes(id) || position < 0) return false;
+  slots[position] = id;
+  target = null;
+  render();
+  return true;
+}
+function formatSentence(words) {
+  const raw=words.join(' ').replace(/ ([?.])$/, '$1');
+  return raw.charAt(0).toUpperCase()+raw.slice(1)+(/[?.]$/.test(raw)?'':'.');
+}
+function isCorrect(chosen, question) {
+  const equal = expected => expected.every((word,i) => word === chosen[i]);
+  if (equal(question.words)) return true;
+  const alternative=question.words.slice();
+  const yet=alternative.indexOf('yet');
+  if (yet===-1) return false;
+  alternative.splice(yet,1);
+  const verb=question.type==='Q'?2:3;
+  alternative.splice(verb,0,'yet');
+  return equal(alternative);
+}
+byId('startForm').onsubmit = event => {
+  event.preventDefault();
+  questions = shuffle(questionBank);
+  index = 0;
+  results.length = 0;
+  complete=false;
+  screen('game');
+  loadQuestion();
+};
+byId('clear').onclick = () => {
+  slots.fill(null);
+  target = null;
+  render();
+  byId('bank').firstElementChild.focus();
+};
+byId('check').onclick = () => {
+  if (locked || slots.includes(null)) return;
+  const question = questions[index];
+  const correct = isCorrect(slots.map(id => bank[id]), question);
+  attempts++;
+  const feedback = byId('feedback');
+  feedback.hidden = false;
+  feedback.classList.toggle('good', correct);
+  if (!correct && attempts === 1) {
+    feedback.textContent = '💡 ลองอีกครั้ง ดูคำบอกเวลา เลือกรูปกริยา แล้วเช็กความหมายและลำดับคำ';
+    return;
+  }
+  locked = true;
+  const english=formatSentence(correct?slots.map(id=>bank[id]):question.words);
+  results.push({question, number:index+1, correct, english, first:correct&&attempts===1});
+  feedback.textContent = correct ? '🎉 เรียงถูกแล้ว! ' : '🌱 มาดูตัวอย่างประโยคกัน ';
+  feedback.append(question.explanation);
+  const answer = document.createElement('strong');
+  answer.className = 'answer';
+  answer.textContent = english;
+  feedback.append(answer);
+  byId('clear').hidden = byId('check').hidden = true;
+  byId('next').textContent = index === questions.length - 1 ? 'ดูสรุปผล →' : 'ข้อต่อไป →';
+  byId('next').hidden = false;
+  render();
+  if(correct)collect(english);
+  byId('next').focus({preventScroll:true});
+};
+byId('next').onclick = () => {
+  index++;
+  if (index < questions.length) {
+    loadQuestion();
+    return;
+  }
+  complete=true;
+  openReport();
+};
+
+function rowStatus(row) {
+  return row.first?'ตอบถูกครั้งแรก':row.correct?'แก้แล้วตอบถูก':'เฉลยสำหรับทบทวน';
+}
+
+function openReport() {
+  if(currentView!=='summary')returnView=currentView;
+  screen('summary');
+  const sample=returnView==='cover';
+  const rows=sample?questions.slice(0,3).map((question,i)=>({
+    question,number:i+1,english:formatSentence(question.words),first:i===0,correct:i<2
+  })):results.slice();
+  const collected=rows.filter(row=>row.correct).length;
+  const points=rows.filter(row=>row.first).length;
+  const date=new Intl.DateTimeFormat('th-TH',{dateStyle:'long',timeStyle:'short',timeZone:'Asia/Bangkok'}).format(new Date());
+  const meta=sample?'ตัวอย่างรายงาน · นักเรียนตัวอย่าง':(byId('player').value.trim()||'ผู้เล่น')+' · '+date;
+  const stats='ทำแล้ว '+rows.length+'/20  •  สะสม '+collected+' ประโยค  •  ถูกครั้งแรก '+points+'/'+rows.length;
+  byId('reportMeta').textContent=meta;
+  byId('finalScore').textContent=rows.length?stats:'ทำแล้ว 0/20 · ยังไม่มีประโยคในคลัง';
+  byId('review').replaceChildren(...rows.map(row=>{
+    const item=document.createElement('li');
+    const number=document.createElement('strong');
+    const thai=document.createElement('div');
+    const en=document.createElement('strong');
+    const note=document.createElement('small');
+    item.className='report-row';
+    number.className='report-number';
+    number.textContent=String(row.number).padStart(2,'0');
+    thai.textContent=row.question.thai;
+    en.className='report-english';
+    en.textContent=row.english;
+    note.className='report-status';
+    note.textContent=rowStatus(row);
+    const body=document.createElement('div');
+    body.append(thai,en,note);
+    item.append(number,body);
+    return item;
+  }));
+  if(!rows.length){
+    const empty=document.createElement('li');
+    empty.className='report-empty';
+    empty.textContent='ตรวจคำตอบข้อแรกแล้วกลับมาดูรายงานได้เลย';
+    byId('review').append(empty);
+  }
+  byId('back').textContent=sample?'← กลับหน้าปก':'← กลับไปที่เกม';
+  byId('back').hidden=complete&&!sample;
+  byId('restart').hidden=sample||!complete;
+  byId('share').hidden=byId('download').hidden=true;
+  imageFile=null;
+  const version=++exportVersion;
+  byId('reportNote').textContent=sample?'ตัวอย่างนี้เปิดดูได้จากหน้าปก':rows.length?'กำลังเตรียมรูป…':'';
+  byId('finish').focus();
+  if(!sample&&rows.length)makeImage(rows,meta,stats,version);
+}
+
+function makeImage(rows,meta,stats,version) {
+  const canvas=document.createElement('canvas');
+  canvas.width=1080;
+  canvas.height=250+rows.length*151+48;
+  const ctx=canvas.getContext('2d');
+  if(!ctx){
+    byId('reportNote').textContent='สร้างรูปรายงานบนเบราว์เซอร์นี้ไม่ได้';
+    return;
+  }
+  function text(color,font,value,x,y,width){
+    ctx.fillStyle=color;
+    ctx.font=font;
+    ctx.fillText(value,x,y,width);
+  }
+  ctx.fillStyle='#e9efe5';
+  ctx.fillRect(0,0,1080,canvas.height);
+  const gradient=ctx.createLinearGradient(0,0,1080,230);
+  gradient.addColorStop(0,'#194b3f');
+  gradient.addColorStop(1,'#286657');
+  ctx.fillStyle=gradient;
+  ctx.fillRect(0,0,1080,230);
+  text('#ffe391','bold 22px sans-serif','KRU PAI CLASSROOM / ENGLISH CONVERSATION CLUB · SET 05',46,47,988);
+  text('#ffffff','bold 45px sans-serif','คลังประโยคไทย–อังกฤษ',46,105,988);
+  text('#ffffff','27px sans-serif',meta,46,151,988);
+  text('#ffe391','bold 27px sans-serif',stats,46,196,988);
+  rows.forEach((row,i)=>{
+    const y=249+i*151;
+    ctx.fillStyle='#ffffff';
+    ctx.fillRect(28,y,1024,141);
+    ctx.fillStyle=row.correct?'#c8fae8':'#ffebc4';
+    ctx.fillRect(48,y+20,64,50);
+    text('#194b3f','bold 29px sans-serif',String(row.number).padStart(2,'0'),61,y+54,47);
+    text('#163d35','30px sans-serif',row.question.thai,132,y+47,884);
+    text('#244f83','bold 34px sans-serif',row.english,132,y+90,884);
+    text('#445d55','22px sans-serif',rowStatus(row),132,y+124,884);
+  });
+  canvas.toBlob(blob=>{
+    if(version!==exportVersion||currentView!=='summary')return;
+    if(!blob){
+      byId('reportNote').textContent='สร้างรูปไม่สำเร็จ ลองเปิดหน้าสรุปอีกครั้ง';
+      return;
+    }
+    imageFile=new File([blob],'KPC_English_Conversation_Club_05_Report.png',{type:'image/png'});
+    byId('share').hidden=byId('download').hidden=false;
+    byId('reportNote').textContent='เลือก LINE จากเมนูแชร์ หรือบันทึกรูปแล้วแนบในแชตครู';
+  },'image/png');
+}
+let lessonFrom='cover';
+byId('study').onclick=()=>{
+  if(currentView==='lesson')return;
+  lessonFrom=currentView;
+  screen('lesson');
+  byId('lessonTitle').focus();
+};
+byId('lessonBack').onclick=()=>{
+  screen(lessonFrom);
+  byId('study').focus();
+};
+byId('vault').onclick=()=>{
+  if(currentView==='lesson')screen(lessonFrom);
+  if(currentView!=='summary')openReport();
+};
+byId('back').onclick=()=>{
+  screen(returnView);
+  byId('vault').focus();
+};
+byId('restart').onclick=()=>{
+  complete=false;
+  results.length=0;
+  exportVersion++;
+  imageFile=null;
+  byId('vault').textContent='📚 ดูสรุป · 0 / 20';
+  screen('cover');
+  byId('player').focus();
+};
+byId('share').onclick=async()=>{
+  if(!imageFile)return;
+  const payload={files:[imageFile]};
+  try{
+    if(navigator.share&&navigator.canShare?.(payload)){
+      await navigator.share(payload);
+      return;
+    }
+  }catch(error){
+    if(error.name==='AbortError')return;
+  }
+  byId('reportNote').textContent='เมนูแชร์ไฟล์ไม่พร้อมบนอุปกรณ์นี้ กดบันทึกรูป PNG แล้วแนบรูปใน LINE ได้ค่ะ';
+};
+byId('download').onclick=()=>{
+  if(!imageFile)return;
+  const url=URL.createObjectURL(imageFile);
+  const link=document.createElement('a');
+  link.href=url;
+  link.download=imageFile.name;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
+};
+</script>
+</body>
+</html>
