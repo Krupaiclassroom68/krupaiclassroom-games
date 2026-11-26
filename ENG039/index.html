@@ -18,6 +18,33 @@
 .study-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}.study-tools label{margin:0}.study-tools select{font:inherit;font-weight:800;border:1px solid #b26892;border-radius:10px;padding:10px;background:white;color:#56314b}
 .study-surface{position:relative}#ink{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}#ink.writing{pointer-events:auto;touch-action:none;cursor:crosshair;-webkit-user-select:none;user-select:none}#pen[aria-pressed=true]{background:#713458;color:white;border-color:#713458}
 .dictionary-panel .lookup-button{background:#285782;border-color:#285782;color:white}#quotaStatus{background:#d7e7fb;color:#234a77;padding:.4em .65em;border-radius:9px}
+
+.grid{grid-template-columns:minmax(0,2.55fr) minmax(0,1fr);gap:14px;align-items:start}
+.grid>section{min-width:0}.grid>section:first-child{padding:clamp(16px,2.7vw,32px)}
+#position{color:#784467;font-weight:900}
+#prompt{background:#fff1cf;color:#4b2840;border:1px solid #e8c983;border-left:6px solid #d9a239;padding:clamp(15px,2.2vw,24px);font-size:clamp(24px,3.1vw,44px);line-height:1.4;margin:10px 0 16px}
+.writing-field{padding:clamp(12px,1.65vw,20px);background:#d8ecff;border:2px solid #6c9fd5;border-radius:15px}
+.writing-field label{color:#164b83;font-size:clamp(18px,1.85vw,26px);font-weight:900}
+#answer{width:100%;min-height:clamp(180px,26vh,280px);font-size:clamp(22px,2.5vw,36px);color:#15385d;background-color:#f6fbff;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(1.65em - 1px),#c3dcf6 calc(1.65em - 1px),#c3dcf6 1.65em);border:1.5px solid #6799cf;padding:12px;line-height:1.65}
+#answer:focus-visible{outline-color:#245c96}#answer::placeholder{color:#5c7895}
+.dictionary-panel{padding:clamp(10px,1.25vw,17px);background:#fff8fc;border-color:#dfbbd0;color:#56314b;font-size:clamp(14px,1.25vw,17px)}
+.dictionary-panel h2{font-size:clamp(17px,1.6vw,22px);line-height:1.35;margin-bottom:12px}
+.dictionary-panel label{font-size:.95em}.dictionary-panel .hint{font-size:.85em;line-height:1.4}
+#query{font-size:clamp(15px,1.15vw,18px);min-height:42px;padding:8px 12px 8px 36px;border-color:#b988a9;line-height:1.3}
+.search-icon{left:12px;width:13px;height:13px;border-color:#885275}.search-icon::after{background:#885275}
+.dictionary-panel .actions{gap:6px;margin-top:7px}.dictionary-panel button{font-size:.88em;min-height:37px;padding:6px 9px}
+.dictionary-panel .lookup-button{background:#885275;border-color:#885275}
+#quotaStatus{font-size:.82em;padding:5px 7px;color:#70405e;background:#f4e0ed}
+.dictionary-panel #results .word{background:#fff;border-color:#e5cddd;padding:10px}
+.dictionary-panel .word strong{font-size:clamp(24px,2.7vw,38px);overflow-wrap:anywhere}
+.tv .grid{grid-template-columns:minmax(0,2.5fr) minmax(0,1fr)}
+.tv #prompt{font-size:clamp(28px,3.5vw,58px)}
+.tv #answer{font-size:clamp(23px,2.75vw,46px)}
+.tv .dictionary-panel{font-size:clamp(16px,1.3vw,23px)}
+.tv .dictionary-panel h2{font-size:clamp(19px,1.65vw,29px)}
+.tv #query{font-size:clamp(15px,1.3vw,23px)}
+.tv .dictionary-panel .word strong{font-size:clamp(26px,2.65vw,46px)}
+@media(max-width:760px){.grid,.tv .grid{grid-template-columns:minmax(0,1fr)}#answer{min-height:175px}.dictionary-panel{padding:13px}}
 </style></head><body><main><header><span class="brand">KRU PAI CLASSROOM / วิชาภาษาอังกฤษ</span><div class="tools"><button id="reportButton">รายงานการเขียน</button><button id="tv" aria-pressed="false">📺 โหมดทีวี</button><button id="pdf">↓ ใบงาน PDF</button></div></header>
 <section class="hero"><h1>Word Studio</h1><h2>ฝึกเขียนทีละข้อ</h2><label for="studentName">ชื่อผู้เรียน (สำหรับรายงาน)</label><input id="studentName" maxlength="80" placeholder="ชื่อหรือชื่อเล่น"><p>อ่านโจทย์ ค้นคำที่ต้องการ แล้วเขียนประโยคภาษาอังกฤษด้วยตัวเอง</p></section>
 <div class="study-tools"><label for="setPicker">เลือกชุดฝึก</label><select id="setPicker"><option value="0">ชุดที่ 1 · 10 ข้อ</option><option value="1">ชุดที่ 2 · 10 ข้อ</option></select>
