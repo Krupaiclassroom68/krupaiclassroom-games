@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Question Flip · ประโยคปฏิเสธและประโยคคำถาม · Kru Pai Classroom</title>
+<meta name="kru-pai-game-id" content="KPC-QUESTION-FLIP">
+<style>
+:root{font-family:system-ui,sans-serif;background:#e9efe5;color:#163d35;--green:#154b3c;--cream:#fffaf0;--yellow:#ffe391;--pink:#f7cbd8}*{box-sizing:border-box}body{margin:0}main{width:min(1280px,calc(100% - 24px));margin:auto;padding:16px 0 36px}header,.tools,.actions,.tiles,.bar{display:flex;flex-wrap:wrap;align-items:center;gap:9px}header,.bar{justify-content:space-between}header{margin-bottom:14px}.brand{font-weight:900;letter-spacing:.08em;font-size:.84rem}section{background:var(--cream);border-radius:24px;padding:clamp(16px,3.4vw,46px);box-shadow:0 12px 35px #153b3023}button,input{font:inherit}button{min-height:44px;cursor:pointer;border:1px solid #447268;border-radius:12px;padding:.55em .85em;font-weight:800;background:#fffdf7;color:#164134;touch-action:manipulation}button:disabled{opacity:.5;cursor:default}button:focus-visible,input:focus-visible{outline:3px solid #bc3970;outline-offset:3px}.primary{background:var(--green);border-color:var(--green);color:white}.actions{margin-top:14px}
+#cover{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(16px,5vw,65px);align-items:center;min-height:68vh;background:linear-gradient(125deg,#fffaf0 47%,#e7efde)}.subject{display:inline-block;background:var(--yellow);border-radius:9px;padding:8px 13px;font-weight:900}h1{font-size:clamp(3.4rem,8.4vw,7.8rem);line-height:.93;letter-spacing:-.075em;margin:.23em 0}h1 span{display:block;color:#285e8e}h2{margin:.26em 0;font-size:clamp(1.4rem,3.35vw,2.6rem)}p{line-height:1.5}.conversation{display:grid;gap:20px;padding:18px 0}.bubble{position:relative;margin:0;padding:.7em .9em;border-radius:21px;font-weight:850;font-size:clamp(1.05rem,2.4vw,2.1rem);box-shadow:4px 6px 0 #183e3c22;background:#d9edff;transform:rotate(-4deg)}.bubble::after{content:"";position:absolute;bottom:-9px;left:17px;border:10px solid transparent;border-top-color:#d9edff;border-bottom:0}.bubble:nth-child(2){justify-self:end;background:var(--pink);transform:rotate(4deg)}.bubble:nth-child(2)::after{left:auto;right:18px;border-top-color:var(--pink)}.bubble:nth-child(3){justify-self:start;background:var(--yellow);transform:rotate(-2deg)}.bubble:nth-child(3)::after{border-top-color:var(--yellow)}label{display:block;font-weight:800}input{display:block;width:min(100%,280px);padding:10px;margin-top:6px;border:1px solid #719387;border-radius:10px;background:white;color:#163d35}
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:15px 0}.rule{background:#e8f2e3;border-radius:14px;padding:14px}.rule h3{margin:0 0 8px}.rule p{margin:6px 0}.example{font-weight:800;color:#244f83}
+progress{width:100%;height:10px;accent-color:var(--green);margin:10px 0 14px}.prompt{background:#194b3f;color:#fffaf0;border-radius:16px;padding:13px 18px}.prompt .brand{color:var(--yellow)}.caption{font-weight:850;margin:13px 0 6px}.slots{background:#eaf0e7;border-radius:13px;padding:8px;min-height:62px}.slot{min-width:44px;border-style:dashed}.slot.full{border-style:solid;background:#bdf1df}.slot.target{outline:2px solid #bc3970}.tile,.slot{font-size:clamp(1rem,2vw,1.38rem)}.punct{background:var(--yellow);color:#493819}.tile[aria-pressed=true]{opacity:.36;text-decoration:line-through}.feedback{padding:10px 14px;background:#ffeab4;border-radius:12px;margin-top:12px}.feedback.good{background:#c4f2df}.feedback strong{display:block;font-size:1.25em}.flight{position:fixed;z-index:5;pointer-events:none;max-width:calc(100vw - 24px);padding:12px 20px;border-radius:16px;background:#bdf1df;color:#154b3c;box-shadow:0 0 25px #449d87;font-weight:900;font-size:clamp(1.15rem,3vw,2.5rem)}
+.sheet{background:white;border-radius:16px;overflow:hidden}.sheetHead{background:#194b3f;color:white;padding:17px 22px}.sheetHead p{margin:4px 0}.sheetHead .brand{color:var(--yellow)}ol{list-style:none;margin:0;padding:5px 16px 16px}.row{display:grid;grid-template-columns:auto 1fr;gap:12px;border-bottom:1px solid #dae7df;padding:10px 3px}.num{align-self:start;background:#dceee4;border-radius:7px;padding:4px 8px}.en{display:block;color:#244f83;font-weight:850}.hint,.status{color:#445d55}.tv main{width:min(1800px,calc(100% - 28px))}.tv #thai{font-size:clamp(28px,3.6vw,62px)}.tv .tile,.tv .slot{font-size:clamp(17px,2.2vw,37px)}.tv .bar,.tv .caption,.tv .actions,.tv .feedback,.tv .rules,.tv .row{font-size:clamp(16px,1.55vw,28px)}
+[hidden]{display:none!important}@media(max-width:660px){#cover,.rules{grid-template-columns:1fr}.conversation{gap:10px;padding:4px 10px}.tools button{font-size:.82rem}}
+</style>
+</head>
+<body data-game-id="KPC-QUESTION-FLIP">
+<main>
+<header><div class="brand">KRU PAI CLASSROOM / วิชาภาษาอังกฤษ</div><div class="tools"><button id="tv" aria-pressed="false">📺 โหมดทีวี</button><button id="sound" aria-pressed="true">🔊 เปิดเสียง</button><button id="read">📖 สรุปหลัก</button><button id="vault">📚 ดูสรุป · 0/20</button></div></header>
+<section id="cover">
+<div><div class="subject">วิชาภาษาอังกฤษ · ชุดที่ 2</div><h1>Question Flip</h1><h2>ประโยคปฏิเสธและประโยคคำถาม</h2><p>ปฏิเสธ 10 ข้อ · คำถาม 10 ข้อ · สุ่มลำดับทุกครั้ง</p>
+<form id="start"><label for="player">ชื่อผู้เล่น</label><input id="player" maxlength="45" placeholder="ใส่ชื่อสำหรับรายงาน"><div class="actions"><button class="primary">เริ่มเล่น →</button><button id="study" type="button">อ่านสรุปก่อนเล่น</button></div></form></div>
+<div class="conversation" lang="en" aria-label="ตัวอย่างบทสนทนา"><p class="bubble">Do you like coffee?</p><p class="bubble">No, I do not.</p><p class="bubble">What do you drink?</p></div>
+</section>
+<section id="lesson" hidden>
+<h2 tabindex="-1" id="lessonTitle">สรุปหลักก่อนเรียงประโยค</h2>
+<p>ดูคำบอกเวลา เลือกกริยาช่วย แล้วใช้กริยาหลักรูปเดิม (V1) ประโยคคำถามให้แตะ <b>?</b> ลงช่องท้ายด้วยค่ะ</p>
+<div class="rules">
+<article class="rule"><h3>Present Simple · กิจวัตร</h3><p>ปฏิเสธ — ประธาน + do/does not + V1</p><p>คำถาม — Do/Does + ประธาน + V1 ...?</p><p>ใช้ does กับ he, she, it และประธานเอกพจน์ เช่น Mom ใช้ do กับ I, you, we, they และประธานพหูพจน์</p><p class="example">Mom does not drink coffee.<br>Does Mom drink coffee?</p></article>
+<article class="rule"><h3>Past Simple · อดีต</h3><p>ปฏิเสธ — ประธาน + did not + V1</p><p>คำถาม — Did + ประธาน + V1 ...?</p><p class="example">They did not go to school.<br>Did they go to school?</p></article>
+<article class="rule"><h3>Future Simple · อนาคต</h3><p>ปฏิเสธ — ประธาน + will not + V1</p><p>คำถาม — Will + ประธาน + V1 ...?</p><p class="example">She will not come tomorrow.<br>Will she come tomorrow?</p></article>
+<article class="rule"><h3>คำถาม Wh-</h3><p>What / Where / When + กริยาช่วย + ประธาน + V1 ...?</p><p class="example">Where did he go yesterday?</p><p>ชุดนี้ใช้รูปเต็ม เช่น does not, did not และ will not</p></article>
+</div><button class="primary" id="lessonBack">← กลับ</button>
+</section>
+<section id="game" hidden>
+<div class="bar"><strong id="step"></strong><strong id="points"></strong></div><progress id="progress" max="20" value="0" aria-label="ความคืบหน้า"></progress>
+<div class="prompt"><div id="type" class="brand"></div><h2 id="thai" tabindex="-1"></h2></div>
+<p class="caption">ประโยคของฉัน</p><div id="slots" class="tiles slots"></div>
+<p class="caption">คลังคำ · มีคำเกิน</p><div id="bank" class="tiles"></div>
+<p class="hint" id="hint"></p>
+<div class="feedback" id="feedback" role="status" hidden></div>
+<div class="actions"><button id="clear">ล้างคำตอบ</button><button id="check" class="primary">ตรวจคำตอบ</button><button id="next" class="primary" hidden>ข้อถัดไป →</button></div>
+</section>
+<section id="report" hidden>
+<div class="sheet"><div class="sheetHead"><div class="brand">KRU PAI CLASSROOM / วิชาภาษาอังกฤษ</div><h2 id="reportTitle" tabindex="-1">คลังประโยคไทย–อังกฤษ</h2><p id="meta"></p><p id="stats"></p></div><ol id="rows"></ol></div>
+<div class="actions"><button id="reportBack">← กลับ</button><button id="share" class="primary" hidden>แชร์รายงานทาง LINE</button><button id="save" hidden>บันทึกรูป PNG</button><button id="restart" hidden>เล่นใหม่</button></div><p id="note" class="hint" role="status"></p>
+</section>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const negative=[
+['แม่ไม่ดื่มกาแฟทุกเช้า','Mom|does|not|drink|coffee|every morning','do|did|drinks','Mom ใช้ does not ตามด้วย drink'],
+['พวกเราไม่เล่นฟุตบอลในวันจันทร์','We|do|not|play|football|on Mondays','does|plays|played','We ใช้ do not ตามด้วย play'],
+['ทอมไม่ได้ซื้อกระเป๋าเมื่อวาน','Tom|did|not|buy|a|bag|yesterday','does|bought|buys','อดีตใช้ did not ตามด้วย buy'],
+['ฉันจะไม่ดูทีวีคืนนี้','I|will|not|watch|TV|tonight','did|watches|watched','อนาคตใช้ will not ตามด้วย watch'],
+['น้องสาวของฉันไม่ชอบนม','My sister|does|not|like|milk','do|likes|liked','My sister ใช้ does not ตามด้วย like'],
+['พวกเขาไม่ได้ไปสวนสาธารณะเมื่อวาน','They|did|not|go|to|the|park|yesterday','do|went|goes','อดีตใช้ did not ตามด้วย go'],
+['เบนจะไม่ทำเค้กพรุ่งนี้','Ben|will|not|make|a|cake|tomorrow','does|makes|made','อนาคตใช้ will not ตามด้วย make'],
+['ฉันไม่กินเนื้อตอนเช้า','I|do|not|eat|meat|in the morning','does|eats|ate','I ใช้ do not ตามด้วย eat'],
+['ลิลลี่ไม่ได้เขียนจดหมายเมื่อคืน','Lily|did|not|write|a|letter|last night','does|wrote|writes','อดีตใช้ did not ตามด้วย write'],
+['พวกเราจะไม่ไปชายหาดวันเสาร์หน้า','We|will|not|go|to|the|beach|next Saturday','did|went|goes','อนาคตใช้ will not ตามด้วย go']
+];
+const question=[
+['แม่ทำอาหารทุกเช้าหรือเปล่า','Does|Mom|cook|every morning','Do|cooks|cooked','ขึ้นต้นด้วย Does แล้วใช้ cook'],
+['พวกเขาเดินไปโรงเรียนทุกวันไหม','Do|they|walk|to|school|every day','Does|walks|walked','ขึ้นต้นด้วย Do เมื่อประธานเป็น they'],
+['เมย์เห็นแมวเมื่อวานหรือเปล่า','Did|May|see|a|cat|yesterday','Does|saw|sees','ขึ้นต้นด้วย Did แล้วใช้ see'],
+['ทอมจะไปหาคุณยายพรุ่งนี้ไหม','Will|Tom|visit|Grandma|tomorrow','Did|visits|visited','ขึ้นต้นด้วย Will แล้วใช้ visit'],
+['พ่อดื่มอะไรทุกเช้า','What|does|Dad|drink|every morning','do|drinks|Where','วาง What หน้า does แล้วใช้ drink'],
+['เมื่อวานเขาไปที่ไหน','Where|did|he|go|yesterday','does|went|What','วาง Where หน้า did แล้วใช้ go'],
+['พวกเราจะออกเดินทางเมื่อไหร่','When|will|we|leave','did|leaves|Where','วาง When หน้า will แล้วใช้ leave'],
+['ลิลลี่อ่านหนังสือทุกคืนไหม','Does|Lily|read|books|every night','Do|reads|reading','ขึ้นต้นด้วย Does แล้วใช้ read'],
+['พวกเขากินอะไรเมื่อคืน','What|did|they|eat|last night','do|ate|Where','วาง What หน้า did แล้วใช้ eat'],
+['แอนจะเล่นเทนนิสวันอาทิตย์หน้าไหม','Will|Ann|play|tennis|next Sunday','Does|plays|played','ขึ้นต้นด้วย Will แล้วใช้ play']
+];
+function make(items,isQuestion){
+ return items.map(([thai,en,extra,tip])=>({
+  thai,tip,isQuestion,words:isQuestion?[...en.split('|'),'?']:en.split('|'),
+  extras:isQuestion?[...extra.split('|'),'.']:extra.split('|')
+ }));
+}
+const all=[...make(negative,false),...make(question,true)];
+const timePhrases=new Set(['every morning','on Mondays','yesterday','tonight','tomorrow','in the morning','last night','next Saturday']);
+let view='cover',lessonFrom='cover',reportFrom='cover',deck=[],results=[],index=0,bank=[],slots=[],target=null,attempts=0,locked=false,finished=false;
+let audio,voice=true,image=null,exportId=0;
+function show(id,focus){
+ view=id;
+ for(const section of ['cover','lesson','game','report'])$(section).hidden=section!==id;
+ window.scrollTo(0,0);
+ if(focus)$(focus).focus();
+}
+function shuffle(items){
+ const mixed=items.slice();
+ for(let i=mixed.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [mixed[i],mixed[j]]=[mixed[j],mixed[i]];
+ }
+ return mixed;
+}
+function tone(celebrate=false){
+ if(!voice)return;
+ const Audio=window.AudioContext||window.webkitAudioContext;
+ if(!Audio)return;
+ try{
+  audio ||= new Audio();
+  if(audio.state==='suspended')audio.resume().catch(()=>{});
+  const now=audio.currentTime;
+  (celebrate?[523,659,784,1047]:[465]).forEach((hz,i)=>{
+   const osc=audio.createOscillator(),gain=audio.createGain(),start=now+i*.085;
+   const duration=celebrate?.23:.065;
+   osc.frequency.value=hz;
+   gain.gain.setValueAtTime(.001,start);
+   gain.gain.exponentialRampToValueAtTime(celebrate?.09:.04,start+.012);
+   gain.gain.exponentialRampToValueAtTime(.001,start+duration);
+   osc.connect(gain).connect(audio.destination);
+   osc.start(start);osc.stop(start+duration+.01);
+  });
+ }catch{}
+}
+document.addEventListener('click',e=>{if(e.target.closest('button:not(:disabled):not(#sound)'))tone();},true);
+$('sound').onclick=()=>{
+ voice=!voice;$('sound').setAttribute('aria-pressed',String(voice));
+ $('sound').textContent=voice?'🔊 เปิดเสียง':'🔇 ปิดเสียง';if(voice)tone();
+};
+$('tv').onclick=()=>{
+ const on=document.body.classList.toggle('tv');
+ $('tv').setAttribute('aria-pressed',String(on));$('tv').textContent=on?'📺 ทีวี · ตัวใหญ่':'📺 โหมดทีวี';
+};
+$('read').onclick=$('study').onclick=()=>{
+ if(view==='lesson')return;
+ lessonFrom=view;show('lesson','lessonTitle');
+};
+$('lessonBack').onclick=()=>show(lessonFrom,lessonFrom==='game'?'thai':lessonFrom==='report'?'reportTitle':'study');
+function update(){
+ $('progress').value=results.length;
+ $('points').textContent='⭐ '+results.filter(r=>r.first).length+' คะแนน';
+ $('vault').textContent='📚 ดูสรุป · '+results.filter(r=>r.correct).length+'/20';
+}
+function load(){
+ const q=deck[index];
+ bank=shuffle([...q.words,...q.extras]);
+ slots=Array(q.words.length).fill(null);target=null;attempts=0;locked=false;
+ $('step').textContent='ข้อ '+(index+1)+' / 20';
+ $('thai').textContent=q.thai;
+ $('type').textContent=q.isQuestion?'ประโยคคำถาม · QUESTION':'ประโยคปฏิเสธ · NEGATIVE';
+ $('hint').textContent=q.isQuestion?'แตะหรือใช้เมาส์ลากแผ่นคำลงช่อง แล้วเลือกเครื่องหมายท้ายประโยคด้วย':'แตะหรือใช้เมาส์ลากแผ่นคำลงช่อง · แตะคำในช่องเพื่อเอาออก';
+ $('feedback').hidden=$('next').hidden=true;$('check').hidden=$('clear').hidden=false;
+ render();update();$('thai').focus();
+}
+function place(id,pos){
+ if(locked||!Number.isInteger(id)||!bank[id]||slots.includes(id)||pos<0||pos>=slots.length)return false;
+ slots[pos]=id;target=null;render();return true;
+}
+function render(){
+ $('check').disabled=slots.includes(null);$('clear').disabled=slots.every(id=>id===null);
+ $('slots').replaceChildren(...slots.map((id,pos)=>{
+  const b=document.createElement('button'),last=deck[index].isQuestion&&pos===slots.length-1;
+  b.className='slot'+(id===null?'':' full')+(target===pos?' target':'');
+  b.textContent=id===null?(last?'ท้ายประโยค':pos+1):bank[id];
+  b.setAttribute('aria-label',id===null?(last?'ช่องเครื่องหมายท้ายประโยค':'ช่อง '+(pos+1)):'เอา '+bank[id]+' ออก');
+  b.disabled=locked;
+  b.onclick=()=>{slots[pos]=null;target=pos;render();$('slots').children[pos].focus();};
+  b.ondragover=e=>{if(!locked)e.preventDefault();};
+  b.ondrop=e=>{e.preventDefault();const id=e.dataTransfer.getData('application/x-conversation');if(id!==''&&place(Number(id),pos))tone();};
+  return b;
+ }));
+ $('bank').replaceChildren(...bank.map((word,id)=>{
+  const b=document.createElement('button'),used=slots.includes(id),punct=word==='?'||word==='.';
+  b.className='tile'+(punct?' punct':'');b.lang='en';b.textContent=word;
+  if(punct)b.setAttribute('aria-label',word==='?'?'เครื่องหมายคำถาม':'เครื่องหมายจุด');
+  b.setAttribute('aria-pressed',String(used));b.disabled=locked;b.draggable=!locked&&!used;
+  b.ondragstart=e=>e.dataTransfer.setData('application/x-conversation',String(id));
+  b.onclick=()=>{
+   const end=slots.length-1;
+   const pos=target??(punct&&slots[end]===null?end:slots.indexOf(null));
+   if(place(id,pos))(slots.includes(null)?$('bank').children[id]:$('check')).focus();
+  };
+  return b;
+ }));
+}
+function format(words,q){
+ const line=(q.isQuestion?words.slice(0,-1):words).join(' ');
+ return line[0].toUpperCase()+line.slice(1)+(q.isQuestion?words.at(-1):'.');
+}
+function correctOrder(words,q){
+ const equal=expected=>expected.every((word,i)=>word===words[i]);
+ const time=q.words.at(-1);
+ return equal(q.words)||(!q.isQuestion&&timePhrases.has(time)&&equal([time,...q.words.slice(0,-1)]));
+}
+function collect(english){
+ tone(true);
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches||!Element.prototype.animate)return;
+ const card=document.createElement('div');card.className='flight';card.textContent=english;card.setAttribute('aria-hidden','true');document.body.append(card);
+ const start=$('slots').getBoundingClientRect(),end=$('vault').getBoundingClientRect();
+ const x=Math.max(12,start.left+(start.width-card.offsetWidth)/2),y=start.top;
+ card.style.left=x+'px';card.style.top=y+'px';
+ const animation=card.animate([
+  {transform:'scale(.7)',opacity:0},
+  {transform:'translateY(-16px) scale(1.07)',opacity:1,offset:.24},
+  {transform:'translateY(-16px)',opacity:1,offset:.62},
+  {transform:'translate('+(end.left+end.width/2-x-card.offsetWidth/2)+'px,'+(end.top-y)+'px) scale(.16)',opacity:0}
+ ],{duration:850,easing:'ease-in-out'});
+ animation.onfinish=animation.oncancel=()=>card.remove();
+}
+$('start').onsubmit=e=>{e.preventDefault();deck=shuffle(all);results=[];index=0;finished=false;show('game');load();};
+$('clear').onclick=()=>{slots.fill(null);target=null;render();$('bank').firstElementChild.focus();};
+$('check').onclick=()=>{
+ if(locked||slots.includes(null))return;
+ const q=deck[index],words=slots.map(id=>bank[id]),correct=correctOrder(words,q);
+ const feedback=$('feedback');attempts++;feedback.hidden=false;feedback.classList.toggle('good',correct);
+ if(!correct&&attempts===1){
+  feedback.textContent=q.isQuestion&&words.at(-1)!=='?'?'💡 ลองอีกครั้ง ประโยคคำถามลงท้ายด้วยเครื่องหมายอะไรนะ?':'💡 ลองอีกครั้ง เช็กกริยาช่วยและตำแหน่งของประธาน';
+  return;
+ }
+ locked=true;
+ const english=format(correct?words:q.words,q);
+ results.push({q,n:index+1,english,correct,first:correct&&attempts===1});
+ feedback.textContent=(correct?'✦ เก็บเข้าคลังแล้ว · ':'ทบทวน · ')+q.tip;
+ const line=document.createElement('strong');line.lang='en';line.textContent=english;feedback.append(line);
+ $('check').hidden=$('clear').hidden=true;$('next').hidden=false;
+ $('next').textContent=index===19?'เปิดคลังประโยค →':'ข้อถัดไป →';
+ update();render();if(correct)collect(english);$('next').focus({preventScroll:true});
+};
+$('next').onclick=()=>{
+ if(!locked)return;
+ if(index===19){finished=true;openReport();return;}
+ index++;load();
+};
+function status(r){
+ const type=r.q.isQuestion?'คำถาม':'ปฏิเสธ';
+ return type+' · '+(r.first?'ถูกครั้งแรก':r.correct?'แก้แล้วตอบถูก':'เฉลยสำหรับทบทวน');
+}
+function openReport(){
+ if(view==='report')return;
+ reportFrom=view;
+ const sample=(view==='lesson'?lessonFrom:view)==='cover';
+ const rows=sample?[all[0],all[10],all[15]].map((q,i)=>({q,n:i+1,english:format(q.words,q),correct:i<2,first:i===0})):results.slice();
+ const meta=sample?'ตัวอย่างรายงาน · นักเรียนตัวอย่าง':($('player').value.trim()||'ผู้เล่น')+' · '+new Intl.DateTimeFormat('th-TH',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Bangkok'}).format(new Date());
+ const stats='ทำแล้ว '+rows.length+'/20 · สะสม '+rows.filter(r=>r.correct).length+' ประโยค · ถูกครั้งแรก '+rows.filter(r=>r.first).length;
+ $('meta').textContent=meta;$('stats').textContent=stats;
+ $('rows').replaceChildren(...rows.map(r=>{
+  const li=document.createElement('li'),num=document.createElement('strong'),body=document.createElement('div');
+  const th=document.createElement('div'),en=document.createElement('strong'),mark=document.createElement('small');
+  li.className='row';num.className='num';en.className='en';en.lang='en';mark.className='status';
+  num.textContent=String(r.n).padStart(2,'0');th.textContent=r.q.thai;en.textContent=r.english;mark.textContent=status(r);
+  body.append(th,en,mark);li.append(num,body);return li;
+ }));
+ if(!rows.length){const li=document.createElement('li');li.textContent='ตรวจคำตอบข้อแรกแล้วจะเห็นประโยคในรายงาน';$('rows').append(li);}
+ $('reportBack').hidden=finished&&!sample;$('restart').hidden=!finished||sample;
+ $('share').hidden=$('save').hidden=true;
+ $('note').textContent=sample?'ตัวอย่างหน้าสรุปก่อนเล่น':rows.length?'กำลังเตรียมรูปรายงาน…':'';
+ image=null;const token=++exportId;
+ show('report','reportTitle');if(!sample&&rows.length)prepareImage(rows,meta,stats,token);
+}
+function prepareImage(rows,meta,stats,token){
+ const c=document.createElement('canvas');c.width=1080;c.height=242+rows.length*150+28;
+ const ctx=c.getContext('2d');
+ if(!ctx){$('note').textContent='เบราว์เซอร์นี้สร้างรูปไม่ได้';return;}
+ function line(color,font,text,x,y,max){ctx.fillStyle=color;ctx.font=font;ctx.fillText(text,x,y,max);}
+ ctx.fillStyle='#e9efe5';ctx.fillRect(0,0,c.width,c.height);
+ ctx.fillStyle='#194b3f';ctx.fillRect(0,0,1080,222);
+ line('#ffe391','bold 24px sans-serif','KRU PAI CLASSROOM / ENGLISH CONVERSATION CLUB',44,49,990);
+ line('#fffaf0','bold 43px sans-serif','คลังประโยคไทย–อังกฤษ · ชุดที่ 2',44,105,990);
+ line('#fffaf0','28px sans-serif',meta,44,150,990);
+ line('#c4f2df','bold 27px sans-serif',stats,44,192,990);
+ rows.forEach((r,i)=>{
+  const y=238+i*150;
+  ctx.fillStyle='#fffaf0';ctx.fillRect(28,y,1024,140);
+  ctx.fillStyle=r.correct?'#c4f2df':'#ffe391';ctx.fillRect(48,y+17,62,49);
+  line('#194b3f','bold 26px sans-serif',String(r.n).padStart(2,'0'),62,y+50,49);
+  line('#163d35','30px sans-serif',r.q.thai,130,y+45,881);
+  line('#244f83','bold 34px sans-serif',r.english,130,y+88,881);
+  line('#445d55','23px sans-serif',status(r),130,y+123,881);
+ });
+ c.toBlob(blob=>{
+  if(token!==exportId)return;
+  if(!blob){$('note').textContent='สร้างรูปไม่สำเร็จ ลองเปิดรายงานอีกครั้ง';return;}
+  image=new File([blob],'KPC_English_Conversation_Club_02_Report.png',{type:'image/png'});
+  $('share').hidden=$('save').hidden=false;
+  $('note').textContent='เลือก LINE จากเมนูแชร์ หรือบันทึก PNG แล้วแนบในแชตครู';
+ },'image/png');
+}
+$('vault').onclick=openReport;
+$('reportBack').onclick=()=>show(reportFrom,reportFrom==='game'?'thai':reportFrom==='lesson'?'lessonTitle':'vault');
+$('restart').onclick=()=>{results=[];finished=false;image=null;exportId++;update();show('cover','player');};
+$('share').onclick=async()=>{
+ if(!image)return;
+ const payload={files:[image]};
+ try{
+  if(navigator.share&&navigator.canShare?.(payload)){await navigator.share(payload);return;}
+ }catch(e){if(e.name==='AbortError')return;}
+ $('note').textContent='เมนูแชร์ไฟล์ใช้ไม่ได้ในหน้านี้ กดบันทึกรูป PNG แล้วแนบใน LINE ได้ค่ะ';
+};
+$('save').onclick=()=>{
+ if(!image)return;
+ const url=URL.createObjectURL(image),a=document.createElement('a');
+ a.href=url;a.download=image.name;document.body.append(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),30000);
+};
+</script>
+</body>
+</html>
