@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="th">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 Math Arena · Kru Pai Classroom</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,"Noto Sans Thai",sans-serif;background:#100c27;color:#faf6ff;--mint:#bafae3;--violet:#ae91ff;--line:#514372}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 85% 0%,#4b2866,transparent 50%),radial-gradient(ellipse at 0% 60%,#25265b,transparent 55%),#100c27}
+main{width:min(1120px,100%);margin:auto;padding:clamp(12px,3vw,36px)}header{color:var(--mint);font-weight:800;letter-spacing:.07em;margin:10px 0 22px}
+.panel{background:#1d1634ed;border:1px solid var(--line);border-radius:25px;padding:clamp(16px,4vw,42px);box-shadow:0 20px 60px #09051760}
+.hero{position:relative;isolation:isolate;overflow:hidden}.hero::after{content:'%';position:absolute;right:5%;top:-20px;font-size:clamp(110px,25vw,350px);font-weight:950;line-height:1;color:#b69bff1b;z-index:-1;transform:rotate(-12deg)}
+h1{font-size:clamp(42px,8vw,100px);line-height:1.03;margin:10px 0;color:var(--mint);letter-spacing:-.04em}h2{font-size:clamp(24px,4vw,42px);margin:10px 0}p{line-height:1.6}.muted{color:#d2c6e3}.accent{color:var(--mint);font-weight:800}
+button,input{font:inherit}button{cursor:pointer;touch-action:manipulation;min-height:44px;color:inherit;border:1px solid var(--line);border-radius:13px;background:#30234d;padding:9px 15px;font-weight:750}
+button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.primary{background:var(--mint);color:#13382e;border-color:var(--mint)}.secondary{background:#47336e}#scratch button[aria-pressed=true],#mark[aria-pressed=true]{border-color:var(--mint);color:var(--mint)}.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.spread{justify-content:space-between}
+input{background:#faf7ff;color:#271b40;padding:12px;border:2px solid var(--violet);border-radius:12px;max-width:100%;font-size:20px}label{display:block;margin:18px 0 7px;font-weight:750}
+.cards,.choices,.scoreGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.card,.choice{text-align:left;padding:15px;background:#301f50;border:1px solid #705aa0}.card{min-height:104px;font-size:clamp(19px,3vw,27px)}.card span{display:block;font-size:16px;color:#e4d8fa;margin-top:5px}
+.card:nth-child(2){background:#45224f}.choice{font-size:clamp(19px,2.7vw,28px);min-height:64px;overflow-wrap:anywhere}.choice[aria-pressed=true]{background:#59428b;border-color:var(--mint);box-shadow:inset 0 0 0 1px var(--mint)}.letter{color:var(--mint);margin-right:9px}
+nav{display:flex;gap:5px;flex-wrap:wrap;margin:10px 0}.dot{min-width:40px;padding:5px;position:relative}.dot.done{background:#245249}.dot.current{outline:2px solid var(--mint);outline-offset:0}.dot.marked::after{content:'★';position:absolute;right:2px;top:0;color:#ffe295;font-size:10px}
+.part{color:var(--mint);font-weight:850;font-size:18px}.question{font-size:clamp(23px,3.4vw,40px);font-weight:760;line-height:1.45;margin:18px 0}.fraction{display:inline-grid;vertical-align:middle;text-align:center;line-height:1.07;margin:0 .12em}.fraction span:first-child{border-bottom:2px solid currentColor;padding:0 .15em .09em}.fraction span+span{padding-top:.08em}.numeric{width:235px}.status{color:#ffd998;min-height:1.5em}
+#scratch{margin-top:15px;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#30234d}#scratch .bar{padding:8px}canvas{display:block;width:100%;height:clamp(280px,55dvh,700px);background:repeating-linear-gradient(#fff 0 31px,#dfe6fa 32px);touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;overscroll-behavior:none}
+.score{font-size:clamp(45px,8vw,85px);font-weight:950;color:var(--mint);margin:4px 0}.scoreGrid>div,details.review{padding:14px;border-radius:14px;background:#30234d;border:1px solid var(--line)}details.review{margin:9px 0}summary{cursor:pointer;font-weight:750}.right{color:var(--mint)}.wrong{color:#ffb3cb}.answerKey{margin-bottom:0}dialog{background:#24193c;color:inherit;border:1px solid var(--violet);border-radius:20px;width:min(460px,92vw);padding:22px}dialog::backdrop{background:#070412bf}
+[hidden]{display:none!important}@media(max-width:550px){.cards,.choices{grid-template-columns:1fr}.dot{min-width:35px}.scoreGrid{gap:6px}}@media(min-width:1400px){main{width:min(1380px,100%)}}
+/* Electric game-show theme */
+:root{--mint:#faff36;--violet:#faff36;--line:#46483e;background:#0e100e;color:#fffef1}
+body{background:radial-gradient(ellipse at 75% -15%,#4e4c12,transparent 52%),radial-gradient(ellipse at 5% 90%,#292c0c,transparent 45%),#10120f;background-attachment:fixed}
+main{padding-top:14px}
+header{display:flex;align-items:center;gap:12px;color:#faff36;margin:12px 0 18px;letter-spacing:.16em;font-size:clamp(12px,1.7vw,17px)}
+header::before{content:'';width:27px;height:17px;background:repeating-linear-gradient(115deg,#faff36 0 5px,transparent 5px 9px);flex:none}
+.panel{background:#181b16;border-color:#46483e;border-radius:22px;box-shadow:0 16px 60px #0008}
+.hero{padding:0;overflow:hidden}
+.hero::after{content:none}
+.hero-stage{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:center;min-height:340px;padding:clamp(22px,4.5vw,56px);color:#171a0c;background:radial-gradient(ellipse at 78% 43%,#ffffa4 0%,transparent 53%),linear-gradient(128deg,#f0ff23 10%,#faff36 60%,#e9f21c 100%);border-bottom:6px solid #79810d}
+.hero-stage::before{content:'';position:absolute;inset:0;z-index:-1;opacity:.23;background-image:radial-gradient(#242900 1px,transparent 1px);background-size:11px 11px;mask-image:linear-gradient(110deg,transparent,#000)}
+.hero-copy{position:relative;z-index:2}
+.hero h1{margin:0;color:#141608;font-family:Impact,"Arial Black",system-ui,sans-serif;font-style:italic;font-weight:950;text-transform:uppercase;line-height:.88;letter-spacing:-.045em;font-size:clamp(49px,8.6vw,118px)}
+.hero h1 span{display:block;color:#faff36;-webkit-text-stroke:2px #171a0c;text-shadow:3px 4px 0 #171a0c;margin-top:7px}
+.hero h2{margin:20px 0 0;color:#171a0c;font-size:clamp(20px,3vw,38px);line-height:1.28}
+.percent-art{position:relative;display:grid;place-items:center;justify-self:center;width:min(100%,370px);aspect-ratio:1;isolation:isolate}
+.percent-art::before,.percent-art::after{content:'';position:absolute;aspect-ratio:1;border-radius:50%;z-index:-1}
+.percent-art::before{width:83%;border:2px dashed #333806;animation:orbit 35s linear infinite}
+.percent-art::after{width:69%;background:#191c0e;box-shadow:9px 9px 0 #9ca217,0 0 0 8px #f9ff4a,0 0 0 10px #262b0b}
+.percent-art strong{font-family:Impact,"Arial Black",system-ui,sans-serif;color:#faff36;font-size:clamp(86px,16.5vw,236px);line-height:1;transform:rotate(-12deg);text-shadow:5px 7px #737735}
+.spark{position:absolute;color:#1b200c;font-size:clamp(24px,5vw,67px);line-height:1}.spark.one{top:4%;right:7%}.spark.two{bottom:8%;left:0%;font-size:clamp(18px,3vw,45px)}
+.hero-controls{padding:clamp(16px,3.5vw,36px)}
+.hero-controls p{margin:0;color:#e9ebd7;font-weight:650}
+.hero-controls label{color:#faff36}
+.cards{margin-bottom:0;gap:14px}
+.card,.card:nth-child(2){display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;background:#faff36;color:#181b10;border:2px solid #faff36;box-shadow:0 4px 0 #81871a;line-height:1.24}
+.card:nth-child(2){background:#2b2c14;color:#ffffda;box-shadow:0 4px 0 #41441b}
+.card b{display:grid;place-items:center;border:1px solid currentColor;border-radius:10px;width:44px;height:44px;font-size:24px}
+.card span{color:inherit;font-size:clamp(13px,1.7vw,16px);line-height:1.35}.card .set-copy{font-size:inherit;margin:0}.card .arrow{font-size:24px;margin:0}
+.card:focus-visible,.card:hover{filter:brightness(1.14);transform:translateY(-2px)}
+button{background:#262a21;border-color:#505548}
+button.primary{background:#faff36;color:#181b10;border-color:#faff36;box-shadow:0 3px 0 #878c20}
+button.secondary{background:#30321a;border-color:#737629;color:#feff83}
+input{background:#ffffed;color:#1b1e13;border-color:#b6b84b}
+#exam,#result{border-top:5px solid #faff36}
+#setTitle{font-size:clamp(17px,2.25vw,26px)}#count{background:#faff36;color:#181b10;border-radius:6px;padding:5px 9px;font-variant-numeric:tabular-nums}
+#navigator{margin:14px 0}
+.question{max-width:42ch}
+.choice{background:#252920;border-color:#535a49;border-radius:10px}.choice:hover{border-color:#faff36}.choice[aria-pressed=true]{background:#faff36;color:#171a0c;border-color:#faff36}.choice[aria-pressed=true] .letter{background:#181b10;color:#faff36}
+.letter{display:inline-grid;place-items:center;background:#faff36;color:#181b10;border-radius:6px;width:1.55em;height:1.55em;font-weight:900}
+.dot.done{background:#dce448;color:#181b10}.dot.current{outline-offset:2px}.dot.marked::after{color:#ffab44;filter:drop-shadow(0 1px 1px #000)}
+#scratch{background:#24291e}
+canvas{background:repeating-linear-gradient(#fff 0 31px,#e6e8cf 32px)}
+.result-banner{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(112deg,#faff36,#f0f88c);color:#181b10;border-radius:13px;padding:clamp(15px,3vw,32px)}
+.result-banner::after{content:'×';position:absolute;right:5%;top:50%;transform:translateY(-50%) rotate(-12deg);font-size:clamp(110px,24vw,330px);font-weight:950;line-height:1;color:#262a112b;z-index:-1}
+.result-banner .part,.result-banner .score{color:#171a0c}.result-banner .part,.result-banner p:last-child{margin:0}.result-banner .score{line-height:1.03}
+.scoreGrid>div,details.review{background:#252920;border-color:#505548}.scoreGrid strong{font-size:clamp(24px,3.5vw,43px);color:#faff36}
+.right{color:#b4fab4}.wrong{color:#ffc0cb}dialog{background:#22261d}
+@keyframes orbit{to{transform:rotate(1turn)}}
+@media(max-width:700px){.hero-stage{min-height:242px;gap:4px;padding:18px}.hero h1{font-size:clamp(40px,9vw,70px)}.hero h1 span{-webkit-text-stroke:1.4px #171a0c;text-shadow:2px 3px #171a0c}.hero h2{font-size:clamp(18px,3.7vw,26px);margin-top:14px}.percent-art strong{font-size:clamp(68px,15vw,130px)}}
+@media(max-width:380px){.hero-stage{padding:15px;min-height:205px}.hero h1{font-size:clamp(33px,10vw,40px)}.percent-art strong{font-size:clamp(55px,17vw,68px)}}
+@media(prefers-reduced-motion:reduce){.percent-art::before{animation:none}}
+
+#questionStage{position:relative;background:#fffde9;color:#1a1d0e;border-left:6px solid #faff36;border-radius:12px;padding:clamp(13px,3vw,27px);margin:10px 0 14px}
+#questionStage .question{max-width:none;margin:0}#overlay{position:absolute;inset:0;width:100%;height:100%;background:transparent;pointer-events:none}
+#questionStage.inking #overlay{pointer-events:auto;cursor:crosshair}#questionStage.inking{outline:2px solid #faff36;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#inkTools{margin:8px 0}#inkTools button[aria-pressed=true],#inkToggle[aria-pressed=true]{border-color:#faff36;color:#faff36}
+#feedback:not(:empty){background:#262a21;border:1px solid #505548;border-radius:13px;margin-top:12px;padding:12px 16px;font-size:clamp(17px,2.45vw,24px)}
+#feedback ol,.review ol{padding-inline-start:1.4em}#feedback li,.review li{margin:.4em 0}.choice.is-right{border-color:#a3f3a3;background:#275438;color:#fff;opacity:1}
+.choice.is-wrong{border-color:#ff9ca0;background:#702e35;color:#fff;opacity:1}.dot.wrong-dot{background:#702e35;color:#fff}
+.hero h1{font-size:clamp(40px,7vw,96px)}@media(max-width:420px){.hero h1{font-size:clamp(27px,8vw,40px)}}
+
+/* Arena cover */
+.hero-stage{min-height:380px;background:radial-gradient(ellipse at 73% 42%,#ffffad,transparent 54%),linear-gradient(135deg,#f8ff29,#edf024 58%,#c8d319);border-bottom:0}
+.hero-stage::before{opacity:.27;background-image:linear-gradient(#33390065 1px,transparent 1px),linear-gradient(90deg,#33390065 1px,transparent 1px);background-size:23px 23px}
+.hero-stage::after{content:'';position:absolute;z-index:3;inset:auto 0 0;height:8px;background:repeating-linear-gradient(118deg,#15190f 0 13px,#faff36 13px 26px)}
+.hero-copy h1{text-shadow:3px 3px 0 #ffffac}.hero-copy h2{display:inline-block;padding:.27em .54em;background:#161810;color:#faff36;border-left:4px solid #fb8026;transform:rotate(-2deg)}
+.arena-art{width:min(100%,404px)}
+.arena-art::after{width:81%;background:repeating-conic-gradient(from 15deg,#262c0b 0 2deg,transparent 2deg 12deg);box-shadow:none;opacity:.23}
+.arena-art::before{width:91%;border:3px dashed #575f12}
+.arena-orbit{position:absolute;width:98%;height:50%;border:2px solid #494e14;border-radius:50%;transform:rotate(-31deg);z-index:-1}
+.arena-shield{display:grid;place-content:center;text-align:center;width:65%;height:73%;color:#faff36;background:linear-gradient(144deg,#31351a,#11150b 70%);clip-path:polygon(0 13%,50% 0,100% 13%,94% 72%,50% 100%,6% 72%);transform:rotate(-8deg)}
+.arena-shield span{font:900 clamp(22px,5vw,72px)/.85 system-ui;color:#faff36;text-shadow:0 0 15px #d7ed4d}
+.arena-shield strong{font:950 italic clamp(24px,6.1vw,90px)/1 system-ui;text-shadow:3px 3px #787b31;transform:none}
+.math-token{position:absolute;display:grid;place-items:center;min-width:1.65em;min-height:1.65em;padding:0 .17em;background:#ffffa1;border:2px solid #202610;border-radius:7px;color:#181e0a;box-shadow:3px 3px #30360d;font:900 clamp(13px,2.35vw,33px)/1 system-ui}
+.token-angle{left:2%;top:17%;transform:rotate(-17deg)}.token-pi{right:2%;top:28%;transform:rotate(12deg)}.token-equation{left:3%;bottom:15%;transform:rotate(-9deg)}.token-fraction{right:9%;bottom:9%;transform:rotate(13deg)}
+.arena-art .spark.one{right:14%;top:1%}.arena-art .spark.two{left:8%;bottom:3%}
+.hero-controls .card{min-height:69px;background:linear-gradient(110deg,#faff36,#e1ed25);width:min(100%,420px)}
+@media(min-width:701px){.hero-controls .cards{grid-template-columns:1fr}}
+@media(max-width:700px){.hero-stage{min-height:242px}.arena-art::before{border-width:2px}.math-token{border-width:1px;box-shadow:2px 2px #30360d}}
+@media(max-width:380px){.hero-stage{min-height:205px}.token-equation{left:0}}
+</style>
+<main>
+<header>KRU PAI CLASSROOM</header>
+<section id="cover" class="panel hero">
+<div class="hero-stage">
+<div class="hero-copy"><h1>M.1 Math <span>Arena</span></h1><h2>สนามสอบคณิตรวมเข้ม</h2></div>
+<div class="percent-art arena-art" aria-hidden="true">
+<div class="arena-orbit"></div><div class="arena-shield"><span>⚡︎</span><strong>M.1</strong></div>
+<span class="math-token token-angle">∠</span><span class="math-token token-pi">π</span><span class="math-token token-equation">x + y</span><span class="math-token token-fraction">⅝</span>
+<span class="spark one">✦</span><span class="spark two">✦</span>
+</div>
+</div>
+<div class="hero-controls">
+<p class="muted">25 ข้อ · 4 ตัวเลือก · เฉลยทันที · ไม่จับเวลา</p>
+<label for="player">ชื่อนักเรียน</label><input id="player" type="text" maxlength="65" placeholder="พิมพ์ชื่อหรือชื่อเล่น">
+<div class="cards"><button class="card" data-start="0"><b aria-hidden="true">→</b><span class="set-copy">เริ่มทำข้อสอบ</span></button></div>
+</div>
+</section>
+<section id="exam" class="panel" hidden>
+<div class="bar spread"><strong id="setTitle"></strong><span id="count" class="accent"></span></div>
+<details id="navigator" open><summary>เลือกข้อที่ต้องการทำ</summary><nav id="dots" aria-label="เลือกข้อสอบ"></nav></details>
+<div class="bar"><button id="prev">← ก่อนหน้า</button><button id="next">ถัดไป →</button><button id="mark" aria-pressed="false">☆ ทำเครื่องหมาย</button></div>
+<p class="part" id="part"></p>
+<div id="questionStage"><div id="question" class="question"></div><canvas id="overlay" aria-hidden="true"></canvas></div>
+<div class="bar inkActions"><button id="inkToggle" class="secondary" aria-pressed="false">✎ เขียนบนโจทย์</button>
+<button id="padToggle" class="secondary" aria-expanded="false" aria-controls="scratch">✎ เปิดกระดาษทด</button></div>
+<div id="inkTools" class="bar" hidden>
+<button data-ink="#24314e">ปากกาดำ</button><button data-ink="#1664d8">น้ำเงิน</button><button data-ink="#e53750">แดง</button><button data-ink="erase">ยางลบ</button><button id="undo">↶ ย้อนเส้น</button><button id="clearPad">ล้างรอยเขียน</button></div>
+<div id="scratch" hidden><canvas id="paper" aria-label="พื้นที่เขียนกระดาษทด"></canvas></div>
+<div id="responses"></div><div id="feedback" role="status" aria-live="polite"></div>
+<div class="bar spread" style="margin-top:18px"><button id="submit" class="primary">จบการทดสอบ</button><button id="exit">กลับหน้าปก</button></div>
+</section>
+<section id="result" class="panel" hidden>
+<div class="result-banner"><p class="part" id="resultName"></p><h2>สรุปผลการทดสอบ</h2><div class="score" id="score"></div><p id="percent"></p></div>
+<div class="scoreGrid" id="parts"></div>
+<div class="bar"><button class="primary" id="again">เล่นอีกครั้ง</button><button id="home">กลับหน้าปก</button></div>
+<h2>เฉลยและวิธีคิด</h2><div id="review"></div>
+</section>
+<dialog id="confirmBox"><h2 id="confirmTitle"></h2><p id="confirmMessage"></p><form method="dialog" class="bar"><button value="cancel" autofocus>ยกเลิก</button><button class="primary" value="yes" id="confirmAction"></button></form></dialog>
+</main>
+<script>
+const BANK = [[{"skill": "ห.ร.ม. และ ค.ร.น.", "prompt": "จำนวนเต็มบวกจำนวนหนึ่งหารด้วย 6, 8 และ 9 เหลือเศษ 5 ทุกครั้ง ถ้าจำนวนนั้นอยู่ระหว่าง 300 ถึง 400 จำนวนนั้นคือเท่าไร", "answer": "365", "options": ["329", "365", "347", "395"], "explanation": "เมื่อลบ 5 จะได้พหุคูณร่วมของ 6, 8 และ 9 ซึ่งมี ค.ร.น. เท่ากับ 72 • ในช่วงนี้มี 72 × 5 = 360 เพียงค่าเดียว • บวกเศษกลับได้ 365"}, {"skill": "ค่าประจำหลัก", "prompt": "จำนวนสองหลักมีผลรวมของเลขโดดเท่ากับ 11 เมื่อสลับเลขโดดแล้วได้จำนวนที่มากกว่าเดิม 27 จำนวนเดิมคือเท่าไร", "answer": "47", "options": ["38", "56", "74", "47"], "explanation": "ให้หลักสิบเป็น a และหลักหน่วยเป็น b • ผลต่างหลังสลับคือ 9(b − a) = 27 จึงได้ b − a = 3 • ใช้ a + b = 11 จะได้ a = 4 และ b = 7"}, {"skill": "เศษส่วนหลายขั้น", "prompt": "วันแรกอ่านหนังสือ 2/5 ของทั้งเล่ม วันที่สองอ่าน 1/3 ของส่วนที่เหลือ ถ้าเหลืออีก 84 หน้า หนังสือมีทั้งหมดกี่หน้า", "answer": "210", "options": ["210", "180", "196", "252"], "explanation": "หลังวันแรกเหลือ 3/5 ของเล่ม • หลังวันที่สองเหลือ 2/3 ของส่วนนี้ หรือ 3/5 × 2/3 = 2/5 ของเล่ม • ทั้งเล่มมี 84 ÷ (2/5) = 210 หน้า"}, {"skill": "ร้อยละย้อนกลับ", "prompt": "ร้านตั้งราคาป้ายสูงกว่าทุน 40% แล้วลด 15% จากป้าย ถ้าขายได้กำไร 171 บาท ต้นทุนกี่บาท", "answer": "900", "options": ["760", "950", "900", "1,000"], "explanation": "ราคาขายเป็น 1.40 × 0.85 = 1.19 เท่าของทุน • กำไรคือ 19% ของทุน • ทุน = 171 ÷ 0.19 = 900 บาท"}, {"skill": "อัตราส่วน", "prompt": "จำนวนลูกแก้วแดงต่อน้ำเงินเป็น 5 ต่อ 3 เมื่อย้ายลูกแก้วแดง 12 ลูกออกแล้วใส่ลูกแก้วน้ำเงินเพิ่ม 12 ลูก อัตราส่วนเป็น 7 ต่อ 5 เดิมมีลูกแก้วทั้งหมดกี่ลูก", "answer": "288", "options": ["288", "192", "240", "336"], "explanation": "ยอดรวมคงเดิม • สัดส่วนลูกแก้วแดงลดจาก 5/8 เป็น 7/12 ผลต่างเท่ากับ 1/24 ของทั้งหมด • 12 ลูกคือ 1/24 จึงมีทั้งหมด 288 ลูก"}, {"skill": "ค่าเฉลี่ย", "prompt": "นักเรียน 8 คนมีคะแนนเฉลี่ย 72 คะแนน เมื่อตัดคะแนนต่ำสุดออก ค่าเฉลี่ยของอีก 7 คนเป็น 75 คะแนน แล้วเมื่อเพิ่มนักเรียนใหม่ 1 คนให้กลุ่มเดิม 8 คน ค่าเฉลี่ยเป็น 73 คะแนน คะแนนของคนใหม่มากกว่าคะแนนต่ำสุดเดิมเท่าไร", "answer": "30", "options": ["24", "27", "33", "30"], "explanation": "คะแนนต่ำสุดเดิม = 8 × 72 − 7 × 75 = 51 • คะแนนคนใหม่ = 9 × 73 − 8 × 72 = 81 • ผลต่างเท่ากับ 30"}, {"skill": "ระยะทางและเวลา", "prompt": "รถสองคันออกพร้อมกันจากเมืองที่ห่างกัน 300 กม. มุ่งเข้าหากัน คันแรกวิ่ง 70 กม./ชม. คันที่สองวิ่ง 50 กม./ชม. แต่จอดพัก 24 นาทีระหว่างทางก่อนพบกัน รถคันแรกวิ่งไปกี่กิโลเมตรจึงพบกัน", "answer": "186 2/3", "options": ["175", "186 2/3", "180", "192 1/2"], "explanation": "พัก 24 นาทีคือ 2/5 ชั่วโมง คันที่สองจึงวิ่งน้อยลง 20 กม. • ให้เวลารวมเป็น t ชั่วโมง จะได้ 120t − 20 = 300 • t = 8/3 ดังนั้นคันแรกวิ่ง 70 × 8/3 = 186 2/3 กม."}, {"skill": "อัตราทำงานร่วม", "prompt": "ท่อ A เติมถังเปล่าเต็มใน 6 ชั่วโมง ท่อ B เติมเต็มใน 9 ชั่วโมง และท่อ C ระบายน้ำเต็มถังหมดใน 18 ชั่วโมง เปิดทั้งสามพร้อมกัน 3 ชั่วโมงจากถังเปล่า แล้วปิด A ต้องใช้เวลาอีกกี่ชั่วโมงจึงเต็ม", "answer": "6", "options": ["3", "4", "6", "9"], "explanation": "อัตราสุทธิช่วงแรกคือ 1/6 + 1/9 − 1/18 = 2/9 ถังต่อชั่วโมง • 3 ชั่วโมงมีน้ำ 2/3 ถัง เหลือ 1/3 ถัง • หลังปิด A อัตราสุทธิเป็น 1/18 ถังต่อชั่วโมง จึงใช้อีก 6 ชั่วโมง"}, {"skill": "สมการอายุ", "prompt": "เมื่อ 4 ปีก่อน พี่อายุเป็น 3 เท่าของน้อง อีก 8 ปีข้างหน้า พี่จะอายุเป็น 2 เท่าของน้อง ปัจจุบันพี่อายุเท่าไร", "answer": "40", "options": ["32", "40", "36", "44"], "explanation": "ให้เมื่อ 4 ปีก่อนน้องอายุ x และพี่อายุ 3x • อีก 8 ปีจากวันนี้คือผ่านไป 12 ปีจากจุดนั้น จึงได้ 3x + 12 = 2(x + 12) • x = 12 พี่ปัจจุบันอายุ 3 × 12 + 4 = 40 ปี"}, {"skill": "แบบรูป", "prompt": "แถวที่ 1 มี 5 จุด แถวที่ 2 มี 9 จุด แถวที่ 3 มี 15 จุด และแถวที่ 4 มี 23 จุด ถ้าผลต่างของแต่ละคู่ติดกันเพิ่มขึ้นทีละ 2 ต่อเนื่อง แถวที่ 12 มีกี่จุด", "answer": "159", "options": ["145", "155", "171", "159"], "explanation": "ผลต่างระหว่างแถวคือ 4, 6, 8, …, 24 • จากแถว 1 ถึงแถว 12 เพิ่ม 11 ครั้ง รวม (4 + 24) × 11 ÷ 2 = 154 จุด • รวมกับแถวแรกได้ 159 จุด"}, {"skill": "พื้นที่และเส้นรอบรูป", "prompt": "สี่เหลี่ยมผืนผ้ามีเส้นรอบรูป 74 ซม. ด้านยาวมากกว่าด้านกว้าง 7 ซม. ตัดมุมออกเป็นสี่เหลี่ยมจัตุรัสขนาด 3 ซม. ทั้งสี่มุม พื้นที่ที่เหลือกี่ตารางเซนติเมตร", "answer": "294", "options": ["285", "303", "294", "321"], "explanation": "ด้านยาวบวกด้านกว้างเท่ากับ 37 และผลต่างเท่ากับ 7 จึงได้ด้านยาว 22 และกว้าง 15 • พื้นที่เหลือ 22 × 15 − 4 × 3 × 3 = 294"}, {"skill": "มุมสามเหลี่ยม", "prompt": "สามเหลี่ยม ABC มีมุม A เป็น 2 เท่าของมุม B มุมภายนอกที่ C ซึ่งประชิดมุมภายใน C มีขนาด 114° มุม C มากกว่ามุม B กี่องศา", "answer": "28", "options": ["28", "24", "36", "38"], "explanation": "มุม A + B = 114° และ A = 2B จึงได้ B = 38° • มุมภายใน C = 180° − 114° = 66° • ผลต่างคือ 28°"}, {"skill": "วงกลมและพื้นที่", "prompt": "สี่เหลี่ยมจัตุรัสด้านละ 28 ซม. เจาะวงกลมที่สัมผัสด้านทั้งสี่ออก แล้วตัดแถบรูปสี่เหลี่ยมผืนผ้าขนาด 2 × 5 ซม. จากมุมหนึ่งโดยไม่ทับวงกลม พื้นที่ที่เหลือเท่าไร กำหนด π = 22/7", "answer": "158", "options": ["148", "158", "168", "178"], "explanation": "พื้นที่จัตุรัส 28² = 784 • วงกลมรัศมี 14 จึงมีพื้นที่ 22/7 × 14² = 616 • ลบแถบอีก 10 เหลือ 158 ตร.ซม."}, {"skill": "ปริมาตรและการแปลงหน่วย", "prompt": "ถังทรงสี่เหลี่ยมมุมฉากฐาน 40 × 25 ซม. สูง 30 ซม. มีน้ำอยู่ 18 ลิตร นำแท่งตันปริมาตร 3,200 ลบ.ซม. จุ่มมิด ถ้าถังตั้งตรงและไม่รั่ว ระดับน้ำสูงจากก้นถังกี่เซนติเมตร", "answer": "21.2", "options": ["18.32", "20.8", "21.2", "22.4"], "explanation": "18 ลิตร = 18,000 ลบ.ซม. • แท่งตันกินที่อีก 3,200 ลบ.ซม. • ระดับน้ำใหม่ = (18,000 + 3,200) ÷ (40 × 25) = 21.2 ซม."}, {"skill": "พื้นที่ผิว", "prompt": "ลูกบาศก์ใหญ่ประกอบจากลูกบาศก์เล็กด้านละ 1 ซม. จำนวน 64 ลูก นำลูกเล็กที่มุมบนหนึ่งลูกออก พื้นที่ผิวทั้งหมดของรูปที่เหลือเท่าไร", "answer": "96", "options": ["90", "93", "99", "96"], "explanation": "ลูกบาศก์ใหญ่ด้านละ 4 ซม. มีพื้นที่ผิว 6 × 4² = 96 • ตัดที่มุมแล้วผิวเดิมหาย 3 หน้า แต่เปิดให้เห็นหน้าใหม่อีก 3 หน้า พื้นที่รวมจึงเป็น 96 ตร.ซม."}, {"skill": "มาตราส่วน", "prompt": "แผนที่มาตราส่วน 1 : 25,000 แปลงรูปสี่เหลี่ยมผืนผ้าบนแผนที่กว้าง 2.4 ซม. ยาว 3.2 ซม. มีพื้นที่จริงกี่เฮกตาร์ กำหนด 1 เฮกตาร์ = 10,000 ตร.ม.", "answer": "48", "options": ["48", "19.2", "24", "96"], "explanation": "บนแผนที่ 1 ซม. แทนจริง 250 ม. • ด้านจริงคือ 600 และ 800 ม. • พื้นที่ 480,000 ตร.ม. เท่ากับ 48 เฮกตาร์"}, {"skill": "การนับ", "prompt": "ใช้เลขโดด 0, 1, 2, 3, 4 สร้างจำนวนคู่สามหลักที่มากกว่า 300 โดยแต่ละหลักใช้เลขต่างกัน สร้างได้กี่จำนวน", "answer": "15", "options": ["12", "15", "16", "18"], "explanation": "หลักร้อยเป็น 3 หรือ 4 • เมื่อเป็น 3 หลักหน่วยเลือก 0, 2, 4 ได้ 3 แบบ และหลักสิบเหลือ 3 แบบ รวม 9 • เมื่อเป็น 4 หลักหน่วยเลือก 0, 2 ได้ 2 แบบ และหลักสิบเหลือ 3 แบบ รวม 6 • ทั้งหมด 15 จำนวน"}, {"skill": "ความน่าจะเป็น", "prompt": "ถุงมีลูกแก้วแดง 4 ลูก น้ำเงิน 3 ลูก และเขียว 2 ลูก สุ่มหยิบ 2 ลูกโดยไม่ใส่คืน ความน่าจะเป็นที่ได้สีเดียวกันเท่าไร", "answer": "5/18", "options": ["1/4", "1/3", "5/18", "4/9"], "explanation": "คู่สีแดงมี 4 × 3 ÷ 2 = 6 คู่ น้ำเงิน 3 คู่ เขียว 1 คู่ • คู่ทั้งหมดมี 9 × 8 ÷ 2 = 36 คู่ • ความน่าจะเป็น = 10/36 = 5/18"}, {"skill": "เซตและข้อมูล", "prompt": "นักเรียน 48 คน ชอบคณิต 30 คน ชอบวิทย์ 27 คน และไม่ชอบทั้งสองวิชาเลย 6 คน มีกี่คนที่ชอบเพียงวิชาเดียว", "answer": "27", "options": ["21", "24", "33", "27"], "explanation": "ชอบอย่างน้อยหนึ่งวิชา 48 − 6 = 42 คน • ชอบทั้งสองวิชา 30 + 27 − 42 = 15 คน • ชอบเพียงวิชาเดียว 42 − 15 = 27 คน"}, {"skill": "กำไรขาดทุน", "prompt": "ขายสินค้าสองชิ้นราคาเท่ากัน ชิ้นแรกกำไร 25% จากทุน ชิ้นที่สองขาดทุน 20% จากทุน ถ้ารวมแล้วขาดทุน 60 บาท ขายชิ้นละเท่าไร", "answer": "1,200", "options": ["1,200", "800", "1,000", "1,500"], "explanation": "ให้ราคาขายชิ้นละ x • ทุนสองชิ้นคือ x ÷ 1.25 = 0.8x กับ x ÷ 0.8 = 1.25x • ขาดทุน 2.05x − 2x = 0.05x = 60 จึงได้ x = 1,200"}, {"skill": "สมการเงิน", "prompt": "เอและบีมีเงินรวมกัน 420 บาท ถ้าเอให้บี 30 บาท แล้วบีใช้เงิน 1/4 ของที่มี เงินที่เหลือของบีเท่ากับเงินของเอ เดิมบีมีเงินกี่บาท", "answer": "210", "options": ["180", "200", "240", "210"], "explanation": "ให้เดิมบีมี x บาท หลังรับจะมี x + 30 และเหลือ 3/4 ของยอดนี้ • เอเหลือ 390 − x • แก้ (3/4)(x + 30) = 390 − x ได้ x = 210"}, {"skill": "ผลต่างของเศษส่วน", "prompt": "ผลต่าง 3/4 − 5/8 มีค่าเป็นกี่เท่าของผลต่าง 7/12 − 5/9", "answer": "4 1/2", "options": ["3 1/2", "4 1/2", "4", "5 1/2"], "explanation": "ผลต่างแรกเท่ากับ 1/8 • ผลต่างที่สองเท่ากับ 21/36 − 20/36 = 1/36 • ดังนั้น (1/8) ÷ (1/36) = 36/8 = 4 1/2"}, {"skill": "งานและกำหนดเวลา", "prompt": "คนงาน 12 คนวางแผนทำงานเสร็จใน 15 วัน หลังทำไป 5 วันต้องการให้งานเสร็จเร็วขึ้น 2 วันจากแผนเดิม ต้องเพิ่มคนงานกี่คน โดยทุกคนทำงานได้เท่ากัน", "answer": "3", "options": ["2", "4", "3", "5"], "explanation": "งานที่เหลือเท่ากับ 12 × (15 − 5) = 120 คน-วัน • ต้องทำให้เสร็จใน 8 วันหลังเพิ่มคน • ใช้ 120 ÷ 8 = 15 คน จึงเพิ่ม 3 คน"}, {"skill": "โจทย์จำนวนเต็ม", "prompt": "โรงเรียนมีนักเรียนมากกว่า 80 คน แต่น้อยกว่า 150 คน เมื่อแบ่งกลุ่มละ 7 เหลือ 3 คน และเมื่อแบ่งกลุ่มละ 9 เหลือ 5 คน โรงเรียนมีนักเรียนกี่คน", "answer": "122", "options": ["122", "94", "108", "131"], "explanation": "เพิ่ม 4 คนแล้วจะแบ่งลงตัวทั้งกลุ่มละ 7 และ 9 • ค.ร.น. เท่ากับ 63 • พหุคูณของ 63 ในช่วงที่ต้องการคือ 126 จึงมีนักเรียน 126 − 4 = 122 คน"}, {"skill": "พื้นที่และต้นทุน", "prompt": "สวนรูปสี่เหลี่ยมผืนผ้า 24 × 18 ม. มีทางเดินกว้าง 2 ม. อยู่ด้านในชิดขอบทั้งสี่ด้าน ถ้าปูทางเดินด้วยแผ่นขนาด 50 × 50 ซม. และต้องซื้อเผื่ออย่างน้อย 5% ต้องซื้ออย่างน้อยกี่แผ่น", "answer": "639", "options": ["608", "639", "638", "640"], "explanation": "พื้นที่ทางเดิน = 24 × 18 − 20 × 14 = 152 ตร.ม. • แผ่นละ 0.25 ตร.ม. ใช้ 608 แผ่น • เผื่อ 5% จะได้ 638.4 แผ่น ต้องปัดขึ้นเป็น 639 แผ่น"}]];
+const names = ['สนามสอบเข้า ม.1 · คณิตรวมเข้ม'];
+const $ = id => document.getElementById(id);
+const paper = $('paper');
+const overlay = $('overlay');
+let writing = false;
+const storageKey = 'kpc-m1-math-arena-25-v1';
+let state, setIndex, questions, draftKey;
+let open = false, current = null, pointer = null, color = '#24314e';
+let confirmCallback;
+function restore() {
+  try { return JSON.parse(localStorage.getItem(storageKey)) || {}; }
+  catch { return {}; }
+}
+let drafts = restore();
+function save() {
+  drafts[draftKey] = state;
+  try { localStorage.setItem(storageKey, JSON.stringify(drafts)); }
+  catch { /* The session remains playable when storage is unavailable. */ }
+}
+function fresh() {
+  return {i:0, name:'', answers:Array(25).fill(''), picks:Array(25).fill(''), marks:Array(25).fill(false), ink:{}, overlay:{}, submitted:false};
+}
+function show(id) {
+  for (const section of ['cover','exam','result']) $(section).hidden = section !== id;
+  window.scrollTo(0,0);
+}
+function start(index, restart = false) {
+  setIndex = index;
+  questions = BANK[index];
+  const name = $('player').value.trim();
+  draftKey = JSON.stringify([index, name]);
+  const draft = drafts[draftKey];
+  state = !restart && draft && !draft.submitted ? draft : fresh();
+  state.name = name;
+  if (state.name) $('player').value = state.name;
+  save();
+  $('navigator').open = window.innerWidth > 650;
+  show('exam');
+  renderQuestion();
+}
+function math(text) {
+  return text.replace(/(\d+)\/(\d+)/g, '<span class="fraction" aria-label="$1 ส่วน $2"><span>$1</span><span>$2</span></span>');
+}
+function button(text, className, action) {
+  const el = document.createElement('button');
+  el.className = className;
+  el.textContent = text;
+  el.onclick = action;
+  return el;
+}
+function refreshDots() {
+  const answered = state.answers.filter(a => a !== '').length;
+  $('count').textContent = 'ตรวจแล้ว ' + answered + '/25';
+  [...$('dots').children].forEach((el, index) => {
+    el.classList.toggle('done', state.answers[index] === questions[index].answer);
+    el.classList.toggle('wrong-dot', Boolean(state.answers[index]) && state.answers[index] !== questions[index].answer);
+    el.classList.toggle('marked', state.marks[index]);
+    el.setAttribute('aria-label', 'ข้อ ' + (index + 1) + (state.answers[index] !== '' ? ' ตอบแล้ว' : '') + (state.marks[index] ? ' ทำเครื่องหมายแล้ว' : ''));
+  });
+}
+function go(index) {
+  if (index < 0 || index >= questions.length) return;
+  finishInk();
+  state.i = index;
+  save();
+  renderQuestion();
+}
+function renderQuestion() {
+  const i = state.i;
+  const q = questions[i];
+  $('setTitle').textContent = names[setIndex];
+  $('dots').replaceChildren(...questions.map((_, index) => {
+    const el = button(String(index + 1), 'dot' + (i === index ? ' current' : ''), () => go(index));
+    if (i === index) el.setAttribute('aria-current','step');
+    return el;
+  }));
+  refreshDots();
+  $('prev').disabled = i === 0;
+  $('next').disabled = i === questions.length - 1;
+  updateMark();
+  $('part').textContent = 'ข้อ ' + (i + 1) + '/25';
+  $('question').innerHTML = math(q.prompt);
+  renderChoices();
+  resize();
+}
+function steps(q) {
+  return '<ol>' + q.explanation.split(' • ').map(step => '<li>' + math(step) + '</li>').join('') + '</ol>';
+}
+function renderChoices() {
+  const i = state.i;
+  const q = questions[i];
+  const checked = Boolean(state.answers[i]);
+  const choices = document.createElement('div');
+  choices.className = 'choices';
+  q.options.forEach((option, index) => {
+    const el = button('', 'choice', () => {
+      state.picks[i] = option;
+      save();
+      [...choices.children].forEach((item, j) => item.setAttribute('aria-pressed', String(j === index)));
+      verify.disabled = false;
+    });
+    const isPicked = option === state.picks[i];
+    el.innerHTML = '<span class="letter">' + 'ABCD'[index] + '</span>' + math(option);
+    el.setAttribute('aria-pressed', String(isPicked));
+    el.disabled = checked;
+    el.classList.toggle('is-right', checked && option === q.answer);
+    el.classList.toggle('is-wrong', checked && isPicked && option !== q.answer);
+    choices.append(el);
+  });
+  const verify = button('ยืนยันคำตอบ', 'primary', () => {
+    if (!state.picks[i] || state.answers[i]) return;
+    state.answers[i] = state.picks[i];
+    save();
+    refreshDots();
+    renderChoices();
+  });
+  verify.disabled = !state.picks[i];
+  $('responses').replaceChildren(choices);
+  if (!checked) $('responses').append(verify);
+  $('feedback').innerHTML = checked
+    ? '<strong class="' + (state.answers[i] === q.answer ? 'right">✓ ถูกต้อง' : 'wrong">✕ ยังไม่ถูก') +
+      '</strong><p>คำตอบ ' + 'ABCD'[q.options.indexOf(q.answer)] + ' · ' + math(q.answer) + '</p>' + steps(q)
+    : '';
+}
+function updateMark() {
+  const marked = state.marks[state.i];
+  $('mark').textContent = marked ? '★ ทำเครื่องหมายแล้ว' : '☆ ทำเครื่องหมาย';
+  $('mark').setAttribute('aria-pressed', String(marked));
+}
+function ask(title, message, action, callback) {
+  $('confirmTitle').textContent = title;
+  $('confirmMessage').textContent = message;
+  $('confirmAction').textContent = action;
+  confirmCallback = callback;
+  $('confirmBox').returnValue = 'cancel';
+  $('confirmBox').showModal();
+}
+$('confirmBox').onclose = () => {
+  if ($('confirmBox').returnValue === 'yes') confirmCallback();
+};
+function submit() {
+  const missing = state.answers.filter(a => a === '').length;
+  ask('จบการทดสอบหรือไม่?', missing ? 'ยังเว้นไว้ ' + missing + ' ข้อ ข้อที่เว้นจะได้ 0 คะแนน' : 'ตอบครบ 25 ข้อแล้ว', 'ส่งและดูคะแนน', () => {
+    togglePad(false);
+    toggleWriting(false);
+    state.submitted = true;
+    save();
+    renderResult();
+  });
+}
+function renderResult() {
+  const grades = questions.map((q, i) => state.answers[i] === q.answer);
+  const total = grades.filter(Boolean).length;
+  const checked = state.answers.filter(Boolean).length;
+  $('resultName').textContent = [state.name, names[setIndex]].filter(Boolean).join(' · ');
+  $('score').textContent = total + ' / 25';
+  $('percent').textContent = 'คิดเป็น ' + total * 4 + '%';
+  $('parts').innerHTML = '<div>ตอบผิด <strong>' + (checked - total) + '</strong></div><div>เว้นไว้ <strong>' + (25 - checked) + '</strong></div>';
+  $('review').replaceChildren(...questions.map((q, i) => {
+    const detail = document.createElement('details');
+    detail.className = 'review';
+    const summary = document.createElement('summary');
+    summary.className = grades[i] ? 'right' : 'wrong';
+    summary.textContent = (grades[i] ? '✓ ' : '✕ ') + 'ข้อ ' + (i + 1) + ' · ' + q.skill;
+    const prompt = document.createElement('p');
+    prompt.innerHTML = math(q.prompt);
+    const given = document.createElement('p');
+    given.textContent = 'คำตอบที่ส่ง ' + (state.answers[i] || '— เว้นว่าง');
+    const solution = document.createElement('p');
+    solution.className = 'answerKey accent';
+    solution.innerHTML = 'คำตอบ ' + math(q.answer) + (q.unit && q.unit !== 'ไม่มีหน่วย' ? (q.unit === '%' ? '%' : ' ' + q.unit) : '');
+    const explanation = document.createElement('div');
+    explanation.innerHTML = steps(q);
+    detail.append(summary, prompt, given, solution, explanation);
+    return detail;
+  }));
+  show('result');
+}
+function activeSurface() { return writing ? overlay : paper; }
+function inkList(surface = activeSurface()) {
+  const strokes = surface === overlay ? state.overlay : state.ink;
+  return strokes[state.i] ||= [];
+}
+function resize() {
+  resizeSurface(overlay);
+  if (open) resizeSurface(paper);
+}
+function resizeSurface(canvas) {
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+  const ratio = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = Math.round(rect.width * ratio);
+  canvas.height = Math.round(rect.height * ratio);
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  redraw(canvas);
+}
+function redraw(canvas = activeSurface()) {
+  const ctx = canvas.getContext('2d');
+  const {width, height} = canvas.getBoundingClientRect();
+  ctx.clearRect(0, 0, width, height);
+  for (const stroke of [...inkList(canvas), ...(current && canvas === activeSurface() ? [current] : [])]) {
+    ctx.globalCompositeOperation = stroke.color === 'erase' ? 'destination-out' : 'source-over';
+    ctx.strokeStyle = stroke.color === 'erase' ? '#000' : stroke.color;
+    ctx.lineWidth = stroke.color === 'erase' ? 24 : 3;
+    ctx.lineCap = ctx.lineJoin = 'round';
+    ctx.beginPath();
+    const [x, y] = stroke.points[0];
+    ctx.moveTo(x * width, y * height);
+    for (const [px, py] of stroke.points.slice(1)) ctx.lineTo(px * width, py * height);
+    if (stroke.points.length === 1) ctx.lineTo(x * width + .1, y * height + .1);
+    ctx.stroke();
+  }
+  ctx.globalCompositeOperation = 'source-over';
+}
+function point(event, rect) {
+  return [(event.clientX - rect.left) / rect.width, (event.clientY - rect.top) / rect.height];
+}
+function finishInk() {
+  if (!current) return;
+  inkList().push(current);
+  current = null;
+  pointer = null;
+  save();
+  redraw();
+}
+function togglePad(value) {
+  finishInk();
+  if (value && writing) toggleWriting(false);
+  open = value;
+  $('scratch').hidden = !open;
+  $('responses').hidden = open;
+  $('padToggle').textContent = open ? '✓ พับกระดาษทด · กลับไปตอบ' : '✎ เปิดกระดาษทด';
+  $('padToggle').setAttribute('aria-expanded', String(open));
+  $('inkTools').hidden = !open && !writing;
+  if (open) requestAnimationFrame(resize);
+}
+function toggleWriting(value) {
+  finishInk();
+  if (value && open) togglePad(false);
+  writing = value;
+  $('questionStage').classList.toggle('inking', writing);
+  $('inkToggle').setAttribute('aria-pressed', String(writing));
+  $('inkToggle').textContent = writing ? '✓ หยุดเขียนบนโจทย์' : '✎ เขียนบนโจทย์';
+  $('inkTools').hidden = !writing && !open;
+}
+for (const canvas of [paper, overlay]) {
+canvas.addEventListener('pointerdown', event => {
+  if (!(canvas === overlay ? writing : open) || pointer !== null || event.button !== 0) return;
+  event.preventDefault();
+  pointer = event.pointerId;
+  try { canvas.setPointerCapture(pointer); } catch {}
+  current = {color, points:[point(event, canvas.getBoundingClientRect())]};
+  redraw();
+}, {passive:false});
+canvas.addEventListener('pointermove', event => {
+  if (event.pointerId !== pointer || !current) return;
+  event.preventDefault();
+  const samples = event.getCoalescedEvents?.();
+  // Coalesced samples carry coordinates but can have a null currentTarget.
+  const rect = canvas.getBoundingClientRect();
+  for (const sample of samples?.length ? samples : [event]) current.points.push(point(sample, rect));
+  redraw();
+}, {passive:false});
+for (const type of ['pointerup','pointercancel','lostpointercapture']) {
+  canvas.addEventListener(type, event => { if (event.pointerId === pointer) finishInk(); });
+}
+for (const type of ['touchstart','touchmove','touchend','touchcancel','contextmenu','selectstart','dragstart']) {
+  canvas.addEventListener(type, event => { if (event.cancelable) event.preventDefault(); }, {passive:false});
+}
+}
+window.addEventListener('resize', resize);
+if (typeof ResizeObserver !== 'undefined') new ResizeObserver(resize).observe($('questionStage'));
+for (const control of document.querySelectorAll('[data-ink]')) {
+  control.setAttribute('aria-pressed', String(control.dataset.ink === color));
+  control.onclick = () => {
+    color = control.dataset.ink;
+    document.querySelectorAll('[data-ink]').forEach(el => el.setAttribute('aria-pressed', String(el === control)));
+  };
+}
+$('undo').onclick = () => { finishInk(); inkList().pop(); save(); redraw(); };
+$('clearPad').onclick = () => {
+  if (inkList().length) ask('ล้างรอยเขียนข้อนี้?', 'รอยเขียนในข้อนี้จะถูกล้างทั้งหมด', 'ล้างรอยเขียน', () => {
+    inkList().length = 0;
+    save();
+    redraw();
+  });
+};
+$('inkToggle').onclick = () => toggleWriting(!writing);
+$('padToggle').onclick = () => togglePad(!open);
+document.querySelectorAll('[data-start]').forEach(el => el.onclick = () => start(Number(el.dataset.start)));
+$('prev').onclick = () => go(state.i - 1);
+$('next').onclick = () => go(state.i + 1);
+$('mark').onclick = () => { state.marks[state.i] = !state.marks[state.i]; updateMark(); save(); refreshDots(); };
+$('submit').onclick = submit;
+$('exit').onclick = () => { togglePad(false); toggleWriting(false); save(); show('cover'); };
+$('home').onclick = () => show('cover');
+$('again').onclick = () => start(setIndex, true);
+</script>
+</html>
