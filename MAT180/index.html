@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="th">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Percent Mission · Kru Pai Classroom</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,"Noto Sans Thai",sans-serif;background:#100c27;color:#faf6ff;--mint:#bafae3;--violet:#ae91ff;--line:#514372}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 85% 0%,#4b2866,transparent 50%),radial-gradient(ellipse at 0% 60%,#25265b,transparent 55%),#100c27}
+main{width:min(1120px,100%);margin:auto;padding:clamp(12px,3vw,36px)}header{color:var(--mint);font-weight:800;letter-spacing:.07em;margin:10px 0 22px}
+.panel{background:#1d1634ed;border:1px solid var(--line);border-radius:25px;padding:clamp(16px,4vw,42px);box-shadow:0 20px 60px #09051760}
+.hero{position:relative;isolation:isolate;overflow:hidden}.hero::after{content:'%';position:absolute;right:5%;top:-20px;font-size:clamp(110px,25vw,350px);font-weight:950;line-height:1;color:#b69bff1b;z-index:-1;transform:rotate(-12deg)}
+h1{font-size:clamp(42px,8vw,100px);line-height:1.03;margin:10px 0;color:var(--mint);letter-spacing:-.04em}h2{font-size:clamp(24px,4vw,42px);margin:10px 0}p{line-height:1.6}.muted{color:#d2c6e3}.accent{color:var(--mint);font-weight:800}
+button,input{font:inherit}button{cursor:pointer;touch-action:manipulation;min-height:44px;color:inherit;border:1px solid var(--line);border-radius:13px;background:#30234d;padding:9px 15px;font-weight:750}
+button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.primary{background:var(--mint);color:#13382e;border-color:var(--mint)}.secondary{background:#47336e}#scratch button[aria-pressed=true],#mark[aria-pressed=true]{border-color:var(--mint);color:var(--mint)}.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.spread{justify-content:space-between}
+input{background:#faf7ff;color:#271b40;padding:12px;border:2px solid var(--violet);border-radius:12px;max-width:100%;font-size:20px}label{display:block;margin:18px 0 7px;font-weight:750}
+.cards,.choices,.scoreGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.card,.choice{text-align:left;padding:15px;background:#301f50;border:1px solid #705aa0}.card{min-height:104px;font-size:clamp(19px,3vw,27px)}.card span{display:block;font-size:16px;color:#e4d8fa;margin-top:5px}
+.card:nth-child(2){background:#45224f}.choice{font-size:clamp(19px,2.7vw,28px);min-height:64px;overflow-wrap:anywhere}.choice[aria-pressed=true]{background:#59428b;border-color:var(--mint);box-shadow:inset 0 0 0 1px var(--mint)}.letter{color:var(--mint);margin-right:9px}
+nav{display:flex;gap:5px;flex-wrap:wrap;margin:10px 0}.dot{min-width:40px;padding:5px;position:relative}.dot.done{background:#245249}.dot.current{outline:2px solid var(--mint);outline-offset:0}.dot.marked::after{content:'★';position:absolute;right:2px;top:0;color:#ffe295;font-size:10px}
+.part{color:var(--mint);font-weight:850;font-size:18px}.question{font-size:clamp(23px,3.4vw,40px);font-weight:760;line-height:1.45;margin:18px 0}.fraction{display:inline-grid;vertical-align:middle;text-align:center;line-height:1.07;margin:0 .12em}.fraction span:first-child{border-bottom:2px solid currentColor;padding:0 .15em .09em}.fraction span+span{padding-top:.08em}.numeric{width:235px}.status{color:#ffd998;min-height:1.5em}
+#scratch{margin-top:15px;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#30234d}#scratch .bar{padding:8px}canvas{display:block;width:100%;height:clamp(280px,55dvh,700px);background:repeating-linear-gradient(#fff 0 31px,#dfe6fa 32px);touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;overscroll-behavior:none}
+.score{font-size:clamp(45px,8vw,85px);font-weight:950;color:var(--mint);margin:4px 0}.scoreGrid>div,details.review{padding:14px;border-radius:14px;background:#30234d;border:1px solid var(--line)}details.review{margin:9px 0}summary{cursor:pointer;font-weight:750}.right{color:var(--mint)}.wrong{color:#ffb3cb}.answerKey{margin-bottom:0}dialog{background:#24193c;color:inherit;border:1px solid var(--violet);border-radius:20px;width:min(460px,92vw);padding:22px}dialog::backdrop{background:#070412bf}
+[hidden]{display:none!important}@media(max-width:550px){.cards,.choices{grid-template-columns:1fr}.dot{min-width:35px}.scoreGrid{gap:6px}}@media(min-width:1400px){main{width:min(1380px,100%)}}
+/* Electric game-show theme */
+:root{--mint:#faff36;--violet:#faff36;--line:#46483e;background:#0e100e;color:#fffef1}
+body{background:radial-gradient(ellipse at 75% -15%,#4e4c12,transparent 52%),radial-gradient(ellipse at 5% 90%,#292c0c,transparent 45%),#10120f;background-attachment:fixed}
+main{padding-top:14px}
+header{display:flex;align-items:center;gap:12px;color:#faff36;margin:12px 0 18px;letter-spacing:.16em;font-size:clamp(12px,1.7vw,17px)}
+header::before{content:'';width:27px;height:17px;background:repeating-linear-gradient(115deg,#faff36 0 5px,transparent 5px 9px);flex:none}
+.panel{background:#181b16;border-color:#46483e;border-radius:22px;box-shadow:0 16px 60px #0008}
+.hero{padding:0;overflow:hidden}
+.hero::after{content:none}
+.hero-stage{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:center;min-height:340px;padding:clamp(22px,4.5vw,56px);color:#171a0c;background:radial-gradient(ellipse at 78% 43%,#ffffa4 0%,transparent 53%),linear-gradient(128deg,#f0ff23 10%,#faff36 60%,#e9f21c 100%);border-bottom:6px solid #79810d}
+.hero-stage::before{content:'';position:absolute;inset:0;z-index:-1;opacity:.23;background-image:radial-gradient(#242900 1px,transparent 1px);background-size:11px 11px;mask-image:linear-gradient(110deg,transparent,#000)}
+.hero-copy{position:relative;z-index:2}
+.hero h1{margin:0;color:#141608;font-family:Impact,"Arial Black",system-ui,sans-serif;font-style:italic;font-weight:950;text-transform:uppercase;line-height:.88;letter-spacing:-.045em;font-size:clamp(49px,8.6vw,118px)}
+.hero h1 span{display:block;color:#faff36;-webkit-text-stroke:2px #171a0c;text-shadow:3px 4px 0 #171a0c;margin-top:7px}
+.hero h2{margin:20px 0 0;color:#171a0c;font-size:clamp(20px,3vw,38px);line-height:1.28}
+.percent-art{position:relative;display:grid;place-items:center;justify-self:center;width:min(100%,370px);aspect-ratio:1;isolation:isolate}
+.percent-art::before,.percent-art::after{content:'';position:absolute;aspect-ratio:1;border-radius:50%;z-index:-1}
+.percent-art::before{width:83%;border:2px dashed #333806;animation:orbit 35s linear infinite}
+.percent-art::after{width:69%;background:#191c0e;box-shadow:9px 9px 0 #9ca217,0 0 0 8px #f9ff4a,0 0 0 10px #262b0b}
+.percent-art strong{font-family:Impact,"Arial Black",system-ui,sans-serif;color:#faff36;font-size:clamp(86px,16.5vw,236px);line-height:1;transform:rotate(-12deg);text-shadow:5px 7px #737735}
+.spark{position:absolute;color:#1b200c;font-size:clamp(24px,5vw,67px);line-height:1}.spark.one{top:4%;right:7%}.spark.two{bottom:8%;left:0%;font-size:clamp(18px,3vw,45px)}
+.hero-controls{padding:clamp(16px,3.5vw,36px)}
+.hero-controls p{margin:0;color:#e9ebd7;font-weight:650}
+.hero-controls label{color:#faff36}
+.cards{margin-bottom:0;gap:14px}
+.card,.card:nth-child(2){display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;background:#faff36;color:#181b10;border:2px solid #faff36;box-shadow:0 4px 0 #81871a;line-height:1.24}
+.card:nth-child(2){background:#2b2c14;color:#ffffda;box-shadow:0 4px 0 #41441b}
+.card b{display:grid;place-items:center;border:1px solid currentColor;border-radius:10px;width:44px;height:44px;font-size:24px}
+.card span{color:inherit;font-size:clamp(13px,1.7vw,16px);line-height:1.35}.card .set-copy{font-size:inherit;margin:0}.card .arrow{font-size:24px;margin:0}
+.card:focus-visible,.card:hover{filter:brightness(1.14);transform:translateY(-2px)}
+button{background:#262a21;border-color:#505548}
+button.primary{background:#faff36;color:#181b10;border-color:#faff36;box-shadow:0 3px 0 #878c20}
+button.secondary{background:#30321a;border-color:#737629;color:#feff83}
+input{background:#ffffed;color:#1b1e13;border-color:#b6b84b}
+#exam,#result{border-top:5px solid #faff36}
+#setTitle{font-size:clamp(17px,2.25vw,26px)}#count{background:#faff36;color:#181b10;border-radius:6px;padding:5px 9px;font-variant-numeric:tabular-nums}
+#navigator{margin:14px 0}
+.question{max-width:42ch}
+.choice{background:#252920;border-color:#535a49;border-radius:10px}.choice:hover{border-color:#faff36}.choice[aria-pressed=true]{background:#faff36;color:#171a0c;border-color:#faff36}.choice[aria-pressed=true] .letter{background:#181b10;color:#faff36}
+.letter{display:inline-grid;place-items:center;background:#faff36;color:#181b10;border-radius:6px;width:1.55em;height:1.55em;font-weight:900}
+.dot.done{background:#dce448;color:#181b10}.dot.current{outline-offset:2px}.dot.marked::after{color:#ffab44;filter:drop-shadow(0 1px 1px #000)}
+#scratch{background:#24291e}
+canvas{background:repeating-linear-gradient(#fff 0 31px,#e6e8cf 32px)}
+.result-banner{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(112deg,#faff36,#f0f88c);color:#181b10;border-radius:13px;padding:clamp(15px,3vw,32px)}
+.result-banner::after{content:'%';position:absolute;right:5%;top:50%;transform:translateY(-50%) rotate(-12deg);font-size:clamp(110px,24vw,330px);font-weight:950;line-height:1;color:#262a112b;z-index:-1}
+.result-banner .part,.result-banner .score{color:#171a0c}.result-banner .part,.result-banner p:last-child{margin:0}.result-banner .score{line-height:1.03}
+.scoreGrid>div,details.review{background:#252920;border-color:#505548}.scoreGrid strong{font-size:clamp(24px,3.5vw,43px);color:#faff36}
+.right{color:#b4fab4}.wrong{color:#ffc0cb}dialog{background:#22261d}
+@keyframes orbit{to{transform:rotate(1turn)}}
+@media(max-width:700px){.hero-stage{min-height:242px;gap:4px;padding:18px}.hero h1{font-size:clamp(40px,9vw,70px)}.hero h1 span{-webkit-text-stroke:1.4px #171a0c;text-shadow:2px 3px #171a0c}.hero h2{font-size:clamp(18px,3.7vw,26px);margin-top:14px}.percent-art strong{font-size:clamp(68px,15vw,130px)}}
+@media(max-width:380px){.hero-stage{padding:15px;min-height:205px}.hero h1{font-size:clamp(33px,10vw,40px)}.percent-art strong{font-size:clamp(55px,17vw,68px)}}
+@media(prefers-reduced-motion:reduce){.percent-art::before{animation:none}}
+</style>
+<main>
+<header>KRU PAI CLASSROOM</header>
+<section id="cover" class="panel hero">
+<div class="hero-stage">
+<div class="hero-copy"><h1>Percent <span>Mission</span></h1><h2>ทดสอบร้อยละครบทุกทักษะ</h2></div>
+<div class="percent-art" aria-hidden="true"><strong>%</strong><span class="spark one">✦</span><span class="spark two">✦</span></div>
+</div>
+<div class="hero-controls">
+<p class="muted">ชุดละ 35 ข้อ · ตัวเลือก 25 ข้อ · เติมคำตอบ 10 ข้อ · ไม่จับเวลา</p>
+<label for="player">ชื่อนักเรียน</label><input id="player" type="text" maxlength="65" placeholder="พิมพ์ชื่อหรือชื่อเล่น">
+<div class="cards">
+<button class="card" data-start="0"><b>1</b><span class="set-copy">พื้นฐานถึงประยุกต์<span>ปานกลาง มีโจทย์ท้าทายบางข้อ</span></span><span class="arrow" aria-hidden="true">→</span></button>
+<button class="card" data-start="1"><b>2</b><span class="set-copy">สนามสอบเข้า ม.1<span>โจทย์หลายขั้น เปลี่ยนฐาน และคิดย้อนกลับ</span></span><span class="arrow" aria-hidden="true">→</span></button>
+</div>
+</div>
+</section>
+<section id="exam" class="panel" hidden>
+<div class="bar spread"><strong id="setTitle"></strong><span id="count" class="accent"></span></div>
+<details id="navigator" open><summary>เลือกข้อที่ต้องการทำ</summary><nav id="dots" aria-label="เลือกข้อสอบ"></nav></details>
+<div class="bar"><button id="prev">← ก่อนหน้า</button><button id="next">ถัดไป →</button><button id="mark" aria-pressed="false">☆ ทำเครื่องหมาย</button></div>
+<p class="part" id="part"></p><div id="question" class="question"></div>
+<button id="padToggle" class="secondary" aria-expanded="false" aria-controls="scratch">✎ เปิดกระดาษทด</button>
+<div id="scratch" hidden><div class="bar">
+<button data-ink="#24314e">ปากกาดำ</button><button data-ink="#1664d8">น้ำเงิน</button><button data-ink="#e53750">แดง</button><button data-ink="erase">ยางลบ</button><button id="undo">↶ ย้อนเส้น</button><button id="clearPad">ล้างข้อนี้</button></div>
+<canvas id="paper" aria-label="พื้นที่เขียนกระดาษทด"></canvas></div>
+<div id="responses"></div>
+<div class="bar spread" style="margin-top:18px"><button id="submit" class="primary">ส่งคำตอบ</button><button id="exit">กลับหน้าปก</button></div>
+</section>
+<section id="result" class="panel" hidden>
+<div class="result-banner"><p class="part" id="resultName"></p><h2>สรุปผลการทดสอบ</h2><div class="score" id="score"></div><p id="percent"></p></div>
+<div class="scoreGrid" id="parts"></div>
+<div class="bar"><button class="primary" id="again">เล่นชุดเดิมอีกครั้ง</button><button id="home">เลือกชุดอื่น</button></div>
+<h2>เฉลยและวิธีคิด</h2><div id="review"></div>
+</section>
+<dialog id="confirmBox"><h2 id="confirmTitle"></h2><p id="confirmMessage"></p><form method="dialog" class="bar"><button value="cancel" autofocus>ยกเลิก</button><button class="primary" value="yes" id="confirmAction"></button></form></dialog>
+</main>
+<script>
+const BANK = [[{"skill": "เศษส่วนและทศนิยม", "prompt": "เศษส่วน 7/20 เขียนเป็นร้อยละได้เท่าไร", "answer": "35%", "explanation": "ทำส่วนให้เป็น 100 โดยคูณทั้งเศษและส่วนด้วย 5 ได้ 35/100", "options": ["25%", "35%", "30%", "40%"]}, {"skill": "เศษส่วนและทศนิยม", "prompt": "ทศนิยม 0.075 เขียนเป็นร้อยละได้เท่าไร", "answer": "7.5%", "explanation": "คูณ 0.075 ด้วย 100 ได้ 7.5", "options": ["0.75%", "75%", "0.075%", "7.5%"]}, {"skill": "เศษส่วนและทศนิยม", "prompt": "62.5% เท่ากับเศษส่วนอย่างต่ำข้อใด", "answer": "5/8", "explanation": "62.5/100 = 625/1000 = 5/8", "options": ["5/8", "3/5", "5/6", "7/8"]}, {"skill": "เปรียบเทียบ", "prompt": "จำนวนใดมีค่ามากที่สุด", "answer": "7/16", "explanation": "เทียบเป็นร้อยละได้ 43.75%, 42%, 43% และ 40% ตามลำดับ", "options": ["0.42", "43%", "7/16", "2/5"]}, {"skill": "ส่วนของทั้งหมด", "prompt": "18% ของ 350 เท่ากับเท่าไร", "answer": "63", "explanation": "350 × 18/100 = 63", "options": ["63", "54", "60", "72"]}, {"skill": "หาอัตราร้อยละ", "prompt": "นักเรียนตอบถูก 27 ข้อจาก 36 ข้อ คิดเป็นกี่เปอร์เซ็นต์", "answer": "75%", "explanation": "27 ÷ 36 × 100 = 75", "options": ["70%", "72%", "80%", "75%"]}, {"skill": "หาจำนวนทั้งหมด", "prompt": "42 เป็น 35% ของจำนวนใด", "answer": "120", "explanation": "จำนวนทั้งหมด = 42 ÷ 0.35 = 120", "options": ["110", "120", "130", "147"]}, {"skill": "ส่วนที่เหลือ", "prompt": "ถังมีน้ำ 240 ลิตร ใช้ไป 37.5% เหลือน้ำกี่ลิตร", "answer": "150", "explanation": "เหลือ 62.5% ของ 240 = 150 ลิตร", "options": ["90", "120", "150", "180"]}, {"skill": "เพิ่มและลด", "prompt": "สมาชิกชมรมเพิ่มจาก 160 เป็น 188 คน เพิ่มขึ้นกี่เปอร์เซ็นต์", "answer": "17.5%", "explanation": "เพิ่ม 28 คน เทียบกับฐานเดิม 160 คน ได้ 28 ÷ 160 × 100 = 17.5%", "options": ["14.9%", "17.5%", "15%", "28%"]}, {"skill": "ส่วนลด", "prompt": "เสื้อป้ายราคา 1,250 บาท ลด 16% ต้องจ่ายกี่บาท", "answer": "1,050", "explanation": "จ่าย 84% ของ 1,250 = 1,050 บาท", "options": ["1,000", "1,090", "1,150", "1,050"]}, {"skill": "ราคาก่อนลด", "prompt": "หลังลด 20% เหลือราคา 720 บาท ราคาเดิมกี่บาท", "answer": "900", "explanation": "720 บาทคือ 80% ของราคาเดิม ราคาเดิม = 720 ÷ 0.8", "options": ["864", "880", "900", "960"]}, {"skill": "กำไรและขาดทุน", "prompt": "ซื้อของมา 480 บาท ขาย 552 บาท ได้กำไรร้อยละเท่าไรของต้นทุน", "answer": "15%", "explanation": "กำไร 72 บาท คิดเป็น 72 ÷ 480 × 100 = 15%", "options": ["15%", "12%", "13%", "18%"]}, {"skill": "กำไรและขาดทุน", "prompt": "สินค้าได้ราคาขาย 594 บาท เมื่อขายขาดทุน 10% ของต้นทุน ต้นทุนกี่บาท", "answer": "660", "explanation": "594 บาทคือ 90% ของต้นทุน ต้นทุน = 594 ÷ 0.9", "options": ["600", "660", "640", "680"]}, {"skill": "ภาษี", "prompt": "สินค้าราคาก่อนภาษี 850 บาท คิดภาษี 7% ต้องจ่ายรวมกี่บาท", "answer": "909.50", "explanation": "ภาษี 850 × 0.07 = 59.50 บาท รวม 909.50 บาท", "options": ["857", "900.50", "909.50", "917.50"]}, {"skill": "ร้อยละหลายขั้น", "prompt": "รองเท้าราคา 2,000 บาท ลด 10% แล้วลดอีก 5% จากราคาที่ลดแล้ว จ่ายกี่บาท", "answer": "1,710", "explanation": "2,000 × 0.90 × 0.95 = 1,710", "options": ["1,700", "1,750", "1,800", "1,710"]}, {"skill": "ร้อยละหลายขั้น", "prompt": "ราคาสินค้าเพิ่ม 20% แล้วลด 20% จากราคาใหม่ ราคาสุดท้ายเปลี่ยนเท่าไรจากราคาเดิม", "answer": "ลดลง 4%", "explanation": "ตัวคูณรวม 1.20 × 0.80 = 0.96 จึงเหลือ 96% ของราคาเดิม", "options": ["ลดลง 4%", "เท่าเดิม", "เพิ่มขึ้น 4%", "ลดลง 8%"]}, {"skill": "เปรียบเทียบ", "prompt": "ร้าน A ตั้งราคา 1,000 บาท ลด 20% ร้าน B ตั้งราคา 900 บาท ลด 10% ร้านใดถูกกว่าและกี่บาท", "answer": "ร้าน A ถูกกว่า 10 บาท", "explanation": "ร้าน A จ่าย 800 บาท ร้าน B จ่าย 810 บาท", "options": ["ร้าน B ถูกกว่า 10 บาท", "ร้าน A ถูกกว่า 10 บาท", "ร้าน A ถูกกว่า 20 บาท", "ราคาเท่ากัน"]}, {"skill": "ร้อยละของกลุ่ม", "prompt": "นักเรียน 250 คน เข้าชมรมกีฬา 40% ในกลุ่มชมรมกีฬามีคนเล่นฟุตบอล 30% มีคนเล่นฟุตบอลกี่คน", "answer": "30", "explanation": "ชมรมกีฬามี 250 × 0.40 = 100 คน เล่นฟุตบอล 100 × 0.30 = 30 คน", "options": ["25", "45", "30", "70"]}, {"skill": "จุดเปอร์เซ็นต์", "prompt": "อัตราการสอบผ่านเพิ่มจาก 60% เป็น 75% เพิ่มขึ้นกี่จุดเปอร์เซ็นต์", "answer": "15", "explanation": "จุดเปอร์เซ็นต์วัดผลต่างโดยตรง 75 − 60 = 15", "options": ["20", "25", "35", "15"]}, {"skill": "เพิ่มและลด", "prompt": "จำนวนนักเรียนลดจาก 500 เป็น 425 คน ลดลงร้อยละเท่าไรจากเดิม", "answer": "15%", "explanation": "ลด 75 คน เทียบกับฐานเดิม 500 คน ได้ 15%", "options": ["15%", "12.5%", "17.65%", "25%"]}, {"skill": "ร้อยละของกลุ่ม", "prompt": "ห้อง A ผ่าน 18 จาก 20 คน ห้อง B ผ่าน 24 จาก 30 คน รวมสองห้องผ่านร้อยละเท่าไร", "answer": "84%", "explanation": "ผ่านรวม 42 คน จากทั้งหมด 50 คน ได้ 84%", "options": ["82%", "85%", "88%", "84%"]}, {"skill": "กำไรและขาดทุน", "prompt": "ต้องการกำไร 25% ของต้นทุน สินค้าทุน 360 บาท ต้องขายกี่บาท", "answer": "450", "explanation": "ราคาขาย = 360 × 1.25 = 450", "options": ["420", "450", "435", "480"]}, {"skill": "ร้อยละหลายขั้น", "prompt": "เงินออม 800 บาท เพิ่ม 25% แล้วถอน 10% ของยอดใหม่ เหลือเท่าไร", "answer": "900", "explanation": "ยอดใหม่ 800 × 1.25 = 1,000 ถอน 100 บาท เหลือ 900 บาท", "options": ["880", "920", "900", "1,000"]}, {"skill": "ส่วนที่เหลือ", "prompt": "มีนิยาย 144 เล่ม คิดเป็น 60% ของหนังสือทั้งหมด มีหนังสือที่ไม่ใช่นิยายกี่เล่ม", "answer": "96", "explanation": "ทั้งหมด 144 ÷ 0.60 = 240 เล่ม ลบ 144 เหลือ 96 เล่ม", "options": ["96", "58", "86", "108"]}, {"skill": "หาฐานย้อนกลับ", "prompt": "ราคาปัจจุบัน 1,380 บาท หลังขึ้นราคา 15% ราคาก่อนขึ้นกี่บาท", "answer": "1,200", "explanation": "ราคาใหม่ = 1.15 เท่าของเดิม ดังนั้น 1,380 ÷ 1.15 = 1,200", "options": ["1,173", "1,200", "1,250", "1,300"]}, {"skill": "เศษส่วนและทศนิยม", "prompt": "แปลง 13/40 เป็นร้อยละ", "answer": "32.5", "explanation": "13 ÷ 40 × 100 = 32.5", "unit": "%"}, {"skill": "ส่วนของทั้งหมด", "prompt": "หาค่า 12.5% ของ 560", "answer": "70", "explanation": "12.5% = 1/8 ดังนั้น 560 ÷ 8 = 70", "unit": "ไม่มีหน่วย"}, {"skill": "หาอัตราร้อยละ", "prompt": "54 เป็นกี่เปอร์เซ็นต์ของ 240", "answer": "22.5", "explanation": "54 ÷ 240 × 100 = 22.5", "unit": "%"}, {"skill": "หาจำนวนทั้งหมด", "prompt": "ถ้า 28% ของเงินออมเท่ากับ 126 บาท มีเงินออมทั้งหมดเท่าไร", "answer": "450", "explanation": "126 ÷ 0.28 = 450", "unit": "บาท"}, {"skill": "ส่วนลด", "prompt": "กระเป๋าราคา 1,600 บาท ลด 12.5% ต้องจ่ายเท่าไร", "answer": "1400", "explanation": "ส่วนลด = 1,600 ÷ 8 = 200 จ่าย 1,400 บาท", "unit": "บาท"}, {"skill": "หาฐานย้อนกลับ", "prompt": "ร้านขายจักรยาน 2,070 บาท หลังลด 10% ราคาป้ายเดิมเท่าไร", "answer": "2300", "explanation": "2,070 ÷ 0.90 = 2,300", "unit": "บาท"}, {"skill": "กำไรและขาดทุน", "prompt": "ทุน 750 บาท ตั้งราคาขายให้กำไร 18% ของต้นทุน ต้องขายเท่าไร", "answer": "885", "explanation": "750 × 1.18 = 885", "unit": "บาท"}, {"skill": "ภาษี", "prompt": "สินค้า 1,200 บาท ลด 15% แล้วคิดภาษี 7% จากราคาหลังลด จ่ายสุทธิเท่าไร", "answer": "1091.4", "explanation": "1,200 × 0.85 = 1,020 แล้วคูณ 1.07 ได้ 1,091.40", "unit": "บาท"}, {"skill": "ร้อยละหลายขั้น", "prompt": "ราคาเดิม 2,400 บาท ลด 25% แล้วลดอีก 10% จากราคาที่ลดแล้ว จ่ายสุทธิเท่าไร", "answer": "1620", "explanation": "2,400 × 0.75 × 0.90 = 1,620", "unit": "บาท"}, {"skill": "ส่วนที่เหลือ", "prompt": "นักเรียนผ่าน 72% และมีนักเรียนไม่ผ่าน 14 คน นักเรียนทั้งหมดกี่คน", "answer": "50", "explanation": "ผู้ไม่ผ่านคิดเป็น 28% ดังนั้น 14 ÷ 0.28 = 50", "unit": "คน"}], [{"skill": "เศษส่วนและทศนิยม", "prompt": "ข้อใดมีค่าเท่ากับ 40% ของ 3/8", "answer": "15%", "explanation": "0.40 × 3/8 = 0.15 = 15%", "options": ["12.5%", "24%", "15%", "75%"]}, {"skill": "เทียบฐาน", "prompt": "จำนวน A เป็น 80% ของ B จำนวน B มากกว่า A กี่เปอร์เซ็นต์ของ A", "answer": "25%", "explanation": "สมมติ B = 100 จะได้ A = 80 ผลต่าง 20 เทียบฐาน 80 ได้ 25%", "options": ["25%", "20%", "22.5%", "30%"]}, {"skill": "อัตราเปลี่ยนแปลง", "prompt": "ราคาลดลง 20% ต้องเพิ่มขึ้นกี่เปอร์เซ็นต์ของราคาหลังลดเพื่อกลับไปเท่าเดิม", "answer": "25%", "explanation": "จาก 100 เหลือ 80 ต้องเพิ่ม 20 จากฐาน 80 คิดเป็น 25%", "options": ["16%", "20%", "24%", "25%"]}, {"skill": "อัตราเปลี่ยนแปลง", "prompt": "อัตราสอบผ่านเพิ่มจาก 40% เป็น 50% อัตราสอบผ่านเพิ่มขึ้นกี่เปอร์เซ็นต์เมื่อเทียบกับอัตราเดิม", "answer": "25%", "explanation": "เพิ่ม 10 จุดเปอร์เซ็นต์ เทียบฐานเดิม 40 ได้ 10 ÷ 40 × 100 = 25%", "options": ["10%", "25%", "20%", "50%"]}, {"skill": "ร้อยละหลายขั้น", "prompt": "ราคาลด 15% แล้วลดอีก 20% จากราคาหลังลด คิดเป็นส่วนลดรวมเท่าไรเทียบราคาเดิม", "answer": "32%", "explanation": "เหลือ 0.85 × 0.80 = 0.68 ของเดิม ลดรวม 32%", "options": ["30%", "32%", "35%", "38%"]}, {"skill": "ราคาก่อนลด", "prompt": "สินค้าลด 20% จากราคาป้าย จากนั้นใช้คูปอง 150 บาท จ่ายจริง 1,050 บาท ราคาป้ายกี่บาท", "answer": "1,500", "explanation": "ก่อนใช้คูปองจ่าย 1,200 บาท คือ 80% ของป้าย ป้าย = 1,500 บาท", "options": ["1,300", "1,350", "1,500", "1,440"]}, {"skill": "กำไรและขาดทุน", "prompt": "ตั้งราคาป้ายสูงกว่าต้นทุน 40% แล้วขายลด 25% จากป้าย ได้กำไรเท่าไรของต้นทุน", "answer": "5%", "explanation": "ราคาขาย = 1.40 × 0.75 = 1.05 เท่าของทุน กำไร 5%", "options": ["5%", "10%", "12%", "15%"]}, {"skill": "กำไรและขาดทุน", "prompt": "ของทุน 800 บาท ต้องการกำไร 20% ของทุนหลังลด 20% จากป้าย ควรตั้งป้ายเท่าไร", "answer": "1,200", "explanation": "ต้องขาย 960 บาท ซึ่งเป็น 80% ของป้าย ป้าย = 960 ÷ 0.80", "options": ["960", "1,120", "1,250", "1,200"]}, {"skill": "ภาษี", "prompt": "จ่าย 1,605 บาทหลังคิดภาษี 7% จากราคาที่ลด 25% แล้ว ราคาป้ายก่อนลดและก่อนภาษีกี่บาท", "answer": "2,000", "explanation": "หาร 1.07 ได้ 1,500 บาท แล้วหาร 0.75 ได้ 2,000 บาท", "options": ["1,875", "2,000", "2,006.25", "2,140"]}, {"skill": "หาอัตราย้อนกลับ", "prompt": "ร้านลดครั้งแรก 20% แล้วลดครั้งที่สองจากราคาหลังลด เมื่อเทียบราคาเดิมลดรวม 30% ครั้งที่สองลดกี่เปอร์เซ็นต์", "answer": "12.5%", "explanation": "จากราคา 100 เหลือ 80 แล้วเหลือ 70 ครั้งที่สองลด 10 จากฐาน 80", "options": ["10%", "15%", "12.5%", "17.5%"]}, {"skill": "ส่วนที่เหลือ", "prompt": "วันแรกขาย 30% ของหนังสือทั้งหมด วันที่สองขาย 40% ของที่เหลือ ถ้าเหลือ 126 เล่ม เดิมมีกี่เล่ม", "answer": "300", "explanation": "เหลือ 0.70 × 0.60 = 42% ของเดิม ดังนั้น 126 ÷ 0.42 = 300", "options": ["180", "250", "420", "300"]}, {"skill": "ร้อยละของกลุ่ม", "prompt": "นักเรียน 40% อยู่ห้อง A ที่ผ่าน 75% ส่วนที่เหลืออยู่ห้อง B ที่ผ่าน 90% รวมแล้วผ่านร้อยละเท่าไร", "answer": "84%", "explanation": "ผู้ผ่านคิดเป็น 0.40 × 0.75 + 0.60 × 0.90 = 0.84 ของทั้งหมด", "options": ["84%", "81%", "82.5%", "86%"]}, {"skill": "ร้อยละของกลุ่ม", "prompt": "ห้อง A มี 30 คน ผ่าน 80% ห้อง B ผ่าน 75% รวมสองห้องผ่าน 77.5% ห้อง B มีกี่คน", "answer": "30", "explanation": "77.5% อยู่กึ่งกลางระหว่าง 80% กับ 75% พอดี ขนาดสองห้องจึงเท่ากัน", "options": ["24", "30", "36", "40"]}, {"skill": "ร้อยละของกลุ่ม", "prompt": "ชมรมมีนักเรียนหญิง 60% เมื่อรับนักเรียนชายเพิ่ม 12 คน นักเรียนหญิงเหลือ 50% ของสมาชิก จำนวนสมาชิกเดิมกี่คน", "answer": "60", "explanation": "ให้เดิมมี n คน จำนวนนักเรียนหญิงคงเดิม จึงได้ 0.60n = 0.50(n + 12) และ n = 60", "options": ["60", "48", "72", "120"]}, {"skill": "เทียบฐาน", "prompt": "เดิมสินค้า A แพงกว่า B 25% หาก A ลด 12% และ B ขึ้น 10% ราคาใหม่เทียบกันอย่างไร", "answer": "เท่ากัน", "explanation": "สมมติ B เดิม 100 และ A เดิม 125 จะได้ A ใหม่ 110 และ B ใหม่ 110", "options": ["A แพงกว่า 3%", "B แพงกว่า 3%", "A แพงกว่า 10%", "เท่ากัน"]}, {"skill": "พื้นที่และร้อยละ", "prompt": "รูปสี่เหลี่ยมผืนผ้าเพิ่มความยาว 20% และลดความกว้าง 10% พื้นที่เปลี่ยนเท่าไร", "answer": "เพิ่ม 8%", "explanation": "พื้นที่คูณด้วย 1.20 × 0.90 = 1.08 จึงเพิ่ม 8%", "options": ["เพิ่ม 10%", "ลด 2%", "เพิ่ม 8%", "ลด 8%"]}, {"skill": "พื้นที่และร้อยละ", "prompt": "ด้านสี่เหลี่ยมจัตุรัสลดลง 15% พื้นที่ลดลงกี่เปอร์เซ็นต์", "answer": "27.75%", "explanation": "พื้นที่เหลือ 0.85² = 0.7225 ของเดิม ลด 27.75%", "options": ["15%", "27.75%", "22.5%", "30%"]}, {"skill": "ร้อยละหลายขั้น", "prompt": "ราคาต่อชิ้นขึ้น 25% แต่ใช้งบเท่าเดิม ซื้อได้ลดลงกี่เปอร์เซ็นต์ของจำนวนเดิม ถ้าหารลงตัวทั้งสองกรณี", "answer": "20%", "explanation": "จำนวนซื้อได้เป็น 1 ÷ 1.25 = 0.8 ของเดิม จึงลด 20%", "options": ["20%", "16%", "25%", "31.25%"]}, {"skill": "ส่วนผสม", "prompt": "น้ำหวาน 400 มล. มีน้ำเชื่อม 30% ถ้าเติมน้ำเปล่า 200 มล. น้ำเชื่อมเป็นกี่เปอร์เซ็นต์ของส่วนผสมใหม่", "answer": "20%", "explanation": "น้ำเชื่อมมี 120 มล. ปริมาตรรวมใหม่ 600 มล. ได้ 20%", "options": ["15%", "24%", "20%", "25%"]}, {"skill": "ส่วนผสม", "prompt": "น้ำหวาน 500 มล. มีน้ำเชื่อม 36% ต้องเติมน้ำเปล่ากี่มล. ให้เหลือน้ำเชื่อม 24% ของส่วนผสม", "answer": "250", "explanation": "น้ำเชื่อมคงเดิม 180 มล. ปริมาตรรวมต้องเป็น 180 ÷ 0.24 = 750 มล. จึงเติม 250 มล.", "options": ["120", "180", "300", "250"]}, {"skill": "ร้อยละของกลุ่ม", "prompt": "ห้องหนึ่งมี 50 คน ชอบคณิต 60% ชอบวิทย์ 54% และชอบทั้งสองวิชา 18 คน มีกี่คนที่ไม่ชอบทั้งสองวิชาเลย", "answer": "11", "explanation": "ชอบอย่างน้อยหนึ่งวิชา 30 + 27 − 18 = 39 คน จึงไม่ชอบทั้งสองวิชา 11 คน", "options": ["11", "7", "9", "15"]}, {"skill": "กำไรและขาดทุน", "prompt": "สินค้าสองชิ้นขายได้ชิ้นละ 1,200 บาท ชิ้นแรกกำไร 20% ของทุน ชิ้นที่สองขาดทุน 20% ของทุน รวมแล้วเป็นอย่างไรเทียบต้นทุนรวม", "answer": "ขาดทุน 4%", "explanation": "ต้นทุนรวม 1,200 ÷ 1.20 + 1,200 ÷ 0.80 = 2,500 บาท ขาย 2,400 บาท ขาดทุน 4%", "options": ["เท่าทุน", "กำไร 4%", "ขาดทุน 5%", "ขาดทุน 4%"]}, {"skill": "ร้อยละหลายขั้น", "prompt": "ปีแรกสมาชิกเพิ่ม 25% ปีที่สองลด 12% หลังสองปีมี 396 คน เดิมมีกี่คน", "answer": "360", "explanation": "ตัวคูณรวม 1.25 × 0.88 = 1.10 เดิมจึงมี 396 ÷ 1.10 = 360 คน", "options": ["330", "360", "352", "375"]}, {"skill": "หาอัตราย้อนกลับ", "prompt": "ถ้าขึ้นราคาจากต้นทุน 60% ต้องลดกี่เปอร์เซ็นต์จากป้ายจึงขายได้กำไร 20% ของทุน", "answer": "25%", "explanation": "สมมติทุน 100 ป้าย 160 ขาย 120 ต้องลด 40 ÷ 160 = 25%", "options": ["20%", "37.5%", "25%", "40%"]}, {"skill": "ร้อยละหลายขั้น", "prompt": "มีเงินก้อนหนึ่ง ใช้ไป 35% ของทั้งหมด แล้วใช้เพิ่มอีก 20% ของเงินที่เหลือ สุดท้ายเหลือ 780 บาท เดิมมีเท่าไร", "answer": "1,500", "explanation": "เงินคงเหลือ 0.65 × 0.80 = 52% ของเดิม ดังนั้นเดิมมี 780 ÷ 0.52 = 1,500", "options": ["1,200", "1,500", "1,400", "1,560"]}, {"skill": "หาอัตราย้อนกลับ", "prompt": "ยอดขายลด 36% ต้องเพิ่มกี่เปอร์เซ็นต์จากยอดหลังลดเพื่อกลับเท่าเดิม", "answer": "56.25", "explanation": "จาก 100 เหลือ 64 ต้องเพิ่ม 36 จากฐาน 64 ได้ 56.25%", "unit": "%"}, {"skill": "ราคาก่อนลด", "prompt": "ป้ายราคาลด 15% แล้วลดอีก 10% จากราคาหลังลด จ่าย 1,836 บาท ราคาป้ายกี่บาท", "answer": "2400", "explanation": "1,836 ÷ (0.85 × 0.90) = 2,400", "unit": "บาท"}, {"skill": "กำไรและขาดทุน", "prompt": "ทุน 1,500 บาท ตั้งป้ายสูงกว่าทุน 36% แล้วให้ส่วนลด 25% จากป้าย กำไรกี่บาท", "answer": "30", "explanation": "ราคาขาย 1,500 × 1.36 × 0.75 = 1,530 บาท หักทุนเหลือกำไร 30 บาท", "unit": "บาท"}, {"skill": "ร้อยละของกลุ่ม", "prompt": "นักเรียน 60 คน สอบผ่าน 70% ต่อมานักเรียนที่ไม่ผ่านสอบซ่อมผ่านอีกครึ่งหนึ่ง อัตราผ่านรวมเป็นกี่เปอร์เซ็นต์", "answer": "85", "explanation": "ผ่านครั้งแรก 42 คน สอบซ่อมผ่าน 9 คน รวม 51 จาก 60 คน คิดเป็น 85%", "unit": "%"}, {"skill": "ร้อยละของกลุ่ม", "prompt": "กลุ่ม A ผ่าน 60% กลุ่ม B ผ่าน 90% รวม 120 คน ผ่าน 75% กลุ่ม B มีกี่คน", "answer": "60", "explanation": "อัตรารวม 75% อยู่กึ่งกลางระหว่าง 60% และ 90% จึงมีขนาดกลุ่มเท่ากัน กลุ่มละ 60 คน", "unit": "คน"}, {"skill": "ภาษี", "prompt": "ป้าย 3,000 บาท ลด 12% แล้วใช้คูปอง 140 บาท จากนั้นคิดภาษี 7% จากยอดหลังคูปอง จ่ายจริงกี่บาท", "answer": "2675", "explanation": "3,000 × 0.88 = 2,640 บาท หักคูปองเหลือ 2,500 บาท คูณ 1.07 ได้ 2,675 บาท", "unit": "บาท"}, {"skill": "ร้อยละหลายขั้น", "prompt": "ถังน้ำมีน้ำอยู่ 75% ของความจุ ใช้น้ำไป 40% ของน้ำที่มีอยู่ แล้วเติมอีก 66 ลิตรจนเต็ม ถังจุกี่ลิตร", "answer": "120", "explanation": "หลังใช้เหลือ 0.75 × 0.60 = 45% ของถัง ส่วนที่เติม 66 ลิตรคือ 55% ความจุ = 120 ลิตร", "unit": "ลิตร"}, {"skill": "ส่วนผสม", "prompt": "ผสมน้ำหวาน 200 มล. ที่มีน้ำเชื่อม 15% กับน้ำหวาน 300 มล. ที่มีน้ำเชื่อม 35% ส่วนผสมใหม่มีน้ำเชื่อมกี่เปอร์เซ็นต์", "answer": "27", "explanation": "น้ำเชื่อมรวม 30 + 105 = 135 มล. จากทั้งหมด 500 มล. คิดเป็น 27%", "unit": "%"}, {"skill": "พื้นที่และร้อยละ", "prompt": "สี่เหลี่ยมผืนผ้ายาว 20 ซม. กว้าง 15 ซม. เพิ่มความยาว 25% แล้วต้องลดความกว้างกี่เปอร์เซ็นต์ให้พื้นที่เดิม", "answer": "20", "explanation": "ต้องให้ความกว้างเป็น 1 ÷ 1.25 = 0.80 เท่าของเดิม จึงลด 20%", "unit": "%"}, {"skill": "ร้อยละหลายขั้น", "prompt": "นักเรียนหญิงเป็น 55% ของนักเรียนทั้งหมด ขาดเรียน 20% ของกลุ่มหญิง และ 10% ของกลุ่มชาย ถ้าวันนี้มาเรียน 338 คน เดิมมีนักเรียนกี่คน", "answer": "400", "explanation": "สัดส่วนที่มา 0.55 × 0.80 + 0.45 × 0.90 = 0.845 นักเรียนทั้งหมด = 338 ÷ 0.845 = 400", "unit": "คน"}]];
+const names = ['ชุด 1 · พื้นฐานถึงประยุกต์', 'ชุด 2 · สนามสอบเข้า ม.1'];
+const $ = id => document.getElementById(id);
+const canvas = $('paper');
+const ctx = canvas.getContext('2d');
+const storageKey = 'kpc-percent-mission-35x2-v1';
+let state, setIndex, questions, draftKey;
+let open = false, current = null, pointer = null, color = '#24314e';
+let confirmCallback;
+function restore() {
+  try { return JSON.parse(localStorage.getItem(storageKey)) || {}; }
+  catch { return {}; }
+}
+let drafts = restore();
+function save() {
+  drafts[draftKey] = state;
+  try { localStorage.setItem(storageKey, JSON.stringify(drafts)); }
+  catch { /* The session remains playable when storage is unavailable. */ }
+}
+function fresh() {
+  return {i:0, name:'', answers:Array(35).fill(''), marks:Array(35).fill(false), ink:{}, submitted:false};
+}
+function show(id) {
+  for (const section of ['cover','exam','result']) $(section).hidden = section !== id;
+  window.scrollTo(0,0);
+}
+function start(index, restart = false) {
+  setIndex = index;
+  questions = BANK[index];
+  const name = $('player').value.trim();
+  draftKey = JSON.stringify([index, name]);
+  const draft = drafts[draftKey];
+  state = !restart && draft && !draft.submitted ? draft : fresh();
+  state.name = name;
+  if (state.name) $('player').value = state.name;
+  save();
+  $('navigator').open = window.innerWidth > 650;
+  show('exam');
+  renderQuestion();
+}
+function math(text) {
+  return text.replace(/(\d+)\/(\d+)/g, '<span class="fraction" aria-label="$1 ส่วน $2"><span>$1</span><span>$2</span></span>');
+}
+function button(text, className, action) {
+  const el = document.createElement('button');
+  el.className = className;
+  el.textContent = text;
+  el.onclick = action;
+  return el;
+}
+function refreshDots() {
+  const answered = state.answers.filter(a => a !== '').length;
+  $('count').textContent = 'ตอบแล้ว ' + answered + '/35';
+  [...$('dots').children].forEach((el, index) => {
+    el.classList.toggle('done', state.answers[index] !== '');
+    el.classList.toggle('marked', state.marks[index]);
+    el.setAttribute('aria-label', 'ข้อ ' + (index + 1) + (state.answers[index] !== '' ? ' ตอบแล้ว' : '') + (state.marks[index] ? ' ทำเครื่องหมายแล้ว' : ''));
+  });
+}
+function go(index) {
+  if (index < 0 || index >= questions.length) return;
+  finishInk();
+  state.i = index;
+  save();
+  renderQuestion();
+}
+function renderQuestion() {
+  const i = state.i;
+  const q = questions[i];
+  $('setTitle').textContent = names[setIndex];
+  $('dots').replaceChildren(...questions.map((_, index) => {
+    const el = button(String(index + 1), 'dot' + (i === index ? ' current' : ''), () => go(index));
+    if (i === index) el.setAttribute('aria-current','step');
+    return el;
+  }));
+  refreshDots();
+  $('prev').disabled = i === 0;
+  $('next').disabled = i === 34;
+  updateMark();
+  $('part').textContent = (q.options ? 'Part 1 · ตัวเลือก' : 'Part 2 · เติมคำตอบ') + ' · ข้อ ' + (i + 1) + '/35';
+  $('question').innerHTML = math(q.prompt);
+  const responses = $('responses');
+  responses.replaceChildren();
+  if (q.options) {
+    const choices = document.createElement('div');
+    choices.className = 'choices';
+    q.options.forEach((option, index) => {
+      const el = button('', 'choice', () => {
+        setAnswer(option);
+        [...choices.children].forEach((choice, j) => choice.setAttribute('aria-pressed', String(index === j)));
+      });
+      el.innerHTML = '<span class="letter">' + 'ABCD'[index] + '</span>' + math(option);
+      el.setAttribute('aria-pressed', String(option === state.answers[i]));
+      choices.append(el);
+    });
+    responses.append(choices);
+  } else {
+    responses.innerHTML = '<label for="numeric">คำตอบ' + (q.unit === 'ไม่มีหน่วย' ? '' : ' (' + q.unit + ')') + '</label><input id="numeric" class="numeric" type="text" inputmode="decimal" placeholder="ใส่ตัวเลข" autocomplete="off" maxlength="24" aria-describedby="numericStatus"><p id="numericStatus" class="status" aria-live="polite"></p>';
+    const numeric = $('numeric');
+    numeric.value = state.answers[i];
+    numeric.oninput = () => {
+      const value = numeric.value.trim();
+      const valid = Number.isFinite(asNumber(value));
+      $('numericStatus').textContent = value && !valid ? 'กรอกเป็นตัวเลข เช่น 12.5' : '';
+      setAnswer(valid ? value : '');
+    };
+    numeric.onkeydown = event => { if (event.key === 'Enter' && state.answers[i] !== '') go(i + 1); };
+  }
+  if (open) resize();
+}
+function setAnswer(value) { state.answers[state.i] = value; save(); refreshDots(); }
+function updateMark() {
+  const marked = state.marks[state.i];
+  $('mark').textContent = marked ? '★ ทำเครื่องหมายแล้ว' : '☆ ทำเครื่องหมาย';
+  $('mark').setAttribute('aria-pressed', String(marked));
+}
+function asNumber(value) {
+  const normal = value.replace(/[๐-๙]/g, digit => String('๐๑๒๓๔๕๖๗๘๙'.indexOf(digit))).replace(/[%％]$/, '').trim();
+  if (!/^(?:(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?|\.\d+)$/.test(normal)) return NaN;
+  return Number(normal.replace(/,/g, ''));
+}
+function correct(q, answer) {
+  return q.options ? answer === q.answer : Math.abs(asNumber(answer) - Number(q.answer)) < 1e-9;
+}
+function ask(title, message, action, callback) {
+  $('confirmTitle').textContent = title;
+  $('confirmMessage').textContent = message;
+  $('confirmAction').textContent = action;
+  confirmCallback = callback;
+  $('confirmBox').returnValue = 'cancel';
+  $('confirmBox').showModal();
+}
+$('confirmBox').onclose = () => {
+  if ($('confirmBox').returnValue === 'yes') confirmCallback();
+};
+function submit() {
+  const missing = state.answers.filter(a => a === '').length;
+  ask('ส่งคำตอบหรือไม่?', missing ? 'ยังเว้นไว้ ' + missing + ' ข้อ ข้อที่เว้นจะได้ 0 คะแนน' : 'ตอบครบ 35 ข้อแล้ว', 'ส่งและดูคะแนน', () => {
+    togglePad(false);
+    state.submitted = true;
+    save();
+    renderResult();
+  });
+}
+function renderResult() {
+  const grades = questions.map((q, i) => correct(q, state.answers[i]));
+  const first = grades.slice(0,25).filter(Boolean).length;
+  const second = grades.slice(25).filter(Boolean).length;
+  const total = first + second;
+  $('resultName').textContent = [state.name, names[setIndex]].filter(Boolean).join(' · ');
+  $('score').textContent = total + ' / 35';
+  $('percent').textContent = 'คิดเป็น ' + (total / 35 * 100).toLocaleString('th-TH', {maximumFractionDigits:2}) + '%';
+  $('parts').innerHTML = '<div>Part 1 · ตัวเลือก<br><strong>' + first + '/25</strong></div><div>Part 2 · เติมคำตอบ<br><strong>' + second + '/10</strong></div>';
+  $('review').replaceChildren(...questions.map((q, i) => {
+    const detail = document.createElement('details');
+    detail.className = 'review';
+    const summary = document.createElement('summary');
+    summary.className = grades[i] ? 'right' : 'wrong';
+    summary.textContent = (grades[i] ? '✓ ' : '✕ ') + 'ข้อ ' + (i + 1) + ' · ' + q.skill;
+    const prompt = document.createElement('p');
+    prompt.innerHTML = math(q.prompt);
+    const given = document.createElement('p');
+    given.textContent = 'คำตอบที่ส่ง ' + (state.answers[i] || '— เว้นว่าง');
+    const solution = document.createElement('p');
+    solution.className = 'answerKey accent';
+    solution.innerHTML = 'คำตอบ ' + math(q.answer) + (q.unit && q.unit !== 'ไม่มีหน่วย' ? (q.unit === '%' ? '%' : ' ' + q.unit) : '');
+    const explanation = document.createElement('p');
+    explanation.innerHTML = math(q.explanation);
+    detail.append(summary, prompt, given, solution, explanation);
+    return detail;
+  }));
+  show('result');
+}
+function inkList() { return state.ink[state.i] ||= []; }
+function resize() {
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+  const ratio = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = Math.round(rect.width * ratio);
+  canvas.height = Math.round(rect.height * ratio);
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  redraw();
+}
+function redraw() {
+  if (!open) return;
+  const {width, height} = canvas.getBoundingClientRect();
+  ctx.clearRect(0, 0, width, height);
+  for (const stroke of [...inkList(), ...(current ? [current] : [])]) {
+    ctx.globalCompositeOperation = stroke.color === 'erase' ? 'destination-out' : 'source-over';
+    ctx.strokeStyle = stroke.color === 'erase' ? '#000' : stroke.color;
+    ctx.lineWidth = stroke.color === 'erase' ? 24 : 3;
+    ctx.lineCap = ctx.lineJoin = 'round';
+    ctx.beginPath();
+    const [x, y] = stroke.points[0];
+    ctx.moveTo(x * width, y * height);
+    for (const [px, py] of stroke.points.slice(1)) ctx.lineTo(px * width, py * height);
+    if (stroke.points.length === 1) ctx.lineTo(x * width + .1, y * height + .1);
+    ctx.stroke();
+  }
+  ctx.globalCompositeOperation = 'source-over';
+}
+function point(event) {
+  const rect = canvas.getBoundingClientRect();
+  return [(event.clientX - rect.left) / rect.width, (event.clientY - rect.top) / rect.height];
+}
+function finishInk() {
+  if (!current) return;
+  inkList().push(current);
+  current = null;
+  pointer = null;
+  save();
+  redraw();
+}
+function togglePad(value) {
+  if (!value) finishInk();
+  open = value;
+  $('scratch').hidden = !open;
+  $('responses').hidden = open;
+  $('padToggle').textContent = open ? '✓ พับกระดาษทด · กลับไปตอบ' : '✎ เปิดกระดาษทด';
+  $('padToggle').setAttribute('aria-expanded', String(open));
+  if (open) requestAnimationFrame(resize);
+}
+canvas.addEventListener('pointerdown', event => {
+  if (!open || pointer !== null || event.button !== 0) return;
+  event.preventDefault();
+  pointer = event.pointerId;
+  try { canvas.setPointerCapture(pointer); } catch {}
+  current = {color, points:[point(event)]};
+  redraw();
+}, {passive:false});
+canvas.addEventListener('pointermove', event => {
+  if (event.pointerId !== pointer || !current) return;
+  event.preventDefault();
+  const samples = event.getCoalescedEvents?.();
+  for (const sample of samples?.length ? samples : [event]) current.points.push(point(sample));
+  redraw();
+}, {passive:false});
+for (const type of ['pointerup','pointercancel','lostpointercapture']) {
+  canvas.addEventListener(type, event => { if (event.pointerId === pointer) finishInk(); });
+}
+for (const type of ['touchstart','touchmove','touchend','touchcancel','contextmenu','selectstart','dragstart']) {
+  canvas.addEventListener(type, event => { if (event.cancelable) event.preventDefault(); }, {passive:false});
+}
+window.addEventListener('resize', () => { if (open) resize(); });
+for (const control of document.querySelectorAll('[data-ink]')) {
+  control.setAttribute('aria-pressed', String(control.dataset.ink === color));
+  control.onclick = () => {
+    color = control.dataset.ink;
+    document.querySelectorAll('[data-ink]').forEach(el => el.setAttribute('aria-pressed', String(el === control)));
+  };
+}
+$('undo').onclick = () => { finishInk(); inkList().pop(); save(); redraw(); };
+$('clearPad').onclick = () => {
+  if (inkList().length) ask('ล้างกระดาษทดข้อนี้?', 'รอยเขียนในข้อนี้จะถูกล้างทั้งหมด', 'ล้างกระดาษทด', () => {
+    state.ink[state.i] = [];
+    save();
+    redraw();
+  });
+};
+$('padToggle').onclick = () => togglePad(!open);
+document.querySelectorAll('[data-start]').forEach(el => el.onclick = () => start(Number(el.dataset.start)));
+$('prev').onclick = () => go(state.i - 1);
+$('next').onclick = () => go(state.i + 1);
+$('mark').onclick = () => { state.marks[state.i] = !state.marks[state.i]; updateMark(); save(); refreshDots(); };
+$('submit').onclick = submit;
+$('exit').onclick = () => { togglePad(false); save(); show('cover'); };
+$('home').onclick = () => show('cover');
+$('again').onclick = () => start(setIndex, true);
+</script>
+</html>
