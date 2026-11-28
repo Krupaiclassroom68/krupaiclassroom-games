@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Time Master Galaxy EP3 - Mixed Judgment TV Final Fix</title>
+<style>
+:root{
+  --bg1:#06142f; --bg2:#0d4da4; --bg3:#36c5ff;
+  --yellow:#ffe66d; --cyan:#6ff2ff; --green:#59f09a; --red:#ff5f6d;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%;margin:0}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  color:white; overflow-x:hidden; overflow-y:auto;
+  background:
+    radial-gradient(circle at 12% 6%,rgba(255,255,255,.22),transparent 18%),
+    radial-gradient(circle at 85% 8%,rgba(255,230,109,.20),transparent 20%),
+    radial-gradient(circle at 50% 110%,rgba(111,242,255,.28),transparent 30%),
+    linear-gradient(180deg,var(--bg3),var(--bg2) 43%,var(--bg1));
+}
+body::before{
+  content:""; position:fixed; inset:-10%;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 1px,transparent 1.8px),
+    radial-gradient(circle,rgba(255,230,109,.8) 1px,transparent 1.8px),
+    radial-gradient(circle,rgba(111,242,255,.65) 1px,transparent 1.8px);
+  background-size:130px 130px,200px 200px,270px 270px;
+  opacity:.34; animation:stars 90s linear infinite; pointer-events:none;
+}
+body::after{
+  content:""; position:fixed; inset:0;
+  background:
+    linear-gradient(115deg,transparent 0 44%,rgba(255,255,255,.08) 50%,transparent 56% 100%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 2px,transparent 2px 8px);
+  pointer-events:none; mix-blend-mode:screen;
+}
+@keyframes stars{to{transform:translate3d(-40px,260px,0)}}
+.screen{position:relative;z-index:2;width:100vw;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.6vw,24px)}
+.glass{
+  width:min(1560px,96vw); min-height:min(920px,94dvh); border-radius:clamp(24px,3vw,46px);
+  background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.055));
+  border:1px solid rgba(255,255,255,.22); backdrop-filter:blur(16px);
+  box-shadow:0 30px 90px rgba(0,0,0,.44),inset 0 0 55px rgba(111,242,255,.08);
+  overflow:hidden; position:relative;
+}
+.glass::before{
+  content:""; position:absolute; inset:-2px;
+  background:
+    radial-gradient(circle at 20% 2%,rgba(255,230,109,.25),transparent 24%),
+    radial-gradient(circle at 88% 12%,rgba(111,242,255,.24),transparent 26%),
+    radial-gradient(circle at 55% 105%,rgba(255,117,230,.14),transparent 28%);
+  pointer-events:none;
+}
+.layer{position:relative;z-index:3;padding:clamp(14px,1.75vw,28px)}
+.start{min-height:calc(min(920px,94dvh) - 30px);display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(18px,2.5vw,42px);align-items:center}
+.badge{display:inline-flex;gap:10px;align-items:center;padding:12px 18px;border-radius:999px;background:rgba(255,230,109,.16);border:1px solid rgba(255,230,109,.38);color:var(--yellow);font-weight:1000}
+.title{margin:16px 0 0;font-size:clamp(42px,6.2vw,98px);line-height:.88;font-weight:1000;letter-spacing:-2.2px;text-shadow:0 0 35px rgba(255,255,255,.28)}
+.title span{color:var(--yellow);text-shadow:0 0 40px rgba(255,230,109,.58)}
+.subtitle{margin-top:18px;font-size:clamp(16px,1.45vw,25px);line-height:1.55;color:rgba(247,251,255,.9);font-weight:800}
+.rules{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.rule{padding:13px;border-radius:20px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.14);font-weight:1000;line-height:1.3}
+input{width:min(560px,100%);margin-top:20px;padding:18px 20px;border:none;border-radius:20px;font-size:clamp(18px,1.35vw,23px);font-weight:1000;color:#08234a;outline:none;box-shadow:0 16px 36px rgba(0,0,0,.25)}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px}
+button{border:none;cursor:pointer;font-family:inherit;transition:.18s ease}
+button:hover{transform:translateY(-2px) scale(1.015);filter:brightness(1.04)}
+.primary{padding:17px 28px;border-radius:22px;background:linear-gradient(180deg,#fff8c7,var(--yellow));color:#392900;font-size:clamp(17px,1.3vw,23px);font-weight:1000;box-shadow:0 18px 42px rgba(255,230,109,.24),inset 0 -6px 0 rgba(127,96,0,.16)}
+.secondary{padding:17px 22px;border-radius:22px;background:rgba(255,255,255,.12);color:white;font-size:clamp(16px,1.15vw,21px);font-weight:1000;border:1px solid rgba(255,255,255,.18)}
+.hero{display:flex;align-items:center;justify-content:center;position:relative;min-height:440px}
+.orbit{position:absolute;width:min(560px,40vw);height:min(560px,40vw);border-radius:50%;border:1px dashed rgba(255,255,255,.22);animation:spin 32s linear infinite}
+.orbit::before,.orbit::after{content:"";position:absolute;width:26px;height:26px;border-radius:50%;background:var(--yellow);box-shadow:0 0 32px rgba(255,230,109,.82)}
+.orbit::before{top:12%;left:16%}.orbit::after{right:12%;bottom:18%;background:var(--cyan);box-shadow:0 0 32px rgba(111,242,255,.85)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.clock-shell{width:clamp(230px,29vw,455px);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 48% 48%,rgba(255,255,255,.16),transparent 24%),radial-gradient(circle,rgba(111,242,255,.12),rgba(0,0,0,.10) 58%,rgba(255,230,109,.13));border:clamp(7px,.8vw,12px) solid rgba(255,230,109,.98);box-shadow:0 0 26px rgba(255,230,109,.48),0 0 88px rgba(111,242,255,.25),inset 0 0 50px rgba(255,255,255,.10)}
+.clock-shell::before{content:"";position:absolute;inset:7%;border-radius:50%;border:1px solid rgba(255,255,255,.22)}
+.num{position:absolute;transform:translate(-50%,-50%);font-size:clamp(16px,1.7vw,28px);font-weight:1000;color:rgba(255,255,255,.92);text-shadow:0 0 15px rgba(111,242,255,.38)}
+.hand{position:absolute;left:50%;top:50%;transform-origin:bottom center;border-radius:999px;z-index:5}
+.hour{width:clamp(8px,.7vw,13px);height:27%;margin-left:clamp(-6px,-.35vw,-4px);margin-top:-27%;background:white;box-shadow:0 0 18px rgba(255,255,255,.38)}
+.minute{width:clamp(5px,.5vw,9px);height:39%;margin-left:clamp(-4px,-.25vw,-2.5px);margin-top:-39%;background:var(--yellow);box-shadow:0 0 20px rgba(255,230,109,.8)}
+.pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(20px,1.9vw,34px);height:clamp(20px,1.9vw,34px);border-radius:50%;background:white;z-index:8;box-shadow:0 0 26px rgba(255,255,255,.6)}
+.digital-chip{position:absolute;left:50%;bottom:16.5%;transform:translateX(-50%);padding:8px 15px;border-radius:17px;background:rgba(0,0,0,.30);border:1px solid rgba(255,230,109,.36);color:var(--yellow);font-size:clamp(24px,2.7vw,46px);font-weight:1000;letter-spacing:3px;text-shadow:0 0 20px rgba(255,230,109,.55)}
+.game{display:grid;grid-template-rows:auto 1fr;gap:clamp(8px,.75vw,12px)}
+.hud{display:grid;grid-template-columns:1.15fr .85fr .85fr .85fr .85fr;gap:10px}
+.hud-card{padding:clamp(8px,.75vw,13px);border-radius:20px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.14);text-align:center}
+.hud-label{font-size:clamp(10px,.75vw,13px);font-weight:1000;letter-spacing:1px;opacity:.74}
+.hud-value{margin-top:5px;font-size:clamp(22px,2.15vw,38px);font-weight:1000;color:var(--yellow);line-height:1}
+.battle{display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(14px,1.8vw,30px);align-items:center}
+.clock-zone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:0}
+.stage-label{display:inline-block;padding:9px 16px;border-radius:999px;background:rgba(111,242,255,.13);border:1px solid rgba(111,242,255,.30);color:#e5fdff;font-size:clamp(14px,1vw,18px);font-weight:1000}
+.big-digital{font-size:clamp(48px,6.4vw,106px);line-height:.88;font-weight:1000;color:var(--yellow);letter-spacing:4px;text-shadow:0 0 42px rgba(255,230,109,.58)}
+.prompt{font-size:clamp(18px,1.65vw,30px);font-weight:1000;text-align:center}
+.options{display:grid;grid-template-columns:1fr;gap:clamp(10px,1vw,16px)}
+.option{position:relative;width:100%;padding:clamp(15px,1.25vw,23px) clamp(16px,1.7vw,28px);border-radius:26px;background:linear-gradient(180deg,#ffffff,#dff4ff);color:#10396d;text-align:left;font-size:clamp(21px,1.75vw,33px);line-height:1.14;font-weight:1000;box-shadow:0 14px 30px rgba(0,0,0,.22),inset 0 -5px 0 rgba(0,0,0,.06);overflow:hidden}
+.option::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 0 42%,rgba(255,255,255,.55) 50%,transparent 58% 100%);transform:translateX(-120%);transition:.55s}
+.option:hover::after{transform:translateX(120%)}
+.option.correct{background:linear-gradient(180deg,#c9ffd9,#46e783);color:#06361a;box-shadow:0 0 34px rgba(89,240,154,.48),inset 0 -5px 0 rgba(0,0,0,.08)}
+.option.wrong{background:linear-gradient(180deg,#ffb2ba,#ff5465);color:white;box-shadow:0 0 32px rgba(255,95,109,.48),inset 0 -5px 0 rgba(0,0,0,.08)}
+.option:disabled{cursor:default}
+.fx{position:fixed;inset:0;display:none;z-index:50;align-items:center;justify-content:center;pointer-events:none;background:rgba(0,0,0,.18)}
+.fx.show{display:flex}
+.fx-box{width:min(740px,84vw);padding:clamp(26px,3.4vw,48px);border-radius:42px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,.10));border:1px solid rgba(255,255,255,.26);box-shadow:0 28px 90px rgba(0,0,0,.46),0 0 76px rgba(255,230,109,.26);backdrop-filter:blur(14px)}
+.fx-icon{font-size:clamp(68px,8vw,132px);line-height:1}
+.fx-text{margin-top:8px;font-size:clamp(31px,4.5vw,78px);font-weight:1000;color:var(--yellow);text-shadow:0 0 36px rgba(255,230,109,.68)}
+.spin-fast .minute{animation:handSpin .85s ease-in-out}.spin-fast .hour{animation:handSpin .85s ease-in-out}
+@keyframes handSpin{to{transform:rotate(calc(var(--base,0deg) + 360deg))}}
+.shake{animation:shake .42s ease-in-out}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-12px)}40%{transform:translateX(12px)}60%{transform:translateX(-8px)}80%{transform:translateX(8px)}}
+.flash-red{animation:redFlash .42s}
+@keyframes redFlash{0%,100%{filter:none}45%{filter:drop-shadow(0 0 50px rgba(255,95,109,.9))}}
+.confetti{position:fixed;width:10px;height:18px;top:-30px;border-radius:4px;z-index:60;animation:fall 1.45s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(580deg);opacity:0}}
+.summary{min-height:calc(min(920px,94dvh) - 30px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:clamp(8px,1vw,18px);padding-bottom:clamp(18px,2vw,34px)}
+.trophy{font-size:clamp(58px,7vw,108px);line-height:1}
+.summary-title{margin-top:6px;font-size:clamp(34px,4.5vw,74px);line-height:.95;font-weight:1000;color:var(--yellow);text-shadow:0 0 40px rgba(255,230,109,.62)}
+.score-pill{margin-top:16px;display:inline-block;padding:14px 30px;border-radius:999px;background:linear-gradient(180deg,#fff8c7,var(--yellow));color:#3b2a00;font-size:clamp(32px,4vw,64px);font-weight:1000;box-shadow:0 22px 55px rgba(255,230,109,.22)}
+.summary-note{margin-top:14px;font-size:clamp(17px,1.4vw,24px);font-weight:900;color:rgba(247,251,255,.9)}
+.review{width:min(1120px,92vw);margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;max-height:30dvh;overflow:auto;padding:4px}
+.review-card{padding:12px;border-radius:18px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.13)}
+.review-time{font-size:23px;font-weight:1000;color:var(--yellow)}
+.review-ans{margin-top:7px;font-weight:900;color:rgba(255,255,255,.9);font-size:15px}
+@media (min-width:1500px){.glass{width:97vw;min-height:95dvh}.battle{grid-template-columns:.82fr 1.18fr}}
+@media (max-height:760px) and (min-width:981px){.screen{align-items:flex-start}.glass{min-height:auto}.clock-shell{width:clamp(210px,24vw,340px)}.big-digital{font-size:clamp(44px,5.3vw,86px)}.option{font-size:clamp(19px,1.45vw,27px);padding:13px 20px;border-radius:22px}.hud-card{padding:8px}.stage-label,.prompt{font-size:17px}}
+@media (max-width:980px){body{overflow-y:auto}.screen{align-items:flex-start;min-height:100dvh}.glass{height:auto;min-height:94dvh;overflow:visible}.start,.battle{grid-template-columns:1fr}.hero{min-height:330px}.hud{grid-template-columns:repeat(2,1fr)}.hud-card:first-child{grid-column:1/-1}.clock-shell{width:min(60vw,340px)}.rules{grid-template-columns:1fr}.options{padding-bottom:20px}.summary{justify-content:flex-start}.review{max-height:none}}
+@media (max-width:560px){.screen{padding:8px}.layer{padding:13px}.title{font-size:44px}.subtitle{font-size:16px}.big-digital{font-size:58px}.option{font-size:19px;padding:14px}.hud-value{font-size:26px}.clock-shell{width:min(78vw,310px)}}
+
+.kpc-report{max-width:930px;margin:auto;text-align:center}
+.kpc-brand{font-size:clamp(1.45rem,4vw,2.4rem);font-weight:1000;color:#ffe96a;letter-spacing:1px}
+.kpc-title{font-size:clamp(1.1rem,3vw,1.7rem);font-weight:900;margin:12px 0}
+.kpc-meta{color:#e1f7ff;font-weight:800;line-height:1.9;overflow-wrap:anywhere}
+.kpc-score{font-size:clamp(2.2rem,7vw,4rem);font-weight:1000;color:#ffe96a;margin:14px}
+.kpc-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}
+.kpc-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.17);border-radius:18px;padding:13px 6px}
+.kpc-stat strong{display:block;font-size:clamp(1.3rem,4vw,2.1rem);color:#ffe96a}
+.kpc-stat span{font-size:clamp(.75rem,2vw,.95rem)}
+.kpc-box{background:rgba(2,12,38,.45);border:1px solid rgba(100,233,255,.28);border-radius:23px;padding:18px;margin:16px 0;text-align:left}
+.kpc-box h3{margin:0 0 10px;color:#ffe96a}
+.kpc-chart{width:100%;height:210px}
+.kpc-rounds{display:flex;flex-wrap:wrap;gap:9px}
+.kpc-round{border:1px solid rgba(255,255,255,.15);border-radius:13px;padding:9px 12px;background:rgba(255,255,255,.08);font-weight:800}
+.kpc-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:20px 0}
+.kpc-actions button{min-width:155px;flex:1}
+.kpc-qnav{display:grid;grid-template-columns:repeat(auto-fit,minmax(48px,1fr));gap:8px}
+.kpc-qnav button{padding:10px 4px;min-width:0;border-radius:12px;font-size:1rem}
+.kpc-qdetail{background:rgba(255,255,255,.08);border-radius:16px;padding:15px;margin-top:12px;line-height:1.7}
+@media(max-width:580px){.kpc-stats{gap:5px}.kpc-stat{padding:9px 3px}.kpc-actions button{min-width:100%}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="fx" class="fx"><div class="fx-box"><div id="fxIcon" class="fx-icon">✅</div><div id="fxText" class="fx-text">TIME MASTER!</div></div></div>
+
+<script>
+const ROUND_TIME=15;
+
+// Final fix:
+// 1) ใช้ addEventListener แทน inline onclick เพื่อให้ o'clock กดได้แน่นอน
+// 2) quarter ทุกประโยคที่ถูกหลัก ใส่ "a quarter" แล้ว
+// 3) ไม่มีตัวเลือกที่ถูกซ้ำความหมายในข้อเดียว
+const QUESTIONS=[
+  {time:"04:40",mode:"Past / To",answer:"It is twenty to five.",choices:["It is twenty past five.","It is twenty to five.","It is forty past four.","It is a quarter to five."]},
+  {time:"07:15",mode:"Past / To",answer:"It is a quarter past seven.",choices:["It is a quarter past seven.","It is a quarter to seven.","It is fifteen to seven.","It is a quarter past eight."]},
+  {time:"09:20",mode:"Digital",answer:"It is nine twenty.",choices:["It is nine twenty.","It is nine twelve.","It is twenty nine.","It is nine forty."]},
+  {time:"11:45",mode:"Past / To",answer:"It is a quarter to twelve.",choices:["It is a quarter past eleven.","It is a quarter to twelve.","It is a quarter to eleven.","It is forty-five to twelve."]},
+  {time:"02:05",mode:"Digital",answer:"It is two oh five.",choices:["It is two oh five.","It is two fifty.","It is five oh two.","It is two fifteen."]},
+  {time:"03:30",mode:"Digital",answer:"It is three thirty.",choices:["It is three thirty.","It is thirty to three.","It is three thirteen.","It is four thirty."]},
+  {time:"06:50",mode:"Past / To",answer:"It is ten to seven.",choices:["It is ten past seven.","It is ten to seven.","It is ten to six.","It is a quarter to seven."]},
+  {time:"10:10",mode:"Digital",answer:"It is ten ten.",choices:["It is ten ten.","It is ten twenty.","It is ten oh one.","It is one ten."]},
+  {time:"08:35",mode:"Past / To",answer:"It is twenty-five to nine.",choices:["It is twenty-five past nine.","It is twenty-five to nine.","It is thirty-five to eight.","It is a quarter to nine."]},
+  {time:"12:00",mode:"Digital",answer:"It is twelve o'clock.",choices:["It is twelve o'clock.","It is zero twelve.","It is twelve thirty.","It is a quarter to twelve."]},
+  {time:"01:25",mode:"Digital",answer:"It is one twenty-five.",choices:["It is one twenty-five.","It is one fifty-two.","It is twenty-five one.","It is one fifteen."]},
+  {time:"05:55",mode:"Past / To",answer:"It is five to six.",choices:["It is five past six.","It is five to six.","It is fifty-five to five.","It is ten to six."]}
+];
+
+const PRAISES=["TIME MASTER!","PERFECT!","GALAXY CLEAR!","AWESOME!","LEGENDARY!","GREAT JOB!"];
+const state={screen:"start",name:"",index:0,score:0,streak:0,best:0,time:ROUND_TIME,locked:false,timer:null,history:[],currentChoices:[]};
+let audioCtx=null;
+
+function getCtx(){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;if(!audioCtx)audioCtx=new AC();if(audioCtx.state==="suspended")audioCtx.resume();return audioCtx;}
+function tone(ctx,f1,f2,dur,type,gain,when){const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(f1,when);if(f1!==f2)o.frequency.exponentialRampToValueAtTime(Math.max(1,f2),when+dur);g.gain.setValueAtTime(.001,when);g.gain.exponentialRampToValueAtTime(gain,when+.015);g.gain.exponentialRampToValueAtTime(.001,when+dur);o.connect(g);g.connect(ctx.destination);o.start(when);o.stop(when+dur+.03);}
+function beep(type){const ctx=getCtx();if(!ctx)return;const now=ctx.currentTime;if(type==="click")tone(ctx,520,760,.11,"triangle",.12,now);if(type==="correct")[523,659,784,1046].forEach((f,i)=>tone(ctx,f,f,.23,"sine",.15,now+i*.07));if(type==="wrong"){tone(ctx,260,70,.45,"sawtooth",.22,now);tone(ctx,130,45,.55,"square",.12,now+.05);}if(type==="timeout"){[190,150,110,75].forEach((f,i)=>tone(ctx,f,f,.18,"sawtooth",.18,now+i*.14));tone(ctx,60,35,.7,"square",.09,now+.1);}if(type==="tick")tone(ctx,860,860,.04,"square",.04,now);if(type==="win")[523,659,784,1046,1318].forEach((f,i)=>tone(ctx,f,f,.28,"sine",.14,now+i*.09));}
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function parseTime(t){const p=t.split(":").map(Number);return {hh:p[0],mm:p[1]}}
+function clockMarkup(idPrefix=""){const nums=`<div class="num" style="left:50%;top:12%">12</div><div class="num" style="left:88%;top:50%">3</div><div class="num" style="left:50%;top:88%">6</div><div class="num" style="left:12%;top:50%">9</div>`;return `<div class="clock-shell" id="${idPrefix}clockShell">${nums}<div class="hand hour" id="${idPrefix}hourHand"></div><div class="hand minute" id="${idPrefix}minuteHand"></div><div class="pin"></div><div class="digital-chip" id="${idPrefix}clockChip">08:35</div></div>`}
+function setClock(t,idPrefix=""){const {hh,mm}=parseTime(t);const minuteDeg=mm*6;const hourDeg=(hh%12)*30+mm*.5;const h=document.getElementById(idPrefix+"hourHand");const m=document.getElementById(idPrefix+"minuteHand");const chip=document.getElementById(idPrefix+"clockChip");if(h){h.style.transform=`rotate(${hourDeg}deg)`;h.style.setProperty("--base",hourDeg+"deg")}if(m){m.style.transform=`rotate(${minuteDeg}deg)`;m.style.setProperty("--base",minuteDeg+"deg")}if(chip)chip.textContent=t}
+
+function render(){
+  const app=document.getElementById("app");
+  if(state.screen==="start"){
+    app.innerHTML=`<div class="screen"><div class="glass"><div class="layer start"><section><div class="badge">🌌 EP3 • Mixed Judgment • TV Mode</div><h1 class="title">TIME MASTER<br><span>GALAXY</span></h1><div class="subtitle">เลือกคำตอบที่ดีที่สุดจากรูปแบบที่ปนกัน ✨<br>บางข้อเป็น Digital Reading บางข้อเป็น Past / To — แต่มีคำตอบถูกเพียงข้อเดียวเท่านั้น</div><div class="rules"><div class="rule">🎯 One correct answer</div><div class="rule">⏳ 15 seconds each</div><div class="rule">📺 Big TV full screen</div></div><input id="playerName" placeholder="Type your name"><div class="actions"><button class="primary" id="startBtn">START EP3 🚀</button><button class="secondary" id="testBtn">TEST CLOCK ✨</button></div></section><section class="hero"><div class="orbit"></div>${clockMarkup("start")}</section></div></div></div>`;
+    document.getElementById("startBtn").addEventListener("click",startGame);
+    document.getElementById("testBtn").addEventListener("click",demoSpin);
+    setClock("08:35","start");
+  }
+  if(state.screen==="game"){
+    const q=QUESTIONS[state.index]; const choices=state.currentChoices.length?state.currentChoices:q.choices;
+    app.innerHTML=`<div class="screen"><div class="glass" id="gameGlass"><div class="layer game"><div class="hud"><div class="hud-card"><div class="hud-label">PLAYER</div><div class="hud-value">${esc(state.name)}</div></div><div class="hud-card"><div class="hud-label">QUESTION</div><div class="hud-value">${state.index+1}/${QUESTIONS.length}</div></div><div class="hud-card"><div class="hud-label">SCORE</div><div class="hud-value">${state.score}</div></div><div class="hud-card"><div class="hud-label">STREAK</div><div class="hud-value">${state.streak}</div></div><div class="hud-card"><div class="hud-label">TIME</div><div class="hud-value" id="timeValue">${state.time}</div></div></div><div class="battle"><div class="clock-zone"><div class="stage-label">MODE HINT: ${esc(q.mode)}</div>${clockMarkup("game")}<div class="big-digital">${esc(q.time)}</div><div class="prompt">Choose the BEST time sentence</div></div><div class="options" id="optionsBox"></div></div></div></div></div>`;
+    const box=document.getElementById("optionsBox");
+    choices.forEach(choice=>{
+      const btn=document.createElement("button");
+      btn.className="option";
+      btn.textContent=choice;
+      btn.addEventListener("click",()=>checkAnswer(btn,choice));
+      box.appendChild(btn);
+    });
+    setClock(q.time,"game");
+  }
+  if(state.screen==='summary'){kpcRenderSummary();}
+
+}
+function demoSpin(){beep("correct");const shell=document.getElementById("startclockShell");if(shell){shell.classList.add("spin-fast");setTimeout(()=>shell.classList.remove("spin-fast"),900)}}
+function startGame(){state.kpcSaved=false;state.kpcLatest=null;beep("click");const input=document.getElementById("playerName");state.name=(input&&input.value.trim())||"Time Master";state.index=0;state.score=0;state.streak=0;state.best=0;state.history=[];state.currentChoices=shuffle(QUESTIONS[0].choices);state.locked=false;state.time=ROUND_TIME;state.screen="game";render();startTimer()}
+function startTimer(){clearInterval(state.timer);state.time=ROUND_TIME;const tv=document.getElementById("timeValue");if(tv)tv.textContent=state.time;state.timer=setInterval(()=>{state.time--;const tv=document.getElementById("timeValue");if(tv)tv.textContent=state.time;if(state.time<=3&&state.time>0)beep("tick");if(state.time<=0){clearInterval(state.timer);timeoutAnswer()}},1000)}
+function checkAnswer(btn,choice){if(state.locked)return;state.locked=true;clearInterval(state.timer);beep("click");const q=QUESTIONS[state.index];document.querySelectorAll(".option").forEach(b=>b.disabled=true);const ok=choice===q.answer;if(ok){btn.classList.add("correct");state.score++;state.streak++;state.best=Math.max(state.best,state.streak);state.history.push({time:q.time,answer:q.answer,ok:true});correctFX();setTimeout(nextQuestion,1300)}else{btn.classList.add("wrong");state.streak=0;state.history.push({time:q.time,answer:q.answer,ok:false});wrongFX();setTimeout(nextQuestion,1150)}}
+function timeoutAnswer(){if(state.locked)return;state.locked=true;const q=QUESTIONS[state.index];state.streak=0;state.history.push({time:q.time,answer:q.answer,ok:false});wrongFX("TIME OUT!",true);setTimeout(nextQuestion,1250)}
+function correctFX(){beep("correct");const shell=document.getElementById("gameclockShell");if(shell){shell.classList.add("spin-fast");setTimeout(()=>shell.classList.remove("spin-fast"),900)}showFX("✅",PRAISES[Math.floor(Math.random()*PRAISES.length)],900);confetti(18)}
+function wrongFX(text="TRY NEXT!",isTimeout=false){beep(isTimeout?"timeout":"wrong");const shell=document.getElementById("gameclockShell");const glass=document.getElementById("gameGlass");if(shell){shell.classList.add("shake");setTimeout(()=>shell.classList.remove("shake"),460)}if(glass){glass.classList.add("flash-red");setTimeout(()=>glass.classList.remove("flash-red"),460)}showFX(isTimeout?"⏰":"❌",text,isTimeout?900:760)}
+function showFX(icon,text,duration){const fx=document.getElementById("fx");document.getElementById("fxIcon").textContent=icon;document.getElementById("fxText").textContent=text;fx.classList.add("show");setTimeout(()=>fx.classList.remove("show"),duration)}
+function nextQuestion(){state.index++;state.locked=false;if(state.index>=QUESTIONS.length){clearInterval(state.timer);beep("win");state.screen="summary";render();return}state.currentChoices=shuffle(QUESTIONS[state.index].choices);state.time=ROUND_TIME;render();startTimer()}
+function restart(){clearInterval(state.timer);state.screen="start";render()}
+function confetti(n){const colors=["#ffe66d","#6ff2ff","#ff75e6","#59f09a","#ffffff"];for(let i=0;i<n;i++){const s=document.createElement("div");s.className="confetti";s.style.left=Math.random()*100+"vw";s.style.background=colors[Math.floor(Math.random()*colors.length)];s.style.animationDelay=(Math.random()*.35)+"s";s.style.transform=`rotate(${Math.random()*180}deg)`;document.body.appendChild(s);setTimeout(()=>s.remove(),1900)}}
+render();
+
+const KPC_RESULT_KEY='kpc_time_mixed_ep3_v1';
+const KPC_RESULT_TITLE='TIME MASTER GALAXY • MIXED';
+let kpcSelectedRound=-1,kpcSelectedQuestion=0;
+function kpcEsc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function kpcTotal(){return (state.order&&state.order.length)||QUESTIONS.length}
+function kpcGetAll(){
+ try{const x=JSON.parse(localStorage.getItem(KPC_RESULT_KEY)||'[]');return Array.isArray(x)?x:[]}catch(e){return []}
+}
+function kpcSaveCurrent(){
+ if(state.kpcSaved)return;
+ const item={id:Date.now()+'-'+Math.random().toString(36).slice(2,8),name:state.name||'Guest',
+ date:new Date().toISOString(),score:state.score,total:kpcTotal(),
+ history:(state.history||[]).map(h=>({time:h.time,ok:!!h.ok,answer:h.answer,choice:h.choice,typed:h.typed}))};
+ const all=kpcGetAll();all.push(item);
+ try{localStorage.setItem(KPC_RESULT_KEY,JSON.stringify(all));state.kpcSaved=true;state.kpcLatest=item}catch(e){console.warn('KPC local save failed',e);state.kpcLatest=item;state.kpcSaved=true}
+}
+function kpcRounds(){
+ const all=kpcGetAll().filter(r=>r.name===(state.name||'Guest'));
+ if(state.kpcLatest&&!all.some(x=>x.id===state.kpcLatest.id))all.push(state.kpcLatest);
+ return all;
+}
+function kpcDate(v){return new Date(v).toLocaleString('th-TH',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})+' น.'}
+function kpcChart(rounds){
+ const last=rounds.slice(-10),pts=last.map((r,i)=>({x:last.length===1?50:9+i*82/(last.length-1),y:89-75*(r.score/r.total),pct:Math.round(r.score/r.total*100),n:rounds.length-last.length+i+1}));
+ return `<svg class="kpc-chart" viewBox="0 0 100 110" preserveAspectRatio="none" aria-label="กราฟเส้นคะแนนย้อนหลัง" role="img">
+ ${[0,25,50,75,100].map(v=>`<line x1="8" x2="94" y1="${89-v*.75}" y2="${89-v*.75}" stroke="#ffffff" stroke-opacity=".18" stroke-dasharray="2 2" stroke-width=".4"/><text x="1" y="${91-v*.75}" font-size="4" fill="white">${v}</text>`).join('')}
+ ${pts.length>1?`<polyline points="${pts.map(p=>p.x+','+p.y).join(' ')}" fill="none" stroke="#6ff2ff" stroke-width="1.5" vector-effect="non-scaling-stroke"/>`:''}
+ ${pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="1.8" fill="#ffe96a"/><text x="${p.x}" y="${Math.max(7,p.y-5)}" text-anchor="middle" fill="#ffe96a" font-size="4.5">${p.pct}%</text><text x="${p.x}" y="103" text-anchor="middle" fill="white" font-size="4">#${p.n}</text>`).join('')}
+ </svg>`;
+}
+function kpcRenderSummary(){
+ kpcSaveCurrent();const rounds=kpcRounds(),last=state.kpcLatest||rounds[rounds.length-1],pct=Math.round(last.score/last.total*100);
+ const best=Math.max(...rounds.map(r=>Math.round(r.score/r.total*100)));
+ document.getElementById('app').innerHTML=`<div class="screen"><div class="glass"><div class="kpc-report">
+ <div class="kpc-brand">KRU PAI CLASSROOM</div><div class="kpc-title">${kpcEsc(KPC_RESULT_TITLE)}</div>
+ <div class="kpc-meta">นักเรียน: ${kpcEsc(last.name)}<br>📅 ${kpcDate(last.date)}</div>
+ <div class="kpc-score">${last.score} / ${last.total} คะแนน</div>
+ <div class="kpc-stats"><div class="kpc-stat"><strong>${pct}%</strong><span>คะแนนล่าสุด</span></div><div class="kpc-stat"><strong>${rounds.length}</strong><span>ครั้งที่เล่น</span></div><div class="kpc-stat"><strong>${best}%</strong><span>คะแนนสูงสุด</span></div></div>
+ <div class="kpc-box"><h3>📈 กราฟพัฒนาการ</h3>${kpcChart(rounds)}</div>
+ <div class="kpc-box"><h3>📚 ประวัติคะแนน (แตะรอบเพื่อดูคำตอบ)</h3><div class="kpc-rounds">${rounds.map((r,i)=>`<button class="kpc-round" onclick="kpcShowRound(${i})">รอบ ${i+1} • ${r.score}/${r.total} (${Math.round(r.score/r.total*100)}%)</button>`).join('')}</div></div>
+ <div class="kpc-meta">${pct>=80?'ผ่านเกณฑ์ 80%':'ฝึกต่อเพื่อผ่านเกณฑ์ 80%'}</div>
+ <div class="kpc-actions"><button class="secondary" onclick="kpcShare()">📸 แชร์ภาพรายงาน</button><button class="secondary" onclick="kpcShowRound(${rounds.length-1})">🔎 ดูเฉลยรายข้อ</button><button class="play" onclick="restart()">🚀 เล่นอีกครั้ง</button></div>
+ <div class="kpc-meta" style="font-size:.82rem">บันทึกประวัติในเบราว์เซอร์นี้ • แชร์เฉพาะคะแนน ไม่รวมเฉลย</div>
+ </div></div></div>`;
+}
+function kpcShowRound(n){
+ const rounds=kpcRounds();kpcSelectedRound=Math.max(0,Math.min(n,rounds.length-1));kpcSelectedQuestion=0;kpcRenderReview();
+}
+function kpcShowQuestion(n){kpcSelectedQuestion=n;kpcRenderReview()}
+function kpcRenderReview(){
+ const rounds=kpcRounds(),r=rounds[kpcSelectedRound],history=r.history||[],h=history[kpcSelectedQuestion];
+ document.getElementById('app').innerHTML=`<div class="screen"><div class="glass"><div class="kpc-report">
+ <div class="kpc-brand">KRU PAI CLASSROOM</div><div class="kpc-title">ตรวจคำตอบ • ${kpcEsc(KPC_RESULT_TITLE)}</div>
+ <div class="kpc-meta">${kpcEsc(r.name)} • รอบ ${kpcSelectedRound+1} • ${kpcDate(r.date)} • ${r.score}/${r.total}</div>
+ <div class="kpc-box"><h3>เลือกข้อที่ต้องการดู</h3><div class="kpc-qnav">${history.map((x,i)=>`<button class="${i===kpcSelectedQuestion?'play':'secondary'}" onclick="kpcShowQuestion(${i})">${i+1}</button>`).join('')}</div>
+ <div class="kpc-qdetail">${h?`<b>ข้อ ${kpcSelectedQuestion+1} • ${kpcEsc(h.time||'')}</b><br>${h.ok?'✅ ถูกต้อง':'❌ ไม่ถูกต้อง'}<br>คำตอบของนักเรียน: ${kpcEsc(h.choice??h.typed??'ไม่ได้ตอบ')}<br><b>เฉลย: ${kpcEsc(h.answer||'')}</b>`:'ไม่มีข้อมูลรายข้อในรอบนี้'}</div></div>
+ <div class="kpc-actions"><button class="play" onclick="kpcRenderSummary()">⬅ กลับหน้าสรุป</button></div></div></div></div>`;
+}
+function kpcCanvas(){
+ const rounds=kpcRounds(),r=state.kpcLatest||rounds[rounds.length-1],pct=Math.round(r.score/r.total*100),best=Math.max(...rounds.map(x=>Math.round(x.score/x.total*100)));
+ const c=document.createElement('canvas');c.width=1080;c.height=1480;const g=c.getContext('2d');
+ const grad=g.createLinearGradient(0,0,1080,1480);grad.addColorStop(0,'#153e87');grad.addColorStop(1,'#07112f');g.fillStyle=grad;g.fillRect(0,0,1080,1480);
+ const rr=(x,y,w,h,r,fill)=>{g.fillStyle=fill;g.beginPath();g.roundRect(x,y,w,h,r);g.fill()};
+ const t=(v,x,y,size=30,color='white',align='center')=>{g.fillStyle=color;g.textAlign=align;g.font=`bold ${size}px Arial, sans-serif`;g.fillText(String(v),x,y)};
+ rr(48,45,984,1380,32,'rgba(255,255,255,.09)');
+ t('KRU PAI CLASSROOM',540,138,52,'#ffe96a');t('LEARNING ACHIEVEMENT REPORT',540,188,26,'#baf5ff');
+ t(KPC_RESULT_TITLE,540,278,35);t('นักเรียน: '+r.name,540,350,33);t(kpcDate(r.date),540,405,28,'#d0edff');
+ rr(290,465,500,125,40,'#ffe96a');t(`${r.score} / ${r.total} คะแนน`,540,547,58,'#1c2550');
+ [{v:pct+'%',l:'คะแนนล่าสุด'},{v:rounds.length,l:'จำนวนรอบ'},{v:best+'%',l:'คะแนนสูงสุด'}].forEach((x,i)=>{let px=85+i*305;rr(px,645,290,145,20,'rgba(255,255,255,.13)');t(x.v,px+145,710,48,'#ffe96a');t(x.l,px+145,755,25)});
+ rr(85,825,910,390,24,'rgba(0,0,0,.22)');t('กราฟพัฒนาการ',125,878,34,'#ffe96a','left');
+ const last=rounds.slice(-10),left=170,right=945,top=928,bottom=1110;
+ [0,25,50,75,100].forEach(v=>{let y=bottom-v/100*(bottom-top);g.strokeStyle='rgba(255,255,255,.18)';g.lineWidth=1;g.beginPath();g.moveTo(left,y);g.lineTo(right,y);g.stroke();t(v+'%',left-18,y+7,20,'#d0edff','right')});
+ const pts=last.map((x,i)=>({x:last.length===1?(left+right)/2:left+i*(right-left)/(last.length-1),y:bottom-(x.score/x.total)*(bottom-top),pct:Math.round(x.score/x.total*100),n:rounds.length-last.length+i+1}));
+ g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p.x,p.y):g.moveTo(p.x,p.y));g.strokeStyle='#6ff2ff';g.lineWidth=6;g.stroke();
+ pts.forEach(p=>{g.beginPath();g.arc(p.x,p.y,8,0,Math.PI*2);g.fillStyle='#ffe96a';g.fill();t(p.pct+'%',p.x,Math.max(920,p.y-20),20,'#ffe96a');t('#'+p.n,p.x,1160,19)});
+ rr(85,1250,910,95,20,'rgba(255,255,255,.12)');t(pct>=80?'ผ่านเกณฑ์ 80%':'ฝึกต่อเพื่อผ่านเกณฑ์ 80%',540,1307,30,'#ffe96a');
+ return c;
+}
+async function kpcShare(){
+ try{
+ const c=kpcCanvas(),blob=await new Promise(ok=>c.toBlob(ok,'image/png'));if(!blob)throw Error('PNG export failed');
+ const filename=KPC_RESULT_KEY+'.png',file=new File([blob],filename,{type:'image/png'});
+ if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+  try{await navigator.share({files:[file],title:'Kru Pai Classroom'});return}catch(e){if(e.name==='AbortError')return}
+ }
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);
+ alert('บันทึกภาพรายงานแล้ว สามารถส่งผ่าน LINE ได้จ้า');
+ }catch(e){console.error(e);alert('ไม่สามารถแชร์ภาพได้ กรุณาลองอีกครั้ง')}
+}
+</script>
+</body>
+</html>

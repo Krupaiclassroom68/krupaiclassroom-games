@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>TIME MASTER GALAXY EP1 — Assessment Pilot</title>
+<style>
+:root{
+  --bg1:#041126;
+  --bg2:#0b2f78;
+  --bg3:#18a6ff;
+  --cyan:#61e7ff;
+  --yellow:#ffe66d;
+  --gold:#ffc83d;
+  --pink:#ff65cf;
+  --red:#ff4f6d;
+  --green:#53ff99;
+  --white:#f8fcff;
+  --ink:#071633;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:Arial, Helvetica, sans-serif;background:#041126;color:white;overflow-x:hidden}
+body{
+  background:
+    radial-gradient(circle at 20% 10%, rgba(97,231,255,.35), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(255,101,207,.28), transparent 28%),
+    radial-gradient(circle at 50% 105%, rgba(255,230,109,.22), transparent 35%),
+    linear-gradient(180deg,var(--bg3),var(--bg2) 45%,var(--bg1));
+}
+body::before, body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+}
+body::before{
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.92) 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(255,230,109,.75) 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(97,231,255,.75) 1px, transparent 2px);
+  background-size:130px 130px,190px 190px,250px 250px;
+  opacity:.42;animation:stars 85s linear infinite;
+}
+body::after{
+  background:linear-gradient(transparent 0 94%, rgba(255,255,255,.08) 95% 96%, transparent 97%);
+  background-size:100% 42px;opacity:.18;mix-blend-mode:screen;
+}
+@keyframes stars{from{transform:translateY(0)}to{transform:translateY(260px)}}
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px;position:relative;z-index:1}
+.glass{
+  width:min(1180px,96vw);border-radius:34px;padding:28px;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 28px 90px rgba(0,0,0,.42), inset 0 0 50px rgba(255,255,255,.04);
+  backdrop-filter:blur(14px);position:relative;overflow:hidden;
+}
+.glass::before{
+  content:"";position:absolute;inset:-2px;background:linear-gradient(115deg,transparent,rgba(255,255,255,.18),transparent 40%);
+  transform:translateX(-100%);animation:shine 8s ease-in-out infinite;pointer-events:none;
+}
+@keyframes shine{0%,45%{transform:translateX(-110%)}70%,100%{transform:translateX(110%)}}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:30px;align-items:center}
+.title{font-size:clamp(2.45rem,6vw,5.6rem);font-weight:1000;line-height:.9;letter-spacing:-2px;text-shadow:0 0 25px rgba(97,231,255,.48),0 0 55px rgba(255,230,109,.24)}
+.badge{display:inline-flex;gap:9px;align-items:center;padding:10px 16px;border-radius:999px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.18);font-weight:1000;color:var(--yellow);margin-bottom:14px;box-shadow:0 0 24px rgba(255,230,109,.15)}
+.subtitle{margin-top:18px;font-size:clamp(1rem,2vw,1.28rem);line-height:1.75;color:rgba(255,255,255,.92);font-weight:800}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.feature{padding:14px;border-radius:20px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.12);font-weight:1000;line-height:1.35}
+input{width:100%;padding:18px 20px;border:none;outline:none;border-radius:22px;font-size:1.12rem;font-weight:1000;margin-top:20px;background:rgba(255,255,255,.95);color:#0b2f78;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.buttons,.options{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:20px}
+button{border:none;border-radius:20px;padding:16px 24px;font-size:1.05rem;font-weight:1000;cursor:pointer;transition:transform .18s, filter .18s, box-shadow .18s;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+button:hover{transform:translateY(-2px) scale(1.015);filter:brightness(1.04)}
+.play{background:linear-gradient(180deg,#fff9c9,#ffe66d 55%,#ffc83d);color:#332400;border:2px solid rgba(255,255,255,.7);box-shadow:0 0 24px rgba(255,230,109,.35),0 12px 28px rgba(0,0,0,.28)}
+.secondary{background:linear-gradient(180deg,#eaf9ff,#9beeff);color:#07305e;border:2px solid rgba(255,255,255,.6)}
+.clock-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative}
+.analog-wrap{width:min(380px,82vw);aspect-ratio:1/1;border-radius:50%;position:relative;background:radial-gradient(circle at 50% 42%,rgba(255,255,255,.18),rgba(97,231,255,.06) 43%,rgba(0,0,0,.22) 70%);box-shadow:0 0 0 8px rgba(255,255,255,.06),0 0 0 15px rgba(97,231,255,.08),0 0 60px rgba(97,231,255,.35), inset 0 0 35px rgba(255,255,255,.11);border:3px solid rgba(255,255,255,.28);display:grid;place-items:center}
+.analog-wrap.spin .minute-hand{animation:minuteSpin .72s ease-in-out 1}
+.analog-wrap.spin .hour-hand{animation:hourSpin .72s ease-in-out 1}
+.analog-wrap.shake{animation:clockShake .42s linear 1}
+@keyframes minuteSpin{from{transform:translate(-50%,-100%) rotate(var(--mrot))}to{transform:translate(-50%,-100%) rotate(calc(var(--mrot) + 360deg))}}
+@keyframes hourSpin{from{transform:translate(-50%,-100%) rotate(var(--hrot))}to{transform:translate(-50%,-100%) rotate(calc(var(--hrot) + 360deg))}}
+@keyframes clockShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px) rotate(-2deg)}40%{transform:translateX(10px) rotate(2deg)}60%{transform:translateX(-8px) rotate(-1.5deg)}80%{transform:translateX(7px) rotate(1.5deg)}}
+.tick{position:absolute;width:4px;height:16px;background:rgba(255,255,255,.75);top:10px;left:50%;transform-origin:50% calc(var(--r) - 10px);border-radius:5px;box-shadow:0 0 9px rgba(255,255,255,.35)}
+.num{position:absolute;font-weight:1000;font-size:1.05rem;color:rgba(255,255,255,.86);text-shadow:0 0 10px rgba(97,231,255,.5)}
+.center-dot{position:absolute;width:22px;height:22px;border-radius:50%;background:linear-gradient(180deg,#fff,#ffe66d);box-shadow:0 0 18px rgba(255,230,109,.9);z-index:8}
+.hand{position:absolute;left:50%;top:50%;transform-origin:50% 100%;border-radius:999px;z-index:7}
+.hour-hand{width:12px;height:27%;background:linear-gradient(180deg,#fff,#ffe66d);transform:translate(-50%,-100%) rotate(var(--hrot));box-shadow:0 0 16px rgba(255,230,109,.45)}
+.minute-hand{width:8px;height:39%;background:linear-gradient(180deg,#fff,#61e7ff);transform:translate(-50%,-100%) rotate(var(--mrot));box-shadow:0 0 16px rgba(97,231,255,.55)}
+.second-hand{width:3px;height:42%;background:#ff65cf;transform:translate(-50%,-100%) rotate(0deg);animation:secondSweep 8s linear infinite;box-shadow:0 0 10px rgba(255,101,207,.6)}
+@keyframes secondSweep{to{transform:translate(-50%,-100%) rotate(360deg)}}
+.orbit{position:absolute;inset:-16px;border-radius:50%;border:1px dashed rgba(255,255,255,.22);animation:orbit 15s linear infinite}.orbit::before{content:"✨";position:absolute;top:9%;left:14%;font-size:1.6rem;filter:drop-shadow(0 0 10px #fff)}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.preview-time,.digital{
+  font-weight:1000;letter-spacing:4px;color:var(--yellow);text-align:center;
+  text-shadow:0 0 25px rgba(255,230,109,.55),0 0 55px rgba(255,230,109,.2);
+}
+.preview-time{font-size:clamp(2.1rem,6vw,4rem)}
+.hud{display:grid;grid-template-columns:1.25fr repeat(3,1fr);gap:12px;margin-bottom:18px}
+.card{padding:16px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);text-align:center;box-shadow:inset 0 0 26px rgba(255,255,255,.035)}
+.label{font-size:.78rem;opacity:.75;font-weight:1000;letter-spacing:1px}.value{font-size:clamp(1.35rem,3.5vw,2.1rem);font-weight:1000;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.clock-box{text-align:center;padding:22px 18px;margin-top:10px;border-radius:30px;background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.14);position:relative;overflow:hidden}
+.game-clock-row{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:center}.game-clock-row .analog-wrap{width:min(330px,82vw)}
+.digital{font-size:clamp(3.8rem,10vw,7.4rem);margin-bottom:6px}.question{margin-top:8px;font-size:clamp(1.1rem,2.4vw,1.55rem);font-weight:1000;color:#fff}.mode-note{margin-top:8px;color:rgba(255,255,255,.75);font-weight:900}
+.option{width:min(100%,500px);background:linear-gradient(180deg,#ffffff,#dcf7ff);color:#0b3569;text-align:left;border:2px solid rgba(255,255,255,.8);font-size:clamp(1rem,2vw,1.25rem);line-height:1.35;position:relative;overflow:hidden}.option:disabled{cursor:not-allowed;opacity:1}.option.correct{background:linear-gradient(180deg,#baffd2,#53ff99);color:#06361d;border-color:#eafff2}.option.wrong{background:linear-gradient(180deg,#ffb6c4,#ff4f6d);color:#fff;border-color:#ffe3e8}.option.correct::after{content:"✅";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:1.7rem}.option.wrong::after{content:"❌";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:1.7rem}
+.feedback{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:20;pointer-events:none}.feedback.show{display:flex}.feedback-card{min-width:min(90vw,560px);padding:34px;border-radius:34px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,230,109,.96));color:#332400;box-shadow:0 0 0 8px rgba(255,255,255,.15),0 30px 80px rgba(0,0,0,.45);animation:pop .42s cubic-bezier(.2,1.4,.35,1)}.feedback.wrong .feedback-card{background:linear-gradient(180deg,#fff,#ff8aa0);color:#500316}.feedback-icon{font-size:5.2rem;line-height:1}.feedback-text{font-size:clamp(1.8rem,5vw,3.4rem);font-weight:1000;margin-top:10px}.feedback-sub{font-size:1.05rem;font-weight:1000;margin-top:8px;opacity:.78}@keyframes pop{from{transform:scale(.68);opacity:0}to{transform:scale(1);opacity:1}}
+.flash{position:fixed;inset:0;z-index:19;display:none;pointer-events:none}.flash.good{display:block;background:radial-gradient(circle,rgba(83,255,153,.38),transparent 60%);animation:fadeFlash .75s ease forwards}.flash.bad{display:block;background:rgba(255,79,109,.24);animation:fadeFlash .5s ease forwards}@keyframes fadeFlash{from{opacity:1}to{opacity:0}}
+.confetti{position:fixed;top:-20px;width:10px;height:18px;border-radius:3px;z-index:25;pointer-events:none;animation:fall 1.6s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.15}}
+.summary-head{text-align:center}.trophy{font-size:5.2rem;filter:drop-shadow(0 0 20px rgba(255,230,109,.45));animation:bob 2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-8px)}}.score-pill{display:inline-block;padding:18px 34px;border-radius:999px;background:linear-gradient(180deg,#fff8c7,#ffe66d,#ffc83d);color:#332400;font-size:clamp(1.8rem,5vw,3rem);font-weight:1000;margin-top:18px;box-shadow:0 0 35px rgba(255,230,109,.36)}.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px;max-height:48vh;overflow:auto;padding:4px}.summary-card{padding:16px;border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}.summary-card .st{font-size:1.55rem;font-weight:1000;color:var(--yellow)}.summary-card .ans{margin-top:9px;font-weight:1000}.ok{color:#53ff99}.no{color:#ff9bad}.small{font-size:.86rem;opacity:.8;margin-top:6px;font-weight:900}
+.how{max-width:850px;margin:auto}.how h2{font-size:clamp(2.1rem,5vw,3.6rem);margin:0 0 12px}.how ul{font-size:1.15rem;line-height:1.8;font-weight:900}.how li{margin:8px 0}
+@media(max-width:920px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr}.hud{grid-template-columns:1fr 1fr}.game-clock-row{grid-template-columns:1fr}.game-clock-row .analog-wrap{margin:auto}.digital{font-size:4.6rem}}
+@media(max-width:600px){.screen{padding:10px}.glass{padding:18px;border-radius:26px}.hud{gap:8px}.card{padding:11px;border-radius:18px}.label{font-size:.66rem}.value{font-size:1.22rem}.options{display:grid;grid-template-columns:1fr;gap:10px}.option{width:100%;padding:15px 48px 15px 16px}.digital{font-size:3.8rem;letter-spacing:2px}.clock-box{padding:14px}.game-clock-row .analog-wrap{width:min(270px,78vw)}button{width:100%}.title{letter-spacing:-1px}.subtitle{font-size:.98rem}.preview-time{font-size:2.4rem}.summary-grid{max-height:44vh}}
+@media(min-width:1500px){.glass{width:min(1500px,94vw);padding:42px}.title{font-size:6.8rem}.subtitle{font-size:1.55rem}.option{font-size:1.55rem;padding:24px 34px}.game-clock-row{grid-template-columns:460px 1fr}.game-clock-row .analog-wrap{width:430px}.digital{font-size:9rem}.question{font-size:2rem}.value{font-size:2.8rem}}
+
+.result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.result-stat,.result-panel{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:16px}.result-stat{text-align:center}.result-stat strong{display:block;font-size:clamp(1.4rem,4vw,2.6rem);color:#ffe66d}.result-panel{margin-top:14px}.result-panel h3{margin:0 0 12px;color:#ffe66d}.bars{display:flex;align-items:end;gap:9px;overflow-x:auto;min-height:150px}.baritem{flex:1;min-width:52px;text-align:center;font-weight:900}.bartrack{height:110px;background:rgba(255,255,255,.1);display:flex;align-items:end;border-radius:10px;overflow:hidden;margin:6px 0}.barfill{width:100%;background:linear-gradient(#61e7ff,#18a6ff)}.rounds{display:flex;flex-wrap:wrap;gap:10px}.round{background:rgba(255,255,255,.09);padding:12px;border-radius:14px;font-weight:900}.result-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px}@media(max-width:600px){.result-stat{padding:9px 3px}.result-actions button{width:100%}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="flash" class="flash"></div>
+<div id="feedback" class="feedback"><div class="feedback-card"><div id="fbIcon" class="feedback-icon">✅</div><div id="fbText" class="feedback-text">Excellent!</div><div id="fbSub" class="feedback-sub">It is six twenty.</div></div></div>
+<script>
+const QUESTIONS=[
+ {time:"06:20",answer:"It is six twenty.",choices:["It is six twenty.","It is six twelve.","It is twenty six.","It is sixty twenty."]},
+ {time:"07:30",answer:"It is seven thirty.",choices:["It is seven thirteen.","It is seven thirty.","It is thirty seven.","It is seven forty."]},
+ {time:"08:45",answer:"It is eight forty-five.",choices:["It is eight forty-five.","It is eight fifteen.","It is nine forty-five.","It is forty-eight five."]},
+ {time:"09:15",answer:"It is nine fifteen.",choices:["It is nine fifty.","It is ninety fifteen.","It is nine fifteen.","It is five nineteen."]},
+ {time:"10:00",answer:"It is ten o'clock.",choices:["It is ten o'clock.","It is ten zero.","It is zero ten.","It is ten thirty."]},
+ {time:"11:25",answer:"It is eleven twenty-five.",choices:["It is eleven twenty-five.","It is twenty-five eleven.","It is eleven fifty-two.","It is twelve twenty-five."]},
+ {time:"12:50",answer:"It is twelve fifty.",choices:["It is twelve fifteen.","It is twenty fifty.","It is twelve fifty.","It is one fifty."]},
+ {time:"03:05",answer:"It is three oh five.",choices:["It is three five.","It is five oh three.","It is three fifty.","It is three oh five."]},
+ {time:"04:40",answer:"It is four forty.",choices:["It is forty past four.","It is four fourteen.","It is four forty.","It is quarter to five."]},
+ {time:"05:55",answer:"It is five fifty-five.",choices:["It is five fifty-five.","It is fifty-five five.","It is six fifty-five.","It is five fifteen."]},
+ {time:"01:10",answer:"It is one ten.",choices:["It is one ten.","It is ten one.","It is one twenty.","It is eleven ten."]},
+ {time:"02:35",answer:"It is two thirty-five.",choices:["It is two thirty-five.","It is three twenty-five.","It is two fifty-three.","It is thirty-two five."]}
+];
+const PRAISE=["Excellent!","Time Master!","Great Job!","Awesome!","Perfect!","Super Star!","Brilliant!"];
+let state={screen:"start",name:"",index:0,score:0,time:15,timer:null,locked:false,history:[],selected:null,preview:0};
+// KPC assessment pilot: local-only, no network endpoint configured.
+const KPC_GAME_ID='TIME_MASTER_GALAXY_EP1_ASSESSMENT_PILOT';
+const KPC_PREFIX='kpc_assessment_v1_'+KPC_GAME_ID;
+const urlParams=new URLSearchParams(location.search);
+const kpcIdentity={student_code:urlParams.get('student_code')||urlParams.get('studentCode')||'',daily_code:urlParams.get('daily_code')||urlParams.get('dailyCode')||'',classroom_code:urlParams.get('classroom_code')||urlParams.get('classroomCode')||'',name:urlParams.get('name')||urlParams.get('student_name')||''};
+let kpcAttempt=null;
+function kpcNewId(){return crypto.randomUUID?crypto.randomUUID():'attempt-'+Date.now()+'-'+Math.random().toString(36).slice(2)}
+function kpcKey(){return KPC_PREFIX+'_draft_'+(kpcIdentity.student_code||'standalone')+'_'+(kpcIdentity.daily_code||'none')}
+function kpcStore(key,obj){try{localStorage.setItem(key,JSON.stringify(obj));return true}catch(e){console.warn('KPC local save failed',e);return false}}
+function kpcRead(key,fallback){try{return JSON.parse(localStorage.getItem(key))||fallback}catch(e){return fallback}}
+function kpcSaveDraft(){if(!kpcAttempt)return;kpcAttempt.score=state.score;kpcAttempt.answers=state.history.map((h,i)=>({question_number:i+1,question_id:'CLOCK_'+String(i+1).padStart(2,'0'),time:h.time,correct_answer:h.answer,student_answer:h.choice,correct:h.ok,timed_out:h.choice==='Time out'}));kpcStore(kpcKey(),kpcAttempt)}
+function kpcFinish(){kpcSaveDraft();kpcAttempt.finished_at=new Date().toISOString();kpcAttempt.status='saved_locally_pending_online';const archive=kpcRead(KPC_PREFIX+'_archive',[]);if(!archive.some(x=>x.attempt_id===kpcAttempt.attempt_id))archive.push(kpcAttempt);if(kpcStore(KPC_PREFIX+'_archive',archive)){try{localStorage.removeItem(kpcKey())}catch(e){}}}
+function kpcDownload(){const a=document.createElement('a');const blob=new Blob([JSON.stringify(kpcAttempt,null,2)],{type:'application/json'});const u=URL.createObjectURL(blob);a.href=u;a.download='TIME_MASTER_GALAXY_EP1_'+kpcAttempt.attempt_id+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+let audioCtx=null, previewTimer=null;
+function getCtx(){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;if(!audioCtx)audioCtx=new AC();if(audioCtx.state==="suspended")audioCtx.resume();return audioCtx;}
+function tone(freq,dur=.12,type="sine",gain=.12,delay=0){const ctx=getCtx();if(!ctx)return;const now=ctx.currentTime+delay;const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(freq,now);g.gain.setValueAtTime(.001,now);g.gain.exponentialRampToValueAtTime(gain,now+.015);g.gain.exponentialRampToValueAtTime(.001,now+dur);o.connect(g);g.connect(ctx.destination);o.start(now);o.stop(now+dur+.03)}
+function sound(type){if(type==="click"){tone(520,.09,"triangle",.1);tone(760,.08,"triangle",.07,.05)} if(type==="correct"){[523,659,784,1046,1318].forEach((f,i)=>tone(f,.22,"sine",.15,i*.06))} if(type==="wrong"){tone(190,.32,"sawtooth",.13);tone(90,.28,"sawtooth",.08,.08)} if(type==="tick"){tone(950,.035,"square",.025)} if(type==="win"){[392,523,659,784,1046,1318].forEach((f,i)=>tone(f,.23,"sine",.12,i*.07))}}
+function speak(text){if(!("speechSynthesis" in window))return;const msg=new SpeechSynthesisUtterance(text);msg.lang="en-US";msg.rate=.86;speechSynthesis.cancel();speechSynthesis.speak(msg)}
+function parseTime(t){const [h,m]=t.split(":").map(Number);return {h,m};}
+function rotations(t){const {h,m}=parseTime(t);return {hrot:((h%12)*30+m*.5)+"deg",mrot:(m*6)+"deg"};}
+function clockHTML(time,extra=""){const r=rotations(time);let ticks="";for(let i=0;i<12;i++){ticks+=`<div class="tick" style="--r:50%;transform:translateX(-50%) rotate(${i*30}deg)"></div>`}let nums="";const pos=[[50,8,12],[72,14,1],[87,30,2],[91,50,3],[84,70,4],[68,85,5],[50,91,6],[31,85,7],[16,70,8],[9,50,9],[13,30,10],[27,14,11]];pos.forEach(([x,y,n])=>nums+=`<div class="num" style="left:${x}%;top:${y}%;transform:translate(-50%,-50%)">${n}</div>`);return `<div id="analogClock" class="analog-wrap ${extra}" style="--hrot:${r.hrot};--mrot:${r.mrot}"><div class="orbit"></div>${ticks}${nums}<div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div><div class="center-dot"></div></div>`}
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+function render(){const app=document.getElementById("app");
+ if(state.screen==="start"){
+  const p=QUESTIONS[state.preview%QUESTIONS.length];
+  app.innerHTML=`<div class="screen"><div class="glass"><div class="hero"><div><div class="badge">⏰ EP1 • DIGITAL ONLY</div><div class="title">Time Master<br>Galaxy</div><div class="subtitle">อ่านเวลาแบบดิจิตอลแล้วเลือกประโยคภาษาอังกฤษที่ถูกต้อง<br><b style="color:var(--yellow)">EP1 ใช้คำตอบถูกเพียงแบบเดียว</b> เพื่อไม่ให้สับสนกับ past / to</div><div class="features"><div class="feature">🎮 Game Show Mode</div><div class="feature">✅ One Correct Answer</div><div class="feature">🕰️ Spinning Clock Effect</div><div class="feature">📺 Mobile + TV Ready</div></div><input id="playerName" oninput="state.name=this.value" placeholder="Type your name" value="${(kpcIdentity.name||state.name).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}"><div class="buttons"><button class="play" onclick="startGame()">START MISSION 🚀</button><button class="secondary" onclick="showHow()">HOW TO PLAY</button></div></div><div class="clock-stage">${clockHTML(p.time)}<div class="preview-time">${p.time}</div><div class="mode-note">Galaxy Clock Preview ✨</div></div></div></div></div>`;
+  clearInterval(previewTimer);previewTimer=setInterval(()=>{if(state.screen==="start"){state.preview++;const next=QUESTIONS[state.preview%QUESTIONS.length];const stage=document.querySelector(".clock-stage");if(stage){stage.innerHTML=clockHTML(next)+`<div class="preview-time">${next.time}</div><div class="mode-note">Galaxy Clock Preview ✨</div>`;}}},2600);
+ }
+ if(state.screen==="how"){
+  app.innerHTML=`<div class="screen"><div class="glass how"><h2>How to Play ⏰</h2><ul><li>ดูเวลาดิจิตอล เช่น <b style="color:var(--yellow)">04:40</b></li><li>เลือกประโยคอ่านเวลาแบบตรง เช่น <b style="color:var(--yellow)">It is four forty.</b></li><li>EP1 ยังไม่ใช้แบบ <b>past / to</b> เพื่อให้เด็กจับเลขเวลาให้แม่นก่อน</li><li>ตอบถูก +1 คะแนน ภายใน 15 วินาที</li></ul><div class="buttons"><button class="play" onclick="goStart()">BACK TO START</button></div></div></div>`;
+ }
+ if(state.screen==="game"){
+  const q=QUESTIONS[state.index];
+  app.innerHTML=`<div class="screen"><div class="glass"><div class="hud"><div class="card"><div class="label">PLAYER</div><div class="value">${state.name}</div></div><div class="card"><div class="label">QUESTION</div><div class="value">${state.index+1}/${QUESTIONS.length}</div></div><div class="card"><div class="label">SCORE</div><div class="value" style="color:var(--yellow)">${state.score}</div></div><div class="card"><div class="label">TIME</div><div class="value" style="color:${state.time<=5?'var(--red)':'var(--white)'}">${state.time}</div></div></div><div class="clock-box"><div class="game-clock-row"><div>${clockHTML(q.time)}</div><div><div class="digital">${q.time}</div><div class="question">What time is it?</div><div class="mode-note">Choose the digital reading sentence only.</div></div></div></div><div class="options">${q.choices.map(c=>`<button class="option ${state.selected===c?(c===q.answer?'correct':'wrong'):''}" ${state.locked?'disabled':''} onclick="checkAnswer('${c.replace(/'/g,"\\'")}')">${c}</button>`).join("")}</div></div></div>`;
+ }
+ if(state.screen==="summary"){
+  const max=QUESTIONS.length,percent=Math.round(state.score/max*100),pass=percent>=80;
+  const all=kpcRead(KPC_PREFIX+'_archive',[]).filter(x=>x.student_code===kpcIdentity.student_code&&x.student_name===state.name);
+  const rounds=all.map((x,i)=>({n:i+1,score:x.score||0,pct:Math.round((x.score||0)/(x.total_questions||max)*100)}));
+  const recent=rounds.slice(-12);
+  const points=recent.map((x,i)=>({x:recent.length===1?50:8+i*84/(recent.length-1),y:90-x.pct*.75,pct:x.pct,n:x.n}));
+  const line=points.map(p=>`${p.x},${p.y}`).join(' ');
+  const finishedAt=kpcAttempt?.finished_at||new Date().toISOString();const playedAt=new Date(finishedAt).toLocaleString("th-TH",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
+  const bars=`<svg viewBox="0 0 100 110" preserveAspectRatio="none" style="width:100%;height:220px;overflow:visible" role="img" aria-label="กราฟเส้นคะแนนย้อนหลัง">
+  ${[0,25,50,75,100].map(v=>`<line x1="7" y1="${90-v*.75}" x2="94" y2="${90-v*.75}" stroke="#ffffff" stroke-opacity=".16" stroke-width=".45" stroke-dasharray="2 2"/><text x="1" y="${92-v*.75}" fill="#c9e8ff" font-size="4">${v}</text>`).join('')}
+  ${points.length>1?`<polyline points="${line}" fill="none" stroke="#61e7ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`:''}
+  ${points.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="2" fill="#ffe66d" stroke="#ffffff" stroke-width=".65"/><text x="${p.x}" y="${Math.max(7,p.y-5)}" text-anchor="middle" font-size="4.5" fill="#ffe66d" font-weight="bold">${p.pct}%</text><text x="${p.x}" y="101" text-anchor="middle" font-size="4.1" fill="#ffffff">#${p.n}</text>`).join('')}
+  </svg>`;
+  app.innerHTML=`<div class="screen"><div class="glass" style="max-width:920px"><div class="summary-head"><div class="badge" style="font-size:1.2rem;margin:8px auto 16px">KRU PAI CLASSROOM</div><h1>TIME MASTER GALAXY</h1><div class="subtitle" style="text-align:center">${escapeResult(state.name)} • EP1 • 📅 ${playedAt} น.</div><div class="score-pill">${state.score} / ${max} POINTS</div></div><div class="result-stats"><div class="result-stat"><strong>${percent}%</strong>รอบล่าสุด</div><div class="result-stat"><strong>${rounds.length}</strong>ครั้งที่เล่น</div><div class="result-stat"><strong>${Math.max(percent,...rounds.map(x=>x.pct))}%</strong>คะแนนสูงสุด</div></div><div class="result-panel"><h3>📈 กราฟพัฒนาการ</h3><div class="bars">${bars}</div></div><div class="result-panel"><h3>📚 ประวัติคะแนน</h3><div class="rounds">${rounds.map(x=>`<div class="round">รอบ ${x.n} · ${x.score}/${max} · ${x.pct}%</div>`).join('')}</div></div><div class="result-panel" style="text-align:center"><b>${pass?'🎉 ผ่านเกณฑ์ 80%':'💪 ฝึกต่อเพื่อผ่านเกณฑ์ 80%'}</b><div class="small">ประวัติเก็บในเบราว์เซอร์นี้ ไม่ได้ส่งออนไลน์</div></div><div class="result-actions"><button class="secondary" onclick="shareResult()">📸 แชร์ภาพรายงาน</button><button class="secondary" onclick="showSolutions()">🔍 ดูเฉลย</button><button class="play" onclick="restart()">🚀 เล่นอีกครั้ง</button></div></div></div>`;
+ }
+ if(state.screen==="solutions"){
+  app.innerHTML=`<div class="screen"><div class="glass"><h2 style="text-align:center">🔍 เฉลยหลังจบเกม</h2><div class="summary-grid" style="max-height:none">${state.history.map((h,i)=>`<div class="summary-card"><div class="st">${h.ok?'✅':'❌'} ข้อ ${i+1} • ${h.time}</div><div class="ans">${escapeResult(h.answer)}</div><div class="small">ตอบ: ${escapeResult(h.choice||'Time out')}</div></div>`).join('')}</div><div class="buttons"><button class="play" onclick="state.screen='summary';render()">⬅ กลับหน้าสรุป</button></div></div></div>`;
+ }
+}
+function escapeResult(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showSolutions(){state.screen='solutions';render()}
+
+function kpcReportData(){
+ const max=QUESTIONS.length;
+ const all=kpcRead(KPC_PREFIX+'_archive',[]).filter(x=>x.student_code===kpcIdentity.student_code&&x.student_name===state.name);
+ const rounds=all.map((x,i)=>({n:i+1,score:Number(x.score)||0,pct:Math.round((Number(x.score)||0)/(Number(x.total_questions)||max)*100)}));
+ if(!rounds.length)rounds.push({n:1,score:state.score,pct:Math.round(state.score/max*100)});
+ return {max,rounds,pct:Math.round(state.score/max*100),best:Math.max(...rounds.map(x=>x.pct)),date:new Date(kpcAttempt?.finished_at||Date.now()).toLocaleString('th-TH',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})+' น.'};
+}
+function kpcReportCanvas(){
+ const data=kpcReportData(),canvas=document.createElement('canvas');
+ const W=1080,H=1500;canvas.width=W;canvas.height=H;
+ const c=canvas.getContext('2d');
+ const round=(x,y,w,h,r,fill,stroke)=>{c.beginPath();c.roundRect(x,y,w,h,r);if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.strokeStyle=stroke;c.lineWidth=2;c.stroke()}};
+ const txt=(t,x,y,size=30,color='#ffffff',align='left',weight='700')=>{c.font=`${weight} ${size}px Arial, "Noto Sans Thai", sans-serif`;c.textAlign=align;c.textBaseline='middle';c.fillStyle=color;c.fillText(String(t),x,y)};
+ const bg=c.createLinearGradient(0,0,1080,1500);bg.addColorStop(0,'#0b367d');bg.addColorStop(.55,'#071c49');bg.addColorStop(1,'#041126');c.fillStyle=bg;c.fillRect(0,0,W,H);
+ // decorative shapes; no star icon or trophy
+ c.globalAlpha=.1;c.fillStyle='#61e7ff';c.beginPath();c.arc(1000,100,240,0,Math.PI*2);c.fill();c.globalAlpha=1;
+ round(45,42,990,1415,34,'rgba(255,255,255,.055)','rgba(255,255,255,.2)');
+ txt('KRU PAI CLASSROOM',540,120,48,'#ffe66d','center','900');
+ txt('LEARNING ACHIEVEMENT REPORT',540,177,25,'#a5eaff','center');
+ c.strokeStyle='rgba(255,255,255,.22)';c.beginPath();c.moveTo(110,213);c.lineTo(970,213);c.stroke();
+ txt('TIME MASTER GALAXY • EP1',540,270,39,'#ffffff','center','900');
+ // fit long names
+ let name=state.name||'Guest';c.font='700 36px Arial, "Noto Sans Thai", sans-serif';
+ while(c.measureText(name).width>850 && name.length>2)name=name.slice(0,-2)+'…';
+ txt('นักเรียน: '+name,540,335,35,'#ffffff','center');
+ txt('วันที่และเวลาที่เล่นจบ: '+data.date,540,390,29,'#b8dfff','center');
+ round(290,445,500,125,62,'#ffe66d');
+ txt(`${state.score} / ${data.max} คะแนน`,540,509,60,'#302600','center','900');
+ const cards=[{value:data.pct+'%',label:'คะแนนรอบล่าสุด'},{value:String(data.rounds.length),label:'จำนวนรอบที่เล่น'},{value:data.best+'%',label:'คะแนนสูงสุด'}];
+ cards.forEach((a,i)=>{let x=90+i*305;round(x,605,290,145,20,'rgba(255,255,255,.095)','rgba(255,255,255,.18)');txt(a.value,x+145,661,47,'#ffe66d','center','900');txt(a.label,x+145,715,25,'#ffffff','center')});
+ round(85,785,910,390,25,'rgba(1,15,40,.52)','rgba(97,231,255,.25)');
+ txt('กราฟพัฒนาการคะแนน',125,836,34,'#ffe66d');
+ const left=170,right=935,top=880,bottom=1092,plotH=bottom-top;
+ [0,25,50,75,100].forEach(v=>{let y=bottom-v/100*plotH;c.strokeStyle='rgba(255,255,255,.18)';c.lineWidth=1;c.beginPath();c.moveTo(left,y);c.lineTo(right,y);c.stroke();txt(v+'%',left-18,y,19,'#b8dfff','right')});
+ const last=data.rounds.slice(-10),pts=last.map((r,i)=>({x:last.length===1?(left+right)/2:left+i*(right-left)/(last.length-1),y:bottom-r.pct/100*plotH,...r}));
+ c.strokeStyle='#61e7ff';c.lineWidth=6;c.lineJoin='round';c.lineCap='round';c.beginPath();pts.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();
+ pts.forEach(p=>{c.beginPath();c.arc(p.x,p.y,8,0,Math.PI*2);c.fillStyle='#ffe66d';c.fill();txt(p.pct+'%',p.x,Math.max(864,p.y-24),20,'#ffe66d','center');txt('รอบ '+p.n,p.x,1132,18,'#ffffff','center')});
+ round(85,1200,910,145,24,'rgba(255,255,255,.085)','rgba(255,255,255,.15)');
+ txt('ประวัติคะแนน',125,1241,29,'#ffe66d');
+ const shown=data.rounds.slice(-5);
+ const history=shown.map(r=>`#${r.n}  ${r.score}/${data.max} (${r.pct}%)`).join('     ');
+ c.font='700 24px Arial, "Noto Sans Thai", sans-serif';
+ if(c.measureText(history).width<820)txt(history,540,1296,24,'#ffffff','center');
+ else {shown.forEach((r,i)=>txt(`รอบ ${r.n}: ${r.score}/${data.max} (${r.pct}%)`,130+(i%3)*300,1280+Math.floor(i/3)*36,21,'#ffffff'))}
+ txt(data.pct>=80?'ผ่านเกณฑ์ 80%':'ฝึกต่อเพื่อผ่านเกณฑ์ 80%',540,1390,28,data.pct>=80?'#53ff99':'#ffe66d','center');
+ // No answer keys, question details, or scratch work on shared image
+ return canvas;
+}
+async function shareResult(){
+ let canvas;
+ try{canvas=kpcReportCanvas()}catch(err){console.error(err);alert('สร้างภาพรายงานไม่สำเร็จ กรุณาลองอีกครั้ง');return}
+ const filename='KPC_TIME_MASTER_GALAXY_'+new Date().toISOString().slice(0,10)+'.png';
+ const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+ if(!blob){alert('ไม่สามารถสร้างไฟล์ PNG ได้');return}
+ const file=new File([blob],filename,{type:'image/png'});
+ // Mobile Safari / Android: native share sheet can send PNG directly to LINE.
+ try{
+   if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+     await navigator.share({files:[file],title:'Kru Pai Classroom — รายงานผลคะแนน'});
+     return;
+   }
+ }catch(e){if(e.name==='AbortError')return;console.warn('Share failed, downloading PNG instead',e)}
+ // Browser fallback: save PNG; student can send it to LINE manually.
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),15000);
+ alert('บันทึกภาพรายงาน PNG แล้ว สามารถส่งภาพนี้ทาง LINE ได้จ้า');
+}
+
+function showHow(){sound('click');state.screen='how';clearInterval(previewTimer);render()}function goStart(){sound('click');state.screen='start';render()}
+function startGame(){sound('click');clearInterval(previewTimer);const input=document.getElementById('playerName');state.name=(input&&input.value.trim())||'Guest';state.index=0;state.score=0;state.history=[];state.locked=false;state.selected=null;state.screen='game';kpcAttempt={game_id:KPC_GAME_ID,attempt_id:kpcNewId(),student_code:kpcIdentity.student_code,classroom_code:kpcIdentity.classroom_code,daily_code:kpcIdentity.daily_code,student_name:state.name,started_at:new Date().toISOString(),total_questions:QUESTIONS.length,status:'in_progress',answers:[],score:0};kpcSaveDraft();startTimer();render()}
+function startTimer(){clearInterval(state.timer);state.time=15;state.timer=setInterval(()=>{state.time--; if(state.time<=5&&state.time>0)sound('tick'); if(state.time<=0){handleTimeout();return} render()},1000)}
+function handleTimeout(){if(state.locked)return;state.locked=true;clearInterval(state.timer);const q=QUESTIONS[state.index];state.history.push({time:q.time,answer:q.answer,choice:'Time out',ok:false});kpcSaveDraft();showFeedback(false,'Time Out!',q.answer);setTimeout(nextQuestion,1250)}
+function checkAnswer(choice){if(state.locked)return;state.locked=true;state.selected=choice;clearInterval(state.timer);const q=QUESTIONS[state.index];const ok=choice===q.answer;state.history.push({time:q.time,answer:q.answer,choice,ok});if(ok)state.score++;kpcSaveDraft();sound(ok?'correct':'wrong');render();animateClock(ok);showFeedback(ok,ok?PRAISE[Math.floor(Math.random()*PRAISE.length)]:'Try again!',q.answer);if(ok)speak(q.answer);setTimeout(nextQuestion,ok?1700:1250)}
+function animateClock(ok){setTimeout(()=>{const c=document.getElementById('analogClock');if(c){c.classList.add(ok?'spin':'shake')}const f=document.getElementById('flash');f.className='flash '+(ok?'good':'bad');if(ok)confetti();setTimeout(()=>{f.className='flash'},800)},50)}
+function showFeedback(ok,text,sub){const fb=document.getElementById('feedback');document.getElementById('fbIcon').textContent=ok?'✅':'❌';document.getElementById('fbText').textContent=text;document.getElementById('fbSub').textContent=sub;fb.className='feedback show '+(ok?'good':'wrong');setTimeout(()=>{fb.className='feedback'},ok?1200:950)}
+function confetti(){const colors=['#ffe66d','#61e7ff','#ff65cf','#53ff99','#ffffff'];for(let i=0;i<55;i++){const d=document.createElement('div');d.className='confetti';d.style.left=Math.random()*100+'vw';d.style.background=colors[Math.floor(Math.random()*colors.length)];d.style.animationDelay=Math.random()*.22+'s';d.style.transform=`rotate(${Math.random()*360}deg)`;document.body.appendChild(d);setTimeout(()=>d.remove(),1900)}}
+function nextQuestion(){state.index++;state.locked=false;state.selected=null;if(state.index>=QUESTIONS.length){clearInterval(state.timer);state.screen='summary';kpcFinish();sound('win');if(state.score/QUESTIONS.length>=.8)confetti();}else{startTimer()}render()}
+function restart(){sound('click');clearInterval(state.timer);state.screen='start';render()}
+render();
+</script>
+</body>
+</html>

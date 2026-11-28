@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Kru Pai Classroom | CLOCK ACADEMY — Teach & Try</title>
+<style>
+:root{--bg:#071630;--blue:#0b3d75;--cyan:#77e9ff;--gold:#ffe578;--white:#f4fbff;--green:#72f4b2;--red:#ff8999}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#176e9a 0%,transparent 35%),linear-gradient(150deg,#06152f,#092d63 65%,#06152f);color:var(--white);font-family:Arial,"Noto Sans Thai",sans-serif;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0;border-radius:15px;padding:13px 17px;font-weight:900;background:var(--cyan);color:#062040}button:disabled{opacity:.45;cursor:not-allowed}.gold{background:var(--gold)}.ghost{background:#ffffff19;color:white;border:1px solid #ffffff44}.danger{background:#ffcfdb;color:#3b0718}
+.shell{max-width:1260px;margin:auto;padding:17px}.brand{font-weight:1000;color:var(--gold);letter-spacing:1px;font-size:clamp(17px,3vw,24px);margin-bottom:12px}.glass{background:#ffffff12;border:1px solid #ffffff33;border-radius:27px;padding:clamp(16px,3vw,30px);box-shadow:0 24px 70px #0005;backdrop-filter:blur(8px)}h1{font-size:clamp(34px,6vw,68px);line-height:1.02;margin:12px 0;color:var(--gold)}h2{font-size:clamp(24px,4vw,40px);margin:10px 0}h3{margin:10px 0;color:var(--gold)}p{line-height:1.65}.muted{color:#cce8f5}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.tile{border-radius:18px;padding:16px;background:#ffffff12;border:1px solid #ffffff22}.tile strong{display:block;color:var(--gold);font-size:22px;margin:6px 0}.lesson{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}.clockwrap{padding:20px;border-radius:24px;background:#06172b99;text-align:center}.clock{width:min(100%,360px);aspect-ratio:1;display:block;margin:auto;touch-action:none}.clock text{font-family:Arial;font-weight:bold}.example{padding:16px 18px;border-radius:18px;background:#fff;color:#092345;font-size:clamp(20px,3vw,32px);font-weight:900;text-align:center;margin:12px 0}.tip{border-left:5px solid var(--gold);background:#ffe57818;padding:12px 16px;border-radius:10px;line-height:1.65}.options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}.opt{text-align:left;background:#f1fbff;color:#072d55;padding:18px;border-radius:16px;min-height:75px;font-size:clamp(16px,2.2vw,22px)}.opt.selected{outline:5px solid var(--gold)}.opt.correct{background:#80ffc2}.opt.wrong{background:#ffafbc}.feedback{font-weight:900;font-size:20px;min-height:32px;margin-top:15px}.progress{height:12px;background:#ffffff22;border-radius:20px;overflow:hidden;margin:15px 0}.progress>div{height:100%;background:var(--gold);transition:.3s}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.pill{border:1px solid #ffffff44;background:#ffffff13;padding:8px 13px;border-radius:999px;font-weight:bold}.quiznav{display:flex;gap:8px;flex-wrap:wrap}.quiznav button{padding:9px 12px;background:#ffffff26;color:white}.quiznav button.active{background:var(--gold);color:#082342}.quiznav button.answered{border:2px solid var(--green)}input{padding:15px;border-radius:13px;border:2px solid #7adff8;background:white;color:#061630;max-width:100%;width:380px;font-size:19px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{text-align:center;padding:18px 6px;background:#ffffff14;border-radius:16px}.stat b{font-size:clamp(25px,5vw,40px);color:var(--gold);display:block}.chart{width:100%;height:220px}.review{padding:14px;background:#ffffff14;border-radius:16px;margin:10px 0}.small{font-size:13px;color:#d3e5ee}.footer{margin:20px 0;text-align:center;color:#a4c9df}
+@media(max-width:800px){.hero,.lesson{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.clock{max-width:290px}}@media(max-width:530px){.shell{padding:9px}.glass{border-radius:19px}.cards,.options{grid-template-columns:1fr}.actions button{flex:1;min-width:120px}.clock{max-width:245px}}
+
+/* TV + iPad teaching readability: lesson text only, no game logic changes */
+.lesson h3{font-size:clamp(25px,2.65vw,39px);line-height:1.45;margin:14px 0;color:#ffe578}
+.lesson p{font-size:clamp(22px,2.25vw,34px);line-height:1.55;font-weight:750;margin:14px 0}
+.lesson .tip{font-size:clamp(22px,2.2vw,33px);line-height:1.55;font-weight:800;padding:18px 22px;border-left-width:7px}
+.lesson .tile h3{font-size:clamp(23px,2.5vw,35px)}
+.lesson .tile p{font-size:clamp(21px,2vw,31px);line-height:1.55}
+.lesson .example{font-size:clamp(27px,3.3vw,49px);line-height:1.35;padding:20px 14px}
+.lesson .clockwrap button{font-size:clamp(19px,1.8vw,27px);padding:17px 20px}
+.lesson + .actions button{font-size:clamp(18px,1.65vw,25px);padding:16px 21px}
+@media(min-width:1300px){.shell{max-width:1510px}.lesson{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:30px}.lesson .clock{max-width:420px}}
+@media(max-width:800px){.lesson h3{font-size:clamp(25px,4.3vw,34px)}.lesson p,.lesson .tip{font-size:clamp(21px,3.4vw,28px)}.lesson .tile p{font-size:clamp(20px,3.2vw,27px)}.lesson .example{font-size:clamp(26px,4.3vw,37px)}}
+@media(max-width:530px){.lesson .tip{padding:14px 16px}.lesson p{font-size:21px}.lesson .tile p{font-size:20px}}
+</style></head><body><main class="shell"><div class="brand">KRU PAI CLASSROOM</div><div id="app"></div><div class="footer">CLOCK ACADEMY • TEACH & TRY • Lesson 01</div></main>
+<script>
+"use strict";
+const GAME_ID="KPC_CLOCK_ACADEMY_TEACH_TRY_2026_L01";
+const KEY="kpc_clock_academy_teach_try_2026_l01_history";
+const lessons=[
+{title:"รู้จักเข็มนาฬิกา",sub:"Clock Hands",time:"03:00",sentence:"It is three o'clock.",thai:"เข็มสั้นบอกชั่วโมง • เข็มยาวบอกนาที",explain:"เข็มยาวชี้เลข 12 = 00 นาที ส่วนเข็มสั้นชี้เลข 3 = 3 นาฬิกา",tip:"จำให้แม่น: เข็มสั้น = hour hand | เข็มยาว = minute hand"},
+{title:"O’clock — ตรงเวลา",sub:"Exact Hour",time:"07:00",sentence:"It is seven o'clock.",thai:"เมื่อเข็มยาวชี้เลข 12 ใช้ o'clock",explain:"07:00 = seven o'clock • 10:00 = ten o'clock",tip:"o'clock ใช้กับนาที 00 เท่านั้น"},
+{title:"Past — นาทีผ่าน",sub:"Minutes Past",time:"04:10",sentence:"It is ten past four.",thai:"นาทีที่ 1–30 ใช้ past ตามด้วยชั่วโมงปัจจุบัน",explain:"04:10 = ten past four • 02:20 = twenty past two",tip:"อ่านนาทีก่อน แล้วตามด้วย past และชั่วโมง"},
+{title:"Quarter & Half",sub:"15 และ 30 นาที",time:"06:15",sentence:"It is a quarter past six.",thai:"15 นาที = a quarter • 30 นาที = half",explain:"06:15 = a quarter past six • 06:30 = half past six",tip:"quarter = 15 นาที | half = 30 นาที"},
+{title:"To — อีกกี่นาทีจะถึง",sub:"Minutes To",time:"08:40",sentence:"It is twenty to nine.",thai:"นาทีที่ 31–59 ใช้ to กับชั่วโมงถัดไป",explain:"08:40 เหลือ 20 นาทีถึง 9 โมง → twenty to nine",tip:"คำนวณ 60 − นาที เช่น 60 − 40 = 20"},
+{title:"Quarter To & ทบทวน",sub:"Mixed Time",time:"09:45",sentence:"It is a quarter to ten.",thai:"45 นาที = เหลือ 15 นาทีถึงชั่วโมงถัดไป",explain:"09:45 = a quarter to ten • 11:55 = five to twelve",tip:"อ่านทั้ง past / to ได้คล่องแล้ว พร้อมทำแบบทดสอบ!"}
+];
+const quiz=[
+["03:00","It is three o'clock.",["It is three o'clock.","It is three past twelve.","It is twelve past three.","It is half past three."],"เข็มยาวชี้ 12 จึงเป็น o'clock"],
+["07:00","It is seven o'clock.",["It is seven past one.","It is seven o'clock.","It is twelve to seven.","It is a quarter past seven."],"07:00 คือ seven o'clock"],
+["04:10","It is ten past four.",["It is ten to four.","It is four past ten.","It is ten past four.","It is half past four."],"10 นาทีหลัง 4 โมง ใช้ ten past four"],
+["02:20","It is twenty past two.",["It is twenty to two.","It is twenty past two.","It is half past two.","It is two past twenty."],"20 นาทีหลัง 2 โมง"],
+["06:15","It is a quarter past six.",["It is half past six.","It is a quarter to six.","It is fifteen to six.","It is a quarter past six."],"15 นาที = a quarter"],
+["06:30","It is half past six.",["It is half past six.","It is a quarter past six.","It is thirty to six.","It is six o'clock."],"30 นาที = half past"],
+["08:40","It is twenty to nine.",["It is twenty past eight.","It is twenty to nine.","It is twenty to eight.","It is forty past nine."],"60−40=20 นาทีถึง 9 โมง"],
+["09:45","It is a quarter to ten.",["It is a quarter past nine.","It is a quarter to nine.","It is a quarter to ten.","It is half past ten."],"อีก 15 นาทีจะถึง 10 โมง"],
+["11:55","It is five to twelve.",["It is five past eleven.","It is five to eleven.","It is eleven to five.","It is five to twelve."],"อีก 5 นาทีถึง 12 โมง"],
+["01:05","It is five past one.",["It is five past one.","It is five to one.","It is one to five.","It is one o'clock."],"5 นาทีหลัง 1 โมง"],
+["10:50","It is ten to eleven.",["It is ten past eleven.","It is ten to eleven.","It is fifty to ten.","It is ten o'clock."],"อีก 10 นาทีถึง 11 โมง"],
+["03:35","It is twenty-five to four.",["It is twenty-five past three.","It is thirty-five to three.","It is twenty-five to four.","It is half past four."],"60−35=25 นาทีถึง 4 โมง"]
+];
+let state={page:"cover",name:"",lesson:0,qi:0,answers:{},finished:null,showReview:false};
+function esc(x){return String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function parseTime(s){return s.split(":").map(Number)}
+function clockSvg(time){
+ const [h,m]=parseTime(time),hr=(h%12+m/60)*30,mi=m*6;
+ let nums="";for(let n=1;n<=12;n++){let a=n*Math.PI/6-Math.PI/2;nums+=`<text x="${150+112*Math.cos(a)}" y="${156+112*Math.sin(a)}" text-anchor="middle" fill="#ffffff" font-size="22">${n}</text>`}
+ let ticks="";for(let i=0;i<60;i++){let a=i*Math.PI/30-Math.PI/2;let r1=i%5===0?128:134;ticks+=`<line x1="${150+r1*Math.cos(a)}" y1="${150+r1*Math.sin(a)}" x2="${150+140*Math.cos(a)}" y2="${150+140*Math.sin(a)}" stroke="${i%5===0?"#ffe578":"#9bc9eb"}" stroke-width="${i%5===0?3:1}"/>`}
+ return `<svg class="clock" viewBox="0 0 300 300" role="img" aria-label="นาฬิกาเวลา ${time}"><circle cx="150" cy="150" r="146" fill="#0b2755" stroke="#7deaff" stroke-width="7"/>${ticks}${nums}<line x1="150" y1="150" x2="${150+76*Math.sin(hr*Math.PI/180)}" y2="${150-76*Math.cos(hr*Math.PI/180)}" stroke="#ffe578" stroke-width="12" stroke-linecap="round"/><line x1="150" y1="150" x2="${150+108*Math.sin(mi*Math.PI/180)}" y2="${150-108*Math.cos(mi*Math.PI/180)}" stroke="#7deaff" stroke-width="7" stroke-linecap="round"/><circle cx="150" cy="150" r="10" fill="#ffffff"/></svg>`
+}
+function speak(s){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(s);u.lang="en-US";u.rate=.78;speechSynthesis.speak(u)}catch(e){}}
+function readAll(){try{let x=JSON.parse(localStorage.getItem(KEY)||"[]");return Array.isArray(x)?x:[]}catch(e){return []}}
+function saveAll(a){try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){console.warn(e)}}
+function mine(){let a=readAll().filter(x=>x.name===state.name);if(state.finished&&!a.some(x=>x.id===state.finished.id))a.push(state.finished);return a}
+function localDate(s){return new Date(s).toLocaleString("th-TH",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false})+" น."}
+function setPage(p){state.page=p;render()}
+function beginLesson(){state.name=document.getElementById("studentName")?.value.trim()||state.name||"Guest";state.lesson=0;setPage("lesson")}
+function startQuiz(){state.answers={};state.qi=0;state.finished=null;setPage("quiz")}
+function setAnswer(n){state.answers[state.qi]=n;render()}
+function finish(){
+ if(Object.keys(state.answers).length!==quiz.length){alert("ทำให้ครบทั้ง 12 ข้อก่อนนะจ๊ะ");return}
+ const score=quiz.filter((q,i)=>q[2][state.answers[i]]===q[1]).length;
+ const item={id:Date.now()+"-"+Math.random().toString(36).slice(2,8),name:state.name,date:new Date().toISOString(),score,total:quiz.length,answers:{...state.answers}};
+ const all=readAll();all.push(item);saveAll(all);state.finished=item;state.showReview=false;setPage("result")
+}
+function graph(items){
+ const recent=items.slice(-10),pts=recent.map((r,i)=>({x:recent.length===1?50:8+i*84/(recent.length-1),y:90-r.score/r.total*75,pct:Math.round(r.score/r.total*100),n:items.length-recent.length+i+1}));
+ return `<svg class="chart" viewBox="0 0 100 110" preserveAspectRatio="none" aria-label="กราฟเส้นคะแนน">${[0,25,50,75,100].map(v=>`<line x1="8" x2="95" y1="${90-v*.75}" y2="${90-v*.75}" stroke="#ffffff" stroke-opacity=".2" stroke-dasharray="2 2" stroke-width=".5"/><text x="0" y="${92-v*.75}" font-size="4" fill="#ffffff">${v}</text>`).join("")}${pts.length>1?`<polyline points="${pts.map(p=>p.x+","+p.y).join(" ")}" fill="none" stroke="#77e9ff" stroke-width="1.8" vector-effect="non-scaling-stroke"/>`:""}${pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="2" fill="#ffe578"/><text x="${p.x}" y="${Math.max(7,p.y-5)}" font-size="4.5" fill="#ffe578" text-anchor="middle">${p.pct}%</text><text x="${p.x}" y="103" font-size="4" fill="#fff" text-anchor="middle">#${p.n}</text>`).join("")}</svg>`
+}
+function review(){
+ const r=state.finished;return `<h2>🔎 ดูเฉลยทีละข้อ</h2><div class="quiznav">${quiz.map((q,i)=>`<button class="${state.qi===i?"active":""}" onclick="state.qi=${i};render()">${i+1}</button>`).join("")}</div><div class="review">${clockSvg(quiz[state.qi][0])}<div class="example">${esc(quiz[state.qi][0])}</div><p>คำตอบของนักเรียน: ${esc(quiz[state.qi][2][r.answers[state.qi]])}</p><p><b>เฉลย: ${esc(quiz[state.qi][1])}</b></p><p>${esc(quiz[state.qi][3])}</p></div><div class="actions"><button class="ghost" onclick="state.showReview=false;render()">กลับหน้าสรุป</button></div>`
+}
+function reportCanvas(){
+ const items=mine(),r=state.finished,pct=Math.round(r.score/r.total*100),best=Math.max(...items.map(x=>Math.round(x.score/x.total*100)));
+ const c=document.createElement("canvas");c.width=1080;c.height=1460;const g=c.getContext("2d");
+ const bg=g.createLinearGradient(0,0,1080,1460);bg.addColorStop(0,"#125b93");bg.addColorStop(1,"#07152f");g.fillStyle=bg;g.fillRect(0,0,1080,1460);
+ const rr=(x,y,w,h,rad,fill)=>{g.fillStyle=fill;g.beginPath();g.roundRect(x,y,w,h,rad);g.fill()};
+ const t=(s,x,y,size=32,color="#fff",align="center")=>{g.font=`bold ${size}px Arial, sans-serif`;g.fillStyle=color;g.textAlign=align;g.fillText(String(s),x,y)};
+ rr(45,45,990,1365,32,"#ffffff15");t("KRU PAI CLASSROOM",540,130,52,"#ffe578");t("CLOCK ACADEMY • TEACH & TRY",540,205,37);t("นักเรียน: "+r.name,540,295,34);t(localDate(r.date),540,358,29,"#c7efff");
+ rr(260,425,560,130,35,"#ffe578");t(`${r.score} / ${r.total} คะแนน`,540,509,60,"#062044");
+ [{v:pct+"%",l:"คะแนนล่าสุด"},{v:items.length,l:"ครั้งที่เล่น"},{v:best+"%",l:"คะแนนสูงสุด"}].forEach((x,i)=>{let px=85+i*305;rr(px,625,290,140,18,"#ffffff20");t(x.v,px+145,687,49,"#ffe578");t(x.l,px+145,734,24)});
+ rr(85,815,910,420,25,"#00000035");t("กราฟพัฒนาการ",130,870,34,"#ffe578","left");
+ const recent=items.slice(-10),left=170,right=950,top=940,bottom=1130;
+ [0,25,50,75,100].forEach(v=>{let y=bottom-v/100*(bottom-top);g.strokeStyle="#ffffff35";g.beginPath();g.moveTo(left,y);g.lineTo(right,y);g.stroke();t(v+"%",left-20,y+7,19,"#d5efff","right")});
+ const pts=recent.map((x,i)=>({x:recent.length===1?(left+right)/2:left+i*(right-left)/(recent.length-1),y:bottom-x.score/x.total*(bottom-top),pct:Math.round(x.score/x.total*100),n:items.length-recent.length+i+1}));
+ g.strokeStyle="#77e9ff";g.lineWidth=6;g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p.x,p.y):g.moveTo(p.x,p.y));g.stroke();
+ pts.forEach(p=>{g.fillStyle="#ffe578";g.beginPath();g.arc(p.x,p.y,8,0,Math.PI*2);g.fill();t(p.pct+"%",p.x,Math.max(923,p.y-22),20,"#ffe578");t("#"+p.n,p.x,1190,20)});
+ t(pct>=80?"ผ่านเกณฑ์ 80%":"ฝึกต่อเพื่อผ่านเกณฑ์ 80%",540,1335,35,"#ffe578");return c
+}
+async function shareReport(){
+ try{const c=reportCanvas(),blob=await new Promise(resolve=>c.toBlob(resolve,"image/png"));if(!blob)throw Error("PNG");
+ const file=new File([blob],"KPC_CLOCK_ACADEMY_REPORT.png",{type:"image/png"});
+ if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){try{await navigator.share({files:[file],title:"Kru Pai Classroom"});return}catch(e){if(e.name==="AbortError")return}}
+ const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);alert("บันทึกภาพ PNG แล้ว ส่งผ่าน LINE ได้จ้า")
+ }catch(e){console.error(e);alert("สร้างภาพรายงานไม่สำเร็จ")}
+}
+function render(){
+ const app=document.getElementById("app");
+ if(state.page==="cover"){app.innerHTML=`<div class="glass hero"><div><span class="pill">LESSON 01 • FOR TEACH + MINI TEST</span><h1>CLOCK<br>ACADEMY</h1><h2>เรียนรู้การบอกเวลาเป็นภาษาอังกฤษ</h2><p class="muted">6 บทเรียน • นาฬิกาเข็มขนาดใหญ่ • ตัวอย่างอ่านออกเสียง • แบบทดสอบ 12 ข้อ ไม่จับเวลา</p><input id="studentName" placeholder="ชื่อนักเรียน / ชื่อครู" value="${esc(state.name)}" oninput="state.name=this.value"><div class="actions"><button class="gold" onclick="beginLesson()">📖 เริ่มบทเรียน</button><button class="ghost" onclick="state.name=document.getElementById('studentName').value.trim()||'Guest';startQuiz()">📝 ไปแบบทดสอบ</button></div><p class="small">หน้าปกกรอกชื่อได้โดยไม่รีเฟรช • เรียนพร้อมครูหรือฝึกเองก็ได้</p></div><div class="clockwrap">${clockSvg("10:10")}<div class="example">What time is it?</div><div class="muted">It is ten past ten.</div></div></div>`;return}
+ if(state.page==="lesson"){const x=lessons[state.lesson];app.innerHTML=`<div class="glass"><div class="row"><span class="pill">FOR TEACH • บท ${state.lesson+1} / ${lessons.length}</span><span class="pill">ไม่มีตัวจับเวลา</span><button class="ghost" onclick="setPage('cover')">⌂ HOME</button></div><div class="progress"><div style="width:${(state.lesson+1)/lessons.length*100}%"></div></div><h2>${esc(x.title)}</h2><p class="muted">${esc(x.sub)}</p><div class="lesson"><div class="clockwrap">${clockSvg(x.time)}<div class="example">${esc(x.time)}</div><button onclick="speak('${x.sentence.replaceAll("'","\\'")}')">🔊 ฟังประโยคภาษาอังกฤษ</button></div><div><div class="example">${esc(x.sentence)}</div><h3>${esc(x.thai)}</h3><p>${esc(x.explain)}</p><div class="tip">💡 ${esc(x.tip)}</div><div class="tile" style="margin-top:15px"><h3>🎯 ลองอ่านตามครู</h3><p>ให้นักเรียนสังเกตเข็มสั้นและเข็มยาว แล้วอ่านเวลาเป็นภาษาอังกฤษ ก่อนกดฟังเสียงเพื่อตรวจคำอ่าน</p></div></div></div><div class="actions"><button class="ghost" ${state.lesson===0?"disabled":""} onclick="state.lesson--;render()">← ย้อนกลับ</button><button class="gold" onclick="${state.lesson===lessons.length-1?"startQuiz()":"state.lesson++;render()"}">${state.lesson===lessons.length-1?"📝 ทำแบบทดสอบ":"บทต่อไป →"}</button><button class="ghost" onclick="startQuiz()">ข้ามไปทดสอบ</button></div></div>`;return}
+ if(state.page==="quiz"){const q=quiz[state.qi],selected=state.answers[state.qi],done=Object.keys(state.answers).length===quiz.length;app.innerHTML=`<div class="glass"><div class="row"><span class="pill">MINI ASSESSMENT</span><span class="pill">ข้อ ${state.qi+1} / ${quiz.length}</span><span class="pill">ตอบแล้ว ${Object.keys(state.answers).length} ข้อ</span><button class="ghost" onclick="setPage('cover')">⌂ HOME</button></div><div class="progress"><div style="width:${Object.keys(state.answers).length/quiz.length*100}%"></div></div><div class="lesson"><div class="clockwrap">${clockSvg(q[0])}<div class="example">${q[0]}</div></div><div><h2>What time is it?</h2><p class="muted">เลือกประโยคภาษาอังกฤษให้ตรงกับนาฬิกา</p><div class="options">${q[2].map((a,i)=>`<button class="opt ${selected===i?"selected":""}" onclick="setAnswer(${i})">${String.fromCharCode(65+i)}. ${esc(a)}</button>`).join("")}</div><div class="feedback">${selected===undefined?"เลือกคำตอบได้ 1 ข้อ แล้วกดถัดไป":"✓ บันทึกคำตอบแล้ว (เฉลยหลังจบเกม)"}</div></div></div><div class="actions"><button class="ghost" onclick="state.qi=Math.max(0,state.qi-1);render()">← ข้อก่อน</button><button class="gold" onclick="state.qi=Math.min(quiz.length-1,state.qi+1);render()">ข้อถัดไป →</button><button class="ghost" onclick="state.qi=0;render()">ข้อ 1</button><button class="gold" ${done?"":"disabled"} onclick="finish()">ส่งคำตอบและดูคะแนน</button></div><div class="quiznav">${quiz.map((x,i)=>`<button class="${i===state.qi?"active":""} ${state.answers[i]!==undefined?"answered":""}" onclick="state.qi=${i};render()">${i+1}</button>`).join("")}</div></div>`;return}
+ if(state.page==="result"){const r=state.finished,items=mine(),pct=Math.round(r.score/r.total*100),best=Math.max(...items.map(x=>Math.round(x.score/x.total*100)));app.innerHTML=`<div class="glass"><div style="text-align:center"><div class="brand">KRU PAI CLASSROOM</div><h2>${state.showReview?"ANSWER REVIEW":"CLOCK ACADEMY • LEARNING REPORT"}</h2></div>${state.showReview?review():`<div class="muted" style="text-align:center">นักเรียน: <b>${esc(r.name)}</b> • 📅 ${localDate(r.date)}</div><div class="example">${r.score} / ${r.total} คะแนน</div><div class="stats"><div class="stat"><b>${pct}%</b>คะแนนล่าสุด</div><div class="stat"><b>${items.length}</b>จำนวนรอบ</div><div class="stat"><b>${best}%</b>คะแนนสูงสุด</div></div><div class="tile" style="margin-top:17px"><h3>📈 กราฟเส้นพัฒนาการ</h3>${graph(items)}</div><div class="tile" style="margin-top:15px"><h3>ประวัติคะแนน</h3><div class="row">${items.map((x,i)=>`<span class="pill">#${i+1} ${x.score}/${x.total} (${Math.round(x.score/x.total*100)}%)</span>`).join("")}</div></div><p style="text-align:center;color:${pct>=80?"#72f4b2":"#ffe578"}">${pct>=80?"ผ่านเกณฑ์ 80%":"ฝึกต่อเพื่อผ่านเกณฑ์ 80%"}</p><div class="actions"><button class="gold" onclick="shareReport()">📸 แชร์ภาพรายงาน PNG</button><button class="ghost" onclick="state.showReview=true;state.qi=0;render()">🔎 ดูเฉลยรายข้อ</button><button class="ghost" onclick="startQuiz()">🔁 เล่นอีกครั้ง</button><button class="ghost" onclick="state.lesson=0;setPage('lesson')">📖 ทบทวนบทเรียน</button><button class="ghost" onclick="setPage('cover')">⌂ HOME</button></div><p class="small">ภาพแชร์มีเฉพาะคะแนน ชื่อ วันเวลา และกราฟ • ไม่รวมเฉลย • ประวัติเก็บไว้ในเบราว์เซอร์นี้</p>`}</div>`;return}
+}
+render();
+</script></body></html>
